@@ -1,0 +1,8 @@
+# Search Syntax
+
+
+| Database       | Date of search | Results | Search syntax                                                                                                                                                                                                                                                                                                              |
+| :--------------| :------------- | :------ | :----------------------------------------------------------------------------------------------------- |
+| PsychINFO      | X May 20XX    | XXX     | (emotion OR mood* OR affect*) AND (music OR audio* OR recognition OR percei* OR recogn*) AND (music)   |
+| Scopus         | X May 20XX    | XXX     |           |
+| Web of Science | X May 20XX    | XXX     |           |

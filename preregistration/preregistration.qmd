@@ -1,0 +1,44 @@
+## Meta-analysis title: To what degree music emotion recognition 
+
+## Authors: TE + CA + MS ? (to be decided)
+
+## Brief rationale
+
+To assess what degree models are able to predict emotions in music, what models, what emotions, what genres, etc.
+
+## Research objectives
+
+1. How good are MER models?
+
+2. What are the systematic biases of the models?
+
+3. How are models dealing with genres and cultures? 
+
+4. How generalisible are the models
+
+5. WEIRD
+
+6. Theory orientations
+
+
+FINER: feasible, interesting, novel, ethical, relevant [@browner2022de]
+
+## Hypotheses 
+We expect that the 
+                                                                                               
+## Eligibility criteria
+English, peer-reviewed journal articles indexed in X and Y, published between 20xx-20xx
+
+## Database sources
+
+(PubMed, Web of Science, Scopus)                                                                  
+
+## Search strategy
+Music emotion recognition
+
+## Analysis plan
+
+Fixed effects model
+Tests of small study/publication bias
+
+

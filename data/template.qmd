@@ -1,0 +1,37 @@
+# template
+
+We code the studies in ascii format into files titled `authoryearxx.R` stored in `data/` folder.
+
+## Fields
+
+- Initial list, to be modified
+- Issues that need to be resolved can be marked after hashtag (#).
+- If there are multiple studies/samples in one article, another data can be created and `study_id` can be adjusted by adding a postfix (`_a`,`_b`,`_c`).
+
+```{r}
+#| eval: false
+#| echo: true
+study_id <- 'authorlastnameyeartwoletterfromthetitle'
+emotion_type <- c('dimensional','discrete','music-specific','other')
+emotion_list <- c('valence','arousal','happy','sad','anger','fear','tender','other')
+emotion_locus <- c('perceived','induced','not specified')
+stimulus_type <- c('classical','pop','genre','mixed')
+stimulus_duration <- 20
+stimulus_N <- 24
+participant_N <- 35
+participant_expertise <- c('non-musician','musician','not specified')
+participant_origin <- c('Country','not-specified')
+participant_sampling <- c('convenience','not-specified')
+participant_task <- c('rating','forced choice','ranking','other')
+feature_list <- c('attack rate','pitch height','mode')
+feature_validation <- c('annotation','none') # this was done in another study
+feature_source <- c('librosa','essentia','MIR toolbox','marsyas','custom','not specified')
+model_type <- c('correlation','regression','commonality analysis','classification')
+model_measure <- c('rsquared','cor','rmse','classification','other')
+model_complexity_parameters <- c(numeric, 'not defined')
+model_rate_emotion_list <- c(0.00,0.00)
+model_validation <- c('none','cross-validation')
+meta_comments <- 'template'
+meta_encoder <- 'Initials of the name'
+meta_date <- '3/5/2024'
+```

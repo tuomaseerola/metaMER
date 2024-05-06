@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "data/template.html",
+    "href": "data/template.html",
+    "title": "template",
+    "section": "",
+    "text": "We code the studies in ascii format into files titled authoryearxx.R stored in data/ folder.\n\n\n\nInitial list, to be modified\nIssues that need to be resolved can be marked after hashtag (#).\nIf there are multiple studies/samples in one article, another data can be created and study_id can be adjusted by adding a postfix (_a,_b,_c).\n\n\nstudy_id &lt;- 'authorlastnameyeartwoletterfromthetitle'\nemotion_type &lt;- c('dimensional','discrete','music-specific','other')\nemotion_list &lt;- c('valence','arousal','happy','sad','anger','fear','tender','other')\nemotion_locus &lt;- c('perceived','induced','not specified')\nstimulus_type &lt;- c('classical','pop','genre','mixed')\nstimulus_duration &lt;- 20\nstimulus_N &lt;- 24\nparticipant_N &lt;- 35\nparticipant_expertise &lt;- c('non-musician','musician','not specified')\nparticipant_origin &lt;- c('Country','not-specified')\nparticipant_sampling &lt;- c('convenience','not-specified')\nparticipant_task &lt;- c('rating','forced choice','ranking','other')\nfeature_list &lt;- c('attack rate','pitch height','mode')\nfeature_validation &lt;- c('annotation','none') # this was done in another study\nfeature_source &lt;- c('librosa','essentia','MIR toolbox','marsyas','custom','not specified')\nmodel_type &lt;- c('correlation','regression','commonality analysis','classification')\nmodel_measure &lt;- c('rsquared','cor','rmse','classification','other')\nmodel_complexity_parameters &lt;- c(numeric, 'not defined')\nmodel_rate_emotion_list &lt;- c(0.00,0.00)\nmodel_validation &lt;- c('none','cross-validation')\nmeta_comments &lt;- 'template'\nmeta_encoder &lt;- 'Initials of the name'\nmeta_date &lt;- '3/5/2024'"
+  },
+  {
+    "objectID": "data/template.html#fields",
+    "href": "data/template.html#fields",
+    "title": "template",
+    "section": "",
+    "text": "Initial list, to be modified\nIssues that need to be resolved can be marked after hashtag (#).\nIf there are multiple studies/samples in one article, another data can be created and study_id can be adjusted by adding a postfix (_a,_b,_c).\n\n\nstudy_id &lt;- 'authorlastnameyeartwoletterfromthetitle'\nemotion_type &lt;- c('dimensional','discrete','music-specific','other')\nemotion_list &lt;- c('valence','arousal','happy','sad','anger','fear','tender','other')\nemotion_locus &lt;- c('perceived','induced','not specified')\nstimulus_type &lt;- c('classical','pop','genre','mixed')\nstimulus_duration &lt;- 20\nstimulus_N &lt;- 24\nparticipant_N &lt;- 35\nparticipant_expertise &lt;- c('non-musician','musician','not specified')\nparticipant_origin &lt;- c('Country','not-specified')\nparticipant_sampling &lt;- c('convenience','not-specified')\nparticipant_task &lt;- c('rating','forced choice','ranking','other')\nfeature_list &lt;- c('attack rate','pitch height','mode')\nfeature_validation &lt;- c('annotation','none') # this was done in another study\nfeature_source &lt;- c('librosa','essentia','MIR toolbox','marsyas','custom','not specified')\nmodel_type &lt;- c('correlation','regression','commonality analysis','classification')\nmodel_measure &lt;- c('rsquared','cor','rmse','classification','other')\nmodel_complexity_parameters &lt;- c(numeric, 'not defined')\nmodel_rate_emotion_list &lt;- c(0.00,0.00)\nmodel_validation &lt;- c('none','cross-validation')\nmeta_comments &lt;- 'template'\nmeta_encoder &lt;- 'Initials of the name'\nmeta_date &lt;- '3/5/2024'"
+  },
+  {
+    "objectID": "studies/search_syntax.html",
+    "href": "studies/search_syntax.html",
+    "title": "Search Syntax",
+    "section": "",
+    "text": "Search Syntax\n\n\n\n\n\n\n\n\n\nDatabase\nDate of search\nResults\nSearch syntax\n\n\n\n\nPsychINFO\nX May 20XX\nXXX\n(emotion OR mood* OR affect) AND (music OR audio OR recognition OR percei* OR recogn*) AND (music)\n\n\nScopus\nX May 20XX\nXXX\n\n\n\nWeb of Science\nX May 20XX\nXXX\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#authors-te-ca-ms-to-be-decided",
+    "href": "preregistration/preregistration.html#authors-te-ca-ms-to-be-decided",
+    "title": "metaMER",
+    "section": "Authors: TE + CA + MS ? (to be decided)",
+    "text": "Authors: TE + CA + MS ? (to be decided)"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#brief-rationale",
+    "href": "preregistration/preregistration.html#brief-rationale",
+    "title": "metaMER",
+    "section": "Brief rationale",
+    "text": "Brief rationale\nTo assess what degree models are able to predict emotions in music, what models, what emotions, what genres, etc."
+  },
+  {
+    "objectID": "preregistration/preregistration.html#research-objectives",
+    "href": "preregistration/preregistration.html#research-objectives",
+    "title": "metaMER",
+    "section": "Research objectives",
+    "text": "Research objectives\n\nHow good are MER models?\nWhat are the systematic biases of the models?\nHow are models dealing with genres and cultures?\nHow generalisible are the models\nWEIRD\nTheory orientations\n\nFINER: feasible, interesting, novel, ethical, relevant [@browner2022de]"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#hypotheses",
+    "href": "preregistration/preregistration.html#hypotheses",
+    "title": "metaMER",
+    "section": "Hypotheses",
+    "text": "Hypotheses\nWe expect that the"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#eligibility-criteria",
+    "href": "preregistration/preregistration.html#eligibility-criteria",
+    "title": "metaMER",
+    "section": "Eligibility criteria",
+    "text": "Eligibility criteria\nEnglish, peer-reviewed journal articles indexed in X and Y, published between 20xx-20xx"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#database-sources",
+    "href": "preregistration/preregistration.html#database-sources",
+    "title": "metaMER",
+    "section": "Database sources",
+    "text": "Database sources\n(PubMed, Web of Science, Scopus)"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#search-strategy",
+    "href": "preregistration/preregistration.html#search-strategy",
+    "title": "metaMER",
+    "section": "Search strategy",
+    "text": "Search strategy\nMusic emotion recognition"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#analysis-plan",
+    "href": "preregistration/preregistration.html#analysis-plan",
+    "title": "metaMER",
+    "section": "Analysis plan",
+    "text": "Analysis plan\nFixed effects model Tests of small study/publication bias"
+  },
+  {
+    "objectID": "manuscript/manuscript.html",
+    "href": "manuscript/manuscript.html",
+    "title": "Music Emotion Recognition…",
+    "section": "",
+    "text": "blah blah (Anderson & Schutz, 2022)\n\n\nblah blah"
+  },
+  {
+    "objectID": "manuscript/manuscript.html#aims",
+    "href": "manuscript/manuscript.html#aims",
+    "title": "Music Emotion Recognition…",
+    "section": "",
+    "text": "blah blah"
+  },
+  {
+    "objectID": "analysis/analysis.html",
+    "href": "analysis/analysis.html",
+    "title": "analysis",
+    "section": "",
+    "text": "analysis\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "README",
+    "section": "",
+    "text": "How well we can predict emotions in music? What is the evidence in the published literature for explaining what emotions the listeners can perceive in music when the source consists of audio examples. To what degree the results are dependent on the actual models, emotions, musical/acoustic features, or musical materials or participants?\nTo obtain answers to these questions, we have set out to record and analyse the current state of the art from the literature using a meta-analysis paradigm. We focus on Music Emotion Recognition and hence the acronym metaMER.\n\n\nWe define the aims and methods in preregistration plan.\n\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData coding and extraction is described in data template data/template.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available manuscript/manuscript.qmd document."
+  },
+  {
+    "objectID": "index.html#plan",
+    "href": "index.html#plan",
+    "title": "README",
+    "section": "",
+    "text": "We define the aims and methods in preregistration plan."
+  },
+  {
+    "objectID": "index.html#study-search-and-selection",
+    "href": "index.html#study-search-and-selection",
+    "title": "README",
+    "section": "",
+    "text": "Search databases and criteria are documented in studies/search_syntax.qmd."
+  },
+  {
+    "objectID": "index.html#data-extraction-and-coding",
+    "href": "index.html#data-extraction-and-coding",
+    "title": "README",
+    "section": "",
+    "text": "Data coding and extraction is described in data template data/template.qmd."
+  },
+  {
+    "objectID": "index.html#analysis",
+    "href": "index.html#analysis",
+    "title": "README",
+    "section": "",
+    "text": "Data analysis is covered in analysis/analysis.qmd document."
+  },
+  {
+    "objectID": "index.html#manuscript",
+    "href": "index.html#manuscript",
+    "title": "README",
+    "section": "",
+    "text": "The study report is available manuscript/manuscript.qmd document."
+  }
+]

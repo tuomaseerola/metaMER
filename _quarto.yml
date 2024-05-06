@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+website:
+  page-footer: 
+    left: "Copyright 2024, Tuomas Eerola" 
+    right: 
+      - icon: github
+        href: https://github.com/tuomaseerola/
+      - icon: twitter 
+        href: https://twitter.com/tuomas_ee 
+  title: "metaMER"
+  navbar:
+    left:
+      - href: index.qmd
+  page-navigation: true
+  back-to-top-navigation: true
+format:
+  html:
+    theme: pulse # lumen, pulse, materia, yeti, zephyr
+    css: styles.css
+    toc: false
