@@ -6,3 +6,30 @@
 | PsychINFO      | X May 20XX    | XXX     | (emotion OR mood* OR affect*) AND (music OR audio* OR recognition OR percei* OR recogn*) AND (music)   |
 | Scopus         | X May 20XX    | XXX     |           |
 | Web of Science | X May 20XX    | XXX     |           |
+
+
+## Scopus
+
+
+TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music AND emotion AND recognition ) AND PUBYEAR > 2013 AND PUBYEAR < 2025 AND ( LIMIT-TO ( DOCTYPE , "ar" ) )
+
+
+227_ results
+scopus_first_pass.bib
+
+
+## Web of Science
+
+(DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)
+
+142 hits
+
+webofscience_142_first_pass.bib
+
+
+## OpenAlex
+
+
+https://openalex.org/works?page=1&filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal,type%3Atypes%2Farticle,publication_year%3A2014-2024,keywords.id%3Akeywords%2Femotion-recognition,keywords.id%3Akeywords%2Faffective-computing,language%3Alanguages%2Fen,open_access.any_repository_has_fulltext%3Atrue
+
+278
