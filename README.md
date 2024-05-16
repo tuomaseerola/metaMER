@@ -4,6 +4,10 @@ How well we can predict emotions in music? What is the evidence in the published
 
 To obtain answers to these questions, we have set out to record and analyse the current state of the art from the literature using a meta-analysis paradigm. We focus on Music Emotion Recognition and hence the acronym `metaMER`.
 
+The public-facing version of the repository is available at
+[https://tuomaseerola.github.io/metaMER/](https://tuomaseerola.github.io/metaMER/)
+
+
 ## Plan
 
 We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd).
