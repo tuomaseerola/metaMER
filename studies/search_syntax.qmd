@@ -1,35 +1,75 @@
 # Search Syntax
 
+We first performed search through three databases using the following syntax for each.
 
-| Database       | Date of search | Results | Search syntax                                                                                                                                                                                                                                                                                                              |
+| Database       | Date  | Results | Search syntax                                                                                                                                                                                                                                                                                                              |
 | :--------------| :------------- | :------ | :----------------------------------------------------------------------------------------------------- |
-| PsychINFO      | X May 20XX    | XXX     | (emotion OR mood* OR affect*) AND (music OR audio* OR recognition OR percei* OR recogn*) AND (music)   |
-| Scopus         | X May 20XX    | XXX     |           |
-| Web of Science | X May 20XX    | XXX     |           |
+| Scopus         | 12 May 2024    | 227     | ```TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music AND emotion AND recognition ) AND PUBYEAR > 2013 AND PUBYEAR < 2025 AND ( LIMIT-TO ( DOCTYPE , "ar" ) )```          |
+| Web of Science | 12 May 2024    | 142     | ```(DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)```          |
+| Open Alex      | 12 May 2024    | 278     | ```https://openalex.org/works?page=1&filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal,type%3Atypes%2Farticle, publication_year%3A2014-2024, keywords.id%3Akeywords%2Femotion-recognition, keywords.id%3Akeywords%2Faffective-computing, language%3Alanguages%2Fen,open_access.any_repository_has_fulltext%3Atrue```   |
 
 
-## Scopus
+# First Pass: Identification of relevant studies
+
+The first pass was to eliminate non-relevant studies based on our criteria (link to prereg). This round eliminated studies with incomplete or wrong type of information (e.g. conference proceedings).
+
+```{r}
+#| results: asis
+#| warning: false
+library(bib2df)
+library(tidyverse)
+library(stringr)
+library(ggplot2)
+
+#### Read first pass data ---------------------
+d <- bib2df("../studies/metaMER_library_first_pass_year_fixed.bib")
+# Remove extra fields
+d <- dplyr::select(d,-C1,-DATE.ADDED,-DATE.MODIFIED,-LA,-BDSK.URL.1,-BDSK.URL.2,-ISBN)
+# Add explicit source
+d$SOURCE[str_detect(d$UNIQUE.ID,'WOS')] <- 'Web of Science'
+d$SOURCE[is.na(d$SOURCE)] <- 'Open Alex'
+#print(knitr::kable(table(d$SOURCE)))
+
+library(summarytools)
+print(summarytools::freq(d$SOURCE, order = "freq",round.digits = 1,missing = 'NA',headings = FALSE))
+
+```
+
+After this pass, the unique number of studies in the three collections was `r nrow(d)`. During the first pass analysis, the studies were manually checked for relevance based on title and classified into low, moderate, and high relevance based on our focus.
+
+```{r}
+#| results: asis
+d$PRIORITY<-factor(d$PRIORITY,levels = c("prio1","prio2","prio3"), labels = c("High","Moderate","Low"))
+#print(knitr::kable(table(d$PRIORITY)))
+summarytools::freq(d$PRIORITY, order = "freq",round.digits = 1,missing = 'NA',headings = FALSE)
+
+```
+
+The majority of the excluded studies focussed on other aspects such as neuroscience, applied direction (recommendation, therapy) or another modality (visual, video, faces).
+
+```{r}
+#| results: asis
+#| 
+eliminated <- dplyr::filter(d, PRIORITY=='Low')
+eliminated$themes <- NA
+eliminated$themes[str_detect(tolower(eliminated$TITLE),'eeg|parietal|neuro|meg|galvanic|electrodermal|conductanc|heart|ecg|biosignal|brain|physiological|electroenceph|imaging|biomarker|cerebral|cardiovascular|autonomic nervous')]<-'Biosignals'
+eliminated$themes[str_detect(tolower(eliminated$TITLE),'stress|therapy|depress|autis|rehabil|schizoph|alzheime|cochle|interve')]<-'Clinical'
+eliminated$themes[str_detect(tolower(eliminated$TITLE),'infant|childr|childhood|empath|curriculum|amusia|music education|college|singing|young adults|newbor|memory')]<-'Developmental/Educational'
+eliminated$themes[str_detect(tolower(eliminated$TITLE),'tracking|image|wearable|virtual|touch|dance|movie|TV|voice|facial|face|multimodal|body|animat|multimed|video|robot|wireless|visual|sensor|multi-modal')]<-'Multimodal'
+eliminated$themes[str_detect(tolower(eliminated$TITLE),'violence|political|speech|melodies|twins|stage|timbre|tonality|age|paralinguistics|ontologies')]<-'Other'
+
+# and more of these themes identified here
+
+#print(knitr::kable(table(eliminated$themes)))
+print(summarytools::freq(eliminated$themes, order = "freq",round.digits = 1,missing = 'NA',headings = FALSE))
 
 
-TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music AND emotion AND recognition ) AND PUBYEAR > 2013 AND PUBYEAR < 2025 AND ( LIMIT-TO ( DOCTYPE , "ar" ) )
+eliminated$TITLE[is.na(eliminated$themes)]
+
+```
+
+## Second pass: Assessment of relevant content
 
 
-227_ results
-scopus_first_pass.bib
+Out of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established [link to prereg] was carried out.
 
-
-## Web of Science
-
-(DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)
-
-142 hits
-
-webofscience_142_first_pass.bib
-
-
-## OpenAlex
-
-
-https://openalex.org/works?page=1&filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal,type%3Atypes%2Farticle,publication_year%3A2014-2024,keywords.id%3Akeywords%2Femotion-recognition,keywords.id%3Akeywords%2Faffective-computing,language%3Alanguages%2Fen,open_access.any_repository_has_fulltext%3Atrue
-
-278

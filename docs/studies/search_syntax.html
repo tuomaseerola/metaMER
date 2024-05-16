@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -112,6 +146,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="search-syntax" class="level1">
 <h1>Search Syntax</h1>
+<p>We first performed search through three databases using the following syntax for each.</p>
 <table class="table">
 <colgroup>
 <col style="width: 10%">
@@ -122,34 +157,263 @@ ul.task-list li input[type="checkbox"] {
 <thead>
 <tr class="header">
 <th style="text-align: left;">Database</th>
-<th style="text-align: left;">Date of search</th>
+<th style="text-align: left;">Date</th>
 <th style="text-align: left;">Results</th>
 <th style="text-align: left;">Search syntax</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">PsychINFO</td>
-<td style="text-align: left;">X May 20XX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;">(emotion OR mood* OR affect<em>) AND (music OR audio</em> OR recognition OR percei* OR recogn*) AND (music)</td>
+<td style="text-align: left;">Scopus</td>
+<td style="text-align: left;">12 May 2024</td>
+<td style="text-align: left;">227</td>
+<td style="text-align: left;"><code>TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music AND emotion AND recognition ) AND PUBYEAR &gt; 2013 AND PUBYEAR &lt; 2025 AND ( LIMIT-TO ( DOCTYPE , "ar" ) )</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Scopus</td>
-<td style="text-align: left;">X May 20XX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Web of Science</td>
+<td style="text-align: left;">12 May 2024</td>
+<td style="text-align: left;">142</td>
+<td style="text-align: left;"><code>(DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Web of Science</td>
-<td style="text-align: left;">X May 20XX</td>
-<td style="text-align: left;">XXX</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">Open Alex</td>
+<td style="text-align: left;">12 May 2024</td>
+<td style="text-align: left;">278</td>
+<td style="text-align: left;"><code>https://openalex.org/works?page=1&amp;filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal,type%3Atypes%2Farticle, publication_year%3A2014-2024, keywords.id%3Akeywords%2Femotion-recognition, keywords.id%3Akeywords%2Faffective-computing, language%3Alanguages%2Fen,open_access.any_repository_has_fulltext%3Atrue</code></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="first-pass-identification-of-relevant-studies" class="level1">
+<h1>First Pass: Identification of relevant studies</h1>
+<p>The first pass was to eliminate non-relevant studies based on our criteria (link to prereg). This round eliminated studies with incomplete or wrong type of information (e.g.&nbsp;conference proceedings).</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bib2df)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">#### Read first pass data ---------------------</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">bib2df</span>(<span class="st">"../studies/metaMER_library_first_pass_year_fixed.bib"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove extra fields</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(d,<span class="sc">-</span>C1,<span class="sc">-</span>DATE.ADDED,<span class="sc">-</span>DATE.MODIFIED,<span class="sc">-</span>LA,<span class="sc">-</span>BDSK.URL<span class="fl">.1</span>,<span class="sc">-</span>BDSK.URL<span class="fl">.2</span>,<span class="sc">-</span>ISBN)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add explicit source</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">str_detect</span>(d<span class="sc">$</span>UNIQUE.ID,<span class="st">'WOS'</span>)] <span class="ot">&lt;-</span> <span class="st">'Web of Science'</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">is.na</span>(d<span class="sc">$</span>SOURCE)] <span class="ot">&lt;-</span> <span class="st">'Open Alex'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#print(knitr::kable(table(d$SOURCE)))</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">freq</span>(d<span class="sc">$</span>SOURCE, <span class="at">order =</span> <span class="st">"freq"</span>,<span class="at">round.digits =</span> <span class="dv">1</span>,<span class="at">missing =</span> <span class="st">'NA'</span>,<span class="at">headings =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Freq</th>
+<th style="text-align: right;">% Valid</th>
+<th style="text-align: right;">% Valid Cum.</th>
+<th style="text-align: right;">% Total</th>
+<th style="text-align: right;">% Total Cum.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Open Alex</td>
+<td style="text-align: right;">254</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">45.9</td>
+</tr>
+<tr class="even">
+<td>Scopus</td>
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">74.3</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">74.3</td>
+</tr>
+<tr class="odd">
+<td>Web of Science</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">25.7</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">25.7</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="even">
+<td><na></na></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;">553</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+</tbody>
+</table>
+<p>After this pass, the unique number of studies in the three collections was 553. During the first pass analysis, the studies were manually checked for relevance based on title and classified into low, moderate, and high relevance based on our focus.</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>PRIORITY<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>PRIORITY,<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"prio1"</span>,<span class="st">"prio2"</span>,<span class="st">"prio3"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"High"</span>,<span class="st">"Moderate"</span>,<span class="st">"Low"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(knitr::kable(table(d$PRIORITY)))</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>summarytools<span class="sc">::</span><span class="fu">freq</span>(d<span class="sc">$</span>PRIORITY, <span class="at">order =</span> <span class="st">"freq"</span>,<span class="at">round.digits =</span> <span class="dv">1</span>,<span class="at">missing =</span> <span class="st">'NA'</span>,<span class="at">headings =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Freq</th>
+<th style="text-align: right;">% Valid</th>
+<th style="text-align: right;">% Valid Cum.</th>
+<th style="text-align: right;">% Total</th>
+<th style="text-align: right;">% Total Cum.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">61.1</td>
+</tr>
+<tr class="even">
+<td>Moderate</td>
+<td style="text-align: right;">152</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">88.6</td>
+<td style="text-align: right;">27.5</td>
+<td style="text-align: right;">88.6</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">11.4</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="even">
+<td><na></na></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;">553</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+</tbody>
+</table>
+<p>The majority of the excluded studies focussed on other aspects such as neuroscience, applied direction (recommendation, therapy) or another modality (visual, video, faces).</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eliminated <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(d, PRIORITY<span class="sc">==</span><span class="st">'Low'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes[<span class="fu">str_detect</span>(<span class="fu">tolower</span>(eliminated<span class="sc">$</span>TITLE),<span class="st">'eeg|parietal|neuro|meg|galvanic|electrodermal|conductanc|heart|ecg|biosignal|brain|physiological|electroenceph|imaging|biomarker|cerebral|cardiovascular|autonomic nervous'</span>)]<span class="ot">&lt;-</span><span class="st">'Biosignals'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes[<span class="fu">str_detect</span>(<span class="fu">tolower</span>(eliminated<span class="sc">$</span>TITLE),<span class="st">'stress|therapy|depress|autis|rehabil|schizoph|alzheime|cochle|interve'</span>)]<span class="ot">&lt;-</span><span class="st">'Clinical'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes[<span class="fu">str_detect</span>(<span class="fu">tolower</span>(eliminated<span class="sc">$</span>TITLE),<span class="st">'infant|childr|childhood|empath|curriculum|amusia|music education|college|singing|young adults|newbor|memory'</span>)]<span class="ot">&lt;-</span><span class="st">'Developmental/Educational'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes[<span class="fu">str_detect</span>(<span class="fu">tolower</span>(eliminated<span class="sc">$</span>TITLE),<span class="st">'tracking|image|wearable|virtual|touch|dance|movie|TV|voice|facial|face|multimodal|body|animat|multimed|video|robot|wireless|visual|sensor|multi-modal'</span>)]<span class="ot">&lt;-</span><span class="st">'Multimodal'</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>themes[<span class="fu">str_detect</span>(<span class="fu">tolower</span>(eliminated<span class="sc">$</span>TITLE),<span class="st">'violence|political|speech|melodies|twins|stage|timbre|tonality|age|paralinguistics|ontologies'</span>)]<span class="ot">&lt;-</span><span class="st">'Other'</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># and more of these themes identified here</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print(knitr::kable(table(eliminated$themes)))</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">freq</span>(eliminated<span class="sc">$</span>themes, <span class="at">order =</span> <span class="st">"freq"</span>,<span class="at">round.digits =</span> <span class="dv">1</span>,<span class="at">missing =</span> <span class="st">'NA'</span>,<span class="at">headings =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Freq</th>
+<th style="text-align: right;">% Valid</th>
+<th style="text-align: right;">% Valid Cum.</th>
+<th style="text-align: right;">% Total</th>
+<th style="text-align: right;">% Total Cum.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Biosignals</td>
+<td style="text-align: right;">169</td>
+<td style="text-align: right;">51.5</td>
+<td style="text-align: right;">51.5</td>
+<td style="text-align: right;">50.0</td>
+<td style="text-align: right;">50.0</td>
+</tr>
+<tr class="even">
+<td>Multimodal</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">29.9</td>
+<td style="text-align: right;">81.4</td>
+<td style="text-align: right;">29.0</td>
+<td style="text-align: right;">79.0</td>
+</tr>
+<tr class="odd">
+<td>Other</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">89.0</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">86.4</td>
+</tr>
+<tr class="even">
+<td>Developmental/Educational</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">95.1</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">92.3</td>
+</tr>
+<tr class="odd">
+<td>Clinical</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">97.0</td>
+</tr>
+<tr class="even">
+<td><na></na></td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+<td style="text-align: right;">100.0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>eliminated<span class="sc">$</span>TITLE[<span class="fu">is.na</span>(eliminated<span class="sc">$</span>themes)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[1] “Music Communicates Affects, Not Basic Emotions - A Constructionist Account of Attribution of Emotional Meanings to Music” [2] “A survey on deep reinforcement learning for audio-based applications”<br>
+[3] “Music Emotion Recognition: Toward new, robust standards in personalized and context-sensitive applications”<br>
+[4] “Deep Learning for Human Affect Recognition: Insights and New Developments”<br>
+[5] “A Survey on Human Emotion Recognition Approaches, Databases and Applications”<br>
+[6] “Improving Driver Emotions with Affective Strategies”<br>
+[7] “Going with our Guts”<br>
+[8] “Automatic subject-specific spatiotemporal feature selection for subject-independent affective BCI”<br>
+[9] “Jasper”<br>
+[10] “Cultural Differences and Similarities in Emotion Recognition”</p>
+<section id="second-pass-assessment-of-relevant-content" class="level2">
+<h2 class="anchored" data-anchor-id="second-pass-assessment-of-relevant-content">Second pass: Assessment of relevant content</h2>
+<p>Out of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established [link to prereg] was carried out.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
