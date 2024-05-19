@@ -1,0 +1,104 @@
+---
+title: "Bib Library"
+author: "Cameron Anderson"
+format: html
+editor: visual
+---
+
+## Reading in Biblibrary
+
+## Load libraries
+
+```{r}
+# load dplyr
+library(dplyr)
+```
+
+## Read data
+
+```{r}
+# read in bibtex library as data frame
+bib_df_ca <- bib2df::bib2df('metaMER_lib_third_pass_ca.bib')
+bib_df_te <- bib2df::bib2df(blahblah)
+
+```
+
+## Identify sources
+
+```{r}
+# filter open_alex entries and declare source (c1 unique to database)
+bib_df_ca %>% 
+  filter(!is.na(C1)) %>%
+  mutate(SOURCE = 'open_alex') -> oa_entries
+
+# filter wos entries and declare source (unique_id unique to database)
+bib_df_ca %>% 
+  filter(!is.na(UNIQUE.ID)) %>%
+  mutate(SOURCE = 'web_of_science') -> wos_entries
+
+# filter scopus entries
+bib_df_ca %>% 
+  filter(SOURCE == 'Scopus') -> scopus_entries
+
+# bind sources
+bib_df_ca <- rbind(oa_entries, wos_entries)
+bib_df_ca <- rbind(bib_df_ca, scopus_entries)
+
+```
+
+## Clean up entries
+
+```{r}
+# remove columns only belonging to one database
+bib_df_ca$UNIQUE.ID <- NULL
+bib_df_ca$C1 <- NULL
+# remove unnecessary column
+bib_df_ca$HASABSTRACT <- FALSE
+# relevel priority column with intuitive names
+bib_df_ca$PRIORITY <- as.factor(bib_df_ca$PRIORITY)
+levels(bib_df_ca$PRIORITY) <- c('high_priority', 'low_priority')
+bib_df_ca$PRIORITY <- plyr::revalue(bib_df_ca$PRIORITY, 
+                                    c(prio1 = 'high_priority',
+                                      prio3 = 'low_prioirty'))
+# make casing consistent
+bib_df_ca$SOURCE <- tolower(bib_df_ca$SOURCE)
+# consistent names for private notes
+names(bib_df_ca)[names(bib_df_ca) == 'comment_camja'] <- 'NOTES.CA'
+```
+
+## Clean up field formatting
+
+```{r}
+# replace periods and hyphens with underscores, make titles lowercase
+# stringr::str_replace(names(bib_df), '\\.|_', '_') %>% 
+#   tolower() -> names(bib_df)
+```
+
+## Add comments from second reviewer
+
+```{r}
+# select bibkey (for merge) and notes from second reviewer
+bib_df_te <- bib_df_te %>% select(BIBTEXKEY, NOTES.TE)
+
+bib_df_merged <- merge(bib_df_ca, 
+                       bib_df_te, 
+                       by = c('BIBTEXKEY'))
+```
+
+## Drop empty columns
+
+```{r}
+# identify columns entirely empty
+empty_cols <- sapply(bib_df_merged, function(x)all(is.na(x))) 
+# remove them
+bib_df_merged <- bib_df_merged[,!empty_cols]
+
+```
+
+## Rewrite BiBTeX library
+
+```{r}
+bib2df::df2bib(bib_df_merged, file = 'metaMER_lib_third_pass_clean.bib')
+```
+
+## 
