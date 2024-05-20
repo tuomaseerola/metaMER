@@ -18,9 +18,11 @@ library(dplyr)
 
 ```{r}
 # read in bibtex library as data frame
-bib_df_ca <- bib2df::bib2df('metaMER_lib_third_pass_ca.bib')
-bib_df_te <- bib2df::bib2df(blahblah)
-
+bib_df_ca <- bib2df::bib2df('metaMER_library_third_pass_ca.bib')
+bib_df_te <- bib2df::bib2df('metaMER_library_third_pass_te.bib')
+bib_df_ca <- dplyr::filter(bib_df_ca,PRIORITY=='prio1')
+bib_df_te <- dplyr::filter(bib_df_te,PRIORITY=='prio1')
+sum(bib_df_ca$BIBTEXKEY %in% bib_df_te$BIBTEXKEY)==nrow(bib_df_ca)
 ```
 
 ## Identify sources
@@ -53,17 +55,17 @@ bib_df_ca <- rbind(bib_df_ca, scopus_entries)
 bib_df_ca$UNIQUE.ID <- NULL
 bib_df_ca$C1 <- NULL
 # remove unnecessary column
-bib_df_ca$HASABSTRACT <- FALSE
+bib_df_ca$HASABSTRACT <- NULL
 # relevel priority column with intuitive names
-bib_df_ca$PRIORITY <- as.factor(bib_df_ca$PRIORITY)
-levels(bib_df_ca$PRIORITY) <- c('high_priority', 'low_priority')
-bib_df_ca$PRIORITY <- plyr::revalue(bib_df_ca$PRIORITY, 
-                                    c(prio1 = 'high_priority',
-                                      prio3 = 'low_prioirty'))
+# bib_df_ca$PRIORITY <- as.factor(bib_df_ca$PRIORITY)
+#levels(bib_df_ca$PRIORITY) <- c('high_priority', 'low_priority')
+# bib_df_ca$PRIORITY <- plyr::revalue(bib_df_ca$PRIORITY, 
+#                                     c(prio1 = 'high_priority',
+#                                       prio3 = 'low_prioirty'))
 # make casing consistent
 bib_df_ca$SOURCE <- tolower(bib_df_ca$SOURCE)
 # consistent names for private notes
-names(bib_df_ca)[names(bib_df_ca) == 'comment_camja'] <- 'NOTES.CA'
+names(bib_df_ca)[names(bib_df_ca) == 'COMMENT.CAMJA'] <- 'NOTES.CA'
 ```
 
 ## Clean up field formatting
@@ -77,6 +79,7 @@ names(bib_df_ca)[names(bib_df_ca) == 'comment_camja'] <- 'NOTES.CA'
 ## Add comments from second reviewer
 
 ```{r}
+
 # select bibkey (for merge) and notes from second reviewer
 bib_df_te <- bib_df_te %>% select(BIBTEXKEY, NOTES.TE)
 
@@ -98,7 +101,12 @@ bib_df_merged <- bib_df_merged[,!empty_cols]
 ## Rewrite BiBTeX library
 
 ```{r}
-bib2df::df2bib(bib_df_merged, file = 'metaMER_lib_third_pass_clean.bib')
-```
+# JOURNAL and JOURNALTITLE are the same (latter for scopus)
 
-## 
+dim(bib_df_merged)
+bib2df::df2bib(bib_df_merged, file = 'metaMER_lib_third_pass_clean.bib')
+
+```
+## Next
+
+Compare pass 3 annotations and resolve conflicts (`pass 3 comparison.qmd`)

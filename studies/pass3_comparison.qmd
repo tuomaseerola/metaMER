@@ -1,0 +1,91 @@
+---
+title: "Pass 3 Comparison"
+author: "Cameron Anderson"
+format: html
+---
+
+## Reading in Biblibrary
+
+## Load libraries
+
+```{r}
+# load dplyr
+library(dplyr)
+```
+
+## Read data
+
+```{r}
+# read in bibtex library as data frame
+bib_df_ca <- bib2df::bib2df('metaMER_lib_third_pass_clean.bib')
+
+```
+
+## Compare
+
+```{r}
+dim(bib_df_merged)
+library(stringr)
+
+bib_df_merged$NOTES_INDEX.CA<-NA
+bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'include')]<-'include'
+bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'exclude')]<-'exclude'
+bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'unsure')]<-'unsure'
+
+bib_df_merged$NOTES_INDEX.TE<-NA
+bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'include')]<-'include'
+bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'exclude')]<-'exclude'
+bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'unsure')]<-'unsure'
+sum(is.na(bib_df_merged$NOTES_INDEX.CA))
+sum(is.na(bib_df_merged$NOTES_INDEX.TE))
+
+t<-table(bib_df_merged$NOTES_INDEX.CA,bib_df_merged$NOTES_INDEX.TE)
+t2<-round(t/sum(t),2)
+sum(diag(t2))
+```
+## Report annotation reliability/agreement
+
+
+
+## Resolve these discrepancies
+```{r}
+# resolve unsure ones
+IND <- which(bib_df_merged$NOTES_INDEX.CA=='unsure')
+resolved_index <- bib_df_merged$BIBTEXKEY[IND]
+resolved <-c('exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude',
+             'exclude')
+
+# Resolving conflicting exclude/include annotations, part 1
+IND <- which(bib_df_merged$NOTES_INDEX.CA=='exclude' & bib_df_merged$NOTES_INDEX.TE=='include')
+#IND <- which(bib_df_merged$NOTES_INDEX.TE=='exclude' & bib_df_merged$NOTES_INDEX.CA=='include')
+resolved_exclude_index <- bib_df_merged$BIBTEXKEY[IND]
+resolved_exclude_index # 8
+resolved_exclude <-c('exclude','exclude','exclude','include','exclude','exclude','exclude','exclude')
+
+# Resolving conflicting exclude/include annotations, part 2
+IND <- which(bib_df_merged$NOTES_INDEX.TE=='exclude' & bib_df_merged$NOTES_INDEX.CA=='include')
+resolved_exclude2_index <- bib_df_merged$BIBTEXKEY[IND]
+resolved_exclude2_index # 8
+resolved_exclude2 <-c('exclude','exclude','exclude','exclude')
+
+```
+
+## Export bibtex for the annotation
+
+Notes: 
+
+For Feature classification, use this one: 
+
+https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9229494
+
+Insert the template the annotation fields from googledoc to the bibtex file.
