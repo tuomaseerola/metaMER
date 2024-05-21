@@ -304,7 +304,6 @@ bib_df_merged %>% mutate(emotions = ' ',
 ```{r}
 bib_df_merged$NOTES_INDEX.CA <- NULL
 bib_df_merged$NOTES_INDEX.TE <- NULL
-bib_df_merged$CATEGORY <- NULL
 ```
 
 ## Get included studies
