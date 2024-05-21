@@ -258,6 +258,15 @@ bib_df_merged[str_detect(bib_df_merged$NOTES.CA, 'classification'),]$PARADIGM <-
 
 # sort by task
 bib_df_merged <- bib_df_merged[order(bib_df_merged$PARADIGM),]
+
+# put rater notes side-by-side
+NOTES.CA <- bib_df_merged$NOTES.CA
+NOTES.TE <- bib_df_merged$NOTES.TE
+bib_df_merged$NOTES.CA <- NULL
+bib_df_merged$NOTES.TE <- NULL
+bib_df_merged$NOTES_CA<-NOTES.CA
+bib_df_merged$NOTES_TE<-NOTES.TE
+
 ```
 
 ## Add fields for annotation
@@ -295,7 +304,16 @@ bib_df_merged %>% mutate(emotions = ' ',
 ```{r}
 bib_df_merged$NOTES_INDEX.CA <- NULL
 bib_df_merged$NOTES_INDEX.TE <- NULL
+bib_df_merged$CATEGORY <- NULL
 ```
+
+## Get included studies
+
+```{R}
+bib_df_merged <- subset(bib_df_merged, final_decision == 'include')
+bib_df_merged$final_decision <- NULL
+```
+
 
 ## Write resulting bibtex library
 
