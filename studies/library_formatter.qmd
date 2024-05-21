@@ -1,8 +1,7 @@
 ---
-title: "Bib Library"
+title: "Library Formatter"
 author: "Cameron Anderson"
 format: html
-editor: visual
 ---
 
 ## Reading in Biblibrary
@@ -42,6 +41,9 @@ bib_df_ca %>%
 bib_df_ca %>% 
   filter(SOURCE == 'Scopus') -> scopus_entries
 
+scopus_entries$JOURNAL <- scopus_entries$JOURNALTITLE
+scopus_entries$JOURNALTITLE <- NA
+
 # bind sources
 bib_df_ca <- rbind(oa_entries, wos_entries)
 bib_df_ca <- rbind(bib_df_ca, scopus_entries)
@@ -66,20 +68,15 @@ bib_df_ca$HASABSTRACT <- NULL
 bib_df_ca$SOURCE <- tolower(bib_df_ca$SOURCE)
 # consistent names for private notes
 names(bib_df_ca)[names(bib_df_ca) == 'COMMENT.CAMJA'] <- 'NOTES.CA'
-```
-
-## Clean up field formatting
-
-```{r}
-# replace periods and hyphens with underscores, make titles lowercase
-# stringr::str_replace(names(bib_df), '\\.|_', '_') %>% 
-#   tolower() -> names(bib_df)
+# after subsetting out high-priority studies, no longer need priority column
+bib_df_ca$PRIORITY <- NULL
+bib_df_ca$RANKING <- NULL
+bib_df_ca$MODIFICATIONDATE <- NULL
 ```
 
 ## Add comments from second reviewer
 
 ```{r}
-
 # select bibkey (for merge) and notes from second reviewer
 bib_df_te <- bib_df_te %>% select(BIBTEXKEY, NOTES.TE)
 
@@ -92,21 +89,22 @@ bib_df_merged <- merge(bib_df_ca,
 
 ```{r}
 # identify columns entirely empty
-empty_cols <- sapply(bib_df_merged, function(x)all(is.na(x))) 
+empty_cols <- sapply(bib_df_merged, function(x) {
+  all(is.na(x))
+  }
+) 
 # remove them
-bib_df_merged <- bib_df_merged[,!empty_cols]
-
+bib_df_merged <- bib_df_merged[ , !empty_cols]
 ```
 
 ## Rewrite BiBTeX library
 
 ```{r}
-# JOURNAL and JOURNALTITLE are the same (latter for scopus)
-
 dim(bib_df_merged)
-bib2df::df2bib(bib_df_merged, file = 'metaMER_lib_third_pass_clean.bib')
+bib2df::df2bib(bib_df_merged, file = 'metaMER_library_third_pass_clean.bib')
 
 ```
+
 ## Next
 
 Compare pass 3 annotations and resolve conflicts (`pass 3 comparison.qmd`)

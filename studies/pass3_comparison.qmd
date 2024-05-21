@@ -9,82 +9,303 @@ format: html
 ## Load libraries
 
 ```{r}
-# load dplyr
+# load libraries
 library(dplyr)
+library(stringr)
+library(knitr)
 ```
 
 ## Read data
 
 ```{r}
 # read in bibtex library as data frame
-bib_df_ca <- bib2df::bib2df('metaMER_lib_third_pass_clean.bib')
-
+bib_df_merged <- bib2df::bib2df('metaMER_library_third_pass_clean.bib')
 ```
 
 ## Compare
 
 ```{r}
+# check dimensions are accurate
 dim(bib_df_merged)
-library(stringr)
 
+# distinguish notes with author initials
+names(bib_df_merged)[names(bib_df_merged) == 'NOTES'] <- 'NOTES.CA'
+names(bib_df_merged)[names(bib_df_merged) == 'NOTES.1'] <- 'NOTES.TE'
+
+# extract decisions less comments
+capture_group <- 'include|exclude|unsure'
+
+
+# create new index to track entries
 bib_df_merged$NOTES_INDEX.CA<-NA
-bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'include')]<-'include'
-bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'exclude')]<-'exclude'
-bib_df_merged$NOTES_INDEX.CA[str_detect(tolower(bib_df_merged$NOTES.CA),'unsure')]<-'unsure'
 
-bib_df_merged$NOTES_INDEX.TE<-NA
-bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'include')]<-'include'
-bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'exclude')]<-'exclude'
-bib_df_merged$NOTES_INDEX.TE[str_detect(tolower(bib_df_merged$NOTES.TE),'unsure')]<-'unsure'
+# create new column tracking decisions
+bib_df_merged$NOTES_INDEX.CA <- str_extract(tolower(bib_df_merged$NOTES.CA),
+                                         capture_group)
+bib_df_merged$NOTES_INDEX.TE <- str_extract(tolower(bib_df_merged$NOTES.TE),
+                                     capture_group)
+
+# check entries are consistent
 sum(is.na(bib_df_merged$NOTES_INDEX.CA))
 sum(is.na(bib_df_merged$NOTES_INDEX.TE))
 
-t<-table(bib_df_merged$NOTES_INDEX.CA,bib_df_merged$NOTES_INDEX.TE)
-t2<-round(t/sum(t),2)
-sum(diag(t2))
+
 ```
+
 ## Report annotation reliability/agreement
 
+```{r}
+# compare raters' decisions with confusion matrix
+t<-table(bib_df_merged$NOTES_INDEX.CA,
+         bib_df_merged$NOTES_INDEX.TE)
 
+# get agreement
+t2<-round(t/sum(t),2)
+ag_before <- sum(diag(t2))
 
-## Resolve these discrepancies
+# make table
+knitr::kable(t,  
+             caption = paste('Votes before discussion. \n
+             Rows: CA votes; cols: TE votes, Agreement = ', ag_before)
+             )
+```
+
+## CA: unsure
+
 ```{r}
 # resolve unsure ones
 IND <- which(bib_df_merged$NOTES_INDEX.CA=='unsure')
-resolved_index <- bib_df_merged$BIBTEXKEY[IND]
-resolved <-c('exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude',
-             'exclude')
+resolved_index <- bib_df_merged$BIBTEXKEY[IND] # 12
+# CA updates ratings:
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'deng2024an'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'hao2022re'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'he2022al'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'huang2023th'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'priscillajoy2023mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'shen2024re'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'wang2021mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'wang2021re'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'wang2022mua'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'zhang2016rea'] <- 'exclude'
 
+# both CA and TE update ratings:
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'na2022mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'na2022mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'tian2023mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'tian2023mu'] <- 'exclude'
+
+# resolved <-c('deng2024an' = 'exclude',
+#              'hao2022re' = 'exclude',
+#              'he2022al' = 'exclude',
+#              'huang2023th' = 'exclude',
+#              'na2022mu' = 'exclude',
+#              'priscillajoy2023mu' = 'exclude',
+#              'shen2024re' = 'exclude',
+#              'tian2023mu' = 'exclude',
+#              'wang2021mu' = 'exclude',
+#              'wang2021re' = 'exclude',
+#              'wang2022mua' = 'exclude',
+#              'zhang2016rea' = 'exclude')
+
+```
+
+## TE: unsure (in progress)
+
+```{r}
+# update TE decision
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'tang2023ap'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'xing2015em'] <- 'exclude'
+
+# update TE and CA decisions
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'wang2022mu'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'wang2022mu'] <- 'exclude'
+
+```
+## Summary
+|Study|CA|TE||Resolution/Decision|
+|---|---|---|---|
+|tang2023ap|uses image features|No relevant features, lack of stimulus detail|Exclude|
+|xing2015em|includes classification task|No N of musical excerpts, missing information regarding data processing|Exclude|
+|wang2022mu|only reports DET and equal error rate|Although they report correlation coefficients, emotions are not valence or arousal. Do report MSE of classification task|Exclude|
+
+## Tabulate results after resolving unsures
+
+```{r}
+# compare raters' decisions with confusion matrix
+t<-table(bib_df_merged$NOTES_INDEX.CA,
+         bib_df_merged$NOTES_INDEX.TE)
+
+# get agreement
+t2<-round(t/sum(t),2)
+ag_before <- sum(diag(t2))
+
+# make table
+knitr::kable(t,  
+             caption = paste('Votes after resolving unsure discrepancies. \n
+             Rows: CA votes; cols: TE votes, Agreement = ', ag_before)
+             )
+```
+
+# Resolving exclude/include disagreements
+
+## CA: exclude, TE: include
+
+```{r}
 # Resolving conflicting exclude/include annotations, part 1
-IND <- which(bib_df_merged$NOTES_INDEX.CA=='exclude' & bib_df_merged$NOTES_INDEX.TE=='include')
-#IND <- which(bib_df_merged$NOTES_INDEX.TE=='exclude' & bib_df_merged$NOTES_INDEX.CA=='include')
+IND <- which(bib_df_merged$NOTES_INDEX.CA=='exclude' & 
+  bib_df_merged$NOTES_INDEX.TE=='include')
+# check discrepant entries
 resolved_exclude_index <- bib_df_merged$BIBTEXKEY[IND]
 resolved_exclude_index # 8
-resolved_exclude <-c('exclude','exclude','exclude','include','exclude','exclude','exclude','exclude')
 
+
+# update TE votes to exclude
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'aljanaki2017de'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'li2024im'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'pandeya2024gl'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'sanmillancastillo2022an'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'wang2015mo'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'wang2016af'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.TE[bib_df_merged$BIBTEXKEY == 'yang2023ex'] <- 'exclude'
+# update CA votes to include
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'saizclar2022pr'] <- 'include'
+
+
+# resolved_exclude <-c('aljanaki2017de' = 'exclude',
+#                      'li2024im' = 'exclude',
+#                      'pandeya2024gl' = 'exclude',
+#                      'saizclar2022pr' = 'include',
+#                      'sanmillancastillo2022an' = 'exclude',
+#                      'wang2015mo' = 'exclude',
+#                      'wang2016af' = 'exclude',
+#                      'yang2023ex' = 'exclude')
+
+
+```
+
+## Summary
+
+### CA: exclude, TE: include
+
+| Study                       | CA                                    | TE                                                                   | Resolution/Decision                                                                                  |
+|------------------|------------------|------------------|------------------|
+| **aljanaki2017de**          | Multiple teams' performance reported  | Possible to report teams as substudies                               | **Exclude**: Benchmark, does not contain original study details from reporting team                  |
+| **li2024im**                | No relevant task                      | Reports classification accuracy and DEAM results                     | **Exclude**: No audio features reported                                                              |
+| **pandeya2024gl**           | Insufficient detail for meta-analysis | Includes timbre and global audio features, confusion matrix included | **Exclude**: Reporting on music videos; quality issues in data set                                   |
+| **saizclar2022pr**          | No modeling task                      | Modeling is based on onsets                                          | **Include**: although no cross-validation, still performed task                                      |
+| **sanmillancastillo2022an** | No music                              | Task present                                                         | **Exclude**: No music                                                                                |
+| **wang2015mo**              | No relevant task                      | Not sure of outcome measures                                         | **Exclude**: No translation of distances into VA accuracy                                            |
+| **wang2016af**              | Chapter                               | Includes relevant task                                               | **Exclude**: Meets exclusion criteria (not an article)                                               |
+| **yang2023ex**              | No relevant task                      | Final metrics missing                                                | **Exclude**: Collected VA emotion ratings, but don't use audio features to predict VA (not reported) |
+
+## TE: exclude, CA: include
+
+```{r}
 # Resolving conflicting exclude/include annotations, part 2
-IND <- which(bib_df_merged$NOTES_INDEX.TE=='exclude' & bib_df_merged$NOTES_INDEX.CA=='include')
-resolved_exclude2_index <- bib_df_merged$BIBTEXKEY[IND]
-resolved_exclude2_index # 8
-resolved_exclude2 <-c('exclude','exclude','exclude','exclude')
+IND <- which(bib_df_merged$NOTES_INDEX.TE=='exclude' & 
+               bib_df_merged$NOTES_INDEX.CA=='include')
 
+# check discrepant entries
+resolved_exclude2_index <- bib_df_merged$BIBTEXKEY[IND]
+resolved_exclude2_index # 4
+
+# update CA votes
+
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'cunningham2021su'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'eyben2015em'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'tian2023mua'] <- 'exclude'
+bib_df_merged$NOTES_INDEX.CA[bib_df_merged$BIBTEXKEY == 'tiple2022mu'] <- 'exclude'
+
+# resolved_exclude2 <-c('cunningham2021su' = 'exclude',
+#                       'eyben2015em' = 'exclude',
+#                       'tian2023mua' = 'exclude',
+#                       'tiple2022mu' = 'exclude')
+
+```
+
+## Summary
+
+| Study                | TE                                               | CA                                               | Resolution/Decision                                          |
+|------------------|------------------|------------------|------------------|
+| **cunningham2021su** | Reports on IADS (not music)                      | Relevant task                                    | **Exclude**: No music                                        |
+| **eyben2015em**      | Focused on laboratory singing                    | Relevant task                                    | **Exclude**: Laboratory singing of a scale                   |
+| **tiple2022mu**      | Data set just includes annotation of tonic pitch | Relevant task, but only reports overall accuracy | **Exclude**: Data set not sufficiently detailed for MER task |
+
+## Update table after resolving disagreements
+
+```{r}
+# compare raters' decisions with confusion matrix
+t<-table(bib_df_merged$NOTES_INDEX.CA,
+         bib_df_merged$NOTES_INDEX.TE)
+
+# get agreement
+t2<-round(t/sum(t),2)
+ag_before <- sum(diag(t2))
+
+# make table
+knitr::kable(t,  
+             caption = paste('Votes after resolving include vs. exclude discrepancies. \n
+             Rows: CA votes; cols: TE votes, Agreement = ', ag_before)
+             )
+```
+
+## Track task types
+
+```{r}
+# add column tracking task type
+bib_df_merged$PARADIGM <- 'regression'
+bib_df_merged[str_detect(bib_df_merged$NOTES.CA, 'classification'),]$PARADIGM <- 'classification'
+
+# sort by task
+bib_df_merged <- bib_df_merged[order(bib_df_merged$PARADIGM),]
+```
+
+## Add fields for annotation
+
+```{r}
+# add new fields for annotating bibtex library
+bib_df_merged %>% mutate(emotions = ' ',
+                         emotion_locus = ' ',
+                         stimulus_type = ' ',
+                         stimulus_duration = ' ',
+                         stimulus_duration_unit = ' ',
+                         stimulus_N = ' ',
+                         feature_N = ' ',
+                         participant_N = ' ',
+                         participant_expertise = ' ',
+                         participant_origin = ' ',
+                         participant_sampling = ' ',
+                         participant_task = ' ',
+                         feature_N = ' ',
+                         feature_categories = ' ',
+                         feature_source = ' ',
+                         feature_reduction_method = ' ',
+                         model_category = ' ',
+                         model_detail = ' ',
+                         model_measure = ' ',
+                         model_complexity_parameters = ' ',
+                         model_rate_emotion_names = ' ',
+                         model_rate_emotion_values = ' ',
+                         model_validation = ' ',
+                         final_decision = NOTES_INDEX.CA) -> bib_df_merged
 ```
 
 ## Export bibtex for the annotation
 
-Notes: 
+```{r}
+bib_df_merged$NOTES_INDEX.CA <- NULL
+bib_df_merged$NOTES_INDEX.TE <- NULL
+```
 
-For Feature classification, use this one: 
+## Write resulting bibtex library
+
+```{r}
+bib2df::df2bib(bib_df_merged, file = 'metaMER_library_template.bib')
+```
+
+Notes:
+
+For Feature classification, use this one:
 
 https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9229494
 
