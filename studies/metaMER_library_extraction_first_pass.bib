@@ -63,7 +63,7 @@ ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song
   NOTES_CA = {include, classification task},
   NOTES_TE = {include, classification, spotify},
   EMOTIONS = {discrete},
-  EMOTION_LOCUS = {'not specified'},
+  EMOTION_LOCUS = {not specified},
   STIMULUS_TYPE = {Spotify},
   STIMULUS_DURATION = {150 approx},
   STIMULUS_DURATION_UNIT = {seconds}, %%
@@ -1583,27 +1583,34 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   PARADIGM = {regression},
   NOTES_CA = {include , single-modality reported},
   NOTES_TE = {include, includes audio only classification},
-  EMOTIONS = { },
-  EMOTION_LOCUS = { },
-  STIMULUS_TYPE = {}, 
-  STIMULUS_DURATION = {},
-  STIMULUS_DURATION_UNIT = {},
-  STIMULUS_N = {},
-  FEATURE_N = {},
-  PARTICIPANT_N = {},
-  PARTICIPANT_EXPERTISE = {},
-  PARTICIPANT_ORIGIN = {},
-  PARTICIPANT_SAMPLING = {},
-  PARTICIPANT_TASK = {},
-  FEATURE_CATEGORIES = { },
-  FEATURE_SOURCE = {},
-  FEATURE_REDUCTION_METHOD = { },
-  MODEL_CATEGORY = {},
-  MODEL_DETAIL = {},
-  MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = {},
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_VALIDATION = { }
+  EMOTIONS = {valence, arousal},
+  EMOTION_LOCUS = {perceived},
+  STIMULUS_TYPE = {MIREX Grand Challenge on User Experience (Jamendo)}, 
+  STIMULUS_DURATION = {not specified}, %% full tracks possibly, average playtime 50s
+  STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {956},
+  FEATURE_N = {231}, %% just reporting audio features
+  PARTICIPANT_N = {30},
+  PARTICIPANT_EXPERTISE = {diverse},
+  PARTICIPANT_ORIGIN = {Hong Kong},
+  PARTICIPANT_SAMPLING = {convenience}, %% assumed
+  PARTICIPANT_TASK = {survey, rate},
+  FEATURE_CATEGORIES = {dynamic, rhythm, timbre, tonal, pitch},
+  FEATURE_SOURCE = {Librosa},
+  FEATURE_REDUCTION_METHOD = {none},
+  MODEL_CATEGORY = {classification},
+  MODEL_DETAIL = {SVM with RBF},
+  MODEL_MEASURE = {F1, AUC},
+  MODEL_COMPLEXITY_PARAMETERS = {undersample majority class, 
+  oversample minority class using SVM borderline synthetic minority oversampling},
+  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
+  MODEL_RATE_EMOTION_VALUES = {
+  rbind(
+  imbalanced.data = c(F1_arousal = 71.38, AUC_arousal = 81.31, F1_valence = 54.74, AUC_valence = 63.86),
+  resampled.data = c(72.93,81.41,58.09,53.72)
+  )
+  },
+  MODEL_VALIDATION = {10-fold cross validation}
 }
 
 
@@ -1625,28 +1632,36 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   PARADIGM = {regression},
   NOTES_CA = {include},
   NOTES_TE = {include},
-  EMOTIONS = { },
-  EMOTION_LOCUS = { },
-  STIMULUS_TYPE = { },
-  STIMULUS_DURATION = { },
-  STIMULUS_DURATION_UNIT = { },
-  STIMULUS_N = { },
-  FEATURE_N = { },
-  PARTICIPANT_N = { },
-  PARTICIPANT_EXPERTISE = { },
-  PARTICIPANT_ORIGIN = { },
-  PARTICIPANT_SAMPLING = { },
-  PARTICIPANT_TASK = { },
-  FEATURE_CATEGORIES = { },
-  FEATURE_SOURCE = { },
-  FEATURE_REDUCTION_METHOD = { },
-  MODEL_CATEGORY = { },
-  MODEL_DETAIL = { },
-  MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { }
+  EMOTIONS = {valence, arousal},
+  EMOTION_LOCUS = {perceived},
+  STIMULUS_TYPE = {Free Music Archive},
+  STIMULUS_DURATION = {full},
+  STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {54},
+  FEATURE_N = {260},
+  PARTICIPANT_N = {277},
+  PARTICIPANT_EXPERTISE = {nonexperts},
+  PARTICIPANT_ORIGIN = {MTurk},
+  PARTICIPANT_SAMPLING = {crowdsourcing},
+  PARTICIPANT_TASK = {rate}, %% continuous
+  FEATURE_CATEGORIES = {timbre, dynamic, pitch},
+  FEATURE_SOURCE = {openSMILE},
+  FEATURE_REDUCTION_METHOD = {},
+  MODEL_CATEGORY = {regression},
+  MODEL_DETAIL = {c(fully.connected.model = c(nodes = 512-256-1, dropout = '50%', leakyReLu = 0.1, smoothing = 'Gaussian kernel: sigma = 1.5, size = 7'), 
+      LTSM.model = c(model.type = 'RNN', hidden.dimension = 512, hyper.parameter.tuning = 'trial and error') 
+      )
+},
+  MODEL_MEASURE = {R},
+  MODEL_COMPLEXITY_PARAMETERS = {batch.size = 8, learning rate = 0.0001},
+  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
+  MODEL_RATE_EMOTION_VALUES = {
+  rbind(fully.connected = c(MSE_valence = 0.0315, R_valence = 0.1314, 
+                          MSE_arousal = 0.0333, R_arousal = 0.3507),
+        LSTM = c(0.0532,0.0599,0.0441,0.2992)
+        )
+},
+  MODEL_VALIDATION = {five-fold cross validation with 100 epochs}
 }
 
 
@@ -1689,7 +1704,8 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   MODEL_COMPLEXITY_PARAMETERS = { },
   MODEL_RATE_EMOTION_NAMES = { },
   MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { }
+  MODEL_VALIDATION = { },
+  DISCUSS = {T} %% could not find any audio features. only lyric features
 }
 
 
@@ -1712,28 +1728,37 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   PARADIGM = {regression},
   NOTES_CA = {include},
   NOTES_TE = {include, mediaeval, R2 metrics},
-  EMOTIONS = { },
-  EMOTION_LOCUS = { },
-  STIMULUS_TYPE = { },
-  STIMULUS_DURATION = { },
-  STIMULUS_DURATION_UNIT = { },
-  STIMULUS_N = { },
-  FEATURE_N = { },
-  PARTICIPANT_N = { },
-  PARTICIPANT_EXPERTISE = { },
-  PARTICIPANT_ORIGIN = { },
-  PARTICIPANT_SAMPLING = { },
-  PARTICIPANT_TASK = { },
-  FEATURE_CATEGORIES = { },
-  FEATURE_SOURCE = { },
-  FEATURE_REDUCTION_METHOD = { },
-  MODEL_CATEGORY = { },
-  MODEL_DETAIL = { },
-  MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { }
+  EMOTIONS = {valence, arousal},
+  EMOTION_LOCUS = {perceived},
+  STIMULUS_TYPE = {MediaEval},
+  STIMULUS_DURATION = {45},
+  STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {1000},
+  FEATURE_N = {c(model.1 = 52, model.2 = 68, model.3 = 260, model.4 = 388)}, %% between 52 and 388 depending on model
+  PARTICIPANT_N = {100},
+  PARTICIPANT_EXPERTISE = {specified elsewhere},
+  PARTICIPANT_ORIGIN = {specified elsewhere},
+  PARTICIPANT_SAMPLING = {specified elsewhere},
+  PARTICIPANT_TASK = {specified elsewhere},
+  FEATURE_CATEGORIES = {timbre, speech, pitch},
+  FEATURE_SOURCE = {Marsyas},
+  FEATURE_REDUCTION_METHOD = {none},
+  MODEL_CATEGORY = {regression},
+  MODEL_DETAIL = {c(exp.1 = 'SVR + Radial basis function',
+  exp.2 = 'Gaussian Process Regression')},
+  MODEL_MEASURE = {R2},
+  MODEL_COMPLEXITY_PARAMETERS = {c(kernel.svr = 'radial basis function',
+  kernel.gpr = 'squared exponential')},
+  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
+  MODEL_RATE_EMOTION_VALUES = {
+  rbind(
+  mfcc = c('R2_arousal' = 0.63, 'R2_arousal.SD' = 0.064, 'R2_valence' = 0.356, 'R2_valence.SD' = 0.085),
+  MFCC.TMBR = c(0.63,0.065,0.354,0.084),
+  MFCC.TMBR.SCF.SFM = c(0.686,0.045,0.398,0.075),
+  MFCC.TMBR.SCF.SFM.CHR.LSP = c(0.587,0.066,0.341,0.097)
+)
+  },
+  MODEL_VALIDATION = {10-fold cross validation}
 }
 
 
@@ -1751,31 +1776,32 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   ORCID = {Ospitia, Yesid/0000-0002-5494-2787 Beltran, Jose Ramon/0000-0002-7500-4650 Baldassarri, Sandra/0000-0002-9315-6391},
   RESEARCHERID = {Ospitia, Yesid/AAD-6729-2021 Beltran, Jose Ramon/K-7693-2015 Baldassarri, Sandra/L-6033-2014},
   EARLYACCESSDATE = {APR 2020},
-  PARADIGM = {regression},
+  PARADIGM = {classification},
   NOTES_CA = {include},
   NOTES_TE = {include, classification},
-  EMOTIONS = { },
-  EMOTION_LOCUS = { },
-  STIMULUS_TYPE = { },
-  STIMULUS_DURATION = { },
-  STIMULUS_DURATION_UNIT = { },
-  STIMULUS_N = { },
-  FEATURE_N = { },
-  PARTICIPANT_N = { },
-  PARTICIPANT_EXPERTISE = { },
-  PARTICIPANT_ORIGIN = { },
-  PARTICIPANT_SAMPLING = { },
-  PARTICIPANT_TASK = { },
-  FEATURE_CATEGORIES = { },
-  FEATURE_SOURCE = { },
-  FEATURE_REDUCTION_METHOD = { },
-  MODEL_CATEGORY = { },
-  MODEL_DETAIL = { },
+  EMOTIONS = {valence, arousal},
+  EMOTION_LOCUS = {perceived},
+  STIMULUS_TYPE = {MediaEval},
+  STIMULUS_DURATION = {45},
+  STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {1802},
+  FEATURE_N = {260},
+  PARTICIPANT_N = {specified elsewhere},
+  PARTICIPANT_EXPERTISE = {specified elsewhere},
+  PARTICIPANT_ORIGIN = {specified elsewhere},
+  PARTICIPANT_SAMPLING = {specified elsewhere},
+  PARTICIPANT_TASK = {specified elsewhere},
+  FEATURE_CATEGORIES = {specified elsewhere},
+  FEATURE_SOURCE = {openSMILE},
+  FEATURE_REDUCTION_METHOD = {principal component analysis},
+  MODEL_CATEGORY = {classification},
+  MODEL_DETAIL = {multilayer perceptron},
   MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
+  MODEL_COMPLEXITY_PARAMETERS = {rbind(MLP_valence = c(learning.rate = 0.070, hidden.layers = 1, neurons = 64, RMSE = 0.23),MLP_arousal = c(0.060,1,64,0.24))},
+  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { }
+  MODEL_VALIDATION = { },
+  DISCUSS = {T} %% unsure how to report results
 }
 
 
