@@ -85,7 +85,7 @@ Number of features included in model. **TODO** Discuss handling of subset select
 
 ## PARTICIPANT_N
 
-Total number of participants in experiment. **TODO** Discuss handling of secondary information. E.g., MediaEval
+Total number of participants in experiment. **TODO** Discuss handling of secondary information. E.g., MediaEval. Discuss how to encode alternate participant metrics such as \# participants per clip
 
 ## PARTICIPANT_EXPERTISE
 
@@ -127,7 +127,7 @@ Additional information pertaining to predictive model, such as the name of algor
 
 ## MODEL_MEASURE
 
-Metric used in model evaluation. E.g., 'R2' for $R^2$, MSE, CCC, Classification accuracy, etc.
+Metric used in model evaluation. E.g., $R^2$, $MSE$, $CCC$, Classification accuracy, etc.
 
 ## MODEL_COMPLEXITY_PARAMETERS
 
