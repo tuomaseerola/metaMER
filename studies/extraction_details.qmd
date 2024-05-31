@@ -26,10 +26,6 @@ Includes number of citing articles and open access details. E.g., Cited by: 4; A
 
 Title of article.
 
-## TYPE
-
-**TODO**: Remove? All are articles
-
 ## VOLUME
 
 Volume number of publication.
@@ -46,10 +42,6 @@ Digital object identifier of article.
 
 Complete text of article abstract.
 
-## PUBLICATION_STAGE
-
-**TODO:** Remove? All final.
-
 ## SOURCE
 
 Database article was sourced from. Scopus, Web of Science (WoS) or OpenAlex.
@@ -60,7 +52,7 @@ Corresponding keywords for article indicated by author.
 
 ## PARADIGM
 
-Paradigm used for MER task. Either classification or regression.
+Paradigm used for MER task. Either `classification` or `regression`.
 
 ## NOTES_AUTHORINITIALS
 
@@ -69,10 +61,6 @@ Decision and comments by respective author
 ## EMOTIONS
 
 List of emotion names or labels separated by commas. **TODO:** Discuss potential redundancies with `MODEL_RATE_EMOTION_NAMES`
-
-## EMOTION_LOCUS
-
-Perceived or felt **TODO:** Remove? All appear to be perceived
 
 ## STIMULUS_TYPE
 
@@ -117,7 +105,9 @@ Nature of rating/classification task undertaken by participants. E.g., rate, ann
 
 ## FEATURE_CATEGORIES
 
-Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: *Melody*, *Rhythm*, *Timbre*, *Pitch*, *Tonality*, *Expressivity*, *Texture*, *Form*, *Vocal*, *High-Level* **TODO** Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)
+Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: *Melody*, *Rhythm*, *Timbre*, *Pitch*, *Tonality*, *Expressivity*, *Texture*, *Form*, *Vocal*, *High-Level* 
+
+**TODO** Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)
 
 ## FEATURE_SOURCE
 

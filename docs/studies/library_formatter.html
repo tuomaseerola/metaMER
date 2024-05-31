@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Cameron Anderson">
 
-<title>metaMER</title>
+<title>metaMER - Library Formatter</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,35 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -170,138 +142,174 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Library Formatter</h1>
+</div>
 
 
 
-<section id="analysis" class="level1">
-<h1>Analysis</h1>
-<p>Initial work to build the data parser from the bibTeX files.</p>
-<section id="read-annotated-data" class="level2">
-<h2 class="anchored" data-anchor-id="read-annotated-data">Read annotated data</h2>
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cameron Anderson </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="reading-in-biblibrary" class="level2">
+<h2 class="anchored" data-anchor-id="reading-in-biblibrary">Reading in Biblibrary</h2>
+</section>
+<section id="load-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="load-libraries">Load libraries</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocessing step for list fields in bibtex files:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'stripLFFromList.R'</span>) <span class="co"># helper function</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripLFFromList</span>(<span class="at">fn =</span> <span class="st">"../studies/test_orig.bib"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bib2df) <span class="co"># this parser seems to be give a lot warnings/errors with this data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#anno &lt;- bib2df("../studies/metaMER_library_extraction_first_pass.bib")</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> <span class="fu">bib2df</span>(<span class="st">"../studies/test_orig_strip.bib"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 59
-  CATEGORY BIBTEXKEY    ADDRESS ANNOTE AUTHOR BOOKTITLE CHAPTER CROSSREF EDITION
-  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;list&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  
-1 ARTICLE  grekow2021mu &lt;NA&gt;    &lt;NA&gt;   &lt;chr&gt;  &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;   
-# ℹ 50 more variables: EDITOR &lt;list&gt;, HOWPUBLISHED &lt;chr&gt;, INSTITUTION &lt;chr&gt;,
-#   JOURNAL &lt;chr&gt;, KEY &lt;chr&gt;, MONTH &lt;chr&gt;, NOTE &lt;chr&gt;, NUMBER &lt;chr&gt;,
-#   ORGANIZATION &lt;chr&gt;, PAGES &lt;chr&gt;, PUBLISHER &lt;chr&gt;, SCHOOL &lt;chr&gt;,
-#   SERIES &lt;chr&gt;, TITLE &lt;chr&gt;, TYPE &lt;chr&gt;, VOLUME &lt;chr&gt;, YEAR &lt;dbl&gt;, DOI &lt;chr&gt;,
-#   SOURCE &lt;chr&gt;, BDSK &lt;chr&gt;, ISSN &lt;chr&gt;, EISSN &lt;chr&gt;, ORCID &lt;chr&gt;,
-#   RESEARCHERID &lt;chr&gt;, EARLYACCESSDATE &lt;chr&gt;, PARADIGM &lt;chr&gt;, NOTES_CA &lt;chr&gt;,
-#   NOTES_TE &lt;chr&gt;, EMOTIONS &lt;chr&gt;, EMOTION_LOCUS &lt;chr&gt;, STIMULUS_TYPE &lt;chr&gt;, …</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load dplyr</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>anno<span class="ot">&lt;-</span><span class="fu">data.frame</span>(anno)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno$MODEL_RATE_EMOTION_VALUES</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> anno<span class="sc">$</span>MODEL_RATE_EMOTION_VALUES))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
 
-$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
-
-$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
-
-$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
+    filter, lag</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST<span class="ot">&lt;-</span><span class="fu">list</span>(x)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[[1]]$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
 
-[[1]]$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
-
-[[1]]$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
-
-[[1]]$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
+    intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(anno<span class="sc">$</span>MODEL_LIST[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select two regression studies: grekow2021mu and chen2017co</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno_ex &lt;- dplyr::filter(anno,BIBTEXKEY=='grekow2021mu'|BIBTEXKEY=='chen2017co')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use paradigm field to process regression and classification studies separately.</p>
-<p>We need to identify the core values: - correlation (obtained from <span class="math inline">\(R^2\)</span>) - n (we use STIMULUS_N rather than participant n)</p>
 </section>
-<section id="convert-extract-fields" class="level2">
-<h2 class="anchored" data-anchor-id="convert-extract-fields">Convert / Extract fields</h2>
+<section id="read-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-data">Read data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in bibtex library as data frame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="ot">&lt;-</span> bib2df<span class="sc">::</span><span class="fu">bib2df</span>(<span class="st">'metaMER_library_third_pass_ca.bib'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Some BibTeX entries may have been dropped.
+            The result could be malformed.
+            Review the .bib file and make sure every single entry starts
+            with a '@'.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Column `YEAR` contains character strings.
+              No coercion to numeric applied.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bib_df_te <span class="ot">&lt;-</span> bib2df<span class="sc">::</span><span class="fu">bib2df</span>(<span class="st">'metaMER_library_third_pass_te.bib'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Some BibTeX entries may have been dropped.
+            The result could be malformed.
+            Review the .bib file and make sure every single entry starts
+            with a '@'.
+Column `YEAR` contains character strings.
+              No coercion to numeric applied.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(bib_df_ca,PRIORITY<span class="sc">==</span><span class="st">'prio1'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>bib_df_te <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(bib_df_te,PRIORITY<span class="sc">==</span><span class="st">'prio1'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(bib_df_ca<span class="sc">$</span>BIBTEXKEY <span class="sc">%in%</span> bib_df_te<span class="sc">$</span>BIBTEXKEY)<span class="sc">==</span><span class="fu">nrow</span>(bib_df_ca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
 </section>
-<section id="analyse" class="level2">
-<h2 class="anchored" data-anchor-id="analyse">Analyse</h2>
+<section id="identify-sources" class="level2">
+<h2 class="anchored" data-anchor-id="identify-sources">Identify sources</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter open_alex entries and declare source (c1 unique to database)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(C1)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SOURCE =</span> <span class="st">'open_alex'</span>) <span class="ot">-&gt;</span> oa_entries</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filter wos entries and declare source (unique_id unique to database)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(UNIQUE.ID)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SOURCE =</span> <span class="st">'web_of_science'</span>) <span class="ot">-&gt;</span> wos_entries</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># filter scopus entries</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="sc">%&gt;%</span> </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SOURCE <span class="sc">==</span> <span class="st">'Scopus'</span>) <span class="ot">-&gt;</span> scopus_entries</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>scopus_entries<span class="sc">$</span>JOURNAL <span class="ot">&lt;-</span> scopus_entries<span class="sc">$</span>JOURNALTITLE</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>scopus_entries<span class="sc">$</span>JOURNALTITLE <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># bind sources</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="ot">&lt;-</span> <span class="fu">rbind</span>(oa_entries, wos_entries)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>bib_df_ca <span class="ot">&lt;-</span> <span class="fu">rbind</span>(bib_df_ca, scopus_entries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clean-up-entries" class="level2">
+<h2 class="anchored" data-anchor-id="clean-up-entries">Clean up entries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove columns only belonging to one database</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>UNIQUE.ID <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>C1 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># remove unnecessary column</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>HASABSTRACT <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># relevel priority column with intuitive names</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># bib_df_ca$PRIORITY &lt;- as.factor(bib_df_ca$PRIORITY)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#levels(bib_df_ca$PRIORITY) &lt;- c('high_priority', 'low_priority')</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bib_df_ca$PRIORITY &lt;- plyr::revalue(bib_df_ca$PRIORITY, </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                                     c(prio1 = 'high_priority',</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                                       prio3 = 'low_prioirty'))</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># make casing consistent</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>SOURCE <span class="ot">&lt;-</span> <span class="fu">tolower</span>(bib_df_ca<span class="sc">$</span>SOURCE)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># consistent names for private notes</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bib_df_ca)[<span class="fu">names</span>(bib_df_ca) <span class="sc">==</span> <span class="st">'COMMENT.CAMJA'</span>] <span class="ot">&lt;-</span> <span class="st">'NOTES.CA'</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># after subsetting out high-priority studies, no longer need priority column</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>PRIORITY <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>RANKING <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>bib_df_ca<span class="sc">$</span>MODIFICATIONDATE <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="add-comments-from-second-reviewer" class="level2">
+<h2 class="anchored" data-anchor-id="add-comments-from-second-reviewer">Add comments from second reviewer</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select bibkey (for merge) and notes from second reviewer</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bib_df_te <span class="ot">&lt;-</span> bib_df_te <span class="sc">%&gt;%</span> <span class="fu">select</span>(BIBTEXKEY, NOTES.TE)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>bib_df_merged <span class="ot">&lt;-</span> <span class="fu">merge</span>(bib_df_ca, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                       bib_df_te, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'BIBTEXKEY'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="drop-empty-columns" class="level2">
+<h2 class="anchored" data-anchor-id="drop-empty-columns">Drop empty columns</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify columns entirely empty</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>empty_cols <span class="ot">&lt;-</span> <span class="fu">sapply</span>(bib_df_merged, <span class="cf">function</span>(x) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">all</span>(<span class="fu">is.na</span>(x))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remove them</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>bib_df_merged <span class="ot">&lt;-</span> bib_df_merged[ , <span class="sc">!</span>empty_cols]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rewrite-bibtex-library" class="level2">
+<h2 class="anchored" data-anchor-id="rewrite-bibtex-library">Rewrite BiBTeX library</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(bib_df_merged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 96 37</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bib2df<span class="sc">::</span><span class="fu">df2bib</span>(bib_df_merged, <span class="at">file =</span> <span class="st">'metaMER_library_third_pass_clean.bib'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="next" class="level2">
+<h2 class="anchored" data-anchor-id="next">Next</h2>
+<p>Compare pass 3 annotations and resolve conflicts (<code>pass 3 comparison.qmd</code>)</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

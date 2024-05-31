@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaMER</title>
+<title>metaMER - Extraction Details</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -170,135 +136,242 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<section id="analysis" class="level1">
-<h1>Analysis</h1>
-<p>Initial work to build the data parser from the bibTeX files.</p>
-<section id="read-annotated-data" class="level2">
-<h2 class="anchored" data-anchor-id="read-annotated-data">Read annotated data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocessing step for list fields in bibtex files:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'stripLFFromList.R'</span>) <span class="co"># helper function</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripLFFromList</span>(<span class="at">fn =</span> <span class="st">"../studies/test_orig.bib"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bib2df) <span class="co"># this parser seems to be give a lot warnings/errors with this data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#anno &lt;- bib2df("../studies/metaMER_library_extraction_first_pass.bib")</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> <span class="fu">bib2df</span>(<span class="st">"../studies/test_orig_strip.bib"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 59
-  CATEGORY BIBTEXKEY    ADDRESS ANNOTE AUTHOR BOOKTITLE CHAPTER CROSSREF EDITION
-  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;list&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  
-1 ARTICLE  grekow2021mu &lt;NA&gt;    &lt;NA&gt;   &lt;chr&gt;  &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;   
-# ℹ 50 more variables: EDITOR &lt;list&gt;, HOWPUBLISHED &lt;chr&gt;, INSTITUTION &lt;chr&gt;,
-#   JOURNAL &lt;chr&gt;, KEY &lt;chr&gt;, MONTH &lt;chr&gt;, NOTE &lt;chr&gt;, NUMBER &lt;chr&gt;,
-#   ORGANIZATION &lt;chr&gt;, PAGES &lt;chr&gt;, PUBLISHER &lt;chr&gt;, SCHOOL &lt;chr&gt;,
-#   SERIES &lt;chr&gt;, TITLE &lt;chr&gt;, TYPE &lt;chr&gt;, VOLUME &lt;chr&gt;, YEAR &lt;dbl&gt;, DOI &lt;chr&gt;,
-#   SOURCE &lt;chr&gt;, BDSK &lt;chr&gt;, ISSN &lt;chr&gt;, EISSN &lt;chr&gt;, ORCID &lt;chr&gt;,
-#   RESEARCHERID &lt;chr&gt;, EARLYACCESSDATE &lt;chr&gt;, PARADIGM &lt;chr&gt;, NOTES_CA &lt;chr&gt;,
-#   NOTES_TE &lt;chr&gt;, EMOTIONS &lt;chr&gt;, EMOTION_LOCUS &lt;chr&gt;, STIMULUS_TYPE &lt;chr&gt;, …</code></pre>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Extraction Details</h1>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>anno<span class="ot">&lt;-</span><span class="fu">data.frame</span>(anno)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno$MODEL_RATE_EMOTION_VALUES</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> anno<span class="sc">$</span>MODEL_RATE_EMOTION_VALUES))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
 
-$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
 
-$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
 
-$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST<span class="ot">&lt;-</span><span class="fu">list</span>(x)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[[1]]$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
+<div class="quarto-title-meta">
 
-[[1]]$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
+    
+  
+    
+  </div>
+  
 
-[[1]]$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
 
-[[1]]$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(anno<span class="sc">$</span>MODEL_LIST[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select two regression studies: grekow2021mu and chen2017co</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno_ex &lt;- dplyr::filter(anno,BIBTEXKEY=='grekow2021mu'|BIBTEXKEY=='chen2017co')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use paradigm field to process regression and classification studies separately.</p>
-<p>We need to identify the core values: - correlation (obtained from <span class="math inline">\(R^2\)</span>) - n (we use STIMULUS_N rather than participant n)</p>
+</header>
+
+
+<p>To capture relevant information from studies, we expanded BiBTeX fields for each study with additional fields. For reproducibility, these instructions provide information on the process followed for each field.</p>
+<section id="fields" class="level1">
+<h1>Fields</h1>
+<section id="identifier" class="level2">
+<h2 class="anchored" data-anchor-id="identifier">IDENTIFIER</h2>
+<p>Unique identifier of article. Contains last name of lead author, year of publication and first two letters of article title. Hyphenated last names collapsed.</p>
 </section>
-<section id="convert-extract-fields" class="level2">
-<h2 class="anchored" data-anchor-id="convert-extract-fields">Convert / Extract fields</h2>
+<section id="author" class="level2">
+<h2 class="anchored" data-anchor-id="author">AUTHOR</h2>
+<p>Names of all authors. Last name precedes first name and separated by comma. For multiple authors “and” precedes each listed subsequent author. E.g., Sorussa, Kanawat and Choksuriwong, Anant and Karnjanadecha, Montri</p>
 </section>
-<section id="analyse" class="level2">
-<h2 class="anchored" data-anchor-id="analyse">Analyse</h2>
+<section id="journal" class="level2">
+<h2 class="anchored" data-anchor-id="journal">JOURNAL</h2>
+<p>Title of journal containing article.</p>
+</section>
+<section id="note" class="level2">
+<h2 class="anchored" data-anchor-id="note">NOTE</h2>
+<p>Includes number of citing articles and open access details. E.g., Cited by: 4; All Open Access, Gold Open Access, Green Open Access</p>
+</section>
+<section id="title" class="level2">
+<h2 class="anchored" data-anchor-id="title">TITLE</h2>
+<p>Title of article.</p>
+</section>
+<section id="type" class="level2">
+<h2 class="anchored" data-anchor-id="type">TYPE</h2>
+<p><strong>TODO</strong>: Remove? All are articles</p>
+</section>
+<section id="volume" class="level2">
+<h2 class="anchored" data-anchor-id="volume">VOLUME</h2>
+<p>Volume number of publication.</p>
+</section>
+<section id="year" class="level2">
+<h2 class="anchored" data-anchor-id="year">YEAR</h2>
+<p>Publication year.</p>
+</section>
+<section id="doi" class="level2">
+<h2 class="anchored" data-anchor-id="doi">DOI</h2>
+<p>Digital object identifier of article.</p>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">ABSTRACT</h2>
+<p>Complete text of article abstract.</p>
+</section>
+<section id="publication_stage" class="level2">
+<h2 class="anchored" data-anchor-id="publication_stage">PUBLICATION_STAGE</h2>
+<p><strong>TODO:</strong> Remove? All final.</p>
+</section>
+<section id="source" class="level2">
+<h2 class="anchored" data-anchor-id="source">SOURCE</h2>
+<p>Database article was sourced from. Scopus, Web of Science (WoS) or OpenAlex.</p>
+</section>
+<section id="author_keywords" class="level2">
+<h2 class="anchored" data-anchor-id="author_keywords">AUTHOR_KEYWORDS</h2>
+<p>Corresponding keywords for article indicated by author.</p>
+</section>
+<section id="paradigm" class="level2">
+<h2 class="anchored" data-anchor-id="paradigm">PARADIGM</h2>
+<p>Paradigm used for MER task. Either classification or regression.</p>
+</section>
+<section id="notes_authorinitials" class="level2">
+<h2 class="anchored" data-anchor-id="notes_authorinitials">NOTES_AUTHORINITIALS</h2>
+<p>Decision and comments by respective author</p>
+</section>
+<section id="emotions" class="level2">
+<h2 class="anchored" data-anchor-id="emotions">EMOTIONS</h2>
+<p>List of emotion names or labels separated by commas. <strong>TODO:</strong> Discuss potential redundancies with <code>MODEL_RATE_EMOTION_NAMES</code></p>
+</section>
+<section id="emotion_locus" class="level2">
+<h2 class="anchored" data-anchor-id="emotion_locus">EMOTION_LOCUS</h2>
+<p>Perceived or felt <strong>TODO:</strong> Remove? All appear to be perceived</p>
+</section>
+<section id="stimulus_type" class="level2">
+<h2 class="anchored" data-anchor-id="stimulus_type">STIMULUS_TYPE</h2>
+<p>Metadata pertaining to stimuli employed in paradigm. Can be listed as genres of music stimuli employed, or if stimuli come from a standard database, name of standard.</p>
+</section>
+<section id="stimulus_duration" class="level2">
+<h2 class="anchored" data-anchor-id="stimulus_duration">STIMULUS_DURATION</h2>
+<p>Duration of stimuli, if applicable. Unit of measurement (seconds, measures) specified in <code>STIMULUS_DURATION_UNIT</code></p>
+</section>
+<section id="stimulus_duration_unit" class="level2">
+<h2 class="anchored" data-anchor-id="stimulus_duration_unit">STIMULUS_DURATION_UNIT</h2>
+<p>Unit of measurement pertaining to <code>STIMULUS_DURATION</code>. E.g., seconds, measures, etc.</p>
+</section>
+<section id="stimulus_n" class="level2">
+<h2 class="anchored" data-anchor-id="stimulus_n">STIMULUS_N</h2>
+<p>Number of stimuli employed in experiment.<br>
+<strong>TODO</strong> Discuss handling of subset selection, train, test, etc</p>
+</section>
+<section id="feature_n" class="level2">
+<h2 class="anchored" data-anchor-id="feature_n">FEATURE_N</h2>
+<p>Number of features included in model. <strong>TODO</strong> Discuss handling of subset selection, train, test, etc</p>
+</section>
+<section id="participant_n" class="level2">
+<h2 class="anchored" data-anchor-id="participant_n">PARTICIPANT_N</h2>
+<p>Total number of participants in experiment. <strong>TODO</strong> Discuss handling of secondary information. E.g., MediaEval</p>
+</section>
+<section id="participant_expertise" class="level2">
+<h2 class="anchored" data-anchor-id="participant_expertise">PARTICIPANT_EXPERTISE</h2>
+<p>Expertise of annotators. E.g., experts, non-experts, not specified.</p>
+</section>
+<section id="participant_origin" class="level2">
+<h2 class="anchored" data-anchor-id="participant_origin">PARTICIPANT_ORIGIN</h2>
+<p>Origin country of participants, or online platform participants were recruited from (e.g., MTurk)</p>
+</section>
+<section id="participant_sampling" class="level2">
+<h2 class="anchored" data-anchor-id="participant_sampling">PARTICIPANT_SAMPLING</h2>
+<p>How participants were recruited (e.g., convenience, random sampling, crowdsourcing)</p>
+</section>
+<section id="participant_task" class="level2">
+<h2 class="anchored" data-anchor-id="participant_task">PARTICIPANT_TASK</h2>
+<p>Nature of rating/classification task undertaken by participants. E.g., rate, annotate. <strong>TODO</strong> discuss multi-stage studies. E.g., MediaEval categories validated by participants using AV ratings.</p>
+</section>
+<section id="feature_categories" class="level2">
+<h2 class="anchored" data-anchor-id="feature_categories">FEATURE_CATEGORIES</h2>
+<p>Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: <em>Melody</em>, <em>Rhythm</em>, <em>Timbre</em>, <em>Pitch</em>, <em>Tonality</em>, <em>Expressivity</em>, <em>Texture</em>, <em>Form</em>, <em>Vocal</em>, <em>High-Level</em> <strong>TODO</strong> Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)</p>
+</section>
+<section id="feature_source" class="level2">
+<h2 class="anchored" data-anchor-id="feature_source">FEATURE_SOURCE</h2>
+<p>Name(s) of feature analysis toolboxes. <strong>TODO</strong> Discuss original features (as in <code>Panda2020no</code>)</p>
+</section>
+<section id="feature_reduction_method" class="level2">
+<h2 class="anchored" data-anchor-id="feature_reduction_method">FEATURE_REDUCTION_METHOD</h2>
+<p>Name(s) of feature reduction or feature selection methods employed.</p>
+</section>
+<section id="model_category" class="level2">
+<h2 class="anchored" data-anchor-id="model_category">MODEL_CATEGORY</h2>
+<p>Name of model type. One of regression, classification <em>TODO</em> Discuss redundancy with <code>PARADIGM</code>. Consider cases where regression and classification employed; or regression approach to classification (e.g., <code>sorussa2020em</code>)</p>
+</section>
+<section id="model_detail" class="level2">
+<h2 class="anchored" data-anchor-id="model_detail">MODEL_DETAIL</h2>
+<p>Additional information pertaining to predictive model, such as the name of algorithm used and other pertinent parameters. E.g., RandomForest, Commonality Analysis, Multiple Regression, Neural Networks, LDSM, etc. <em>TODO</em> Discuss how much information to include.</p>
+</section>
+<section id="model_measure" class="level2">
+<h2 class="anchored" data-anchor-id="model_measure">MODEL_MEASURE</h2>
+<p>Metric used in model evaluation. E.g., ‘R2’ for <span class="math inline">\(R^2\)</span>, MSE, CCC, Classification accuracy, etc.</p>
+</section>
+<section id="model_complexity_parameters" class="level2">
+<h2 class="anchored" data-anchor-id="model_complexity_parameters">MODEL_COMPLEXITY_PARAMETERS</h2>
+<p>Additional information pertaining to predictive model. Format as R code when encoding multiple pertinent parameters. E.g., <code>c(training_epochs = 100, layer_n = c(1,2), lstm_units = c(124, 248))</code></p>
+</section>
+<section id="model_rate_emotion_names" class="level2">
+<h2 class="anchored" data-anchor-id="model_rate_emotion_names">MODEL_RATE_EMOTION_NAMES</h2>
+<p>Names of predicted emotions. E.g., valence, arousal, happy, sad, angry, fearful, etc.</p>
+</section>
+<section id="model_rate_emotion_values" class="level2">
+<h2 class="anchored" data-anchor-id="model_rate_emotion_values">MODEL_RATE_EMOTION_VALUES</h2>
+<p>Pertinent prediction of model summaries. Report as <em>R</em> arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with <code>rbind</code>. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore.</p>
+<p>### EXAMPLES:</p>
+<section id="regression" class="level4">
+<h4 class="anchored" data-anchor-id="regression">Regression</h4>
+<p>Report relevant summary statistics in R code. Different feature distinguished through BiBTeX fields (<code>MODEL_RATE_EMOTION_VALUES_MFCC</code>, <code>MODEL_RATE_EMOTION_VALUES_ESSENTIA</code> ). Fitted models concatenated with <code>rbind</code> (<code>linear.regression</code>, <code>SMOreg</code>, <code>RNN1.124LSTM</code>, etc.). Model results reported with names in first array (<code>R2_arousal</code>, <code>MAE_arosal</code>, <code>R2_valence</code>, <code>MAE_valence</code>), and recycled in each subsequent model.</p>
+<pre><code>MODEL_RATE_EMOTION_VALUES_MFCC = {
+  rbind(
+    linear.regression = c(R2_arousal = 0.61, MAE_arousal = 0.13, R2_valence = 0.07, MAE_valence = 0.17),
+    SMOreg = c(0.6,0.13,0.10,0.17),
+    RNN1.124LSTM = c(0.58,0.14,0.14,0.17),
+    RNN2.124.124LSTM = c(0.66,0.12,0.11,0.16),
+    RNN3.248LSTM = c(0.61,0.13,0.13,0.16),
+    RNN4.248.248LSTM = c(0.64,0.12,0.14,0.15)
+  )
+},
+MODEL_RATE_EMOTION_VALUES_ESSENTIA = {
+  rbind(
+    linear.regression = c(R2_arousal = 0.07, MAE_arousal = 0.25, R2_valence = 0.06, MAE_valence = 0.19),
+    SMOreg = c(0.48,0.18,0.27,0.17),
+    RNN1.124LSTM = c(0.54,0.14,0.21,0.16),
+    RNN2.124.124LSTM = c(0.67,0.12,0.32,0.13),
+    RNN3.248LSTM = c(0.58,0.14,0.32,0.14),
+    RNN4.248.248LSTM = c(0.69,0.11,0.40,0.13),
+    RNN5.529LSTM = c(0.61,0.13,0.29,0.15),
+    RNN6.529.529LSTM = c(0.68,0.12,0.36,0.14)
+  )
+}</code></pre>
+</section>
+<section id="classification" class="level4">
+<h4 class="anchored" data-anchor-id="classification">Classification</h4>
+<p>Report confusion matrices as <em>R</em> arrays. The following example classifies emotions into five categories for multiple feature subsets. Different feature distinguished through BiBTeX fields (<code>MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO</code>, <code>MODEL_RATE_EMOTION_VALUES_FULL_SMO</code>, etc.). Confusion matrix classes concatenated with <code>rbind</code> (<code>C1</code>, <code>C2</code>, <code>C3</code>, etc.). Classification results reported with names in first array (<code>C1</code>, <code>C2</code>, <code>C3</code>, etc.), and recycled in each subsequent model.</p>
+<pre><code>MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO = {
+rbind(
+    C1 = c('C1' = 52.6, 'C2' = 17.1, 'C3' = 0.0, 'C4' = 9.2, 'C5' = 21.1),
+    C2 = c(12, 65.2, 7.6, 4.3, 10.9),
+    C3 = c(1.1,9.9,73.6,14.3,1.1),
+    C4 = c(3.6,10.8,16.9,61.5,7.2),
+    C5 = c(21.9,19.2,0,6.8,52.1)
+ )
+}
+MODEL_RATE_EMOTION_VALUES_FULL_SMO = {
+rbind(
+    C1 = c('C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 7, 'C5' = 18),
+    C2 = c(11.3,58.9,13.7,4,12.1),
+    C3 = c(0,13.2,68.6,18.2,0),
+    C4 = c(4.9,11.7,22.5,54.2,6.7),
+    C5 = c(18.5,12.2,1,12.2,56.1)
+  )
+},
+MODEL_RATE_EMOTION_VALUES_FULL_FULLPOLYGONAL = { rbind(
+  C1 = c('C1' = 65, 'C2' = 11, 'C3' = 12, 'C4' = 0, 'C5' = 12),
+  C2 = c(14.5, 62.1, 22.6, 0.8, 0),
+  C3 = c(0, 13.2, 68.6, 18.2, 0),
+  C4 = c(0.8, 0, 20.8, 54.2, 24.2),
+  C5 = c(38.8, 1, 0, 8.2, 52)
+)
+},
+MODEL_RATE_EMOTION_VALUES_FULL_REDUCEDPOLYGONAL = { 
+rbind(
+  C1 = c('C1' = 67, 'C2' = 16, 'C3' = 4, 'C4' = 0, 'C5' = 13),
+  C2 = c(21.8,55.6,22.6,0,0),
+  C3 = c(0,9.1,77.7,13.2,0),
+  C4 = c(0,0,23.3,55,21.6),
+  C5 = c(27.5,0,0,10.2,62.3)
+)
+}</code></pre>
+</section>
+</section>
+<section id="model_validation" class="level2">
+<h2 class="anchored" data-anchor-id="model_validation">MODEL_VALIDATION</h2>
+<p>Validation method used (if applicable). E.g., 10-fold cross validation. Leave one out cross validation. <strong>TODO</strong>: Discuss train/test/validation formatting. When using external validation set, report name? E.g., AcousticBrainz (<code>alvarez2023ri</code>)</p>
 
 
 </section>

@@ -18,7 +18,7 @@ Search databases and criteria are documented in [studies/search_syntax.qmd](stud
 
 ## Data Extraction and Coding
 
-Data coding and extraction is described in data template [data/template.qmd](data/template.qmd). 
+Data coding and extraction is described in data template [studies/extraction_details.qmd](studies/extraction_details.qmd). 
 
 ## Analysis
 

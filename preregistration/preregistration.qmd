@@ -1,44 +1,169 @@
-## Meta-analysis title: To what degree music emotion recognition 
 
-## Authors: TE + CA + MS ? (to be decided)
+This preregistration is made with `preregr` package from [https://preregr.opens.science/](https://preregr.opens.science/) that implements the BMJ published guidance for meta-analysis protocols ([Shamseer et al., 2015](https://doi.org/10.1136/bmj.g7647)).
 
-## Brief rationale
+```{r}
+#| echo: false
+#| output: false
+# prereg_metaMER.R
+# One option to register meta-analysis (rigorous one)
+# T.E. 15/5/2024
+#
+# see
+# https://preregr.opens.science/index.html (package)
+# https://www.bmj.com/content/349/bmj.g7647 (instructions from BMJ for PRISMA-P
 
-To assess what degree models are able to predict emotions in music, what models, what emotions, what genres, etc.
+#### Initialize ----------
 
-## Research objectives
+metamer_prereg <-
+  preregr::prereg_initialize(
+    "genSysRev_v1"
+  );
 
-1. How good are MER models?
+metamer_prereg$form$metadata$content[1]<-'Meta-analysis Pre-registration: Music Emotion Recognition'
 
-2. What are the systematic biases of the models?
+preregr::prereg_next_item(
+  metamer_prereg,
+  nrOfItems = 4
+);
 
-3. How are models dealing with genres and cultures? 
+#### Meta-data ----------
 
-4. How generalisible are the models
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+    title = "Music emotion recognition: Meta-analysis of regression and classification success of valence and arousal ratings from audio",
+    authors = "Eerola, T., Anderson, C.",
+    start_date = "2024-05-15",
+    tasks_and_roles = "equal contribution",
+    target_discipline = "music cognition, music information retrieval, music psychology"
+  ) |>
+  preregr::prereg_show_item_completion(
+    section="metadata"
+  );
+# validate
+metamer_prereg |>
+  preregr::prereg_show_item_content(
+    section="metadata"
+  );
 
-5. WEIRD
+# show all
+metamer_prereg |>
+  preregr::prereg_show_item_completion(
+  );
 
-6. Theory orientations
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+    type_of_review = "Meta-analysis",
+    review_stages = "Search, Screening, Extraction, Synthesis",
+    current_stage = "Screening",
+    start_date = "2024-05-15",
+    end_date = "2024-06-30",
+    background ="The aim is to establish the current state of the model success in predicting emotions expressed by music from audio. We will focus on the last 10 years of research and especially the research that has predicted valence and arousal ratings from music audio. No such analysis exists and there are interesting challenges in predicting emotional content of music that relates to specificity of the music and the type of emotions and features used that would benefit from a systematic analysis.",
+    primary_research_question = "To what degree can arousal and valence ratings of emotions expressed by music be predicted from audio? How are the prediction rates related to genres of music, the type of models used, the type of features, modelling design and cross-validation utilised, and the model complexity and parsimony?",
+    secondary_research_question = "What is the prediction rate related to classification of quadrants in the affective circumplex?",
+    expectations_hypotheses = "Prediction of arousal ratings is generally high and robust, and in terms of the model outcome metrics (correlation), achieves at least r = 0.77 (R square of 0.60). Prediction of valence ratings from audio is more challenging and more context dependent and will achieve generally a lower prediction rate, r = 0.63 (R square 0.40)",
+    dvs_outcomes_main_vars = "Regression model performance will be converted to pearson correlation coefficients and classification model performance will be converted to Matthews correlation coefficient (MCC) when possible.",
+    ivs_intervention_treatment = "Music genre, prediction type (linear or classification), feature type (based on prior work by Panda et al., 2020), model complexity (high, medium, low), model validation (exist or not)",
+    software = "R and Github repository",
+    funding = "Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada)",
+    cois = "There are no identified conflicts of interests.",
+    overlapping_authorships = "Not applicable"
+  )
+
+#### Search strategy --------
+
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+    databases = "Web of Science, Scopus, and Open Alex",
+    interfaces = "Web of Science, Scopus, and Open Alex",
+    grey_literature = "Not included",
+    inclusions_exclusion_criteria = "Sample, Phenomenon of Interest, Design, Evaluation, Research type",
+    query_strings = "<B>Scopus</B>: <code>TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music <BR> AND emotion AND recognition ) AND PUBYEAR > 2013 AND PUBYEAR < 2025 AND <BR> ( LIMIT-TO ( DOCTYPE , \"ar\" ) ) </code><BR>
+    <B>Web of science</B>: <code> (DT=(Article) AND PY=(2014-2025)) AND ALL=(music <BR>emotion recognition valence arousal) </code>
+    <BR><B>Open Alex</B>: <code> https://openalex.org/works?page=1&filter=default.search%3A<BR>music%20emotion%20recognition%20valence%20arousal, <BR>type%3Atypes%2Farticle,publication_year%3A2014-2024,<BR> keywords.id%3Akeywords%2Femotion-recognition,<BR> keywords.id%3Akeywords%2Faffective-computing, language%3Alanguages%2Fen,<BR> open_access.any_repository_has_fulltext%3Atrue </code>",
+    search_validation_procedure = "Manual checking, separate keywords searches"
+  )
+
+#### Screening --------
+
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+    screening_stages = "We completed screening using custom fields inserted to the bibtex file and managed with citation managers (jabref and bibdesk). To filter relevant studies, we followed a three-stage screening procedure. <BR> <B>In stage 1</B>, we screened the 553 studies’ titles for relevance, removing irrelevant studies and recording exclusion criteria (see Used exclusion criteria). CA assigned 63 studies to the High Priority based on titles’ relevance, assigned 338 studies to Low Priority based on irrelevant titles, 152 studies to Medium Priority for additional screening. <BR><B>In stage 2</B>, CA assessed the 152 Medium Priority studies for relevance by screening abstracts. 105 studies’ status changed to Low Priority, whereas 30 studies’ status changed to High Priority. 27 studies remained in the Medium priority category. TE and CA evaluated the remaining 27 studies’, moving X to the High Priority Category and Y to the Medium Priority Category. For studies moved to Low Priority, brief BiBTex comments summarized the rationale for exclusion. <BR><B>In stage 3</B>, TE and CA independently screened Priority 1 studies for relevance, including an <I>include</I>, <I>exclude</I>, or <I>unsure</I> decision in a user-comment BiBTeX field.",
+    screened_fields_masking = "We left authors, titles, publication years, and journal names unmasked.",
+    used_exclusion_criteria = "We excluded studies according to the following exclusion criteria: soundscapes/vocalisations, non-music audio, video clips, physiological markers, dance, video/movie, physiological/EEG/ECG/MEG/GSR/brain imaging/heart rate/neuroscience/brain studies, sensor data, multimodal, autism, ageing, review/systematic review/overview/survey, face emotion recognition, mental health, music therapy, schizophrenia, memory/emotion factors as IVs, recommender systems, or systems that identify the location of emotional excerpts.",
+    screener_instructions = "As described above.",
+    screening_reliability = "In the pass 1 and 2, we will have a quality control check after the pass to discuss the identified categories. In the third pass, we double-coded decisions, resolving discrepancies through discussion.",
+    screening_reconciliation_procedure = "We reconciled discrepancies through discussion, resolving “unsure” votes first, followed by discrepancies in include/exclude decisions between authors Results of this updating procedure are available in the <A HREF=https://tuomaseerola.github.io/metaMER/studies/pass3_comparison.html>Pass 3 comparison document</A>.",
+    sampling_and_sample_size = "We identified and retained 553 articles from Scopus, Web of Science, and Open Alex based on the search strategy outlined above. See table at the end that details the cumulative exclusions.",
+screening_procedure_justification = "To offer a broad summary of music emotion recognition tasks, we attempted to include all studies involving prediction with acoustic features. We performed screening unblinded and determined inclusion/exclusion criteria based on studies’ relevance to the task explored.",
+screening_data_management_and_sharing = "Sources will be shared as (a) BibTeX library(ies) including reviewer notes."
+)
+
+#### Section: Extraction ------
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+    entities_to_extract = "These are listed and defined in 
+    <A HREF=https://tuomaseerola.github.io/metaMER/studies/Extraction_details.html>Extraction details</A>.",
+    extraction_stages = "The data extraction done is stages. In the first stage, an extraction pass of the collection is done by ca using our initial entities to extract document. The challenges are discussed and the entities are revised.",
+    extractor_instructions = "See Extraction details.",
+    extractor_blinding = "Blinding was not used.",
+    extraction_reliability = "CA will perform extractions; TE will verify extractions for quality assurance.",
+    extraction_reconciliation_procedure = "NA",
+    extraction_procedure_justification = "TO BE DETAILED",
+    extraction_data_management_and_sharing = "We retain the information of the studies in shared bibtex files, extraction data will be stored in ascii data files (.R), and the analysis and manuscript will be available in quarto/markdown files, and all these are managed, structured, shared and documented in Github repository according to FAIR principles.",
+    misc_extraction_details = "NA"
+  )
+
+#### Section: Synthesis and Quality Assessment -------
+
+metamer_prereg <-
+  metamer_prereg |>
+  preregr::prereg_specify(
+planned_data_transformations = "For regression studies, we convert all metrics to Pearson correlation coefficients. For classification studies, we convert the outcomes of classification to Matthews Correlation Coefficient (MCC) from the  precision, accuracy, specificity, F1 scores. Alternatively, we use Cohen’s kappa for multiple classes.",
+missing_data = "If no main outcome variables are available, we exclude the study.",
+data_validation = "None planned beyond the staged approached already documented in extraction process.",
+quality_assessment = "Not all the bias assessment tools for clinical studies are relevant for our purposes, we adapt the overall approached advocated in https://doi.org/10.1136/bmj.d5928 especially concerning #4. making our own risk of bias judgements transparent.",
+synthesis_plan = "We analyse regression and classification studies separately, and depending on the quantity of the studies forming suitable sub-groupings, we may further synthesise the results across groupings that are formed along feature sets or music genres",
+criteria_for_conclusions = "NA",
+synthesis_masking = "NA",
+synthesis_reliability = "NA",
+synthesis_reconciliation_procedure = "NA",
+publication_bias = "We utilise Egger's test to assess the publication bias and potentially correct the effect size bias by selecting 10% most precise effect sizes as recommended by Van Aert, Wicherts, & Van Assen (2019).",
+sensitivity_analysis = "Within regression and classificiation tasks, we will carry out sensitivity analysis using sub-groups of studied based on type of models, and the type of journal the studies were published in.",
+synthesis_procedure_justification = "TO BE DETAILED",
+synthesis_data_management_and_sharing = "We share the data, procedures, definitions, the analysis scripts with the outcomes as R code in Quarto notes at Github.",
+misc_synthesis_details = FALSE
+)
 
 
-FINER: feasible, interesting, novel, ethical, relevant [@browner2022de]
-
-## Hypotheses 
-We expect that the 
-                                                                                               
-## Eligibility criteria
-English, peer-reviewed journal articles indexed in X and Y, published between 20xx-20xx
-
-## Database sources
-
-(PubMed, Web of Science, Scopus)                                                                  
-
-## Search strategy
-Music emotion recognition
-
-## Analysis plan
-
-Fixed effects model
-Tests of small study/publication bias
+```
 
 
+
+
+
+```{r}
+#| echo: false
+#| output: true
+ preregr::prereg_knit_item_content(
+   metamer_prereg,
+)
+# Not needed now
+# export to html file
+# preregr::prereg_spec_to_html(
+#   metamer_prereg,file='preregistration.html',silent = TRUE
+# )
+```
+
+  
+|                     | Cumulative Exclusions | Remaining Studies |
+| ------------------- | --------------------- | ----------------- |
+| Database Search     | NA                    | 553               |
+| Pass 1              | 338                   | 215               |
+| Pass 2              | 433                   | 120               |
+| Pass 2 (Discussion) | 457                   | 96                |
+| Pass 3 (Discussion) | 507                   | 46                |

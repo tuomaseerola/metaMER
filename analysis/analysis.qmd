@@ -1,2 +1,67 @@
-# analysis
+# Analysis
+
+Initial work to build the data parser from the bibTeX files.
+
+## Read annotated data
+
+```{r}
+# preprocessing step for list fields in bibtex files:
+source('stripLFFromList.R') # helper function
+stripLFFromList(fn = "../studies/test_orig.bib")
+library(bib2df) # this parser seems to be give a lot warnings/errors with this data
+#anno <- bib2df("../studies/metaMER_library_extraction_first_pass.bib")
+anno <- bib2df("../studies/test_orig_strip.bib")
+anno
+anno<-data.frame(anno)
+#anno$MODEL_RATE_EMOTION_VALUES
+x <- eval(parse(text = anno$MODEL_RATE_EMOTION_VALUES))
+x
+anno$MODEL_LIST<-list(x)
+anno$MODEL_LIST
+
+length(anno$MODEL_LIST[[1]])
+
+# select two regression studies: grekow2021mu and chen2017co
+#anno_ex <- dplyr::filter(anno,BIBTEXKEY=='grekow2021mu'|BIBTEXKEY=='chen2017co')
+```
+
+Use paradigm field to process regression and classification studies separately.
+
+We need to identify the core values:
+- correlation (obtained from $R^2$)
+- n (we use STIMULUS_N rather than participant n)
+
+## Convert / Extract fields
+
+```{r}
+# create parser that gets the R2 measures out of the nested data
+
+```
+
+
+## Analyse
+
+### Regression studies
+
+### Valence
+
+```{r}
+# eval: false
+library(dmetar)
+library(tidyverse)
+library(meta)
+
+# select regression studies
+
+m.cor <- metacor(cor = valence, 
+                 n = stimulus_N,
+                 studlab = study_id,
+                 data = df,
+                 fixed = FALSE,
+                 random = TRUE,
+                 method.tau = "REML",
+                 method.random.ci = "HK",
+                 title = "MER: Regression: Valence: All")
+
+```
 
