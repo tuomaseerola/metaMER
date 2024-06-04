@@ -82,13 +82,15 @@ Now we can convert our list into a data frame with the target bibtex fields. For
 
 ```{r}
 # create new column containing information between two adjacent target fields for all entries in list
-meta_df <- lapply(meta_list, function(x) str_match(toString(x), field_names))
+meta_df <- lapply(meta_list, function(x) str_match(paste0(x, collapse = ' '), field_names))
+meta_df <- lapply(meta_list, function(x) str_match(paste0(x, collapse = ' '), field_names))
+
 # collapse list entries into rows
 meta_df <- do.call('rbind', meta_df)
 # format as a data.frame
 meta_df <- data.frame(meta_df)
 # match text after final column name
-meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) str_match(toString(x), '(?<=MODEL_VALIDATION).*'))
+meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) str_match(paste0(x, collapse = ' '), '(?<=MODEL_VALIDATION).*'))
 # replace first column with citationkeys
 meta_df[,1] <- names(meta_list)
 names(meta_df) <- c('citekey', search_fields)
@@ -102,17 +104,21 @@ Finally, we'll perform some formatting to remove unwanted characters left over f
 ## remove bibtext field formatting
 # remove curly braces
 meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\{')) 
-meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\}'))
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\},'))
 # remove first '=' (from bibtex field )
 meta_df <- apply(meta_df, 2, function(x) str_remove(x, '='))
 # remove double-commas
-meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))
+#meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))
 # remove comments
 meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '%%.*'))
-meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))
+#meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))
 meta_df <- as.data.frame(meta_df)
 ```
 
 ```{r}
 knitr::kable(meta_df)
+```
+Evaluate cell as r code example
+```{r}
+eval(parse(text = meta_df$model_rate_emotion_values[12]))
 ```
