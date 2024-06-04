@@ -1,0 +1,118 @@
+---
+title: "Library Parser"
+---
+
+**Status** in progress.
+
+# Pre-processing
+
+## Preparing data
+
+The follow code extracts information from the .bib library to format it as a `data.frame` for further processing. The code makes use of the stringr package and uses regular expressions to extract relevant parameters. First we read in the .bib file and use some string manipulations to retrieve the citation keys.
+
+```{r results = 'hide'}
+require(stringr)
+```
+
+```{r}
+bib_file <- read.delim('metaMER_library_extraction_first_pass.bib',
+           sep = '@', header = F)
+
+# get citekeys from bibtex file:
+citekeys <- unique(bib_file$V2)
+# improve formatting
+citekeys <- str_remove(citekeys, '\\{')
+citekeys <- str_remove(citekeys, ',')
+citekeys <- str_remove(citekeys, '%%.*$')
+citekeys <- str_remove(citekeys, 'Article')
+citekeys[citekeys ==''] <- NA
+citekeys <- na.omit(citekeys)
+
+```
+
+*R* reads the .bib file as a two column data.frame, with the citation key appearing in the second column and the remaining metadata appearing in the first column. When the citation key appears in the second column, the corresponding row in the first column is blank. Because of this quirk, we can index metadata matching each citation key by keeping track of blank rows in the first column. We'll append each to a new entry of a list. The name of each list entry is the citation key; the corresponding value is the remaining unprocessed metadata.
+
+```{r}
+# find where new entries begin:
+new_entries = which(bib_file$V2 != '')
+
+# loop across unique indices for each entry
+meta_list = list()
+# loop across unique indices for each entry
+meta_list = list()
+for(this_entry in 1:(length(new_entries)-1))
+{
+  # get unique citekey
+  this_cite_key <- citekeys[this_entry]
+  # capture lines following citekey
+  corresponding_lines <- bib_file[new_entries[this_entry]:new_entries[this_entry+1]-1,]$V1
+  # store matching lines as data frame
+  corresponding_lines <- data.frame(corresponding_lines)
+  # assign lines distinct name
+  names(corresponding_lines) <- this_cite_key
+  # add to a list for further processing
+  meta_list <- append(meta_list, corresponding_lines)
+}
+
+
+```
+
+## Extracting Relevant .bib Fields
+
+Not every bibtex field is equally useful for analysis. To facilitate data manipulation, we can save the names of the target fields separately in a .txt file, and use a regular expression to create a new column each time *R* finds one of the target fields in a string containing the bibtex metadata.
+
+```{r}
+# read in target bibtex fields
+search_fields <- field_names <- readLines('bibtex_fields.txt')
+
+# match casing in bibtex file
+field_names <- toupper(field_names)
+# add a pattern allowing us to find text between two adjacent bibtex fields
+rep_pattern <- paste0(field_names[1:length(field_names)-1], '\\s*(.*?)\\s')
+# apply this same pattern to all but the last of the field names                  
+field_names[1:length(field_names)-1] <- rep_pattern
+# collapse all the new field names into a single string for string manipulation with stringr
+field_names[length(field_names)] <- paste0(field_names[length(field_names)], '.*')
+field_names <- paste0(field_names, collapse = '')
+```
+
+## Prepare dataframe
+
+Now we can convert our list into a data frame with the target bibtex fields. For the last field `MODEL_VALIDATION`, we will apply a different regex pattern which matches all characters following the field name `(?<=MODEL_VALIDATION).*` .
+
+```{r}
+# create new column containing information between two adjacent target fields for all entries in list
+meta_df <- lapply(meta_list, function(x) str_match(toString(x), field_names))
+# collapse list entries into rows
+meta_df <- do.call('rbind', meta_df)
+# format as a data.frame
+meta_df <- data.frame(meta_df)
+# match text after final column name
+meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) str_match(toString(x), '(?<=MODEL_VALIDATION).*'))
+# replace first column with citationkeys
+meta_df[,1] <- names(meta_list)
+names(meta_df) <- c('citekey', search_fields)
+```
+
+## Formatting
+
+Finally, we'll perform some formatting to remove unwanted characters left over following the conversion (in progress)
+
+```{r}
+## remove bibtext field formatting
+# remove curly braces
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\{')) 
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\}'))
+# remove first '=' (from bibtex field )
+meta_df <- apply(meta_df, 2, function(x) str_remove(x, '='))
+# remove double-commas
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))
+# remove comments
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '%%.*'))
+meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))
+meta_df <- as.data.frame(meta_df)
+```
+
+```{r}
+knitr::kable(meta_df)
+```

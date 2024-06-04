@@ -253,7 +253,7 @@ MODEL_DETAIL_twoDimensionalRegression = {full2D, reduced2D}
     C5 = c(21.9,19.2,0,6.8,52.1)
  )
 }
-MODEL_RATE_EMOTION_VALUES_FULL_SMO = {rbind(
+MODEL_RATE_EMOTION_VALUES_FULL.SMO = {rbind(
     C1 = c('C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 7, 'C5' = 18),
     C2 = c(11.3,58.9,13.7,4,12.1),
     C3 = c(0,13.2,68.6,18.2,0),
@@ -1651,9 +1651,9 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   MODEL_DETAIL = {c(fully.connected.model = c(nodes = 512-256-1, dropout = '50%', leakyReLu = 0.1, smoothing = 'Gaussian kernel: sigma = 1.5, size = 7'), 
       LTSM.model = c(model.type = 'RNN', hidden.dimension = 512, hyper.parameter.tuning = 'trial and error') 
       )
-},
+}, %% move to complexity parameters? 
   MODEL_MEASURE = {R},
-  MODEL_COMPLEXITY_PARAMETERS = {batch.size = 8, learning rate = 0.0001},
+  MODEL_COMPLEXITY_PARAMETERS = {batch.size = 8, learning.rate = 0.0001},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
   rbind(fully.connected = c(MSE_valence = 0.0315, R_valence = 0.1314, 
@@ -1665,7 +1665,7 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
 }
 
 
-@Article{malheiro2018em,
+@Article{malheiro2018em, %% EXCLUDE? DIDN'T SEE AUDIO FEATURES
   AUTHOR = {Malheiro, Ricardo and Panda, Renato and Gomes, Paulo and Paiva, Rui Pedro},
   JOURNAL = {IEEE TRANSACTIONS ON AFFECTIVE COMPUTING},
   MONTH = {APR-JUN},
@@ -1752,7 +1752,7 @@ arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
   rbind(
-  mfcc = c('R2_arousal' = 0.63, 'R2_arousal.SD' = 0.064, 'R2_valence' = 0.356, 'R2_valence.SD' = 0.085),
+  MFCC = c('R2_arousal' = 0.63, 'R2_arousal.SD' = 0.064, 'R2_valence' = 0.356, 'R2_valence.SD' = 0.085),
   MFCC.TMBR = c(0.63,0.065,0.354,0.084),
   MFCC.TMBR.SCF.SFM = c(0.686,0.045,0.398,0.075),
   MFCC.TMBR.SCF.SFM.CHR.LSP = c(0.587,0.066,0.341,0.097)
