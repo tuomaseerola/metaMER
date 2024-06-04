@@ -120,5 +120,89 @@ knitr::kable(meta_df)
 ```
 Evaluate cell as r code example
 ```{r}
-eval(parse(text = meta_df$model_rate_emotion_values[12]))
+eval(parse(text = meta_df$model_rate_emotion_values[4]))
 ```
+
+# Dealing with nested bibtex fields.
+
+Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`.
+We need to apply special operations to separate these values for further analysis.
+
+```{r}
+## function to parse output of multiple models nested within a single cell
+parse_model_output = function(df)
+{ # loop across rows
+  # apply function to replace NAs with empty string
+  sapply(1:nrow(df), function(x) {
+    df$model_rate_emotion_values <- tidyr::replace_na(df$model_rate_emotion_values, '') # detect cells with rbind in them
+    if(str_count(df$model_rate_emotion_values[x], "rbind") > 1) {
+     # print(x)
+      # match first model (name between first underscore and rbind)
+      model_1_name <- str_match(df$model_rate_emotion_values[x], 
+                                "(?<=_).*?(?=rbind)")
+      # match subsequent models (name between MODEL_RATE_EMOTION_VALUES_ and rbind)
+      model_names <- str_extract_all(df$model_rate_emotion_values[x], 
+                                     "(?<=MODEL_RATE_EMOTION_VALUES_).*?(?=rbind)")
+      # combine names
+      model_names <- unlist(c(model_1_name, model_names))
+      # remove special characters
+      model_names <- gsub("[^[:alnum:]]", "", model_names)
+      # get corresponding values for each model
+      model_results <- str_split(df$model_rate_emotion_values[x], 
+                "MODEL_RATE_EMOTION_VALUES")
+      # get rid of everything up to "rbind"
+      model_results <- lapply(model_results, function(x) str_remove(x, 
+                                                          '.+?(?=rbind)'))
+      # now unlist the models and give them names to add later
+      model_results <- unlist(model_results)
+      
+      # doesn't seem to work:
+       model_results <- paste(model_names, '=', model_results)
+      names(model_results) <- model_names
+     # return(model_results)
+    }
+    else { # otherwise, if dealing with non-listed, just return the existing value
+      model_results <- df$model_rate_emotion_values[x]
+    }
+    return(model_results)
+  }
+    )
+  # see whether rbind appears multiple times
+  
+}
+
+# get results from nested models:
+model_outputs <- parse_model_output(meta_df)
+# assign unique names
+model_names <- lapply(model_outputs, names)
+
+```
+
+## Data Frame Expansion
+
+Next we want to duplicate the number of rows for each of the bibtex cells requiring
+special nesting
+
+```{r}
+# count the numbers 
+n_entries <- unlist(lapply(model_outputs, function(x) length(x)))
+# for those returning 0, change value to 1
+n_entries[n_entries == 0]<- 1
+# replicate rows based on number of models reported
+meta_df_unpacked <- meta_df[rep(seq_len(nrow(meta_df)), n_entries), ]
+# now overwrite model_rate_emotion_values with the output of parse_model_output
+meta_df_unpacked$model_rate_emotion_values <- unlist(model_outputs)
+
+```
+
+## Sanity check
+
+```{r}
+ex_substudy_1 <- eval(parse(text = meta_df_unpacked[7, 'model_rate_emotion_values']))
+ex_substudy_2 <- eval(parse(text = meta_df_unpacked[8, 'model_rate_emotion_values']))
+
+
+knitr::kable(rbind(ex_substudy_1, ex_substudy_2),
+             caption = sum(ex_substudy_1))
+```
+
