@@ -847,7 +847,7 @@ rbind(
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {4},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {0.808, 0.788},
+  MODEL_RATE_EMOTION_VALUES = {c('valence'  = 0.808, 'arousal' = 0.788)},
   MODEL_VALIDATION = {NA}
 }
 
@@ -934,7 +934,7 @@ MODEL_VALIDATION = {cross validation, external validation (study 2)}
   MODEL_MEASURE = {R2}, 
   MODEL_COMPLEXITY_PARAMETERS = {1 pre-training layer; 256 hidden units; 1*128 fusion features; 0.001 learning rate; Batch size: 128;  Regularization intensity and discard rate: 0.2}, %% as reported in manuscript, excluding a few tuning parameters
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {0.456, 0.439}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
+  MODEL_RATE_EMOTION_VALUES = {c('valence' = 0.456, 'arousal' = 0.439)}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
   MODEL_VALIDATION = {cross-validation}
 }
 
@@ -978,29 +978,30 @@ MODEL_VALIDATION = {cross validation, external validation (study 2)}
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
 rbind(
-  baseline = c('euclid' = 0.45, 'valence' = -0.84, 'arousal' =  -0.06),
-  mfcc = c(0.3,0.14, 0.61),
-  tonal = c(0.29,0.13, 0.65),
-  spectral = c(0.32,0.06, 0.56),
-  temporal = c(0.36,0.08, 0.30),
-  all = c(0.29,0.15, 0.67)
+  baseline = c('euclid' = 0.45, 'r2_valence' = -0.84, 'r2_arousal' =  -0.06,
+  'euclid.sd' = 0.09, 'r2_valence.sd' = 0.09, 'r2_arousal.sd' = 0.09),
+  mfcc = c(0.3,0.14, 0.61, 0.15,0.01,0.01),
+  tonal = c(0.29,0.13, 0.65, 0.15,0.03,0.02),
+  spectral = c(0.32,0.06, 0.56, 0.16,0.02,0.02),
+  temporal = c(0.36,0.08, 0.30, 0.17,0.01,0.02),
+  all = c(0.29,0.15, 0.67, 0.15,0.01,0.02)
 )},
-MODEL_RATE_PERFORMANCE_SD = {
-rbind(
-  baseline = c('euclid' = 0.09, 'valence' = 0.09, 'arousal' =  0.08),
-  mfcc = c(0.15,0.01,0.01),
-  tonal = c(0.15,0.03,0.02),
-  spectral = c(0.16,0.02,0.02),
-  temporal = c(0.17,0.01,0.02),
-  all = c(0.15,0.01,0.02)
-)
-},
-MODEL_RATE_PERFORMANCE_PERSONALIZED_COMPONENT_TYING = {
-rbind(
-  no_personal_annotations = c('valence' = -0.28, 'arousal' =  0.36),
- 20_personal_annotations_component_tying_method = c(0.01, 0.54)
-)
- },
+#MODEL_RATE_PERFORMANCE_SD = {
+#rbind(
+#  baseline = c('euclid' = 0.09, 'valence' = 0.09, 'arousal' =  0.08),
+#  mfcc = c(0.15,0.01,0.01),
+#  tonal = c(0.15,0.03,0.02),
+#  spectral = c(0.16,0.02,0.02),
+#  temporal = c(0.17,0.01,0.02),
+#  all = c(0.15,0.01,0.02)
+#)
+#},
+#MODEL_RATE_PERFORMANCE_PERSONALIZED_COMPONENT_TYING = {
+#rbind(
+#  no_personal_annotations = c('valence' = -0.28, 'arousal' =  0.36),
+# 20_personal_annotations_component_tying_method = c(0.01, 0.54)
+#)
+# },
   MODEL_VALIDATION = {three-fold cross-validation}
  
 }
@@ -1057,34 +1058,34 @@ MODEL_COMPLEXITY_PARAMETERS_MEDIAEVAL = {
 c( ‘kpca dimensionality = 450’, ‘z = 8’) %% only reporting on table3
 },
 
-  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
+MODEL_RATE_EMOTION_NAMES = {valence, arousal},
 
-  MODEL_RATE_EMOTION_VALUES_NTUMIR = {
-  rbind(
-  proposed_knn_kpca_features = c('R2' = 0.622, 'JS' = 0.069),
-  simple_svr_kpca_features = c(0.584, 0.085),
-  ensemble_svr = c(0.531, 0.102) # reported in other study
-  )
-},
-MODEL_RATE_EMOTION_SD_NTUMIR = {
-  rbind(
-    proposed_knn_kpca_features = c('R2' = 0.288, 'JS' = 0.066),
-    simple_svr_kpca_features = c(0.265, 0.059),
-    ensemble_svr = c(0.244, 0.073) # reported in other study
-  )
-},
+MODEL_RATE_EMOTION_VALUES_NTUMIR = {
+rbind(
+proposed_knn_kpca_features = c('R2' = 0.622, 'JS' = 0.069, 'R2.sd' = 0.288, 'JS.sd' = 0.066),
+simple_svr_kpca_features = c(0.584, 0.085, 0.265, 0.059),
+ensemble_svr = c(0.531, 0.102, 0.244, 0.073) 
+) # reported in other study
+}, 
 MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   rbind(
-    simple_svr_kpca_features = c('R2' = 0.334, 'JS' = 0.130),
-    proposed_knn_kpca_features = c(0.554, 0.108)
+    simple_svr_kpca_features = c('R2' = 0.334, 'JS' = 0.130, 'R2.sd'= 0.034, 'JS.sd' = 0.009),
+    proposed_knn_kpca_features = c(0.554, 0.108, 0.044, 0.013)
   )
 },
-MODEL_RATE_EMOTION_SD_MEDIAEVAL2013 = {
-  rbind(
-    simple_svr_kpca_features = c('R2' = 0.034, 'JS' = 0.009),
-    proposed_knn_kpca_features = c(0.044, 0.013)
-  )
-},
+%%MODEL_RATE_EMOTION_SD_NTUMIR = {
+%%  rbind(
+%%    proposed_knn_kpca_features = c('R2' = 0.288, 'JS' = 0.066),
+%%    simple_svr_kpca_features = c(0.265, 0.059),
+%%    ensemble_svr = c(0.244, 0.073) %% reported in other study
+%%  )
+%%},
+%%MODEL_RATE_EMOTION_SD_MEDIAEVAL2013 = {
+%%  rbind(
+%%    simple_svr_kpca_features = c('R2' = 0.034, 'JS' = 0.009),
+%%    proposed_knn_kpca_features = c(0.044, 0.013)
+%%  )
+%%},
  MODEL_VALIDATION = {c(NTUMIR = 'LOO', MediaEval2013 = 'five-fold cross-validation')},
 DISCUSS = {T}
 }
@@ -1202,7 +1203,6 @@ c(MediaEval2014 = 1000,
   vbr = c(r2_arousal = 0.7108, explained_variance_arousal = 0.7415),
           r2_valence = 0.6328, explained_variance_valence = 0.6340,
           r2_resonance = 0.5554, explained_variance_resonance = 0.563)
-)
  },
   MODEL_VALIDATION = {cross-validation}
 }
@@ -1237,19 +1237,19 @@ c(MediaEval2014 = 1000,
   FEATURE_N = {
 c(
   pre_fitting = 21,
-  post_fitting_arousal_original_mlr = 5  
+  post_fitting_arousal_original_mlr = 5,  
   post_fitting_arousal_normalized_mlr = 3,
   post_fitting_valence_original_mlr = 3,  
   post_fitting_valence_normalized_mlr = 3,  
-  post_fitting_arousal_original_mlr_common = 3,  # common predictors bw original and rms-normalized sets
-  post_fitting_arousal_normalized_mlr_common = 3,  # common predictors bw original and rms-normalized sets
-  post_fitting_valence_original_mlr_common = 3,  # common predictors bw original and rms-normalized sets
-  post_fitting_valence_normalized_mlr_common = 3,  # common predictors bw original and rms-normalized sets
+  post_fitting_arousal_original_mlr_common = 3,
+  post_fitting_arousal_normalized_mlr_common = 3,
+  post_fitting_valence_original_mlr_common = 3,  
+  post_fitting_valence_normalized_mlr_common = 3,  
   post_fitting_arousal_original_pls = 6,
   post_fitting_arousal_normalized_pls = 6,
   post_fitting_valence_original_pls = 6,
   post_fitting_valence_normalized_pls = 6
-)
+) # normalized_mlr_common: common predictors bw original and rms-normalized sets.
 },
   PARTICIPANT_N = {60},
   PARTICIPANT_EXPERTISE = {nonmusicians},
@@ -1264,20 +1264,21 @@ c(
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = { },
   MODEL_RATE_EMOTION_NAMES = {pleasantness, arousal},
-  MODEL_RATE_EMOTION_VALUES = { c(
+  MODEL_RATE_EMOTION_VALUES = { rbind(
   arousal_original_mlr = .848,
   arousal_normalized_mlr =  .674,
   pleasantness_original_mlr =  .386,
   pleasantness_normalized_mlr = .289, 
-  arousal_original_mlr = .667, # common predictors bw original and rms-normalized sets
-  arousal_normalized_mlr =  .674, # common predictors bw original and rms-normalized sets
-  pleasantness_original_mlr =  .286, # common predictors bw original and rms-normalized sets
-  pleasantness_normalized_mlr = .283, # common predictors bw original and rms-normalized sets
+  arousal_original_mlr = .667, 
+  arousal_normalized_mlr =  .674, 
+  pleasantness_original_mlr =  .286, 
+  pleasantness_normalized_mlr = .283, 
   arousal_original_pls = .779,
   arousal_normalized_pls = .652,
   pleasantness_original_pls = .533,
   pleasantness_normalized_pls = .367
-)},
+) # normalized_mlr_common: common predictors bw original and rms-normalized sets.
+},
   MODEL_VALIDATION = {pls = '10-fold cross validation'}
 }
 
@@ -1531,34 +1532,21 @@ exp5 = c(train = 'selected sets (varied)', test = 'selected sets (varied)', fact
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {parameters optimized through grid searches},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {list(
-valence =  rbind(mer_mer = c(exp1 = 0.18, exp2 = 0.18, exp3 = 0.18, exp4 = 0.18),
-        ch_mer = c(0.27,0.19,0.25,0.25),
-        amg_mer = c(0.40,0.22,0.2,0.2),
-        mer_ch = c(0.13,0.13,0.13,0.53),
-        ch_ch = c(0.25,0.15,0.10,0.28),
-        amg_ch = c(0.21,0.06,0.04,0.2),
-        mer_amg = c(0.08,0.08,0.08,0.33),
-        ch_amg = c(0.07,0.02,0.02,0.13),
-        amg_amg = c(0.14,0.03,0.06,0.19),
-        within = c(0.19,0.12,0.11,0.22),
-        cross = c(0.19,0.12,0.12,0.28),
-        all = c(0.19,0.12,0.12,0.26)
-  ),
-arousal =   rbind(mer_mer = c(exp1 = 0.68, exp2 = 0.68, exp3 = 0.68, exp4 = 0.68),
-        ch_mer = c(0.8,0.74,0.75,0.75),
-        amg_mer = c(0.75,0.67,0.65,0.65),
-        mer_ch = c(0.7,0.7,0.7,0.59),
-        ch_ch = c(0.77,0.72,0.74,0.81),
-        amg_ch = c(0.68,0.67,0.63,0.66),
-        mer_amg = c(0.61,0.61,0.61,0.73),
-        ch_amg = c(0.66,0.57,0.59,0.71),
-        amg_amg = c(0.73,0.63,0.63,0.72),
-        within = c(0.73,0.68,0.68,0.74),
-        cross = c(0.7,0.66,0.66,0.68),
-        all = c(0.71,0.67,0.67,0.7)
-  )
-)
+  MODEL_RATE_EMOTION_VALUES = {rbind(mer_mer = c(exp1_valence = 0.18, exp2_valence = 0.18, 
+exp3_valence = 0.18, exp4_valence = 0.18,
+exp1_arousal = 0.68, exp2_arousal = 0.68, 
+exp3_arousal = 0.68, exp4_arousal = 0.68),
+        ch_mer = c(0.27,0.19,0.25,0.25,0.8,0.74,0.75,0.75),
+        amg_mer = c(0.40,0.22,0.2,0.2,0.75,0.67,0.65,0.65),
+        mer_ch = c(0.13,0.13,0.13,0.53,0.7,0.7,0.7,0.59),
+        ch_ch = c(0.25,0.15,0.10,0.28,0.77,0.72,0.74,0.81),
+        amg_ch = c(0.21,0.06,0.04,0.2,0.68,0.67,0.63,0.66),
+        mer_amg = c(0.08,0.08,0.08,0.33,0.61,0.61,0.61,0.73),
+        ch_amg = c(0.07,0.02,0.02,0.13,0.66,0.57,0.59,0.71),
+        amg_amg = c(0.14,0.03,0.06,0.19,0.73,0.63,0.63,0.72),
+        within = c(0.19,0.12,0.11,0.22,0.73,0.68,0.68,0.74),
+        cross = c(0.19,0.12,0.12,0.28,0.7,0.66,0.66,0.68),
+        all = c(0.19,0.12,0.12,0.26,0.71,0.67,0.67,0.7))
  }, %% unsure how to split up individual experiments and include details about them
   MODEL_VALIDATION = {10-fold cross validation}
 }

@@ -118,15 +118,16 @@ meta_df <- as.data.frame(meta_df)
 ```{r}
 knitr::kable(meta_df)
 ```
+
 Evaluate cell as r code example
+
 ```{r}
 eval(parse(text = meta_df$model_rate_emotion_values[4]))
 ```
 
 # Dealing with nested bibtex fields.
 
-Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`.
-We need to apply special operations to separate these values for further analysis.
+Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. We need to apply special operations to separate these values for further analysis.
 
 ```{r}
 ## function to parse output of multiple models nested within a single cell
@@ -136,7 +137,7 @@ parse_model_output = function(df)
   sapply(1:nrow(df), function(x) {
     df$model_rate_emotion_values <- tidyr::replace_na(df$model_rate_emotion_values, '') # detect cells with rbind in them
     if(str_count(df$model_rate_emotion_values[x], "rbind") > 1) {
-     # print(x)
+      print('yes')
       # match first model (name between first underscore and rbind)
       model_1_name <- str_match(df$model_rate_emotion_values[x], 
                                 "(?<=_).*?(?=rbind)")
@@ -155,8 +156,6 @@ parse_model_output = function(df)
                                                           '.+?(?=rbind)'))
       # now unlist the models and give them names to add later
       model_results <- unlist(model_results)
-      
-      # doesn't seem to work:
        model_results <- paste(model_names, '=', model_results)
       names(model_results) <- model_names
      # return(model_results)
@@ -180,8 +179,7 @@ model_names <- lapply(model_outputs, names)
 
 ## Data Frame Expansion
 
-Next we want to duplicate the number of rows for each of the bibtex cells requiring
-special nesting
+Next we want to copy the number of rows for each of the bibtex cells requiring special nesting
 
 ```{r}
 # count the numbers 
@@ -206,3 +204,12 @@ knitr::kable(rbind(ex_substudy_1, ex_substudy_2),
              caption = sum(ex_substudy_1))
 ```
 
+## Print output of all studies:
+
+```{r}
+sapply(1:nrow(meta_df_unpacked), function(i) {
+  print(i) 
+  print(eval(parse(text = meta_df_unpacked$model_rate_emotion_values[i])))
+}
+)
+```
