@@ -2,7 +2,9 @@
 title: "Library Parser"
 ---
 
-**Status** in progress.
+**Status:** in progress.
+
+**TODO**: - Separate scripts and functions into separate .qmd files/directories. - Update `model_rate_emotion_values` nomenclature process for classification papers.
 
 # Pre-processing
 
@@ -212,4 +214,116 @@ sapply(1:nrow(meta_df_unpacked), function(i) {
   print(eval(parse(text = meta_df_unpacked$model_rate_emotion_values[i])))
 }
 )
+```
+
+```{r}
+classification_studies = subset(meta_df_unpacked, paradigm == " classification  ")
+
+sapply(1:nrow(classification_studies), function(i) {
+  print(i) 
+  print(eval(parse(text = classification_studies$model_rate_emotion_values[i])))
+}
+)
+```
+
+```{r eval = F}
+regression_studies = subset(meta_df_unpacked, paradigm == " regression  ")
+
+sapply(1:nrow(regression_studies), function(i) {
+  print(i) 
+  print(eval(parse(text = regression_studies$model_rate_emotion_values[i])))
+}
+)
+```
+
+```{r}
+# low-level function to extract relevant values from named array
+model_result_2_df <- function(x) {
+  # get algorithm name from variable at beginning of string (before parsing)
+  toolbox <- trimws(stringr::str_extract(x, pattern = "[^\\=]+"))
+  print(toolbox)
+  # now evaluate the expression
+  x <- rlang::eval_tidy(rlang::parse_expr(x))
+  # get name of fitted models from column names
+  model_names <- colnames(x)
+  # print(model_names)
+  # split across model name for summary statistic (e.g., mean, sd, etc.)
+  model_statistic <- str_split(model_names, '\\.')
+  model_statistic <- unlist(lapply(model_statistic, function(x) x[2]))
+  # get values
+  model_values <- as.numeric(x)
+  # names(model_values) <- 'score'
+  print(model_values)
+  # get additional attributes (feature.data.exp)
+  model_attributes <- rownames(x)
+  print(model_attributes)
+  data.frame(model_attributes)
+  # get additional model details
+  model_attributes <- str_split_1(model_attributes, '\\.')
+  names(model_attributes) <- c('feature_id', 'data_id', 'experiment_id')
+  # split across '_' to 
+  model_measures <- data.frame(do.call('rbind', str_split(colnames(x), '_')))
+  print(model_measures)
+  names(model_measures) <- c('dimension', 'measure')
+  model_measures_split <- str_split(model_measures[,'measure'], '\\.')
+  model_measures[,'measure'] <- unlist(lapply(model_measures_split, 
+                                              function(x) x[1]))
+  return(data.frame(toolbox, 
+             t(model_attributes), 
+             model_measures, 
+             values = model_values,
+             statistic = model_statistic))
+}
+
+# high level function to apply model_result_2_df to multiple studies
+get_study_summaries <- function(df) {
+  do.call(rbind,
+          lapply(df$model_rate_emotion_values, 
+                 FUN = function(x) {
+                   study_id <- unique(df$citekey[which(df$model_rate_emotion_values == x)])
+                   model_results <- model_result_2_df(x)
+                   return(cbind(study_id, model_results))
+                   }
+                 )
+          )
+}
+
+```
+
+# Parsing Regression Studies
+
+The following functions provide a working example for converting the r code contained in `model_rate_emotion_values` to a data frame for further analysis (currently working for regression studies).
+
+### Template
+
+Encoded values should use the following nomenclature:
+
+```         
+library = rbind(features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
+
+# e.g.
+
+librosa = rbind(mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
+temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
+valence_r2.sd = 0.1, arousal_r2.sd = 0.1))
+```
+
+### Working example
+
+```{r}
+this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testStudy2020of'),
+  model_rate_emotion_values = c("marsyas = rbind(mfcc.msd.1 = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
+                                  valence_r2.sd = 0.4, arousal_r2.sd = 0.3,
+  valence_mse.mean = 0.3, arousal_mse.mean = 9.1))",
+  "librosa = rbind(mfcc.ismir.1 = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3,
+                                  valence_r2.sd = 0.2, arousal_r2.sd = 0.4,
+  euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))",
+  "mirtoolbox = rbind(pitch.filmMusic.2 = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
+)
+```
+
+### Summary data frame
+
+```{r}
+knitr::kable(get_study_summaries(this_study))
 ```
