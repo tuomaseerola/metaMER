@@ -2,16 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.5.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="TE">
 <meta name="author" content="CA">
-<meta name="author" content="MS">
 <meta name="keywords" content="music, emotion, recognition, meta-analysis">
 
-<title>metaMER - Music Emotion Recognition…</title>
+<title>metaMER – Music Emotion Recognition: Meta-analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +132,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Music Emotion Recognition…</h1>
+<h1 class="title">Music Emotion Recognition: Meta-analysis</h1>
 </div>
 
 
@@ -151,14 +150,6 @@ div.csl-indent {
       </div>
     <div class="quarto-title-meta-contents">
     <p class="author">CA <a href="mailto:XXX@XXXX" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            2
-          </p>
-      </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">MS <a href="mailto:XXX@XXXX" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -202,6 +193,7 @@ div.csl-indent {
 <section id="methods" class="level1">
 <h1>Methods</h1>
 <p>blah blah</p>
+<p>We preregistered our meta-analysis plan (OSF URL here and available also at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
@@ -322,24 +314,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -374,11 +348,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
