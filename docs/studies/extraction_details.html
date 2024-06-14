@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.5.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaMER - Extraction Details</title>
+<title>metaMER – Extraction Details</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,10 +178,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="title">TITLE</h2>
 <p>Title of article.</p>
 </section>
-<section id="type" class="level2">
-<h2 class="anchored" data-anchor-id="type">TYPE</h2>
-<p><strong>TODO</strong>: Remove? All are articles</p>
-</section>
 <section id="volume" class="level2">
 <h2 class="anchored" data-anchor-id="volume">VOLUME</h2>
 <p>Volume number of publication.</p>
@@ -198,10 +194,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="abstract">ABSTRACT</h2>
 <p>Complete text of article abstract.</p>
 </section>
-<section id="publication_stage" class="level2">
-<h2 class="anchored" data-anchor-id="publication_stage">PUBLICATION_STAGE</h2>
-<p><strong>TODO:</strong> Remove? All final.</p>
-</section>
 <section id="source" class="level2">
 <h2 class="anchored" data-anchor-id="source">SOURCE</h2>
 <p>Database article was sourced from. Scopus, Web of Science (WoS) or OpenAlex.</p>
@@ -212,7 +204,7 @@ window.Quarto = {
 </section>
 <section id="paradigm" class="level2">
 <h2 class="anchored" data-anchor-id="paradigm">PARADIGM</h2>
-<p>Paradigm used for MER task. Either classification or regression.</p>
+<p>Paradigm used for MER task. Either <code>classification</code> or <code>regression</code>.</p>
 </section>
 <section id="notes_authorinitials" class="level2">
 <h2 class="anchored" data-anchor-id="notes_authorinitials">NOTES_AUTHORINITIALS</h2>
@@ -221,10 +213,6 @@ window.Quarto = {
 <section id="emotions" class="level2">
 <h2 class="anchored" data-anchor-id="emotions">EMOTIONS</h2>
 <p>List of emotion names or labels separated by commas. <strong>TODO:</strong> Discuss potential redundancies with <code>MODEL_RATE_EMOTION_NAMES</code></p>
-</section>
-<section id="emotion_locus" class="level2">
-<h2 class="anchored" data-anchor-id="emotion_locus">EMOTION_LOCUS</h2>
-<p>Perceived or felt <strong>TODO:</strong> Remove? All appear to be perceived</p>
 </section>
 <section id="stimulus_type" class="level2">
 <h2 class="anchored" data-anchor-id="stimulus_type">STIMULUS_TYPE</h2>
@@ -249,7 +237,7 @@ window.Quarto = {
 </section>
 <section id="participant_n" class="level2">
 <h2 class="anchored" data-anchor-id="participant_n">PARTICIPANT_N</h2>
-<p>Total number of participants in experiment. <strong>TODO</strong> Discuss handling of secondary information. E.g., MediaEval</p>
+<p>Total number of participants in experiment. <strong>TODO</strong> Discuss handling of secondary information. E.g., MediaEval. Discuss how to encode alternate participant metrics such as # participants per clip</p>
 </section>
 <section id="participant_expertise" class="level2">
 <h2 class="anchored" data-anchor-id="participant_expertise">PARTICIPANT_EXPERTISE</h2>
@@ -269,7 +257,8 @@ window.Quarto = {
 </section>
 <section id="feature_categories" class="level2">
 <h2 class="anchored" data-anchor-id="feature_categories">FEATURE_CATEGORIES</h2>
-<p>Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: <em>Melody</em>, <em>Rhythm</em>, <em>Timbre</em>, <em>Pitch</em>, <em>Tonality</em>, <em>Expressivity</em>, <em>Texture</em>, <em>Form</em>, <em>Vocal</em>, <em>High-Level</em> <strong>TODO</strong> Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)</p>
+<p>Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: <em>Melody</em>, <em>Rhythm</em>, <em>Timbre</em>, <em>Pitch</em>, <em>Tonality</em>, <em>Expressivity</em>, <em>Texture</em>, <em>Form</em>, <em>Vocal</em>, <em>High-Level</em></p>
+<p><strong>TODO</strong> Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)</p>
 </section>
 <section id="feature_source" class="level2">
 <h2 class="anchored" data-anchor-id="feature_source">FEATURE_SOURCE</h2>
@@ -289,7 +278,7 @@ window.Quarto = {
 </section>
 <section id="model_measure" class="level2">
 <h2 class="anchored" data-anchor-id="model_measure">MODEL_MEASURE</h2>
-<p>Metric used in model evaluation. E.g., ‘R2’ for <span class="math inline">\(R^2\)</span>, MSE, CCC, Classification accuracy, etc.</p>
+<p>Metric used in model evaluation. E.g., <span class="math inline">\(R^2\)</span>, <span class="math inline">\(MSE\)</span>, <span class="math inline">\(CCC\)</span>, Classification accuracy, etc.</p>
 </section>
 <section id="model_complexity_parameters" class="level2">
 <h2 class="anchored" data-anchor-id="model_complexity_parameters">MODEL_COMPLEXITY_PARAMETERS</h2>
@@ -457,24 +446,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -509,11 +480,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
