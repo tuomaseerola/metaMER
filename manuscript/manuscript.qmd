@@ -1,5 +1,5 @@
 ---
-title             : "Music Emotion Recognition..."
+title             : "Music Emotion Recognition: Meta-analysis"
 shorttitle        : "XXXXXXXXX"
 
 author: 
@@ -9,10 +9,6 @@ author:
     address       : "Palace Green, Department of Music, Durham University, DH1 3RL Durham, United Kingdom"
     email         : "tuomas.eerola@durham.ac.uk"
   - name          : "CA"
-    affiliation   : "2"
-    address       : "XXXXXX"
-    email         : "XXX@XXXX"
-  - name          : "MS"
     affiliation   : "2"
     address       : "XXXXXX"
     email         : "XXX@XXXX"
@@ -70,6 +66,8 @@ blah blah
 # Methods
 
 blah blah
+
+We preregistered our meta-analysis plan (OSF URL here and available also at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
 
 # Results
 
