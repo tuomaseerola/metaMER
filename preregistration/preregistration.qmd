@@ -131,7 +131,7 @@ metamer_prereg <-
 planned_data_transformations = "For regression studies, we convert all metrics to Pearson correlation coefficients. For classification studies, we convert the outcomes of classification to Matthews Correlation Coefficient (MCC) from the  precision, accuracy, specificity, F1 scores. Alternatively, we use Cohen’s kappa for multiple classes.",
 missing_data = "If no main outcome variables are available, we exclude the study.",
 data_validation = "None planned beyond the staged approached already documented in extraction process.",
-quality_assessment = "Not all the bias assessment tools for clinical studies are relevant for our purposes, we adapt the overall approached advocated in  [https://doi.org/10.1136/bmj.d5928](https://doi.org/10.1136/bmj.d5928), especially concerning #4. Making our own risk of bias judgements transparent.",
+quality_assessment = "Not all the bias assessment tools for clinical studies are relevant for our purposes, we adapt the overall approached advocated in [Higgins et al. (2011)]  (https://doi.org/10.1136/bmj.d5928).",
 synthesis_plan = "We analyse regression and classification studies separately, and depending on the quantity of the studies forming suitable sub-groupings based on techniques, materials or music collections/genres, we may further synthesise the results across groupings that are formed along these subsets.",
 criteria_for_conclusions = "NA",
 synthesis_masking = "NA",
@@ -175,6 +175,7 @@ misc_synthesis_details = FALSE
 
 ## References
 
-- Shamseer et al. (2015).
+- Higgins, J. P. T., Altman, D. G., Gøtzsche, P. C., Jüni, P., Moher, D., Oxman, A. D., Savović, J., Schulz, K. F., Weeks, L., & Sterne, J. A. C. (2011). The Cochrane Collaboration tool for assessing risk of bias in randomised trials. _BMJ, 343_. [https://www.bmj.com/content/343/bmj.d5928](https://www.bmj.com/content/343/bmj.d5928)
 
-- Higgins J P T, Altman D G, GÃ¸tzsche P C, JÃ¼ni P, Moher D, Oxman A D et al. The Cochrane Collaboration’s tool for assessing risk of bias in randomised trials BMJ 2011; 343 :d5928 doi:10.1136/bmj.d5928
+- Shamseer, L., Moher, D., Clarke, M., Ghersi, D., Liberati, A., Petticrew, M., Shekelle, P., & Stewart, L. A. (2015). Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015: elaboration and explanation. _BMJ, 349_. [https://www.bmj.com/content/349/bmj.g7647](https://www.bmj.com/content/349/bmj.g7647)
+
