@@ -50,17 +50,9 @@ Database article was sourced from. Scopus, Web of Science (WoS) or OpenAlex.
 
 Corresponding keywords for article indicated by author.
 
-## PARADIGM
-
-Paradigm used for MER task. Either `classification` or `regression`.
-
 ## NOTES_AUTHORINITIALS
 
 Decision and comments by respective author
-
-## EMOTIONS
-
-List of emotion names or labels separated by commas. **TODO:** Discuss potential redundancies with `MODEL_RATE_EMOTION_NAMES`
 
 ## STIMULUS_TYPE
 
@@ -76,16 +68,15 @@ Unit of measurement pertaining to `STIMULUS_DURATION`. E.g., seconds, measures, 
 
 ## STIMULUS_N
 
-Number of stimuli employed in experiment.\
-**TODO** Discuss handling of subset selection, train, test, etc
+Number of stimuli employed in experiment. If multiple experimental conditions reported, separate $n$ by conditions where possible.
 
 ## FEATURE_N
 
-Number of features included in model. **TODO** Discuss handling of subset selection, train, test, etc
+Number of features included in data modeling (if available).
 
 ## PARTICIPANT_N
 
-Total number of participants in experiment. **TODO** Discuss handling of secondary information. E.g., MediaEval. Discuss how to encode alternate participant metrics such as \# participants per clip
+Total number of participants in experiment.
 
 ## PARTICIPANT_EXPERTISE
 
@@ -101,17 +92,15 @@ How participants were recruited (e.g., convenience, random sampling, crowdsourci
 
 ## PARTICIPANT_TASK
 
-Nature of rating/classification task undertaken by participants. E.g., rate, annotate. **TODO** discuss multi-stage studies. E.g., MediaEval categories validated by participants using AV ratings.
+Nature of rating/classification task undertaken by participants. E.g., rate, annotate.
 
 ## FEATURE_CATEGORIES
 
-Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: *Melody*, *Rhythm*, *Timbre*, *Pitch*, *Tonality*, *Expressivity*, *Texture*, *Form*, *Vocal*, *High-Level* 
-
-**TODO** Discuss feasibility of this approach. Other nominalizations/categories not covered (e.g., spectral, temporal, lyric)
+Names of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: *Melody*, *Rhythm*, *Timbre*, *Pitch*, *Tonality*, *Expressivity*, *Texture*, *Form*, *Vocal*, *High-Level*
 
 ## FEATURE_SOURCE
 
-Name(s) of feature analysis toolboxes. **TODO** Discuss original features (as in `Panda2020no`)
+Name(s) of feature analysis toolbox(es).
 
 ## FEATURE_REDUCTION_METHOD
 
@@ -119,11 +108,11 @@ Name(s) of feature reduction or feature selection methods employed.
 
 ## MODEL_CATEGORY
 
-Name of model type. One of regression, classification *TODO* Discuss redundancy with `PARADIGM`. Consider cases where regression and classification employed; or regression approach to classification (e.g., `sorussa2020em`)
+Name of model type (regression, classification, or both).
 
 ## MODEL_DETAIL
 
-Additional information pertaining to predictive model, such as the name of algorithm used and other pertinent parameters. E.g., RandomForest, Commonality Analysis, Multiple Regression, Neural Networks, LDSM, etc. *TODO* Discuss how much information to include.
+Additional information pertaining to predictive model, such as the name of algorithm used and other pertinent parameters. E.g., Random Forest, Commonality Analysis, Multiple Regression, Neural Networks, LDSM.
 
 ## MODEL_MEASURE
 
@@ -131,7 +120,7 @@ Metric used in model evaluation. E.g., $R^2$, $MSE$, $CCC$, Classification accur
 
 ## MODEL_COMPLEXITY_PARAMETERS
 
-Additional information pertaining to predictive model. Format as R code when encoding multiple pertinent parameters. E.g., `c(training_epochs = 100, layer_n = c(1,2), lstm_units = c(124, 248))`
+Additional information pertaining to predictive model. E.g., `training epochs: 100; n layers: 1, 2; LSTM units: 124,248.`
 
 ## MODEL_RATE_EMOTION_NAMES
 
@@ -139,81 +128,42 @@ Names of predicted emotions. E.g., valence, arousal, happy, sad, angry, fearful,
 
 ## MODEL_RATE_EMOTION_VALUES
 
-Pertinent prediction of model summaries. Report as *R* arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with `rbind`. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore.
-
-\### EXAMPLES:
-
-#### Regression
-
-Report relevant summary statistics in R code. Different feature distinguished through BiBTeX fields (`MODEL_RATE_EMOTION_VALUES_MFCC`, `MODEL_RATE_EMOTION_VALUES_ESSENTIA` ). Fitted models concatenated with `rbind` (`linear.regression`, `SMOreg`, `RNN1.124LSTM`, etc.). Model results reported with names in first array (`R2_arousal`, `MAE_arosal`, `R2_valence`, `MAE_valence`), and recycled in each subsequent model.
-
-```         
-MODEL_RATE_EMOTION_VALUES_MFCC = {
-  rbind(
-    linear.regression = c(R2_arousal = 0.61, MAE_arousal = 0.13, R2_valence = 0.07, MAE_valence = 0.17),
-    SMOreg = c(0.6,0.13,0.10,0.17),
-    RNN1.124LSTM = c(0.58,0.14,0.14,0.17),
-    RNN2.124.124LSTM = c(0.66,0.12,0.11,0.16),
-    RNN3.248LSTM = c(0.61,0.13,0.13,0.16),
-    RNN4.248.248LSTM = c(0.64,0.12,0.14,0.15)
-  )
-},
-MODEL_RATE_EMOTION_VALUES_ESSENTIA = {
-  rbind(
-    linear.regression = c(R2_arousal = 0.07, MAE_arousal = 0.25, R2_valence = 0.06, MAE_valence = 0.19),
-    SMOreg = c(0.48,0.18,0.27,0.17),
-    RNN1.124LSTM = c(0.54,0.14,0.21,0.16),
-    RNN2.124.124LSTM = c(0.67,0.12,0.32,0.13),
-    RNN3.248LSTM = c(0.58,0.14,0.32,0.14),
-    RNN4.248.248LSTM = c(0.69,0.11,0.40,0.13),
-    RNN5.529LSTM = c(0.61,0.13,0.29,0.15),
-    RNN6.529.529LSTM = c(0.68,0.12,0.36,0.14)
-  )
-}
-```
-
-#### Classification
-
-Report confusion matrices as *R* arrays. The following example classifies emotions into five categories for multiple feature subsets. Different feature distinguished through BiBTeX fields (`MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO`, `MODEL_RATE_EMOTION_VALUES_FULL_SMO`, etc.). Confusion matrix classes concatenated with `rbind` (`C1`, `C2`, `C3`, etc.). Classification results reported with names in first array (`C1`, `C2`, `C3`, etc.), and recycled in each subsequent model.
-
-```         
-MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO = {
-rbind(
-    C1 = c('C1' = 52.6, 'C2' = 17.1, 'C3' = 0.0, 'C4' = 9.2, 'C5' = 21.1),
-    C2 = c(12, 65.2, 7.6, 4.3, 10.9),
-    C3 = c(1.1,9.9,73.6,14.3,1.1),
-    C4 = c(3.6,10.8,16.9,61.5,7.2),
-    C5 = c(21.9,19.2,0,6.8,52.1)
- )
-}
-MODEL_RATE_EMOTION_VALUES_FULL_SMO = {
-rbind(
-    C1 = c('C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 7, 'C5' = 18),
-    C2 = c(11.3,58.9,13.7,4,12.1),
-    C3 = c(0,13.2,68.6,18.2,0),
-    C4 = c(4.9,11.7,22.5,54.2,6.7),
-    C5 = c(18.5,12.2,1,12.2,56.1)
-  )
-},
-MODEL_RATE_EMOTION_VALUES_FULL_FULLPOLYGONAL = { rbind(
-  C1 = c('C1' = 65, 'C2' = 11, 'C3' = 12, 'C4' = 0, 'C5' = 12),
-  C2 = c(14.5, 62.1, 22.6, 0.8, 0),
-  C3 = c(0, 13.2, 68.6, 18.2, 0),
-  C4 = c(0.8, 0, 20.8, 54.2, 24.2),
-  C5 = c(38.8, 1, 0, 8.2, 52)
-)
-},
-MODEL_RATE_EMOTION_VALUES_FULL_REDUCEDPOLYGONAL = { 
-rbind(
-  C1 = c('C1' = 67, 'C2' = 16, 'C3' = 4, 'C4' = 0, 'C5' = 13),
-  C2 = c(21.8,55.6,22.6,0,0),
-  C3 = c(0,9.1,77.7,13.2,0),
-  C4 = c(0,0,23.3,55,21.6),
-  C5 = c(27.5,0,0,10.2,62.3)
-)
-}
-```
+Pertinent prediction of model summaries. Report as *R* named arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with `mrbind`. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore. See additional details below.
 
 ## MODEL_VALIDATION
 
-Validation method used (if applicable). E.g., 10-fold cross validation. Leave one out cross validation. **TODO**: Discuss train/test/validation formatting. When using external validation set, report name? E.g., AcousticBrainz (`alvarez2023ri`)
+Validation method used (if applicable). E.g., 10-fold cross validation, leave one out cross validation.
+
+# Encoding study results:
+
+### Regression
+
+Report relevant summary statistics in the `MODEL_RATE_EMOTION_VALUES` field in R code using the following format. Parameters delimited by spaces are later assigned to separate columns in the resulting dataframe.
+
+```         
+bind_field(
+library.model.features.data.experiment = c(dimension_measure.summaryStat = 0, ...),
+...
+)
+```
+
+## Classification
+
+Confusion matrices can be encoded similarly through a function that assigns relevant meta-parameters to the `model_parameters` attribute of the output matrix. The row names are then replaced with the column names for clearer output. This assumes row names and column names of the confusion matrix are listed in the same order.
+
+```         
+confusion_matrix(
+library.model.features.data.experiment =  c(class_1 = 0, class_2 = 0, ..., class_n = 0),
+class_2 = c(0, 0, ..., 0),
+...
+)
+```
+
+When confusion matrices are not available, encode available parameters (accuracy, precision, recall, $F$ scores, etc.) using the standard nomenclature to distinguish relevant outcomes for each class:
+
+```         
+bind_field(
+library.model.features.data.experiment = c(class_measure.summaryStat = 0, ...),
+...
+)
+```

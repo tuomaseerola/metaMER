@@ -32,7 +32,7 @@ metamer_prereg <-
   metamer_prereg |>
   preregr::prereg_specify(
     title = "Music emotion recognition: Meta-analysis of regression and classification success of emotion ratings from audio",
-    authors = "Eerola, T., Anderson, C.",
+    authors = "Eerola, T., Anderson, C. J.",
     start_date = "2024-05-15",
     tasks_and_roles = "equal contribution",
     target_discipline = "music cognition, music information retrieval, music psychology"
@@ -63,8 +63,8 @@ metamer_prereg <-
     primary_research_question = "To what degree can arousal and valence ratings of emotions expressed by music be predicted from audio? How are the prediction rates related to genres of music, the type of models used, the type of features, modelling design and cross-validation utilised, and the model complexity and parsimony?",
     secondary_research_question = "What is the prediction rate related to classification of quadrants in the affective circumplex?",
     expectations_hypotheses = "Prediction of arousal ratings is generally high and robust, and in terms of the model outcome metrics (correlation), achieves at least r = 0.77 (R square of 0.60). Prediction of valence ratings from audio is more challenging and more context dependent and will achieve generally a lower prediction rate, r = 0.63 (R square 0.40)",
-    dvs_outcomes_main_vars = "Regression model performance will be converted to pearson correlation coefficients and classification model performance will be converted to Matthews correlation coefficient (MCC) when possible.",
-    ivs_intervention_treatment = "Music genre, prediction type (linear or classification), feature type (based on prior work by Panda et al., 2020), model complexity (high, medium, low), model validation (exist or not)",
+    dvs_outcomes_main_vars = "Regression model performance will be converted to Pearson correlation coefficients and classification model performance will be converted to Matthews correlation coefficient (MCC) when possible.",
+    ivs_intervention_treatment = "Music genre, prediction type (linear or classification), feature type (based on prior work by Panda et al., 2020), model complexity (high, medium, low), model validation (exists or not)",
     software = "R and Github repository",
     funding = "Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada)",
     cois = "There are no identified conflicts of interests.",
@@ -96,11 +96,11 @@ metamer_prereg <-
 metamer_prereg <-
   metamer_prereg |>
   preregr::prereg_specify(
-    screening_stages = "We completed screening using custom fields inserted to the bibtex file and managed with citation managers (jabref and bibdesk). To filter relevant studies, we followed a three-stage screening procedure. <BR> <B>In stage 1</B>, we screened the 553 studies’ titles for relevance, removing irrelevant studies and recording exclusion criteria (see Used exclusion criteria). CA assigned 63 studies to the High Priority based on titles’ relevance, assigned 338 studies to Low Priority based on irrelevant titles, 152 studies to Medium Priority for additional screening. <BR><B>In stage 2</B>, CA assessed the 152 Medium Priority studies for relevance by screening abstracts. 105 studies’ status changed to Low Priority, whereas 30 studies’ status changed to High Priority. 27 studies remained in the Medium priority category. TE and CA evaluated the remaining 27 studies’, moving 15 to the High Priority Category and 12 to the Medium Priority Category. For studies moved to Low Priority, brief BiBTex comments summarized the rationale for exclusion. <BR><B>In stage 3</B>, TE and CA independently screened Priority 1 studies for relevance, including an <I>include</I>, <I>exclude</I>, or <I>unsure</I> decision in a user-comment BiBTeX field.",
+    screening_stages = "We completed screening using custom fields inserted to the bibtex file and managed with citation managers (jabref and bibdesk). To filter relevant studies, we followed a three-stage screening procedure. <BR> <B>In stage 1</B>, we screened the 553 studies’ titles for relevance, removing irrelevant studies and recording exclusion criteria (see Used exclusion criteria). CA assigned 63 studies to the High Priority based on titles’ relevance, assigned 338 studies to Low Priority based on irrelevant titles, and 152 studies to Medium Priority for additional screening. <BR><B>In stage 2</B>, CA assessed the 152 Medium Priority studies for relevance by screening abstracts. 95 studies’ status changed to Low Priority, whereas 30 studies’ status changed to High Priority. 27 studies remained in the Medium priority category. TE and CA evaluated the remaining 27 studies’, moving 15 to the High Priority Category and 12 to the Medium Priority Category. For studies moved to Low Priority, brief BiBTex comments summarized the rationale for exclusion. <BR><B>In stage 3</B>, TE and CA independently screened Priority 1 studies for relevance, including an <I>include</I>, <I>exclude</I>, or <I>unsure</I> decision in a user-comment BiBTeX field.",
     screened_fields_masking = "We left authors, titles, publication years, and journal names unmasked.",
-    used_exclusion_criteria = "We excluded studies according to the following exclusion criteria: soundscapes/vocalisations, non-music audio, video clips, physiological markers, dance, video/movie, physiological/EEG/ECG/MEG/GSR/brain imaging/heart rate/neuroscience/brain studies, sensor data, multimodal, autism, ageing, review/systematic review/overview/survey, face emotion recognition, mental health, music therapy, schizophrenia, memory/emotion factors as IVs, recommender systems, or systems that identify the location of emotional excerpts.",
+    used_exclusion_criteria = "We excluded studies according to the following exclusion criteria: soundscapes/vocalisations, non-music audio, video clips, physiological markers, dance, video/movie, physiological/EEG/ECG/MEG/GSR/brain imaging/heart rate/neuroscience/brain studies, sensor data, multimodal, autism, ageing, review/systematic review/overview/survey, face emotion recognition, mental health, music therapy, schizophrenia, memory/emotion factors as IVs, recommender systems, or systems that identify the location of emotional excerpts. We included results from some studies meeting exclusion criteria (e.g., multimodal studies involving physiological measurements) if they reported separately on acoustic-only models.",
     screener_instructions = "As described above.",
-    screening_reliability = "In the pass 1 and 2, we will have a quality control check after the pass to discuss the identified categories. In the third pass, we double-coded decisions, resolving discrepancies through discussion.",
+    screening_reliability = "In the pass 1 and 2, we included a quality control check after the pass to discuss the identified categories. In the third pass, we double-coded decisions, resolving discrepancies through discussion.",
     screening_reconciliation_procedure = "We reconcile discrepancies through discussion, resolving “unsure” votes first, followed by discrepancies in include/exclude decisions between authors Results of this updating procedure are available in the <A HREF=https://tuomaseerola.github.io/metaMER/studies/pass3_comparison.html>Pass 3 comparison document</A>.",
     sampling_and_sample_size = "We identified and retained 553 articles from Scopus, Web of Science, and Open Alex based on the search strategy outlined above. See table at the end that details the cumulative exclusions.",
 screening_procedure_justification = "To offer a broad summary of music emotion recognition tasks, we attempted to include all studies involving prediction with acoustic features. We performed screening unblinded and determined inclusion/exclusion criteria based on studies’ relevance to the task explored.",
@@ -113,7 +113,7 @@ metamer_prereg <-
   preregr::prereg_specify(
     entities_to_extract = "These are listed and defined in 
     <A HREF=https://tuomaseerola.github.io/metaMER/studies/extraction_details.html>extraction details</A>.",
-    extraction_stages = "The data extraction done is stages. In the first stage, an extraction pass of the collection is done by ca using our initial entities to extract document. The challenges are discussed and the entities are revised.",
+    extraction_stages = "The data extraction will be completed in stages. In the first stage, CA will complete a pass of the collection using our initial entities to extract document. The challenges are discussed and the entities are revised.",
     extractor_instructions = "See <A HREF=https://tuomaseerola.github.io/metaMER/studies/extraction_details.html>extraction details</A>.",
     extractor_blinding = "Blinding was not used.",
     extraction_reliability = "CA will perform extractions; TE will verify extractions for quality assurance.",
@@ -176,6 +176,9 @@ misc_synthesis_details = FALSE
 ## References
 
 - Higgins, J. P. T., Altman, D. G., Gøtzsche, P. C., Jüni, P., Moher, D., Oxman, A. D., Savović, J., Schulz, K. F., Weeks, L., & Sterne, J. A. C. (2011). The Cochrane Collaboration tool for assessing risk of bias in randomised trials. _BMJ, 343_. [https://www.bmj.com/content/343/bmj.d5928](https://www.bmj.com/content/343/bmj.d5928)
+
+- Panda, R., Malheiro, R., & Paiva, R. P. (2020). Audio features for music emotion recognition: a survey. IEEE Transactions on Affective Computing, 14(1), 68-88.
+[https://doi.org/10.1109/TAFFC.2020.3032373](https://doi.org/10.1109/TAFFC.2020.3032373)
 
 - Shamseer, L., Moher, D., Clarke, M., Ghersi, D., Liberati, A., Petticrew, M., Shekelle, P., & Stewart, L. A. (2015). Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015: elaboration and explanation. _BMJ, 349_. [https://www.bmj.com/content/349/bmj.g7647](https://www.bmj.com/content/349/bmj.g7647)
 

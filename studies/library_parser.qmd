@@ -17,7 +17,7 @@ require(stringr)
 ```
 
 ```{r}
-bib_file <- read.delim('metaMER_library_extraction_first_pass.bib',
+bib_file <- read.delim('bib/extractions.bib',
            sep = '@', header = F)
 
 # get citekeys from bibtex file:
@@ -114,7 +114,10 @@ meta_df <- apply(meta_df, 2, function(x) str_remove(x, '='))
 # remove comments
 meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '%%.*'))
 #meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))
+# remove extra characters in final column
+meta_df[, ncol(meta_df)] = str_remove_all(meta_df[, ncol(meta_df)], '\\}')
 meta_df <- as.data.frame(meta_df)
+
 ```
 
 ```{r}
@@ -124,7 +127,7 @@ knitr::kable(meta_df)
 Evaluate cell as r code example
 
 ```{r}
-eval(parse(text = meta_df$model_rate_emotion_values[4]))
+eval(parse(text = meta_df$model_rate_emotion_values[22]))
 ```
 
 # Dealing with nested bibtex fields.
@@ -139,7 +142,6 @@ parse_model_output = function(df)
   sapply(1:nrow(df), function(x) {
     df$model_rate_emotion_values <- tidyr::replace_na(df$model_rate_emotion_values, '') # detect cells with rbind in them
     if(str_count(df$model_rate_emotion_values[x], "rbind") > 1) {
-      print('yes')
       # match first model (name between first underscore and rbind)
       model_1_name <- str_match(df$model_rate_emotion_values[x], 
                                 "(?<=_).*?(?=rbind)")
@@ -327,5 +329,4 @@ this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testS
 
 ```{r}
 knitr::kable(get_study_summaries(this_study))
-write.csv(get_study_summaries(this_study), "~/testcsv.csv")
 ```

@@ -22,7 +22,7 @@
   STIMULUS_TYPE = {Hindi music, English music (from ISMIR2012, NJU_V1, and Hindi datasets)},
   STIMULUS_DURATION = {not specified},
   STIMULUS_DURATION_UNIT = {not specified},
-  STIMULUS_N = {c('ISMIR2012' = 2886, 'NJU_V1' = 777, 'Hindi' = 1037)},
+  STIMULUS_N = {ISMIR2012: 2886, NJU_V1: 777, Hindi: 1037},
   FEATURE_N = { }, %% unclear from paper... may be worth reviewing
   PARTICIPANT_N = {not specified},
   PARTICIPANT_EXPERTISE = {not specified},
@@ -36,7 +36,7 @@
   MODEL_DETAIL = {SVR, KMBSO}, %% compare to SVR, RNN, DBN (I didn't report these)
   MODEL_MEASURE = {classification accuracy, precision, sensitivity, specificity, false positive rate, F1, error},
   MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = {c('happy', 'angry', 'relax', 'sad')},
+  MODEL_RATE_EMOTION_NAMES = {happy, angry, relax, sad},
   MODEL_RATE_EMOTION_VALUES = {rbind(hindi = c('song' = 97.57, 'karaoke' = 95.63, 'lyrics' = 94.17), 
 ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song' =  97.88, 'karaoke' =  96.82, 'lyrics' = 95.76)) }, %% only reporting accuracy
   MODEL_VALIDATION = {five-fold cross-validation}
@@ -81,7 +81,7 @@ ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song
   MODEL_DETAIL = {SVR, KNN, RF},
   MODEL_MEASURE = {classification accuracy, f1, precision, recall}, %% only reporting classification
   MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = {c('excited', 'cheerful', 'tense', 'irritated', 'sad', 'bored', 'relaxed', 'calm', 'dont know')}, %% experimental validation only; happy, sad, angry, relaxed used in all other studies
+  MODEL_RATE_EMOTION_NAMES = {excited, cheerful, tense, irritated, sad, bored, relaxed, calm, don't know}, %% experimental validation only; happy, sad, angry, relaxed used in all other studies
   MODEL_RATE_EMOTION_VALUES = {rbind('random forest' = c('happy' = 0.844, 'angry' = 0.899, 'sad' = 0.862, 'relaxed' = 0.945),
 'knn'= c(0.822, 0.824, 0.862, 0.945),
 'svm' = c(0.767, 0.872, 0.8036, 0.929),
@@ -123,7 +123,7 @@ ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song
   PARTICIPANT_ORIGIN = {specified elsewhere},
   PARTICIPANT_SAMPLING = {specified elsewhere},
   PARTICIPANT_TASK = {specified elsewhere},
-  FEATURE_CATEGORIES = {rhythm, tonality, timbre, pitch, melody, },
+  FEATURE_CATEGORIES = {rhythm, tonality, timbre, pitch, melody},
   FEATURE_SOURCE = {Daubechies, Sound Description Toolbox, MIRToolbox},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
@@ -214,23 +214,19 @@ ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song
   PARADIGM = {classification},
   NOTES_CA = {include, classification},
   NOTES_TE = {include, classification},
-  EMOTIONS = { rbind(c1_happy = c('rousing', 'rowdy', 'boisterous', 'thrilling', 'epic', 'exhilerated', 'exalted', 'ecstatic', 'spirited'),
-  c2_happy = c('rollicking', 'fun', 'cheerful', 'sweet', 'sprightly', 'summery', 'playful','flirty', NA),
-  c3_sad = c('autumnal', 'bittersweet', 'wistful', 'nostalgic', 'sentimental', 'tender', 'pensive', 'regretful', NA),
-  c4_sad = c('poignant', 'brooding', 'melancholic', 'mournful', 'tragic', 'gloomy', 'dark', 'creepy', 'paranoid'),
-  c5_mad = c('agressive', 'volatile', 'fiery', 'threatening', 'hostile', 'belligerent', 'arrogant', 'angry', NA)
-)
+  EMOTIONS = { c1 (happy): rousing, rowdy, boisterous, thrilling, epic, exhilerated, exalted, ecstatic, spirited;
+  c2 (happy): rollicking, fun, cheerful, sweet, sprightly, summery, playful, flirty, NA;
+  c3 (sad): autumnal, bittersweet, wistful, nostalgic, sentimental, tender, pensive, regretful, NA;
+  c4 (sad): poignant, brooding, melancholic, mournful, tragic, gloomy, dark, creepy, paranoid;
+  c5 (mad) = agressive, volatile, fiery, threatening, hostile, belligerent, arrogant, angry, NA
 },
   EMOTION_LOCUS = {not specified},
   STIMULUS_TYPE = {pop, disco, soul, rock, jazz, electronic, hip-hop, classical, dance, heavy metal, contemporary, reggae, country, latino, traditional etc.},
   STIMULUS_DURATION = {30},
   STIMULUS_DURATION_UNIT = {seconds},
-  STIMULUS_N_TOTAL = {564}, %% full set
-STIMULUS_N_UNAMBIGUOUS = {416}, %% strong 
-STIMULUS_N_CIRCULAR_VALIDATION = {39}
-  FEATURE_N = {126}, %% retained 97
-  PARTICIPANT_N_GROUNDTRUTH = {12}, %% distinct from the 12 participants who created ground truth; 8 annotators per piece
-  PARTICIPANT_N_CIRCULAR_VALIDATION = {11} %% rated within circular model
+  STIMULUS_N = {total: 564; unambiguous: 416, circular validation: 39}, %% full set
+  FEATURE_N = {126, retained 97},
+  PARTICIPANT_N = {groundtruth: 12, circular validation: 8}, %% distinct from the 12 participants who created ground truth; 8 annotators per piece
   PARTICIPANT_EXPERTISE = {not specified},
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {convenience},
@@ -239,11 +235,9 @@ STIMULUS_N_CIRCULAR_VALIDATION = {39}
   FEATURE_SOURCE = {marsyas},
   FEATURE_REDUCTION_METHOD = {observation from previous studies},
   MODEL_CATEGORY = {categorical},
-  MODEL_DETAIL_CATEGORICAL = {SVM, SMO},
- MODEL_DETAIL_pentagonRegression = {full, reduced},
-MODEL_DETAIL_twoDimensionalRegression = {full2D, reduced2D}
+  MODEL_DETAIL = {categorical: SVM, SMO; pentagon regression: full vs. reduced; 2D regression: full vs. reduced},
   MODEL_MEASURE = {classification accuracy},
-  MODEL_COMPLEXITY_PARAMETERS_CATEGORICAL = {polynomial kernel exponent = -1, epsilon - 12E-12},
+  MODEL_COMPLEXITY_PARAMETERS = {categorical: polynomial kernel exponent = -1, epsilon - 12E-12},
   MODEL_RATE_EMOTION_NAMES = {C1,C2,C3,C4,C5},
   MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO = {rbind(
     C1 = c('C1' = 52.6, 'C2' = 17.1, 'C3' = 0.0, 'C4' = 9.2, 'C5' = 21.1),
@@ -873,13 +867,11 @@ rbind(
   EMOTIONS = {valence, arousal},
 EMOTION_LOCUS = {perceived},
 STIMULUS_TYPE = {stimuli composed in style of popular music; vocal line substituted for utterances},
-STIMULUS_DURATION = {30 approx},
-STIMULUS_DURATION_UNIT = {seconds},
-STIMULUS_N_STUDY1 = {100},
-STIMULUS_N_STUDY2 = {20}, %% can break fields down into multiple lines instead
+STIMULUS_DURATION = {~30},
+STIMULUS_DURATION_UNIT = {s},
+STIMULUS_N = {study 1: 100; study 2: 20},
 FEATURE_N = {16},
-PARTICIPANT_N _STUDY1= {196}, %% each excerpt assessed by 49
-PARTICIPANT_N _STUDY2= {30}, 
+PARTICIPANT_N = {study 1: 196; study 2: 30}, %% each excerpt assessed by 49
 PARTICIPANT_EXPERTISE = {not specified},
 PARTICIPANT_ORIGIN = {audio or psychology programs},
 PARTICIPANT_SAMPLING = {convenience},
@@ -892,7 +884,7 @@ MODEL_DETAIL = {random forest},
 MODEL_MEASURE = {R2, AIC},
 MODEL_COMPLEXITY_PARAMETERS = { },
 MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-MODEL_RATE_EMOTION_VALUES = {rbind(internal_validation_model = c('valence' = 0.34, 'arousal' = 0.79) ,
+MODEL_RATE_EMOTION_VALUES = {mrbind(internal_validation_model = c('valence' = 0.34, 'arousal' = 0.79) ,
 external_validation_model = c('valence' = 0.61, 'arousal' = 0.69))}, %% models differ in number of relevant features.
 MODEL_VALIDATION = {cross validation, external validation (study 2)}
 }
@@ -1026,10 +1018,10 @@ rbind(
   EMOTIONS = {valence, arousal},
   EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {NTUMIR, MediaEval2013},
-  STIMULUS_DURATION = { c(NTUMIR = 30)},
+  STIMULUS_DURATION = {NTUMIR: 30, MediaEval2013: specified elsewhere},
   STIMULUS_DURATION_UNIT = {seconds},
-  STIMULUS_N = {c(NTUMIR = 60, MediaEval2013 = 744) },
-  FEATURE_N = {c(NTUMIR = '?', MediaEval = 6669) },
+  STIMULUS_N = {NTUMIR: 60, MediaEval2013: 744},
+  FEATURE_N = {NTUMIR: ?; MediaEval: 6669},
   PARTICIPANT_N = {c(NTUMIR = 99, MediaEval2013 = ?)},
   PARTICIPANT_EXPERTISE = {no limitation},
   PARTICIPANT_ORIGIN = {c(NTUMIR = 'Taiwan', MediaEval2013 = 'United States')},
@@ -1116,12 +1108,7 @@ DISCUSS = {T}
 )},
   STIMULUS_DURATION = {variable},
   STIMULUS_DURATION_UNIT = {seconds},
-  STIMULUS_N = {
-c(MediaEval2014 = 1000,
-  MP_db1 = 6,
-  MP_db2 = 9,
-  MP_db3 = 8,
-  MP_db4 = 7)
+  STIMULUS_N = {MediaEval2014: 1000: music perception database 1: 6, music perception database 2: 9, music perception database 3: 8, music perception database 4: 7
 },
   FEATURE_N = {130},
   PARTICIPANT_N = {c(MediaEval2014 = 'specified elsewhere',
@@ -1131,7 +1118,7 @@ c(MediaEval2014 = 1000,
   MP_db4 = 38)
 },
   PARTICIPANT_EXPERTISE = {not specified},
-  PARTICIPANT_ORIGIN = {"?"},
+  PARTICIPANT_ORIGIN = {?},
   PARTICIPANT_SAMPLING = {crowd source, convenience},
   PARTICIPANT_TASK = {'rate'},
   FEATURE_CATEGORIES = { pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables,
@@ -1192,7 +1179,7 @@ c(MediaEval2014 = 1000,
   MODEL_DETAIL = {support vector regression, sparse bayesian regression, variational bayesian regression},
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { arousal, valence, resonance},
+  MODEL_RATE_EMOTION_NAMES = {arousal, valence, resonance},
   MODEL_RATE_EMOTION_VALUES = {rbind(
   svr = c(r2_arousal = 0.7249, explained_variance_arousal = 0.7556,
           r2_valence = 0.6119, explained_variance_valence = 0.6142,
@@ -1458,7 +1445,7 @@ MODEL_RATE_EMOTION_VALUES_PRETRAINED = {
   STIMULUS_TYPE = {},
   STIMULUS_DURATION = {variable},
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {c(study1=20, study2=40)}, % three outliers
+  STIMULUS_N = {study 1: 20; study 2: 40)}, % three outliers
   FEATURE_N = {before_selection = 45, after_selection = 6},
   PARTICIPANT_N = {study1=44, study2 = 158},
   PARTICIPANT_EXPERTISE = {not specified},
@@ -1506,7 +1493,7 @@ MODEL_RATE_EMOTION_VALUES_PRETRAINED = {
   STIMULUS_TYPE = {MER60, CH818, AMG1608},
   STIMULUS_DURATION = {MER60 = 30, CH818 = 30, AMG1608 = 60},
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {MER60 = 60, CH818 = 818, AMG1608 = 1608},
+  STIMULUS_N = {MER60: 60, CH818: 818, AMG1608: 1608},
   FEATURE_N = {15}, %% 23 in table, but 15 reported
   PARTICIPANT_N = {}, %% 40 per clip, 3 per clip, 15-32 per clip
   PARTICIPANT_EXPERTISE =  {MER60 = nonexperts, CH818 = experts, AMG1608 =nonexperts },
@@ -1735,8 +1722,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_DETAIL = {c(exp.1 = 'SVR + Radial basis function',
   exp.2 = 'Gaussian Process Regression')},
   MODEL_MEASURE = {R2},
-  MODEL_COMPLEXITY_PARAMETERS = {c(kernel.svr = 'radial basis function',
-  kernel.gpr = 'squared exponential')},
+  MODEL_COMPLEXITY_PARAMETERS = {SVR kernel: radial basis function; GPR kernel: squared exponential kernel},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
   rbind(
@@ -1785,7 +1771,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {multilayer perceptron},
   MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = {rbind(MLP_valence = c(learning.rate = 0.070, hidden.layers = 1, neurons = 64, RMSE = 0.23),MLP_arousal = c(0.060,1,64,0.24))},
+  MODEL_COMPLEXITY_PARAMETERS = {Valence Multilayer Perceptron: learning rate = 0.070, hidden layers = 1, neurons = 64, RMSE = 0.23; Arousal Multilayer Perceptron: learning rate = 0.060, hidden layers = 1, neurons = 64,RMSE = 0.24},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = { },
   MODEL_VALIDATION = { },
@@ -1832,7 +1818,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_DETAIL = {rbind(deep-neural-network = c('1D convolution layer', 'autoencoder-based layer with iterative reconstruction', 'bidirectional gated recurrent unit'),
 'time-distributed-layer' = c('CNN', 'iterative reconstruction', 'bidirectional gated recurrent unit'))},
   MODEL_MEASURE = {RMSE, PCC},
-  MODEL_COMPLEXITY_PARAMETERS = {'optimization' = c('back-propogation through time', 'adam optimizer with default parameters')},
+  MODEL_COMPLEXITY_PARAMETERS = {Optimization: back-propogation through time, adam optimizer (default parameters)},
   MODEL_RATE_EMOTION_NAMES = {arousal, valence},
   MODEL_RATE_EMOTION_VALUES = {OpenSMILE = rbind('CNN-BiGRU.audio.deam.1' = c(arousal_rmse.mean = 0.116, arousal_rmse.sd = 0.004, arousal_pcc.mean = 0.63, arousal_pcc.sd = 0.01, 
 												   valence_rmse.mean = 0.123, valence_rmse.sd = 0.003, valence_pcc.mean = 0.618, valence_pcc.sd = 0.005),
@@ -1914,9 +1900,9 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   STIMULUS_TYPE = {piano pieces, classical music}, %% piano works from vieillard et al. (2008)
   STIMULUS_DURATION = {8-12},
   STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {40},
   FEATURE_N = {22}, %% five in final model
   PARTICIPANT_N = {16},
-  STIMULUS_N = {40},
   PARTICIPANT_EXPERTISE = {no formal training},
   PARTICIPANT_ORIGIN = {not specified}, %% presumably Spain
   PARTICIPANT_SAMPLING = {not specified}, %% presumably convenience
@@ -1972,10 +1958,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_CATEGORY = {classification, neural nets},
   MODEL_DETAIL = {static neural network, elman neural network},
   MODEL_MEASURE = {classification accuracy},
-  MODEL_COMPLEXITY_PARAMETERS = {rbind('static network' = c('input units' = 13, 'hidden units' = 13, 'output units' = 2, 'training epochs' = 10000,
-                           'learning rate' = 0.3, 'context units' = NA),
-      'static network' = c('input units' = 13, 'hidden units' = 13, 'output units' = 2, 'training epochs' = 10000,
-                           'learning rate' = 0.3, 'context units' = 13))},
+  MODEL_COMPLEXITY_PARAMETERS = {Static network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = NA; Elman network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = 13},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {MIRToolbox = mrbind('static neural network.1.1.1' = c(classification_accuracy.mean = 85.7),
   'elman neural network.1.1.1' = c(classification_accuracy.mean = 54.3))}, %% final epoch accuracy: 60%. Can retrieve values from graph potentially
@@ -2058,9 +2041,9 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   EMOTIONS = {valence, arousal},
   EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {emoMusic, Soundtracks, Chinese Classical Music Dataset},
-  STIMULUS_DURATION = {c(emoMusic = '45', soundtracks = '10 to 30', chinese = '30')}, %% ~30 seconds for Chinese Classical dataset, 10-30 for Soundtracks, ~45 for emoMusic
+  STIMULUS_DURATION = {emoMusic: 45; soundtracks: 10-30; chinese: 30}, %% ~30 seconds for Chinese Classical dataset, 10-30 for Soundtracks, ~45 for emoMusic
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {c(emoMusic = 1000, soundtracks = 360, chinese = 500)}, %% emoMusic contains full 1000? 
+  STIMULUS_N = {emoMusic: 1000, soundtracks: 360, chinese: 500}, %% emoMusic contains full 1000? 
   FEATURE_N = {variable, 557 before feature selection}, %% dimensionality BEFORE reduction
   PARTICIPANT_N = {c(emoMusic = '10 min per excerpt', soundtracks = 12, chinese = 20)},
   PARTICIPANT_EXPERTISE = {c(emoMusic = 'nonexperts', soundtracks = '10 years of musical training',
@@ -2112,7 +2095,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {chinese solo, chinese ensemble, western solo, western ensemble,
   Chinese classical dataset, MediaEval, Emotify, AMG1608}, %% stimuli sampled from other data sets
-  STIMULUS_DURATION = {'10 to 15'},
+  STIMULUS_DURATION = {10-15},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {146}, %% 515 before reliability test 
   FEATURE_N = {15},
