@@ -4,7 +4,10 @@ title: "Library Parser"
 
 **Status:** in progress.
 
-**TODO**: - Separate scripts and functions into separate .qmd files/directories. - Update `model_rate_emotion_values` nomenclature process for classification papers.
+**TODO**: \
+- Separate scripts and functions into separate .qmd files/directories. \
+- Update `model_rate_emotion_values` nomenclature process for classification papers.\
+- Replace rbind with custom bind function throughout
 
 # Pre-processing
 
@@ -13,7 +16,8 @@ title: "Library Parser"
 The follow code extracts information from the .bib library to format it as a `data.frame` for further processing. The code makes use of the stringr package and uses regular expressions to extract relevant parameters. First we read in the .bib file and use some string manipulations to retrieve the citation keys.
 
 ```{r results = 'hide'}
-require(stringr)
+library(stringr)
+library(knitr, include.only = 'kable')
 ```
 
 ```{r}
@@ -92,10 +96,11 @@ meta_df <- do.call('rbind', meta_df)
 # format as a data.frame
 meta_df <- data.frame(meta_df)
 # match text after final column name
-meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) str_match(paste0(x, collapse = ' '), '(?<=MODEL_VALIDATION).*'))
+meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) str_match(paste0(x, collapse = ' '), '(?<=FINAL_NOTES).*'))
 # replace first column with citationkeys
 meta_df[,1] <- names(meta_list)
 names(meta_df) <- c('citekey', search_fields)
+names(meta_df) <- trimws(names(meta_df))
 ```
 
 ## Formatting
@@ -120,6 +125,53 @@ meta_df <- as.data.frame(meta_df)
 
 ```
 
+# Track Excluded Studies (During Extraction)
+
+```{r}
+meta_df[which(str_detect(meta_df$final_notes, '!EXCL!')),] |> kable()
+```
+
+```{r}
+meta_df[-which(str_detect(meta_df$final_notes, '!EXCL!')),] -> included_studies
+
+included_studies |> kable()
+```
+
+# Track Incomplete Extractions
+
+Count studies where there are empty fields (exclude `final_notes` in count)
+
+```{r}
+check_missing <- function(n_empty_fields = 1) 
+{
+  included_studies[which(
+    rowSums(
+      sapply(
+        included_studies[,1:ncol(included_studies) - 1],
+        function(x) grepl("^\\s*$", x))) > n_empty_fields - 1),]
+}
+```
+
+```{r}
+## AT LEAST 1 MISSING FIELD
+check_missing() -> missing_1
+
+missing_1 |> kable()
+```
+
+```{r}
+## AT LEAST 2 MISSING FIELDS
+check_missing(2) -> missing_2 
+
+
+missing_2 |> kable()
+```
+
+```{r}
+## AT LEAST 3 MISSING FIELDS
+check_missing(3) |> kable()
+```
+
 ```{r}
 knitr::kable(meta_df)
 ```
@@ -130,7 +182,7 @@ Evaluate cell as r code example
 eval(parse(text = meta_df$model_rate_emotion_values[22]))
 ```
 
-# Dealing with nested bibtex fields.
+# Outdated: Dealing with nested bibtex fields.
 
 Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. We need to apply special operations to separate these values for further analysis.
 
@@ -210,7 +262,7 @@ knitr::kable(rbind(ex_substudy_1, ex_substudy_2),
 
 ## Print output of all studies:
 
-```{r}
+```{r eval = F}
 sapply(1:nrow(meta_df_unpacked), function(i) {
   print(i) 
   print(eval(parse(text = meta_df_unpacked$model_rate_emotion_values[i])))
@@ -241,10 +293,7 @@ sapply(1:nrow(regression_studies), function(i) {
 ```{r}
 # low-level function to extract relevant values from named array
 model_result_2_df <- function(x) {
-  # get algorithm name from variable at beginning of string (before parsing)
-  toolbox <- trimws(stringr::str_extract(x, pattern = "[^\\=]+"))
-  print(toolbox)
-  # now evaluate the expression
+  # evaluate the expression
   x <- rlang::eval_tidy(rlang::parse_expr(x))
   # get name of fitted models from column names
   model_names <- colnames(x)
@@ -261,7 +310,7 @@ model_result_2_df <- function(x) {
   data.frame(model_attributes)
   # get additional model details
   model_attributes <- data.frame(do.call('rbind', str_split(model_attributes, '\\.')))
-  names(model_attributes) <- c('model_id', 'feature_id', 'data_id', 'experiment_id')
+  names(model_attributes) <- c('library_id', 'model_id', 'feature_id', 'data_id', 'experiment_id')
   print(names(model_attributes))
   # split across '_' to 
   model_measures <- data.frame(do.call('rbind', stringr::str_split(colnames(x), '_')))
@@ -270,7 +319,7 @@ model_result_2_df <- function(x) {
   model_measures_split <- stringr::str_split(model_measures[,'measure'], '\\.')
   model_measures[,'measure'] <- unlist(lapply(model_measures_split, 
                                               function(x) x[1]))
-  return(data.frame(toolbox, 
+  return(data.frame(
              model_attributes, 
              model_measures, 
              values = model_values,
@@ -301,12 +350,12 @@ The following functions provide a working example for converting the r code cont
 Encoded values should use the following nomenclature:
 
 ```         
-library = rbind(model.features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), model.features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
+library = rbind(library.model.features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), library.model.features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
 
 # e.g.
 
-librosa = rbind(randomforest.mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
-temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
+rbind(librosa.randomforest.mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
+librosa.randomforest.temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
 valence_r2.sd = 0.1, arousal_r2.sd = 0.1))
 ```
 
@@ -314,14 +363,13 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))
 
 ```{r}
 this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testStudy2020of'),
-  model_rate_emotion_values = c("marsyas = rbind('random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
+  model_rate_emotion_values = c("rbind('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
                                   valence_r2.sd = 0.4, arousal_r2.sd = 0.3,
   valence_mse.mean = 0.3, arousal_mse.mean = 9.1),
   'random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))",
-  "librosa = rbind('linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3,
-                                  valence_r2.sd = 0.2, arousal_r2.sd = 0.4,
+  "rbind('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, valence_r2.sd = 0.2, arousal_r2.sd = 0.4,
   euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))",
-  "mirtoolbox = rbind('neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
+  "rbind('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
 )
 ```
 
