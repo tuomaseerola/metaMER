@@ -125,16 +125,22 @@ meta_df <- as.data.frame(meta_df)
 
 ```
 
-# Track Excluded Studies (During Extraction)
+Example: Evaluate `model_rate_emotion_values` as *R* code
 
 ```{r}
-meta_df[which(str_detect(meta_df$final_notes, '!EXCL!')),] |> kable()
+eval(parse(text = meta_df$model_rate_emotion_values[22]))
+```
+
+## Track Excluded Studies (During Extraction)
+
+```{r}
+meta_df[which(str_detect(meta_df$final_notes, '!EXCL!')),] |> dplyr::tibble()
 ```
 
 ```{r}
 meta_df[-which(str_detect(meta_df$final_notes, '!EXCL!')),] -> included_studies
 
-included_studies |> kable()
+included_studies |> dplyr::tibble()
 ```
 
 # Track Incomplete Extractions
@@ -156,7 +162,7 @@ check_missing <- function(n_empty_fields = 1)
 ## AT LEAST 1 MISSING FIELD
 check_missing() -> missing_1
 
-missing_1 |> kable()
+missing_1 |> dplyr::tibble()
 ```
 
 ```{r}
@@ -164,29 +170,19 @@ missing_1 |> kable()
 check_missing(2) -> missing_2 
 
 
-missing_2 |> kable()
+missing_2 |> dplyr::tibble()
 ```
 
 ```{r}
 ## AT LEAST 3 MISSING FIELDS
-check_missing(3) |> kable()
-```
-
-```{r}
-knitr::kable(meta_df)
-```
-
-Evaluate cell as r code example
-
-```{r}
-eval(parse(text = meta_df$model_rate_emotion_values[22]))
+check_missing(3) |> dplyr::tibble()
 ```
 
 # Outdated: Dealing with nested bibtex fields.
 
 Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. We need to apply special operations to separate these values for further analysis.
 
-```{r}
+```{r eval = F, echo = F}
 ## function to parse output of multiple models nested within a single cell
 parse_model_output = function(df)
 { # loop across rows
@@ -237,7 +233,7 @@ model_names <- lapply(model_outputs, names)
 
 Next we want to copy the number of rows for each of the bibtex cells requiring special nesting
 
-```{r}
+```{r eval = F, echo = F}
 # count the numbers 
 n_entries <- unlist(lapply(model_outputs, function(x) length(x)))
 # for those returning 0, change value to 1
@@ -251,18 +247,14 @@ meta_df_unpacked$model_rate_emotion_values <- unlist(model_outputs)
 
 ## Sanity check
 
-```{r}
-ex_substudy_1 <- eval(parse(text = meta_df_unpacked[7, 'model_rate_emotion_values']))
-ex_substudy_2 <- eval(parse(text = meta_df_unpacked[8, 'model_rate_emotion_values']))
-
-
-knitr::kable(rbind(ex_substudy_1, ex_substudy_2),
-             caption = sum(ex_substudy_1))
+```{r eval = F, echo = F}
+# ex_substudy_1 <- eval(parse(text = meta_df_unpacked[7, 'model_rate_emotion_values']))
+# ex_substudy_2 <- eval(parse(text = meta_df_unpacked[8, 'model_rate_emotion_values']))
 ```
 
 ## Print output of all studies:
 
-```{r eval = F}
+```{r eval = F, echo = F}
 sapply(1:nrow(meta_df_unpacked), function(i) {
   print(i) 
   print(eval(parse(text = meta_df_unpacked$model_rate_emotion_values[i])))
@@ -270,7 +262,7 @@ sapply(1:nrow(meta_df_unpacked), function(i) {
 )
 ```
 
-```{r}
+```{r eval = F, echo = F}
 classification_studies = subset(meta_df_unpacked, paradigm == " classification  ")
 
 sapply(1:nrow(classification_studies), function(i) {
@@ -280,7 +272,7 @@ sapply(1:nrow(classification_studies), function(i) {
 )
 ```
 
-```{r eval = F}
+```{r eval = F, echo = F}
 regression_studies = subset(meta_df_unpacked, paradigm == " regression  ")
 
 sapply(1:nrow(regression_studies), function(i) {
@@ -376,5 +368,5 @@ this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testS
 ### Summary data frame
 
 ```{r}
-knitr::kable(get_study_summaries(this_study))
+dplyr::tibble(get_study_summaries(this_study))
 ```

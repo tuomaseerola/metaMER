@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>metaMER - Library Parser</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">metaMER</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">README</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Library Parser</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Status:</strong> in progress.</p>
+<p><strong>TODO</strong>:<br>
+- Separate scripts and functions into separate .qmd files/directories.<br>
+- Update <code>model_rate_emotion_values</code> nomenclature process for classification papers.<br>
+- Replace rbind with custom bind function throughout</p>
+<section id="pre-processing" class="level1">
+<h1>Pre-processing</h1>
+<section id="preparing-data" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-data">Preparing data</h2>
+<p>The follow code extracts information from the .bib library to format it as a <code>data.frame</code> for further processing. The code makes use of the stringr package and uses regular expressions to extract relevant parameters. First we read in the .bib file and use some string manipulations to retrieve the citation keys.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">include.only =</span> <span class="st">'kable'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bib_file <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">'bib/extractions.bib'</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">'@'</span>, <span class="at">header =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,
+: EOF within quoted string</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get citekeys from bibtex file:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">unique</span>(bib_file<span class="sc">$</span>V2)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># improve formatting</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(citekeys, <span class="st">'</span><span class="sc">\\</span><span class="st">{'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(citekeys, <span class="st">','</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(citekeys, <span class="st">'%%.*$'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">str_remove</span>(citekeys, <span class="st">'Article'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>citekeys[citekeys <span class="sc">==</span><span class="st">''</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>citekeys <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(citekeys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>R</em> reads the .bib file as a two column data.frame, with the citation key appearing in the second column and the remaining metadata appearing in the first column. When the citation key appears in the second column, the corresponding row in the first column is blank. Because of this quirk, we can index metadata matching each citation key by keeping track of blank rows in the first column. We’ll append each to a new entry of a list. The name of each list entry is the citation key; the corresponding value is the remaining unprocessed metadata.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find where new entries begin:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_entries <span class="ot">=</span> <span class="fu">which</span>(bib_file<span class="sc">$</span>V2 <span class="sc">!=</span> <span class="st">''</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># loop across unique indices for each entry</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>meta_list <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loop across unique indices for each entry</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>meta_list <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(this_entry <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(new_entries)<span class="sc">-</span><span class="dv">1</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get unique citekey</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  this_cite_key <span class="ot">&lt;-</span> citekeys[this_entry]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># capture lines following citekey</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  corresponding_lines <span class="ot">&lt;-</span> bib_file[new_entries[this_entry]<span class="sc">:</span>new_entries[this_entry<span class="sc">+</span><span class="dv">1</span>]<span class="sc">-</span><span class="dv">1</span>,]<span class="sc">$</span>V1</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># store matching lines as data frame</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  corresponding_lines <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(corresponding_lines)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># assign lines distinct name</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(corresponding_lines) <span class="ot">&lt;-</span> this_cite_key</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add to a list for further processing</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  meta_list <span class="ot">&lt;-</span> <span class="fu">append</span>(meta_list, corresponding_lines)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="extracting-relevant-.bib-fields" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-relevant-.bib-fields">Extracting Relevant .bib Fields</h2>
+<p>Not every bibtex field is equally useful for analysis. To facilitate data manipulation, we can save the names of the target fields separately in a .txt file, and use a regular expression to create a new column each time <em>R</em> finds one of the target fields in a string containing the bibtex metadata.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in target bibtex fields</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>search_fields <span class="ot">&lt;-</span> field_names <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">'bibtex_fields.txt'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in readLines("bibtex_fields.txt"): incomplete final line found on
+'bibtex_fields.txt'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># match casing in bibtex file</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>field_names <span class="ot">&lt;-</span> <span class="fu">toupper</span>(field_names)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add a pattern allowing us to find text between two adjacent bibtex fields</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>rep_pattern <span class="ot">&lt;-</span> <span class="fu">paste0</span>(field_names[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(field_names)<span class="sc">-</span><span class="dv">1</span>], <span class="st">'</span><span class="sc">\\</span><span class="st">s*(.*?)</span><span class="sc">\\</span><span class="st">s'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># apply this same pattern to all but the last of the field names                  </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>field_names[<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(field_names)<span class="sc">-</span><span class="dv">1</span>] <span class="ot">&lt;-</span> rep_pattern</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># collapse all the new field names into a single string for string manipulation with stringr</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>field_names[<span class="fu">length</span>(field_names)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(field_names[<span class="fu">length</span>(field_names)], <span class="st">'.*'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>field_names <span class="ot">&lt;-</span> <span class="fu">paste0</span>(field_names, <span class="at">collapse =</span> <span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-dataframe">Prepare dataframe</h2>
+<p>Now we can convert our list into a data frame with the target bibtex fields. For the last field <code>MODEL_VALIDATION</code>, we will apply a different regex pattern which matches all characters following the field name <code>(?&lt;=MODEL_VALIDATION).*</code> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column containing information between two adjacent target fields for all entries in list</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">lapply</span>(meta_list, <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), field_names))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">lapply</span>(meta_list, <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), field_names))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># collapse list entries into rows</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">'rbind'</span>, meta_df)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># format as a data.frame</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(meta_df)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># match text after final column name</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="fu">ncol</span>(meta_df)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(meta_df[,<span class="dv">1</span>], <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), <span class="st">'(?&lt;=FINAL_NOTES).*'</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># replace first column with citationkeys</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(meta_list)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'citekey'</span>, search_fields)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">names</span>(meta_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="formatting" class="level2">
+<h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
+<p>Finally, we’ll perform some formatting to remove unwanted characters left over following the conversion (in progress)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## remove bibtext field formatting</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remove curly braces</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">{'</span>)) </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">},'</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remove first '=' (from bibtex field )</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove</span>(x, <span class="st">'='</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remove double-commas</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># remove comments</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'%%.*'</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra characters in final column</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>meta_df[, <span class="fu">ncol</span>(meta_df)] <span class="ot">=</span> <span class="fu">str_remove_all</span>(meta_df[, <span class="fu">ncol</span>(meta_df)], <span class="st">'</span><span class="sc">\\</span><span class="st">}'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example: Evaluate <code>model_rate_emotion_values</code> as <em>R</em> code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> meta_df<span class="sc">$</span>model_rate_emotion_values[<span class="dv">22</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             r2_arousal explained_variance_arousal r2_valence
+svr                              0.7249                     0.7556     0.6119
+sbr                              0.7381                     0.7395     0.6296
+vbr                              0.7108                     0.7415     0.7108
+r2_valence                       0.6328                     0.6328     0.6328
+explained_variance_valence       0.6340                     0.6340     0.6340
+r2_resonance                     0.5554                     0.5554     0.5554
+explained_variance_resonance     0.5630                     0.5630     0.5630
+                             explained_variance_valence r2_resonance
+svr                                              0.6142       0.5374
+sbr                                              0.6376       0.5456
+vbr                                              0.7415       0.7108
+r2_valence                                       0.6328       0.6328
+explained_variance_valence                       0.6340       0.6340
+r2_resonance                                     0.5554       0.5554
+explained_variance_resonance                     0.5630       0.5630
+                             explained_variance_resonance
+svr                                                0.5496
+sbr                                                0.5558
+vbr                                                0.7415
+r2_valence                                         0.6328
+explained_variance_valence                         0.6340
+r2_resonance                                       0.5554
+explained_variance_resonance                       0.5630</code></pre>
+</div>
+</div>
+</section>
+<section id="track-excluded-studies-during-extraction" class="level2">
+<h2 class="anchored" data-anchor-id="track-excluded-studies-during-extraction">Track Excluded Studies (During Extraction)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>meta_df[<span class="fu">which</span>(<span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 27
+  citekey        paradigm notes_ca notes_te emotions emotion_locus stimulus_type
+  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+1 "feng2024ex"   " class… " inclu… " inclu… "    "   "    "        "    "       
+2 "nag2022on"    " class… " inclu… " inclu… " happy… "    "        "    "       
+3 "malheiro2018… " regre… " inclu… " inclu… "    "   "    "        "    "       
+4 "medina2020em" " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+5 "panwar2019ar" " regre… " inclu… " inclu… "    "   "    "        "    "       
+6 "vempala2024p… " regre… " inclu… " inclu… " valen… " perceived … " classical …
+7 "xia2022st"    " regre… " inclu… " inclu… "   "    "    "        "   "        
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;,
+#   model_measure &lt;chr&gt;, model_complexity_parameters &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>meta_df[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="ot">-&gt;</span> included_studies</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>included_studies <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 27
+   citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
+   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+ 1 agarwal2021an " class… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+ 2 alvarez2023ri " class… " inclu… " inclu… " discr… " not specif… " Spotify  " 
+ 3 bai2017mu     " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 4 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " pop piano …
+ 5 dufour2021us  " class… " inclu… " inclu… "  c1 (… " not specif… " pop, disco…
+ 6 hizlisoy2021… " class… " inclu… " inclu… " valen… " perceived … " Turkish tr…
+ 7 nguyen2017an  " class… " inclu… " inclu… " 288 e… " perceived … " AMG  "     
+ 8 panda2020no   " class… " inclu… " inclu… "    "   "    "        " AllMusic  "
+ 9 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
+10 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
+# ℹ 25 more rows
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="track-incomplete-extractions" class="level1">
+<h1>Track Incomplete Extractions</h1>
+<p>Count studies where there are empty fields (exclude <code>final_notes</code> in count)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>check_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n_empty_fields =</span> <span class="dv">1</span>) </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  included_studies[<span class="fu">which</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rowSums</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sapply</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        included_studies[,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(included_studies) <span class="sc">-</span> <span class="dv">1</span>],</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">function</span>(x) <span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">s*$"</span>, x))) <span class="sc">&gt;</span> n_empty_fields <span class="sc">-</span> <span class="dv">1</span>),]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 1 MISSING FIELD</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>() <span class="ot">-&gt;</span> missing_1</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>missing_1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 27
+   citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
+   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+ 1 agarwal2021an " class… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+ 2 alvarez2023ri " class… " inclu… " inclu… " discr… " not specif… " Spotify  " 
+ 3 bai2017mu     " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 4 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " pop piano …
+ 5 panda2020no   " class… " inclu… " inclu… "    "   "    "        " AllMusic  "
+ 6 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
+ 7 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
+ 8 yeh2014po     " class… " inclu… " inclu… " happy… " perceived … " chorus of …
+ 9 zhang2017fe   " class… " inclu… " inclu… " arous… " perceived … " Chinese po…
+10 bai2016di     " regre… " inclu… " inclu… " valen… " not specif… " MediaEval …
+11 beveridge201… " regre… " inclu… " inclu… " valen… " perceived"  " stimuli co…
+12 cao2023th     " regre… " inclu… " inclu… " valen… " not specif… " million so…
+13 deng2015em    " regre… " inclu… " inclu… " valen… " perceived … " Western cl…
+14 gingras2014be " regre… " inclu… " inclu… " pleas… " perceived … " piano trio…
+15 grekow2021mu  " regre… " inclu… " inclu… " valen… " perceived … " classical,…
+16 griffiths202… " regre… " inclu… " inclu… " valen… " perceived … "   "        
+17 hu2017cr      " regre… " inclu… " inclu… " valen… " perceived … " MER60, CH8…
+18 koh2023me     " regre… " inclu… " inclu… " valen… " perceived … " Free Music…
+19 wang2022cr    " regre… " inclu… " inclu… " valen… " perceived … " chinese so…
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;,
+#   model_measure &lt;chr&gt;, model_complexity_parameters &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 2 MISSING FIELDS</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>(<span class="dv">2</span>) <span class="ot">-&gt;</span> missing_2 </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>missing_2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 27
+  citekey       paradigm  notes_ca notes_te emotions emotion_locus stimulus_type
+  &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+1 agarwal2021an " classi… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+2 panda2020no   " classi… " inclu… " inclu… "    "   "    "        " AllMusic  "
+3 yeh2014po     " classi… " inclu… " inclu… " happy… " perceived … " chorus of …
+4 zhang2017fe   " classi… " inclu… " inclu… " arous… " perceived … " Chinese po…
+5 grekow2021mu  " regres… " inclu… " inclu… " valen… " perceived … " classical,…
+6 koh2023me     " regres… " inclu… " inclu… " valen… " perceived … " Free Music…
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;,
+#   model_measure &lt;chr&gt;, model_complexity_parameters &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 3 MISSING FIELDS</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>(<span class="dv">3</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 27
+  citekey     paradigm    notes_ca notes_te emotions emotion_locus stimulus_type
+  &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+1 panda2020no " classifi… " inclu… " inclu… "    "   "    "        " AllMusic  "
+2 yeh2014po   " classifi… " inclu… " inclu… " happy… " perceived … " chorus of …
+3 zhang2017fe " classifi… " inclu… " inclu… " arous… " perceived … " Chinese po…
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;,
+#   model_measure &lt;chr&gt;, model_complexity_parameters &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+</section>
+<section id="outdated-dealing-with-nested-bibtex-fields." class="level1">
+<h1>Outdated: Dealing with nested bibtex fields.</h1>
+<p>Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., <code>MODEL_RATE_EMOTION_VALUES_A</code> and <code>MODEL_RATE_EMOTION_VALUES_B</code>. We need to apply special operations to separate these values for further analysis.</p>
+<section id="data-frame-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="data-frame-expansion">Data Frame Expansion</h2>
+<p>Next we want to copy the number of rows for each of the bibtex cells requiring special nesting</p>
+</section>
+<section id="sanity-check" class="level2">
+<h2 class="anchored" data-anchor-id="sanity-check">Sanity check</h2>
+</section>
+<section id="print-output-of-all-studies" class="level2">
+<h2 class="anchored" data-anchor-id="print-output-of-all-studies">Print output of all studies:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># low-level function to extract relevant values from named array</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>model_result_2_df <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># evaluate the expression</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">eval_tidy</span>(rlang<span class="sc">::</span><span class="fu">parse_expr</span>(x))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get name of fitted models from column names</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  model_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(x)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(model_names)</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># split across model name for summary statistic (e.g., mean, sd, etc.)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  model_statistic <span class="ot">&lt;-</span> <span class="fu">str_split</span>(model_names, <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  model_statistic <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(model_statistic, <span class="cf">function</span>(x) x[<span class="dv">2</span>]))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get values</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  model_values <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># names(model_values) &lt;- 'score'</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_values)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get additional attributes (feature.data.exp)</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  model_attributes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(x)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(model_attributes)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get additional model details</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  model_attributes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">'rbind'</span>, <span class="fu">str_split</span>(model_attributes, <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)))</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(model_attributes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'library_id'</span>, <span class="st">'model_id'</span>, <span class="st">'feature_id'</span>, <span class="st">'data_id'</span>, <span class="st">'experiment_id'</span>)</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">names</span>(model_attributes))</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># split across '_' to </span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  model_measures <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">'rbind'</span>, stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(x), <span class="st">'_'</span>)))</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_measures)</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(model_measures) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dimension'</span>, <span class="st">'measure'</span>)</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  model_measures_split <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(model_measures[,<span class="st">'measure'</span>], <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  model_measures[,<span class="st">'measure'</span>] <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(model_measures_split, </span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>                                              <span class="cf">function</span>(x) x[<span class="dv">1</span>]))</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>             model_attributes, </span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>             model_measures, </span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">values =</span> model_values,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> model_statistic))</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="co"># high level function to apply model_result_2_df to multiple studies</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>get_study_summaries <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind,</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>          <span class="fu">lapply</span>(df<span class="sc">$</span>model_rate_emotion_values, </span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>                   study_id <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>citekey[<span class="fu">which</span>(df<span class="sc">$</span>model_rate_emotion_values <span class="sc">==</span> x)])</span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>                   model_results <span class="ot">&lt;-</span> <span class="fu">model_result_2_df</span>(x)</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">return</span>(<span class="fu">cbind</span>(study_id, model_results))</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>                   }</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="parsing-regression-studies" class="level1">
+<h1>Parsing Regression Studies</h1>
+<p>The following functions provide a working example for converting the r code contained in <code>model_rate_emotion_values</code> to a data frame for further analysis (currently working for regression studies).</p>
+<section id="template" class="level3">
+<h3 class="anchored" data-anchor-id="template">Template</h3>
+<p>Encoded values should use the following nomenclature:</p>
+<pre><code>library = rbind(library.model.features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), library.model.features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
+
+# e.g.
+
+rbind(librosa.randomforest.mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
+librosa.randomforest.temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
+valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
+</section>
+<section id="working-example" class="level3">
+<h3 class="anchored" data-anchor-id="working-example">Working example</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>this_study <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">citekey =</span> <span class="fu">c</span>(<span class="st">'testStudy2023ab'</span>,<span class="st">'testStudy2023ab'</span>, <span class="st">'testStudy2020of'</span>),</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_rate_emotion_values =</span> <span class="fu">c</span>(<span class="st">"rbind('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="st">                                  valence_r2.sd = 0.4, arousal_r2.sd = 0.3,</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="st">  valence_mse.mean = 0.3, arousal_mse.mean = 9.1),</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="st">  'random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rbind('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, valence_r2.sd = 0.2, arousal_r2.sd = 0.4,</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="st">  euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rbind('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary-data-frame" class="level3">
+<h3 class="anchored" data-anchor-id="summary-data-frame">Summary data frame</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="fu">get_study_summaries</span>(this_study))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.9 0.9 0.5 0.5 0.4 0.9 0.3 0.5 0.3 0.9 9.1 0.5</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rbind(c("marsyas", "random forest", "mfcc", "msd", "1"), c("random
+forest", : number of columns of result is not a multiple of vector length (arg
+2)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1       X2
+1 valence  r2.mean
+2 arousal  r2.mean
+3 valence    r2.sd
+4 arousal    r2.sd
+5 valence mse.mean
+6 arousal mse.mean
+[1] 0.10 0.30 0.20 0.40 0.32 0.10
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1          X2
+1 valence     r2.mean
+2 arousal     r2.mean
+3 valence       r2.sd
+4 arousal       r2.sd
+5  euclid euclid.mean
+6  euclid   euclid.sd
+[1] 0.1 0.3
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1      X2
+1 valence r2.mean
+2 arousal r2.mean</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 10
+   study_id       library_id model_id feature_id data_id experiment_id dimension
+   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;    
+ 1 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+ 2 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+ 3 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+ 4 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+ 5 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+ 6 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+ 7 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+ 8 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+ 9 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+10 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+11 testStudy2023… marsyas    random … mfcc       msd     1             valence  
+12 testStudy2023… random fo… mfcc     deam       1       random forest arousal  
+13 testStudy2023… librosa    linear … mfcc       ismir   1             valence  
+14 testStudy2023… librosa    linear … mfcc       ismir   1             arousal  
+15 testStudy2023… librosa    linear … mfcc       ismir   1             valence  
+16 testStudy2023… librosa    linear … mfcc       ismir   1             arousal  
+17 testStudy2023… librosa    linear … mfcc       ismir   1             euclid   
+18 testStudy2023… librosa    linear … mfcc       ismir   1             euclid   
+19 testStudy2020… mirtoolbox neural … pitch      filmMu… 2             valence  
+20 testStudy2020… mirtoolbox neural … pitch      filmMu… 2             arousal  
+# ℹ 3 more variables: measure &lt;chr&gt;, values &lt;dbl&gt;, statistic &lt;chr&gt;</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2024, Tuomas Eerola</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/tuomaseerola/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/tuomas_ee">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
