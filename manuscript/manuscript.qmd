@@ -1,34 +1,33 @@
 ---
-title             : "Music Emotion Recognition: Meta-analysis"
-shorttitle        : "XXXXXXXXX"
+title             : "Meta-analysis of regression and classification success of emotion ratings from audio"
+shorttitle        : "Meta-analysis of music emotion recognition"
 
 author: 
-  - name          : "TE"
+  - name          : "Tuomas Eerola"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Palace Green, Department of Music, Durham University, DH1 3RL Durham, United Kingdom"
     email         : "tuomas.eerola@durham.ac.uk"
-  - name          : "CA"
+  - name          : "Cameron J. Anderson"
     affiliation   : "2"
-    address       : "XXXXXX"
-    email         : "XXX@XXXX"
+    address       : "Department of Psychology, Neuroscience & Behaviour, McMaster University, Hamilton, ON, Canada"
+    email         : "andersoc@mcmaster.ca"
 
 affiliation:
   - id            : "1"
     institution   : "Department of Music, Durham University"
   - id            : "2"
-    institution   : "XXXX, MacMaster University"
-
-note: ""
+    institution   : "Department of Psychology, Neuroscience & Behaviour, McMaster University"
 
 author_note: |
-  XXX.
+  Tuomas Eerola is at the Department of Music, Durham University, UK.
+  Cameron J. Anderson is at the Department of Psychology, Neuroscience & Behaviour, McMaster University, Canada.
 
 abstract: |
- blah blah blah.
+ This is a meta-analysis of music emotion recognition. An analysis of the articles published between 2014-2024 containing models predicting either valence and arousal or emotion categories was carried out. A total of xx studies were included
 
 keywords          : "music, emotion, recognition, meta-analysis"
-wordcount         : "XXXX"
+wordcount         : "5555"
 
 bibliography      : ["references.bib"]
 
@@ -56,30 +55,56 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 # Introduction
 
-blah blah [@anderson2022ex]
+- Emotional expression is one of the central reasons why people engage with music.
 
+- Great advances in music information retrieval have been made in recent years.
+
+- Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013;@anderson2022ex;@grimaud_eerola_2022], or acoustic features [@yang2008;@panda2013multi;@saari_et_al_2015;@eerola2011c] or emergent properties identified through deep learning [@er2019music;@sarkar2020recognition].
+
+However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey]. 
 
 ## Aims
 
-blah blah
+- Our aim is to establish the level of predictive accuracy for both continuous models of emotional expression (valence and arousal) and classification of emotion categories based on available and recent studies. 
+- We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.
+- To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.
+- We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
 
 # Methods
 
-blah blah
+We preregistered our meta-analysis plan (OSF URL here, also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
 
-We preregistered our meta-analysis plan (OSF URL here and available also at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
+In the search stage, we used three databases, _Web of Science_, _Scopus_, and _Open Alex_ to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi OR categor OR algorithm AND music 
+ AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024. 
+
+The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as $R^2$ or classification accuracy ($F1$ score or _precision_ or _recall_) and overall quality control; see [SI](http://) for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number [N], duration), features extracted (number, type, source, defined by [@panda2020audio]), model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, _MSE_, _MCC_), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [_MCC_, @chicco2020advantages].
 
 # Results
 
-blah blah
+First we could describe the overall pattern of data (modelling techniques, cross-validation, popular datasets, etc).
+
+We first report regression studies that predict valence and arousal.
+
+## Prediction success for valence and arousal
+
+Out of XX studies reporting this task, the majority (xx%) ... 
+
+| Concept | N    | Md $R^2$|
+|:--------|:-----|:--------|
+| Valence | ??   | ??      |
+| Arousal | ??   | ??      |
+
+TABLE: xxxx
+
+
 
 # Conclusion and Discussion
 
-blah blah
+To be done.
 
 ### Funding statement
 
-The authors... 
+CA was funded by Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada). 
 
 ### Competing interests statement
 
@@ -87,11 +112,11 @@ There were no competing interests.
 
 ### Open practices statement
 
-XXXX. 
+Study preregistration, data, analysis scripts and supporting information is available at Github, [https://tuomaseerola.github.io/metaMER](https://tuomaseerola.github.io/metaMER).
 
 ### Acknowledgements
 
-xxxxx.
+We thank Greggs food-on-the-go retailer for sustaining the work with affordable sandwiches and coffee.
 
 # References
 

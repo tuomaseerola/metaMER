@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.5.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaMER</title>
+<title>metaMER – analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -175,132 +175,47 @@ window.Quarto = {
 
 <section id="analysis" class="level1">
 <h1>Analysis</h1>
-<p>Initial work to build the data parser from the bibTeX files.</p>
+<p>This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.</p>
 <section id="read-annotated-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-annotated-data">Read annotated data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocessing step for list fields in bibtex files:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'stripLFFromList.R'</span>) <span class="co"># helper function</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripLFFromList</span>(<span class="at">fn =</span> <span class="st">"../studies/test_orig.bib"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bib2df) <span class="co"># this parser seems to be give a lot warnings/errors with this data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#anno &lt;- bib2df("../studies/metaMER_library_extraction_first_pass.bib")</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> <span class="fu">bib2df</span>(<span class="st">"../studies/test_orig_strip.bib"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>anno</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 59
-  CATEGORY BIBTEXKEY    ADDRESS ANNOTE AUTHOR BOOKTITLE CHAPTER CROSSREF EDITION
-  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;list&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  
-1 ARTICLE  grekow2021mu &lt;NA&gt;    &lt;NA&gt;   &lt;chr&gt;  &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;   
-# ℹ 50 more variables: EDITOR &lt;list&gt;, HOWPUBLISHED &lt;chr&gt;, INSTITUTION &lt;chr&gt;,
-#   JOURNAL &lt;chr&gt;, KEY &lt;chr&gt;, MONTH &lt;chr&gt;, NOTE &lt;chr&gt;, NUMBER &lt;chr&gt;,
-#   ORGANIZATION &lt;chr&gt;, PAGES &lt;chr&gt;, PUBLISHER &lt;chr&gt;, SCHOOL &lt;chr&gt;,
-#   SERIES &lt;chr&gt;, TITLE &lt;chr&gt;, TYPE &lt;chr&gt;, VOLUME &lt;chr&gt;, YEAR &lt;dbl&gt;, DOI &lt;chr&gt;,
-#   SOURCE &lt;chr&gt;, BDSK &lt;chr&gt;, ISSN &lt;chr&gt;, EISSN &lt;chr&gt;, ORCID &lt;chr&gt;,
-#   RESEARCHERID &lt;chr&gt;, EARLYACCESSDATE &lt;chr&gt;, PARADIGM &lt;chr&gt;, NOTES_CA &lt;chr&gt;,
-#   NOTES_TE &lt;chr&gt;, EMOTIONS &lt;chr&gt;, EMOTION_LOCUS &lt;chr&gt;, STIMULUS_TYPE &lt;chr&gt;, …</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/meta-analysis_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>anno<span class="ot">&lt;-</span><span class="fu">data.frame</span>(anno)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno$MODEL_RATE_EMOTION_VALUES</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> anno<span class="sc">$</span>MODEL_RATE_EMOTION_VALUES))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
-
-$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
-
-$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
-
-$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST<span class="ot">&lt;-</span><span class="fu">list</span>(x)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>anno<span class="sc">$</span>MODEL_LIST</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[[1]]$CHROMA.MARSYAS54
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.40        0.17       0.02        0.18
-SMOreg                  0.43        0.16       0.04        0.17
-RNN1.124LSTM            0.43        0.17       0.02        0.18
-RNN2.124.124LSTM        0.48        0.15       0.03        0.17
-RNN3.248LSTM            0.41        0.17       0.02        0.18
-RNN4.248.248LSTM        0.46        0.16       0.02        0.18
-
-[[1]]$MFCC
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.61        0.13       0.07        0.17
-SMOreg                  0.60        0.13       0.10        0.17
-RNN1.124LSTM            0.58        0.14       0.14        0.17
-RNN2.124.124LSTM        0.66        0.12       0.11        0.16
-RNN3.248LSTM            0.61        0.13       0.13        0.16
-RNN4.248.248LSTM        0.64        0.12       0.14        0.15
-
-[[1]]$Essentia
-                  R2_arousal MAE_arousal R2_valence MAE_valence
-linear.regression       0.07        0.25       0.06        0.19
-SMOreg                  0.48        0.18       0.27        0.17
-RNN1.124LSTM            0.54        0.14       0.21        0.16
-RNN2.124.124LSTM        0.67        0.12       0.32        0.13
-RNN3.248LSTM            0.58        0.14       0.32        0.14
-RNN4.248.248LSTM        0.69        0.11       0.40        0.13
-RNN5.529LSTM            0.61        0.13       0.29        0.15
-RNN6.529.529LSTM        0.68        0.12       0.36        0.14
-
-[[1]]$Pretrained
-                 R2_arousal MAE_arousal R2_valence MAE_valence
-RNN1.124LSTM           0.63        0.13       0.35        0.14
-RNN2.124.124LSTM       0.73        0.11       0.42        0.13
-RNN3.248LSTM           0.68        0.12       0.36        0.14
-RNN4.248.248LSTM       0.73        0.11       0.46        0.12
-RNN5.529LSTM           0.69        0.12       0.38        0.13
-RNN6.529.529LSTM       0.71        0.12       0.46        0.12</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(anno<span class="sc">$</span>MODEL_LIST[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select two regression studies: grekow2021mu and chen2017co</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#anno_ex &lt;- dplyr::filter(anno,BIBTEXKEY=='grekow2021mu'|BIBTEXKEY=='chen2017co')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use paradigm field to process regression and classification studies separately.</p>
-<p>We need to identify the core values: - correlation (obtained from <span class="math inline">\(R^2\)</span>) - n (we use STIMULUS_N rather than participant n)</p>
-</section>
-<section id="convert-extract-fields" class="level2">
-<h2 class="anchored" data-anchor-id="convert-extract-fields">Convert / Extract fields</h2>
+<p>We need to identify the core metrics:</p>
+<ul>
+<li><p><em>correlation coefficient</em> (obtained from <span class="math inline">\(R^2\)</span>) for regression studies.</p></li>
+<li><p><em>Matthew’s correlation coefficient</em> for classification studies.</p></li>
+<li><p>n (we use STIMULUS_N rather than participant n)</p></li>
+<li><p>Subsetting base on model and music qualities</p></li>
+</ul>
 </section>
 <section id="analyse" class="level2">
 <h2 class="anchored" data-anchor-id="analyse">Analyse</h2>
+<section id="regression-studies" class="level3">
+<h3 class="anchored" data-anchor-id="regression-studies">Regression studies</h3>
+<section id="valence" class="level4">
+<h4 class="anchored" data-anchor-id="valence">Valence</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(meta)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select regression studies</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valence, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_N,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> study_id,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> df,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: All"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
+</section>
 </section>
 </section>
 
@@ -384,24 +299,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -436,11 +333,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
