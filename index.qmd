@@ -10,7 +10,7 @@ The public-facing version of the repository is available at
 
 ## Plan
 
-We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd).
+We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd), which has beeb preregistered at [OSF]().
 
 ## Study Search and Selection
 
@@ -18,7 +18,9 @@ Search databases and criteria are documented in [studies/search_syntax.qmd](stud
 
 ## Data Extraction and Coding
 
-Data coding and extraction is described in data template [data/template.qmd](data/template.qmd). 
+Data extraction is described in [extraction details](studies/extraction_details.qmd). See also [pass3 comparison ](studies/pass3_comparison.qmd). 
+
+The data will be parsed to tabular format using a custom [library_parser.qmd](studies/library_parser.qmd).
 
 ## Analysis
 
