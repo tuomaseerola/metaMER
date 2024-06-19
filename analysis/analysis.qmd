@@ -40,10 +40,13 @@ recoded_studies <- included_studies[which(stringr::str_detect(
 ```
 
 ```{r}
-metaMER_results <- do.call(rbind,
-lapply(recoded_studies$model_rate_emotion_values, 
-       parse_model_output)
-)
+metaMER_results <-
+do.call(
+  rbind,
+    lapply(1:nrow(recoded_studies),
+       function(x) get_study_results(recoded_studies[x,])
+       )
+) 
 
 
 metaMER_results |> dplyr::tibble()
