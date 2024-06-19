@@ -238,44 +238,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="prepare-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="prepare-dataframe">Prepare dataframe</h2>
-<p>Now we can convert our list into a data frame with the target bibtex fields. For the last field <code>FINAL_NOTES</code>, we will apply a different regex pattern which matches all characters following the field name <code>(?&lt;=FINAL_NOTES).*</code> .</p>
+<p>Now we can convert our list into a data frame with the target bibtex fields. For the last field <code>MODEL_VALIDATION</code>, we will apply a different regex pattern which matches all characters following the field name <code>(?&lt;=MODEL_VALIDATION).*</code> .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column containing information between two adjacent target fields for all entries in list</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column containing information between two adjacent target fields for all entries in list</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">lapply</span>(meta_list, <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), field_names))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">lapply</span>(meta_list, <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), field_names))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">lapply</span>(meta_list, <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), field_names))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># collapse list entries into rows</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">'rbind'</span>, meta_df)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># format as a data.frame</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(meta_df)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># match text after final column name</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="fu">ncol</span>(meta_df)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(meta_df[,<span class="dv">1</span>], <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), <span class="st">'(?&lt;=FINAL_NOTES).*'</span>))</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># replace first column with citationkeys</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(meta_list)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'citekey'</span>, search_fields)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">names</span>(meta_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># collapse list entries into rows</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">'rbind'</span>, meta_df)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># format as a data.frame</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(meta_df)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># match text after final column name</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="fu">ncol</span>(meta_df)<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(meta_df[,<span class="dv">1</span>], <span class="cf">function</span>(x) <span class="fu">str_match</span>(<span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">' '</span>), <span class="st">'(?&lt;=FINAL_NOTES).*'</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># replace first column with citationkeys</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>meta_df[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(meta_list)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'citekey'</span>, search_fields)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(meta_df) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">names</span>(meta_df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="formatting" class="level2">
 <h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
 <p>Finally, we’ll perform some formatting to remove unwanted characters left over following the conversion (in progress)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.sleep</span>(<span class="dv">1</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## remove bibtext field formatting</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># remove curly braces</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">{'</span>)) </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">},'</span>))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># remove first '=' (from bibtex field )</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove</span>(x, <span class="st">'='</span>))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># remove double-commas</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># remove comments</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'%%.*'</span>))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra characters in final column</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>meta_df[, <span class="fu">ncol</span>(meta_df)] <span class="ot">=</span> <span class="fu">str_remove_all</span>(meta_df[, <span class="fu">ncol</span>(meta_df)], <span class="st">'</span><span class="sc">\\</span><span class="st">}'</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## remove bibtext field formatting</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remove curly braces</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">{'</span>)) </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'</span><span class="sc">\\</span><span class="st">},'</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remove first '=' (from bibtex field )</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove</span>(x, <span class="st">'='</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># remove double-commas</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ',,'))</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># remove comments</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">apply</span>(meta_df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">str_remove_all</span>(x, <span class="st">'%%.*'</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#meta_df &lt;- apply(meta_df, 2, function(x) str_remove_all(x, ' , '))</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra characters in final column</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>meta_df[, <span class="fu">ncol</span>(meta_df)] <span class="ot">=</span> <span class="fu">str_remove_all</span>(meta_df[, <span class="fu">ncol</span>(meta_df)], <span class="st">'</span><span class="sc">\\</span><span class="st">}'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(meta_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example: Evaluate <code>model_rate_emotion_values</code> as <em>R</em> code</p>
 <div class="cell">
@@ -335,15 +333,31 @@ explained_variance_resonance                       0.5630</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>meta_df[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="ot">-&gt;</span> included_studies</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>included_studies <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>() <span class="sc">|&gt;</span> <span class="fu">View</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>included_studies <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 27
+   citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
+   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+ 1 agarwal2021an " class… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+ 2 alvarez2023ri " class… " inclu… " inclu… " discr… " not specif… " Spotify  " 
+ 3 bai2017mu     " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 4 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " pop piano …
+ 5 dufour2021us  " class… " inclu… " inclu… "  c1 (… " not specif… " pop, disco…
+ 6 hizlisoy2021… " class… " inclu… " inclu… " valen… " perceived … " Turkish tr…
+ 7 nguyen2017an  " class… " inclu… " inclu… " 288 e… " perceived … " AMG  "     
+ 8 panda2020no   " class… " inclu… " inclu… "    "   "    "        " AllMusic  "
+ 9 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
+10 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
+# ℹ 25 more rows
+# ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
+#   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
+#   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
+#   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
+#   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;,
+#   feature_reduction_method &lt;chr&gt;, model_category &lt;chr&gt;, model_detail &lt;chr&gt;, …</code></pre>
+</div>
 </div>
 </section>
-</section>
-<section id="track-studies-to-discuss" class="level1">
-<h1>Track studies to discuss</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>included_studies[<span class="fu">str_detect</span>(included_studies<span class="sc">$</span>final_notes, <span class="st">'DISCUSS|Discuss|discuss'</span>),] <span class="sc">|&gt;</span> <span class="fu">View</span>() <span class="co">#dplyr::select(citekey, final_notes)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="track-incomplete-extractions" class="level1">
 <h1>Track Incomplete Extractions</h1>
@@ -356,7 +370,7 @@ explained_variance_resonance                       0.5630</code></pre>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sapply</span>(</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        included_studies[,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(included_studies) <span class="sc">-</span> <span class="dv">1</span>],</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">function</span>(x) <span class="fu">grepl</span>(<span class="st">"^</span><span class="sc">\\</span><span class="st">s*$"</span>, x))) <span class="sc">&gt;</span> n_empty_fields <span class="sc">-</span> <span class="dv">1</span>),]</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 1 MISSING FIELD</span></span>
@@ -364,24 +378,28 @@ explained_variance_resonance                       0.5630</code></pre>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>missing_1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 27
+<pre><code># A tibble: 19 × 27
    citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
    &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
- 1 panda2020no   " class… " inclu… " inclu… "    "   "    "        " AllMusic  "
- 2 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
- 3 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
- 4 yeh2014po     " class… " inclu… " inclu… " happy… " perceived … " chorus of …
- 5 zhang2017fe   " class… " inclu… " inclu… " arous… " perceived … " Chinese po…
- 6 bai2016di     " regre… " inclu… " inclu… " valen… " not specif… " MediaEval …
- 7 beveridge201… " regre… " inclu… " inclu… " valen… " perceived"  " stimuli co…
- 8 cao2023th     " regre… " inclu… " inclu… " valen… " not specif… " million so…
- 9 deng2015em    " regre… " inclu… " inclu… " valen… " perceived … " Western cl…
-10 gingras2014be " regre… " inclu… " inclu… " pleas… " perceived … " piano trio…
-11 grekow2021mu  " regre… " inclu… " inclu… " valen… " perceived … " classical,…
-12 griffiths202… " regre… " inclu… " inclu… " valen… " perceived … "   "        
-13 hu2017cr      " regre… " inclu… " inclu… " valen… " perceived … " MER60, CH8…
-14 koh2023me     " regre… " inclu… " inclu… " valen… " perceived … " Free Music…
-15 wang2022cr    " regre… " inclu… " inclu… " valen… " perceived … " chinese so…
+ 1 agarwal2021an " class… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+ 2 alvarez2023ri " class… " inclu… " inclu… " discr… " not specif… " Spotify  " 
+ 3 bai2017mu     " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 4 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " pop piano …
+ 5 panda2020no   " class… " inclu… " inclu… "    "   "    "        " AllMusic  "
+ 6 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
+ 7 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
+ 8 yeh2014po     " class… " inclu… " inclu… " happy… " perceived … " chorus of …
+ 9 zhang2017fe   " class… " inclu… " inclu… " arous… " perceived … " Chinese po…
+10 bai2016di     " regre… " inclu… " inclu… " valen… " not specif… " MediaEval …
+11 beveridge201… " regre… " inclu… " inclu… " valen… " perceived"  " stimuli co…
+12 cao2023th     " regre… " inclu… " inclu… " valen… " not specif… " million so…
+13 deng2015em    " regre… " inclu… " inclu… " valen… " perceived … " Western cl…
+14 gingras2014be " regre… " inclu… " inclu… " pleas… " perceived … " piano trio…
+15 grekow2021mu  " regre… " inclu… " inclu… " valen… " perceived … " classical,…
+16 griffiths202… " regre… " inclu… " inclu… " valen… " perceived … "   "        
+17 hu2017cr      " regre… " inclu… " inclu… " valen… " perceived … " MER60, CH8…
+18 koh2023me     " regre… " inclu… " inclu… " valen… " perceived … " Free Music…
+19 wang2022cr    " regre… " inclu… " inclu… " valen… " perceived … " chinese so…
 # ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
 #   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
 #   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
@@ -398,14 +416,15 @@ explained_variance_resonance                       0.5630</code></pre>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>missing_2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 27
-  citekey      paradigm   notes_ca notes_te emotions emotion_locus stimulus_type
-  &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
-1 panda2020no  " classif… " inclu… " inclu… "    "   "    "        " AllMusic  "
-2 yeh2014po    " classif… " inclu… " inclu… " happy… " perceived … " chorus of …
-3 zhang2017fe  " classif… " inclu… " inclu… " arous… " perceived … " Chinese po…
-4 grekow2021mu " regress… " inclu… " inclu… " valen… " perceived … " classical,…
-5 koh2023me    " regress… " inclu… " inclu… " valen… " perceived … " Free Music…
+<pre><code># A tibble: 6 × 27
+  citekey       paradigm  notes_ca notes_te emotions emotion_locus stimulus_type
+  &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+1 agarwal2021an " classi… " inclu… " inclu… " discr… " not specif… " Hindi musi…
+2 panda2020no   " classi… " inclu… " inclu… "    "   "    "        " AllMusic  "
+3 yeh2014po     " classi… " inclu… " inclu… " happy… " perceived … " chorus of …
+4 zhang2017fe   " classi… " inclu… " inclu… " arous… " perceived … " Chinese po…
+5 grekow2021mu  " regres… " inclu… " inclu… " valen… " perceived … " classical,…
+6 koh2023me     " regres… " inclu… " inclu… " valen… " perceived … " Free Music…
 # ℹ 20 more variables: stimulus_duration &lt;chr&gt;, stimulus_duration_unit &lt;chr&gt;,
 #   stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;, participant_n &lt;chr&gt;,
 #   participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,

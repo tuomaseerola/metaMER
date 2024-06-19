@@ -4,7 +4,7 @@ title: "Library Parser"
 
 **Status:** in progress.
 
-**TODO**: 
+**TODO**: \
 - Separate scripts and functions into separate .qmd files/directories. \
 - Update `model_rate_emotion_values` nomenclature process for classification papers.\
 - Replace rbind with custom bind function throughout
@@ -84,10 +84,9 @@ field_names <- paste0(field_names, collapse = '')
 
 ## Prepare dataframe
 
-Now we can convert our list into a data frame with the target bibtex fields. For the last field `FINAL_NOTES`, we will apply a different regex pattern which matches all characters following the field name `(?<=FINAL_NOTES).*` .
+Now we can convert our list into a data frame with the target bibtex fields. For the last field `MODEL_VALIDATION`, we will apply a different regex pattern which matches all characters following the field name `(?<=MODEL_VALIDATION).*` .
 
 ```{r}
-Sys.sleep(1)
 # create new column containing information between two adjacent target fields for all entries in list
 meta_df <- lapply(meta_list, function(x) str_match(paste0(x, collapse = ' '), field_names))
 meta_df <- lapply(meta_list, function(x) str_match(paste0(x, collapse = ' '), field_names))
@@ -109,7 +108,6 @@ names(meta_df) <- trimws(names(meta_df))
 Finally, we'll perform some formatting to remove unwanted characters left over following the conversion (in progress)
 
 ```{r}
-Sys.sleep(1)
 ## remove bibtext field formatting
 # remove curly braces
 meta_df <- apply(meta_df, 2, function(x) str_remove_all(x, '\\{')) 
@@ -142,41 +140,7 @@ meta_df[which(str_detect(meta_df$final_notes, '!EXCL!')),] |> dplyr::tibble()
 ```{r}
 meta_df[-which(str_detect(meta_df$final_notes, '!EXCL!')),] -> included_studies
 
-included_studies |> dplyr::tibble() #|> View()
-```
-# Track studies to discuss
-```{r}
-included_studies[str_detect(included_studies$final_notes, 'DISCUSS|Discuss|discuss'),] 
-```
-
-## Updates following discussion
-```{r}
-included_studies[str_detect(included_studies$final_notes, 'DISCUSS|Discuss|discuss'),]
-
-resolution_comments <- c(
-  'Report total # of features 8904',
-  'Report available statistics (new nomenclature solves issue)',
-  'Report as many features are there are in MEM n = 260',
-  'Report best model results (Rprop)',
-  'Report available statistics (new nomenclature solves issue)',
-  'Report on proposed model',
-  'Report 50 PCA features'
-)
-
-included_studies[str_detect(included_studies$final_notes, 'DISCUSS|Discuss|discuss'),]$final_notes <- resolution_comments
-
-```
-
-# Track Reformatted Extractions
-
-```{r}
-included_studies[which(stringr::str_detect(included_studies$model_rate_emotion_values,
-                                     'bind_field')),] -> reencoded
-
-message('Completed re-encodings for ', nrow(reencoded), ' studies')
-
-reencoded
-
+included_studies |> dplyr::tibble()
 ```
 
 # Track Incomplete Extractions
@@ -184,16 +148,15 @@ reencoded
 Count studies where there are empty fields (exclude `final_notes` in count)
 
 ```{r}
-check_missing_fields <- function(n_empty_fields = 1) 
+check_missing <- function(n_empty_fields = 1) 
 {
   included_studies[which(
     rowSums(
       sapply(
         included_studies[,1:ncol(included_studies) - 1],
         function(x) grepl("^\\s*$", x))) > n_empty_fields - 1),]
-} 
+}
 ```
-
 
 ```{r}
 ## AT LEAST 1 MISSING FIELD
@@ -221,7 +184,7 @@ Some studies include multiple bibtex fields for substudies/evaluations of differ
 
 ```{r eval = F, echo = F}
 ## function to parse output of multiple models nested within a single cell
-get_nested_studies = function(df)
+parse_model_output = function(df)
 { # loop across rows
   # apply function to replace NAs with empty string
   sapply(1:nrow(df), function(x) {
@@ -321,7 +284,7 @@ sapply(1:nrow(regression_studies), function(i) {
 
 ```{r}
 # low-level function to extract relevant values from named array
-parse_model_output <- function(x) {
+model_result_2_df <- function(x) {
   # evaluate the expression
   x <- rlang::eval_tidy(rlang::parse_expr(x))
   # get name of fitted models from column names

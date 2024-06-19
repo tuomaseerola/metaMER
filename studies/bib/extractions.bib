@@ -23,7 +23,7 @@
   STIMULUS_DURATION = {not specified},
   STIMULUS_DURATION_UNIT = {not specified},
   STIMULUS_N = {ISMIR2012: 2886, NJU_V1: 777, Hindi: 1037},
-  FEATURE_N = {'eight different non‐text‐dependent features are employed; they are rhythm, timbre,intensity, chromagram, MFCC, OSC, SSDs, and DWCH'}, %% unclear from paper... may be worth reviewing
+  FEATURE_N = { }, %% unclear from paper... may be worth reviewing
   PARTICIPANT_N = {not specified},
   PARTICIPANT_EXPERTISE = {not specified},
   PARTICIPANT_ORIGIN = {not specified},
@@ -35,29 +35,12 @@
   MODEL_CATEGORY = {classification}, %% task is classification though use SVR
   MODEL_DETAIL = {SVR, KMBSO}, %% compare to SVR, RNN, DBN (I didn't report these)
   MODEL_MEASURE = {classification accuracy, precision, sensitivity, specificity, false positive rate, F1, error},
-  MODEL_COMPLEXITY_PARAMETERS = {SVR: 512 hidden layers, L2 normalization: 1x10^-4, 0.14 dropout rate, Relu activation function, batch size: 128, learning rate: 1, 1000 iterations (max), variance: 1 mean: 0 population size: 200, c: 1.0},
-  MODEL_RATE_EMOTION_NAMES = {happy, sad, angry, relax},
-  MODEL_RATE_EMOTION_VALUES = {
-  bind_field(
-  'not specified.SVR KMBSO.song.ismir2012.1' = c('classification_accuracy.mean' = 0.9879,  
-                                                 'classification_precision.mean' = 0.9877,
-                                                 'classification_sensitivity.mean' = .9878,
-                                                 'classification_f1.mean' = 0.9877,
-                                                 'classification_specificity.mean' = .9960,
-                                                 'classification_fpr.mean' = 0.40,
-                                                 'classification_error.mean' = 0.0121),
-  'not specified.SVR KMBSO.karaoke.ismir2012.1' = c(0.974,0.9741,0.9738,0.974,0.9913,0.87,0.026),
-  'not specified.SVR KMBSO.lyrics.ismir2012.1' = c(0.9723,0.9722,0.9721,0.9725,0.9908,9.23,0.0277),
-  'not specified.SVR KMBSO.song.NJUV1.1' = c(0.9788,0.9787,0.9793,0.9789,0.9929,0.71,0.0212),
-  'not specified.SVR KMBSO.karaoke.NJUV1.1' = c(0.9682,0.9664,0.9674,0.9669,0.9895,1.05,0.0318),
-  'not specified.SVR KMBSO.lyrics.NJUV1.1' = c(0.9576,0.9566,0.9575,0.9570,0.9858,1.45,0.0424),
-  'not specified.SVR KMBSO.song.hindi.1' = c(0.9757,0.9741,0.9760,0.9750,0.992,0.92,0.0243),
-  'not specified.SVR KMBSO.karaoke.hindi.1' = c(0.9563,0.9536,0.9557,0.9546,0.9855,1.42,0.0437),
-  'not specified.SVR KMBSO.lyrics.hindi.1' = c(0.9417,0.9392,0.9399,0.9395,0.9805,1.95,0.0583)
-)
-  }, 
+  MODEL_COMPLEXITY_PARAMETERS = { },
+  MODEL_RATE_EMOTION_NAMES = {happy, angry, relax, sad},
+  MODEL_RATE_EMOTION_VALUES = {rbind(hindi = c('song' = 97.57, 'karaoke' = 95.63, 'lyrics' = 94.17), 
+ismir2012 = c('song' = 98.79, 'karaoke' = 97.4, 'lyrics' = 97.23), nju = c('song' =  97.88, 'karaoke' =  96.82, 'lyrics' = 95.76)) }, %% only reporting accuracy
   MODEL_VALIDATION = {five-fold cross-validation},
-  FINAL_NOTES = {reporting proposed model. Values converted to proportions (no conversion to FPR). Assuming mean predictions reported.}
+  FINAL_NOTES = {}
 }
 
 
@@ -84,10 +67,9 @@
   EMOTION_LOCUS = {not specified},
   STIMULUS_TYPE = {Spotify},
   STIMULUS_DURATION = {150 approx},
-  STIMULUS_DURATION_UNIT = {s}, 
-  STIMULUS_N = {5192; 12 per user in user validation (not included here due to little information),
-  AcousticBrainz validation: 60000},
-  FEATURE_N = {9 to 10},
+  STIMULUS_DURATION_UNIT = {seconds}, %%
+  STIMULUS_N = {12}, %% per user in user validation
+  FEATURE_N = {10},
   PARTICIPANT_N = {25},
   PARTICIPANT_EXPERTISE = {'not specified'},
   PARTICIPANT_ORIGIN = {'not specified'},
@@ -98,19 +80,16 @@
   FEATURE_REDUCTION_METHOD = {expert validation},
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {SVR, KNN, RF},
-  MODEL_MEASURE = {classification accuracy, f1, precision, recall},
-  MODEL_COMPLEXITY_PARAMETERS = {unable to find},
-  MODEL_RATE_EMOTION_NAMES = {happy, sad, angry, relaxed; Experimental validation: excited, cheerful, tense, irritated, sad, bored, relaxed, calm, don't know}, 
-  MODEL_RATE_EMOTION_VALUES = {bind_field('spotify.random forest.spotify.spotify.model comparison' = c('classification_accuracy.mean' = mean(c(0.844,0.899,0.862,0.945)),
-                                                                'classification_f1.mean' = mean(c(0.820,.860,0.839,0.801)),
-                                                                'classification_precision.mean' = mean(c(.8308,.8828,.8488,.9299)),
-                                                                'classification_recall.mean' = mean(c(.8083,.8446,.8353,.7392))),
-      'spotify.random forest.spotify.acousticBrainz.model validation' = c('classification_accuracy.mean' = mean(c(0.694,0.705,0.771,0.729)),
-                                                                          'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)))
-      )
+  MODEL_MEASURE = {classification accuracy, f1, precision, recall}, %% only reporting classification
+  MODEL_COMPLEXITY_PARAMETERS = { },
+  MODEL_RATE_EMOTION_NAMES = {excited, cheerful, tense, irritated, sad, bored, relaxed, calm, don't know}, %% experimental validation only; happy, sad, angry, relaxed used in all other studies
+  MODEL_RATE_EMOTION_VALUES = {rbind('random forest' = c('happy' = 0.844, 'angry' = 0.899, 'sad' = 0.862, 'relaxed' = 0.945),
+'knn'= c(0.822, 0.824, 0.862, 0.945),
+'svm' = c(0.767, 0.872, 0.8036, 0.929),
+'validation' = c(0.694, 0.705, 0.771, 0.729))
 }, %% don't know how to report user-validation study
-  MODEL_VALIDATION = {Repeated five-fold cross validation, AcousticBrainz, experimental validation with real users},
-  FINAL_NOTES = {Did not report results from user validation due to differences in formatting.}
+  MODEL_VALIDATION = {Repeated five-fold cross validation, AcousticBrainz}, %% used acousticbrainz as validation set
+  FINAL_NOTES = {}
 }
 
 
@@ -140,7 +119,7 @@
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {744},
-  FEATURE_N = {548. Post-reduction: 139 (PCA), 276 (ReliefF)},
+  FEATURE_N = {548}, %% 548 feature dimensions
   PARTICIPANT_N = {specified elsewhere},
   PARTICIPANT_EXPERTISE = {specified elsewhere},
   PARTICIPANT_ORIGIN = {specified elsewhere},
@@ -148,32 +127,15 @@
   PARTICIPANT_TASK = {specified elsewhere},
   FEATURE_CATEGORIES = {rhythm, tonality, timbre, pitch, melody},
   FEATURE_SOURCE = {Daubechies, Sound Description Toolbox, MIRToolbox},
-  FEATURE_REDUCTION_METHOD = {PCA, ReliefF},
+  FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {SVM, KNN, Neuro-fuzzy networks, fuzzy KNN, Bayes classifier, LDA},
-  MODEL_MEASURE = {accuracy (average)},
+  MODEL_MEASURE = {},
   MODEL_COMPLEXITY_PARAMETERS = {SVM: Kernel function = radial basis function, 
   KNN: K = 8, FKNN: fuzzy function = Gaussian, NFNC: back propogation, gradient descent},
-  MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {
-  bind_field(
-'various.random forest regression.ReliefF.MediaEval.1' = c('valence_r2.mean' = 0.293,
-                                                           'arousal_r2.mean' = 0.538,
-                                                           'valence_vector distance.mean' = 0.08,
-                                                           'valence_vector distance.sd' = 0.06,
-                                                           'arousal_vector distance.mean' = 0.08,
-                                                           'arousal_vector distance.sd' = 0.05,
-                                                           'av_vector distance.mean' = 0.12,
-                                                           'av_vector distance.sd' = 0.06,
-                                                           'av_classification.mean' = 0.584),
-'various.random forest regression.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592)
-
-
-
-
-)
-  },
-  MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
+  MODEL_RATE_EMOTION_NAMES = {pleasing, angry, sad, calm},
+  MODEL_RATE_EMOTION_VALUES = {average_accuracy = c(KNN = .62, Bayes = .69, LDA = .804, NFNC = .793, FKNN = .83, SVM = .827)},
+  MODEL_VALIDATION = {10 repetitions},
   FINAL_NOTES = {}
 }
 
@@ -197,11 +159,11 @@
   NOTES_TE = {include, midi, classification},
   EMOTIONS = {quadrants},
   EMOTION_LOCUS = {not specified},
-  STIMULUS_TYPE = {EMOPIA; pop piano recordings},
+  STIMULUS_TYPE = {pop piano recordings}, %% from EMOPIA, huang et al. (2021)
   STIMULUS_DURATION = {not specified},
   STIMULUS_DURATION_UNIT = {not specified},
   STIMULUS_N =  {not specified},
-  FEATURE_N = {summarize feature categories, but aren't explicit about which ones},
+  FEATURE_N = {not specified}, %% they summarize feature categories, but aren't explicit about which ones... maybe I should check EMOPIA
   PARTICIPANT_N = {not specified},
   PARTICIPANT_EXPERTISE = {not specified},
   PARTICIPANT_ORIGIN = {not specified},
@@ -213,7 +175,7 @@
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {enhanced residual gated recurrent unit},
   MODEL_MEASURE = {accuracy, precision, recall, F score},
-  MODEL_COMPLEXITY_PARAMETERS = {Red fox algorithm with Levy flight model; iteration parameter 1-500. Optimization value: 0.18.},
+  MODEL_COMPLEXITY_PARAMETERS = { },
   MODEL_RATE_EMOTION_NAMES = {positive-high, positive-low, negative-high, negative-low},
   MODEL_RATE_EMOTION_VALUES = { rbind(
   'rgru_positive_high_proposed' = c('H' = 157, 'M' = 2, 'FP' = 1, 'CR' = 120),
@@ -234,7 +196,7 @@
   'dnn_negative_low' = c(121,19,15,110)
 )},
   MODEL_VALIDATION = {not reported},
-  FINAL_NOTES = {Unsure how to standardize confusion matrices for individual quadrants.}
+  FINAL_NOTES = {}
 }
 
 
@@ -642,8 +604,8 @@ MODEL_RATE_EMOTION_VALUES_VALENCE = {rbind(
   MODEL_COMPLEXITY_PARAMETERS = {multiclass lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10\n; lvl 1 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10;\n lvl 2 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10;\n lvl 3 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-21, failing max = 10;\n multiclassr prop: architecture = 122-10-8, gradient min = 1.0e-50, failing max = 300;\n lvl 1 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-50, failing max = 300;\n lvl 2 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-100, failing max = 300;\n lvl 3 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-100, failing max = 300},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = {validation set}, % train, test and validation sets. They report 7/3 ratio (training set/test set)
-  FINAL_NOTES = {discuss. Unsure how to report results}
+  MODEL_VALIDATION = {validation set}, % train, test and validation sets. They report 7/3 ratioo (training set/test set)
+  FINAL_NOTES = {discuss}
 }
 
 
@@ -2134,15 +2096,15 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {PLSR},
   MODEL_MEASURE = {R2},
-  MODEL_COMPLEXITY_PARAMETERS = {unsure},
+  MODEL_COMPLEXITY_PARAMETERS = {},
   MODEL_RATE_EMOTION_NAMES = {valence, tension arousal, energy arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field(
-  various.pls.mixed.chineseClassicalEnsembles.1 = c(valence_r2.r2 = 0.85, valence_q2.q2 = 0.73, valence_pc1.pc1 = 0.36, valence_pc2.pc2 = 0.14,
+  MODEL_RATE_EMOTION_VALUES = {rbind(
+  pls.mixed.chineseClassicalEnsembles.1 = c(valence_r2.r2 = 0.85, valence_q2.q2 = 0.73, valence_pc1.pc1 = 0.36, valence_pc2.pc2 = 0.14,
                                             'tension arousal_r2.r2' = 0.77, 'tension arousal_q2.q2' = 0.62, 'tension arousal_pc1.pc1' = 0.35, 'tension arousal_pc2.pc2' = 0.21,
                                             'energy arousal_r2.r2' = 0.91, 'energy arousal_q2.q2' = 0.87, 'energy arousal_pc1.pc1' = 0.37, 'energy arousal_pc2.pc2' = 0.14),
-  various.pls.mixed.chineseClassicalSolo.1 = c(0.64,0.3,0.22,0.16,0.54,0.17,0.21,0.17,0.76,0.5,0.21,0.12),
-  various.pls.mixed.westernClassicalEnsembles.1 = c(.62,.4,.23,.17,.6,.44,.28,.14,.81,.7,.29,.14),
-  various.pls.mixed.westernClassicalSolo.1 = c(.8,.64,.25,.14,.77,.64,.27,.14,.9,.87,.27,.16)
+  pls.mixed.chineseClassicalSolo.1 = c(0.64,0.3,0.22,0.16,0.54,0.17,0.21,0.17,0.76,0.5,0.21,0.12),
+  pls.mixed.westernClassicalEnsembles.1 = c(.62,.4,.23,.17,.6,.44,.28,.14,.81,.7,.29,.14),
+  pls.mixed.westernClassicalSolo.1 = c(.8,.64,.25,.14,.77,.64,.27,.14,.9,.87,.27,.16)
 )
 },
   MODEL_VALIDATION = {six-fold cross validation},
@@ -2230,15 +2192,15 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_MEASURE = {RMSE},
   MODEL_COMPLEXITY_PARAMETERS = {n principal components pca: 1 to 150, n predictor components pls 1 - 20, n hidden layers cnn: 1 to 30},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field('openSMILE.pls.baseline features.100songs.1' = c(arousal_rmse.rmse = 0.146, valence_rmse.rmse = 0.156, arousal_r.r = 0.785, valence_r.r = 0.601), 
-                   'openSMILE.pls.stc.100songs.1' = c(0.149, 0.156, 0.775, 0.600), 
-                   'openSMILE.pls.baseline features and stc.100songs.1' = c(0.144, 0.151, 0.793,0.630),
-                   'openSMILE.pcr.baseline features.100songs.1' = c(0.147, 0.156,0.781,0.612),
-                   'openSMILE.pcr.stc.100songs.1' = c(0.150,0.157,0.770,0.585),
-                   'openSMILE.pcr.baseline features and stc.100songs.1' = c(0.144,0.150,0.793,0.634),
-                   'openSMILE.ff.baseline features' = c(0.172,0.169,0.732,0.570),
-                   'openSMILE.ff.stc.100songs.1' = c(0.179,0.172,0.730,.551),
-                   'openSMILE.ff.baseline features and stc.100songs.1' = c(0.165,0.158,.754,0.609)
+  MODEL_RATE_EMOTION_VALUES_REGRESSION = {match_named_values('pls.baseline features.100songs.1' = c(arousal_rmse.rmse = 0.146, valence_rmse.rmse = 0.156, arousal_r.r = 0.785, valence_r.r = 0.601), 
+                   'pls.stc.100songs.1' = c(0.149, 0.156, 0.775, 0.600), 
+                   'pls.baseline features + stc.100songs.1' = c(0.144, 0.151, 0.793,0.630),
+                   'pcr.baseline features.100songs.1' = c(0.147, 0.156,0.781,0.612),
+                   'pcr.stc.100songs.1' = c(0.150,0.157,0.770,0.585),
+                   'pcr.baseline features + stc.100songs.1' = c(0.144,0.150,0.793,0.634),
+                   'ff.baseline features' = c(0.172,0.169,0.732,0.570),
+                   'ff.stc.100songs.1' = c(0.179,0.172,0.730,.551),
+                   'ff.baseline features + stc.100songs.1' = c(0.165,0.158,.754,0.609)
 )
  }, %% not reporting on classification as those involve spectrogram images instead.
   MODEL_VALIDATION = {10-fold cross-validation},
@@ -2267,8 +2229,8 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   STIMULUS_TYPE = {Chinese pop songs from PSIC3839},
   STIMULUS_DURATION = {specified elsewhere},
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {2372 (subset of PSIC3839, total n: 3839)},  
-  FEATURE_N = {50 PCA features}, %%
+  STIMULUS_N = {2372}, %% subset of PSIC3839: total n =  3839
+  FEATURE_N = {total n not specified, top 50 of each category, after grid search: 156}, %% report using top 50 of each category, but 156 after RFR grid search
   PARTICIPANT_N = {specified elsewhere},
   PARTICIPANT_EXPERTISE = {specified elsewhere},
   PARTICIPANT_ORIGIN = {China},
@@ -2282,8 +2244,9 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_MEASURE = {r2, rmse},
   MODEL_COMPLEXITY_PARAMETERS = {Arousal RFR: n_estimators = 156, max_depth = 10,  min_samples_leaf = 8 min_samples_split = 18 max_features = 0.5; Valence RFR: n_estimators = 179, max_depth = 15,  min_samples_leaf = 13 min_samples_split = 22 max_features = 0.5},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field(
-  'librosa.random forest regression.audio.psic3839.1' = c(arousal_r2.r2 = 0.629, arousal_rmse.rmse = 0.147,valence_r2.r2 = 0.371, valence_rmse.rmse = 0.214)
+  MODEL_RATE_EMOTION_VALUES = {librosa = mrbind(
+  'random forest regression.audio.psic3839.1' = c(arousal_r2.r2 = 0.629, arousal_rmse.rmse = 0.147,
+                                                  valence_r2.r2 = 0.371, valence_rmse.rmse = 0.214)
 ) },
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {discuss}
@@ -2387,8 +2350,8 @@ Discriminant Analysis (RDA).},
   MODEL_MEASURE = {MSE, CC},
   MODEL_COMPLEXITY_PARAMETERS = {Scikit learn defaults, RBF kernel},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field(
-  marsyas.NuSVR.music.xing2014.1 = c(arousal_mse.mse = 0.0437, arousal_cc.cc = 0.425, valence_mse.mse = 0.0373, valence_cc.cc = 0.420)
+  MODEL_RATE_EMOTION_VALUES = {marsyas = mrbind(
+  NuSVR.music.xing2014.1 = c(arousal_mse.mse = 0.0437, arousal_cc.cc = 0.425, valence_mse.mse = 0.0373, valence_cc.cc = 0.420)
 )},
   MODEL_VALIDATION = {10 x 10 cross validation},
   FINAL_NOTES = {}
@@ -2436,12 +2399,12 @@ Discriminant Analysis (RDA).},
   MODEL_COMPLEXITY_PARAMETERS = {Batch size: 15, mixup technique applied to spectrograms, first convolutional layer alpha: 0.2, learning rate: 0.001, decreasing by 1/10 every 10 epochs. Adam optimizer. Dropout ratio 0.3 and 0.2,
 alpha = 0.18, beta = 0.49},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field(
-   'ns.MCAN.handcrafted and filter bank.deam.1' = c(valence_ccc.mean = 0.309, valence_rmse.mean = 0.112, valence_mae.mean = 0.811,
+  MODEL_RATE_EMOTION_VALUES = { library = mrbind(
+   'MCAN.handcrafted and filter bank.deam.1' = c(valence_ccc.mean = 0.309, valence_rmse.mean = 0.112, valence_mae.mean = 0.811,
                               valence_ccc.sd = 0.358, valence_rmse.sd = 0.010, valence_mae.sd = 0.009,
                        arousal_ccc.mean = 0.502, arousal_rmse.mean = 0.109, arousal_mae.mean = 0.764,
                        arousal_ccc.sd = 0.287, arousal_rmse.sd = 0.011, arousal_mae.sd = 0.023),
-   'ns.MCAN. handcrafted and filter bank.PMEmo.1' = c(.215,.144,.892,0.265,.102,.030,.401,.135,.901,.315,0.057,0.103)
+   'MCAN. handcrafted and filter bank.PMEmo.1' = c(.215,.144,.892,0.265,.102,.030,.401,.135,.901,.315,0.057,0.103)
  )}, %% only reporting final results (not five cases. Can add if important)
   MODEL_VALIDATION = {ablation, train/test},
   FINAL_NOTES = {}
