@@ -36,7 +36,15 @@ parse_model_output <- function(x) {
 }
 
 
-build_study_summary <- function(df) {
-  do.call(rbind, lapply(df[,'model_rate_emotion_values'], 
-                        parse_model_output))
-} 
+get_study_results <- function(study) {
+  citekey <- unique(as.character(study[,'citekey']))
+  #print(citekey)
+  #print(as.character(study[,'model_rate_emotion_values']))
+  results <- parse_model_output(as.character(study[,'model_rate_emotion_values']))
+  return(
+    dplyr::tibble(citekey,
+            results)
+    )
+}
+
+
