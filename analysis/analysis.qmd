@@ -4,6 +4,51 @@ This assumes that the data has been parsed from the BibTeX files into table and 
 
 ## Read annotated data
 
+## Read annotated data
+
+- Update 2024-06-19
+- TODO: find better way to read in functions
+
+```{r}
+require(here)
+source(here::here('R/build-df.R'))
+source(here::here('R/format-study-results.R'))
+source(here::here('R/parse-model-output.R'))
+```
+
+```{r}
+# get metaMER df:
+
+meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
+
+# get included studies
+
+included_studies <- meta_df[which(
+  !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |> 
+  dplyr::tibble()
+
+```
+
+```{r}
+# get studies re-coded (currently identifiable by presence of bind_field.)
+recoded_studies <- included_studies[which(stringr::str_detect(
+  included_studies$model_rate_emotion_values,
+                                     'bind_field')),] 
+
+```
+
+```{r}
+metaMER_results <- do.call(rbind,
+lapply(recoded_studies$model_rate_emotion_values, 
+       parse_model_output)
+)
+
+
+metaMER_results |> dplyr::tibble()
+
+```
+
+
 ```{r}
 #| eval: false
 d <- read.csv('data/meta-analysis_data.csv')
