@@ -2,14 +2,10 @@
 
 This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.
 
-# Analysis
-
-Initial work to build the data parser from the bibTeX files.
-
 ## Read annotated data
 
 - Update 2024-06-19
-- TODO: find better way to read in functions
+- [ ] CA TODO: find better way to read in functions
 
 ```{r}
 require(here)
@@ -18,18 +14,20 @@ source(here::here('R/format-study-results.R'))
 source(here::here('R/parse-model-output.R'))
 ```
 
+- [ ] CA ToDo: Check the warning reported here
+
 ```{r}
 # get metaMER df:
-
 meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
 
 # get included studies
-
 included_studies <- meta_df[which(
   !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |> 
   dplyr::tibble()
 
 ```
+### Recoded
+
 
 ```{r}
 # get studies re-coded (currently identifiable by presence of bind_field.)
@@ -38,6 +36,8 @@ recoded_studies <- included_studies[which(stringr::str_detect(
                                      'bind_field')),] 
 
 ```
+
+Maybe limit the verbosity of `get_study_results` below
 
 ```{r}
 metaMER_results <-
@@ -48,30 +48,32 @@ do.call(
        )
 ) 
 
-
 metaMER_results |> dplyr::tibble()
 
 ```
 
 
-## Read annotated data
+## Summarise annotated data
 
 ```{r}
-#| eval: false
-d <- read.csv('data/meta-analysis_data.csv')
+#| eval: true
+#| output: asis
+
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$model_id)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$feature_id)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
+
 ```
 
-We need to identify the core metrics:
 
-- _correlation coefficient_ (obtained from $R^2$) for regression studies.
+## Analysis notes
 
-- _Matthew's correlation coefficient_ for classification studies.
-
-- n (we use STIMULUS_N rather than participant n)
-
-- Subsetting base on model and music qualities
-
-## Analyse
+- [ ] Issue 1: We need unique identifiers for each input component (combine: `study` + `model` + `feature` + `data` + `experiment` that would have be unique id)
+- [ ] Issue 2: We `stimulus_N`
+- [ ] Issue 3: measure vs statistic?
+- [ ] Issue 4: We need to classify the modelling techniques into fewer number of techniques
+- [ ] Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with `str_replace`)
 
 ### Regression studies
 
@@ -79,22 +81,62 @@ We need to identify the core metrics:
 
 ```{r}
 #| warning: false
-#| eval: false
+#| eval: true
 library(dmetar)
 library(tidyverse)
 library(meta)
 
-# select regression studies
+# select regression studies with r2
+tmp <- dplyr::filter(metaMER_results,dimension=="valence" & measure=="r2")
+#sqrt(tmp$values) # convert from R^2 to r
+tmp$stimulus_n <- 100 # ad-hoc for now
 
-m.cor <- metacor(cor = valence, 
-                 n = stimulus_N,
-                 studlab = study_id,
-                 data = df,
+m.cor <- metacor(cor = sqrt(values), 
+                 n = stimulus_n,
+                 studlab = citekey,
+                 data = tmp,
                  fixed = FALSE,
                  random = TRUE,
-                 method.tau = "REML",
-                 method.random.ci = "HK",
+                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
                  title = "MER: Regression: Valence: All")
+
+print(m.cor)
+```
+
+## Explore qualities
+
+```{r}
+meta <- metagen(values, sqrt(values), 
+                data = tmp, 
+                studlab = tmp$citekey, 
+                comb.fixed = FALSE, 
+                method.tau = "PM")
+find.outliers(meta)
+infan <- InfluenceAnalysis(meta)
+print(eggers.test(meta))
 
 ```
 
+## Sub-group analysis (based on model type)
+
+```{r}
+
+meta <- metagen(values, sqrt(values), # Fix the TE.se 
+                data = tmp, 
+                studlab = tmp$citekey, 
+                comb.fixed = FALSE, 
+                method.tau = "PM")
+
+subgroup.analysis.mixed.effects(x = meta, 
+                                subgroups = tmp$model_id)
+```
+
+## Visualise
+
+```{r}
+plot(m.cor)
+plot(eggers.test(meta))
+
+```

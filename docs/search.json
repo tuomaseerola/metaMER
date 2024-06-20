@@ -1,0 +1,394 @@
+[
+  {
+    "objectID": "manuscript/manuscript.html",
+    "href": "manuscript/manuscript.html",
+    "title": "Meta-analysis of regression and classification success of emotion ratings from audio",
+    "section": "",
+    "text": "Emotional expression is one of the central reasons why people engage with music.\nGreat advances in music information retrieval have been made in recent years.\nNumerous studies over the last 25 years have established what emotions listeners perceive and recognise in music (Gómez-Cañón et al., 2021). In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features (Lindström et al., 2003), structural aspects of music (Anderson & Schutz, 2022; Eerola et al., 2013; Grimaud & Eerola, 2022), or acoustic features (Eerola, 2011; Panda et al., 2013; Saari et al., 2015; Yang et al., 2008) or emergent properties identified through deep learning (Er & Aydilek, 2019; Sarkar et al., 2020).\n\nHowever, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex – valence and arousal– (Russell, 1980) and classifying various emotion categories (Fu et al., 2010).\n\n\n\nOur aim is to establish the level of predictive accuracy for both continuous models of emotional expression (valence and arousal) and classification of emotion categories based on available and recent studies.\nWe seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.\nTo achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.\nWe outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia)."
+  },
+  {
+    "objectID": "manuscript/manuscript.html#aims",
+    "href": "manuscript/manuscript.html#aims",
+    "title": "Meta-analysis of regression and classification success of emotion ratings from audio",
+    "section": "",
+    "text": "Our aim is to establish the level of predictive accuracy for both continuous models of emotional expression (valence and arousal) and classification of emotion categories based on available and recent studies.\nWe seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.\nTo achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.\nWe outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia)."
+  },
+  {
+    "objectID": "manuscript/manuscript.html#prediction-success-for-valence-and-arousal",
+    "href": "manuscript/manuscript.html#prediction-success-for-valence-and-arousal",
+    "title": "Meta-analysis of regression and classification success of emotion ratings from audio",
+    "section": "Prediction success for valence and arousal",
+    "text": "Prediction success for valence and arousal\nOut of XX studies reporting this task, the majority (xx%) …\n\n\n\nConcept\nN\nMd \\(R^2\\)\n\n\n\n\nValence\n??\n??\n\n\nArousal\n??\n??\n\n\n\nTABLE: xxxx"
+  },
+  {
+    "objectID": "studies/extraction_details.html",
+    "href": "studies/extraction_details.html",
+    "title": "Extraction Details",
+    "section": "",
+    "text": "To capture relevant information from studies, we expanded BiBTeX fields for each study with additional fields. For reproducibility, these instructions provide information on the process followed for each field."
+  },
+  {
+    "objectID": "studies/extraction_details.html#identifier",
+    "href": "studies/extraction_details.html#identifier",
+    "title": "Extraction Details",
+    "section": "IDENTIFIER",
+    "text": "IDENTIFIER\nUnique identifier of article. Contains last name of lead author, year of publication and first two letters of article title. Hyphenated last names collapsed."
+  },
+  {
+    "objectID": "studies/extraction_details.html#author",
+    "href": "studies/extraction_details.html#author",
+    "title": "Extraction Details",
+    "section": "AUTHOR",
+    "text": "AUTHOR\nNames of all authors. Last name precedes first name and separated by comma. For multiple authors “and” precedes each listed subsequent author. E.g., Sorussa, Kanawat and Choksuriwong, Anant and Karnjanadecha, Montri"
+  },
+  {
+    "objectID": "studies/extraction_details.html#journal",
+    "href": "studies/extraction_details.html#journal",
+    "title": "Extraction Details",
+    "section": "JOURNAL",
+    "text": "JOURNAL\nTitle of journal containing article."
+  },
+  {
+    "objectID": "studies/extraction_details.html#note",
+    "href": "studies/extraction_details.html#note",
+    "title": "Extraction Details",
+    "section": "NOTE",
+    "text": "NOTE\nIncludes number of citing articles and open access details. E.g., Cited by: 4; All Open Access, Gold Open Access, Green Open Access"
+  },
+  {
+    "objectID": "studies/extraction_details.html#title",
+    "href": "studies/extraction_details.html#title",
+    "title": "Extraction Details",
+    "section": "TITLE",
+    "text": "TITLE\nTitle of article."
+  },
+  {
+    "objectID": "studies/extraction_details.html#volume",
+    "href": "studies/extraction_details.html#volume",
+    "title": "Extraction Details",
+    "section": "VOLUME",
+    "text": "VOLUME\nVolume number of publication."
+  },
+  {
+    "objectID": "studies/extraction_details.html#year",
+    "href": "studies/extraction_details.html#year",
+    "title": "Extraction Details",
+    "section": "YEAR",
+    "text": "YEAR\nPublication year."
+  },
+  {
+    "objectID": "studies/extraction_details.html#doi",
+    "href": "studies/extraction_details.html#doi",
+    "title": "Extraction Details",
+    "section": "DOI",
+    "text": "DOI\nDigital object identifier of article."
+  },
+  {
+    "objectID": "studies/extraction_details.html#abstract",
+    "href": "studies/extraction_details.html#abstract",
+    "title": "Extraction Details",
+    "section": "ABSTRACT",
+    "text": "ABSTRACT\nComplete text of article abstract."
+  },
+  {
+    "objectID": "studies/extraction_details.html#source",
+    "href": "studies/extraction_details.html#source",
+    "title": "Extraction Details",
+    "section": "SOURCE",
+    "text": "SOURCE\nDatabase article was sourced from. Scopus, Web of Science (WoS) or OpenAlex."
+  },
+  {
+    "objectID": "studies/extraction_details.html#author_keywords",
+    "href": "studies/extraction_details.html#author_keywords",
+    "title": "Extraction Details",
+    "section": "AUTHOR_KEYWORDS",
+    "text": "AUTHOR_KEYWORDS\nCorresponding keywords for article indicated by author."
+  },
+  {
+    "objectID": "studies/extraction_details.html#notes_authorinitials",
+    "href": "studies/extraction_details.html#notes_authorinitials",
+    "title": "Extraction Details",
+    "section": "NOTES_AUTHORINITIALS",
+    "text": "NOTES_AUTHORINITIALS\nDecision and comments by respective author"
+  },
+  {
+    "objectID": "studies/extraction_details.html#stimulus_type",
+    "href": "studies/extraction_details.html#stimulus_type",
+    "title": "Extraction Details",
+    "section": "STIMULUS_TYPE",
+    "text": "STIMULUS_TYPE\nMetadata pertaining to stimuli employed in paradigm. Can be listed as genres of music stimuli employed, or if stimuli come from a standard database, name of standard."
+  },
+  {
+    "objectID": "studies/extraction_details.html#stimulus_duration",
+    "href": "studies/extraction_details.html#stimulus_duration",
+    "title": "Extraction Details",
+    "section": "STIMULUS_DURATION",
+    "text": "STIMULUS_DURATION\nDuration of stimuli, if applicable. Unit of measurement (seconds, measures) specified in STIMULUS_DURATION_UNIT"
+  },
+  {
+    "objectID": "studies/extraction_details.html#stimulus_duration_unit",
+    "href": "studies/extraction_details.html#stimulus_duration_unit",
+    "title": "Extraction Details",
+    "section": "STIMULUS_DURATION_UNIT",
+    "text": "STIMULUS_DURATION_UNIT\nUnit of measurement pertaining to STIMULUS_DURATION. E.g., seconds, measures, etc."
+  },
+  {
+    "objectID": "studies/extraction_details.html#stimulus_n",
+    "href": "studies/extraction_details.html#stimulus_n",
+    "title": "Extraction Details",
+    "section": "STIMULUS_N",
+    "text": "STIMULUS_N\nNumber of stimuli employed in experiment. If multiple experimental conditions reported, separate \\(n\\) by conditions where possible."
+  },
+  {
+    "objectID": "studies/extraction_details.html#feature_n",
+    "href": "studies/extraction_details.html#feature_n",
+    "title": "Extraction Details",
+    "section": "FEATURE_N",
+    "text": "FEATURE_N\nNumber of features included in data modeling (if available)."
+  },
+  {
+    "objectID": "studies/extraction_details.html#participant_n",
+    "href": "studies/extraction_details.html#participant_n",
+    "title": "Extraction Details",
+    "section": "PARTICIPANT_N",
+    "text": "PARTICIPANT_N\nTotal number of participants in experiment."
+  },
+  {
+    "objectID": "studies/extraction_details.html#participant_expertise",
+    "href": "studies/extraction_details.html#participant_expertise",
+    "title": "Extraction Details",
+    "section": "PARTICIPANT_EXPERTISE",
+    "text": "PARTICIPANT_EXPERTISE\nExpertise of annotators. E.g., experts, non-experts, not specified."
+  },
+  {
+    "objectID": "studies/extraction_details.html#participant_origin",
+    "href": "studies/extraction_details.html#participant_origin",
+    "title": "Extraction Details",
+    "section": "PARTICIPANT_ORIGIN",
+    "text": "PARTICIPANT_ORIGIN\nOrigin country of participants, or online platform participants were recruited from (e.g., MTurk)"
+  },
+  {
+    "objectID": "studies/extraction_details.html#participant_sampling",
+    "href": "studies/extraction_details.html#participant_sampling",
+    "title": "Extraction Details",
+    "section": "PARTICIPANT_SAMPLING",
+    "text": "PARTICIPANT_SAMPLING\nHow participants were recruited (e.g., convenience, random sampling, crowdsourcing)"
+  },
+  {
+    "objectID": "studies/extraction_details.html#participant_task",
+    "href": "studies/extraction_details.html#participant_task",
+    "title": "Extraction Details",
+    "section": "PARTICIPANT_TASK",
+    "text": "PARTICIPANT_TASK\nNature of rating/classification task undertaken by participants. E.g., rate, annotate."
+  },
+  {
+    "objectID": "studies/extraction_details.html#feature_categories",
+    "href": "studies/extraction_details.html#feature_categories",
+    "title": "Extraction Details",
+    "section": "FEATURE_CATEGORIES",
+    "text": "FEATURE_CATEGORIES\nNames of categories analyzed features pertain to, based on names in Panda (2021). Includes names of all pertinent categories: Melody, Rhythm, Timbre, Pitch, Tonality, Expressivity, Texture, Form, Vocal, High-Level"
+  },
+  {
+    "objectID": "studies/extraction_details.html#feature_source",
+    "href": "studies/extraction_details.html#feature_source",
+    "title": "Extraction Details",
+    "section": "FEATURE_SOURCE",
+    "text": "FEATURE_SOURCE\nName(s) of feature analysis toolbox(es)."
+  },
+  {
+    "objectID": "studies/extraction_details.html#feature_reduction_method",
+    "href": "studies/extraction_details.html#feature_reduction_method",
+    "title": "Extraction Details",
+    "section": "FEATURE_REDUCTION_METHOD",
+    "text": "FEATURE_REDUCTION_METHOD\nName(s) of feature reduction or feature selection methods employed."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_category",
+    "href": "studies/extraction_details.html#model_category",
+    "title": "Extraction Details",
+    "section": "MODEL_CATEGORY",
+    "text": "MODEL_CATEGORY\nName of model type (regression, classification, or both)."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_detail",
+    "href": "studies/extraction_details.html#model_detail",
+    "title": "Extraction Details",
+    "section": "MODEL_DETAIL",
+    "text": "MODEL_DETAIL\nAdditional information pertaining to predictive model, such as the name of algorithm used and other pertinent parameters. E.g., Random Forest, Commonality Analysis, Multiple Regression, Neural Networks, LDSM."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_measure",
+    "href": "studies/extraction_details.html#model_measure",
+    "title": "Extraction Details",
+    "section": "MODEL_MEASURE",
+    "text": "MODEL_MEASURE\nMetric used in model evaluation. E.g., \\(R^2\\), \\(MSE\\), \\(CCC\\), Classification accuracy, etc."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_complexity_parameters",
+    "href": "studies/extraction_details.html#model_complexity_parameters",
+    "title": "Extraction Details",
+    "section": "MODEL_COMPLEXITY_PARAMETERS",
+    "text": "MODEL_COMPLEXITY_PARAMETERS\nAdditional information pertaining to predictive model. E.g., training epochs: 100; n layers: 1, 2; LSTM units: 124,248."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_rate_emotion_names",
+    "href": "studies/extraction_details.html#model_rate_emotion_names",
+    "title": "Extraction Details",
+    "section": "MODEL_RATE_EMOTION_NAMES",
+    "text": "MODEL_RATE_EMOTION_NAMES\nNames of predicted emotions. E.g., valence, arousal, happy, sad, angry, fearful, etc."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_rate_emotion_values",
+    "href": "studies/extraction_details.html#model_rate_emotion_values",
+    "title": "Extraction Details",
+    "section": "MODEL_RATE_EMOTION_VALUES",
+    "text": "MODEL_RATE_EMOTION_VALUES\nPertinent prediction of model summaries. Report as R named arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with mrbind. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore. See additional details below."
+  },
+  {
+    "objectID": "studies/extraction_details.html#model_validation",
+    "href": "studies/extraction_details.html#model_validation",
+    "title": "Extraction Details",
+    "section": "MODEL_VALIDATION",
+    "text": "MODEL_VALIDATION\nValidation method used (if applicable). E.g., 10-fold cross validation, leave one out cross validation."
+  },
+  {
+    "objectID": "studies/extraction_details.html#classification",
+    "href": "studies/extraction_details.html#classification",
+    "title": "Extraction Details",
+    "section": "Classification",
+    "text": "Classification\nConfusion matrices can be encoded similarly through a function that assigns relevant meta-parameters to the model_parameters attribute of the output matrix. The row names are then replaced with the column names for clearer output. This assumes row names and column names of the confusion matrix are listed in the same order.\nconfusion_matrix(\nlibrary.model.features.data.experiment =  c(class_1 = 0, class_2 = 0, ..., class_n = 0),\nclass_2 = c(0, 0, ..., 0),\n...\n)\nWhen confusion matrices are not available, encode available parameters (accuracy, precision, recall, \\(F\\) scores, etc.) using the standard nomenclature to distinguish relevant outcomes for each class:\nbind_field(\nlibrary.model.features.data.experiment = c(class_measure.summaryStat = 0, ...),\n...\n)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "README",
+    "section": "",
+    "text": "How well we can predict emotions in music? What is the evidence in the published literature for explaining what emotions the listeners can perceive in music when the source consists of audio examples. To what degree the results are dependent on the actual models, emotions, musical/acoustic features, or musical materials or participants?\nTo obtain answers to these questions, we have set out to record and analyse the current state of the art from the literature using a meta-analysis paradigm. We focus on Music Emotion Recognition and hence the acronym metaMER.\nThe public-facing version of the repository is available at https://tuomaseerola.github.io/metaMER/\n\n\nWe define the aims and methods in preregistration plan, which has beeb preregistered at OSF.\n\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to tabular format using a custom library_parser.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available manuscript/manuscript.qmd document."
+  },
+  {
+    "objectID": "index.html#plan",
+    "href": "index.html#plan",
+    "title": "README",
+    "section": "",
+    "text": "We define the aims and methods in preregistration plan, which has beeb preregistered at OSF."
+  },
+  {
+    "objectID": "index.html#study-search-and-selection",
+    "href": "index.html#study-search-and-selection",
+    "title": "README",
+    "section": "",
+    "text": "Search databases and criteria are documented in studies/search_syntax.qmd."
+  },
+  {
+    "objectID": "index.html#data-extraction-and-coding",
+    "href": "index.html#data-extraction-and-coding",
+    "title": "README",
+    "section": "",
+    "text": "Data extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to tabular format using a custom library_parser.qmd."
+  },
+  {
+    "objectID": "index.html#analysis",
+    "href": "index.html#analysis",
+    "title": "README",
+    "section": "",
+    "text": "Data analysis is covered in analysis/analysis.qmd document."
+  },
+  {
+    "objectID": "index.html#manuscript",
+    "href": "index.html#manuscript",
+    "title": "README",
+    "section": "",
+    "text": "The study report is available manuscript/manuscript.qmd document."
+  },
+  {
+    "objectID": "preregistration/preregistration.html",
+    "href": "preregistration/preregistration.html",
+    "title": "metaMER",
+    "section": "",
+    "text": "This preregistration is made with preregr package from https://preregr.opens.science/ that implements the BMJ published guidance for meta-analysis protocols (Shamseer et al., 2015).\nMeta-analysis Pre-registration: Music Emotion Recognition\n\nSection: Metadata\n\n\n\nTitle\n\n\ntitle\n\n\n\nMusic emotion recognition: Meta-analysis of regression and classification success of emotion ratings from audio\n\n\n\n\n\nContributors\n\n\nauthors\n\n\n\nEerola, T., Anderson, C. J.\n\n\n\n\n\nSubjects\n\n\ntarget_discipline\n\n\n\nmusic cognition, music information retrieval, music psychology\n\n\n\n\n\nTasks and roles\n\n\ntasks_and_roles\n\n\n\nequal contribution\n\n\n\n\nSection: Review methods\n\n\n\nType of review\n\n\ntype_of_review\n\n\n\nMeta-analysis\n\n\n\n\n\nReview stages\n\n\nreview_stages\n\n\n\nSearch, Screening, Extraction, Synthesis\n\n\n\n\n\nCurrent review stage\n\n\ncurrent_stage\n\n\n\nScreening\n\n\n\n\n\nStart date\n\n\nstart_date\n\n\n\n2024-05-15 2024-05-15\n\n\n\n\n\nEnd date\n\n\nend_date\n\n\n\n2024-06-30\n\n\n\n\n\nBackground\n\n\nbackground\n\n\n\nThe aim is to establish the current state of the model success in predicting emotions expressed by music from audio. We will focus on the last 10 years of research and especially the research that has predicted valence and arousal ratings from music audio. No such analysis exists and there are interesting challenges in predicting emotional content of music that relates to specificity of the music and the type of emotions and features used that would benefit from a systematic analysis.\n\n\n\n\n\nPrimary research question(s)\n\n\nprimary_research_question\n\n\n\nTo what degree can arousal and valence ratings of emotions expressed by music be predicted from audio? How are the prediction rates related to genres of music, the type of models used, the type of features, modelling design and cross-validation utilised, and the model complexity and parsimony?\n\n\n\n\n\nSecondary research question(s)\n\n\nsecondary_research_question\n\n\n\nWhat is the prediction rate related to classification of quadrants in the affective circumplex?\n\n\n\n\n\nExpectations / hypotheses\n\n\nexpectations_hypotheses\n\n\n\nPrediction of arousal ratings is generally high and robust, and in terms of the model outcome metrics (correlation), achieves at least r = 0.77 (R square of 0.60). Prediction of valence ratings from audio is more challenging and more context dependent and will achieve generally a lower prediction rate, r = 0.63 (R square 0.40)\n\n\n\n\n\nDependent variable(s) / outcome(s) / main variables\n\n\ndvs_outcomes_main_vars\n\n\n\nRegression model performance will be converted to Pearson correlation coefficients and classification model performance will be converted to Matthews correlation coefficient (MCC) when possible.\n\n\n\n\n\nIndependent variable(s) / intervention(s) / treatment(s)\n\n\nivs_intervention_treatment\n\n\n\nMusic genre, prediction type (linear or classification), feature type (based on prior work by Panda et al., 2020), model complexity (high, medium, low), model validation (exists or not)\n\n\n\n\n\nAdditional variable(s) / covariate(s)\n\n\nadditional_variables\n\n\n\nUnspecified\n\n\n\n\n\nSoftware\n\n\nsoftware\n\n\n\nR and Github repository\n\n\n\n\n\nFunding\n\n\nfunding\n\n\n\nMitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada)\n\n\n\n\n\nConflicts of interest\n\n\ncois\n\n\n\nThere are no identified conflicts of interests.\n\n\n\n\n\nOverlapping authorships\n\n\noverlapping_authorships\n\n\n\nNot applicable\n\n\n\n\nSection: Search strategy\n\n\n\nDatabases\n\n\ndatabases\n\n\n\nWeb of Science, Scopus, and Open Alex\n\n\n\n\n\nInterfaces\n\n\ninterfaces\n\n\n\nWeb of Science, Scopus, and Open Alex\n\n\n\n\n\nGrey literature\n\n\ngrey_literature\n\n\n\nNot included\n\n\n\n\n\nInclusion and exclusion criteria\n\n\ninclusions_exclusion_criteria\n\n\n\nSample, Phenomenon of Interest, Design, Evaluation, Research type\n\n\n\n\n\nQuery strings\n\n\nquery_strings\n\n\n\nScopus: TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music  AND emotion AND recognition ) AND PUBYEAR &gt; 2013 AND PUBYEAR &lt; 2025 AND  ( LIMIT-TO ( DOCTYPE , “ar” ) )  Web of science:  (DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)  Open Alex:  https://openalex.org/works?page=1&filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal, type%3Atypes%2Farticle,publication_year%3A2014-2024, keywords.id%3Akeywords%2Femotion-recognition, keywords.id%3Akeywords%2Faffective-computing, language%3Alanguages%2Fen, open_access.any_repository_has_fulltext%3Atrue \n\n\n\n\n\nSearch validation procedure\n\n\nsearch_validation_procedure\n\n\n\nManual checking, separate keywords searches\n\n\n\n\n\nOther search strategies\n\n\nother_search_strategies\n\n\n\nNot applied\n\n\n\n\n\nProcedures to contact authors\n\n\nprocedure_for_contacting_authors\n\n\n\nUnspecified\n\n\n\n\n\nResults of contacting authors\n\n\nresults_of_contacting_authors\n\n\n\nNot carried out\n\n\n\n\n\nSearch expiration and repetition\n\n\nsearch_expiration_and_repetition\n\n\n\nSearches were done during the active search period in late May early June 2024 and no repetition is planned.\n\n\n\n\n\nSearch strategy justification\n\n\nsearch_strategy_justification\n\n\n\nThe three major databases should be able yield a robust picture of the topic\n\n\n\n\n\nMiscellaneous search strategy details\n\n\nmisc_search_strategy_details\n\n\n\nNo alternative searches were articulated or envisaged.\n\n\n\n\nSection: Screening\n\n\n\nScreening stages\n\n\nscreening_stages\n\n\n\nWe completed screening using custom fields inserted to the bibtex file and managed with citation managers (jabref and bibdesk). To filter relevant studies, we followed a three-stage screening procedure.  In stage 1, we screened the 553 studies’ titles for relevance, removing irrelevant studies and recording exclusion criteria (see Used exclusion criteria). CA assigned 63 studies to the High Priority based on titles’ relevance, assigned 338 studies to Low Priority based on irrelevant titles, and 152 studies to Medium Priority for additional screening. In stage 2, CA assessed the 152 Medium Priority studies for relevance by screening abstracts. 95 studies’ status changed to Low Priority, whereas 30 studies’ status changed to High Priority. 27 studies remained in the Medium priority category. TE and CA evaluated the remaining 27 studies’, moving 15 to the High Priority Category and 12 to the Medium Priority Category. For studies moved to Low Priority, brief BiBTex comments summarized the rationale for exclusion. In stage 3, TE and CA independently screened Priority 1 studies for relevance, including an include, exclude, or unsure decision in a user-comment BiBTeX field.\n\n\n\n\n\nScreened fields / masking\n\n\nscreened_fields_masking\n\n\n\nWe left authors, titles, publication years, and journal names unmasked.\n\n\n\n\n\nUsed exclusion criteria\n\n\nused_exclusion_criteria\n\n\n\nWe excluded studies according to the following exclusion criteria: soundscapes/vocalisations, non-music audio, video clips, physiological markers, dance, video/movie, physiological/EEG/ECG/MEG/GSR/brain imaging/heart rate/neuroscience/brain studies, sensor data, multimodal, autism, ageing, review/systematic review/overview/survey, face emotion recognition, mental health, music therapy, schizophrenia, memory/emotion factors as IVs, recommender systems, or systems that identify the location of emotional excerpts. We included results from some studies meeting exclusion criteria (e.g., multimodal studies involving physiological measurements) if they reported separately on acoustic-only models.\n\n\n\n\n\nScreener instructions\n\n\nscreener_instructions\n\n\n\nAs described above.\n\n\n\n\n\nScreening reliability\n\n\nscreening_reliability\n\n\n\nIn the pass 1 and 2, we included a quality control check after the pass to discuss the identified categories. In the third pass, we double-coded decisions, resolving discrepancies through discussion.\n\n\n\n\n\nScreening reconciliation procedure\n\n\nscreening_reconciliation_procedure\n\n\n\nWe reconcile discrepancies through discussion, resolving “unsure” votes first, followed by discrepancies in include/exclude decisions between authors Results of this updating procedure are available in the Pass 3 comparison document.\n\n\n\n\n\nSampling and sample size\n\n\nsampling_and_sample_size\n\n\n\nWe identified and retained 553 articles from Scopus, Web of Science, and Open Alex based on the search strategy outlined above. See table at the end that details the cumulative exclusions.\n\n\n\n\n\nScreening procedure justification\n\n\nscreening_procedure_justification\n\n\n\nTo offer a broad summary of music emotion recognition tasks, we attempted to include all studies involving prediction with acoustic features. We performed screening unblinded and determined inclusion/exclusion criteria based on studies’ relevance to the task explored.\n\n\n\n\n\nData management and sharing\n\n\nscreening_data_management_and_sharing\n\n\n\nSources will be shared as (a) BibTeX library(ies) including reviewer notes.\n\n\n\n\n\nMiscellaneous screening details\n\n\nmisc_screening_details\n\n\n\nUnspecified\n\n\n\n\nSection: Extraction\n\n\n\nEntities to extract\n\n\nentities_to_extract\n\n\n\nThese are listed and defined in extraction details.\n\n\n\n\n\nExtraction stages\n\n\nextraction_stages\n\n\n\nThe data extraction will be completed in stages. In the first stage, CA will complete a pass of the collection using our initial entities to extract document. The challenges are discussed and the entities are revised.\n\n\n\n\n\nExtractor instructions\n\n\nextractor_instructions\n\n\n\nSee extraction details.\n\n\n\n\n\nExtractor blinding\n\n\nextractor_blinding\n\n\n\nBlinding was not used.\n\n\n\n\n\nExtraction reliability\n\n\nextraction_reliability\n\n\n\nCA will perform extractions; TE will verify extractions for quality assurance.\n\n\n\n\n\nExtraction reconciliation procedure\n\n\nextraction_reconciliation_procedure\n\n\n\nDiscussion and joint decision for studies where extraction proves to be challenging and issues of interpretation arise.\n\n\n\n\n\nExtraction procedure justification\n\n\nextraction_procedure_justification\n\n\n\nThese are documented in the extraction details.\n\n\n\n\n\nData management and sharing\n\n\nextraction_data_management_and_sharing\n\n\n\nWe retain the information of the studies in shared bibtex files, extraction data will be stored in ascii data files (.bibtex), and the parser for reading the data from .bibtex files to R for the analysis will be available (as quarto/markdown/R files), and all these are managed, structured, shared and documented in Github repository according to FAIR principles.\n\n\n\n\n\nMiscellaneous extraction details\n\n\nmisc_extraction_details\n\n\n\nNA\n\n\n\n\nSection: Synthesis and Quality Assessment\n\n\n\nPlanned data transformations\n\n\nplanned_data_transformations\n\n\n\nFor regression studies, we convert all metrics to Pearson correlation coefficients. For classification studies, we convert the outcomes of classification to Matthews Correlation Coefficient (MCC) from the precision, accuracy, specificity, F1 scores. Alternatively, we use Cohen’s kappa for multiple classes.\n\n\n\n\n\nMissing data\n\n\nmissing_data\n\n\n\nIf no main outcome variables are available, we exclude the study.\n\n\n\n\n\nData validation\n\n\ndata_validation\n\n\n\nNone planned beyond the staged approached already documented in extraction process.\n\n\n\n\n\nQuality assessment\n\n\nquality_assessment\n\n\n\nNot all the bias assessment tools for clinical studies are relevant for our purposes, we adapt the overall approached advocated in [Higgins et al. (2011)] (https://doi.org/10.1136/bmj.d5928).\n\n\n\n\n\nSynthesis plan\n\n\nsynthesis_plan\n\n\n\nWe analyse regression and classification studies separately, and depending on the quantity of the studies forming suitable sub-groupings based on techniques, materials or music collections/genres, we may further synthesise the results across groupings that are formed along these subsets.\n\n\n\n\n\nCriteria for conclusions / inference criteria\n\n\ncriteria_for_conclusions\n\n\n\nNA\n\n\n\n\n\nSynthesist masking\n\n\nsynthesis_masking\n\n\n\nNA\n\n\n\n\n\nSynthesis reliability\n\n\nsynthesis_reliability\n\n\n\nNA\n\n\n\n\n\nSynthesis reconciliation procedure\n\n\nsynthesis_reconciliation_procedure\n\n\n\nNA\n\n\n\n\n\nPublication bias analyses\n\n\npublication_bias\n\n\n\nWe utilise Egger’s test to assess the publication bias and potentially correct the effect size bias by selecting 10% most precise effect sizes as recommended by Van Aert, Wicherts, & Van Assen (2019).\n\n\n\n\n\nSensitivity analyses / robustness checks\n\n\nsensitivity_analysis\n\n\n\nWithin regression and classificiation tasks, we will carry out sensitivity analysis using sub-groups of studied based on type of models, and the type of journal the studies were published in.\n\n\n\n\n\nSynthesis procedure justification\n\n\nsynthesis_procedure_justification\n\n\n\nWe share our justification of the synthesis and the subsetting carried out in the manuscript but we have not formulated these in advance except for synthesizing classiciation and regression approaches separately and creating subsets within these approaches according to techniques and datasets utilised.\n\n\n\n\n\nSynthesis data management and sharing\n\n\nsynthesis_data_management_and_sharing\n\n\n\nWe share the data, procedures, definitions, the analysis scripts with the outcomes as R code in Quarto notes at Github.\n\n\n\n\n\nMiscellaneous synthesis details\n\n\nmisc_synthesis_details\n\n\n\nUnspecified"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#preregr-prereg-spec-4fNbMqhK9n",
+    "href": "preregistration/preregistration.html#preregr-prereg-spec-4fNbMqhK9n",
+    "title": "metaMER",
+    "section": "Meta-analysis Pre-registration: Music Emotion Recognition",
+    "text": "Meta-analysis Pre-registration: Music Emotion Recognition\n\nSection: Metadata\n\n\n\nTitle\n\n\ntitle\n\n\n\nMusic emotion recognition: Meta-analysis of regression and classification success of emotion ratings from audio\n\n\n\n\n\nContributors\n\n\nauthors\n\n\n\nEerola, T., Anderson, C. J.\n\n\n\n\n\nSubjects\n\n\ntarget_discipline\n\n\n\nmusic cognition, music information retrieval, music psychology\n\n\n\n\n\nTasks and roles\n\n\ntasks_and_roles\n\n\n\nequal contribution\n\n\n\n\nSection: Review methods\n\n\n\nType of review\n\n\ntype_of_review\n\n\n\nMeta-analysis\n\n\n\n\n\nReview stages\n\n\nreview_stages\n\n\n\nSearch, Screening, Extraction, Synthesis\n\n\n\n\n\nCurrent review stage\n\n\ncurrent_stage\n\n\n\nScreening\n\n\n\n\n\nStart date\n\n\nstart_date\n\n\n\n2024-05-15 2024-05-15\n\n\n\n\n\nEnd date\n\n\nend_date\n\n\n\n2024-06-30\n\n\n\n\n\nBackground\n\n\nbackground\n\n\n\nThe aim is to establish the current state of the model success in predicting emotions expressed by music from audio. We will focus on the last 10 years of research and especially the research that has predicted valence and arousal ratings from music audio. No such analysis exists and there are interesting challenges in predicting emotional content of music that relates to specificity of the music and the type of emotions and features used that would benefit from a systematic analysis.\n\n\n\n\n\nPrimary research question(s)\n\n\nprimary_research_question\n\n\n\nTo what degree can arousal and valence ratings of emotions expressed by music be predicted from audio? How are the prediction rates related to genres of music, the type of models used, the type of features, modelling design and cross-validation utilised, and the model complexity and parsimony?\n\n\n\n\n\nSecondary research question(s)\n\n\nsecondary_research_question\n\n\n\nWhat is the prediction rate related to classification of quadrants in the affective circumplex?\n\n\n\n\n\nExpectations / hypotheses\n\n\nexpectations_hypotheses\n\n\n\nPrediction of arousal ratings is generally high and robust, and in terms of the model outcome metrics (correlation), achieves at least r = 0.77 (R square of 0.60). Prediction of valence ratings from audio is more challenging and more context dependent and will achieve generally a lower prediction rate, r = 0.63 (R square 0.40)\n\n\n\n\n\nDependent variable(s) / outcome(s) / main variables\n\n\ndvs_outcomes_main_vars\n\n\n\nRegression model performance will be converted to Pearson correlation coefficients and classification model performance will be converted to Matthews correlation coefficient (MCC) when possible.\n\n\n\n\n\nIndependent variable(s) / intervention(s) / treatment(s)\n\n\nivs_intervention_treatment\n\n\n\nMusic genre, prediction type (linear or classification), feature type (based on prior work by Panda et al., 2020), model complexity (high, medium, low), model validation (exists or not)\n\n\n\n\n\nAdditional variable(s) / covariate(s)\n\n\nadditional_variables\n\n\n\nUnspecified\n\n\n\n\n\nSoftware\n\n\nsoftware\n\n\n\nR and Github repository\n\n\n\n\n\nFunding\n\n\nfunding\n\n\n\nMitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada)\n\n\n\n\n\nConflicts of interest\n\n\ncois\n\n\n\nThere are no identified conflicts of interests.\n\n\n\n\n\nOverlapping authorships\n\n\noverlapping_authorships\n\n\n\nNot applicable\n\n\n\n\nSection: Search strategy\n\n\n\nDatabases\n\n\ndatabases\n\n\n\nWeb of Science, Scopus, and Open Alex\n\n\n\n\n\nInterfaces\n\n\ninterfaces\n\n\n\nWeb of Science, Scopus, and Open Alex\n\n\n\n\n\nGrey literature\n\n\ngrey_literature\n\n\n\nNot included\n\n\n\n\n\nInclusion and exclusion criteria\n\n\ninclusions_exclusion_criteria\n\n\n\nSample, Phenomenon of Interest, Design, Evaluation, Research type\n\n\n\n\n\nQuery strings\n\n\nquery_strings\n\n\n\nScopus: TITLE-ABS-KEY ( valence OR arousal OR classi OR categor OR algorithm AND music  AND emotion AND recognition ) AND PUBYEAR &gt; 2013 AND PUBYEAR &lt; 2025 AND  ( LIMIT-TO ( DOCTYPE , “ar” ) )  Web of science:  (DT=(Article) AND PY=(2014-2025)) AND ALL=(music emotion recognition valence arousal)  Open Alex:  https://openalex.org/works?page=1&filter=default.search%3Amusic%20emotion%20recognition%20valence%20arousal, type%3Atypes%2Farticle,publication_year%3A2014-2024, keywords.id%3Akeywords%2Femotion-recognition, keywords.id%3Akeywords%2Faffective-computing, language%3Alanguages%2Fen, open_access.any_repository_has_fulltext%3Atrue \n\n\n\n\n\nSearch validation procedure\n\n\nsearch_validation_procedure\n\n\n\nManual checking, separate keywords searches\n\n\n\n\n\nOther search strategies\n\n\nother_search_strategies\n\n\n\nNot applied\n\n\n\n\n\nProcedures to contact authors\n\n\nprocedure_for_contacting_authors\n\n\n\nUnspecified\n\n\n\n\n\nResults of contacting authors\n\n\nresults_of_contacting_authors\n\n\n\nNot carried out\n\n\n\n\n\nSearch expiration and repetition\n\n\nsearch_expiration_and_repetition\n\n\n\nSearches were done during the active search period in late May early June 2024 and no repetition is planned.\n\n\n\n\n\nSearch strategy justification\n\n\nsearch_strategy_justification\n\n\n\nThe three major databases should be able yield a robust picture of the topic\n\n\n\n\n\nMiscellaneous search strategy details\n\n\nmisc_search_strategy_details\n\n\n\nNo alternative searches were articulated or envisaged.\n\n\n\n\nSection: Screening\n\n\n\nScreening stages\n\n\nscreening_stages\n\n\n\nWe completed screening using custom fields inserted to the bibtex file and managed with citation managers (jabref and bibdesk). To filter relevant studies, we followed a three-stage screening procedure.  In stage 1, we screened the 553 studies’ titles for relevance, removing irrelevant studies and recording exclusion criteria (see Used exclusion criteria). CA assigned 63 studies to the High Priority based on titles’ relevance, assigned 338 studies to Low Priority based on irrelevant titles, and 152 studies to Medium Priority for additional screening. In stage 2, CA assessed the 152 Medium Priority studies for relevance by screening abstracts. 95 studies’ status changed to Low Priority, whereas 30 studies’ status changed to High Priority. 27 studies remained in the Medium priority category. TE and CA evaluated the remaining 27 studies’, moving 15 to the High Priority Category and 12 to the Medium Priority Category. For studies moved to Low Priority, brief BiBTex comments summarized the rationale for exclusion. In stage 3, TE and CA independently screened Priority 1 studies for relevance, including an include, exclude, or unsure decision in a user-comment BiBTeX field.\n\n\n\n\n\nScreened fields / masking\n\n\nscreened_fields_masking\n\n\n\nWe left authors, titles, publication years, and journal names unmasked.\n\n\n\n\n\nUsed exclusion criteria\n\n\nused_exclusion_criteria\n\n\n\nWe excluded studies according to the following exclusion criteria: soundscapes/vocalisations, non-music audio, video clips, physiological markers, dance, video/movie, physiological/EEG/ECG/MEG/GSR/brain imaging/heart rate/neuroscience/brain studies, sensor data, multimodal, autism, ageing, review/systematic review/overview/survey, face emotion recognition, mental health, music therapy, schizophrenia, memory/emotion factors as IVs, recommender systems, or systems that identify the location of emotional excerpts. We included results from some studies meeting exclusion criteria (e.g., multimodal studies involving physiological measurements) if they reported separately on acoustic-only models.\n\n\n\n\n\nScreener instructions\n\n\nscreener_instructions\n\n\n\nAs described above.\n\n\n\n\n\nScreening reliability\n\n\nscreening_reliability\n\n\n\nIn the pass 1 and 2, we included a quality control check after the pass to discuss the identified categories. In the third pass, we double-coded decisions, resolving discrepancies through discussion.\n\n\n\n\n\nScreening reconciliation procedure\n\n\nscreening_reconciliation_procedure\n\n\n\nWe reconcile discrepancies through discussion, resolving “unsure” votes first, followed by discrepancies in include/exclude decisions between authors Results of this updating procedure are available in the Pass 3 comparison document.\n\n\n\n\n\nSampling and sample size\n\n\nsampling_and_sample_size\n\n\n\nWe identified and retained 553 articles from Scopus, Web of Science, and Open Alex based on the search strategy outlined above. See table at the end that details the cumulative exclusions.\n\n\n\n\n\nScreening procedure justification\n\n\nscreening_procedure_justification\n\n\n\nTo offer a broad summary of music emotion recognition tasks, we attempted to include all studies involving prediction with acoustic features. We performed screening unblinded and determined inclusion/exclusion criteria based on studies’ relevance to the task explored.\n\n\n\n\n\nData management and sharing\n\n\nscreening_data_management_and_sharing\n\n\n\nSources will be shared as (a) BibTeX library(ies) including reviewer notes.\n\n\n\n\n\nMiscellaneous screening details\n\n\nmisc_screening_details\n\n\n\nUnspecified\n\n\n\n\nSection: Extraction\n\n\n\nEntities to extract\n\n\nentities_to_extract\n\n\n\nThese are listed and defined in extraction details.\n\n\n\n\n\nExtraction stages\n\n\nextraction_stages\n\n\n\nThe data extraction will be completed in stages. In the first stage, CA will complete a pass of the collection using our initial entities to extract document. The challenges are discussed and the entities are revised.\n\n\n\n\n\nExtractor instructions\n\n\nextractor_instructions\n\n\n\nSee extraction details.\n\n\n\n\n\nExtractor blinding\n\n\nextractor_blinding\n\n\n\nBlinding was not used.\n\n\n\n\n\nExtraction reliability\n\n\nextraction_reliability\n\n\n\nCA will perform extractions; TE will verify extractions for quality assurance.\n\n\n\n\n\nExtraction reconciliation procedure\n\n\nextraction_reconciliation_procedure\n\n\n\nDiscussion and joint decision for studies where extraction proves to be challenging and issues of interpretation arise.\n\n\n\n\n\nExtraction procedure justification\n\n\nextraction_procedure_justification\n\n\n\nThese are documented in the extraction details.\n\n\n\n\n\nData management and sharing\n\n\nextraction_data_management_and_sharing\n\n\n\nWe retain the information of the studies in shared bibtex files, extraction data will be stored in ascii data files (.bibtex), and the parser for reading the data from .bibtex files to R for the analysis will be available (as quarto/markdown/R files), and all these are managed, structured, shared and documented in Github repository according to FAIR principles.\n\n\n\n\n\nMiscellaneous extraction details\n\n\nmisc_extraction_details\n\n\n\nNA\n\n\n\n\nSection: Synthesis and Quality Assessment\n\n\n\nPlanned data transformations\n\n\nplanned_data_transformations\n\n\n\nFor regression studies, we convert all metrics to Pearson correlation coefficients. For classification studies, we convert the outcomes of classification to Matthews Correlation Coefficient (MCC) from the precision, accuracy, specificity, F1 scores. Alternatively, we use Cohen’s kappa for multiple classes.\n\n\n\n\n\nMissing data\n\n\nmissing_data\n\n\n\nIf no main outcome variables are available, we exclude the study.\n\n\n\n\n\nData validation\n\n\ndata_validation\n\n\n\nNone planned beyond the staged approached already documented in extraction process.\n\n\n\n\n\nQuality assessment\n\n\nquality_assessment\n\n\n\nNot all the bias assessment tools for clinical studies are relevant for our purposes, we adapt the overall approached advocated in [Higgins et al. (2011)] (https://doi.org/10.1136/bmj.d5928).\n\n\n\n\n\nSynthesis plan\n\n\nsynthesis_plan\n\n\n\nWe analyse regression and classification studies separately, and depending on the quantity of the studies forming suitable sub-groupings based on techniques, materials or music collections/genres, we may further synthesise the results across groupings that are formed along these subsets.\n\n\n\n\n\nCriteria for conclusions / inference criteria\n\n\ncriteria_for_conclusions\n\n\n\nNA\n\n\n\n\n\nSynthesist masking\n\n\nsynthesis_masking\n\n\n\nNA\n\n\n\n\n\nSynthesis reliability\n\n\nsynthesis_reliability\n\n\n\nNA\n\n\n\n\n\nSynthesis reconciliation procedure\n\n\nsynthesis_reconciliation_procedure\n\n\n\nNA\n\n\n\n\n\nPublication bias analyses\n\n\npublication_bias\n\n\n\nWe utilise Egger’s test to assess the publication bias and potentially correct the effect size bias by selecting 10% most precise effect sizes as recommended by Van Aert, Wicherts, & Van Assen (2019).\n\n\n\n\n\nSensitivity analyses / robustness checks\n\n\nsensitivity_analysis\n\n\n\nWithin regression and classificiation tasks, we will carry out sensitivity analysis using sub-groups of studied based on type of models, and the type of journal the studies were published in.\n\n\n\n\n\nSynthesis procedure justification\n\n\nsynthesis_procedure_justification\n\n\n\nWe share our justification of the synthesis and the subsetting carried out in the manuscript but we have not formulated these in advance except for synthesizing classiciation and regression approaches separately and creating subsets within these approaches according to techniques and datasets utilised.\n\n\n\n\n\nSynthesis data management and sharing\n\n\nsynthesis_data_management_and_sharing\n\n\n\nWe share the data, procedures, definitions, the analysis scripts with the outcomes as R code in Quarto notes at Github.\n\n\n\n\n\nMiscellaneous synthesis details\n\n\nmisc_synthesis_details\n\n\n\nUnspecified"
+  },
+  {
+    "objectID": "preregistration/preregistration.html#references",
+    "href": "preregistration/preregistration.html#references",
+    "title": "metaMER",
+    "section": "References",
+    "text": "References\n\nHiggins, J. P. T., Altman, D. G., Gøtzsche, P. C., Jüni, P., Moher, D., Oxman, A. D., Savović, J., Schulz, K. F., Weeks, L., & Sterne, J. A. C. (2011). The Cochrane Collaboration tool for assessing risk of bias in randomised trials. BMJ, 343. https://www.bmj.com/content/343/bmj.d5928\nPanda, R., Malheiro, R., & Paiva, R. P. (2020). Audio features for music emotion recognition: a survey. IEEE Transactions on Affective Computing, 14(1), 68-88. https://doi.org/10.1109/TAFFC.2020.3032373\nShamseer, L., Moher, D., Clarke, M., Ghersi, D., Liberati, A., Petticrew, M., Shekelle, P., & Stewart, L. A. (2015). Preferred reporting items for systematic review and meta-analysis protocols (PRISMA-P) 2015: elaboration and explanation. BMJ, 349. https://www.bmj.com/content/349/bmj.g7647"
+  },
+  {
+    "objectID": "analysis/analysis.html",
+    "href": "analysis/analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.\n\n\n\nUpdate 2024-06-19\nCA TODO: find better way to read in functions\n\n\nrequire(here)\n\nLoading required package: here\n\n\nhere() starts at /Users/lqbn73/Dropbox/computational/R/metaMER\n\nsource(here::here('R/build-df.R'))\nsource(here::here('R/format-study-results.R'))\nsource(here::here('R/parse-model-output.R'))\n\n\nCA ToDo: Check the warning reported here\n\n\n# get metaMER df:\nmeta_df &lt;- get_metaMER_df(path_2_studies = here::here('studies'))\n\nWarning in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,\n: EOF within quoted string\n\n\nWarning in readLines(paste0(path_2_studies, \"/bibtex_fields.txt\")): incomplete\nfinal line found on\n'/Users/lqbn73/Dropbox/computational/R/metaMER/studies/bibtex_fields.txt'\n\n# get included studies\nincluded_studies &lt;- meta_df[which(\n  !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |&gt; \n  dplyr::tibble()\n\n\n\n\n# get studies re-coded (currently identifiable by presence of bind_field.)\nrecoded_studies &lt;- included_studies[which(stringr::str_detect(\n  included_studies$model_rate_emotion_values,\n                                     'bind_field')),] \n\nMaybe limit the verbosity of get_study_results below\n\nmetaMER_results &lt;-\ndo.call(\n  rbind,\n    lapply(1:nrow(recoded_studies),\n       function(x) get_study_results(recoded_studies[x,])\n       )\n) \n\n [1] 0.9879 0.9740 0.9723 0.9788 0.9682 0.9576 0.9757 0.9563 0.9417 0.9877\n[11] 0.9741 0.9722 0.9787 0.9664 0.9566 0.9741 0.9536 0.9392 0.9878 0.9738\n[21] 0.9721 0.9793 0.9674 0.9575 0.9760 0.9557 0.9399 0.9877 0.9740 0.9725\n[31] 0.9789 0.9669 0.9570 0.9750 0.9546 0.9395 0.9960 0.9913 0.9908 0.9929\n[41] 0.9895 0.9858 0.9920 0.9855 0.9805 0.4000 0.8700 9.2300 0.7100 1.0500\n[51] 1.4500 0.9200 1.4200 1.9500 0.0121 0.0260 0.0277 0.0212 0.0318 0.0424\n[61] 0.0243 0.0437 0.0583\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n              X1               X2\n1 classification    accuracy.mean\n2 classification   precision.mean\n3 classification sensitivity.mean\n4 classification          f1.mean\n5 classification specificity.mean\n6 classification         fpr.mean\n7 classification       error.mean\n\n\nMismatch in input lengths.\n\n\n[1] 0.887500 0.724750 0.830000 0.696750 0.873075       NA 0.806850       NA\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n              X1             X2\n1 classification  accuracy.mean\n2 classification        f1.mean\n3 classification precision.mean\n4 classification    recall.mean\n [1] 0.293 0.260 0.538 0.625 0.080 0.080 0.060 0.060 0.080 0.070 0.050 0.050\n[13] 0.120 0.120 0.060 0.060 0.584 0.592\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1                   X2\n1 valence              r2.mean\n2 arousal              r2.mean\n3 valence vector distance.mean\n4 valence   vector distance.sd\n5 arousal vector distance.mean\n6 arousal   vector distance.sd\n7      av vector distance.mean\n8      av   vector distance.sd\n9      av  classification.mean\n [1] 0.85 0.64 0.62 0.80 0.73 0.30 0.40 0.64 0.36 0.22 0.23 0.25 0.14 0.16 0.17\n[16] 0.14 0.77 0.54 0.60 0.77 0.62 0.17 0.44 0.64 0.35 0.21 0.28 0.27 0.21 0.17\n[31] 0.14 0.14 0.91 0.76 0.81 0.90 0.87 0.50 0.70 0.87 0.37 0.21 0.29 0.27 0.14\n[46] 0.12 0.14 0.16\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n                X1      X2\n1          valence   r2.r2\n2          valence   q2.q2\n3          valence pc1.pc1\n4          valence pc2.pc2\n5  tension arousal   r2.r2\n6  tension arousal   q2.q2\n7  tension arousal pc1.pc1\n8  tension arousal pc2.pc2\n9   energy arousal   r2.r2\n10  energy arousal   q2.q2\n11  energy arousal pc1.pc1\n12  energy arousal pc2.pc2\n [1] 0.146 0.149 0.144 0.147 0.150 0.144 0.172 0.179 0.165 0.156 0.156 0.151\n[13] 0.156 0.157 0.150 0.169 0.172 0.158 0.785 0.775 0.793 0.781 0.770 0.793\n[25] 0.732 0.730 0.754 0.601 0.600 0.630 0.612 0.585 0.634 0.570 0.551 0.609\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1        X2\n1 arousal rmse.rmse\n2 valence rmse.rmse\n3 arousal       r.r\n4 valence       r.r\n[1] 0.629 0.147 0.371 0.214\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1        X2\n1 arousal     r2.r2\n2 arousal rmse.rmse\n3 valence     r2.r2\n4 valence rmse.rmse\n\nmetaMER_results |&gt; dplyr::tibble()\n\n# A tibble: 177 × 10\n   citekey       library_id  model_id feature_id data_id experiment_id dimension\n   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;    \n 1 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…\n 2 agarwal2021an not specif… SVR KMB… karaoke    ismir2… 1             classifi…\n 3 agarwal2021an not specif… SVR KMB… lyrics     ismir2… 1             classifi…\n 4 agarwal2021an not specif… SVR KMB… song       NJUV1   1             classifi…\n 5 agarwal2021an not specif… SVR KMB… karaoke    NJUV1   1             classifi…\n 6 agarwal2021an not specif… SVR KMB… lyrics     NJUV1   1             classifi…\n 7 agarwal2021an not specif… SVR KMB… song       hindi   1             classifi…\n 8 agarwal2021an not specif… SVR KMB… karaoke    hindi   1             classifi…\n 9 agarwal2021an not specif… SVR KMB… lyrics     hindi   1             classifi…\n10 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…\n# ℹ 167 more rows\n# ℹ 3 more variables: measure &lt;chr&gt;, values &lt;dbl&gt;, statistic &lt;chr&gt;\n\n\n\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))\n\n\n\n\n\n\n\n\n\n\n\n\n\narousal\nav\nclassification\nenergy arousal\ntension arousal\nvalence\n\n\n\n\nagarwal2021an\n0\n0\n63\n0\n0\n0\n\n\nalvarez2023ri\n0\n0\n8\n0\n0\n0\n\n\nbai2017mu\n6\n6\n0\n0\n0\n6\n\n\nwang2022cr\n0\n0\n0\n16\n16\n16\n\n\nxie2020mu\n18\n0\n0\n0\n0\n18\n\n\nxu2021us\n2\n0\n0\n0\n0\n2\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$model_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\nff\npcr\npls\nrandom forest\nrandom forest regression\nSVR KMBSO\n\n\n\n\nagarwal2021an\n0\n0\n0\n0\n0\n63\n\n\nalvarez2023ri\n0\n0\n0\n8\n0\n0\n\n\nbai2017mu\n0\n0\n0\n0\n18\n0\n\n\nwang2022cr\n0\n0\n48\n0\n0\n0\n\n\nxie2020mu\n12\n12\n12\n0\n0\n0\n\n\nxu2021us\n0\n0\n0\n0\n4\n0\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$feature_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\naudio\nbaseline features\nbaseline features and stc\nkaraoke\nlyrics\nmixed\nReliefF\nsong\nspotify\nstc\n\n\n\n\nagarwal2021an\n0\n0\n0\n21\n21\n0\n0\n21\n0\n0\n\n\nalvarez2023ri\n0\n0\n0\n0\n0\n0\n0\n0\n8\n0\n\n\nbai2017mu\n0\n0\n0\n0\n0\n0\n18\n0\n0\n0\n\n\nwang2022cr\n0\n0\n0\n0\n0\n48\n0\n0\n0\n0\n\n\nxie2020mu\n0\n12\n12\n0\n0\n0\n0\n0\n0\n12\n\n\nxu2021us\n4\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n100songs\nacousticBrainz\nchineseClassicalEnsembles\nchineseClassicalSolo\nhindi\nismir2012\nMediaEval\nNJUV1\npsic3839\nspotify\nwesternClassicalEnsembles\nwesternClassicalSolo\n\n\n\n\nagarwal2021an\n0\n0\n0\n0\n21\n21\n0\n21\n0\n0\n0\n0\n\n\nalvarez2023ri\n0\n4\n0\n0\n0\n0\n0\n0\n0\n4\n0\n0\n\n\nbai2017mu\n0\n0\n0\n0\n0\n0\n18\n0\n0\n0\n0\n0\n\n\nwang2022cr\n0\n0\n12\n12\n0\n0\n0\n0\n0\n0\n12\n12\n\n\nxie2020mu\n36\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\nxu2021us\n0\n0\n0\n0\n0\n0\n0\n0\n4\n0\n0\n0\n\n\n\n\n\n\n\nIssue 1: We need unique identifiers for each input component (combine: study + model + feature + data + experiment that would have be unique id)\nIssue 2: We stimulus_N\nIssue 3: measure vs statistic?\nIssue 4: We need to classify the modelling techniques into fewer number of techniques\nIssue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with str_replace)\n\n\n\n\n\n\nlibrary(dmetar)\nlibrary(tidyverse)\nlibrary(meta)\n\n# select regression studies with r2\ntmp &lt;- dplyr::filter(metaMER_results,dimension==\"valence\" & measure==\"r2\")\n#sqrt(tmp$values) # convert from R^2 to r\ntmp$stimulus_n &lt;- 100 # ad-hoc for now\n\nm.cor &lt;- metacor(cor = sqrt(values), \n                 n = stimulus_n,\n                 studlab = citekey,\n                 data = tmp,\n                 fixed = FALSE,\n                 random = TRUE,\n                 sm = \"ZCOR\",\n                 method.tau = \"REML\",# could be PM (Paule-Mandel) as well\n                 method.random.ci = \"HK\", \n                 title = \"MER: Regression: Valence: All\")\n\nprint(m.cor)\n\nReview:     MER: Regression: Valence: All\n\nNumber of studies: k = 7\nNumber of observations: o = 700\n\n                        COR           95%-CI    t p-value\nRandom effects model 0.6902 [0.3161; 0.8786] 3.98  0.0073\n\nQuantifying heterogeneity:\n tau^2 = 0.3072 [0.1215; 1.5294]; tau = 0.5543 [0.3486; 1.2367]\n I^2 = 96.8% [95.0%; 97.9%]; H = 5.55 [4.49; 6.85]\n\nTest of heterogeneity:\n      Q d.f.  p-value\n 184.80    6 &lt; 0.0001\n\nDetails on meta-analytical method:\n- Inverse variance method\n- Restricted maximum-likelihood estimator for tau^2\n- Q-Profile method for confidence interval of tau^2 and tau\n- Hartung-Knapp adjustment for random effects model (df = 6)\n- Fisher's z transformation of correlations\n\n\n\n\n\n\n\n\nmeta &lt;- metagen(values, sqrt(values), \n                data = tmp, \n                studlab = tmp$citekey, \n                comb.fixed = FALSE, \n                method.tau = \"PM\")\nfind.outliers(meta)\n\nNo outliers detected (random-effects model).\n\ninfan &lt;- InfluenceAnalysis(meta)\n\n[===========================================================================] DONE \n\nprint(eggers.test(meta))\n\nWarning in eggers.test(meta): Your meta-analysis contains k = 7 studies.\nEgger's test may lack the statistical power to detect bias when the number of\nstudies is small (i.e., k&lt;10).\n\n\nEggers' test of the intercept \n============================= \n\n intercept      95% CI      t           p\n     1.081 0.89 - 1.27 11.048 0.000105785\n\nEggers' test indicates the presence of funnel plot asymmetry. \n\n\n\n\n\n\nmeta &lt;- metagen(values, sqrt(values), # Fix the TE.se \n                data = tmp, \n                studlab = tmp$citekey, \n                comb.fixed = FALSE, \n                method.tau = \"PM\")\n\nsubgroup.analysis.mixed.effects(x = meta, \n                                subgroups = tmp$model_id)\n\nSubgroup Results:\n--------------\n                         k        TE      seTE   LLCI  ULCI         p         Q\npls                      4 0.3245200 0.2848333 -0.234 0.883 0.2545642 0.9119199\nrandom forest regression 3 0.1471014 0.2214357 -0.287 0.581 0.5064937 0.2926959\n                         I2 I2.lower I2.upper\npls                       0        0     0.85\nrandom forest regression  0        0     0.90\n\nTest for subgroup differences (mixed/fixed-effects (plural) model):\n--------------\n                      Q df         p\nBetween groups 0.241829  1 0.6228882\n\n- Total number of studies included in subgroup analysis:  7\n- Tau estimator used for within-group pooling:  PM\n\n\n\n\n\n\nplot(m.cor)\n\n\n\n\n\n\n\nplot(eggers.test(meta))\n\nWarning in eggers.test(meta): Your meta-analysis contains k = 7 studies.\nEgger's test may lack the statistical power to detect bias when the number of\nstudies is small (i.e., k&lt;10)."
+  },
+  {
+    "objectID": "analysis/analysis.html#read-annotated-data",
+    "href": "analysis/analysis.html#read-annotated-data",
+    "title": "Analysis",
+    "section": "",
+    "text": "Update 2024-06-19\nCA TODO: find better way to read in functions\n\n\nrequire(here)\n\nLoading required package: here\n\n\nhere() starts at /Users/lqbn73/Dropbox/computational/R/metaMER\n\nsource(here::here('R/build-df.R'))\nsource(here::here('R/format-study-results.R'))\nsource(here::here('R/parse-model-output.R'))\n\n\nCA ToDo: Check the warning reported here\n\n\n# get metaMER df:\nmeta_df &lt;- get_metaMER_df(path_2_studies = here::here('studies'))\n\nWarning in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,\n: EOF within quoted string\n\n\nWarning in readLines(paste0(path_2_studies, \"/bibtex_fields.txt\")): incomplete\nfinal line found on\n'/Users/lqbn73/Dropbox/computational/R/metaMER/studies/bibtex_fields.txt'\n\n# get included studies\nincluded_studies &lt;- meta_df[which(\n  !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |&gt; \n  dplyr::tibble()\n\n\n\n\n# get studies re-coded (currently identifiable by presence of bind_field.)\nrecoded_studies &lt;- included_studies[which(stringr::str_detect(\n  included_studies$model_rate_emotion_values,\n                                     'bind_field')),] \n\nMaybe limit the verbosity of get_study_results below\n\nmetaMER_results &lt;-\ndo.call(\n  rbind,\n    lapply(1:nrow(recoded_studies),\n       function(x) get_study_results(recoded_studies[x,])\n       )\n) \n\n [1] 0.9879 0.9740 0.9723 0.9788 0.9682 0.9576 0.9757 0.9563 0.9417 0.9877\n[11] 0.9741 0.9722 0.9787 0.9664 0.9566 0.9741 0.9536 0.9392 0.9878 0.9738\n[21] 0.9721 0.9793 0.9674 0.9575 0.9760 0.9557 0.9399 0.9877 0.9740 0.9725\n[31] 0.9789 0.9669 0.9570 0.9750 0.9546 0.9395 0.9960 0.9913 0.9908 0.9929\n[41] 0.9895 0.9858 0.9920 0.9855 0.9805 0.4000 0.8700 9.2300 0.7100 1.0500\n[51] 1.4500 0.9200 1.4200 1.9500 0.0121 0.0260 0.0277 0.0212 0.0318 0.0424\n[61] 0.0243 0.0437 0.0583\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n              X1               X2\n1 classification    accuracy.mean\n2 classification   precision.mean\n3 classification sensitivity.mean\n4 classification          f1.mean\n5 classification specificity.mean\n6 classification         fpr.mean\n7 classification       error.mean\n\n\nMismatch in input lengths.\n\n\n[1] 0.887500 0.724750 0.830000 0.696750 0.873075       NA 0.806850       NA\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n              X1             X2\n1 classification  accuracy.mean\n2 classification        f1.mean\n3 classification precision.mean\n4 classification    recall.mean\n [1] 0.293 0.260 0.538 0.625 0.080 0.080 0.060 0.060 0.080 0.070 0.050 0.050\n[13] 0.120 0.120 0.060 0.060 0.584 0.592\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1                   X2\n1 valence              r2.mean\n2 arousal              r2.mean\n3 valence vector distance.mean\n4 valence   vector distance.sd\n5 arousal vector distance.mean\n6 arousal   vector distance.sd\n7      av vector distance.mean\n8      av   vector distance.sd\n9      av  classification.mean\n [1] 0.85 0.64 0.62 0.80 0.73 0.30 0.40 0.64 0.36 0.22 0.23 0.25 0.14 0.16 0.17\n[16] 0.14 0.77 0.54 0.60 0.77 0.62 0.17 0.44 0.64 0.35 0.21 0.28 0.27 0.21 0.17\n[31] 0.14 0.14 0.91 0.76 0.81 0.90 0.87 0.50 0.70 0.87 0.37 0.21 0.29 0.27 0.14\n[46] 0.12 0.14 0.16\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n                X1      X2\n1          valence   r2.r2\n2          valence   q2.q2\n3          valence pc1.pc1\n4          valence pc2.pc2\n5  tension arousal   r2.r2\n6  tension arousal   q2.q2\n7  tension arousal pc1.pc1\n8  tension arousal pc2.pc2\n9   energy arousal   r2.r2\n10  energy arousal   q2.q2\n11  energy arousal pc1.pc1\n12  energy arousal pc2.pc2\n [1] 0.146 0.149 0.144 0.147 0.150 0.144 0.172 0.179 0.165 0.156 0.156 0.151\n[13] 0.156 0.157 0.150 0.169 0.172 0.158 0.785 0.775 0.793 0.781 0.770 0.793\n[25] 0.732 0.730 0.754 0.601 0.600 0.630 0.612 0.585 0.634 0.570 0.551 0.609\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1        X2\n1 arousal rmse.rmse\n2 valence rmse.rmse\n3 arousal       r.r\n4 valence       r.r\n[1] 0.629 0.147 0.371 0.214\n[1] \"library_id\"    \"model_id\"      \"feature_id\"    \"data_id\"      \n[5] \"experiment_id\"\n       X1        X2\n1 arousal     r2.r2\n2 arousal rmse.rmse\n3 valence     r2.r2\n4 valence rmse.rmse\n\nmetaMER_results |&gt; dplyr::tibble()\n\n# A tibble: 177 × 10\n   citekey       library_id  model_id feature_id data_id experiment_id dimension\n   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;    \n 1 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…\n 2 agarwal2021an not specif… SVR KMB… karaoke    ismir2… 1             classifi…\n 3 agarwal2021an not specif… SVR KMB… lyrics     ismir2… 1             classifi…\n 4 agarwal2021an not specif… SVR KMB… song       NJUV1   1             classifi…\n 5 agarwal2021an not specif… SVR KMB… karaoke    NJUV1   1             classifi…\n 6 agarwal2021an not specif… SVR KMB… lyrics     NJUV1   1             classifi…\n 7 agarwal2021an not specif… SVR KMB… song       hindi   1             classifi…\n 8 agarwal2021an not specif… SVR KMB… karaoke    hindi   1             classifi…\n 9 agarwal2021an not specif… SVR KMB… lyrics     hindi   1             classifi…\n10 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…\n# ℹ 167 more rows\n# ℹ 3 more variables: measure &lt;chr&gt;, values &lt;dbl&gt;, statistic &lt;chr&gt;"
+  },
+  {
+    "objectID": "analysis/analysis.html#read-annotated-data-1",
+    "href": "analysis/analysis.html#read-annotated-data-1",
+    "title": "Analysis",
+    "section": "Read annotated data",
+    "text": "Read annotated data\nlength(unique(metaMER_results$citekey))\n[1] 6\nlength(unique(metaMER_results$library_id))\n[1] 5\nlength(unique(metaMER_results$model_id))\n[1] 6\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))\n\n\n\n\n\n\n\n\n\n\n\n\n\narousal\nav\nclassification\nenergy arousal\ntension arousal\nvalence\n\n\n\n\nagarwal2021an\n0\n0\n63\n0\n0\n0\n\n\nalvarez2023ri\n0\n0\n8\n0\n0\n0\n\n\nbai2017mu\n6\n6\n0\n0\n0\n6\n\n\nwang2022cr\n0\n0\n0\n16\n16\n16\n\n\nxie2020mu\n18\n0\n0\n0\n0\n18\n\n\nxu2021us\n2\n0\n0\n0\n0\n2\n\n\n\nprint(knitr::kable(table(metaMER_results$model_id)))\n\n\n\nVar1\nFreq\n\n\n\n\nff\n12\n\n\npcr\n12\n\n\npls\n60\n\n\nrandom forest\n8\n\n\nrandom forest regression\n22\n\n\nSVR KMBSO\n63\n\n\n\nprint(knitr::kable(table(metaMER_results$feature_id)))\n\n\n\nVar1\nFreq\n\n\n\n\naudio\n4\n\n\nbaseline features\n12\n\n\nbaseline features and stc\n12\n\n\nkaraoke\n21\n\n\nlyrics\n21\n\n\nmixed\n48\n\n\nReliefF\n18\n\n\nsong\n21\n\n\nspotify\n8\n\n\nstc\n12\n\n\n\nprint(knitr::kable(table(metaMER_results$data_id)))\n\n\n\nVar1\nFreq\n\n\n\n\n100songs\n36\n\n\nacousticBrainz\n4\n\n\nchineseClassicalEnsembles\n12\n\n\nchineseClassicalSolo\n12\n\n\nhindi\n21\n\n\nismir2012\n21\n\n\nMediaEval\n18\n\n\nNJUV1\n21\n\n\npsic3839\n4\n\n\nspotify\n4\n\n\nwesternClassicalEnsembles\n12\n\n\nwesternClassicalSolo\n12\n\n\n\nWe need to identify the core metrics:\n\ncorrelation coefficient (obtained from \\(R^2\\)) for regression studies.\nMatthew’s correlation coefficient for classification studies.\nn (we use STIMULUS_N rather than participant n)\nSubsetting base on model and music qualities"
+  },
+  {
+    "objectID": "analysis/analysis.html#analyse",
+    "href": "analysis/analysis.html#analyse",
+    "title": "Analysis",
+    "section": "Analyse",
+    "text": "Analyse\n\nIssue 1: We need unique identifiers for each input component (study + model + feature + data + experiment)\nIssue 2: We stimulus N\nIssue 3: measure vs statistic?\nIssue 4: We need to classify the modelling techniques into few\nIssue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., )\n\n\nRegression studies\n\nValence\n\nlibrary(dmetar)\nlibrary(tidyverse)\nlibrary(meta)\n\n# select regression studies with r2\ntmp &lt;- dplyr::filter(metaMER_results,dimension==\"valence\" & measure==\"r2\")\nsqrt(tmp$values) # convert from R^2 to r\n\ntmp$stimulus_n &lt;- 100 # ad-hoc for now\n\n\n\n\nm.cor &lt;- metacor(cor = sqrt(values), \n                 n = stimulus_n,\n                 studlab = citekey,\n                 data = tmp,\n                 fixed = FALSE,\n                 random = TRUE,\n                 method.tau = \"REML\",\n                 method.random.ci = \"HK\",\n                 title = \"MER: Regression: Valence: All\")\n\nprint(m.cor)\n\n## sub-group analysis (based on model type)\nmeta &lt;- metagen(values, values, \n                data = tmp, \n                studlab = tmp$citekey, \n                comb.fixed = FALSE, \n                method.tau = \"PM\")\n\nsubgroup.analysis.mixed.effects(x = meta, \n                                subgroups = tmp$model_id)\n\n## explore various qualities\nfind.outliers(meta)\ninfan &lt;- InfluenceAnalysis(meta)\nprint(eggers.test(meta))\n\nplot(m.cor)"
+  },
+  {
+    "objectID": "analysis/analysis.html#visualise",
+    "href": "analysis/analysis.html#visualise",
+    "title": "Analysis",
+    "section": "",
+    "text": "plot(m.cor)\n\n\n\n\n\n\n\nplot(eggers.test(meta))\n\nWarning in eggers.test(meta): Your meta-analysis contains k = 7 studies.\nEgger's test may lack the statistical power to detect bias when the number of\nstudies is small (i.e., k&lt;10)."
+  },
+  {
+    "objectID": "analysis/analysis.html#summarise-annotated-data",
+    "href": "analysis/analysis.html#summarise-annotated-data",
+    "title": "Analysis",
+    "section": "",
+    "text": "print(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))\n\n\n\n\n\n\n\n\n\n\n\n\n\narousal\nav\nclassification\nenergy arousal\ntension arousal\nvalence\n\n\n\n\nagarwal2021an\n0\n0\n63\n0\n0\n0\n\n\nalvarez2023ri\n0\n0\n8\n0\n0\n0\n\n\nbai2017mu\n6\n6\n0\n0\n0\n6\n\n\nwang2022cr\n0\n0\n0\n16\n16\n16\n\n\nxie2020mu\n18\n0\n0\n0\n0\n18\n\n\nxu2021us\n2\n0\n0\n0\n0\n2\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$model_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\nff\npcr\npls\nrandom forest\nrandom forest regression\nSVR KMBSO\n\n\n\n\nagarwal2021an\n0\n0\n0\n0\n0\n63\n\n\nalvarez2023ri\n0\n0\n0\n8\n0\n0\n\n\nbai2017mu\n0\n0\n0\n0\n18\n0\n\n\nwang2022cr\n0\n0\n48\n0\n0\n0\n\n\nxie2020mu\n12\n12\n12\n0\n0\n0\n\n\nxu2021us\n0\n0\n0\n0\n4\n0\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$feature_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\naudio\nbaseline features\nbaseline features and stc\nkaraoke\nlyrics\nmixed\nReliefF\nsong\nspotify\nstc\n\n\n\n\nagarwal2021an\n0\n0\n0\n21\n21\n0\n0\n21\n0\n0\n\n\nalvarez2023ri\n0\n0\n0\n0\n0\n0\n0\n0\n8\n0\n\n\nbai2017mu\n0\n0\n0\n0\n0\n0\n18\n0\n0\n0\n\n\nwang2022cr\n0\n0\n0\n0\n0\n48\n0\n0\n0\n0\n\n\nxie2020mu\n0\n12\n12\n0\n0\n0\n0\n0\n0\n12\n\n\nxu2021us\n4\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\n\nprint(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n100songs\nacousticBrainz\nchineseClassicalEnsembles\nchineseClassicalSolo\nhindi\nismir2012\nMediaEval\nNJUV1\npsic3839\nspotify\nwesternClassicalEnsembles\nwesternClassicalSolo\n\n\n\n\nagarwal2021an\n0\n0\n0\n0\n21\n21\n0\n21\n0\n0\n0\n0\n\n\nalvarez2023ri\n0\n4\n0\n0\n0\n0\n0\n0\n0\n4\n0\n0\n\n\nbai2017mu\n0\n0\n0\n0\n0\n0\n18\n0\n0\n0\n0\n0\n\n\nwang2022cr\n0\n0\n12\n12\n0\n0\n0\n0\n0\n0\n12\n12\n\n\nxie2020mu\n36\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n\n\nxu2021us\n0\n0\n0\n0\n0\n0\n0\n0\n4\n0\n0\n0"
+  },
+  {
+    "objectID": "analysis/analysis.html#analysis-notes",
+    "href": "analysis/analysis.html#analysis-notes",
+    "title": "Analysis",
+    "section": "",
+    "text": "Issue 1: We need unique identifiers for each input component (combine: study + model + feature + data + experiment that would have be unique id)\nIssue 2: We stimulus_N\nIssue 3: measure vs statistic?\nIssue 4: We need to classify the modelling techniques into fewer number of techniques\nIssue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with str_replace)\n\n\n\n\n\n\nlibrary(dmetar)\nlibrary(tidyverse)\nlibrary(meta)\n\n# select regression studies with r2\ntmp &lt;- dplyr::filter(metaMER_results,dimension==\"valence\" & measure==\"r2\")\n#sqrt(tmp$values) # convert from R^2 to r\ntmp$stimulus_n &lt;- 100 # ad-hoc for now\n\nm.cor &lt;- metacor(cor = sqrt(values), \n                 n = stimulus_n,\n                 studlab = citekey,\n                 data = tmp,\n                 fixed = FALSE,\n                 random = TRUE,\n                 sm = \"ZCOR\",\n                 method.tau = \"REML\",# could be PM (Paule-Mandel) as well\n                 method.random.ci = \"HK\", \n                 title = \"MER: Regression: Valence: All\")\n\nprint(m.cor)\n\nReview:     MER: Regression: Valence: All\n\nNumber of studies: k = 7\nNumber of observations: o = 700\n\n                        COR           95%-CI    t p-value\nRandom effects model 0.6902 [0.3161; 0.8786] 3.98  0.0073\n\nQuantifying heterogeneity:\n tau^2 = 0.3072 [0.1215; 1.5294]; tau = 0.5543 [0.3486; 1.2367]\n I^2 = 96.8% [95.0%; 97.9%]; H = 5.55 [4.49; 6.85]\n\nTest of heterogeneity:\n      Q d.f.  p-value\n 184.80    6 &lt; 0.0001\n\nDetails on meta-analytical method:\n- Inverse variance method\n- Restricted maximum-likelihood estimator for tau^2\n- Q-Profile method for confidence interval of tau^2 and tau\n- Hartung-Knapp adjustment for random effects model (df = 6)\n- Fisher's z transformation of correlations"
+  },
+  {
+    "objectID": "analysis/analysis.html#sub-group-analysis-based-on-model-type",
+    "href": "analysis/analysis.html#sub-group-analysis-based-on-model-type",
+    "title": "Analysis",
+    "section": "",
+    "text": "meta &lt;- metagen(values, sqrt(values), # Fix the TE.se \n                data = tmp, \n                studlab = tmp$citekey, \n                comb.fixed = FALSE, \n                method.tau = \"PM\")\n\nsubgroup.analysis.mixed.effects(x = meta, \n                                subgroups = tmp$model_id)\n\nSubgroup Results:\n--------------\n                         k        TE      seTE   LLCI  ULCI         p         Q\npls                      4 0.3245200 0.2848333 -0.234 0.883 0.2545642 0.9119199\nrandom forest regression 3 0.1471014 0.2214357 -0.287 0.581 0.5064937 0.2926959\n                         I2 I2.lower I2.upper\npls                       0        0     0.85\nrandom forest regression  0        0     0.90\n\nTest for subgroup differences (mixed/fixed-effects (plural) model):\n--------------\n                      Q df         p\nBetween groups 0.241829  1 0.6228882\n\n- Total number of studies included in subgroup analysis:  7\n- Tau estimator used for within-group pooling:  PM"
+  },
+  {
+    "objectID": "analysis/analysis.html#explore-various-qualities",
+    "href": "analysis/analysis.html#explore-various-qualities",
+    "title": "Analysis",
+    "section": "explore various qualities",
+    "text": "explore various qualities\nfind.outliers(meta) infan &lt;- InfluenceAnalysis(meta) print(eggers.test(meta))\nplot(m.cor)\n\n## Visualise\n\n::: {.cell}\n\n```{.r .cell-code}\n#\n:::"
+  },
+  {
+    "objectID": "analysis/analysis.html#explore-qualities",
+    "href": "analysis/analysis.html#explore-qualities",
+    "title": "Analysis",
+    "section": "",
+    "text": "meta &lt;- metagen(values, sqrt(values), \n                data = tmp, \n                studlab = tmp$citekey, \n                comb.fixed = FALSE, \n                method.tau = \"PM\")\nfind.outliers(meta)\n\nNo outliers detected (random-effects model).\n\ninfan &lt;- InfluenceAnalysis(meta)\n\n[===========================================================================] DONE \n\nprint(eggers.test(meta))\n\nWarning in eggers.test(meta): Your meta-analysis contains k = 7 studies.\nEgger's test may lack the statistical power to detect bias when the number of\nstudies is small (i.e., k&lt;10).\n\n\nEggers' test of the intercept \n============================= \n\n intercept      95% CI      t           p\n     1.081 0.89 - 1.27 11.048 0.000105785\n\nEggers' test indicates the presence of funnel plot asymmetry."
+  }
+]
