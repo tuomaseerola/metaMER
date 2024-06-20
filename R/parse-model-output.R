@@ -11,19 +11,17 @@ parse_model_output <- function(x) {
   model_statistic <- stringr::str_split(model_names, '\\.')
   model_statistic <- unlist(lapply(model_statistic, function(x) x[2]))
   # get values
-  model_values <- as.numeric(x)
+  model_values <- as.numeric(t(x))
   # names(model_values) <- 'score'
-  print(model_values)
+  #print(model_values)
   # get additional attributes (feature.data.exp)
-  model_attributes <- rownames(x)
-  data.frame(model_attributes)
+  model_attributes <- rep(rownames(x), each = ncol(x))
   # get additional model details
   model_attributes <- data.frame(do.call('rbind', stringr::str_split(model_attributes, '\\.')))
   names(model_attributes) <- c('library_id', 'model_id', 'feature_id', 'data_id', 'experiment_id')
   print(names(model_attributes))
   # split across '_' to 
   model_measures <- data.frame(do.call('rbind', stringr::str_split(colnames(x), '_')))
-  print(model_measures)
   names(model_measures) <- c('dimension', 'measure')
   model_measures_split <- stringr::str_split(model_measures[,'measure'], '\\.')
   model_measures[,'measure'] <- unlist(lapply(model_measures_split, 
@@ -31,8 +29,8 @@ parse_model_output <- function(x) {
   return(data.frame(
     model_attributes, 
     model_measures, 
-    values = model_values,
-    statistic = model_statistic))
+    statistic = model_statistic,
+    values = model_values))
 }
 
 
