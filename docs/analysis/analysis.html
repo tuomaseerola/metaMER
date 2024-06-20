@@ -101,35 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -178,44 +149,716 @@ window.Quarto = {
 <p>This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.</p>
 <section id="read-annotated-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-annotated-data">Read annotated data</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/meta-analysis_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We need to identify the core metrics:</p>
 <ul>
-<li><p><em>correlation coefficient</em> (obtained from <span class="math inline">\(R^2\)</span>) for regression studies.</p></li>
-<li><p><em>Matthew’s correlation coefficient</em> for classification studies.</p></li>
-<li><p>n (we use STIMULUS_N rather than participant n)</p></li>
-<li><p>Subsetting base on model and music qualities</p></li>
+<li>Update 2024-06-19</li>
+<li><label><input type="checkbox">CA TODO: find better way to read in functions</label></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: here</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/lqbn73/Dropbox/computational/R/metaMER</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/build-df.R'</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/format-study-results.R'</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/parse-model-output.R'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul class="task-list">
+<li><label><input type="checkbox">CA ToDo: Check the warning reported here</label></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get metaMER df:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">get_metaMER_df</span>(<span class="at">path_2_studies =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'studies'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in scan(file = file, what = what, sep = sep, quote = quote, dec = dec,
+: EOF within quoted string</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in readLines(paste0(path_2_studies, "/bibtex_fields.txt")): incomplete
+final line found on
+'/Users/lqbn73/Dropbox/computational/R/metaMER/studies/bibtex_fields.txt'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get included studies</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>included_studies <span class="ot">&lt;-</span> meta_df[<span class="fu">which</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="recoded" class="level3">
+<h3 class="anchored" data-anchor-id="recoded">Recoded</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get studies re-coded (currently identifiable by presence of bind_field.)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>recoded_studies <span class="ot">&lt;-</span> included_studies[<span class="fu">which</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  included_studies<span class="sc">$</span>model_rate_emotion_values,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">'bind_field'</span>)),] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Maybe limit the verbosity of <code>get_study_results</code> below</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="ot">&lt;-</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(recoded_studies),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">get_study_results</span>(recoded_studies[x,])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.9879 0.9740 0.9723 0.9788 0.9682 0.9576 0.9757 0.9563 0.9417 0.9877
+[11] 0.9741 0.9722 0.9787 0.9664 0.9566 0.9741 0.9536 0.9392 0.9878 0.9738
+[21] 0.9721 0.9793 0.9674 0.9575 0.9760 0.9557 0.9399 0.9877 0.9740 0.9725
+[31] 0.9789 0.9669 0.9570 0.9750 0.9546 0.9395 0.9960 0.9913 0.9908 0.9929
+[41] 0.9895 0.9858 0.9920 0.9855 0.9805 0.4000 0.8700 9.2300 0.7100 1.0500
+[51] 1.4500 0.9200 1.4200 1.9500 0.0121 0.0260 0.0277 0.0212 0.0318 0.0424
+[61] 0.0243 0.0437 0.0583
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+              X1               X2
+1 classification    accuracy.mean
+2 classification   precision.mean
+3 classification sensitivity.mean
+4 classification          f1.mean
+5 classification specificity.mean
+6 classification         fpr.mean
+7 classification       error.mean</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Mismatch in input lengths.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.887500 0.724750 0.830000 0.696750 0.873075       NA 0.806850       NA
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+              X1             X2
+1 classification  accuracy.mean
+2 classification        f1.mean
+3 classification precision.mean
+4 classification    recall.mean
+ [1] 0.293 0.260 0.538 0.625 0.080 0.080 0.060 0.060 0.080 0.070 0.050 0.050
+[13] 0.120 0.120 0.060 0.060 0.584 0.592
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1                   X2
+1 valence              r2.mean
+2 arousal              r2.mean
+3 valence vector distance.mean
+4 valence   vector distance.sd
+5 arousal vector distance.mean
+6 arousal   vector distance.sd
+7      av vector distance.mean
+8      av   vector distance.sd
+9      av  classification.mean
+ [1] 0.85 0.64 0.62 0.80 0.73 0.30 0.40 0.64 0.36 0.22 0.23 0.25 0.14 0.16 0.17
+[16] 0.14 0.77 0.54 0.60 0.77 0.62 0.17 0.44 0.64 0.35 0.21 0.28 0.27 0.21 0.17
+[31] 0.14 0.14 0.91 0.76 0.81 0.90 0.87 0.50 0.70 0.87 0.37 0.21 0.29 0.27 0.14
+[46] 0.12 0.14 0.16
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+                X1      X2
+1          valence   r2.r2
+2          valence   q2.q2
+3          valence pc1.pc1
+4          valence pc2.pc2
+5  tension arousal   r2.r2
+6  tension arousal   q2.q2
+7  tension arousal pc1.pc1
+8  tension arousal pc2.pc2
+9   energy arousal   r2.r2
+10  energy arousal   q2.q2
+11  energy arousal pc1.pc1
+12  energy arousal pc2.pc2
+ [1] 0.146 0.149 0.144 0.147 0.150 0.144 0.172 0.179 0.165 0.156 0.156 0.151
+[13] 0.156 0.157 0.150 0.169 0.172 0.158 0.785 0.775 0.793 0.781 0.770 0.793
+[25] 0.732 0.730 0.754 0.601 0.600 0.630 0.612 0.585 0.634 0.570 0.551 0.609
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1        X2
+1 arousal rmse.rmse
+2 valence rmse.rmse
+3 arousal       r.r
+4 valence       r.r
+[1] 0.629 0.147 0.371 0.214
+[1] "library_id"    "model_id"      "feature_id"    "data_id"      
+[5] "experiment_id"
+       X1        X2
+1 arousal     r2.r2
+2 arousal rmse.rmse
+3 valence     r2.r2
+4 valence rmse.rmse</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 177 × 10
+   citekey       library_id  model_id feature_id data_id experiment_id dimension
+   &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;    
+ 1 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…
+ 2 agarwal2021an not specif… SVR KMB… karaoke    ismir2… 1             classifi…
+ 3 agarwal2021an not specif… SVR KMB… lyrics     ismir2… 1             classifi…
+ 4 agarwal2021an not specif… SVR KMB… song       NJUV1   1             classifi…
+ 5 agarwal2021an not specif… SVR KMB… karaoke    NJUV1   1             classifi…
+ 6 agarwal2021an not specif… SVR KMB… lyrics     NJUV1   1             classifi…
+ 7 agarwal2021an not specif… SVR KMB… song       hindi   1             classifi…
+ 8 agarwal2021an not specif… SVR KMB… karaoke    hindi   1             classifi…
+ 9 agarwal2021an not specif… SVR KMB… lyrics     hindi   1             classifi…
+10 agarwal2021an not specif… SVR KMB… song       ismir2… 1             classifi…
+# ℹ 167 more rows
+# ℹ 3 more variables: measure &lt;chr&gt;, values &lt;dbl&gt;, statistic &lt;chr&gt;</code></pre>
+</div>
+</div>
 </section>
-<section id="analyse" class="level2">
-<h2 class="anchored" data-anchor-id="analyse">Analyse</h2>
+</section>
+<section id="summarise-annotated-data" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-annotated-data">Summarise annotated data</h2>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>dimension)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 20%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">arousal</th>
+<th style="text-align: right;">av</th>
+<th style="text-align: right;">classification</th>
+<th style="text-align: right;">energy arousal</th>
+<th style="text-align: right;">tension arousal</th>
+<th style="text-align: right;">valence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">agarwal2021an</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alvarez2023ri</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bai2017mu</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wang2022cr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xie2020mu</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xu2021us</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>model_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 18%">
+<col style="width: 33%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">ff</th>
+<th style="text-align: right;">pcr</th>
+<th style="text-align: right;">pls</th>
+<th style="text-align: right;">random forest</th>
+<th style="text-align: right;">random forest regression</th>
+<th style="text-align: right;">SVR KMBSO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">agarwal2021an</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alvarez2023ri</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bai2017mu</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wang2022cr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xie2020mu</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xu2021us</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>feature_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 23%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">audio</th>
+<th style="text-align: right;">baseline features</th>
+<th style="text-align: right;">baseline features and stc</th>
+<th style="text-align: right;">karaoke</th>
+<th style="text-align: right;">lyrics</th>
+<th style="text-align: right;">mixed</th>
+<th style="text-align: right;">ReliefF</th>
+<th style="text-align: right;">song</th>
+<th style="text-align: right;">spotify</th>
+<th style="text-align: right;">stc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">agarwal2021an</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alvarez2023ri</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bai2017mu</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wang2022cr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xie2020mu</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xu2021us</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>data_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">100songs</th>
+<th style="text-align: right;">acousticBrainz</th>
+<th style="text-align: right;">chineseClassicalEnsembles</th>
+<th style="text-align: right;">chineseClassicalSolo</th>
+<th style="text-align: right;">hindi</th>
+<th style="text-align: right;">ismir2012</th>
+<th style="text-align: right;">MediaEval</th>
+<th style="text-align: right;">NJUV1</th>
+<th style="text-align: right;">psic3839</th>
+<th style="text-align: right;">spotify</th>
+<th style="text-align: right;">westernClassicalEnsembles</th>
+<th style="text-align: right;">westernClassicalSolo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">agarwal2021an</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">alvarez2023ri</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bai2017mu</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wang2022cr</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">xie2020mu</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xu2021us</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="analysis-notes" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-notes">Analysis notes</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Issue 1: We need unique identifiers for each input component (combine: <code>study</code> + <code>model</code> + <code>feature</code> + <code>data</code> + <code>experiment</code> that would have be unique id)</label></li>
+<li><label><input type="checkbox">Issue 2: We <code>stimulus_N</code></label></li>
+<li><label><input type="checkbox">Issue 3: measure vs statistic?</label></li>
+<li><label><input type="checkbox">Issue 4: We need to classify the modelling techniques into fewer number of techniques</label></li>
+<li><label><input type="checkbox">Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with <code>str_replace</code>)</label></li>
+</ul>
 <section id="regression-studies" class="level3">
 <h3 class="anchored" data-anchor-id="regression-studies">Regression studies</h3>
 <section id="valence" class="level4">
 <h4 class="anchored" data-anchor-id="valence">Valence</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(meta)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select regression studies</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valence, </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_N,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> study_id,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> df,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: All"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(meta)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># select regression studies with r2</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(metaMER_results,dimension<span class="sc">==</span><span class="st">"valence"</span> <span class="sc">&amp;</span> measure<span class="sc">==</span><span class="st">"r2"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sqrt(tmp$values) # convert from R^2 to r</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>stimulus_n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># ad-hoc for now</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> <span class="fu">sqrt</span>(values), </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: All"</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     MER: Regression: Valence: All
+
+Number of studies: k = 7
+Number of observations: o = 700
+
+                        COR           95%-CI    t p-value
+Random effects model 0.6902 [0.3161; 0.8786] 3.98  0.0073
+
+Quantifying heterogeneity:
+ tau^2 = 0.3072 [0.1215; 1.5294]; tau = 0.5543 [0.3486; 1.2367]
+ I^2 = 96.8% [95.0%; 97.9%]; H = 5.55 [4.49; 6.85]
+
+Test of heterogeneity:
+      Q d.f.  p-value
+ 184.80    6 &lt; 0.0001
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 6)
+- Fisher's z transformation of correlations</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="explore-qualities" class="level2">
+<h2 class="anchored" data-anchor-id="explore-qualities">Explore qualities</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">metagen</span>(values, <span class="fu">sqrt</span>(values), </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tmp, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">studlab =</span> tmp<span class="sc">$</span>citekey, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">comb.fixed =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.tau =</span> <span class="st">"PM"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find.outliers</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No outliers detected (random-effects model).</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>infan <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[===========================================================================] DONE </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">eggers.test</span>(meta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in eggers.test(meta): Your meta-analysis contains k = 7 studies.
+Egger's test may lack the statistical power to detect bias when the number of
+studies is small (i.e., k&lt;10).</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Eggers' test of the intercept 
+============================= 
+
+ intercept      95% CI      t           p
+     1.081 0.89 - 1.27 11.048 0.000105785
+
+Eggers' test indicates the presence of funnel plot asymmetry. </code></pre>
+</div>
+</div>
+</section>
+<section id="sub-group-analysis-based-on-model-type" class="level2">
+<h2 class="anchored" data-anchor-id="sub-group-analysis-based-on-model-type">Sub-group analysis (based on model type)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">metagen</span>(values, <span class="fu">sqrt</span>(values), <span class="co"># Fix the TE.se </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tmp, </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">studlab =</span> tmp<span class="sc">$</span>citekey, </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">comb.fixed =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.tau =</span> <span class="st">"PM"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">subgroup.analysis.mixed.effects</span>(<span class="at">x =</span> meta, </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">subgroups =</span> tmp<span class="sc">$</span>model_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Subgroup Results:
+--------------
+                         k        TE      seTE   LLCI  ULCI         p         Q
+pls                      4 0.3245200 0.2848333 -0.234 0.883 0.2545642 0.9119199
+random forest regression 3 0.1471014 0.2214357 -0.287 0.581 0.5064937 0.2926959
+                         I2 I2.lower I2.upper
+pls                       0        0     0.85
+random forest regression  0        0     0.90
+
+Test for subgroup differences (mixed/fixed-effects (plural) model):
+--------------
+                      Q df         p
+Between groups 0.241829  1 0.6228882
+
+- Total number of studies included in subgroup analysis:  7
+- Tau estimator used for within-group pooling:  PM</code></pre>
+</div>
+</div>
+</section>
+<section id="visualise" class="level2">
+<h2 class="anchored" data-anchor-id="visualise">Visualise</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">eggers.test</span>(meta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in eggers.test(meta): Your meta-analysis contains k = 7 studies.
+Egger's test may lack the statistical power to detect bias when the number of
+studies is small (i.e., k&lt;10).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
-</section>
-</section>
 </section>
 </section>
 
