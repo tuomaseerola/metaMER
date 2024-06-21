@@ -5,7 +5,7 @@ This assumes that the data has been parsed from the BibTeX files into table and 
 ## Read annotated data
 
 - Update 2024-06-19
-- [ ] CA TODO: find better way to read in functions
+- [ ] CA TODO later (if at all): find better way to read in functions
 
 ```{r}
 require(here)
