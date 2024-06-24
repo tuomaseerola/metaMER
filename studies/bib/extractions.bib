@@ -157,7 +157,7 @@
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
   bind_field(
-'various.random forest regression.ReliefF.MediaEval.1' = c('valence_r2.mean' = 0.293,
+'various.RFR.ReliefF.MediaEval.1' = c('valence_r2.mean' = 0.293,
                                                            'arousal_r2.mean' = 0.538,
                                                            'valence_vector distance.mean' = 0.08,
                                                            'valence_vector distance.sd' = 0.06,
@@ -166,11 +166,7 @@
                                                            'av_vector distance.mean' = 0.12,
                                                            'av_vector distance.sd' = 0.06,
                                                            'av_classification.mean' = 0.584),
-'various.random forest regression.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592)
-
-
-
-
+'various.SVR.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592)
 )
   },
   MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
@@ -1485,10 +1481,10 @@ MODEL_RATE_EMOTION_VALUES_PRETRAINED = {
   MODEL_MEASURE = {R2, MSE, SSE},
   MODEL_COMPLEXITY_PARAMETERS = {4},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {list(
-  study2 = c(r2_arousal = 0.708, sse_arousal = 29.700, rmse_arousal = 0.084, r2.95l_arousal = 0.691, r2.95u_arousal = 1.059,
-                  r2_valence = 0.674, sse_valence = 30.581, rmse_valence = 0.897, r2.95l_valence = 0.562, r2.95u_valence = 0.894),
-  study2.no.outliers = c(0.85,12.341,0.585,0.841,1.118,
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+various.mlr.mixed.new.validation = c(arousal_r2.r2 = 0.708, arousal_sse.sse = 29.700, arousal_rmse.rmse = 0.884, 'arousal_r2-95l.r2-95l' = 0.691, 'arousal_r2-95u.r2-95u' = 1.059,
+                  valence_r2.r2 = 0.674, valence_sse.sse = 30.581, valence_rmse.rmse = 0.897, 'valence_r2-95l.r2-95l' = 0.562, 'valence_r2-95u.r2-95u' = 0.894),
+  'various.mlr.mixed.new.validation-no outliers' = c(0.85,12.341,0.585,0.841,1.118,
                   0.776,19.7,0.74,0.63,0.91)
 )}, %% only reported results of study 2, as study 1 regressed only individual features
   MODEL_VALIDATION = {study2}, %% study 2 is the validation of model developed in study 1
@@ -1520,8 +1516,8 @@ MODEL_RATE_EMOTION_VALUES_PRETRAINED = {
   STIMULUS_DURATION = {MER60 = 30, CH818 = 30, AMG1608 = 60},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {MER60: 60, CH818: 818, AMG1608: 1608},
-  FEATURE_N = {15}, %% 23 in table, but 15 reported
-  PARTICIPANT_N = {}, %% 40 per clip, 3 per clip, 15-32 per clip
+  FEATURE_N = {15; 23 in table, but 15 reported},
+  PARTICIPANT_N = {40 per clip, 3 per clip, 15-32 per clip}, 
   PARTICIPANT_EXPERTISE =  {MER60 = nonexperts, CH818 = experts, AMG1608 =nonexperts },
   PARTICIPANT_ORIGIN = {MER60 = Taiwan, CH818 = China, AMG1608 = MTurk},
   PARTICIPANT_SAMPLING = {MER60 = convenience, CH818 = experts, AMG1608 = crowdsource},
@@ -1539,21 +1535,21 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {parameters optimized through grid searches},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {rbind(mer_mer = c(exp1_valence = 0.18, exp2_valence = 0.18, 
+  MODEL_RATE_EMOTION_VALUES = {bind_field(various.SVR.mixed.mer_mer.1 = c(exp1_valence = 0.18, exp2_valence = 0.18,  
 exp3_valence = 0.18, exp4_valence = 0.18,
 exp1_arousal = 0.68, exp2_arousal = 0.68, 
 exp3_arousal = 0.68, exp4_arousal = 0.68),
-        ch_mer = c(0.27,0.19,0.25,0.25,0.8,0.74,0.75,0.75),
-        amg_mer = c(0.40,0.22,0.2,0.2,0.75,0.67,0.65,0.65),
-        mer_ch = c(0.13,0.13,0.13,0.53,0.7,0.7,0.7,0.59),
-        ch_ch = c(0.25,0.15,0.10,0.28,0.77,0.72,0.74,0.81),
-        amg_ch = c(0.21,0.06,0.04,0.2,0.68,0.67,0.63,0.66),
-        mer_amg = c(0.08,0.08,0.08,0.33,0.61,0.61,0.61,0.73),
-        ch_amg = c(0.07,0.02,0.02,0.13,0.66,0.57,0.59,0.71),
-        amg_amg = c(0.14,0.03,0.06,0.19,0.73,0.63,0.63,0.72),
-        within = c(0.19,0.12,0.11,0.22,0.73,0.68,0.68,0.74),
-        cross = c(0.19,0.12,0.12,0.28,0.7,0.66,0.66,0.68),
-        all = c(0.19,0.12,0.12,0.26,0.71,0.67,0.67,0.7))
+        various.SVR.mixed.ch_mer.1 = c(0.27,0.19,0.25,0.25,0.8,0.74,0.75,0.75),
+        various.SVR.mixed.amg_mer.1 = c(0.40,0.22,0.2,0.2,0.75,0.67,0.65,0.65),
+        various.SVR.mixed.mer_ch.1 = c(0.13,0.13,0.13,0.53,0.7,0.7,0.7,0.59),
+        various.SVR.mixed.ch_ch.1 = c(0.25,0.15,0.10,0.28,0.77,0.72,0.74,0.81),
+        various.SVR.mixed.amg_ch.1 = c(0.21,0.06,0.04,0.2,0.68,0.67,0.63,0.66),
+        various.SVR.mixed.mer_amg.1 = c(0.08,0.08,0.08,0.33,0.61,0.61,0.61,0.73),
+        various.SVR.mixed.ch_amg.1 = c(0.07,0.02,0.02,0.13,0.66,0.57,0.59,0.71),
+        various.SVR.mixed.amg_amg.1 = c(0.14,0.03,0.06,0.19,0.73,0.63,0.63,0.72),
+        various.SVR.mixed.within.1 = c(0.19,0.12,0.11,0.22,0.73,0.68,0.68,0.74),
+        various.SVR.mixed.cross.1 = c(0.19,0.12,0.12,0.28,0.7,0.66,0.66,0.68),
+        various.SVR.mixed.all.1 = c(0.19,0.12,0.12,0.26,0.71,0.67,0.67,0.7))
  }, 
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {unsure how to split up individual experiments and include details about them}
@@ -1576,7 +1572,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   ORCID = {Hu, Xiao/0000-0003-3994-0385 Li, Fanjie/0000-0001-7016-6354},
   RESEARCHERID = {Hu, Xiao/AAD-8405-2020},
   COMMENT = {includes audio-only model},
-  PARADIGM = {regression},
+  PARADIGM = {classification},
   NOTES_CA = {include , single-modality reported},
   NOTES_TE = {include, includes audio only classification},
   EMOTIONS = {valence, arousal},
@@ -1643,16 +1639,16 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   PARTICIPANT_TASK = {rate}, %% continuous
   FEATURE_CATEGORIES = {timbre, dynamic, pitch},
   FEATURE_SOURCE = {openSMILE},
-  FEATURE_REDUCTION_METHOD = {},
+  FEATURE_REDUCTION_METHOD = {unsure},
   MODEL_CATEGORY = {regression},
-  MODEL_DETAIL = {}, %% move to complexity parameters? 
+  MODEL_DETAIL = {fully connected neural network, LTSM neural network}, %% move to complexity parameters? 
   MODEL_MEASURE = {R},
-  MODEL_COMPLEXITY_PARAMETERS = {fully connected model: nodes = 512-256-1, dropout = 50%, leakyReLu = 0.1, smoothing = Gaussian kernel: sigma = 1.5, size = 7; LTSM model: model type = RNN, hidden dimension = 512; hyper parameter tuning = trial and error, batch size = 8, learning rate = 0.0001},
+  MODEL_COMPLEXITY_PARAMETERS = {fully connected model: nodes = 512-256-1, dropout = 50, leakyReLu = 0.1, smoothing = Gaussian kernel: sigma = 1.5, size = 7; LTSM model: model type = RNN, hidden dimension = 512; hyper parameter tuning = trial and error, batch size = 8, learning rate = 0.0001},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
-  rbind(fully.connected = c(MSE_valence = 0.0315, R_valence = 0.1314, 
-                          MSE_arousal = 0.0333, R_arousal = 0.3507),
-        LSTM = c(0.0532,0.0599,0.0441,0.2992)
+  bind_field('openSMILE.fully connected NN.Free Music Archive.audioOnly.1' = c(valence_mse.mean = 0.0315, valence_r.mean = 0.1314,  
+                          arousal_MSE.mean = 0.0333, arousal_r.mean = 0.3507),
+        'openSMILE.long short term memory NN.Free Music Archive.audioOnly.1' = c(0.0532,0.0599,0.0441,0.2992)
         )
 },
   MODEL_VALIDATION = {five-fold cross validation with 100 epochs},
@@ -1744,11 +1740,11 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_COMPLEXITY_PARAMETERS = {SVR kernel: radial basis function; GPR kernel: squared exponential kernel},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
-  rbind(
-  MFCC = c('R2_arousal' = 0.63, 'R2_arousal.SD' = 0.064, 'R2_valence' = 0.356, 'R2_valence.SD' = 0.085),
-  MFCC.TMBR = c(0.63,0.065,0.354,0.084),
-  MFCC.TMBR.SCF.SFM = c(0.686,0.045,0.398,0.075),
-  MFCC.TMBR.SCF.SFM.CHR.LSP = c(0.587,0.066,0.341,0.097)
+  bind_field(
+  marsyas.svm.mediaeval.mfcc.1 = c('arousal_r2.mean' = 0.63, 'arousal_r2.sd' = 0.064, 'valence_r2.mean' = 0.356, 'valence_r2.sd' = 0.085), 
+  'marsyas.svm.mediaeval.mfcc timbre.1' = c(0.63,0.065,0.354,0.084),
+  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness .1' = c(0.686,0.045,0.398,0.075),
+  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness  chromagram  lineSpectralPairs.1' = c(0.587,0.066,0.341,0.097)
 )
   },
   MODEL_VALIDATION = {10-fold cross validation},
@@ -1840,9 +1836,9 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_MEASURE = {RMSE, PCC},
   MODEL_COMPLEXITY_PARAMETERS = {Optimization: back-propogation through time, adam optimizer (default parameters)},
   MODEL_RATE_EMOTION_NAMES = {arousal, valence},
-  MODEL_RATE_EMOTION_VALUES = {OpenSMILE = rbind('CNN-BiGRU.audio.deam.1' = c(arousal_rmse.mean = 0.116, arousal_rmse.sd = 0.004, arousal_pcc.mean = 0.63, arousal_pcc.sd = 0.01, 
+  MODEL_RATE_EMOTION_VALUES = {bind_field('OpenSMILE.CNN-Bidirectional Gated Recurrence Unit.audio.deam.1' = c(arousal_rmse.mean = 0.116, arousal_rmse.sd = 0.004, arousal_pcc.mean = 0.63, arousal_pcc.sd = 0.01, 
 												   valence_rmse.mean = 0.123, valence_rmse.sd = 0.003, valence_pcc.mean = 0.618, valence_pcc.sd = 0.005),
-'CNN-IR-BiGRU.audio.deam.1' = c(arousal_rmse.mean = 0.105, arousal_rmse.sd = 0.001, arousal_pcc.mean = 0.66, arousal_pcc.sd = 0.004, 
+'OpenSMILE.CNN-Iterative Reconstruction-CNN-Bidirectional Gated Recurrence Unit.audio.deam.1' = c(arousal_rmse.mean = 0.105, arousal_rmse.sd = 0.001, arousal_pcc.mean = 0.66, arousal_pcc.sd = 0.004, 
 			 valence_rmse.mean = 0.114, valence_rmse.sd = 0.0005, valence_pcc.mean = 0.637, valence_pcc.sd = 0.007)
 )
 },
@@ -1936,7 +1932,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_MEASURE = {R2, eta2},
   MODEL_COMPLEXITY_PARAMETERS = {23},
   MODEL_RATE_EMOTION_NAMES = {valence, activation},
-  MODEL_RATE_EMOTION_VALUES = {MIRToolbox = mrbind('multiple linear regression.onset curves.1.1' = c(activation_r2.r2 = 0.537, activation_eta2.eta2 = 0.537,
+  MODEL_RATE_EMOTION_VALUES = {bind_field('MIRToolbox.MLR.onset curves.1.1' = c(activation_r2.r2 = 0.537, activation_eta2.eta2 = 0.537,
   valence_r2.r2 = 0.218, valence_eta2.eta2 = 0.218))},
   MODEL_VALIDATION = {cross-validation},
   FINAL_NOTES = {}
@@ -2027,12 +2023,12 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_COMPLEXITY_PARAMETERS = {two pcs},
   MODEL_RATE_EMOTION_NAMES = {valence, tension arousal, energy arousal},
   MODEL_RATE_EMOTION_VALUES = {
-  MIRToolbox = mrbind(
-  PLSR.timbre.western.1 = c(
+  bind_field(
+  MIRToolbox.PLSR.timbre.western.1 = c(
   valence_r2.r2 = 0.48, valence_q2.q2 = 0.32, valence_pc1.pc1 = 0.22, valence_pc2.pc2 = 0.38, 
   'tension arousal_r2.r2' = 0.70, 'tension arousal_q2.q2' = 0.65, 'tension arousal_pc1.pc1' = 0.44, 'tension arousal_pc2.pc2' = 0.18, 
   'energy arousal_r2.r2'= 0.70, 'energy arousal_q2.q2' = 0.62, 'energy arousal_pc1.pc1' = 0.37, 'energy arousal_pc2.pc2' = 0.25),
-  PLSR.timbre.chinese.1 = c(
+  MIRToolbox.PLSR.timbre.chinese.1 = c(
   valence_r2.r2 = 0.55, valence_q2.q2 = 0.44, valence_pc1.pc1 = 0.32, valence_pc2.pc2 = 0.31, 
   'tension arousal_r2.r2' = 0.36, 'tension arousal_q2.q2' = 0.22, 'tension arousal_pc1.pc1' = 0.44, 'tension arousal_pc2.pc2' = 0.13, 
   'energy arousal_r2.r2' = 0.67, 'energy arousal_q2.q2' = 0.60, 'energy arousal_pc1.pc1' = 0.38, 'energy arousal_pc2.pc2' = 0.25)
@@ -2083,11 +2079,11 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_COMPLEXITY_PARAMETERS = {MaxAbsScaler method, 20 combinations of pre-processing and feature selection were evaluated to obtain the optimal method},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
-  library = mrbind(ERT.1.western.1 =  c(valence_r2.globalOptimal = 0.695, 
+  bind_field('various.extremely randomized tree regression.mixed.western.1' =  c(valence_r2.globalOptimal = 0.695, 
   valence_nFeatures.globalOptimal = 42, valence_r2.localOptimal = 0.674, valence_nFeatures.localOptimal = 21,
   arousal_r2.globalOptimal = 0.572, 
   arousal_nFeatures.globalOptimal = 38, arousal_r2.localOptimal = 0.560, arousal_nFeatures.localOptimal = 17),
-  ERT.1.chinese.1 =  c(valence_r2.globalOptimal = 0.621, 
+  'various.extremely randomized tree regression.mixed.chinese.1' =  c(valence_r2.globalOptimal = 0.621, 
   valence_nFeatures.globalOptimal = 121, valence_r2.localOptimal = 0.607, valence_nFeatures.localOptimal = 21,
   arousal_r2.globalOptimal = 0.673, 
   arousal_nFeatures.globalOptimal = 76, arousal_r2.localOptimal = 0.652, arousal_nFeatures.localOptimal = 22)
@@ -2226,7 +2222,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   FEATURE_SOURCE = {openSMILE},
   FEATURE_REDUCTION_METHOD = {Sinusoidal Transform Coding},
   MODEL_CATEGORY = {regression},
-  MODEL_DETAIL = { principal component regression (PCR), partial least squares (PLS) regression, and a feedforward networ.  peak-picking routine operation in a spectral envelope estimation vocoder (SEEVOC) framework},
+  MODEL_DETAIL = { principal component regression (PCR), partial least squares (PLS) regression, and a feedforward network.  peak-picking routine operation in a spectral envelope estimation vocoder (SEEVOC) framework},
   MODEL_MEASURE = {RMSE},
   MODEL_COMPLEXITY_PARAMETERS = {n principal components pca: 1 to 150, n predictor components pls 1 - 20, n hidden layers cnn: 1 to 30},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
@@ -2236,9 +2232,9 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
                    'openSMILE.pcr.baseline features.100songs.1' = c(0.147, 0.156,0.781,0.612),
                    'openSMILE.pcr.stc.100songs.1' = c(0.150,0.157,0.770,0.585),
                    'openSMILE.pcr.baseline features and stc.100songs.1' = c(0.144,0.150,0.793,0.634),
-                   'openSMILE.ff.baseline features.100songs.1' = c(0.172,0.169,0.732,0.570),
-                   'openSMILE.ff.stc.100songs.1' = c(0.179,0.172,0.730,.551),
-                   'openSMILE.ff.baseline features and stc.100songs.1' = c(0.165,0.158,.754,0.609)
+                   'openSMILE.feedforwardNN.baseline features.100songs.1' = c(0.172,0.169,0.732,0.570),
+                   'openSMILE.feedforwardNN.stc.100songs.1' = c(0.179,0.172,0.730,.551),
+                   'openSMILE.feedforwardNN.baseline features and stc.100songs.1' = c(0.165,0.158,.754,0.609)
 )
  }, %% not reporting on classification as those involve spectrogram images instead.
   MODEL_VALIDATION = {10-fold cross-validation},
@@ -2283,7 +2279,7 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   MODEL_COMPLEXITY_PARAMETERS = {Arousal RFR: n_estimators = 156, max_depth = 10,  min_samples_leaf = 8 min_samples_split = 18 max_features = 0.5; Valence RFR: n_estimators = 179, max_depth = 15,  min_samples_leaf = 13 min_samples_split = 22 max_features = 0.5},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {bind_field(
-  'librosa.random forest regression.audio.psic3839.1' = c(arousal_r2.r2 = 0.629, arousal_rmse.rmse = 0.147,valence_r2.r2 = 0.371, valence_rmse.rmse = 0.214)
+  'librosa.random forest regression.audio.psic3839.1' = c(arousal_r2.mean = 0.629, arousal_rmse.rmse = 0.147,valence_r2.mean = 0.371, valence_rmse.rmse = 0.214)
 ) },
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {discuss}
@@ -2319,10 +2315,10 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   PARTICIPANT_EXPERTISE = {Specified elsewhere},
   PARTICIPANT_ORIGIN = {Specified elsewhere}, %% presumably china
   PARTICIPANT_SAMPLING = {Specified elsewhere},
-  PARTICIPANT_TASK = {Rate},
+  PARTICIPANT_TASK = {rate},
   FEATURE_CATEGORIES = {dynamic, timbre, rhythm, tonality }, %% "we make an assumption that the arousal is only dependent on the intensity features, and valence is dependent on the whole feature sets" 
   FEATURE_SOURCE = {MA Toolbox, MIR Toolbox, coversongs},
-  FEATURE_REDUCTION_METHOD = {filter methods, wrapper methods, shrinkage methods. Details: Relief-R-2, Relief-F-3, Correlation-Based (Pearson, Spearman, information-gain, gain-ratio) Forward Selection-AIC, L1-regularized logistic regression},
+  FEATURE_REDUCTION_METHOD = {filter methods, wrapper methods, shrinkage methods. Details: Relief-R-2, Relief-F-3, Correlation-Based (Pearson, Spearman, information-gain, gain-ratio) Forward Selection-AIC, L1-regularized logistic regression. Optimized through grid search},
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {penalized logistic regression, regularized SVM, tested models: LR,
 LDA, Quadratic Discriminant Analysis (QDA), KNN, Tree, Random-
@@ -2335,13 +2331,13 @@ Discriminant Analysis (RDA).},
   MODEL_MEASURE = {Accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {Tuning parameters defined through 10-fold cross validation},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {  match_named_values('l1 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = .84, valence_accuracy.mean = 0.64), 
-                   'l2 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.mean = 0.68), 
-                   'l1 support vector regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.median = 0.72), 
-                   'reguliarized discriminant analysis.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83), 
-                   'logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.8),
-                   'polynomial svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = 0.774),
-                    'linear svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = 81.4)
+  MODEL_RATE_EMOTION_VALUES = {  bind_field('various.l1 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = .84, valence_accuracy.mean = 0.64), 
+                   'various.l2 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.mean = 0.68), 
+                   'various.l1 support vector regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.median = 0.72), 
+                   'various.reguliarized discriminant analysis.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83), 
+                   'various.logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.8),
+                   'various.polynomial svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = 0.774),
+                    'various.linear svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = .814)
 )
 },
   MODEL_VALIDATION = {10-fold cross validation (for tuning parameters)},
