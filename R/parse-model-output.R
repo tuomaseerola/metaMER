@@ -19,14 +19,14 @@ parse_model_output <- function(x) {
   # get additional model details
   model_attributes <- data.frame(do.call('rbind', stringr::str_split(model_attributes, '\\.')))
   names(model_attributes) <- c('library_id', 'model_id', 'feature_id', 'data_id', 'experiment_id')
-  print(names(model_attributes))
+  #print(names(model_attributes))
   # split across '_' to 
   model_measures <- data.frame(do.call('rbind', stringr::str_split(colnames(x), '_')))
   names(model_measures) <- c('dimension', 'measure')
   model_measures_split <- stringr::str_split(model_measures[,'measure'], '\\.')
   model_measures[,'measure'] <- unlist(lapply(model_measures_split, 
                                               function(x) x[1]))
-  return(data.frame(
+  invisible(data.frame(
     model_attributes, 
     model_measures, 
     statistic = model_statistic,
@@ -36,13 +36,26 @@ parse_model_output <- function(x) {
 
 get_study_results <- function(study) {
   citekey <- unique(as.character(study[,'citekey']))
+  stimulus_n <- unique(as.character(study[,'stimulus_n']))
+  feature_n <- unique(as.character(study[,'feature_n']))
+  participant_n <- unique(as.character(study[,'participant_n']))
+  
   #print(citekey)
   #print(as.character(study[,'model_rate_emotion_values']))
-  results <- parse_model_output(as.character(study[,'model_rate_emotion_values']))
+  results <- parse_model_output(as.character(
+    study[,'model_rate_emotion_values'])
+    )
+  
   return(
-    dplyr::tibble(citekey,
-            results)
+    dplyr::tibble(
+      citekey,
+      stimulus_n,
+      feature_n,
+      participant_n,
+      results)
     )
 }
+
+
 
 

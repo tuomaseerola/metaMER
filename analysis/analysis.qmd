@@ -48,6 +48,24 @@ do.call(
        )
 ) 
 
+# add unique identifiers
+
+unique_id <- apply(metaMER_results[,c('citekey',
+                        'library_id',
+                         'model_id',
+                         'feature_id',
+                         'data_id',
+                         'experiment_id')],
+                      1, 
+                      paste0, 
+                      collapse = '-'
+) 
+metaMER_results$unique_id <- stringr::str_remove_all(unique_id, 
+                                                     ' ')
+
+metaMER_results <- metaMER_results |> dplyr::select(unique_id, 
+                                 dplyr::everything()) 
+
 metaMER_results |> dplyr::tibble()
 
 ```
