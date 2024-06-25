@@ -1269,20 +1269,17 @@ MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = { },
   MODEL_RATE_EMOTION_NAMES = {pleasantness, arousal},
-  MODEL_RATE_EMOTION_VALUES = { rbind(
-  arousal_original_mlr = .848,
-  arousal_normalized_mlr =  .674,
-  pleasantness_original_mlr =  .386,
-  pleasantness_normalized_mlr = .289, 
-  arousal_original_mlr = .667, 
-  arousal_normalized_mlr =  .674, 
-  pleasantness_original_mlr =  .286, 
-  pleasantness_normalized_mlr = .283, 
-  arousal_original_pls = .779,
-  arousal_normalized_pls = .652,
-  pleasantness_original_pls = .533,
-  pleasantness_normalized_pls = .367
-) # normalized_mlr_common: common predictors bw original and rms-normalized sets.
+  MODEL_RATE_EMOTION_VALUES = {bind_field( 
+  'various.pls.intensity.new.2 (amplitude normalized)' = c(arousal_r2 = .652, pleasantness_r2 = .367,
+                                                           arousal_q2 = .583, pleasantness_q2 = .132),
+  'various.lr.intensity.new.1' = c(arousal_r2.adjusted = .848, pleasantness_r2.adjusted = 0.386),
+  'various.lr.intensity.new.2 (amplitude normalized)' = c(arousal_r2.adjusted = .674, pleasantness_r2.adjusted = .289),
+  'various.lr (stepwise forward).intensity.new.1' = c(arousal_r2.adjusted = .667,pleasantness_r2.adjusted = .286),
+  'various.lr (stepwise forward).intensity.new.2 (amplitude normalized)' = c(arousal_r2.adjusted = .674, pleasantness_r2.adjusted = .283),
+  'various.pls.intensity.new.1' = c(arousal_r2 = .860, pleasantness_r2 = .533, 
+                                  arousal_q2 = .779, pleasantness_q2 = .287)
+  
+)
 },
   MODEL_VALIDATION = {pls: 10-fold cross validation},
   FINAL_NOTES = {}
