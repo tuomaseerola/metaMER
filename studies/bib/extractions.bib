@@ -1327,27 +1327,20 @@ MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   MODEL_MEASURE = {R2, MAE},
   MODEL_COMPLEXITY_PARAMETERS = {attribute_selection: WrapperSubsetEval, search_method: BestFirst},
   MODEL_RATE_EMOTION_NAMES = {arousal, valence},
-  MODEL_RATE_EMOTION_VALUES_TOOLBOXES = { rbind(
-   essentia_before_attribute_selection = c(R2_arousal = .48, MAE_arousal = .18,  
-                                           R2_valence = .27, MAE_valence = 0.17),
-   essentia_after_attribute_selection = c(R2_arousal = .79, MAE_arousal = .09,  
-                                         R2_valence = .58, MAE_valence = 0.10),
-   marsyas_before_attribute_selection = c(R2_arousal = .63, MAE_arousal = .13,  
-                                          R2_valence = .15, MAE_valence = 0.16),
-   marsyas_after_attribute_selection = c(R2_arousal = .73, MAE_arousal = .11,  
-                                          R2_valence = .25, MAE_valence = 0.14)
+  MODEL_RATE_EMOTION_VALUES = { bind_field(
+   'essentia.smoreg.essentia (no attribute selection).new.1' = c(arousal_r2 = .48, arousal_mae = .18, 
+                                           valence_r2 = .27, valence_mae = 0.17),
+   'essentia.smoreg.essentia (attribute selection).new.1' = c(.79,.09,.58,.10),
+   'marsyas.smoreg.marsyas (no attribute selection).new.1' = c(.63,.13,.15,.16),
+   'marsyas.smoreg.essentia (no attribute selection).new.1' = c(.73,.11,.25,0.14),
+   'essentia.smoreg.lowlevel.new.1' = c(.74,.1,.49,.12),
+      'essentia.smoreg.rhythm.new.1' = c(.68, .11,.15, 0.15),
+      'essentia.smoreg.tonal.new.1' = c(.53, .14,.48, 0.12),
+   'essentia.smoreg.lowlevel tonal.new.1' = c(0.74, 0.10,0.56, 0.10),
+   'essentia.smoreg.lowlevel rhythm.new.1' = c(0.79, 0.09,0.40, 0.12),
+   'essentia.smoreg.rhythm tonal.new.1' = c(0.74, 0.11,0.52, 0.11),
+   'essentia.smoreg.lowlevel rhythm tonal.new.1' = c(0.79, 0.09,0.58, 0.10)
 )},
-MODEL_RATE_EMOTION_VALUES_FEATURE_SUBSETS = {
-rbind(
-   lowlevel = c(R2_arousal = .74, MAE_arousal = .10,  R2_valence = .49, MAE_valence = 0.12),
-   rhythm = c(R2_arousal = .68, MAE_arousal = .11,  R2_valence = .15, MAE_valence = 0.15),
-   tonal = c(R2_arousal = .53, MAE_arousal = .14,  R2_valence = .48, MAE_valence = 0.12),  
-   lowlevel_rhythm = c(R2_arousal = 0.79, MAE_arousal = 0.09,  R2_valence = 0.40, MAE_valence = 0.12),
-   lowlevel_tonal = c(R2_arousal = 0.74, MAE_arousal = 0.10,  R2_valence = 0.56, MAE_valence = 0.10),
-   rhythm_tonal = c(R2_arousal = 0.74, MAE_arousal = 0.11,  R2_valence = 0.52, MAE_valence = 0.11),
-   lowlevel_rhythm_tonal = c(R2_arousal = 0.79, MAE_arousal = 0.09,  R2_valence = 0.58, MAE_valence = 0.10)
-)
-},
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {}
 }
@@ -1385,56 +1378,42 @@ rbind(
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = { },
+  FEATURE_CATEGORIES = {rhythm, timbre, harmony, dynamics, melody, high-level},
   FEATURE_SOURCE = {essentia, marsyas},
-  FEATURE_REDUCTION_METHOD = { },
+  FEATURE_REDUCTION_METHOD = {pretrained model, neural networks},
   MODEL_CATEGORY = {classification, neural network},
   MODEL_DETAIL = {recurrent neural networks, long short-term memory units},
   MODEL_MEASURE = {R2, MAE},
   MODEL_COMPLEXITY_PARAMETERS = {training_epochs = 100, n layers = 1-2, lstm_units = 124 or 248},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-MODEL_RATE_EMOTION_VALUES_CHROMA.MARSYAS.54= {
-rbind(
-linear.regression = c(R2_arousal = 0.4, MAE_arousal = 0.17, R2_valence = 0.02, MAE_valence = 0.18),
-SMOreg = c(0.43,0.16,0.04,0.17),
-RNN1.124LSTM = c(0.43,0.17,0.02,0.18),
-RNN2.124.124LSTM = c(0.48,0.15,0.03,0.17),
-RNN3.248LSTM = c(0.41,0.17,0.02,0.18),
-RNN4.248.248LSTM = c(0.46,0.16,0.02,0.18)
+MODEL_RATE_EMOTION_VALUES = {bind_field(
+  'marsyas.lr.chroma.gtzan (validated).1' = c(arousal_r2 = 0.4, arousal_mae = 0.17, valence_r2 = 0.02, valence_mae = 0.18), 
+  'marsyas.svr.chroma.gtzan (validated).1' = c(0.43,0.16,0.04,0.17),
+  'marsyas.rnn (1 layer x 124 LSTM units).chroma.gtzan (validated).1' = c(0.43,0.17,0.02,0.18),
+  'marsyas.rnn (2 layer x 124 LSTM units).chroma.gtzan (validated).1' = c(0.48,0.15,0.03,0.17),
+  'marsyas.rnn (1 layer x 248 LSTM units).chroma.gtzan (validated).1' = c(0.41,0.17,0.02,0.18),
+  'marsyas.rnn (2 layer x 248 LSTM units).chroma.gtzan (validated).1' = c(0.46,0.16,0.02,0.18),
+  'marsyas.lr.mfcc.gtzan (validated).1' = c(0.61, 0.13, 0.07, 0.17), 
+  'marsyas.svr.mfcc.gtzan (validated).1' = c(0.6,0.13,0.10,0.17),
+  'marsyas.rnn (1 layer x 124 LSTM units).mfcc.gtzan (validated).1' =c(0.58,0.14,0.14,0.17),
+  'marsyas.rnn (2 layer x 124 LSTM units).mfcc.gtzan (validated).1' = c(0.66,0.12,0.11,0.16),
+  'marsyas.rnn (1 layer x 248 LSTM units).mfcc.gtzan (validated).1' = c(0.61,0.13,0.13,0.16),
+  'marsyas.rnn (2 layer x 248 LSTM units).mfcc.gtzan (validated).1' = c(0.64,0.12,0.14,0.15),
+  'essentia.lr.essentia.gtzan (validated).1' = c(0.07, 0.25, 0.06,0.19), 
+  'essentia.svr.essentia.gtzan (validated).1' = c(0.48,0.18,0.27,0.17),
+  'essentia.rnn (1 layer x 124 LSTM units).essentia.gtzan (validated).1' =c(0.54,0.14,0.21,0.16),
+  'essentia.rnn (2 layer x 124 LSTM units).essentia.gtzan (validated).1' =c(0.67,0.12,0.32,0.13),
+  'essentia.rnn (1 layer x 248 LSTM units).essentia.gtzan (validated).1' = c(0.58,0.14,0.32,0.14),
+  'essentia.rnn (2 layer x 248 LSTM units).essentia.gtzan (validated).1' = c(0.69,0.11,0.40,0.13),
+  'essentia.rnn (1 layer x 529 LSTM units).essentia.gtzan (validated).1' = c(0.61,0.13,0.29,0.15),
+  'essentia.rnn (2 layer x 529 LSTM units).essentia.gtzan (validated).1'  = c(0.68,0.12,0.36,0.14),
+  'essentia.rnn (1 layer x 124 LSTM units).pretrained model.gtzan (validated).1' =c(.63,.13,.35,.14),
+  'essentia.rnn (2 layer x 124 LSTM units).pretrained model.gtzan (validated).1' =c(.73,.11,.42,.13),
+  'essentia.rnn (1 layer x 248 LSTM units).pretrained model.gtzan (validated).1' = c(.68,.12,.36,.14),
+  'essentia.rnn (2 layer x 248 LSTM units).pretrained model.gtzan (validated).1' = c(.73,.11,.46,.12),
+  'essentia.rnn (1 layer x 529 LSTM units).pretrained model.gtzan (validated).1' = c(.69,.12,.38,.13),
+  'essentia.rnn (2 layer x 529 LSTM units).pretrained model.gtzan (validated).1'  = c(.71,.12,.46,.12)
 )
-},
-MODEL_RATE_EMOTION_VALUES_MFCC = {
-  rbind(
-    linear.regression = c(R2_arousal = 0.61, MAE_arousal = 0.13, R2_valence = 0.07, MAE_valence = 0.17),
-    SMOreg = c(0.6,0.13,0.10,0.17),
-    RNN1.124LSTM = c(0.58,0.14,0.14,0.17),
-    RNN2.124.124LSTM = c(0.66,0.12,0.11,0.16),
-    RNN3.248LSTM = c(0.61,0.13,0.13,0.16),
-    RNN4.248.248LSTM = c(0.64,0.12,0.14,0.15)
-  )
-},
-MODEL_RATE_EMOTION_VALUES_ESSENTIA = {
-  rbind(
-    linear.regression = c(R2_arousal = 0.07, MAE_arousal = 0.25, R2_valence = 0.06, MAE_valence = 0.19),
-    SMOreg = c(0.48,0.18,0.27,0.17),
-    RNN1.124LSTM = c(0.54,0.14,0.21,0.16),
-    RNN2.124.124LSTM = c(0.67,0.12,0.32,0.13),
-    RNN3.248LSTM = c(0.58,0.14,0.32,0.14),
-    RNN4.248.248LSTM = c(0.69,0.11,0.40,0.13),
-    RNN5.529LSTM = c(0.61,0.13,0.29,0.15),
-    RNN6.529.529LSTM = c(0.68,0.12,0.36,0.14)
-  )
-},
-
-MODEL_RATE_EMOTION_VALUES_PRETRAINED = {
-  rbind(
-    RNN1.124LSTM = c(R2_arousal = 0.63, MAE_arousal = 0.13, R2_valence = 0.35, MAE_valence = 0.14),
-    RNN2.124.124LSTM = c(0.73,0.11,0.42,0.13),
-    RNN3.248LSTM = c(0.68,0.12,0.36,0.14),
-    RNN4.248.248LSTM = c(0.73,0.11,0.46,0.12),
-    RNN5.529LSTM = c(0.69,0.12,0.38,0.13),
-    RNN6.529.529LSTM = c(0.71,0.12,0.46,0.12)
-  )
 },
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {}
@@ -1535,22 +1514,21 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {parameters optimized through grid searches},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {bind_field(various.SVR.mixed.mer_mer.1 = c(exp1_valence = 0.18, exp2_valence = 0.18,  
-exp3_valence = 0.18, exp4_valence = 0.18,
-exp1_arousal = 0.68, exp2_arousal = 0.68, 
-exp3_arousal = 0.68, exp4_arousal = 0.68),
-        various.SVR.mixed.ch_mer.1 = c(0.27,0.19,0.25,0.25,0.8,0.74,0.75,0.75),
-        various.SVR.mixed.amg_mer.1 = c(0.40,0.22,0.2,0.2,0.75,0.67,0.65,0.65),
-        various.SVR.mixed.mer_ch.1 = c(0.13,0.13,0.13,0.53,0.7,0.7,0.7,0.59),
-        various.SVR.mixed.ch_ch.1 = c(0.25,0.15,0.10,0.28,0.77,0.72,0.74,0.81),
-        various.SVR.mixed.amg_ch.1 = c(0.21,0.06,0.04,0.2,0.68,0.67,0.63,0.66),
-        various.SVR.mixed.mer_amg.1 = c(0.08,0.08,0.08,0.33,0.61,0.61,0.61,0.73),
-        various.SVR.mixed.ch_amg.1 = c(0.07,0.02,0.02,0.13,0.66,0.57,0.59,0.71),
-        various.SVR.mixed.amg_amg.1 = c(0.14,0.03,0.06,0.19,0.73,0.63,0.63,0.72),
-        various.SVR.mixed.within.1 = c(0.19,0.12,0.11,0.22,0.73,0.68,0.68,0.74),
-        various.SVR.mixed.cross.1 = c(0.19,0.12,0.12,0.28,0.7,0.66,0.66,0.68),
-        various.SVR.mixed.all.1 = c(0.19,0.12,0.12,0.26,0.71,0.67,0.67,0.7))
- }, 
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+ various.SVR.mixed.mer_mer.1 = c(valence_r2.r2 = c(exp1=0.18, exp2=0.18, exp3=0.18, exp4=0.18),
+ arousal_r2.r2 = c(exp1=0.68,exp2=0.68,exp3=0.68,exp4=0.68)),
+ various.SVR.mixed.ch_mer.1 = c(0.27,0.19,0.25,0.25,0.8,0.74,0.75,0.75),
+ various.SVR.mixed.amg_mer.1 = c(0.40,0.22,0.2,0.2,0.75,0.67,0.65,0.65),
+ various.SVR.mixed.mer_ch.1 = c(0.13,0.13,0.13,0.53,0.7,0.7,0.7,0.59),
+ various.SVR.mixed.ch_ch.1 = c(0.25,0.15,0.10,0.28,0.77,0.72,0.74,0.81),
+ various.SVR.mixed.amg_ch.1 = c(0.21,0.06,0.04,0.2,0.68,0.67,0.63,0.66),
+ various.SVR.mixed.mer_amg.1 = c(0.08,0.08,0.08,0.33,0.61,0.61,0.61,0.73),
+ various.SVR.mixed.ch_amg.1 = c(0.07,0.02,0.02,0.13,0.66,0.57,0.59,0.71),
+ various.SVR.mixed.amg_amg.1 = c(0.14,0.03,0.06,0.19,0.73,0.63,0.63,0.72),
+ various.SVR.mixed.within.1 = c(0.19,0.12,0.11,0.22,0.73,0.68,0.68,0.74),
+ various.SVR.mixed.cross.1 = c(0.19,0.12,0.12,0.28,0.7,0.66,0.66,0.68),
+ various.SVR.mixed.all.1 = c(0.19,0.12,0.12,0.26,0.71,0.67,0.67,0.7))
+}, 
   MODEL_VALIDATION = {10-fold cross validation},
   FINAL_NOTES = {unsure how to split up individual experiments and include details about them}
 }
@@ -1744,11 +1722,15 @@ exp3_arousal = 0.68, exp4_arousal = 0.68),
   marsyas.svm.mediaeval.mfcc.1 = c('arousal_r2.mean' = 0.63, 'arousal_r2.sd' = 0.064, 'valence_r2.mean' = 0.356, 'valence_r2.sd' = 0.085), 
   'marsyas.svm.mediaeval.mfcc timbre.1' = c(0.63,0.065,0.354,0.084),
   'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness .1' = c(0.686,0.045,0.398,0.075),
-  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness  chromagram  lineSpectralPairs.1' = c(0.587,0.066,0.341,0.097)
+  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness  chromagram  lineSpectralPairs.1' = c(0.587,0.066,0.341,0.097),
+  'marsyas.gaussian process regression.mediaeval.mfcc.1' = c(0.623,0.057,0.323,0.073),
+  'marsyas.svm.mediaeval.mfcc timbre.1' = c(0.634,0.063,0.340,0.082),
+  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness .1' = c(0.661,0.061,0.391,0.056),
+  'marsyas.svm.mediaeval.mfcc timbre spectralCrest spectralFlatness  chromagram  lineSpectralPairs.1' = c(0.665,0.048,0.442,0.049)
 )
   },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {also report different kernel tunings for gpr, and OvR classification. not current encoded.}
 }
 
 
