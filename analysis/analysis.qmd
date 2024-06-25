@@ -87,11 +87,13 @@ print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
 
 ## Analysis notes
 
-- [ ] Issue 1: We need unique identifiers for each input component (combine: `study` + `model` + `feature` + `data` + `experiment` that would have be unique id)
-- [ ] Issue 2: We `stimulus_N`
-- [ ] Issue 3: measure vs statistic?
-- [ ] Issue 4: We need to classify the modelling techniques into fewer number of techniques
+- [x] Issue 1: We need unique identifiers for each input component (combine: `study` + `model` + `feature` + `data` + `experiment` that would have be unique id)
+- [x] Issue 2: We `stimulus_N`
+- [x] Issue 3: measure vs statistic?
+- [x] Issue 4: We need to classify the modelling techniques into fewer number of techniques (example given, but no principles defined)
 - [ ] Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with `str_replace`)
+
+- [ ] If the _number of stimuli_ varies, divide either to separate experiments or use the largest value (see below for ad-hoc solution).
 
 ### Regression studies
 
@@ -106,8 +108,15 @@ library(meta)
 
 # select regression studies with r2
 tmp <- dplyr::filter(metaMER_results,dimension=="valence" & measure=="r2")
+
+# Temporary clarification of N
+tmp$stimulus_n[tmp$stimulus_n==" emoMusic: 1000, soundtracks: 360, chinese: 500 "]<-1000
+tmp$stimulus_n[tmp$stimulus_n==" 2372 (subset of PSIC3839, total n: 3839)    "]<-2372
+tmp$stimulus_n[tmp$stimulus_n==" study 1: 20; study 2: 40) % three outliers  "]<-40
+tmp$stimulus_n <- as.numeric(tmp$stimulus_n)
+
 #sqrt(tmp$values) # convert from R^2 to r
-tmp$stimulus_n <- 100 # ad-hoc for now
+#tmp$stimulus_n <- 100 # ad-hoc for now
 
 m.cor <- metacor(cor = sqrt(values), 
                  n = stimulus_n,
@@ -140,7 +149,13 @@ print(eggers.test(meta))
 ## Sub-group analysis (based on model type)
 
 ```{r}
+#| eval: true
 
+# divide models into random forests, SVM and MLR
+tmp$model_class_id <- 'MLR/PLS'
+tmp$model_class_id[str_detect(tmp$model_id,'RFR|extremely randomized tree regression')]<-'RF'
+tmp$model_class_id[str_detect(tmp$model_id,'svm|SVR')]<-'SVM'
+table(tmp$model_class_id)
 meta <- metagen(values, sqrt(values), # Fix the TE.se 
                 data = tmp, 
                 studlab = tmp$citekey, 
@@ -148,7 +163,7 @@ meta <- metagen(values, sqrt(values), # Fix the TE.se
                 method.tau = "PM")
 
 subgroup.analysis.mixed.effects(x = meta, 
-                                subgroups = tmp$model_id)
+                                subgroups = tmp$model_class_id)
 ```
 
 ## Visualise
