@@ -157,9 +157,13 @@ unflatten <- function(..., d) {
     d <- length(unique(names(x)))
   }
   # convert to n x n matrix
+  #print(length(x))
+  if(length(x) != d*d) stop('Length of elements not equal to nrow * ncol of matrix')
   mat <- matrix(x, nrow = d, ncol = d)
   # make sure names of rows and columns identical
   rownames(mat) <- colnames(mat) <- unique(names(x))
+  # transpose matrix 
+  mat <- t(mat)
   return(mat)
 }
 
