@@ -140,11 +140,36 @@ bind_field <- function(...) {
   else return(recycled_names)
 }
 
-confusion_matrix <- function(..., class_names) {
-  confusion_matrix <- bind_field(...) 
-  class_names <- colnames(confusion_matrix)
-  attributes(confusion_matrix)$meta_details <- rownames(confusion_matrix)
-  rownames(confusion_matrix) <- class_names
-  return(confusion_matrix)
+
+## function to make n x n matrix from partially named array
+# d: optional argument specifying n x n dimensionality
+unflatten <- function(..., d) {
+  # put inputs into array
+  x <- c(...)
+  # check if blanks within names
+  if('' %in% names(x)) {
+    # if so, find them, and repeat existing non-blank names (assumed recycling)
+    x_names <- names(x)[!names(x) %in% '']
+    names(x) <- rep(x_names, length.out = length(x))
+  }
+  # if user doesn't specify dimensionality, infer it from n unique names
+  if(missing(d)) {
+    d <- length(unique(names(x)))
+  }
+  # convert to n x n matrix
+  mat <- matrix(x, nrow = d, ncol = d)
+  # make sure names of rows and columns identical
+  rownames(mat) <- colnames(mat) <- unique(names(x))
+  return(mat)
 }
+
+
+
+# confusion_matrix <- function(..., class_names) {
+#   confusion_matrix <- bind_field(...) 
+#   class_names <- colnames(confusion_matrix)
+#   attributes(confusion_matrix)$meta_details <- rownames(confusion_matrix)
+#   rownames(confusion_matrix) <- class_names
+#   return(confusion_matrix)
+# }
 
