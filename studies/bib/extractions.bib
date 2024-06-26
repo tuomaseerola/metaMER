@@ -39,13 +39,13 @@
   MODEL_RATE_EMOTION_NAMES = {happy, sad, angry, relax},
   MODEL_RATE_EMOTION_VALUES = {
   bind_field(
-  'not specified.SVR KMBSO.song.ismir2012.1' = c('classification_accuracy.mean' = 0.9879,  
-                                                 'classification_precision.mean' = 0.9877,
-                                                 'classification_sensitivity.mean' = .9878,
-                                                 'classification_f1.mean' = 0.9877,
-                                                 'classification_specificity.mean' = .9960,
-                                                 'classification_fpr.mean' = 0.40,
-                                                 'classification_error.mean' = 0.0121),
+  'not specified.SVR KMBSO.song.ismir2012.1' = c('classification_accuracy' = 0.9879,  
+                                                 'classification_precision' = 0.9877,
+                                                 'classification_sensitivity' = .9878,
+                                                 'classification_f1' = 0.9877,
+                                                 'classification_specificity' = .9960,
+                                                 'classification_fpr' = 0.40,
+                                                 'classification_error' = 0.0121),
   'not specified.SVR KMBSO.karaoke.ismir2012.1' = c(0.974,0.9741,0.9738,0.974,0.9913,0.87,0.026),
   'not specified.SVR KMBSO.lyrics.ismir2012.1' = c(0.9723,0.9722,0.9721,0.9725,0.9908,9.23,0.0277),
   'not specified.SVR KMBSO.song.NJUV1.1' = c(0.9788,0.9787,0.9793,0.9789,0.9929,0.71,0.0212),
@@ -157,8 +157,8 @@
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
   bind_field(
-'various.RFR.ReliefF.MediaEval.1' = c('valence_r2.mean' = 0.293,
-                                                           'arousal_r2.mean' = 0.538,
+'various.RFR.ReliefF.MediaEval.1' = c('valence_r2' = 0.293,
+                                                           'arousal_r2' = 0.538,
                                                            'valence_vector distance.mean' = 0.08,
                                                            'valence_vector distance.sd' = 0.06,
                                                            'arousal_vector distance.mean' = 0.08,
@@ -168,7 +168,7 @@
                                                            'av_classification.mean' = 0.584),
 'various.SVR.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592)
 )
-  },
+},
   MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
   FINAL_NOTES = {}
 }
@@ -211,24 +211,30 @@
   MODEL_MEASURE = {accuracy, precision, recall, F score},
   MODEL_COMPLEXITY_PARAMETERS = {Red fox algorithm with Levy flight model; iteration parameter 1-500. Optimization value: 0.18.},
   MODEL_RATE_EMOTION_NAMES = {positive-high, positive-low, negative-high, negative-low},
-  MODEL_RATE_EMOTION_VALUES = { rbind(
-  'rgru_positive_high_proposed' = c('H' = 157, 'M' = 2, 'FP' = 1, 'CR' = 120),
-  'gru_positive_high' = c(143, 5, 3, 99),
-  'ltsm_positive_high' = c(132, 10, 8, 110),
-  'dnn_positive_high' = c(117,13,10,110),
-  'rgru_positive_low_proposed' = c(130,2,1,120),
-  'gru_positive_low' = c(124,7,3,119),
-  'ltsm_positive_low' = c(120,10,8,115),
-  'dnn_positive_low' = c(120,13,10,110),
-  'rgru_negative_high_proposed' = c(184,3,3,120),
-  'gru_negative_high' = c(187,8,5,110),
-  'ltsm_negative_high' = c(162,18,10,120),
-  'dnn_negative_high' = c(145,25,10,130),
-  'rgru_negative_low_proposed' = c(169,3,3,90),
-  'gru_negative_low' = c(162,8,5,90),
-  'ltsm_negative_low' = c(136,19,10,100),
-  'dnn_negative_low' = c(121,19,15,110)
-)},
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+lapply(
+  list(
+  'prettyMidi.rgru positive high proposed.various.emopia.1' = unflatten(a=157,b=2,1,120),
+  'prettyMidi.gru positive high.various.emopia.1' = unflatten(a=143,b=5,3,99),
+  'prettyMidi.ltsm positive high.various.emopia.1' = unflatten(a=132,b=10,8,110),
+  'prettyMidi.dnn positive high.various.emopia.1' = unflatten(a=117,b=13,10,110),
+  'prettyMidi.rgru positive low proposed.various.emopia.1' = unflatten(a=130,b=2,1,120),
+  'prettyMidi.gru positive low.various.emopia.1' = unflatten(a=124,b=7,3,119),
+  'prettyMidi.ltsm positive low.various.emopia.1' = unflatten(a=120,b=10,8,115),
+  'prettyMidi.dnn positive low.various.emopia.1' = unflatten(a=120,b=13,10,110),
+  'prettyMidi.rgru negative high proposed.various.emopia.1' = unflatten(a=184,b=3,3,120),
+  'prettyMidi.gru negative high.various.emopia.1' = unflatten(a=187,b=8,5,110),
+  'prettyMidi.ltsm negative high.various.emopia.1' = unflatten(a=162,b=18,10,120),
+  'prettyMidi.dnn negative high.various.emopia.1' = unflatten(a=145,b=25,10,130),
+  'prettyMidi.rgru negative low proposed.various.emopia.1' = unflatten(a=169,b=3,3,90),
+  'prettyMidi.gru negative low.various.emopia.1' = unflatten(a=162,b=8,5,90),
+  'prettyMidi.ltsm negative low.various.emopia.1' = unflatten(a=136,b=19,10,100),
+  'prettyMidi.dnn negative low.various.emopia.1' = unflatten(a=121,b=19,15,110)
+    ),
+summarize_matrix
+  )
+)
+},
   MODEL_VALIDATION = {not reported},
   FINAL_NOTES = {Unsure how to standardize confusion matrices for individual quadrants.}
 }
@@ -277,58 +283,53 @@
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {categorical: polynomial kernel exponent = -1, epsilon - 12E-12},
   MODEL_RATE_EMOTION_NAMES = {C1,C2,C3,C4,C5},
-  MODEL_RATE_EMOTION_VALUES_UNAMBIGUOUS_SMO = {rbind(
-    C1 = c('C1' = 52.6, 'C2' = 17.1, 'C3' = 0.0, 'C4' = 9.2, 'C5' = 21.1),
-    C2 = c(12, 65.2, 7.6, 4.3, 10.9),
-    C3 = c(1.1,9.9,73.6,14.3,1.1),
-    C4 = c(3.6,10.8,16.9,61.5,7.2),
-    C5 = c(21.9,19.2,0,6.8,52.1)
- )
-}
-MODEL_RATE_EMOTION_VALUES_FULL.SMO = {rbind(
-    C1 = c('C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 7, 'C5' = 18),
-    C2 = c(11.3,58.9,13.7,4,12.1),
-    C3 = c(0,13.2,68.6,18.2,0),
-    C4 = c(4.9,11.7,22.5,54.2,6.7),
-    C5 = c(18.5,12.2,1,12.2,56.1)
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  lapply(
+    list(
+    'marsyas.smo unambiguous.mixed.new.1' = unflatten(
+           'A' = 52.6, 'B' = 17.1, 'C' = 0.0, 'D' = 9.2, 'E' = 21.1,
+           12, 65.2, 7.6, 4.3, 10.9,
+           1.1,9.9,73.6,14.3,1.1,
+           3.6,10.8,16.9,61.5,7.2,
+           21.9,19.2,0,6.8,52.1),
+    'marsyas.smo full.mixed.new.1' = unflatten(
+          'C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 7, 'C5' = 18,
+          11.3,58.9,13.7,4,12.1,
+          0,13.2,68.6,18.2,0,
+          4.9,11.7,22.5,54.2,6.7,
+          18.5,12.2,1,12.2,56.1),
+   'marsyas.polygonal full.mixed.new.1' = unflatten(
+        'C1' = 65, 'C2' = 11, 'C3' = 12, 'C4' = 0, 'C5' = 12,
+        14.5, 62.1, 22.6, 0.8, 0,
+        0, 13.2, 68.6, 18.2, 0,
+        0.8, 0, 20.8, 54.2, 24.2,
+        38.8, 1, 0, 8.2, 52),
+   'marsyas.polygonal reduced.mixed.new.1' = unflatten(
+        'C1' = 67, 'C2' = 16, 'C3' = 4, 'C4' = 0, 'C5' = 13,
+        21.8,55.6,22.6,0,0,
+        0,9.1,77.7,13.2,0,
+        0,0,23.3,55,21.6,
+        27.5,0,0,10.2,62.3),
+'marsyas.2d model full.mixed.new.1' = unflatten(
+        'C1' = 61, 'C2' = 9, 'C3' = 3, 'C4' = 7, 'C5' = 20,
+        23.4,46,18.5,4,8.1,
+        2.5,14,74.4,9.1,0,
+        7.5,7.5,35.8,39.2,10,
+        34.7,16.3,1,12.2,35.7),
+'marsyas.2d pentagon model reduced.mixed.new.1' = unflatten(
+        'C1' = 67, 'C2' = 10, 'C3' = 3, 'C4' = 0, 'C5' = 20,
+        25.8,62.1,12.1,0,0,
+        0,11.6,81,7.4,0,
+        3.3,2.5,29.2,51.7,13.3,
+        40.8,3.1,2,14.3,39.8)
+    ),
+    summarize_matrix
   )
-},
-MODEL_RATE_EMOTION_VALUES_FULL_FULLPOLYGONAL = { rbind(
-  C1 = c('C1' = 65, 'C2' = 11, 'C3' = 12, 'C4' = 0, 'C5' = 12),
-  C2 = c(14.5, 62.1, 22.6, 0.8, 0),
-  C3 = c(0, 13.2, 68.6, 18.2, 0),
-  C4 = c(0.8, 0, 20.8, 54.2, 24.2),
-  C5 = c(38.8, 1, 0, 8.2, 52)
-)
-},
-MODEL_RATE_EMOTION_VALUES_FULL_REDUCEDPOLYGONAL = { rbind(
-  C1 = c('C1' = 67, 'C2' = 16, 'C3' = 4, 'C4' = 0, 'C5' = 13),
-  C2 = c(21.8,55.6,22.6,0,0),
-  C3 = c(0,9.1,77.7,13.2,0),
-  C4 = c(0,0,23.3,55,21.6),
-  C5 = c(27.5,0,0,10.2,62.3)
-)
-},
-MODEL_RATE_EMOTION_VALUES_FULL_FULL2D =  { rbind(
-  C1 = c('C1' = 61, 'C2' = 9, 'C3' = 3, 'C4' = 7, 'C5' = 20),
-  C2 = c(23.4,46,18.5,4,8.1),
-  C3 = c(2.5,14,74.4,9.1,0),
-  C4 = c(7.5,7.5,35.8,39.2,10),
-  C5 = c(34.7,16.3,1,12.2,35.7)
-)
-},
-MODEL_RATE_EMOTION_VALUES_FULL_REDUCED2D = { rbind(
-  C1 = c('C1' = 67, 'C2' = 10, 'C3' = 3, 'C4' = 0, 'C5' = 20),
-  C2 = c(25.8,62.1,12.1,0,0),
-  C3 = c(0,11.6,81,7.4,0),
-  C4 = c(3.3,2.5,29.2,51.7,13.3),
-  C5 = c(40.8,3.1,2,14.3,39.8)
 )
 },
   MODEL_VALIDATION =  {10-fold cross validation},
   FINAL_NOTES = {}
 }
-
 
 @Article{feng2024ex,
   AUTHOR = {Feng, Qiyue},
@@ -374,7 +375,6 @@ MODEL_RATE_EMOTION_VALUES_FULL_REDUCED2D = { rbind(
   FINAL_NOTES = {non-specialized journal? !EXCL!}
 }
 
-
 @Article{hizlisoy2021mu,
   AUTHOR = {Hizlisoy, Serhat and Yildirim, Serdar and Tufekci, Zekeriya},
   JOURNAL = {Engineering Science and Technology, an International Journal},
@@ -415,32 +415,18 @@ MODEL_RATE_EMOTION_VALUES_FULL_REDUCED2D = { rbind(
   MODEL_COMPLEXITY_PARAMETERS = {layer n: 4, filter n: 64, 128, 128, 128,
   ADAM learning rate: 1e-04, training batch n: 10, training epochs: 100, loss function: categorical cross-entropy},
   MODEL_RATE_EMOTION_NAMES = {Quadrant 1, Quadrant 2, Quadrant 3},
-  MODEL_RATE_EMOTION_VALUES_KNN = {
-  rbind(
-    full_feature_set = c(accuracy = 83.87, f_measure = 0.839, precision = 0.840, recall = 0.839),
-    correlation_feature_selection = c(accuracy = 89.51, f_measure = 0.904, precision = 0.919, recall = 0.895)
-  )
-},
-
-MODEL_RATE_EMOTION_VALUES_RANDOMFOREST = {
-  rbind(
-    full_feature_set = c(accuracy = 87.09, f_measure = 0.843, precision = 0.844, recall = 0.871),
-    correlation_feature_selection = c(accuracy = 91.93, f_measure = 0.918, precision = 0.917, recall = 0.919)
-  )
-},
-
-MODEL_RATE_EMOTION_VALUES_SVM = {
-  rbind(
-    full_feature_set = c(accuracy = 87.09, f_measure = 0.866, precision = 0.862, recall = 0.871),
-    correlation_feature_selection = c(accuracy = 90.32, f_measure = 0.905, precision = 0.907, recall = 0.903)
-  )
-},
-
-MODEL_RATE_EMOTION_VALUES_LSTM-DNN = {
-  rbind(
-    full_feature_set = c(accuracy = 87.09, f_measure = 0.864, precision = 0.861, recall = 0.871),
-    correlation_feature_selection = c(accuracy = 92.74, f_measure = 0.926, precision = 0.925, recall = 0.927)
-  )
+  MODEL_RATE_EMOTION_VALUES = {
+  bind_field(
+  'various.kNN.turkish.full.1' = c(classification_accuracy = 0.8387, classification_fscore = 0.839, 
+                                   classification_precision = 0.840, classification_recall = 0.839),
+  'various.kNN.turkish.correlation feature selection.1' = c(0.8951,0.904,0.919,0.895),
+  'various.rf.turkish.full.1' = c(.8709,.843,.844,.871),
+  'various.rf.turkish.correlation feature selection.1' = c(.9193,.918,.917,.919),
+  'various.svm.turkish.full.1' = c(.8709,.866,.862,.871),
+  'various.svm.turkish.correlation feature selection.1' = c(.9032,.905,.907,.903),
+  'various.lstm dnn.turkish.full.1' = c(.8709,.864,.861,.871),
+  'various.lstm dnn.turkish.correlation feature selection.1' = c(.9274,.926,.925,.927)
+)
 },
   MODEL_VALIDATION = {10-fold cross validation},
  FINAL_NOTES = {discuss. unsure how to report features for different models, subsets...} 
@@ -530,27 +516,32 @@ MODEL_RATE_EMOTION_VALUES_LSTM-DNN = {
   MODEL_MEASURE = {Classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {Feature reduction: Attribute Evaluator = CfsSubsetEval,  Search Method= BestFirst},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES_AROUSAL = {rbind(
-  level_1 = c('level_1' = 44,'level_2' = 0,'level_3' = 4,'level_4' = 1,'level_5' = 0,'level_6' = 1, 'recall' = 88),
-  level_2 = c(0,47,1,0,2,0,94),
-  level_3 = c(15,0,24,8,0,3,48),
-  level_4 = c(6,0,16,15,0,13,30),
-  level_5 = c(0,3,0,0,47,0,94),
-  level_6 = c(0,0,4,13,0,33,66)
-) },
-MODEL_RATE_EMOTION_VALUES_VALENCE = {rbind(
-  level_1 = c('level_1' = 20,'level_2' = 0,'level_3' = 11,'level_4' = 6,'level_5' = 9,'level_6' = 4, 'recall' = 40),
-  level_2 = c(1,36,0,2,7,4,72),
-  level_3 = c(12,0,23,11,3,1,46),
-  level_4 = c(4,0,11,31,4,0,62),
-  level_5 = c(9,0,4,5,29,3,58),
-  level_6 = c(8,3,2,1,3,33,66)
+  MODEL_RATE_EMOTION_VALUES = {
+  bind_field(
+    lapply(
+      list(
+      'various.rf (weka) arousal.mixed.amg.1' = unflatten(
+      'level_1' = 44,'level_2' = 0,'level_3' = 4,'level_4' = 1,'level_5' = 0,'level_6' = 1,
+      0,47,1,0,2,0,
+      15,0,24,8,0,3,
+      6,0,16,15,0,13,
+      0,3,0,0,47,0,
+      0,0,4,13,0,33),
+    'various.rf (weka) valence.mixed.amg.1' = unflatten(
+      'level_1' = 20,'level_2' = 0,'level_3' = 11,'level_4' = 6,'level_5' = 9,'level_6' = 4,
+      1,36,0,2,7,4,
+      12,0,23,11,3,1,
+      4,0,11,31,4,0,
+      9,0,4,5,29,3,
+      8,3,2,1,3,33)
+    ),
+    summarize_matrix
+  )
 )
 },
   MODEL_VALIDATION = {10-fold cross-validation},
   FINAL_NOTES = {}
 }
-
 
 @Article{panda2020no,
   AUTHOR = {Panda, Renato and Malheiro, Ricardo and Paiva, Rui Pedro},
@@ -666,7 +657,7 @@ MODEL_RATE_EMOTION_VALUES_VALENCE = {rbind(
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT =  {s},
   STIMULUS_N = {744},
-  FEATURE_N = {}, %% 7 in best model
+  FEATURE_N = {not specified? 7 in best model}, 
   PARTICIPANT_N = {specified elsewhere},
   PARTICIPANT_EXPERTISE = {specified elsewhere},
   PARTICIPANT_ORIGIN = {specified elsewhere},
@@ -681,17 +672,14 @@ MODEL_RATE_EMOTION_VALUES_VALENCE = {rbind(
   MODEL_COMPLEXITY_PARAMETERS = {not specified},
   MODEL_RATE_EMOTION_NAMES = {happy, sad, nervous, calm}, 
   MODEL_RATE_EMOTION_VALUES = {
-rbind(
-    SVM = c(MAE_valence = 1.1253, RMSE_valence = 0.1392, R2_valence = 0.4374,
-            MAE_arousal = 1.3091, RMSE_arousal = 0.1405, R2_arousal = 0.5663),
-    KNN = c(1.0974,0.2988,0.4403,
+bind_field(
+    'not specified.svm.mixed.mediaeval.1' = c(valence_mae = 1.1253, valence_rmse = 0.1392, valence_r2 = 0.4374, arousal_mae = 1.3091, arousal_rmse = 0.1405, arousal_r2 = 0.5663),
+    'not specified.knn.mixed.mediaeval.1' = c(1.0974,0.2988,0.4403,
             1.1686,0.3265,0.5881),
-    GMM = c(1.2342,0.3072,0.4236,
-            1.4105,0.3136,0.5712),
-    BP = c(1.1066,0.1190,0.4576,
+    'not specified.gmm.mixed.mediaeval.1' = c(1.2342,0.3072,0.4236,1.4105,0.3136,0.5712),
+    'not specified.backpropogation nn.mixed.mediaeval.1' = c(1.1066,0.1190,0.4576,
            1.1987,0.1284,0.6284),
-    proposed = c(0.8872,0.1066,0.4606,
-                 0.9156,0.1322,0.6687)
+    'not specified.artificial bee colony nn.mixed.mediaeval.1' = c(0.8872,0.1066,0.4606,0.9156,0.1322,0.6687)
 )},
   MODEL_VALIDATION = {80/20 train-test split},
   FINAL_NOTES = {discuss}
