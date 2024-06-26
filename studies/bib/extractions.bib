@@ -860,7 +860,9 @@ bind_field(
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {4},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {c('valence'  = 0.808, 'arousal' = 0.788)},
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  manual.lm.score.bachwtc.1 = c('valence_r2'  = 0.808, 'arousal_r2' = 0.788)
+  )},
   MODEL_VALIDATION = {none},
   FINAL_NOTES = {}
 }
