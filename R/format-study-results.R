@@ -143,7 +143,7 @@ bind_field <- function(...) {
 
 ## function to make n x n matrix from partially named array
 # d: optional argument specifying n x n dimensionality
-unflatten <- function(..., d) {
+unflatten <- function(..., dim_length) {
   # put inputs into array
   x <- c(...)
   # check if blanks within names
@@ -153,13 +153,13 @@ unflatten <- function(..., d) {
     names(x) <- rep(x_names, length.out = length(x))
   }
   # if user doesn't specify dimensionality, infer it from n unique names
-  if(missing(d)) {
-    d <- length(unique(names(x)))
+  if(missing(dim_length)) {
+    dim_length <- length(unique(names(x)))
   }
   # convert to n x n matrix
   #print(length(x))
-  if(length(x) != d*d) stop('Length of elements not equal to nrow * ncol of matrix')
-  mat <- matrix(x, nrow = d, ncol = d)
+  if(length(x) != dim_length*dim_length) stop('Length of elements not equal to nrow * ncol of matrix')
+  mat <- matrix(x, nrow = dim_length, ncol = dim_length)
   # make sure names of rows and columns identical
   rownames(mat) <- colnames(mat) <- unique(names(x))
   # transpose matrix 
