@@ -34,6 +34,35 @@ parse_model_output <- function(x) {
 }
 
 
+
+summarize_matrix = function(matrix) {
+  # convert named array to table
+  class_table <- as.table(matrix)
+  # make row and column names consistent
+  rownames(class_table) <- colnames(class_table)
+  # get confusion matrix output from caret
+  confusion_results <- caret::confusionMatrix(class_table)
+  # calculate mcc
+  confusion_mcc <- yardstick::mcc(confusion_results$table)$.estimate
+  names(confusion_mcc) <- 'mcc'
+  # combine data summaries
+  confusion_summary <- append(confusion_results$overall,
+                              confusion_mcc)
+  # make nomenclature consistent with regression studies
+  names(confusion_summary) <- paste0('classification_', 
+                                     names(confusion_summary))
+  # for two consecutive capitalized words, delimit with '.' and lowercase
+  # e.g. Classification_AccuracyPvalue becomes classification_accuracy.pvalue
+  names(confusion_summary) <- tolower(
+    gsub("([a-z])([A-Z])", "\\1.\\2", 
+         names(confusion_summary)
+    )
+  )
+  
+  return(confusion_summary)
+}
+
+
 get_study_results <- function(study) {
   citekey <- unique(as.character(study[,'citekey']))
   stimulus_n <- unique(as.character(study[,'stimulus_n']))
