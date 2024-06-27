@@ -802,7 +802,7 @@ bind_field(
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {744}, %% break into train and test sets?
-  FEATURE_N = {548}, %% pre-reduction. after reduction, 139 for PCA and 276 for ReliefF
+  FEATURE_N = {548; after reduction, 139 for PCA and 276 for ReliefF}, 
   PARTICIPANT_N = {not specified},
   PARTICIPANT_EXPERTISE = {not specified}, %% could try to pull this from original study
   PARTICIPANT_ORIGIN = {not specified},
@@ -816,7 +816,28 @@ bind_field(
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = {549},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {},
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+'various.mars (full feature space).mixed.mediaeval.1' = c(valence_r2 = .282, arousal_r2 = .572, 
+                                                          'valence_vector distance.mean' = .07, 'valence_vector distance.sd' = .06,
+                                                          'arousal_vector distance.mean' = 0.07, 'arousal_vector distance.sd' = .05,
+                                                          'av_vector distance.mean' = 0.12, 'av_vector distance.sd' = 0.06,
+                                                          'classification_accuracy.mean' = 0.61),
+'various.mars (pca).mixed.mediaeval.1' = c(.175,.44,.08,.06,.09,.06,.13,.07,.584),
+'various.mars (relief).mixed.mediaeval.1' = c(.275,.568,.08,.06,.08,.06,.12,.07,.6),
+'various.svr (full feature space).mixed.mediaeval.1' = c(.256,.599,.08,.06,.07,.05,.12,.06,.568),
+'various.svr (pca).mixed.mediaeval.1' = c(.255,.606,.08,.06,.07,.05,.12,.06,.584),
+'various.svr (relief).mixed.mediaeval.1' = c(.26,.625,.08,.06,.07,.05,.12,.06,.592),
+'various.rbf (full feature space).mixed.mediaeval.1' = c(.285,.605,.08,.06,.07,.05,.12,.06,.624),
+'various.rbf (pca).mixed.mediaeval.1' = c(.266,.602,.08,.06,.07,.06,.12,.07,.624),
+'various.rbf (relief).mixed.mediaeval.1' = c(.26,.614,.08,.06,.07,.05,.12,.06,.608),
+'various.rfr (full feature space).mixed.mediaeval.1' = c(.259,.52,.08,.06,.08,.06,.13,.06,.568),
+'various.rfr (pca).mixed.mediaeval.1' = c(.105,.394,.09,.06,.11,.07,.15,.07,.512),
+'various.rfr (relief).mixed.mediaeval.1' = c(.293,.538,.08,.06,.08,.05,.12,.06,.584),
+'various.rnn (full feature space).mixed.mediaeval.1' = c(.231,.561,.08,.06,.08,.06,.12,.07,.584),
+'various.rnn (pca).mixed.mediaeval.1' = c(.228,.552,.08,.06,.08,.06,.12,.07,.576),
+'various.rnn (relief).mixed.mediaeval.1' = c(.192,.583,.08,.06,.07,.05,.12,.06,.56)
+)
+},
   MODEL_VALIDATION = {none},
   FINAL_NOTES = {}
 }
