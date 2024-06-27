@@ -899,20 +899,20 @@ PARTICIPANT_ORIGIN = {audio or psychology programs},
 PARTICIPANT_SAMPLING = {convenience},
 PARTICIPANT_TASK = {rate},
 FEATURE_CATEGORIES = {dynamics, timbre, harmony, rhythm}, %% their breakdown of features likely differs from panda's, but use similar category names p. 414
-FEATURE_SOURCE = {MIDI Toolbox, jSymbloic}, %% report on midi features but not audio features
+FEATURE_SOURCE = {MIDI Toolbox, jSymbolic}, %% report on midi features but not audio features
 FEATURE_REDUCTION_METHOD = {recursive feature elimination},
 MODEL_CATEGORY = {regression},
 MODEL_DETAIL = {random forest},
 MODEL_MEASURE = {R2, AIC},
 MODEL_COMPLEXITY_PARAMETERS = { },
 MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-MODEL_RATE_EMOTION_VALUES = {mrbind(internal_validation_model = c('valence' = 0.34, 'arousal' = 0.79) ,
-external_validation_model = c('valence' = 0.61, 'arousal' = 0.69))},
+MODEL_RATE_EMOTION_VALUES = {bind_field(
+'various.rfr (internal validation).mixed (midi).popular.1' = c('valence_r2' = 0.34, 'arousal_r2' = 0.79) ,
+'various.rfr (external validation).mixed (midi).popular.1' = c('valence_r2' = 0.61, 'arousal_r2' = 0.69))
+},
 MODEL_VALIDATION = {cross validation, external validation (study 2)},
 FINAL_NOTES = {models differ in number of relevant features.}
 }
-
-
 
 @Article{cao2023th,
   AUTHOR = {Cao, Yujing and Park, Jinwan},
@@ -929,12 +929,12 @@ FINAL_NOTES = {models differ in number of relevant features.}
   NOTES_CA = {include, single-modality reported},
   NOTES_TE = {include, some quality issues},
   EMOTIONS = {valence, arousal},
-  EMOTION_LOCUS = {not specified},
+  EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {million songs dataset}, %% blues, classical, country, disco, hiphop, jazz, metal, pop, reggae, rock
   STIMULUS_DURATION = {not specified},
   STIMULUS_DURATION_UNIT = {not specified},
   STIMULUS_N = {1000}, %% it's called the million songs dataset, but authors say it contains 10 genres x 100 songs? webpage also provides access to random 10,000 subset. unclear what they used
-  FEATURE_N = {not specified}, %% "rich musical features covering rhythm, melody, harmony, and music type"
+  FEATURE_N = {55?}, 
   PARTICIPANT_N = {not specified}, %% use million songs database. I think it auto-fetches tags from last.fm
   PARTICIPANT_EXPERTISE = {not specified}, %% use million songs database
   PARTICIPANT_ORIGIN = {online},
@@ -949,7 +949,8 @@ FINAL_NOTES = {models differ in number of relevant features.}
   MODEL_MEASURE = {R2}, 
   MODEL_COMPLEXITY_PARAMETERS = {1 pre-training layer; 256 hidden units; 1*128 fusion features; 0.001 learning rate; Batch size: 128;  Regularization intensity and discard rate: 0.2}, %% as reported in manuscript, excluding a few tuning parameters
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {c('valence' = 0.456, 'arousal' = 0.439)}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
+  MODEL_RATE_EMOTION_VALUES = {'echo nest.rnn.msd.msd.1' = c('valence_r2' = 0.456, 'arousal_r2' = 0.439,
+  'valence_mae' = 0.974, 'arousal_mae' = 0.985)}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
   MODEL_VALIDATION = {cross-validation},
   FINAL_NOTES = {}
 }
@@ -992,32 +993,14 @@ FINAL_NOTES = {models differ in number of relevant features.}
   MODEL_MEASURE = {R2, E},
   MODEL_COMPLEXITY_PARAMETERS = {frame size = 50ms, frame overlap = 25ms, segment = 16 frames, segment overlap = 12 frames; component tying methods = c(single group tying,  quadrant-wise tying, hierarchical-tying, random tying)},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {
-rbind(
-  baseline = c('euclid' = 0.45, 'r2_valence' = -0.84, 'r2_arousal' =  -0.06,
-  'euclid.sd' = 0.09, 'r2_valence.sd' = 0.09, 'r2_arousal.sd' = 0.09),
-  mfcc = c(0.3,0.14, 0.61, 0.15,0.01,0.01),
-  tonal = c(0.29,0.13, 0.65, 0.15,0.03,0.02),
-  spectral = c(0.32,0.06, 0.56, 0.16,0.02,0.02),
-  temporal = c(0.36,0.08, 0.30, 0.17,0.01,0.02),
-  all = c(0.29,0.15, 0.67, 0.15,0.01,0.02)
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  'various.GMM.mfcc.AMG1608.1' = c('av_euclid.mean' = 0.3, 'valence_r2.mean' = .14, 'arousal_r2.mean' =  .61,
+  'av_euclid.sd' = 0.15, 'valence_r2.sd' = 0.01, 'arousal_r2.sd' = 0.01),
+  'various.GMM.tonal.AMG1608.1' = c(0.29,0.13, 0.65, 0.15,0.03,0.02),
+  'various.GMM.spectral.AMG1608.1' = c(0.32,0.06, 0.56, 0.16,0.02,0.02),
+  'various.GMM.temporal.AMG1608.1' = c(0.36,0.08, 0.30, 0.17,0.01,0.02),
+  'various.GMM.mfcc tonal spectral temporal.AMG1608.1' = c(0.29,0.15, 0.67, 0.15,0.01,0.02)
 )},
-#MODEL_RATE_PERFORMANCE_SD = {
-#rbind(
-#  baseline = c('euclid' = 0.09, 'valence' = 0.09, 'arousal' =  0.08),
-#  mfcc = c(0.15,0.01,0.01),
-#  tonal = c(0.15,0.03,0.02),
-#  spectral = c(0.16,0.02,0.02),
-#  temporal = c(0.17,0.01,0.02),
-#  all = c(0.15,0.01,0.02)
-#)
-#},
-#MODEL_RATE_PERFORMANCE_PERSONALIZED_COMPONENT_TYING = {
-#rbind(
-#  no_personal_annotations = c('valence' = -0.28, 'arousal' =  0.36),
-# 20_personal_annotations_component_tying_method = c(0.01, 0.54)
-#)
-# },
   MODEL_VALIDATION = {three-fold cross-validation},
   FINAL_NOTES = {}
  
@@ -1062,32 +1045,15 @@ rbind(
   MODEL_MEASURE = {R2, JS},
   MODEL_COMPLEXITY_PARAMETERS_NTUMIR = {NTUMIR Emotion space mapping: kpca dimensionality = 15, k=8; Simple svr: 15 principal components; Ensemble svr: 5 models per grid cell, 5*8*8 models; MediaEval: KPCA dimensionality = 450, z = 8}, %% NTUMIR: only reporting on table2, MediaEval only reporting on table3
 MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-MODEL_RATE_EMOTION_VALUES_NTUMIR = {
-rbind(
-proposed_knn_kpca_features = c('R2' = 0.622, 'JS' = 0.069, 'R2.sd' = 0.288, 'JS.sd' = 0.066),
-simple_svr_kpca_features = c(0.584, 0.085, 0.265, 0.059),
-ensemble_svr = c(0.531, 0.102, 0.244, 0.073) 
-) # reported in other study
-}, 
-MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
-  rbind(
-    simple_svr_kpca_features = c('R2' = 0.334, 'JS' = 0.130, 'R2.sd'= 0.034, 'JS.sd' = 0.009),
-    proposed_knn_kpca_features = c(0.554, 0.108, 0.044, 0.013)
+MODEL_RATE_EMOTION_VALUES = {
+bind_field( 
+'mirtoolbox.knn (proposed).mixed.ntumir.1' = c('av_R2.mean' = 0.622, 'av_jensen shannon divergence.mean' = 0.069, 'av_R2.sd' = 0.288, 'av_jensen shannon divergence.sd' = 0.066),
+'mirtoolbox.svr.mixed.ntumir.1' = c(0.584, 0.085, 0.265, 0.059),
+'mirtoolbox.ensemble svrs.mixed.ntumir.1' = c(0.531, 0.102, 0.244, 0.073),
+'openSMILE.svr.mixed.mediaeval2013.1' = c(0.334, 0.130, 0.034, 0.009),
+'openSMILE.knn (proposed).mixed.mediaeval2013.1' = c(0.554, 0.108, 0.044, 0.013)
   )
 },
-%%MODEL_RATE_EMOTION_SD_NTUMIR = {
-%%  rbind(
-%%    proposed_knn_kpca_features = c('R2' = 0.288, 'JS' = 0.066),
-%%    simple_svr_kpca_features = c(0.265, 0.059),
-%%    ensemble_svr = c(0.244, 0.073) %% reported in other study
-%%  )
-%%},
-%%MODEL_RATE_EMOTION_SD_MEDIAEVAL2013 = {
-%%  rbind(
-%%    simple_svr_kpca_features = c('R2' = 0.034, 'JS' = 0.009),
-%%    proposed_knn_kpca_features = c(0.044, 0.013)
-%%  )
-%%},
  MODEL_VALIDATION = {NTUMIR: LOO, MediaEval2013: five-fold cross-validation},
  FINAL_NOTES = {discuss}
 }
@@ -1116,7 +1082,7 @@ MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   STIMULUS_TYPE = {MediaEval2014: specified elsewhere; MP_db: classical, contemporary western art, baroque, bossa nova, rock, pop, heavy metal, film music},
   STIMULUS_DURATION = {variable},
   STIMULUS_DURATION_UNIT = {seconds},
-  STIMULUS_N = {MediaEval2014: 1000: music perception database 1: 6, music perception database 2: 9, music perception database 3: 8, music perception database 4: 7
+  STIMULUS_N = {1020; MediaEval2014: 1000: music perception database 1: 6, music perception database 2: 9, music perception database 3: 8, music perception database 4: 7
 },
   FEATURE_N = {130},
   PARTICIPANT_N = {c(MediaEval2014 = 'specified elsewhere',
@@ -1129,23 +1095,27 @@ MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   PARTICIPANT_ORIGIN = {?},
   PARTICIPANT_SAMPLING = {crowd source, convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = { pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables,
+  FEATURE_CATEGORIES = {pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables,
   FEATURE_SOURCE = {ComParE},
   FEATURE_REDUCTION_METHOD =  {denoising autoencoder},
-  MODEL_CATEGORY = {pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables
-  MODEL_DETAIL = {denoising autoencoders, 260 inputs, 2 hidden layers, 2 output units with linear activation functions, 10 repetitions, learning rate = 5x10e^-6, first layer size = 150, second layer size = 10, gaussian noise = 0.5, performance averaged across best five trials, trained on music and speech
+  MODEL_CATEGORY = {neural net}, 
+  MODEL_DETAIL = {denoising autoencoders, 260 inputs, 2 hidden layers, 2 output units with linear activation functions, 10 repetitions, learning rate = 5x10e^-6, first layer size = 150, second layer size = 10, gaussian noise = 0.5, performance averaged across best five trials, trained on music and speech. pretraining: mediaeval2014
 },
   MODEL_MEASURE = {rmse, r, ccc},
   MODEL_COMPLEXITY_PARAMETERS = {65 low level descriptors plus first order derivatives},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {rbind(
-  valence = c('rmse' = 0.265,
-              'r' = 0.175,
-              'ccc' = 0.090),
-  arousal = c('rmse' = 0.194,
-              'r' = 0.517,
-              'ccc' = 0.317)
-) },
+  MODEL_RATE_EMOTION_VALUES = {bind_field( 
+  'openSMILE.LSTM NN (Denoising autoencoders).ComParE.various.1' = 
+    c(
+    'valence_rmse' = 0.265,
+    'valence_r' = 0.175,
+    'valence_ccc' = 0.090,
+    'arousal_rmse' = 0.194,
+    'arousal_r' = 0.517,
+    'arousal_ccc' = 0.317
+    )
+  ) 
+},
   MODEL_VALIDATION = {nested LOO cross validation},
   FINAL_NOTES = {}
 }
@@ -1189,16 +1159,17 @@ MODEL_RATE_EMOTION_VALUES_MEDIAEVAL2013 = {
   MODEL_MEASURE = {R2},
   MODEL_COMPLEXITY_PARAMETERS = { },
   MODEL_RATE_EMOTION_NAMES = {arousal, valence, resonance},
-  MODEL_RATE_EMOTION_VALUES = {rbind(
-  svr = c(r2_arousal = 0.7249, explained_variance_arousal = 0.7556,
-          r2_valence = 0.6119, explained_variance_valence = 0.6142,
-          r2_resonance = 0.5374, explained_variance_resonance = 0.5496),
-  sbr = c(r2_arousal = 0.7381, explained_variance_arousal = 0.7395,
-          r2_valence = 0.6296, explained_variance_valence = 0.6376,
-          r2_resonance = 0.5456, explained_variance_resonance = 0.5558),
-  vbr = c(r2_arousal = 0.7108, explained_variance_arousal = 0.7415),
-          r2_valence = 0.6328, explained_variance_valence = 0.6340,
-          r2_resonance = 0.5554, explained_variance_resonance = 0.563)
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  various.svr.mixed.classical.1 = c('arousal_r2' = 0.7249, 'arousal_variance explained' = 0.7556,
+          'valence_r2' = 0.6119, 'valence_variance explained' = 0.6142,
+          'resonance_r2' = 0.5374, 'resonance_variance explained' = 0.5496),
+  'various.sparse bayesian regression.mixed.classical.1' = c(0.7381, 0.7395,
+          0.6296, 0.6376,
+          0.5456, 0.5558),
+  'various.variational bayesian regression.mixed.classical.1' = c(0.7108, 0.7415,
+          0.6328, 0.6340,
+          0.5554, 0.563)
+)
  },
   MODEL_VALIDATION = {cross-validation},
   FINAL_NOTES = {}
@@ -1561,10 +1532,10 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   MODEL_COMPLEXITY_PARAMETERS = {undersample majority class, 
   oversample minority class using SVM borderline synthetic minority oversampling},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {
-  rbind(
-  imbalanced.data = c(F1_arousal = 71.38, AUC_arousal = 81.31, F1_valence = 54.74, AUC_valence = 63.86),
-  resampled.data = c(72.93,81.41,58.09,53.72)
+  MODEL_RATE_EMOTION_VALUES = {bind_field( 
+  'librosa.svm (radial basis function).mixed.gc14ux (imbalanced).1' = c(
+  arousal_f1 = 0.7138, arousal_auc = 0.8131, valence_f1 = 0.5474, valence_auc = 0.6386),
+  'librosa.svm (radial basis function).mixed.gc14ux (resampled).1' = c(0.7293,0.8141,0.5809,0.6372)
   )
   },
   MODEL_VALIDATION = {10-fold cross validation},
@@ -1800,8 +1771,8 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   FEATURE_SOURCE = {OpenSMILE}, %% specified elsewhere. Take notes on features...
   FEATURE_REDUCTION_METHOD = {not specified},
   MODEL_CATEGORY = {regression},
-  MODEL_DETAIL = {rbind(deep-neural-network = c('1D convolution layer', 'autoencoder-based layer with iterative reconstruction', 'bidirectional gated recurrent unit'),
-'time-distributed-layer' = c('CNN', 'iterative reconstruction', 'bidirectional gated recurrent unit'))},
+  MODEL_DETAIL = {deep-neural-network: 1D convolution layer, autoencoder-based layer with iterative reconstruction, bidirectional gated recurrent unit;
+time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recurrent unit},
   MODEL_MEASURE = {RMSE, PCC},
   MODEL_COMPLEXITY_PARAMETERS = {Optimization: back-propogation through time, adam optimizer (default parameters)},
   MODEL_RATE_EMOTION_NAMES = {arousal, valence},
@@ -1947,8 +1918,11 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {Static network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = NA; Elman network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = 13},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {MIRToolbox = mrbind('static neural network.1.1.1' = c(classification_accuracy.mean = 85.7),
-  'elman neural network.1.1.1' = c(classification_accuracy.mean = 54.3))}, %% final epoch accuracy: 60%. Can retrieve values from graph potentially
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  'mirtoolbox.static NN.mixed.classical.1' = c(classification_accuracy = 0.857), 
+  'mirtoolbox.elman NN.mixed.classical.1' = c(classification_accuracy = 0.543)
+  )
+}, %% final epoch accuracy: 60%. Can retrieve values from graph potentially
   MODEL_VALIDATION = {train-test split},
   FINAL_NOTES = {proceedings article !EXCL!} 
 }
