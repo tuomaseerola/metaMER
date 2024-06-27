@@ -949,8 +949,10 @@ FINAL_NOTES = {models differ in number of relevant features.}
   MODEL_MEASURE = {R2}, 
   MODEL_COMPLEXITY_PARAMETERS = {1 pre-training layer; 256 hidden units; 1*128 fusion features; 0.001 learning rate; Batch size: 128;  Regularization intensity and discard rate: 0.2}, %% as reported in manuscript, excluding a few tuning parameters
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {'echo nest.rnn.msd.msd.1' = c('valence_r2' = 0.456, 'arousal_r2' = 0.439,
-  'valence_mae' = 0.974, 'arousal_mae' = 0.985)}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  'echo nest.rnn.msd.msd.1' = c('valence_r2' = 0.456, 'arousal_r2' = 0.439,
+  'valence_mae' = 0.974, 'arousal_mae' = 0.985)
+  )}, %% results of model without IoT features. Unclear what model they're reporting on but likely the same RNN using LTSM and STS
   MODEL_VALIDATION = {cross-validation},
   FINAL_NOTES = {}
 }
