@@ -563,27 +563,36 @@ summarize_matrix
   PARADIGM = {classification},
   NOTES_CA = {include, quadrant classification},
   NOTES_TE = {include, classification},
-  EMOTIONS = { },
-  EMOTION_LOCUS = { },
+  EMOTIONS = {valence, arousal},
+  EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {AllMusic},
   STIMULUS_DURATION = {30},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {900},
-  FEATURE_N = { },
+  FEATURE_N = {1702; best model uses 100 after reduction},
   PARTICIPANT_N = {not specified},
   PARTICIPANT_EXPERTISE = {experts},
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {not specified},
   PARTICIPANT_TASK = {c(experts = 'annotate', subjects = 'rate')}, %% task given to subjects, for which no information seems to be provided. subjects rate VA and the experts previously categorized
-  FEATURE_CATEGORIES = {},
-  FEATURE_SOURCE = { }, %% Requires discussion
-  FEATURE_REDUCTION_METHOD = { },
-  MODEL_CATEGORY = { },
-  MODEL_DETAIL = { },
-  MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_RATE_EMOTION_VALUES = { },
+  FEATURE_CATEGORIES = {melodic, dynamic, rhythmic, texture, expressivity},
+  FEATURE_SOURCE = {MIRToolbox, Marsyas, PsySound, new features},
+  FEATURE_REDUCTION_METHOD = {ReliefF},
+  MODEL_CATEGORY = {regression},
+  MODEL_DETAIL = {svm with rbf},
+  MODEL_MEASURE = {F1, classification accuracy},
+  MODEL_COMPLEXITY_PARAMETERS = {},
+  MODEL_RATE_EMOTION_NAMES = {Q1, Q2, Q3, Q4},
+  MODEL_RATE_EMOTION_VALUES = { 
+  bind_field(
+  'various.svm (best model).AllMusic (with participant validation).mixed.1' = summarize_matrix(
+    unflatten(Q1=185.85,Q2=14.4,Q3=8.6,Q4=18.15,
+              23.95,190.55,7,3.5,
+              14.2,8.4,157.25,45.15,
+              24.35,1.65,45.85,153.15)
+  )
+)
+  },
   MODEL_VALIDATION = {20 x 10-fold cross validation},
   FINAL_NOTES = {DISCUSS}
 }
@@ -628,7 +637,56 @@ summarize_matrix
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {multiclass lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10\n; lvl 1 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10;\n lvl 2 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-07, failing max = 10;\n lvl 3 cascaded lm: architecture = 122-10-2, gradient min = 1.0e-21, failing max = 10;\n multiclassr prop: architecture = 122-10-8, gradient min = 1.0e-50, failing max = 300;\n lvl 1 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-50, failing max = 300;\n lvl 2 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-100, failing max = 300;\n lvl 3 cascaded rprop: architecture = 122-10-2, gradient min = 1.0e-100, failing max = 300},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = { },
+  MODEL_RATE_EMOTION_VALUES = {
+  bind_field(
+  lapply(
+    list(
+      'mirtoolbox.lm (multiclass).mixed.deam.1' = unflatten(
+        A=421,B=174,C=20,D=3,E=7,F=13,G=23,H=83,
+        125,190,33,26,23,8,11,15,
+        7,23,20,12,16,8,2,3,
+        1,6,8,19,19,3,3,1,
+        4,6,11,27,115,43,1,2,
+        5,5,4,9,31,49,14,5,
+        12,6,3,1,4,11,16,7,
+        20,9,0,2,5,7,11,31
+      ),
+      'mirtoolbox.lm (cascaded model).mixed.deam.1' = unflatten(
+        a=451,b=180,c=18,d=12,e=11,f=9,g=19,h=84,
+        93,176,32,7,15,9,14,15,
+        5,12,27,12,10,3,4,3,
+        4,8,8,25,14,5,3,2,
+        12,18,7,32,152,74,11,9,
+        6,9,3,7,11,33,6,7,
+        9,11,4,4,4,4,16,2,
+        15,5,0,0,3,5,8,25
+      ),
+      'mirtoolbox.rprop (multiclass).mixed.deam.1' = unflatten(
+        a=450,b=106,c=15,d=7,e=5,f=7,g=16,h=49,
+        109,283,40,20,25,17,21,24,
+        4,3,8,4,2,2,1,0,
+        0,0,1,4,1,0,1,0,
+        9,11,23,46,165,31,7,6,
+        9,11,11,14,18,82,12,11,
+        0,1,1,2,2,1,15,3,
+        14,4,0,2,2,2,8,54
+      ),
+      'mirtoolbox.rprop (cascaded model).mixed.deam.1' = unflatten(
+        a=560,b=26,c=3,d=4,e=2,f=1,g=2,h=10,
+        20,376,7,2,2,4,5,6,
+        1,1,79,3,0,1,0,1,
+        0,1,0,84,3,1,0,2,
+        1,5,0,1,208,11,1,0,
+        1,2,0,3,2,118,2,2,
+        7,4,5,1,3,3,64,3,
+        5,4,5,1,0,3,7,123
+      )
+    ),
+    summarize_matrix
+  )
+)
+  
+  },
   MODEL_VALIDATION = {validation set}, % train, test and validation sets. They report 7/3 ratio (training set/test set)
   FINAL_NOTES = {discuss. Unsure how to report results}
 }
@@ -706,29 +764,44 @@ bind_field(
   PARADIGM = {classification},
   NOTES_CA = {include, classification},
   NOTES_TE = {include, or unclear, report classification broadly/vaguely},
-  EMOTIONS = {happy, angry, depressed, relaxed},
+  EMOTIONS = {happy, anxious, depressed, relaxed},
   EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {chorus of popular music, chorus of MIREX 2009 collection},
-  STIMULUS_DURATION = {},
-  STIMULUS_DURATION_UNIT = { },
-  STIMULUS_N = {350},
+  STIMULUS_DURATION = {variable},
+  STIMULUS_DURATION_UNIT = {s},
+  STIMULUS_N = {429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)},
   FEATURE_N = {3}, %% intensity, rhythm regularity, frequency subband
-  PARTICIPANT_N = { },
-  PARTICIPANT_EXPERTISE = { },
-  PARTICIPANT_ORIGIN = { },
-  PARTICIPANT_SAMPLING = { },
-  PARTICIPANT_TASK = { },
-  FEATURE_CATEGORIES = { },
-  FEATURE_SOURCE = { },
-  FEATURE_REDUCTION_METHOD = { },
+  PARTICIPANT_N = {5},
+  PARTICIPANT_EXPERTISE = {professional music content editors, authors},
+  PARTICIPANT_ORIGIN = {not specified},
+  PARTICIPANT_SAMPLING = {none},
+  PARTICIPANT_TASK = {annotate},
+  FEATURE_CATEGORIES = {dynamic, rhythm, timbre}, %% not sure where frequency subband falls
+  FEATURE_SOURCE = {not specified},
+  FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {Adaboost},
   MODEL_MEASURE = {precision, recall},
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { },
-  FINAL_NOTES = {}
+  MODEL_COMPLEXITY_PARAMETERS = {not specified},
+  MODEL_RATE_EMOTION_NAMES = {happy, anxious, depressed, relaxed},
+  MODEL_RATE_EMOTION_VALUES = {
+  bind_field(
+  'not specified.adaboost.new (chorus).mixed.1' = c(
+  classification_accuracy.mean = mean(c(50/53,19/19,31/34,38/44)),
+  classification_precision.mean = mean(c(.9434,.95,.8378,.95)),
+  classification_recall.mean = mean(c(.9434,1,.9118,.8636)),
+    classification_fvalue.mean = mean(c(.9434,.9744,.8732,.9048))
+  ),
+  'not specified.adaboost.mirex2009 (beatles - chorus).mixed.1' = c(
+  classification_accuracy.mean = mean(c(5/10,3/4,6/13,6/12)),
+  classification_precision.mean = mean(c(.5556,.5,.4615,.5455)),
+  classification_recall.mean = mean(c(.5,.75,.4615,.5)),
+  classification_fvalue.mean = mean(c(.5263, .6,.4615,.5217))
+  )
+)
+  },
+  MODEL_VALIDATION = {validation set},
+  FINAL_NOTES = {possibly modeled as OvR.}
 }
 
 
@@ -758,22 +831,39 @@ bind_field(
   STIMULUS_DURATION = {30},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {171},
-  FEATURE_N = {8},
-  PARTICIPANT_N = { },
-  PARTICIPANT_EXPERTISE = { },
-  PARTICIPANT_ORIGIN = { },
-  PARTICIPANT_SAMPLING = { },
-  PARTICIPANT_TASK = { },
+  FEATURE_N = {8; 3 after shrinkage-method feature selection},
+  PARTICIPANT_N = {10; each song annotated by 10 participants},
+  PARTICIPANT_EXPERTISE = {no restrictions},
+  PARTICIPANT_ORIGIN = {not specified; presumably china},
+  PARTICIPANT_SAMPLING = {not specified},
+  PARTICIPANT_TASK = {annotate},
   FEATURE_CATEGORIES = {dynamic},
-  FEATURE_SOURCE = { },
+  FEATURE_SOURCE = {MA toolbox, mirtoolbox},
   FEATURE_REDUCTION_METHOD = {Relief-F, CFS, Pearson correlation filter, Spearman correlation filter, information gain, gain-ratio },
-  MODEL_CATEGORY = { },
-  MODEL_DETAIL = { },
-  MODEL_MEASURE = { },
-  MODEL_COMPLEXITY_PARAMETERS = { },
-  MODEL_RATE_EMOTION_NAMES = { },
-  MODEL_RATE_EMOTION_VALUES = { },
-  MODEL_VALIDATION = { },
+  MODEL_CATEGORY = {classification},
+  MODEL_DETAIL = {LR, LDA, Quadratic Discriminant Analy-
+sis (QDA), K-Nearest Neighbor (KNN), Tree, Random-
+Forest (RF), Bagging (Bag), Boosting (Boost), Support
+Vector Machine with Radial kernel (SVM-R), Support
+Vector Machine with Polynomial kernel (SVM-P), Sup-
+port Vector Machine with Linear kernel (SVM-L), L1-LR,
+L2-LR, L1-SVM, L2-SVM and Shrunken Centroids Regu-
+larized Discriminant Analysis (SCRDA)},
+  MODEL_MEASURE = {accuracy},
+  MODEL_COMPLEXITY_PARAMETERS = {Lasso regression tuning parameter: 0.225 determined through cross-validation. kNN: k = 6.},
+  MODEL_RATE_EMOTION_NAMES = {arousal},
+  MODEL_RATE_EMOTION_VALUES = {
+  bind_field(
+  'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .84), 'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83),
+  'various.svm (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83),
+  'various.regularized discriminant analysis.dynamics.chinese.1' = c(classification_accuracy.mean = .83),
+  'various.lr.dynamics.chinese.1' = c(classification_accuracy.mean = .8),
+  'various.knn.dynamics.chinese.1' = c(classification_accuracy.mean = .82, classification_accuracy.median = .8),
+    'various.svm (polynomial kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .774),
+        'various.svm (linear kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .814)
+        )
+  },
+  MODEL_VALIDATION = {cross-validation (for tuning parameters)},
   FINAL_NOTES = {discuss, insufficient details on classification} 
 }
 
