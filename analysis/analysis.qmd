@@ -14,8 +14,6 @@ source(here::here('R/format-study-results.R'))
 source(here::here('R/parse-model-output.R'))
 ```
 
-- [ ] CA ToDo: Check the warning reported here
-
 ```{r}
 # get metaMER df:
 meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
@@ -38,6 +36,7 @@ recoded_studies <- included_studies[which(stringr::str_detect(
 ```
 
 Maybe limit the verbosity of `get_study_results` below
+
 
 ```{r}
 metaMER_results <-
@@ -90,14 +89,29 @@ print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
 - [x] Issue 1: We need unique identifiers for each input component (combine: `study` + `model` + `feature` + `data` + `experiment` that would have be unique id)
 - [x] Issue 2: We `stimulus_N`
 - [x] Issue 3: measure vs statistic?
-- [x] Issue 4: We need to classify the modelling techniques into fewer number of techniques (example given, but no principles defined)
-- [ ] Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with `str_replace`)
+- [ ] Issue 4: We need to classify the modelling techniques into fewer number of techniques (example given, but no principles defined)
+  - Possible solution from "Dive into Deep Learning" by Zhang et al., 2024
+    1. Linear Neural Networks
+    2. Recurrent Neural Networks
+    3. Convolutional Neural Networks
+    4. Attention mechanisms (probably not applicable here, these are LMMs)
+
+- [x] Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with `str_replace`)
+
+```{r}
+#| echo: false
+#| eval: true
+library(stringr)
+metaMER_results$studyREF <- substr(metaMER_results$citekey,1,nchar(metaMER_results$citekey)-2)
+metaMER_results$studyREF <- str_replace_all(metaMER_results$studyREF,'([0-9]+)',' et al \\1')
+metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
+```
 
 - [ ] If the _number of stimuli_ varies, divide either to separate experiments or use the largest value (see below for ad-hoc solution).
 
 ### Regression studies
 
-#### Valence
+#### Valence: all models, datasets, features
 
 ```{r}
 #| warning: false
@@ -110,9 +124,10 @@ library(meta)
 tmp <- dplyr::filter(metaMER_results,dimension=="valence" & measure=="r2")
 
 # Temporary clarification of N
-tmp$stimulus_n[tmp$stimulus_n==" emoMusic: 1000, soundtracks: 360, chinese: 500 "]<-1000
-tmp$stimulus_n[tmp$stimulus_n==" 2372 (subset of PSIC3839, total n: 3839)    "]<-2372
-tmp$stimulus_n[tmp$stimulus_n==" study 1: 20; study 2: 40) % three outliers  "]<-40
+tmp$stimulus_n[tmp$stimulus_n==" emoMusic: 1000, soundtracks: 360, chinese: 500 "] <- 1000
+tmp$stimulus_n[tmp$stimulus_n==" 2372 (subset of PSIC3839, total n: 3839)    "] <- 2372
+tmp$stimulus_n[tmp$stimulus_n==" study 1: 20; study 2: 40) % three outliers  "] <- 40
+tmp$stimulus_n[tmp$stimulus_n==" MER60: 60, CH818: 818, AMG1608: 1608  "] <- 818
 tmp$stimulus_n <- as.numeric(tmp$stimulus_n)
 
 #sqrt(tmp$values) # convert from R^2 to r
@@ -120,7 +135,7 @@ tmp$stimulus_n <- as.numeric(tmp$stimulus_n)
 
 m.cor <- metacor(cor = sqrt(values), 
                  n = stimulus_n,
-                 studlab = citekey,
+                 studlab = studyREF,
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
@@ -151,14 +166,38 @@ print(eggers.test(meta))
 ```{r}
 #| eval: true
 
+# Classify techniques according Hastie, Tibshirani, Friedman (2008)
+#
+# https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
+#
+# 3. Linear Methods for Regression
+# 4. Linear Methods for Classification 
+# 5. Basis Expansions and Regularization
+# 6. Kernel Smoothing Methods
+# 7. Model Assessment and Selection
+# 8. Model Inference and Averaging 
+# 9. Additive Models, Trees, and Related Methods
+# 10. Boosting and Additive Trees
+# 11. Neural Networks
+# 12. Support Vector Machines and Flexible Discriminants
+# 15. Random Forests
+# 16. Ensemble Learning
+
 # divide models into random forests, SVM and MLR
-tmp$model_class_id <- 'MLR/PLS'
-tmp$model_class_id[str_detect(tmp$model_id,'RFR|extremely randomized tree regression')]<-'RF'
-tmp$model_class_id[str_detect(tmp$model_id,'svm|SVR')]<-'SVM'
-table(tmp$model_class_id)
+table(tmp$model_id)
+tmp$model_class_id <- 'Unclassified'
+tmp$model_class_id[str_detect(tmp$model_id,'lr|lm')] <- 'LR' # CAM?
+tmp$model_class_id[str_detect(tmp$model_id,'PLS|MLR|gaussian|gmm|GMM|mlr|PLSR|sparse|variational bayesian')]<-'MLR/PLS'
+tmp$model_class_id[str_detect(tmp$model_id,'RFR|extremely randomized tree regression|forest|rfr')]<-'RF'
+tmp$model_class_id[str_detect(tmp$model_id,'svm|SVR|svr')]<-'SVM'
+tmp$model_class_id[str_detect(tmp$model_id,'rnn')]<-'RNN'
+tmp$model_class_id[str_detect(tmp$model_id,'bee|backprop|knn|mars|rbf|smoreg')]<-'NN other'
+table(tmp$model_id,tmp$model_class_id)
+tmp$model_class_id<-factor(tmp$model_class_id)
+
 meta <- metagen(values, sqrt(values), # Fix the TE.se 
                 data = tmp, 
-                studlab = tmp$citekey, 
+                studlab = tmp$studyREF, 
                 comb.fixed = FALSE, 
                 method.tau = "PM")
 
@@ -173,3 +212,34 @@ plot(m.cor)
 plot(eggers.test(meta))
 
 ```
+
+## Take the max from each study
+
+Also max and min. 
+
+Idea: visualise the distributions of the model successes within studies
+
+```{r}
+
+
+g <- ggplot(tmp,aes(y=values,fill=model_class_id))+
+  geom_histogram(show.legend = T)+
+  facet_wrap(.~studyREF)+
+  coord_flip()+
+  theme_bw()
+g
+
+
+# S <- summarise(group_by(tmp,citekey),maxvalue=max(values))
+# g<-ggplot(S,aes(y=maxvalue))+
+#   geom_histogram(bins = 14)+
+#   #facet_wrap(.~studyREF)+
+#   coord_flip()+
+#   theme_bw()
+# g
+
+
+```
+
+## Plot success across the years
+
