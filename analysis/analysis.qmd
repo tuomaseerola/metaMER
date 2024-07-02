@@ -161,7 +161,7 @@ print(eggers.test(meta))
 
 ```
 
-## Sub-group analysis (based on model type)
+## Organise modelling techniques used
 
 ```{r}
 #| eval: true
@@ -170,6 +170,7 @@ print(eggers.test(meta))
 #
 # https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
 #
+# Replace with Cam's ## Linear Methods classes
 # 3. Linear Methods for Regression
 # 4. Linear Methods for Classification 
 # 5. Basis Expansions and Regularization
@@ -184,14 +185,45 @@ print(eggers.test(meta))
 # 16. Ensemble Learning
 
 # divide models into random forests, SVM and MLR
-table(tmp$model_id)
-tmp$model_class_id <- 'Unclassified'
-tmp$model_class_id[str_detect(tmp$model_id,'lr|lm')] <- 'LR' # CAM?
-tmp$model_class_id[str_detect(tmp$model_id,'PLS|MLR|gaussian|gmm|GMM|mlr|PLSR|sparse|variational bayesian')]<-'MLR/PLS'
-tmp$model_class_id[str_detect(tmp$model_id,'RFR|extremely randomized tree regression|forest|rfr')]<-'RF'
-tmp$model_class_id[str_detect(tmp$model_id,'svm|SVR|svr')]<-'SVM'
-tmp$model_class_id[str_detect(tmp$model_id,'rnn')]<-'RNN'
-tmp$model_class_id[str_detect(tmp$model_id,'bee|backprop|knn|mars|rbf|smoreg')]<-'NN other'
+metaMER_results$model_id <- tolower(metaMER_results$model_id)
+table(metaMER_results$model_id)
+length(table(metaMER_results$model_id))
+metaMER_results$model_class_id <- 'Unclassified'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Methods' # Class name from Elements of Stat.."
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Classification'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'mars|gam')]<-'Additive Trees and Related Methods' #
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rbf|gmm|local|polynomial|polygonal')]<-'Kernel Smoothing'
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]<-'Boosting'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'nn|gru|lstm|ltsm|long short term memory|rprop|mcan')]<-'Neural Nets'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'svm|svr|support vector regression|smoreg|smo ')]<-'Flexible Discriminants'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'knn')]<-'Prototype methods'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely randomized tree regression|random forest|adaboost|gradient')]<-'Random Forests'
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]<-'Ensemble Learning'
+
+table(metaMER_results$model_class_id)
+round(table(metaMER_results$model_class_id)/nrow(metaMER_results),2)
+table(metaMER_results$model_id[metaMER_results$model_class_id=='Unclassified'],metaMER_results$model_class_id[metaMER_results$model_class_id=='Unclassified'])
+
+table(metaMER_results$model_class_id,metaMER_results$citekey)
+
+table(metaMER_results$model_class_id,metaMER_results$model_category)
+
+
+
+## simplify regression dimensions
+metaMER_results$dimension[str_detect(metaMER_results$dimension,'xxxx')]<-'arousal'
+
+
+table(metaMER_results$model_class_id,metaMER_results$dimension_category)
+table(metaMER_results$model_class_id,metaMER_results$dimension)
+
+
+
+
+View(metaMER_results)
+
+mcan
+
 table(tmp$model_id,tmp$model_class_id)
 tmp$model_class_id<-factor(tmp$model_class_id)
 

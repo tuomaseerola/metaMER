@@ -68,7 +68,10 @@ get_study_results <- function(study) {
   stimulus_n <- unique(as.character(study[,'stimulus_n']))
   feature_n <- unique(as.character(study[,'feature_n']))
   participant_n <- unique(as.character(study[,'participant_n']))
-  
+  model_category <- unique(as.character(study[,'model_category']))
+  feature_source <- unique(as.character(study[,'feature_source']))
+  feature_reduction_method <- unique(as.character(study[,'feature_reduction_method']))
+
   #print(citekey)
   #print(as.character(study[,'model_rate_emotion_values']))
   results <- parse_model_output(as.character(
@@ -78,9 +81,12 @@ get_study_results <- function(study) {
   return(
     dplyr::tibble(
       citekey,
+      model_category,
       stimulus_n,
       feature_n,
       participant_n,
+      feature_source,
+      feature_reduction_method,
       results)
     )
 }
