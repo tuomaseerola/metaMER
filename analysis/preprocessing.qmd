@@ -1,0 +1,137 @@
+# Preprocessing
+
+This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.
+
+## Read annotated data
+
+```{r}
+#| warning: false
+require(here)
+source(here::here('R/build-df.R'))
+source(here::here('R/format-study-results.R'))
+source(here::here('R/parse-model-output.R'))
+```
+
+```{r}
+#| warning: false
+# get metaMER df:
+meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
+
+# get included studies
+included_studies <- meta_df[which(
+  !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |> 
+  dplyr::tibble()
+
+```
+
+### Recoded
+
+```{r}
+#| warning: false
+# get studies re-coded (currently identifiable by presence of bind_field.)
+recoded_studies <- included_studies[which(stringr::str_detect(
+  included_studies$model_rate_emotion_values,
+                                     'bind_field')),] 
+
+```
+
+### Add unique identifiers
+
+```{r}
+#| warning: false
+
+metaMER_results <-
+do.call(
+  rbind,
+    lapply(1:nrow(recoded_studies),
+       function(x) get_study_results(recoded_studies[x,])
+       )
+) 
+
+# add unique identifiers
+
+unique_id <- apply(metaMER_results[,c('citekey',
+                        'library_id',
+                         'model_id',
+                         'feature_id',
+                         'data_id',
+                         'experiment_id')],
+                      1, 
+                      paste0, 
+                      collapse = '-'
+) 
+metaMER_results$unique_id <- stringr::str_remove_all(unique_id, 
+                                                     ' ')
+
+metaMER_results <- metaMER_results |> dplyr::select(unique_id, 
+                                 dplyr::everything()) 
+
+metaMER_results |> dplyr::tibble()
+
+```
+
+
+### Summarise annotated data (optional)
+
+```{r}
+#| eval: false
+#| output: asis
+
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$model_id)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$feature_id)))
+print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
+
+```
+
+
+### Add human readable author+date field
+
+```{r}
+#| echo: false
+#| eval: true
+library(stringr)
+metaMER_results$studyREF <- substr(metaMER_results$citekey,1,nchar(metaMER_results$citekey)-2)
+metaMER_results$studyREF <- str_replace_all(metaMER_results$studyREF,'([0-9]+)',' et al \\1')
+metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
+```
+
+### Classify modelling techniques used
+
+```{r}
+#| eval: true
+# Classify techniques according Hastie, Tibshirani, Friedman (2008)
+# https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
+#
+metaMER_results$model_id <- tolower(metaMER_results$model_id)
+metaMER_results$model_class_id <- 'Unclassified'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Methods' # Class name from Elements of Stat.."
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Classification'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'mars|gam')]<-'Additive Trees and Related Methods' #
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rbf|gmm|local|polynomial|polygonal')]<-'Kernel Smoothing'
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]<-'Boosting'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'nn|gru|lstm|ltsm|long short term memory|rprop|mcan')]<-'Neural Nets'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'svm|svr|support vector regression|smoreg|smo ')]<-'Flexible Discriminants'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'knn')]<-'Prototype methods'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely randomized tree regression|random forest|adaboost|gradient')]<-'Random Forests'
+#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]<-'Ensemble Learning'
+
+```
+
+## Summarise
+
+```{r}
+#| eval: true
+#| output: asis
+print(knitr::kable(table(metaMER_results$model_class_id)))
+print(knitr::kable(table(metaMER_results$model_class_id,metaMER_results$model_category)))
+
+print(paste("We have", nrow(metaMER_results), "observations"))
+
+print(paste("We have", length(unique(metaMER_results$citekey)), "studies"))
+
+print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model_category=='regression'])), "are regression studies"))
+
+print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
+
+```

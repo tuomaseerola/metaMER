@@ -1,113 +1,6 @@
 # Analysis
 
-This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.
-
-## Read annotated data
-
-- Update 2024-06-19
-- [ ] CA TODO later (if at all): find better way to read in functions
-
-```{r}
-require(here)
-source(here::here('R/build-df.R'))
-source(here::here('R/format-study-results.R'))
-source(here::here('R/parse-model-output.R'))
-```
-
-```{r}
-# get metaMER df:
-meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
-
-# get included studies
-included_studies <- meta_df[which(
-  !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |> 
-  dplyr::tibble()
-
-```
-### Recoded
-
-
-```{r}
-# get studies re-coded (currently identifiable by presence of bind_field.)
-recoded_studies <- included_studies[which(stringr::str_detect(
-  included_studies$model_rate_emotion_values,
-                                     'bind_field')),] 
-
-```
-
-Maybe limit the verbosity of `get_study_results` below
-
-
-```{r}
-metaMER_results <-
-do.call(
-  rbind,
-    lapply(1:nrow(recoded_studies),
-       function(x) get_study_results(recoded_studies[x,])
-       )
-) 
-
-# add unique identifiers
-
-unique_id <- apply(metaMER_results[,c('citekey',
-                        'library_id',
-                         'model_id',
-                         'feature_id',
-                         'data_id',
-                         'experiment_id')],
-                      1, 
-                      paste0, 
-                      collapse = '-'
-) 
-metaMER_results$unique_id <- stringr::str_remove_all(unique_id, 
-                                                     ' ')
-
-metaMER_results <- metaMER_results |> dplyr::select(unique_id, 
-                                 dplyr::everything()) 
-
-metaMER_results |> dplyr::tibble()
-
-```
-
-
-## Summarise annotated data
-
-```{r}
-#| eval: true
-#| output: asis
-
-print(knitr::kable(table(metaMER_results$citekey,metaMER_results$dimension)))
-print(knitr::kable(table(metaMER_results$citekey,metaMER_results$model_id)))
-print(knitr::kable(table(metaMER_results$citekey,metaMER_results$feature_id)))
-print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
-
-```
-
-
-## Analysis notes
-
-- [x] Issue 1: We need unique identifiers for each input component (combine: `study` + `model` + `feature` + `data` + `experiment` that would have be unique id)
-- [x] Issue 2: We `stimulus_N`
-- [x] Issue 3: measure vs statistic?
-- [ ] Issue 4: We need to classify the modelling techniques into fewer number of techniques (example given, but no principles defined)
-  - Possible solution from "Dive into Deep Learning" by Zhang et al., 2024
-    1. Linear Neural Networks
-    2. Recurrent Neural Networks
-    3. Convolutional Neural Networks
-    4. Attention mechanisms (probably not applicable here, these are LMMs)
-
-- [x] Issue 5: We could polish citekey into ref (xu2021us to Xu 2021 et al., ) for nicer plotting output (can be done with `str_replace`)
-
-```{r}
-#| echo: false
-#| eval: true
-library(stringr)
-metaMER_results$studyREF <- substr(metaMER_results$citekey,1,nchar(metaMER_results$citekey)-2)
-metaMER_results$studyREF <- str_replace_all(metaMER_results$studyREF,'([0-9]+)',' et al \\1')
-metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
-```
-
-- [ ] If the _number of stimuli_ varies, divide either to separate experiments or use the largest value (see below for ad-hoc solution).
+This assumes that the data has been parsed (`parse-model-output.R`, `format-study-results.R`) and preprocessed (`processing.qmd`).
 
 ### Regression studies
 
@@ -161,82 +54,6 @@ print(eggers.test(meta))
 
 ```
 
-## Organise modelling techniques used
-
-```{r}
-#| eval: true
-
-# Classify techniques according Hastie, Tibshirani, Friedman (2008)
-#
-# https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
-#
-# Replace with Cam's ## Linear Methods classes
-# 3. Linear Methods for Regression
-# 4. Linear Methods for Classification 
-# 5. Basis Expansions and Regularization
-# 6. Kernel Smoothing Methods
-# 7. Model Assessment and Selection
-# 8. Model Inference and Averaging 
-# 9. Additive Models, Trees, and Related Methods
-# 10. Boosting and Additive Trees
-# 11. Neural Networks
-# 12. Support Vector Machines and Flexible Discriminants
-# 15. Random Forests
-# 16. Ensemble Learning
-
-# divide models into random forests, SVM and MLR
-metaMER_results$model_id <- tolower(metaMER_results$model_id)
-table(metaMER_results$model_id)
-length(table(metaMER_results$model_id))
-metaMER_results$model_class_id <- 'Unclassified'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Methods' # Class name from Elements of Stat.."
-#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Classification'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'mars|gam')]<-'Additive Trees and Related Methods' #
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rbf|gmm|local|polynomial|polygonal')]<-'Kernel Smoothing'
-#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]<-'Boosting'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'nn|gru|lstm|ltsm|long short term memory|rprop|mcan')]<-'Neural Nets'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'svm|svr|support vector regression|smoreg|smo ')]<-'Flexible Discriminants'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'knn')]<-'Prototype methods'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely randomized tree regression|random forest|adaboost|gradient')]<-'Random Forests'
-#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]<-'Ensemble Learning'
-
-table(metaMER_results$model_class_id)
-round(table(metaMER_results$model_class_id)/nrow(metaMER_results),2)
-table(metaMER_results$model_id[metaMER_results$model_class_id=='Unclassified'],metaMER_results$model_class_id[metaMER_results$model_class_id=='Unclassified'])
-
-table(metaMER_results$model_class_id,metaMER_results$citekey)
-
-table(metaMER_results$model_class_id,metaMER_results$model_category)
-
-
-
-## simplify regression dimensions
-metaMER_results$dimension[str_detect(metaMER_results$dimension,'xxxx')]<-'arousal'
-
-
-table(metaMER_results$model_class_id,metaMER_results$dimension_category)
-table(metaMER_results$model_class_id,metaMER_results$dimension)
-
-
-
-
-View(metaMER_results)
-
-mcan
-
-table(tmp$model_id,tmp$model_class_id)
-tmp$model_class_id<-factor(tmp$model_class_id)
-
-meta <- metagen(values, sqrt(values), # Fix the TE.se 
-                data = tmp, 
-                studlab = tmp$studyREF, 
-                comb.fixed = FALSE, 
-                method.tau = "PM")
-
-subgroup.analysis.mixed.effects(x = meta, 
-                                subgroups = tmp$model_class_id)
-```
-
 ## Visualise
 
 ```{r}
@@ -247,20 +64,17 @@ plot(eggers.test(meta))
 
 ## Take the max from each study
 
-Also max and min. 
+- Also think of max, median/mean and min? 
 
-Idea: visualise the distributions of the model successes within studies
+- Idea: visualise the distributions of the model successes within studies
 
 ```{r}
-
-
-g <- ggplot(tmp,aes(y=values,fill=model_class_id))+
+g1 <- ggplot(tmp,aes(y=values,fill=model_class_id))+
   geom_histogram(show.legend = T)+
   facet_wrap(.~studyREF)+
   coord_flip()+
   theme_bw()
-g
-
+g1
 
 # S <- summarise(group_by(tmp,citekey),maxvalue=max(values))
 # g<-ggplot(S,aes(y=maxvalue))+
@@ -269,9 +83,17 @@ g
 #   coord_flip()+
 #   theme_bw()
 # g
-
-
 ```
 
 ## Plot success across the years
 
+
+```{r}
+#| eval: false
+g2 <- ggplot(tmp,aes(y=values,fill=model_class_id))+
+  geom_histogram(show.legend = T)+
+  facet_wrap(.~studyREF)+
+  coord_flip()+
+  theme_bw()
+g2
+```
