@@ -37,23 +37,66 @@
   MODEL_MEASURE = {classification accuracy, precision, sensitivity, specificity, false positive rate, F1, error},
   MODEL_COMPLEXITY_PARAMETERS = {SVR: 512 hidden layers, L2 normalization: 1x10^-4, 0.14 dropout rate, Relu activation function, batch size: 128, learning rate: 1, 1000 iterations (max), variance: 1 mean: 0 population size: 200, c: 1.0},
   MODEL_RATE_EMOTION_NAMES = {happy, sad, angry, relax},
-  MODEL_RATE_EMOTION_VALUES = {
-  bind_field(
-  'not specified.SVR KMBSO.song.ismir2012.1' = c('classification_accuracy' = 0.9879,  
-                                                 'classification_precision' = 0.9877,
-                                                 'classification_sensitivity' = .9878,
-                                                 'classification_f1' = 0.9877,
-                                                 'classification_specificity' = .9960,
-                                                 'classification_fpr' = 0.40,
-                                                 'classification_error' = 0.0121),
-  'not specified.SVR KMBSO.karaoke.ismir2012.1' = c(0.974,0.9741,0.9738,0.974,0.9913,0.87,0.026),
-  'not specified.SVR KMBSO.lyrics.ismir2012.1' = c(0.9723,0.9722,0.9721,0.9725,0.9908,9.23,0.0277),
-  'not specified.SVR KMBSO.song.NJUV1.1' = c(0.9788,0.9787,0.9793,0.9789,0.9929,0.71,0.0212),
-  'not specified.SVR KMBSO.karaoke.NJUV1.1' = c(0.9682,0.9664,0.9674,0.9669,0.9895,1.05,0.0318),
-  'not specified.SVR KMBSO.lyrics.NJUV1.1' = c(0.9576,0.9566,0.9575,0.9570,0.9858,1.45,0.0424),
-  'not specified.SVR KMBSO.song.hindi.1' = c(0.9757,0.9741,0.9760,0.9750,0.992,0.92,0.0243),
-  'not specified.SVR KMBSO.karaoke.hindi.1' = c(0.9563,0.9536,0.9557,0.9546,0.9855,1.42,0.0437),
-  'not specified.SVR KMBSO.lyrics.hindi.1' = c(0.9417,0.9392,0.9399,0.9395,0.9805,1.95,0.0583)
+  MODEL_RATE_EMOTION_VALUES = {bind_field(
+  lapply(
+    list(
+      'not specified.SVR KMBSO.feature.ismir2012.song' = unflatten(
+        Angry=.984,Happy=.007,Relax=.007,Sad=0,
+        0,.987,0,.007,
+        .008,.007,.987,0,
+        .008,0,.007,.993
+        ),
+      'not specified.SVR KMBSO.feature.ismir2012.karaoke' = unflatten(
+        Angry=.976,Happy=.013,Relax=.014,Sad=0,
+        .008,.967,0,.02,
+        .008,.013,.98,.007,
+        .008,.007,.007,.974
+       ),
+      'not specified.SVR KMBSO.feature.ismir2012.lyrics' = unflatten(
+        Angry=.969,Happy=.007,Relax=.014,Sad=.007,
+        .008,.967,0,.007,
+        .008,.013,.98,.013,
+        .016,.013,.007,.974
+      ),
+      'not specified.SVR KMBSO.feature.nju-v1.song' = unflatten(
+        Angry=.972,Happy=.009,Relax=0,Sad=0,
+        .014,.963,.01,.0,
+        .0,.019,.99,.01,
+        .014,.009,0,.99
+      ),
+      'not specified.SVR KMBSO.feature.nju-v1.karaoke' = unflatten(
+        Angry=.944,Happy=0,Relax=.02,Sad=.01,
+        .014,.981,.01,.01,
+        .028,.01,.961,.0,
+        .014,.01,.01,.98
+      ),
+      'not specified.SVR KMBSO.feature.nju-v1.lyrics' = unflatten(
+        Angry=.944,Happy=.009,Relax=.01,Sad=.01,
+        .014,.962,.01,.02,
+        .014,.009,.97,.02,
+        .028,.019,.01,.949
+      ),
+      'not specified.SVR KMBSO.feature.hindi.song' = unflatten(
+        Angry=.982,Happy=0,Relax=0,Sad=.023,
+        0,.975,.015,0,
+        .018,0,.985,.023,
+        0,.025,0,.955
+      ),
+      'not specified.SVR KMBSO.feature.hindi.karaoke' = unflatten(
+        Angry=.964,Happy=.024,Relax=0,Sad=.023,
+        0,.927,.03,0,
+        .036,0,.97,.023,
+        0,.049,0,.953
+      ),
+      'not specified.SVR KMBSO.feature.hindi.lyrics' = unflatten(
+        Angry=.947,Happy=.024,Relax=0,Sad=.024,
+        0,.902,.045,0,
+        .035,.024,.955,.024,
+        .018,.049,.0,.952
+      )
+      ),
+    summarize_matrix
+  )
 )
   }, 
   MODEL_VALIDATION = {five-fold cross-validation},
@@ -101,13 +144,31 @@
   MODEL_MEASURE = {classification accuracy, f1, precision, recall},
   MODEL_COMPLEXITY_PARAMETERS = {unable to find},
   MODEL_RATE_EMOTION_NAMES = {happy, sad, angry, relaxed; Experimental validation: excited, cheerful, tense, irritated, sad, bored, relaxed, calm, don't know}, 
-  MODEL_RATE_EMOTION_VALUES = {bind_field('spotify.random forest.spotify.spotify.model comparison' = c('classification_accuracy.mean' = mean(c(0.844,0.899,0.862,0.945)),
-                                                                'classification_f1.mean' = mean(c(0.820,.860,0.839,0.801)),
-                                                                'classification_precision.mean' = mean(c(.8308,.8828,.8488,.9299)),
-                                                                'classification_recall.mean' = mean(c(.8083,.8446,.8353,.7392))),
-      'spotify.random forest.spotify.acousticBrainz.model validation' = c('classification_accuracy.mean' = mean(c(0.694,0.705,0.771,0.729)),
-                                                                          'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)))
-      )
+  MODEL_RATE_EMOTION_VALUES = {
+bind_field(
+  'spotify.random forest.spotify.spotify.model comparison' = 
+    c(
+      unlist(
+        lapply(
+          list(
+            unflatten(
+              Happy=1582,Angry=40,Sad=29,Relaxed=22,
+                   39,1201,8,3,
+                   24,22,1536,50,
+                   0,0,7,425
+              )
+            ),
+          summarize_matrix
+          )
+    ),
+  'classification_accuracy.mean' = mean(c(0.844,0.899,0.862,0.945)),
+  'classification_f1.mean' = mean(c(0.820,.860,0.839,0.801)),
+  'classification_precision.mean' = mean(c(.8308,.8828,.8488,.9299)),
+  'classification_recall.mean' = mean(c(.8083,.8446,.8353,.7392))
+  ),
+  'spotify.random forest.spotify.acousticBrainz.model validation' = c('classification_accuracy.mean' = mean(c(0.694,0.705,0.771,0.729)),
+                                                                      'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)))
+)
 }, %% don't know how to report user-validation study
   MODEL_VALIDATION = {Repeated five-fold cross validation, AcousticBrainz, experimental validation with real users},
   FINAL_NOTES = {Did not report results from user validation due to differences in formatting.}
@@ -150,7 +211,7 @@
   FEATURE_SOURCE = {Daubechies, Sound Description Toolbox, MIRToolbox},
   FEATURE_REDUCTION_METHOD = {PCA, ReliefF},
   MODEL_CATEGORY = {classification},
-  MODEL_DETAIL = {SVM, KNN, Neuro-fuzzy networks, fuzzy KNN, Bayes classifier, LDA},
+  MODEL_DETAIL = {MARS, SVR, RBF, RFR, RNN},
   MODEL_MEASURE = {accuracy (average)},
   MODEL_COMPLEXITY_PARAMETERS = {SVM: Kernel function = radial basis function, 
   KNN: K = 8, FKNN: fuzzy function = Gaussian, NFNC: back propogation, gradient descent},
@@ -170,7 +231,7 @@
 )
 },
   MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Only reporting best model}
 }
 
 
@@ -278,7 +339,7 @@ summarize_matrix
   FEATURE_CATEGORIES = {intensity, timbre, rhythm, pitch}, %% they call pitch "register"
   FEATURE_SOURCE = {marsyas},
   FEATURE_REDUCTION_METHOD = {observation from previous studies},
-  MODEL_CATEGORY = {categorical},
+  MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {categorical: SVM, SMO; pentagon regression: full vs. reduced; 2D regression: full vs. reduced},
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {categorical: polynomial kernel exponent = -1, epsilon - 12E-12},
@@ -1046,15 +1107,14 @@ FINAL_NOTES = {models differ in number of relevant features.}
   STIMULUS_DURATION_UNIT = {not specified},
   STIMULUS_N = {1000}, %% it's called the million songs dataset, but authors say it contains 10 genres x 100 songs? webpage also provides access to random 10,000 subset. unclear what they used
   FEATURE_N = {55?}, 
-  PARTICIPANT_N = {not specified}, %% use million songs database. I think it auto-fetches tags from last.fm
-  PARTICIPANT_EXPERTISE = {not specified}, %% use million songs database
+  PARTICIPANT_N = {not specified; use million songs database. I think it auto-fetches tags from last.fm}, 
+  PARTICIPANT_EXPERTISE = {not specified. use million songs database}, %% 
   PARTICIPANT_ORIGIN = {online},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {not specified},
   FEATURE_CATEGORIES = {not specified}, %% complete list here: http://millionsongdataset.com/pages/example-track-description/
   FEATURE_SOURCE = {million song dataset},
-  FEATURE_REDUCTION_METHOD = {}, %% unclear whether the STS is the feature reduction method. Mention inspiration from Scaled Additional Interaction Regression and Gapprox, and dyanmic-voltage and Frequency scaling 
-
+  FEATURE_REDUCTION_METHOD = {unclear whether the STS is the feature reduction method. Mention inspiration from Scaled Additional Interaction Regression and Gapprox, and dyanmic-voltage and Frequency scaling}, 
   MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {RNN, LTSM network, STS}, %% long-short-term memory network; sequence-to-sequence
   MODEL_MEASURE = {R2}, 
@@ -1211,7 +1271,7 @@ bind_field(
   FEATURE_CATEGORIES = {pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables,
   FEATURE_SOURCE = {ComParE},
   FEATURE_REDUCTION_METHOD =  {denoising autoencoder},
-  MODEL_CATEGORY = {neural net}, 
+  MODEL_CATEGORY = {regression}, 
   MODEL_DETAIL = {denoising autoencoders, 260 inputs, 2 hidden layers, 2 output units with linear activation functions, 10 repetitions, learning rate = 5x10e^-6, first layer size = 150, second layer size = 10, gaussian noise = 0.5, performance averaged across best five trials, trained on music and speech. pretraining: mediaeval2014
 },
   MODEL_MEASURE = {rmse, r, ccc},
@@ -1452,7 +1512,7 @@ bind_field(
   FEATURE_CATEGORIES = {rhythm, timbre, harmony, dynamics, melody, high-level},
   FEATURE_SOURCE = {essentia, marsyas},
   FEATURE_REDUCTION_METHOD = {pretrained model, neural networks},
-  MODEL_CATEGORY = {classification, neural network},
+  MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {recurrent neural networks, long short-term memory units},
   MODEL_MEASURE = {R2, MAE},
   MODEL_COMPLEXITY_PARAMETERS = {training_epochs = 100, n layers = 1-2, lstm_units = 124 or 248},
@@ -1526,7 +1586,7 @@ MODEL_RATE_EMOTION_VALUES = {bind_field(
   FEATURE_CATEGORIES = {before selection: dynamic, timbre, tonality, rhythm; after_selection: dynamic, timbre},
   FEATURE_SOURCE = {MIR Toolbox, Matlab Audio Analysis Library},
   FEATURE_REDUCTION_METHOD = {Spearman correlation ranking},
-  MODEL_CATEGORY = {perceived},
+  MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {multiple linear regression},
   MODEL_MEASURE = {R2, MSE, SSE},
   MODEL_COMPLEXITY_PARAMETERS = {4},
@@ -2026,7 +2086,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   FEATURE_CATEGORIES = {dynamic, timbre, rhythm, harmony},
   FEATURE_SOURCE = {MIRToolbox},
   FEATURE_REDUCTION_METHOD = {not specified},
-  MODEL_CATEGORY = {classification, neural nets},
+  MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {static neural network, elman neural network},
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {Static network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = NA; Elman network: input units = 13, hidden units = 13, output units = 2, training epochs = 10000, learning rate = 0.3, context units = 13},
