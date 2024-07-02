@@ -91,7 +91,7 @@ fill_missing_names <- function(...) {
       ) 
       return(do.call(rbind, input))
     } else {
-    message('Mismatch in input lengths.')
+    warning('Mismatch in input lengths.')
     invisible(0)
   }
 }

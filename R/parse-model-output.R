@@ -78,17 +78,19 @@ get_study_results <- function(study) {
     study[,'model_rate_emotion_values'])
     )
   
-  return(
-    dplyr::tibble(
+  
+    clean_df <- dplyr::tibble(
       citekey,
-      model_category,
+      model_categoey = trimws(model_category, which = 'both'), 
       stimulus_n,
       feature_n,
       participant_n,
       feature_source,
       feature_reduction_method,
-      results)
-    )
+      results) 
+    
+    
+    return(clean_df)
 }
 
 
