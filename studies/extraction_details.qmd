@@ -128,7 +128,7 @@ Names of predicted emotions. E.g., valence, arousal, happy, sad, angry, fearful,
 
 ## MODEL_RATE_EMOTION_VALUES
 
-Pertinent prediction of model summaries. Report as *R* named arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with `mrbind`. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore. See additional details below.
+Pertinent prediction of model summaries. Report as *R* named arrays, including summary statistics in variables. When reporting results of multiple models, concatenate multiple entries with `bind_field`. When reporting results for different toolboxes or feature subsets, assign each to a new BiBTeX field with relevant identifier following final underscore. See additional details below.
 
 ## MODEL_VALIDATION
 
@@ -149,15 +149,48 @@ library.model.features.data.experiment = c(dimension_measure.summaryStat = 0, ..
 
 ## Classification
 
-Confusion matrices can be encoded similarly through a function that assigns relevant meta-parameters to the `model_parameters` attribute of the output matrix. The row names are then replaced with the column names for clearer output. This assumes row names and column names of the confusion matrix are listed in the same order.
+Confusion matrices can be encoded using the `unflatten` function, which assigns relevant meta-parameters to the `model_parameters` attribute of the output matrix. The function automatically builds a $n$ by $n$ matrix and takes individual values as arguments. Values can be specified for the first row, and are recycled in subsequent rows.
 
-```         
-confusion_matrix(
-library.model.features.data.experiment =  c(class_1 = 0, class_2 = 0, ..., class_n = 0),
-class_2 = c(0, 0, ..., 0),
-...
+```
+unflatten(A = .5, B = .2, C = .3,
+          .3, .5, .2,
+          .1, .1, .8)
+```
+Summary parameters can be extracted from the resulting matrix by calling the `summarize_matrix` function. This function calls on `caret` to extract several summary statistics at once. Including `bind_field` in the call ensures consistent nomenclature with other study encodings.
+```
+bind_field(
+  'library.model.features.data.exp' = summarize_matrix(
+    unflatten(Q1=185.85,Q2=14.4,Q3=8.6,Q4=18.15,
+              23.95,190.55,7,3.5,
+              14.2,8.4,157.25,45.15,
+              24.35,1.65,45.85,153.15)
+  )
 )
 ```
+Multiple matrices in a study can be summarized by putting them in a list and using the `lapply` function to extract relevant statistics: 
+
+```
+bind_field(
+  lapply(
+    list(
+      'library.model.features.data.exp1' = unflatten(
+        Angry=.984,Happy=.007,Relax=.007,Sad=0,
+        0,.987,0,.007,
+        .008,.007,.987,0,
+        .008,0,.007,.993
+        ),
+      'library.model.features.data.exp2' = unflatten(
+        Angry=.976,Happy=.013,Relax=.014,Sad=0,
+        .008,.967,0,.02,
+        .008,.013,.98,.007,
+        .008,.007,.007,.974
+       )
+      ),
+    summarize_matrix
+  )
+)
+```
+
 
 When confusion matrices are not available, encode available parameters (accuracy, precision, recall, $F$ scores, etc.) using the standard nomenclature to distinguish relevant outcomes for each class:
 
