@@ -81,7 +81,7 @@ get_study_results <- function(study) {
   
     clean_df <- dplyr::tibble(
       citekey,
-      model_categoey = trimws(model_category, which = 'both'), 
+      model_category = trimws(model_category, which = 'both'), 
       stimulus_n,
       feature_n,
       participant_n,

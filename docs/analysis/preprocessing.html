@@ -150,94 +150,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-annotated-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-annotated-data">Read annotated data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: here</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/lqbn73/Documents/computational/R/metaMER</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/build-df.R'</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/format-study-results.R'</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/parse-model-output.R'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(here)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/build-df.R'</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/format-study-results.R'</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'R/parse-model-output.R'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get metaMER df:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">get_metaMER_df</span>(<span class="at">path_2_studies =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'studies'</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get included studies</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>included_studies <span class="ot">&lt;-</span> meta_df[<span class="fu">which</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="sc">|&gt;</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get metaMER df:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>meta_df <span class="ot">&lt;-</span> <span class="fu">get_metaMER_df</span>(<span class="at">path_2_studies =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'studies'</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get included studies</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>included_studies <span class="ot">&lt;-</span> meta_df[<span class="fu">which</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="recoded" class="level3">
 <h3 class="anchored" data-anchor-id="recoded">Recoded</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get studies re-coded (currently identifiable by presence of bind_field.)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>recoded_studies <span class="ot">&lt;-</span> included_studies[<span class="fu">which</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  included_studies<span class="sc">$</span>model_rate_emotion_values,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">'bind_field'</span>)),] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get studies re-coded (currently identifiable by presence of bind_field.)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>recoded_studies <span class="ot">&lt;-</span> included_studies[<span class="fu">which</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  included_studies<span class="sc">$</span>model_rate_emotion_values,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">'bind_field'</span>)),] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="add-unique-identifiers" class="level3">
 <h3 class="anchored" data-anchor-id="add-unique-identifiers">Add unique identifiers</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="ot">&lt;-</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(recoded_studies),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">get_study_results</span>(recoded_studies[x,])</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       )</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.
-Mismatch in input lengths.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add unique identifiers</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>unique_id <span class="ot">&lt;-</span> <span class="fu">apply</span>(metaMER_results[,<span class="fu">c</span>(<span class="st">'citekey'</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'library_id'</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'model_id'</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'feature_id'</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'data_id'</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'experiment_id'</span>)],</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">1</span>, </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                      paste0, </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">collapse =</span> <span class="st">'-'</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>unique_id <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(unique_id, </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                                                     <span class="st">' '</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="ot">&lt;-</span> metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(unique_id, </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                                 dplyr<span class="sc">::</span><span class="fu">everything</span>()) </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="ot">&lt;-</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  rbind,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(recoded_studies),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">function</span>(x) <span class="fu">get_study_results</span>(recoded_studies[x,])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add unique identifiers</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>unique_id <span class="ot">&lt;-</span> <span class="fu">apply</span>(metaMER_results[,<span class="fu">c</span>(<span class="st">'citekey'</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'library_id'</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'model_id'</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'feature_id'</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'data_id'</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                         <span class="st">'experiment_id'</span>)],</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">1</span>, </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                      paste0, </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">collapse =</span> <span class="st">'-'</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>unique_id <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_remove_all</span>(unique_id, </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                                                     <span class="st">' '</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="ot">&lt;-</span> metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(unique_id, </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                                 dplyr<span class="sc">::</span><span class="fu">everything</span>()) </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,196 × 17
    unique_id           citekey model_category stimulus_n feature_n participant_n
    &lt;chr&gt;               &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;        
- 1 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 2 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 3 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 4 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 5 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 6 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 7 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 8 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
- 9 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
-10 agarwal2021an-nots… agarwa… " classificat… " ISMIR20… " 'eight… " not specif…
+ 1 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 2 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 3 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 4 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 5 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 6 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 7 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 8 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+ 9 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
+10 agarwal2021an-nots… agarwa… classification " ISMIR20… " 'eight… " not specif…
 # ℹ 1,186 more rows
 # ℹ 11 more variables: feature_source &lt;chr&gt;, feature_reduction_method &lt;chr&gt;,
 #   library_id &lt;chr&gt;, model_id &lt;chr&gt;, feature_id &lt;chr&gt;, data_id &lt;chr&gt;,
@@ -248,10 +227,10 @@ Mismatch in input lengths.</code></pre>
 </section>
 <section id="summarise-annotated-data-optional" class="level3">
 <h3 class="anchored" data-anchor-id="summarise-annotated-data-optional">Summarise annotated data (optional)</h3>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>dimension)))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>model_id)))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>feature_id)))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>data_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>dimension)))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>model_id)))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>feature_id)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>citekey,metaMER_results<span class="sc">$</span>data_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="add-human-readable-authordate-field" class="level3">
 <h3 class="anchored" data-anchor-id="add-human-readable-authordate-field">Add human readable author+date field</h3>
@@ -264,27 +243,28 @@ Mismatch in input lengths.</code></pre>
 <section id="classify-modelling-techniques-used" class="level3">
 <h3 class="anchored" data-anchor-id="classify-modelling-techniques-used">Classify modelling techniques used</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify techniques according Hastie, Tibshirani, Friedman (2008)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_id <span class="ot">&lt;-</span> <span class="fu">tolower</span>(metaMER_results<span class="sc">$</span>model_id)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id <span class="ot">&lt;-</span> <span class="st">'Unclassified'</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis'</span>)] <span class="ot">&lt;-</span> <span class="st">'Linear Methods'</span> <span class="co"># Class name from Elements of Stat.."</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] &lt;- 'Linear Classification'</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'mars|gam'</span>)]<span class="ot">&lt;-</span><span class="st">'Additive Trees and Related Methods'</span> <span class="co">#</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'rbf|gmm|local|polynomial|polygonal'</span>)]<span class="ot">&lt;-</span><span class="st">'Kernel Smoothing'</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]&lt;-'Boosting'</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'nn|gru|lstm|ltsm|long short term memory|rprop|mcan'</span>)]<span class="ot">&lt;-</span><span class="st">'Neural Nets'</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'svm|svr|support vector regression|smoreg|smo '</span>)]<span class="ot">&lt;-</span><span class="st">'Flexible Discriminants'</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'knn'</span>)]<span class="ot">&lt;-</span><span class="st">'Prototype methods'</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'rf|extremely randomized tree regression|random forest|adaboost|gradient'</span>)]<span class="ot">&lt;-</span><span class="st">'Random Forests'</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]&lt;-'Ensemble Learning'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify techniques according Hastie, Tibshirani, Friedman (2008)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_id <span class="ot">&lt;-</span> <span class="fu">tolower</span>(metaMER_results<span class="sc">$</span>model_id)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id <span class="ot">&lt;-</span> <span class="st">'Unclassified'</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis'</span>)] <span class="ot">&lt;-</span> <span class="st">'Linear Methods'</span> <span class="co"># Class name from Elements of Stat.."</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] &lt;- 'Linear Classification'</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'mars|gam')]&lt;-'Additive Trees and Related Methods' #</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'rbf|gmm|local|polynomial|polygonal|knn|mars|gam'</span>)]<span class="ot">&lt;-</span><span class="st">'Kernel Smoothing, Additive and KNN'</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]&lt;-'Boosting'</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'nn|gru|lstm|ltsm|long short term memory|rprop|mcan'</span>)]<span class="ot">&lt;-</span><span class="st">'Neural Nets'</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'svm|svr|support vector regression|smoreg|smo '</span>)]<span class="ot">&lt;-</span><span class="st">'Flexible Discriminants'</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'knn')]&lt;-'Prototype methods'</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>metaMER_results<span class="sc">$</span>model_class_id[<span class="fu">str_detect</span>(metaMER_results<span class="sc">$</span>model_id,<span class="st">'rf|extremely randomized tree regression|random forest|adaboost|gradient'</span>)]<span class="ot">&lt;-</span><span class="st">'Random Forests'</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]&lt;-'Ensemble Learning'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="summarise" class="level2">
 <h2 class="anchored" data-anchor-id="summarise">Summarise</h2>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>model_class_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>model_class_id)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table">
 <thead>
 <tr class="header">
@@ -294,28 +274,20 @@ Mismatch in input lengths.</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Additive Trees and Related Methods</td>
-<td style="text-align: right;">27</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Flexible Discriminants</td>
 <td style="text-align: right;">371</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Kernel Smoothing</td>
-<td style="text-align: right;">79</td>
-</tr>
 <tr class="even">
+<td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
+<td style="text-align: right;">106</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
 <td style="text-align: right;">238</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">341</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">Prototype methods</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: left;">Neural Nets</td>
+<td style="text-align: right;">365</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
@@ -323,121 +295,119 @@ Mismatch in input lengths.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>model_class_id,metaMER_results<span class="sc">$</span>model_category)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(metaMER_results<span class="sc">$</span>model_class_id,metaMER_results<span class="sc">$</span>model_category)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 11%">
-<col style="width: 13%">
-<col style="width: 14%">
-<col style="width: 9%">
-<col style="width: 11%">
-<col style="width: 11%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">regression</th>
 <th style="text-align: right;">classification</th>
-<th style="text-align: right;">classification</th>
-<th style="text-align: right;">regression</th>
-<th style="text-align: right;">regression</th>
 <th style="text-align: right;">regression</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Additive Trees and Related Methods</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Flexible Discriminants</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">72</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">124</td>
 <td style="text-align: right;">247</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Kernel Smoothing</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">106</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">48</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">190</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">232</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">6</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Prototype methods</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: left;">Neural Nets</td>
+<td style="text-align: right;">242</td>
+<td style="text-align: right;">123</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">65</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">51</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">nrow</span>(metaMER_results), <span class="st">"observations"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">nrow</span>(metaMER_results), <span class="st">"observations"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “We have 1196 observations”</p>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey), <span class="st">"studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] “We have agarwal2021an studies” “We have alvarez2023ri studies”<br>
-[3] “We have bai2017mu studies” “We have bhuvanakumar2023em studies” [5] “We have dufour2021us studies” “We have hizlisoy2021mu studies”<br>
-[7] “We have nguyen2017an studies” “We have panda2020no studies”<br>
-[9] “We have sorussa2020em studies” “We have yang2021an studies”<br>
-[11] “We have yeh2014po studies” “We have zhang2017fe studies”<br>
-[13] “We have bai2016di studies” “We have battcock2021in studies”<br>
-[15] “We have beveridge2018po studies” “We have cao2023th studies”<br>
-[17] “We have chen2017co studies” “We have chin2018pr studies”<br>
-[19] “We have coutinho2017sh studies” “We have deng2015em studies”<br>
-[21] “We have gingras2014be studies” “We have grekow2018au studies”<br>
-[23] “We have grekow2021mu studies” “We have griffiths2021am studies”<br>
-[25] “We have hu2017cr studies” “We have hu2022de studies”<br>
-[27] “We have koh2023me studies” “We have markov2014mu studies”<br>
-[29] “We have orjesek2022en studies” “We have saizclar2022pr studies”<br>
-[31] “We have wang2021ac studies” “We have wang2022co studies”<br>
-[33] “We have wang2022cr studies” “We have xie2020mu studies”<br>
-[35] “We have xu2021us studies” “We have zhang2016br studies”<br>
-[37] “We have zhang2019us studies” “We have zhang2023mo studies”</p>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Where"</span>, <span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'regression'</span>]), <span class="st">"are regression studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] “Where are regression studies”</p>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Where"</span>, <span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'classification'</span>]), <span class="st">"are classification studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>[1] “Where are classification studies”</p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey)), <span class="st">"studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[1] “We have 38 studies”</p>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'regression'</span>])), <span class="st">"are regression studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[1] “Where 26 are regression studies”</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'classification'</span>])), <span class="st">"are classification studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[1] “Where 12 are classification studies”</p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we have some classification studies that also do regression and vice versa?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="pull-data-to-analyse-regression-studies" class="level3">
+<h3 class="anchored" data-anchor-id="pull-data-to-analyse-regression-studies">Pull data to analyse regression studies</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(metaMER_results,model_category<span class="sc">==</span><span class="st">'regression'</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(measure,<span class="st">'r|cc|r2|R2'</span>)) <span class="co">#  </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(R_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 580  19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># eliminate measures that we don't need now</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_studies,<span class="sc">!</span><span class="fu">str_detect</span>(statistic,<span class="st">'r2-95l|r2-95u|pvalue|upper|lower|sd|null|rmse'</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_studies,<span class="sc">!</span><span class="fu">str_detect</span>(measure,<span class="st">'nFeatures|rmse|jensen shannon divergence|accuracy|ccc|vector distance'</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>measure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ cc pcc   r  r2  R2 
+  2   4  22 168   5 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>measure, R_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     
+      adjusted  cc globalOptimal localOptimal mean   r  r2
+  cc         0   2             0            0    0   0   0
+  pcc        0   0             0            0    4   0   0
+  r          0   0             0            0    4  18   0
+  r2        12   0             4            4   28   0 120
+  R2         0   0             0            0    5   0   0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(R_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 201  19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'R2'</span>]<span class="ot">&lt;-</span><span class="fu">sqrt</span>(R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'R2'</span>]) <span class="co"># recode R2 into r</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]<span class="ot">&lt;-</span><span class="fu">sqrt</span>(R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]) <span class="co"># recode R2 into r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="diagnostics">Diagnostics</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>values,<span class="at">fill=</span>citekey))<span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>model_class_id)<span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>           g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 4 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
