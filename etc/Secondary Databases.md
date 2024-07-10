@@ -11,7 +11,7 @@
 8|**CH818**|Chinese pop|30|s|818|15|3|experts|China|Convenience|Rate|MIRToolbox, PsySound, ChromaToolbox,Tempogram Toolbox|Dynamic, Pitch, Rhythm, Timbre, Harmony|Hu & Yang (2017)
 9|**Zhang, Huang, Yang, & Xu (2015)**|Chinese pop|30|s|171|84 (dimensionality)|10|Nonexperts|not specified|not specified|classify|MAToolbox, MIRToolbox, Coversongs|Dynamics, Timbre, Rhythm|Zhang et al. 2015
 10|**PMEmo**|choruses of top pop songs|variable|s|794|65 (260 dims)|457|366 Chinese university students (44 music majors); 47 English speakers|campus|convenience|rate|ComParE 2013 baseline feature set|Dynamic, Timbre, Pitch (tabulated as energy-related, spectral, voicing related)![alt text](image-1.png)|[Zhang et al. (2018)](https://github.com/HuiZhangDB/PMEmo?tab=readme-ov-file)
-11|**NJU-V1**|Music clips (limited detail)|variable|s|777|Lyric (BoW; 50 dims before filtering), MFCC, spectral contrast, chromagram|NA (lastfm tags)|NA|LastFM|crowdsource (webscraping)|NA|NA|Lyric, Timbre, Pitch|[Xue et al. (2015)](https://cs.nju.edu.cn/sufeng/data/musicmood.htm)
+11|**NJU-V1**|Music clips (limited detail)|variable|s|777|Lyric (BoW; 50 dims before filtering), MFCC, spectral contrast, chromagram|NA (lastfm tags)|NA|LastFM|crowdsource (webscraping)|NA|NA|Lyric, Timbre, Harmony|[Xue et al. (2015)](https://cs.nju.edu.cn/sufeng/data/musicmood.htm)
 12|**ISMIR-2012**|popular|30 or 60|s|2904|54 (means + sds)|NA (lastfm tags)|NA|LastFM|crowdsource (webscraping)|NA|MIRToolbox|Dynamics, Rhythm, Timbre (they call this Spectral), Harmony|[Song et al. 2012](http://yadingsong.blogspot.com/2015/03/popular-music-emotion-dataset-ismir2012.html)**|
 
 \* Dataset not available online
