@@ -87,15 +87,49 @@ We first report regression studies that predict valence and arousal.
 
 ## Prediction success for valence and arousal
 
+- Report all models or the best model?
+
+
 Out of XX studies reporting this task, the majority (xx%) ... 
 
-| Concept | N    | Md $R^2$|
-|:--------|:-----|:--------|
-| Valence | ??   | ??      |
-| Arousal | ??   | ??      |
+
+This is for diagnostic purposes
+
+| Concept     | N,obs     | $r$ 95%-CI              | $t$ | $p$  |$\tau^2$|$I^2$|
+|:------------|:----------|:--------|:--------------|:----|:-----|:-----|:------|
+| Valence All | 49,42648  | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
+| Valence Trim| 27,18402  | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1% [0.0%; 58.2%]|
+| Valence M   | 14,10641  | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
+| Valence Md  | 14,10641  | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
+| Valence Max | 14,10641  | 0.6520 [0.5026; 0.7636] | 7.44|.0001 | 0.142| 97.9% |
+| N Features  |           |                         |     |      |      |       |
+| <18 F       |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+| 18-260 F    |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+| 260+ F      |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+| Techniques  |           |                         |     |      |      |       |
+|   KS        | 1          | 0.3606 [0.3201; 0.3997] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   LM        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   FD        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   NN        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   RF        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+
+| Arousal | 14,9035  | 0.8139 [0.7147; 0.8810] |10.17|.0001 | 0.165| 97.3% |
+|   KS    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   LM    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   FD    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   NN    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+|   RF    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 
 TABLE: xxxx
 
+model complexity issue
+
+https://ishanjainoffical.medium.com/model-complexity-explained-intuitively-e179e38866b6
+
+https://www.sciencedirect.com/science/article/pii/S0925231220317525
+
+bake in number of features, + N + success
+AIC = 
 
 
 # Conclusion and Discussion

@@ -377,19 +377,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]<span class="ot">&lt;-</span><span class="fu">sqrt</span>(R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]) <span class="co"># recode R2 into r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="homogenise-the-outcome-variable-names-to-valence-and-arousal" class="level3">
+<h3 class="anchored" data-anchor-id="homogenise-the-outcome-variable-names-to-valence-and-arousal">Homogenise the outcome variable names to valence and arousal</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>dimension,<span class="st">'activation|energy arousal|tension arousal'</span>)]<span class="ot">&lt;-</span><span class="st">'arousal'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>dimension,<span class="st">'pleasantness'</span>)]<span class="ot">&lt;-</span><span class="st">'valence'</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_studies,<span class="sc">!</span><span class="fu">str_detect</span>(dimension,<span class="st">'av'</span>)) <span class="co"># relates to distances, can be omitted</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>dimension)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+arousal valence 
+    101      95 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>stimulus_n)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                                          1000   
+                                              16 
+                                            146  
+                                              12 
+                                          1838   
+                                              10 
+    2372 (subset of PSIC3839, total n: 3839)     
+                                               2 
+                                            40   
+                                               2 
+                                            420  
+                                               2 
+                                            431  
+                                               4 
+                                             48  
+                                               6 
+                                            54   
+                                               4 
+                                          744    
+                                              18 
+                                            84   
+                                              12 
+ emoMusic: 1000, soundtracks: 360, chinese: 500  
+                                               8 
+          MER60: 60, CH818: 818, AMG1608: 1608   
+                                              96 
+    study 1: 20; study 2: 40) % three outliers   
+                                               4 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deal with four studies involving multiple datasets: </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>stimulus_n[R_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" emoMusic: 1000, soundtracks: 360, chinese: 500 "</span>] <span class="ot">&lt;-</span> <span class="dv">938</span> <span class="co">#resolved from the paper</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>stimulus_n[R_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" 2372 (subset of PSIC3839, total n: 3839)    "</span>] <span class="ot">&lt;-</span> <span class="dv">2372</span> <span class="co"># resolved</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>stimulus_n[R_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" study 1: 20; study 2: 40) % three outliers  "</span>] <span class="ot">&lt;-</span> <span class="dv">40</span> <span class="co"># decided to take this from validation</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># REDO with a clearer function</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>eliminate <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(R_studies<span class="sc">$</span>unique_id,<span class="st">"hu2017cr"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">str_detect</span>(R_studies<span class="sc">$</span>unique_id,<span class="st">"all"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> R_studies[<span class="sc">!</span>eliminate,]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>stimulus_n[R_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" MER60: 60, CH818: 818, AMG1608: 1608  "</span>] <span class="ot">&lt;-</span> <span class="dv">60</span><span class="sc">+</span><span class="dv">818</span><span class="sc">+</span><span class="dv">1608</span> <span class="co">#</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>stimulus_n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(R_studies<span class="sc">$</span>stimulus_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="diagnostics" class="level3">
 <h3 class="anchored" data-anchor-id="diagnostics">Diagnostics</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'ggplot2' was built under R version 4.3.1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>values,<span class="at">fill=</span>citekey))<span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>model_class_id)<span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>           g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>values,<span class="at">fill=</span>citekey,<span class="at">color=</span>dimension))<span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>model_class_id)<span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'black'</span>,<span class="st">'white'</span>))<span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>()<span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -400,14 +458,213 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-
-
 </section>
+<section id="select-a-summary-measure-for-valence-and-arousal-separately" class="level3">
+<h3 class="anchored" data-anchor-id="select-a-summary-measure-for-valence-and-arousal-separately">Select a summary measure for valence and arousal separately</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.3.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.3.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.3.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>R_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(R_studies,dimension,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span>T),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span>T),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span>T),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'dimension'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+</div>
+</section>
+<section id="visualise-summary-on-two-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="visualise-summary-on-two-dimensions">Visualise Summary on two dimensions</h3>
+<p>Add variation from within the studies (alternative models)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>R_summary_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_summary,<span class="at">id_cols =</span> citekey, <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> valuesMax)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_summary_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey))<span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()<span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## could be more informative when done with the full data</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>R_studies_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_studies,<span class="at">id_cols =</span> <span class="fu">c</span>(unique_id,citekey,model_class_id), <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> <span class="fu">c</span>(values),<span class="at">values_fn =</span> mean)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>R_studies_split<span class="ot">&lt;-</span><span class="fu">drop_na</span>(R_studies_split)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggrepel' was built under R version 4.3.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">max.overlaps=</span><span class="dv">50</span>,<span class="at">show.legend =</span> T,<span class="at">color=</span><span class="st">'white'</span>)<span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-success-across-the-years" class="level3">
+<h3 class="anchored" data-anchor-id="plot-success-across-the-years">Plot success across the years</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add year!</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_match</span>(R_studies<span class="sc">$</span>citekey,<span class="st">'[0-9]+'</span>))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>values,<span class="at">colour=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>dimension)<span class="sc">+</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 4 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-model-complexity-metric" class="level3">
+<h3 class="anchored" data-anchor-id="simple-model-complexity-metric">Simple model complexity metric</h3>
+<p>Ratio of obs./features or just a classification based on feature n (quintiles).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported "</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [97] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved from the paper</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" before_selection = 45, after_selection = 6  "</span>] <span class="ot">&lt;-</span> <span class="dv">45</span> <span class="co">#resolved</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" model 1: 52, model 2 = 68, model 3 = 260, model 4 = 388 "</span>] <span class="ot">&lt;-</span> <span class="dv">388</span> <span class="co">#resolved</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" variable, 557 before feature selection "</span>] <span class="ot">&lt;-</span> <span class="dv">557</span> <span class="co">#resolved</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 50 PCA features "</span>] <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="co">#resolved</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="co">#R_studies$feature_n[R_studies$feature_n==""] &lt;- 0 #resolved</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co">#R_studies$feature_n[R_studies$feature_n==""] &lt;- 0 #resolved</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(R_studies<span class="sc">$</span>feature_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>,<span class="fl">0.666</span>),<span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>33.3% 66.6% 
+   18   260 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>),<span class="at">na.rm =</span> T)),</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.666</span>),<span class="at">na.rm =</span> T)),</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>                                                 <span class="dv">1000</span>),</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 18"</span>,<span class="st">"Feature n &gt; 18 &amp; &lt; 260"</span>,<span class="st">"Feature n &gt; 260"</span>))</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>feature_n_complexity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+        Feature n &lt; 18 Feature n &gt; 18 &amp; &lt; 260        Feature n &gt; 260 
+                    26                     24                     24 </code></pre>
+</div>
+</div>
+</section>
+<section id="explore-feature_n_complexity-and-model-success" class="level3">
+<h3 class="anchored" data-anchor-id="explore-feature_n_complexity-and-model-success">Explore feature_n_complexity and model success</h3>
+<p>Needs to be done from the unsummarised data (<code>R_studies</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(R_studies)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">str_to_title</span>(tmp<span class="sc">$</span>dimension)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>model_class_id<span class="ot">&lt;-</span><span class="fu">factor</span>(tmp<span class="sc">$</span>model_class_id,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Neural Nets"</span>,<span class="st">"Flexible Discriminants"</span>, <span class="st">"Kernel Smoothing, Additive and KNN"</span>, <span class="st">"Random Forests"</span>,<span class="st">"Linear Methods"</span>),</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Neural</span><span class="sc">\n</span><span class="st">Nets"</span>,<span class="st">"Flexible</span><span class="sc">\n</span><span class="st">Discriminants"</span>, <span class="st">"KS</span><span class="sc">\n</span><span class="st"> &amp; KNN"</span>, <span class="st">"Random</span><span class="sc">\n</span><span class="st">Forests"</span>, <span class="st">"Linear</span><span class="sc">\n</span><span class="st">Methods"</span>))</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">x=</span>model_class_id,<span class="at">y=</span>values,<span class="at">color=</span>citekey,<span class="at">label=</span>citekey))<span class="sc">+</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="fu">aes</span>(<span class="at">fill=</span>citekey),<span class="at">point_interval=</span><span class="st">"mean_qi"</span>, <span class="at">trim=</span><span class="cn">FALSE</span>, <span class="at">expand=</span><span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,<span class="at">adjust =</span> <span class="fl">1.25</span>, <span class="at">density=</span><span class="st">"bounded"</span>, <span class="at">point_size=</span><span class="dv">3</span>,<span class="at">scale =</span> <span class="dv">1</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">show.legend =</span> F,<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">3</span>))<span class="sc">+</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_label_repel(size=2,max.overlaps = 50)+</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(dimension<span class="sc">~</span>feature_n_complexity)<span class="sc">+</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Correlation Coefficient"</span>)<span class="sc">+</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Model Technique"</span>)<span class="sc">+</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_y_continuous(limits = c(0,1),expand = c(0.01,0.01))+</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> model_class_id, <span class="at">y =</span> values, <span class="at">label =</span> studyREF),</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean,<span class="at">show.legend =</span> F)<span class="sc">+</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="export-as-csv" class="level2">
+<h2 class="anchored" data-anchor-id="export-as-csv">Export as csv</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_studies,<span class="at">file =</span> <span class="st">'R_studies.csv'</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_summary,<span class="at">file =</span> <span class="st">'R_summary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 </section>
 
