@@ -7,9 +7,7 @@ get_metaMER_df <- function(path_2_studies = here::here('studies')) {
 
 bib_file <- read.delim(paste0(path_2_studies, '/bib/extractions.bib'),
                        sep = '@', header = F)
-journal <- bib_file[str_detect(tolower(bib_file$V1), 'journal = '),]$V1
-journal <- journal[1:length(journal)-1]
-journal <- stringr::str_remove(journal, "JOURNAL ")
+
 # get citekeys from bibtex file:
 citekeys <- unique(bib_file$V2)
 # improve formatting
@@ -71,7 +69,6 @@ meta_df[,ncol(meta_df)+1] <- sapply(meta_df[,1], function(x) stringr::str_match(
 # replace first column with citationkeys
 meta_df[,1] <- names(meta_list)
 names(meta_df) <- c('citekey', search_fields)
-meta_df$journal <- journal
 names(meta_df) <- trimws(names(meta_df))
 
 Sys.sleep(0.25)
@@ -89,7 +86,6 @@ meta_df <- apply(meta_df, 2, function(x) stringr::str_remove_all(x, '%%.*'))
 # remove extra characters in final column
 meta_df[, ncol(meta_df)] = stringr::str_remove_all(meta_df[, ncol(meta_df)], '\\}')
 meta_df <- as.data.frame(meta_df)
-
 
 return(meta_df)
 
