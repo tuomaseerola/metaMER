@@ -3,7 +3,8 @@ notes_ca
 notes_te 
 emotions 
 emotion_locus 
-stimulus_type 
+stimulus_type
+stimulus_genre 
 stimulus_duration 
 stimulus_duration_unit 
 stimulus_n 
