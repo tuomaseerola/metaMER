@@ -18,17 +18,19 @@ R_summary <- read.csv("R_summary.csv")
 
 # select regression studies with r2
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp <- dplyr::filter(R_studies,dimension=="valence")
-dim(tmp)
-tmp <- tmp[!is.na(tmp$values),]
-dim(tmp)
+#tmp <- dplyr::filter(R_studies,dimension=="valence")
+#dim(tmp)
+
+#if all studies, remove two
+#tmp <- tmp[!is.na(tmp$values),]
+#dim(tmp)
 
 #sqrt(tmp$values) # convert from R^2 to r
 #tmp$stimulus_n <- 100 # ad-hoc for now
 
-m.cor <- metacor(cor = values,     # values 
+m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
-                 studlab = unique_id, # unique_id
+                 studlab = citekey, # unique_id
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
@@ -186,15 +188,15 @@ print(m.cor_subgroups)
 
 # select regression studies with r2
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp <- dplyr::filter(R_studies,dimension=="arousal")
+#tmp <- dplyr::filter(R_studies,dimension=="arousal")
 dim(tmp)
-tmp <- tmp[!is.na(tmp$values),]
+#tmp <- tmp[!is.na(tmp$values),]
 dim(tmp)
 #tmp<-drop_na(tmp)
 
-m.cor <- metacor(cor = values, 
+m.cor <- metacor(cor = valuesMax, 
                  n = stimulus_n,
-                 studlab = unique_id,
+                 studlab = citekey,
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,

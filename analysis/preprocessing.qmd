@@ -139,7 +139,7 @@ print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model
 ```
 
 
-## Pull data to analyse regression studies
+# Pull data to analyse regression studies
 
 ```{r}
 R_studies <- dplyr::filter(metaMER_results,model_category=='regression' & str_detect(measure,'r|cc|r2|R2')) #  
@@ -160,7 +160,8 @@ R_studies$values[R_studies$measure=='r2']<-sqrt(R_studies$values[R_studies$measu
 
 
 ```
-### Homogenise the outcome variable names to valence and arousal
+
+## Homogenise the outcome variable names to valence and arousal
 
 ```{r}
 R_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal'
@@ -183,7 +184,7 @@ R_studies$stimulus_n <- as.numeric(R_studies$stimulus_n)
   
 ```
 
-### Diagnostics
+## Diagnostics
 
 ```{r}
 library(ggplot2)
@@ -198,7 +199,7 @@ g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
 g1
 ```
 
-### Select a summary measure for valence and arousal separately
+## Select a summary measure for valence and arousal separately
 
 ```{r}
 library(tidyverse)
@@ -209,7 +210,7 @@ R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(val
 
 ```
 
-### Visualise Summary on two dimensions
+## Visualise Summary on two dimensions
 
 Add variation from within the studies (alternative models)
 
@@ -243,7 +244,7 @@ g3
 
 ```
 
-### Plot success across the years
+## Plot success across the years
 
 ```{r}
 #| eval: true
@@ -256,7 +257,8 @@ g3 <- ggplot(R_studies,aes(x=year,y=values,colour=model_class_id))+
   theme_bw()
 g3
 ```
-### Simple model complexity metric
+
+## Simple model complexity metric
 
 Ratio of obs./features or just a classification based on feature n (quintiles).
 
@@ -289,7 +291,7 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
 table(R_studies$feature_n_complexity)
 ```
 
-### Explore feature_n_complexity and model success
+## Explore feature_n_complexity and model success
 
 Needs to be done from the unsummarised data (`R_studies`).
 
@@ -317,7 +319,7 @@ g
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
-### Create descriptive table for the manuscript
+## Create descriptive table for the manuscript
 
 ```{r}
 TR <- NULL
@@ -332,7 +334,7 @@ print(TR)
 
 ```
 
-### Export as csv 
+## Export as csv 
 
 ```{r}
 write.csv(x = R_studies,file = 'R_studies.csv')
@@ -340,7 +342,7 @@ write.csv(x = R_summary,file = 'R_summary.csv')
 ```
 
 
-## Pull data to analyse classification studies
+# Pull data to analyse classification studies
 
 ```{r}
 C_studies <- dplyr::filter(metaMER_results,model_category=='classification' & str_detect(measure,'accuracy|r2|mcc')) #  
@@ -359,7 +361,7 @@ dim(C_studies)
 # Conversion into mcc (==r), do we need
 
 ```
-### Homogenise the outcome variable names to valence and arousal
+## Homogenise the outcome variable names to valence and arousal
 
 ```{r}
 table(C_studies$stimulus_n)  
@@ -374,12 +376,12 @@ C_studies$stimulus_n <- as.numeric(C_studies$stimulus_n)
   
 ```
 
-### Diagnostics
+## Diagnostics
 
 ```{r}
 library(ggplot2)
 
-g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
+g1<-ggplot(C_studies,aes(x=values,fill=citekey,color=dimension))+
   geom_histogram()+
   facet_wrap(.~model_class_id)+
   scale_color_manual(values = c('black','white'))+
@@ -389,7 +391,7 @@ g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
 g1
 ```
 
-### Select a summary measure for valence and arousal separately
+## Select a summary measure for valence and arousal separately
 
 ```{r}
 library(tidyverse)
@@ -400,7 +402,7 @@ R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(val
 
 ```
 
-### Visualise Summary on two dimensions
+## Visualise Summary on two dimensions
 
 Add variation from within the studies (alternative models)
 
@@ -434,7 +436,7 @@ g3
 
 ```
 
-### Plot success across the years
+## Plot success across the years
 
 ```{r}
 #| eval: true
@@ -447,7 +449,7 @@ g3 <- ggplot(R_studies,aes(x=year,y=values,colour=model_class_id))+
   theme_bw()
 g3
 ```
-### Simple model complexity metric
+## Simple model complexity metric
 
 Ratio of obs./features or just a classification based on feature n (quintiles).
 
@@ -480,7 +482,7 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
 table(R_studies$feature_n_complexity)
 ```
 
-### Explore feature_n_complexity and model success
+## Explore feature_n_complexity and model success
 
 Needs to be done from the unsummarised data (`R_studies`).
 
@@ -508,7 +510,7 @@ g
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
-### Create descriptive table for the manuscript
+## Create descriptive table for the manuscript
 
 ```{r}
 TR <- NULL
@@ -523,10 +525,10 @@ print(TR)
 
 ```
 
-### Export as csv 
+## Export as csv 
 
 ```{r}
-write.csv(x = R_studies,file = 'R_studies.csv')
-write.csv(x = R_summary,file = 'R_summary.csv')
+#write.csv(x = R_studies,file = 'R_studies.csv')
+#write.csv(x = R_summary,file = 'R_summary.csv')
 ```
 

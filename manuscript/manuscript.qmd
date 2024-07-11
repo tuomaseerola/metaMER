@@ -107,14 +107,14 @@ See `analysis/analysis.qmd`
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
-| Concept     | Models, obs|$r$ [95%-CI]            | $t$ | $p$  |$\tau^2$|$I^2$|
+| Concept     | Models, obs|$r$ [95%-CI]            | $t$ | $p$  |$\tau^2$|$I^2$| Prediction interval
 |:------------|:----------|:--------  --------------|:----|:-----|:-----|:------|
 | Valence All | 49,42480  | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
 | Valence Trim| 27,18402  | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1%|
 | Valence M   | 14,10641  | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
 | Valence Md  | 14,10641  | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
-| Valence Max | 14,10641  | 0.6520 [0.5026; 0.7636] | 7.44|.0001 | 0.142| 97.9% |
-| Val. MaxTrim|   8,7205  | 0.6140 [0.5538; 0.6679] | 18.5|.0001 | 0.008| 88.5% |
+| Valence Max | 14,10641  | 0.6520 [0.5026; 0.7636] | 7.44|.0001 | 0.142| 97.9% | -0.0719; 0.9260
+| Val. MaxTrim|   8,7205  | 0.6140 [0.5538; 0.6679] | 18.5|.0001 | 0.008| 88.5% | 0.4470; 0.7396
 | *N Features*|           |                         |     |      |      |       |
 | <18 F       |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 | 18-260 F    |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
@@ -125,6 +125,11 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 |   FD        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   NN        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   RF        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+
+OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION, 
+
+see this to ignore I^2 and rely on prediction interval: 
+https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678
 
 
 Figure 1. Forest plot of valence prediction (Max?)
@@ -143,8 +148,8 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 | Arousal Trim| 27,18402   | 0.7932 [0.7846; 0.8014] | 96.5|0.0001|0.0030|73.3%  |
 | Arousal M   | 14,10641   | 0.7567 [0.6752; 0.8199] | 12.7|0.0001|0.0739|95.6%  |
 | Arousal Md  | 14,10641   | 0.7627 [0.6819; 0.8252] | 12.7|0.0001|0.0757|95.3%  |
-| Arousal Max | 14,10641   | 0.8077 [0.7088; 0.8755] | 10.3|0.0001|0.155 | 96.8%  |
-| Aro.Max.Trm | 11,10021   | 0.7869 [0.7490; 0.8197] | 25.6|0.0001|0.0132| 96.8%  |
+| Arousal Max | 14,10641   | 0.8077 [0.7088; 0.8755] | 10.3|0.0001|0.155 | 96.8%  | 0.2258; 0.9648
+| Aro.Max.Trm | 11,10021   | 0.7869 [0.7490; 0.8197] | 25.6|0.0001|0.0132| 96.8%  | 0.6372; 0.9047
 
 | *N Features*|            |          |              |     |      |      |       |   
 | <18 F       |            |          |              |     |      |      |       |
