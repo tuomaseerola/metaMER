@@ -65,12 +65,14 @@ summarize_matrix = function(matrix) {
 
 get_study_results <- function(study) {
   citekey <- unique(as.character(study[,'citekey']))
+  journal <- unique(as.character(study[,'journal']))
   stimulus_n <- unique(as.character(study[,'stimulus_n']))
   feature_n <- unique(as.character(study[,'feature_n']))
   participant_n <- unique(as.character(study[,'participant_n']))
   model_category <- unique(as.character(study[,'model_category']))
   feature_source <- unique(as.character(study[,'feature_source']))
   feature_reduction_method <- unique(as.character(study[,'feature_reduction_method']))
+  stimulus_genre <- unique(as.character(study[,'stimulus_genre']))
 
   #print(citekey)
   #print(as.character(study[,'model_rate_emotion_values']))
@@ -81,6 +83,8 @@ get_study_results <- function(study) {
   
     clean_df <- dplyr::tibble(
       citekey,
+      journal,
+      stimulus_genre,
       model_category = trimws(model_category, which = 'both'), 
       stimulus_n,
       feature_n,
