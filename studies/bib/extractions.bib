@@ -1573,7 +1573,7 @@ MODEL_RATE_EMOTION_VALUES = {bind_field(
   NOTES_TE = {include, linear regression},
   EMOTIONS = {valence, arousal},
   EMOTION_LOCUS = {perceived},
-  STIMULUS_TYPE = {},
+  STIMULUS_TYPE = {20 songs of different genres},
   STIMULUS_DURATION = {variable},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {study 1: 20; study 2: 40)}, % three outliers
@@ -2178,11 +2178,10 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   STIMULUS_TYPE = {emoMusic, Soundtracks, Chinese Classical Music Dataset},
   STIMULUS_DURATION = {emoMusic: 45; soundtracks: 10-30; chinese: 30}, %% ~30 seconds for Chinese Classical dataset, 10-30 for Soundtracks, ~45 for emoMusic
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {emoMusic: 1000, soundtracks: 360, chinese: 500}, %% emoMusic contains full 1000? 
+  STIMULUS_N = {emoMusic: 744, soundtracks: 360, chinese: 500}, %% emoMusic contains full 1000? 
   FEATURE_N = {variable, 557 before feature selection}, %% dimensionality BEFORE reduction
-  PARTICIPANT_N = {c(emoMusic = '10 min per excerpt', soundtracks = 12, chinese = 20)},
-  PARTICIPANT_EXPERTISE = {c(emoMusic = 'nonexperts', soundtracks = '10 years of musical training',
-  chinese = 'audio technology')},
+  PARTICIPANT_N = {c(emoMusic = 'min. 10 per excerpt' (100 qualified raters), soundtracks = 116 university students (12 expert musicologists in pilot), chinese = 20)},
+  PARTICIPANT_EXPERTISE = {c(emoMusic = 'nonexperts', soundtracks = '10 years of musical training', chinese = 'audio technology')},
   PARTICIPANT_ORIGIN = {variable},
   PARTICIPANT_SAMPLING = {variable},
   PARTICIPANT_TASK = {rate},
