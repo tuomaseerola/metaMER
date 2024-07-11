@@ -19,23 +19,55 @@ R_summary <- read.csv("R_summary.csv")
 # select regression studies with r2
 tmp <- dplyr::filter(R_summary,dimension=="valence")
 tmp <- dplyr::filter(R_studies,dimension=="valence")
-tmp<-drop_na(tmp)
+dim(tmp)
+tmp <- tmp[!is.na(tmp$values),]
+dim(tmp)
+
 #sqrt(tmp$values) # convert from R^2 to r
 #tmp$stimulus_n <- 100 # ad-hoc for now
 
-m.cor <- metacor(cor = values, 
+m.cor <- metacor(cor = values,     # values 
                  n = stimulus_n,
-                 studlab = unique_id,
+                 studlab = unique_id, # unique_id
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
                  sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 
-print(m.cor)
+#print(m.cor)
+
+m.cor_backtransformed <- m.cor
+m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
+print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
+
 ```
+#### Custom plot
+
+```{r}
+tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
+
+tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
+tmpdata$citekey<-factor(tmpdata$citekey)
+
+g <- ggplot(tmpdata,aes(y = SE, x = Zr,label=studies,color=citekey,fill=citekey)) +
+  geom_point(show.legend = FALSE) +
+  geom_label_repel(size=1.5,max.overlaps = 39,color="black",show.legend = FALSE)+
+  ylab('Standard Error') + 
+  xlab('r')+
+  scale_y_reverse()+
+  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+
+#  coord_flip()+
+  theme_bw()
+print(g)
+```
+
+
+
 
 #### Visualise (forest and funnel plots)
 
@@ -45,7 +77,10 @@ forest(m.cor,
        prediction = FALSE, 
              print.tau2 = FALSE,
              leftlabs = c("Author", "g", "SE"),studlab = citekey)
-plot(eggers.test(m.cor))
+
+funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+
 ```
 
 #### Explore qualities (in progress)
@@ -59,6 +94,8 @@ print(eggers.test(m.cor))
 
 
 ```
+
+
 #### Re-run the analysis without the outliers
 
 ```{r}
@@ -122,7 +159,7 @@ fp = ggplot(aes(x = SE, y = Zr), data = tmpdata) +
 #Finally, apply my APA-format theme (see code at end of post).
 #You could, alternatively, specify theme_bw() instead.
   theme_bw()
-
+print(fp)
 ```
 
 
@@ -149,12 +186,20 @@ print(m.cor_subgroups)
 
 # select regression studies with r2
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-m.cor <- metacor(cor = valuesMedian, 
+tmp <- dplyr::filter(R_studies,dimension=="arousal")
+dim(tmp)
+tmp <- tmp[!is.na(tmp$values),]
+dim(tmp)
+#tmp<-drop_na(tmp)
+
+m.cor <- metacor(cor = values, 
                  n = stimulus_n,
-                 studlab = studyREF,
+                 studlab = unique_id,
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
                  sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
@@ -162,6 +207,12 @@ m.cor <- metacor(cor = valuesMedian,
 
 print(m.cor)
 ```
+### Trimmed analysis
+```{r}
+O <- find.outliers(m.cor)
+```
+
+
 
 #### Visualise (forest and funnel plots)
 

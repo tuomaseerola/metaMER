@@ -362,11 +362,6 @@ dim(C_studies)
 ### Homogenise the outcome variable names to valence and arousal
 
 ```{r}
-#C_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal'
-#R_studies$dimension[str_detect(R_studies$dimension,'pleasantness')]<-'valence'
-#R_studies <- dplyr::filter(R_studies,!str_detect(dimension,'av')) # relates to distances, can be omitted
-
-
 table(C_studies$stimulus_n)  
 
 # Deal with four studies involving multiple datasets: 
