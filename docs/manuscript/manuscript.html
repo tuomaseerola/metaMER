@@ -215,14 +215,14 @@ window.Quarto = {
 <h1>Introduction</h1>
 <ul>
 <li><p>Emotional expression is one of the central reasons why people engage with music.</p></li>
-<li><p>Great advances in music information retrieval have been made in recent years.</p></li>
+<li><p>Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio.</p></li>
 <li><p>Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music <span class="citation" data-cites="gomez2021">(<a href="#ref-gomez2021" role="doc-biblioref">Gómez-Cañón et al., 2021</a>)</span>. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features <span class="citation" data-cites="lindstrom2003expressivity">(<a href="#ref-lindstrom2003expressivity" role="doc-biblioref">Lindström et al., 2003</a>)</span>, structural aspects of music <span class="citation" data-cites="eerola_friberg_bresin_2013 anderson2022ex grimaud_eerola_2022">(<a href="#ref-anderson2022ex" role="doc-biblioref">Anderson &amp; Schutz, 2022</a>; <a href="#ref-eerola_friberg_bresin_2013" role="doc-biblioref">Eerola et al., 2013</a>; <a href="#ref-grimaud_eerola_2022" role="doc-biblioref">Grimaud &amp; Eerola, 2022</a>)</span>, or acoustic features <span class="citation" data-cites="yang2008 panda2013multi saari_et_al_2015 eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-panda2013multi" role="doc-biblioref">Panda et al., 2013</a>; <a href="#ref-saari_et_al_2015" role="doc-biblioref">Saari et al., 2015</a>; <a href="#ref-yang2008" role="doc-biblioref">Yang et al., 2008</a>)</span> or emergent properties identified through deep learning <span class="citation" data-cites="er2019music sarkar2020recognition">(<a href="#ref-er2019music" role="doc-biblioref">Er &amp; Aydilek, 2019</a>; <a href="#ref-sarkar2020recognition" role="doc-biblioref">Sarkar et al., 2020</a>)</span>.</p></li>
 </ul>
 <p>However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex – valence and arousal– <span class="citation" data-cites="Russell1980">(<a href="#ref-Russell1980" role="doc-biblioref">Russell, 1980</a>)</span> and classifying various emotion categories <span class="citation" data-cites="fu2010survey">(<a href="#ref-fu2010survey" role="doc-biblioref">Fu et al., 2010</a>)</span>.</p>
 <section id="aims" class="level2">
 <h2 class="anchored" data-anchor-id="aims">Aims</h2>
 <ul>
-<li>Our aim is to establish the level of predictive accuracy for both continuous models of emotional expression (valence and arousal) and classification of emotion categories based on available and recent studies.</li>
+<li>Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in affective circumple space (valence and arousal) and classification of emotion categories based on available and recent studies.</li>
 <li>We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.</li>
 <li>To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.</li>
 <li>We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).</li>
@@ -231,44 +231,426 @@ window.Quarto = {
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>We preregistered our meta-analysis plan (OSF URL here, also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
+<p>We preregistered our meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi OR categor OR algorithm AND music   AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
 <p>The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as <span class="math inline">\(R^2\)</span> or classification accuracy (<span class="math inline">\(F1\)</span> score or <em>precision</em> or <em>recall</em>) and overall quality control; see <a href="http://">SI</a> for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number [N], duration), features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.</p>
+<p>[optional Figure: flowchart of the study inclusions/eliminations]</p>
+<ul>
+<li>Devote some sentences to quality control issues (what were the most common reasons for eliminating studies).</li>
+</ul>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>First we could describe the overall pattern of data (modelling techniques, cross-validation, popular datasets, etc).</p>
+<p>First we could describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
+<p>TABLE 1: Summary of data (part of <code>analysis/preprocessing.qmd</code>)</p>
+<p>Talk about the stimuli and</p>
 <p>We first report regression studies that predict valence and arousal.</p>
-<section id="prediction-success-for-valence-and-arousal" class="level2">
-<h2 class="anchored" data-anchor-id="prediction-success-for-valence-and-arousal">Prediction success for valence and arousal</h2>
-<p>Out of XX studies reporting this task, the majority (xx%) …</p>
+<section id="prediction-success-for-valence-and-arousal-or-affect-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="prediction-success-for-valence-and-arousal-or-affect-dimensions">Prediction success for valence and arousal (or affect dimensions)</h2>
+<p>See <code>analysis/analysis.qmd</code></p>
+<ul>
+<li><p>Decision: Report all models or the best model?</p>
+<ul>
+<li>Possible solution: Report all models, trimmed models, and but mainly rely on Max</li>
+</ul></li>
+<li><p>Report issues of heterogeneity right here (can be visualised with funnel plots, see below)</p></li>
+<li><p>Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers”</p></li>
+</ul>
+<p>Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.</p>
 <table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 9%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Concept</th>
-<th style="text-align: left;">N</th>
-<th style="text-align: left;">Md <span class="math inline">\(R^2\)</span></th>
+<th style="text-align: left;">Models, obs</th>
+<th style="text-align: left;"><span class="math inline">\(r\)</span> [95%-CI]</th>
+<th style="text-align: left;"><span class="math inline">\(t\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(p\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\tau^2\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(I^2\)</span></th>
+<th style="text-align: left;"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Valence</td>
-<td style="text-align: left;">??</td>
-<td style="text-align: left;">??</td>
+<td style="text-align: left;">Valence All</td>
+<td style="text-align: left;">49,42648</td>
+<td style="text-align: left;">0.6137 [0.5540; 0.6672]</td>
+<td style="text-align: left;">15.9</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.092</td>
+<td style="text-align: left;">98.1%</td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Arousal</td>
-<td style="text-align: left;">??</td>
-<td style="text-align: left;">??</td>
+<td style="text-align: left;">Valence Trim</td>
+<td style="text-align: left;">27,18402</td>
+<td style="text-align: left;">0.6048 [0.5920; 0.6172]</td>
+<td style="text-align: left;">72.4</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.0007</td>
+<td style="text-align: left;">33.1% [0.0%; 58.2%]</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Valence M</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;">0.6038 [0.4671; 0.7124]</td>
+<td style="text-align: left;">7.83</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.100</td>
+<td style="text-align: left;">97.8%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valence Md</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;">0.6018 [0.4659; 0.7099]</td>
+<td style="text-align: left;">7.87</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.098</td>
+<td style="text-align: left;">97.7%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Valence Max</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;">0.6520 [0.5026; 0.7636]</td>
+<td style="text-align: left;">7.44</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.142</td>
+<td style="text-align: left;">97.9%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>N Features</em></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;18 F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18-260 F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">260+ F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Techniques</em></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.3606 [0.3201; 0.3997]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LM</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RF</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
+<td style="text-align: left;">xxxx</td>
+<td style="text-align: left;">.xxxx</td>
+<td style="text-align: left;">0.xxx</td>
+<td style="text-align: left;">XXXX%</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
-<p>TABLE: xxxx</p>
+<p>Figure 1. Forest plot of valence prediction (Max?) <code>analysis/figure1.qmd</code></p>
+<p>Summarise the results here briefly</p>
+<p>Moving on the arousal, …</p>
+<p>Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Models, obs</th>
+<th style="text-align: left;"><span class="math inline">\(r\)</span> [95%-CI]</th>
+<th style="text-align: left;"><span class="math inline">\(t\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(p\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\tau^2\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(I^2\)</span></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Arousal</td>
+<td style="text-align: left;">14,9035</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arousal Trim</td>
+<td style="text-align: left;">27,18402</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arousal M</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arousal Md</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arousal Max</td>
+<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>N Features</em></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;18 F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18-260 F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">260+ F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Techniques</em></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KS</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LM</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RF</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p>Figure 2. Forest plot of arousal prediction (using Max?)</p>
+<p>Summarise here the pattern of results</p>
+</section>
+<section id="classification-studies" class="level2">
+<h2 class="anchored" data-anchor-id="classification-studies">Classification studies</h2>
+<p>Summary of details contained in Table 1, but summarise at least the categories predicted before moving onto the main findings.</p>
+<p>Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.</p>
+<p>Heterogeneity issues</p>
+<p>Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)</p>
+<ul>
+<li>Figure Optional: Funnel plot (I haven’t seen this yet)</li>
+</ul>
 </section>
 </section>
 <section id="conclusion-and-discussion" class="level1">
 <h1>Conclusion and Discussion</h1>
-<p>To be done.</p>
+<section id="concise-summary-of-what-we-did-and-found" class="level2">
+<h2 class="anchored" data-anchor-id="concise-summary-of-what-we-did-and-found">Concise summary of what we did and found</h2>
+</section>
+<section id="main-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="main-outcomes">Main outcomes</h2>
+<ul>
+<li>Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at …</li>
+<li>Classification …</li>
+<li>Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?).</li>
+<li>Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)</li>
+<li>Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated</li>
+</ul>
+</section>
+<section id="calls-for-actionpoints-to-improve-in-such-studies" class="level2">
+<h2 class="anchored" data-anchor-id="calls-for-actionpoints-to-improve-in-such-studies">Calls for action/points to improve in such studies</h2>
+<ul>
+<li><em>Documentation</em> the details in full (features, stimuli, model details, cross-validation)</li>
+<li><em>Quality</em> of the underlying data (emotion ratings, classes, or even stimulus properties?</li>
+<li><em>Generalisibility</em> of the models (some studies such as X and Y address this by applying the models across several datasets)</li>
+<li>Diversity in the evaluative aspects of studies: <em>overfitting</em>, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way</li>
+<li>What proportion of stimuli are Western music, and what genres tend to dominate?</li>
+</ul>
 <section id="funding-statement" class="level3">
 <h3 class="anchored" data-anchor-id="funding-statement">Funding statement</h3>
 <p>CA was funded by Mitacs Globalink Research Award (Mitacs &amp; British High Commission - Ottawa, Canada).</p>
@@ -284,6 +666,7 @@ window.Quarto = {
 <section id="acknowledgements" class="level3">
 <h3 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
 <p>We thank Greggs food-on-the-go retailer for sustaining the work with affordable sandwiches and coffee.</p>
+</section>
 </section>
 </section>
 <section id="references" class="level1">

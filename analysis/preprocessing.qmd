@@ -119,7 +119,7 @@ metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely
 
 ```
 
-## Summarise
+## Summarise all
 
 ```{r}
 #| eval: true
@@ -138,7 +138,8 @@ print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model
 
 ```
 
-### Pull data to analyse regression studies
+
+## Pull data to analyse regression studies
 
 ```{r}
 R_studies <- dplyr::filter(metaMER_results,model_category=='regression' & str_detect(measure,'r|cc|r2|R2')) #  
@@ -316,9 +317,221 @@ g
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
-## Export as csv 
+### Create descriptive table for the manuscript
+
+```{r}
+TR <- NULL
+TR$study_n <- length(unique(R_studies$citekey))
+TR$model_n <- nrow(R_studies)
+t<-table(R_studies$model_class_id)
+t2 <- paste0(names(t),': ', as.numeric(t))
+TR$model_types_n <- str_c(t2,collapse = "\n")
+TR$feature_Desc <- paste0('Min=',min(R_studies$feature_n,na.rm = TRUE),', Md=',median(R_studies$feature_n,na.rm = TRUE),', Max=', max(R_studies$feature_n,na.rm = TRUE))
+TR$stimulus_Desc <- paste0('Min=',min(R_studies$stimulus_n,na.rm = TRUE),', Md=',median(R_studies$stimulus_n,na.rm = TRUE),', Max=', max(R_studies$stimulus_n,na.rm = TRUE))
+print(TR)
+
+```
+
+### Export as csv 
 
 ```{r}
 write.csv(x = R_studies,file = 'R_studies.csv')
 write.csv(x = R_summary,file = 'R_summary.csv')
 ```
+
+
+## Pull data to analyse classification studies
+
+```{r}
+C_studies <- dplyr::filter(metaMER_results,model_category=='classification' & str_detect(measure,'accuracy|r2|mcc')) #  
+dim(C_studies)
+
+# eliminate measures that we don't need now
+C_studies <- dplyr::filter(C_studies,values>0)
+C_studies$statistic[is.na(C_studies$statistic)]<-'Not defined'
+C_studies <- dplyr::filter(C_studies,!str_detect(statistic,'pvalue|upper|lower'))
+C_studies <- dplyr::filter(C_studies,str_detect(measure,'accuracy|mcc|r2'))
+dim(C_studies)
+
+table(C_studies$measure,C_studies$statistic)
+
+dim(C_studies)
+# Conversion into mcc (==r), do we need
+
+```
+### Homogenise the outcome variable names to valence and arousal
+
+```{r}
+#C_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal'
+#R_studies$dimension[str_detect(R_studies$dimension,'pleasantness')]<-'valence'
+#R_studies <- dplyr::filter(R_studies,!str_detect(dimension,'av')) # relates to distances, can be omitted
+
+
+table(C_studies$stimulus_n)  
+
+# Deal with four studies involving multiple datasets: 
+C_studies$stimulus_n[C_studies$stimulus_n==" 429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)  "] <- 429 # resolved from the paper
+C_studies$stimulus_n[C_studies$stimulus_n==" 5192; 12 per user in user validation (not included here due to little information),   AcousticBrainz validation: 60000  "] <- 5192 # resolved
+C_studies$stimulus_n[C_studies$stimulus_n==" ISMIR2012: 2886, NJU_V1: 777, Hindi: 1037  "] <- 2886+777+1037 # decided to take this from validation
+C_studies<-C_studies[!str_detect(C_studies$stimulus_n,'not specified'),]
+C_studies<-C_studies[!str_detect(C_studies$stimulus_n,'Specified elsewhere'),]
+C_studies$stimulus_n <- as.numeric(C_studies$stimulus_n)
+  
+```
+
+### Diagnostics
+
+```{r}
+library(ggplot2)
+
+g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
+  geom_histogram()+
+  facet_wrap(.~model_class_id)+
+  scale_color_manual(values = c('black','white'))+
+  theme_dark()+
+  scale_x_continuous(breaks = seq(0,1,by=.1))
+
+g1
+```
+
+### Select a summary measure for valence and arousal separately
+
+```{r}
+library(tidyverse)
+R_studies$citekey <- factor(R_studies$citekey)
+R_studies$dimension <- factor(R_studies$dimension)
+
+R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=T),valuesMedian=median(values,na.rm=T),valuesMax=max(values,na.rm=T),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id))
+
+```
+
+### Visualise Summary on two dimensions
+
+Add variation from within the studies (alternative models)
+
+```{r}
+R_summary_split <- pivot_wider(R_summary,id_cols = citekey, names_from = c(dimension), values_from = valuesMax)
+
+g2 <- ggplot(R_summary_split,aes(x=valence,y=arousal,label=citekey))+
+  geom_label()+
+  theme_bw()+
+  scale_x_continuous(breaks = seq(0,1,by=.1))+
+  scale_y_continuous(breaks = seq(0,1,by=.1))
+
+g2
+
+## could be more informative when done with the full data
+R_studies$citekey<-factor(R_studies$citekey)
+R_studies$dimension<-factor(R_studies$dimension)
+
+R_studies_split <- pivot_wider(R_studies,id_cols = c(unique_id,citekey,model_class_id), names_from = c(dimension), values_from = c(values),values_fn = mean)
+R_studies_split<-drop_na(R_studies_split)
+
+library(ggrepel)
+
+g3 <- ggplot(R_studies_split,aes(x=valence,y=arousal,label=citekey,color=model_class_id,fill=model_class_id))+
+  geom_point(size=4)+
+  geom_label_repel(size=3, max.overlaps=50,show.legend = T,color='white')+
+  scale_x_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+
+  scale_y_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+
+  theme_bw()
+g3
+
+```
+
+### Plot success across the years
+
+```{r}
+#| eval: true
+# Add year!
+R_studies$year <- as.numeric(str_match(R_studies$citekey,'[0-9]+'))
+
+g3 <- ggplot(R_studies,aes(x=year,y=values,colour=model_class_id))+
+  geom_point(show.legend = T)+
+  facet_wrap(.~dimension)+
+  theme_bw()
+g3
+```
+### Simple model complexity metric
+
+Ratio of obs./features or just a classification based on feature n (quintiles).
+
+```{r}
+R_studies$feature_n==" 15; 23 in table, but 15 reported "
+
+R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved from the paper
+
+R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved
+R_studies$feature_n[R_studies$feature_n==" before_selection = 45, after_selection = 6  "] <- 45 #resolved
+R_studies$feature_n[R_studies$feature_n==" model 1: 52, model 2 = 68, model 3 = 260, model 4 = 388 "] <- 388 #resolved
+R_studies$feature_n[R_studies$feature_n==" variable, 557 before feature selection "] <- 557 #resolved
+
+R_studies$feature_n[R_studies$feature_n==" 50 PCA features "] <- 50 #resolved
+#R_studies$feature_n[R_studies$feature_n==""] <- 0 #resolved
+#R_studies$feature_n[R_studies$feature_n==""] <- 0 #resolved
+
+R_studies$feature_n<-as.numeric(R_studies$feature_n)
+
+print(quantile(R_studies$feature_n,c(0.333,0.666),na.rm = T))
+#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)
+
+# Assign
+R_studies$feature_n_complexity <- cut(R_studies$feature_n,
+                                      breaks = c(0,
+                                                 as.numeric(quantile(R_studies$feature_n,c(0.333),na.rm = T)),
+                                                 as.numeric(quantile(R_studies$feature_n,c(0.666),na.rm = T)),
+                                                 1000),
+                                      labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
+table(R_studies$feature_n_complexity)
+```
+
+### Explore feature_n_complexity and model success
+
+Needs to be done from the unsummarised data (`R_studies`).
+
+```{r}
+tmp <- drop_na(R_studies)
+library(ggdist)
+
+tmp$dimension<-str_to_title(tmp$dimension)
+tmp$model_class_id<-factor(tmp$model_class_id,
+                           levels = c("Neural Nets","Flexible Discriminants", "Kernel Smoothing, Additive and KNN", "Random Forests","Linear Methods"),
+                           labels = c("Neural\nNets","Flexible\nDiscriminants", "KS\n & KNN", "Random\nForests", "Linear\nMethods"))
+
+g <- ggplot(tmp,aes(x=model_class_id,y=values,color=citekey,label=citekey))+
+  stat_halfeye(aes(fill=citekey),point_interval="mean_qi", trim=FALSE, expand=FALSE, show.legend = FALSE,adjust = 1.25, density="bounded", point_size=3,scale = 1,alpha=0.5) + 
+  geom_point(alpha=0.5,show.legend = F,position = position_jitter(width = .3))+
+  #geom_label_repel(size=2,max.overlaps = 50)+
+  facet_wrap(dimension~feature_n_complexity)+
+  ylab("Correlation Coefficient")+
+  xlab("Model Technique")+
+#  scale_y_continuous(limits = c(0,1),expand = c(0.01,0.01))+
+  geom_text_repel(aes(x = model_class_id, y = values, label = studyREF),
+             stat = "summary", fun = mean,show.legend = F)+
+  theme_bw()
+g
+#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
+```
+
+### Create descriptive table for the manuscript
+
+```{r}
+TR <- NULL
+TR$study_n <- length(unique(R_studies$citekey))
+TR$model_n <- nrow(R_studies)
+t<-table(R_studies$model_class_id)
+t2 <- paste0(names(t),': ', as.numeric(t))
+TR$model_types_n <- str_c(t2,collapse = "\n")
+TR$feature_Desc <- paste0('Min=',min(R_studies$feature_n,na.rm = TRUE),', Md=',median(R_studies$feature_n,na.rm = TRUE),', Max=', max(R_studies$feature_n,na.rm = TRUE))
+TR$stimulus_Desc <- paste0('Min=',min(R_studies$stimulus_n,na.rm = TRUE),', Md=',median(R_studies$stimulus_n,na.rm = TRUE),', Max=', max(R_studies$stimulus_n,na.rm = TRUE))
+print(TR)
+
+```
+
+### Export as csv 
+
+```{r}
+write.csv(x = R_studies,file = 'R_studies.csv')
+write.csv(x = R_summary,file = 'R_summary.csv')
+```
+

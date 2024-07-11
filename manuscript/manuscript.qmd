@@ -57,7 +57,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 - Emotional expression is one of the central reasons why people engage with music.
 
-- Great advances in music information retrieval have been made in recent years.
+- Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio. 
 
 - Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013;@anderson2022ex;@grimaud_eerola_2022], or acoustic features [@yang2008;@panda2013multi;@saari_et_al_2015;@eerola2011c] or emergent properties identified through deep learning [@er2019music;@sarkar2020recognition].
 
@@ -65,76 +65,131 @@ However, there is no consensus on to what degree emotions can be recognised by c
 
 ## Aims
 
-- Our aim is to establish the level of predictive accuracy for both continuous models of emotional expression (valence and arousal) and classification of emotion categories based on available and recent studies. 
+- Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in affective circumple space (valence and arousal) and classification of emotion categories based on available and recent studies. 
 - We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.
 - To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.
 - We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
 
 # Methods
 
-We preregistered our meta-analysis plan (OSF URL here, also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
+We preregistered our meta-analysis plan on 21 June 2024 at OSF, [https://osf.io/c5wgd](https://osf.io/c5wgd), and the plan is also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
 
 In the search stage, we used three databases, _Web of Science_, _Scopus_, and _Open Alex_ to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi OR categor OR algorithm AND music 
  AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024. 
 
 The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as $R^2$ or classification accuracy ($F1$ score or _precision_ or _recall_) and overall quality control; see [SI](http://) for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number [N], duration), features extracted (number, type, source, defined by [@panda2020audio]), model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, _MSE_, _MCC_), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [_MCC_, @chicco2020advantages].
 
+[optional Figure: flowchart of the study inclusions/eliminations]
+
+- Devote some sentences to quality control issues (what were the most common reasons for eliminating studies).
+
 # Results
 
-First we could describe the overall pattern of data (modelling techniques, cross-validation, popular datasets, etc).
+First we could describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).
+
+TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
+
+Talk about the stimuli and 
 
 We first report regression studies that predict valence and arousal.
 
-## Prediction success for valence and arousal
+## Prediction success for valence and arousal (or affect dimensions)
 
-- Report all models or the best model?
+See `analysis/analysis.qmd`
+
+- Decision: Report all models or the best model?
+  * Possible solution: Report all models, trimmed models, and but mainly rely on Max
+
+- Report issues of heterogeneity right here (can be visualised with funnel plots, see below)
+
+- Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers"
 
 
-Out of XX studies reporting this task, the majority (xx%) ... 
+Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
-
-This is for diagnostic purposes
-
-| Concept     | N,obs     | $r$ 95%-CI              | $t$ | $p$  |$\tau^2$|$I^2$|
+| Concept     | Models, obs|$r$ [95%-CI]              | $t$ | $p$  |$\tau^2$|$I^2$|
 |:------------|:----------|:--------|:--------------|:----|:-----|:-----|:------|
 | Valence All | 49,42648  | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
 | Valence Trim| 27,18402  | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1% [0.0%; 58.2%]|
 | Valence M   | 14,10641  | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
 | Valence Md  | 14,10641  | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
 | Valence Max | 14,10641  | 0.6520 [0.5026; 0.7636] | 7.44|.0001 | 0.142| 97.9% |
-| N Features  |           |                         |     |      |      |       |
+| *N Features*|           |                         |     |      |      |       |
 | <18 F       |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 | 18-260 F    |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 | 260+ F      |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-| Techniques  |           |                         |     |      |      |       |
-|   KS        | 1          | 0.3606 [0.3201; 0.3997] | xxxx|.xxxx | 0.xxx| XXXX% |
+| *Techniques*|           |                         |     |      |      |       |
+|   KS        |           | 0.3606 [0.3201; 0.3997] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   LM        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   FD        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   NN        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 |   RF        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 
-| Arousal | 14,9035  | 0.8139 [0.7147; 0.8810] |10.17|.0001 | 0.165| 97.3% |
-|   KS    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   LM    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   FD    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   NN    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   RF    |          | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 
-TABLE: xxxx
+Figure 1. Forest plot of valence prediction (Max?)
+`analysis/figure1.qmd`
 
-model complexity issue
+Summarise the results here briefly
 
-https://ishanjainoffical.medium.com/model-complexity-explained-intuitively-e179e38866b6
+Moving on the arousal, ...
 
-https://www.sciencedirect.com/science/article/pii/S0925231220317525
+Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
-bake in number of features, + N + success
-AIC = 
+
+| Concept     | Models, obs|$r$ [95%-CI]             | $t$ | $p$  |$\tau^2$|$I^2$|
+|:------------|:-----------|:---------|:-------------|:----|:-----|:-----|:------|
+| Arousal     | 14,9035    |          |              |     |      |      |       |
+| Arousal Trim| 27,18402   |          |              |     |      |      |       |
+| Arousal M   | 14,10641   |          |              |     |      |      |       |
+| Arousal Md  | 14,10641   |          |              |     |      |      |       |
+| Arousal Max | 14,10641   |          |              |     |      |      |       |
+| *N Features*|            |          |              |     |      |      |       |   
+| <18 F       |            |          |              |     |      |      |       |
+| 18-260 F    |            |          |              |     |      |      |       |
+| 260+ F      |            |          |              |     |      |      |       |
+| *Techniques*|            |          |              |     |      |      |       |  
+|   KS        |            |          |              |     |      |      |       |
+|   LM        |            |          |              |     |      |      |       |
+|   FD        |            |          |              |     |      |      |       |
+|   NN        |            |          |              |     |      |      |       |
+|   RF        |            |          |              |     |      |      |       |
+     
+
+Figure 2. Forest plot of arousal prediction (using Max?)
+
+Summarise here the pattern of results
+
+## Classification studies
+
+Summary of details contained in Table 1, but summarise at least the categories predicted before moving onto the main findings.
+
+Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
+
+Heterogeneity issues
+
+Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)
+
+- Figure Optional: Funnel plot (I haven't seen this yet)
 
 
 # Conclusion and Discussion
 
-To be done.
+## Concise summary of what we did and found
+
+## Main outcomes 
+- Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at ...
+- Classification ...
+- Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?). 
+- Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)
+- Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated 
+
+## Calls for action/points to improve in such studies
+- *Documentation* the details in full (features, stimuli, model details, cross-validation)
+- *Quality* of the underlying data (emotion ratings, classes, or even stimulus properties?
+- *Generalisibility* of the models (some studies such as X and Y address this by applying the models across several datasets)
+- Diversity in the evaluative aspects of studies: *overfitting*, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way
+- What proportion of stimuli are Western music, and what genres tend to dominate?
+
 
 ### Funding statement
 
