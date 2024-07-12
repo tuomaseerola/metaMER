@@ -173,6 +173,15 @@ Summary of details contained in Table 1, but summarise at least the categories p
 
 Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
 
+
+| Model       | Models, obs|$r$ [95%-CI]             | $t$ | $p$  |$\tau^2$|$I^2$|
+|:------------|:-----------|:------------------------|:----|:-----|:-----|:------|
+| All         | 89,87347   | 0.8074 [0.7681; 0.8407] |21.4 |0.0001|0.2415|99.7%  |
+| All Trim    | 29,6499    | 0.8185 [0.8046; 0.8314] | 58.3|0.0001|0.0066| 60.4%  |
+| Max         | 14,17184   | 0.8564 [0.7386; 0.9234] | 10.3|0.0001|0.329 | 99.8% |
+| Max Trim    | 6,3653     | 0.8689 [0.7760; 0.9249] | 11.6|0.0001|0.0749| 97.5% |
+
+
 Heterogeneity issues
 
 Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)
