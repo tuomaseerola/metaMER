@@ -58,6 +58,7 @@ summarize_matrix = function(matrix) {
          names(confusion_summary)
     )
   )
+  confusion_summary$classification_class.n = ncol(class_table)
   
   return(confusion_summary)
 }
