@@ -12,8 +12,9 @@ This assumes that the data has been parsed (`parse-model-output.R`, `format-stud
 library(dmetar)
 library(tidyverse)
 library(meta)
-
-R_studies <- read.csv("R_studies.csv")
+library(DescTools)
+library(ggrepel)
+#R_studies <- read.csv("R_studies.csv")
 R_summary <- read.csv("R_summary.csv")
 
 # select regression studies with r2
@@ -101,6 +102,7 @@ print(eggers.test(m.cor))
 #### Re-run the analysis without the outliers
 
 ```{r}
+#| eval: false
 outliers <- c("chen2017co-various-GMM-mfcc-AMG1608-1", "chen2017co-various-GMM-tonal-AMG1608-1", "chen2017co-various-GMM-spectral-AMG1608-1", "chen2017co-various-GMM-temporal-AMG1608-1", "chen2017co-various-GMM-mfcctonalspectraltemporal-AMG1608-1", "griffiths2021am-various-mlr-mixed-new-validation", "griffiths2021am-various-mlr-mixed-new-validation-nooutliers", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "koh2023me-openSMILE-fullyconnectedNN-FreeMusicArchive-audioOnly-1", "koh2023me-openSMILE-longshorttermmemoryNN-FreeMusicArchive-audioOnly-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022cr-various-pls-mixed-chineseClassicalEnsembles-1", "wang2022cr-various-pls-mixed-chineseClassicalSolo-1", "wang2022cr-various-pls-mixed-westernClassicalEnsembles-1", "wang2022cr-various-pls-mixed-westernClassicalSolo-1", "zhang2019us-marsyas-NuSVR-music-xing2014-1")
 
 tmp2<-tmp[!tmp$unique_id %in% outliers,]
@@ -167,9 +169,13 @@ print(fp)
 
 #### Subgroup analysis according to techniques
 
+add `journal_type` and `stimulus_genre_mixed` as a grouping option
+
 ```{r}
 m.cor_subgroups <- update(m.cor, 
        subgroup = model_class_id, 
+#       subgroup = journal_type, 
+#       subgroup = stimulus_genre_mixed, 
        tau.common = FALSE,
        prediction = TRUE)
 
@@ -274,4 +280,176 @@ g1
 #   theme_bw()
 # g
 ```
+
+
+
+## Classification studies
+
+```{r}
+#| warning: false
+#| eval: true
+
+C_studies <- read.csv("C_studies.csv")
+C_studies <- C_studies[!is.na(C_studies$values),]
+
+C_summary <- read.csv("C_summary.csv")
+
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = C_summary,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
+                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Classification: Summary")
+
+#print(m.cor)
+
+#m.cor_backtransformed <- m.cor
+#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
+print(funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE))
+
+```
+#### Custom plot
+
+```{r}
+library(ggrepel)
+tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
+
+tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
+tmpdata$citekey<-factor(tmpdata$citekey)
+
+g <- ggplot(tmpdata,aes(y = SE, x = Zr,label=studies,color=citekey,fill=citekey)) +
+  geom_point(show.legend = FALSE) +
+  geom_label_repel(size=1.5,max.overlaps = 39,color="black",show.legend = FALSE)+
+  ylab('Standard Error') + 
+  xlab('r')+
+  scale_y_reverse()+
+#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+
+#  coord_flip()+
+  theme_bw()
+print(g)
+```
+
+
+
+
+#### Visualise (forest and funnel plots)
+
+```{r}
+forest(m.cor,
+       sortvar = TE,
+       prediction = FALSE, 
+             print.tau2 = FALSE,
+             leftlabs = c("Author", "g", "SE"),studlab = citekey)
+
+funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+
+```
+
+#### Explore qualities (in progress)
+
+```{r}
+O <- find.outliers(m.cor)
+# 6 datasets identified as outliers, without them the r drops to 0.5781
+#infan <- InfluenceAnalysis(m.cor)
+#print(eggers.test(m.cor))
+
+
+
+```
+
+
+#### Re-run the analysis without the outliers
+
+```{r}
+#| eval: false
+outliers <- c("")
+
+tmp2<-tmp[!tmp$unique_id %in% outliers,]
+m.cor <- metacor(cor = values, 
+                 n = stimulus_n,
+                 studlab = unique_id, # unique_id
+                 data = tmp2,
+                 fixed = FALSE,
+                 random = TRUE,
+                 sm = "ZCOR",
+                 prediction = TRUE,
+                 backtransf = TRUE,
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+
+print(m.cor)
+
+fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
+
+
+
+```
+
+#### Custom funnel plot
+
+To show the quality differences between core and eliminated studies (in progress).
+
+```{r}
+#| eval: false
+tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE)
+estimate = m.cor$TE.common
+se = m.cor$seTE.common
+se.seq=seq(0, max(m.cor$cor), 0.001)
+ll95 = estimate-(1.96*se.seq)
+ul95 = estimate+(1.96*se.seq)
+ll99 = estimate-(3.29*se.seq)
+ul99 = estimate+(3.29*se.seq)
+meanll95 = estimate-(1.96*se)
+meanul95 = estimate+(1.96*se)
+dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
+
+fp = ggplot(aes(x = SE, y = Zr), data = tmpdata) +
+  geom_point(shape = 1) +
+  xlab('Standard Error') + ylab('Zr')+
+  geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
+  geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
+   geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
+  geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
+#Reverse the x-axis ordering (se) so that the tip of the funnel will appear
+#at the top of the figure once we swap the x- and y-axes...
+  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.2,0))+
+#Specify the range and interval for the tick-marks of the y-axis (Zr);
+#Choose values that work for you based on your data
+  scale_y_continuous(breaks=seq(0.3,1.25,0.25),limits=c(0.3,1.25))+
+#  scale_x_continuous(breaks=seq(0.2,0,0.05))+
+#And now we flip the axes so that SE is on y- and Zr is on x-
+  coord_flip()+
+#Finally, apply my APA-format theme (see code at end of post).
+#You could, alternatively, specify theme_bw() instead.
+  theme_bw()
+print(fp)
+```
+
+
+#### Subgroup analysis according to techniques
+
+add `journal_type` and `stimulus_genre_mixed` as a grouping option
+
+```{r}
+#| eval: false
+m.cor_subgroups <- update(m.cor, 
+       subgroup = model_class_id, 
+#       subgroup = journal_type, 
+#       subgroup = stimulus_genre_mixed, 
+       tau.common = FALSE,
+       prediction = TRUE)
+
+print(m.cor_subgroups)
+#forest(m.cor_subgroups,subgroup=TRUE)
+```
+
+- Idea: visualise the distributions of the model successes within studies (done in preprocessing)
 
