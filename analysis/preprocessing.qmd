@@ -148,19 +148,21 @@ metaMER_results$journal_type[str_detect(metaMER_results$journal,'Quarterly Journ
 print(knitr::kable(table(metaMER_results$model_class_id)))
 print(knitr::kable(table(metaMER_results$model_class_id,metaMER_results$model_category)))
 
-print(paste("We have", nrow(metaMER_results), "observations"))
+cat(paste("We have", nrow(metaMER_results), "observations"))
 
-print(paste("We have", length(unique(metaMER_results$citekey)), "studies"))
+cat(paste("\nWe have", length(unique(metaMER_results$citekey)), "studies"))
 
-print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model_category=='regression'])), "are regression studies"))
+cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model_category=='regression'])), "are regression studies"))
 
-print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
+cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
 # note that we have some classification studies that also do regression and vice versa?
-# THIS IS CORRECT:
-# [1] "We have 1192 observations"
+# THIS IS CORRECT (updated 12 July 2024):
+# [1] "We have 1238 observations"
 # [1] "We have 37 studies"
-# [1] "Where 25 are regression studies"
-# [1] "Where 12 are classification studies"
+# [1] "Where 23 are regression studies"
+# [1] "Where 14 are classification studies"
+
+# Add a check for these properties ToDo
 
 ```
 
@@ -172,8 +174,6 @@ print(paste("Where", length(unique(metaMER_results$citekey[metaMER_results$model
 unique(metaMER_results$citekey[metaMER_results$model_category=="regression"])
 
 R_studies <- dplyr::filter(metaMER_results, measure %in% c('r','ccc','pcc','cc','r2','R2')) #  
-R_studies$statistic
-dim(R_studies)
 
 # explicit NA coding
 R_studies$statistic[is.na(R_studies$statistic)]<-'r2'
@@ -185,7 +185,6 @@ table(R_studies$measure)
 
 table(R_studies$measure, R_studies$statistic)
 
-dim(R_studies)
 R_studies$values[R_studies$measure=='R2']<-sqrt(R_studies$values[R_studies$measure=='R2']) # recode R2 into r
 R_studies$values[R_studies$measure=='r2']<-sqrt(R_studies$values[R_studies$measure=='r2']) # recode R2 into r
 
@@ -200,16 +199,28 @@ R_studies <- dplyr::filter(R_studies,!str_detect(dimension,'av|resonance')) # re
 
 table(R_studies$dimension)  
 
-table(R_studies$stimulus_n)  
+#table(R_studies$stimulus_n)  
 
 # Deal with four studies involving multiple datasets: 
+
 R_studies$stimulus_n[R_studies$stimulus_n==" emoMusic: 744, soundtracks: 360, chinese: 500 "] <- 938 # resolved from the paper
 R_studies$stimulus_n[R_studies$stimulus_n==" 2372 (subset of PSIC3839, total n: 3839)    "] <- 2372 # resolved
 R_studies$stimulus_n[R_studies$stimulus_n==" study 1: 20; study 2: 40) % three outliers  "] <- 40 # decided to take this from validation
+R_studies$stimulus_n[R_studies$stimulus_n==" study 1: 100; study 2: 20"] <- 20 #
+
+R_studies$stimulus_n[R_studies$stimulus_n==" DEAM: 744, PMEmo: 206  "] <- 744 # we have encoded this based on stronger results on DEAM compared to PMEmo.
+
+R_studies$stimulus_n[R_studies$stimulus_n==" NTUMIR: 60, MediaEval2013: 744  "] <- 60 # we have encoded this based on stronger results on NTUMIR compared to MediaEval
+
+R_studies$stimulus_n[R_studies$stimulus_n==" 1020; MediaEval2014: 1000: music perception database 1: 6, music perception database 2: 9, music perception database 3: 8, music perception database 4: 7   "] <- 1020
+
 # REDO with a clearer function
 eliminate <- str_detect(R_studies$unique_id,"hu2017cr") & !str_detect(R_studies$unique_id,"all")
 R_studies <- R_studies[!eliminate,]
 R_studies$stimulus_n[R_studies$stimulus_n==" MER60: 60, CH818: 818, AMG1608: 1608  "] <- 60+818+1608 #
+
+table(R_studies$stimulus_n)
+
 R_studies$stimulus_n <- as.numeric(R_studies$stimulus_n)
   
 ```
@@ -222,7 +233,7 @@ library(ggplot2)
 g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
   geom_histogram()+
   facet_wrap(.~model_class_id)+
-  scale_color_manual(values = c('black','white'))+
+#  scale_color_manual(values = c('black','white'))+
   theme_dark()+
   scale_x_continuous(breaks = seq(0,1,by=.1))
 
@@ -304,7 +315,6 @@ g3
 Ratio of obs./features or just a classification based on feature n (quintiles).
 
 ```{r}
-R_studies$feature_n==" 15; 23 in table, but 15 reported "
 
 R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved from the paper
 
@@ -328,7 +338,7 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
                                                  as.numeric(quantile(R_studies$feature_n,c(0.333),na.rm = T)),
                                                  as.numeric(quantile(R_studies$feature_n,c(0.666),na.rm = T)),
                                                  1000),
-                                      labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
+                                      labels = c("Feature n < 130","Feature n > 130 & < 653","Feature n > 653"))
 table(R_studies$feature_n_complexity)
 ```
 
@@ -337,7 +347,9 @@ table(R_studies$feature_n_complexity)
 Needs to be done from the unsummarised data (`R_studies`).
 
 ```{r}
-tmp <- drop_na(R_studies)
+#tmp <- drop_na(R_studies)
+tmp <- R_studies[!is.na(R_studies$values),]
+
 library(ggdist)
 
 tmp$dimension<-str_to_title(tmp$dimension)
@@ -450,6 +462,17 @@ table(C_studies$measure,C_studies$accuracy_converted_to_mcc)
 t.test(C_studies$values,y = C_studies$accuracy_converted_to_mcc) # There is a difference
 
 ```
+#### Get the number of categories in the classification task
+
+```{r}
+tmp <- metaMER_results
+tmp2 <- tmp[which(tmp$statistic=='n'),]
+no_of_classes <- summarise(group_by(tmp2,citekey),first(values))
+print(no_of_classes)
+rm(tmp,tmp2)
+```
+
+
 ## Homogenise the stimulus N
 
 ```{r}
@@ -470,7 +493,7 @@ C_studies$stimulus_n <- as.numeric(C_studies$stimulus_n)
 #| eval: false
 library(ggplot2)
 
-g1<-ggplot(C_studies,aes(x=values,fill=citekey,color=dimension))+
+g1<-ggplot(C_studies,aes(x=values,fill=citekey))+
   geom_histogram()+
   facet_wrap(.~model_class_id)+
   theme_dark()+
@@ -480,8 +503,6 @@ g1
 ```
 
 ## Select a summary measure for valence and arousal separately
-
-- [ ] Ask Cameron whether it is OK to treat dimension contents as they are all classification studies (the exceptions are `av` and `valence` and `arousal`).
 
 ```{r}
 library(tidyverse)
@@ -526,20 +547,20 @@ g4
 
 ## Simple model complexity metric based on feature_n
 
-
 ```{r}
 table(C_studies$feature_n)
 C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-600 # arbitrary!
 C_studies$feature_n[str_detect(C_studies$feature_n,'126, retained 97')]<-126 
 C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  arbitrary!
-C_studies$feature_n[str_detect(C_studies$feature_n,'548; after reduction, ')]<-548 
-C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')]<-548 
+C_studies$feature_n[str_detect(C_studies$feature_n,'548; after reduction, ')] <- 548 
+C_studies$feature_n[str_detect(C_studies$feature_n,'548 dimensions')] <- 548 
+C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')] <- 548 
 C_studies$feature_n[str_detect(C_studies$feature_n,'8; 3 after')]<-8 
 C_studies$feature_n[str_detect(C_studies$feature_n,'between 9 and 10')]<-10 
 C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-600 # arbitrary
 table(C_studies$feature_n)
 
-C_studies$feature_n<-as.numeric(C_studies$feature_n)
+C_studies$feature_n <- as.numeric(C_studies$feature_n)
 
 print(quantile(C_studies$feature_n,c(0.333,0.666),na.rm = TRUE))
 #quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)
