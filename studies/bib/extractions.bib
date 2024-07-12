@@ -169,7 +169,8 @@ bind_field(
   'classification_recall.mean' = mean(c(.8083,.8446,.8353,.7392))
   ),
   'spotify.random forest.spotify.acousticBrainz.model validation' = c('classification_accuracy.mean' = mean(c(0.694,0.705,0.771,0.729)),
-                                                                      'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)))
+                                                                      'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)),
+						       'classification_class.n' = 4)
 )
 }, %% don't know how to report user-validation study
   MODEL_VALIDATION = {Repeated five-fold cross validation, AcousticBrainz, experimental validation with real users},
@@ -2579,14 +2580,14 @@ Discriminant Analysis (RDA).},
   STIMULUS_DURATION = {DEAM: 45, PMEmo: variable}, %% PMEmo has 794. Rest removed due to insufficieent annotation 
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {DEAM: 744, PMEmo: 206},
-  FEATURE_N = { }, %% how to report
+  FEATURE_N = {60 handcrafted and filter bank features, extracted filter bank output size: 120 * 120}, %% how to report
   PARTICIPANT_N = {DEAM: at least 10 per piece, PMEmo: 457},
   PARTICIPANT_EXPERTISE = {primarily nonexperts},
   PARTICIPANT_ORIGIN = {DEAM: MTurk; PMEmo: lab},
   PARTICIPANT_SAMPLING = {DEAM: crowdsource; PMEmo: convenience},
   PARTICIPANT_TASK = {rate},
   FEATURE_CATEGORIES = {filter banks, handcrafted},
-  FEATURE_SOURCE = {filter bank output (size = 120*120), 60 handcrafted features (size = 60*60)},
+  FEATURE_SOURCE = {daubechie, MIRToolbox, Sound Description Toolbox, filter bank output (size = 120*120), 60 handcrafted features (size = 60*60)},
   FEATURE_REDUCTION_METHOD = {weighted attention module, feature augmentation},
   MODEL_CATEGORY =  {regression},
   MODEL_DETAIL = {Modularized Composite Attention Network. Case 1: no sample reconstruction. Case 2: no handcrafted features (or feature augmentation). Case 3: No self-attention mechanism or BLSTM. Case 4: no style embedding module}, %% new method

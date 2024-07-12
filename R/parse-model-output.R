@@ -58,7 +58,8 @@ summarize_matrix = function(matrix) {
          names(confusion_summary)
     )
   )
-  confusion_summary$classification_class.n = ncol(class_table)
+  confusion_n <- c('classification_class.n' =  ncol(class_table))
+  confusion_summary <- append(confusion_summary, confusion_n)
   
   return(confusion_summary)
 }
