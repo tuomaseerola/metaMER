@@ -7,7 +7,7 @@ get_metaMER_df <- function(path_2_studies = here::here('studies')) {
 
 bib_file <- read.delim(paste0(path_2_studies, '/bib/extractions.bib'),
                        sep = '@', header = F)
-journal <- bib_file[str_detect(tolower(bib_file$V1), 'journal = '),]$V1
+journal <- bib_file[stringr::str_detect(tolower(bib_file$V1), 'journal = '),]$V1
 journal <- journal[1:length(journal)-1]
 journal <- stringr::str_remove(journal, "JOURNAL ")
 # get citekeys from bibtex file:
