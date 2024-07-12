@@ -204,7 +204,7 @@ bind_field(
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {744},
-  FEATURE_N = {548. Post-reduction: 139 (PCA), 276 (ReliefF)},
+  FEATURE_N = {548 dimensions. Post-reduction: 139 (PCA), 276 (ReliefF)},
   PARTICIPANT_N = {10 per clip (100 qualified workers)},
   PARTICIPANT_EXPERTISE = {Nonexperts (Mturk) + experts},
   PARTICIPANT_ORIGIN = {MTurk},
@@ -229,8 +229,9 @@ bind_field(
                                                            'arousal_vector distance.sd' = 0.05,
                                                            'av_vector distance.mean' = 0.12,
                                                            'av_vector distance.sd' = 0.06,
-                                                           'av_classification.mean' = 0.584),
-'various.SVR.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592)
+                                                           'av_classification.mean' = 0.584,
+						'av_class.n' = 4),
+'various.SVR.ReliefF.MediaEval.1' = c(0.26,0.625,0.08,0.06,0.07,0.05,0.12,0.06,0.592, 4)
 )
 },
   MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
@@ -344,7 +345,7 @@ summarize_matrix
   FEATURE_CATEGORIES = {intensity, timbre, rhythm, pitch}, %% they call pitch "register"
   FEATURE_SOURCE = {marsyas},
   FEATURE_REDUCTION_METHOD = {observation from previous studies},
-  MODEL_CATEGORY = {regression},
+  MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {categorical: SVM, SMO; pentagon regression: full vs. reduced; 2D regression: full vs. reduced},
   MODEL_MEASURE = {classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {categorical: polynomial kernel exponent = -1, epsilon - 12E-12},
@@ -468,7 +469,7 @@ summarize_matrix
   STIMULUS_DURATION = {30},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {124},
-  FEATURE_N = {8904}, %% multiple feature selections applied
+  FEATURE_N = {8904}, 
   PARTICIPANT_N = {21},
   PARTICIPANT_EXPERTISE = {university students highly knowledgable about Turkish music},
   PARTICIPANT_ORIGIN = {Turkey},
@@ -486,14 +487,14 @@ summarize_matrix
   MODEL_RATE_EMOTION_VALUES = {
   bind_field(
   'various.kNN.turkish.full.1' = c(classification_accuracy = 0.8387, classification_fscore = 0.839, 
-                                   classification_precision = 0.840, classification_recall = 0.839),
-  'various.kNN.turkish.correlation feature selection.1' = c(0.8951,0.904,0.919,0.895),
-  'various.rf.turkish.full.1' = c(.8709,.843,.844,.871),
-  'various.rf.turkish.correlation feature selection.1' = c(.9193,.918,.917,.919),
-  'various.svm.turkish.full.1' = c(.8709,.866,.862,.871),
-  'various.svm.turkish.correlation feature selection.1' = c(.9032,.905,.907,.903),
-  'various.lstm dnn.turkish.full.1' = c(.8709,.864,.861,.871),
-  'various.lstm dnn.turkish.correlation feature selection.1' = c(.9274,.926,.925,.927)
+                                   classification_precision = 0.840, classification_recall = 0.839, av_class.n = 3),
+  'various.kNN.turkish.correlation feature selection.1' = c(0.8951,0.904,0.919,0.895,3),
+  'various.rf.turkish.full.1' = c(.8709,.843,.844,.871,3),
+  'various.rf.turkish.correlation feature selection.1' = c(.9193,.918,.917,.919,3),
+  'various.svm.turkish.full.1' = c(.8709,.866,.862,.871,3),
+  'various.svm.turkish.correlation feature selection.1' = c(.9032,.905,.907,.903,3),
+  'various.lstm dnn.turkish.full.1' = c(.8709,.864,.861,.871,3),
+  'various.lstm dnn.turkish.correlation feature selection.1' = c(.9274,.926,.925,.927,3)
 )
 },
   MODEL_VALIDATION = {10-fold cross validation},
@@ -649,7 +650,7 @@ summarize_matrix
   FEATURE_CATEGORIES = {melodic, dynamic, rhythmic, texture, expressivity},
   FEATURE_SOURCE = {MIRToolbox, Marsyas, PsySound, new features},
   FEATURE_REDUCTION_METHOD = {ReliefF},
-  MODEL_CATEGORY = {regression},
+  MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {svm with rbf},
   MODEL_MEASURE = {F1, classification accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {},
@@ -864,13 +865,15 @@ bind_field(
   classification_accuracy.mean = mean(c(50/53,19/19,31/34,38/44)),
   classification_precision.mean = mean(c(.9434,.95,.8378,.95)),
   classification_recall.mean = mean(c(.9434,1,.9118,.8636)),
-    classification_fvalue.mean = mean(c(.9434,.9744,.8732,.9048))
+    classification_fvalue.mean = mean(c(.9434,.9744,.8732,.9048)),
+    av_class.n = 4
   ),
   'not specified.adaboost.mirex2009 (beatles - chorus).mixed.1' = c(
   classification_accuracy.mean = mean(c(5/10,3/4,6/13,6/12)),
   classification_precision.mean = mean(c(.5556,.5,.4615,.5455)),
   classification_recall.mean = mean(c(.5,.75,.4615,.5)),
-  classification_fvalue.mean = mean(c(.5263, .6,.4615,.5217))
+  classification_fvalue.mean = mean(c(.5263, .6,.4615,.5217)),
+  av_class.n = 4
   )
 )
   },
@@ -929,13 +932,13 @@ larized Discriminant Analysis (SCRDA)},
   MODEL_RATE_EMOTION_NAMES = {arousal},
   MODEL_RATE_EMOTION_VALUES = {
   bind_field(
-  'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .84), 'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83),
-  'various.svm (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83),
-  'various.regularized discriminant analysis.dynamics.chinese.1' = c(classification_accuracy.mean = .83),
-  'various.lr.dynamics.chinese.1' = c(classification_accuracy.mean = .8),
-  'various.knn.dynamics.chinese.1' = c(classification_accuracy.mean = .82, classification_accuracy.median = .8),
-    'various.svm (polynomial kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .774),
-        'various.svm (linear kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .814)
+  'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .84,av_class.n = 4), 'various.logistic regression (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83,av_class.n = 4),
+  'various.svm (l1).dynamics.chinese.1' = c(classification_accuracy.mean = .83,av_class.n = 4),
+  'various.regularized discriminant analysis.dynamics.chinese.1' = c(classification_accuracy.mean = .83,av_class.n = 4),
+  'various.lr.dynamics.chinese.1' = c(classification_accuracy.mean = .8,av_class.n = 4),
+  'various.knn.dynamics.chinese.1' = c(classification_accuracy.mean = .82, classification_accuracy.median = .8,av_class.n = 4),
+    'various.svm (polynomial kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .774,av_class.n = 4),
+        'various.svm (linear kernel).dynamics.chinese.1' = c(classification_accuracy.mean = .814,av_class.n = 4)
         )
   },
   MODEL_VALIDATION = {cross-validation (for tuning parameters)},
@@ -987,21 +990,21 @@ larized Discriminant Analysis (SCRDA)},
                                                           'valence_vector distance.mean' = .07, 'valence_vector distance.sd' = .06,
                                                           'arousal_vector distance.mean' = 0.07, 'arousal_vector distance.sd' = .05,
                                                           'av_vector distance.mean' = 0.12, 'av_vector distance.sd' = 0.06,
-                                                          'classification_accuracy.mean' = 0.61),
-'various.mars (pca).mixed.mediaeval.1' = c(.175,.44,.08,.06,.09,.06,.13,.07,.584),
-'various.mars (relief).mixed.mediaeval.1' = c(.275,.568,.08,.06,.08,.06,.12,.07,.6),
-'various.svr (full feature space).mixed.mediaeval.1' = c(.256,.599,.08,.06,.07,.05,.12,.06,.568),
-'various.svr (pca).mixed.mediaeval.1' = c(.255,.606,.08,.06,.07,.05,.12,.06,.584),
-'various.svr (relief).mixed.mediaeval.1' = c(.26,.625,.08,.06,.07,.05,.12,.06,.592),
-'various.rbf (full feature space).mixed.mediaeval.1' = c(.285,.605,.08,.06,.07,.05,.12,.06,.624),
-'various.rbf (pca).mixed.mediaeval.1' = c(.266,.602,.08,.06,.07,.06,.12,.07,.624),
-'various.rbf (relief).mixed.mediaeval.1' = c(.26,.614,.08,.06,.07,.05,.12,.06,.608),
-'various.rfr (full feature space).mixed.mediaeval.1' = c(.259,.52,.08,.06,.08,.06,.13,.06,.568),
-'various.rfr (pca).mixed.mediaeval.1' = c(.105,.394,.09,.06,.11,.07,.15,.07,.512),
-'various.rfr (relief).mixed.mediaeval.1' = c(.293,.538,.08,.06,.08,.05,.12,.06,.584),
-'various.rnn (full feature space).mixed.mediaeval.1' = c(.231,.561,.08,.06,.08,.06,.12,.07,.584),
-'various.rnn (pca).mixed.mediaeval.1' = c(.228,.552,.08,.06,.08,.06,.12,.07,.576),
-'various.rnn (relief).mixed.mediaeval.1' = c(.192,.583,.08,.06,.07,.05,.12,.06,.56)
+                                                          'classification_accuracy.mean' = 0.61,av_class.n = 4),
+'various.mars (pca).mixed.mediaeval.1' = c(.175,.44,.08,.06,.09,.06,.13,.07,.584,4),
+'various.mars (relief).mixed.mediaeval.1' = c(.275,.568,.08,.06,.08,.06,.12,.07,.6,4),
+'various.svr (full feature space).mixed.mediaeval.1' = c(.256,.599,.08,.06,.07,.05,.12,.06,.568,4),
+'various.svr (pca).mixed.mediaeval.1' = c(.255,.606,.08,.06,.07,.05,.12,.06,.584,4),
+'various.svr (relief).mixed.mediaeval.1' = c(.26,.625,.08,.06,.07,.05,.12,.06,.592,4),
+'various.rbf (full feature space).mixed.mediaeval.1' = c(.285,.605,.08,.06,.07,.05,.12,.06,.624,4),
+'various.rbf (pca).mixed.mediaeval.1' = c(.266,.602,.08,.06,.07,.06,.12,.07,.624,4),
+'various.rbf (relief).mixed.mediaeval.1' = c(.26,.614,.08,.06,.07,.05,.12,.06,.608,4),
+'various.rfr (full feature space).mixed.mediaeval.1' = c(.259,.52,.08,.06,.08,.06,.13,.06,.568,4),
+'various.rfr (pca).mixed.mediaeval.1' = c(.105,.394,.09,.06,.11,.07,.15,.07,.512,4),
+'various.rfr (relief).mixed.mediaeval.1' = c(.293,.538,.08,.06,.08,.05,.12,.06,.584,4),
+'various.rnn (full feature space).mixed.mediaeval.1' = c(.231,.561,.08,.06,.08,.06,.12,.07,.584,4),
+'various.rnn (pca).mixed.mediaeval.1' = c(.228,.552,.08,.06,.08,.06,.12,.07,.576,4),
+'various.rnn (relief).mixed.mediaeval.1' = c(.192,.583,.08,.06,.07,.05,.12,.06,.56,4)
 )
 },
   MODEL_VALIDATION = {none},
@@ -1735,12 +1738,12 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {bind_field( 
   'librosa.svm (radial basis function).mixed.gc14ux (imbalanced).1' = c(
-  arousal_f1 = 0.7138, arousal_auc = 0.8131, valence_f1 = 0.5474, valence_auc = 0.6386),
-  'librosa.svm (radial basis function).mixed.gc14ux (resampled).1' = c(0.7293,0.8141,0.5809,0.6372)
+  arousal_f1 = 0.7138, arousal_auc = 0.8131, arousal_class.n = 2, valence_f1 = 0.5474, valence_auc = 0.6386, valence_class.n = 2),
+  'librosa.svm (radial basis function).mixed.gc14ux (resampled).1' = c(0.7293,0.8141,2, 0.5809,0.6372, 2)
   )
   },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {From article: "all classification experiments were thus implemented as a binomial classification problem (positive valence/arousal versus negative valence/arousal), in which we excluded the samples with neutral labels in this study"}
 }
 
 
@@ -2489,17 +2492,17 @@ Discriminant Analysis (RDA).},
   MODEL_MEASURE = {Accuracy},
   MODEL_COMPLEXITY_PARAMETERS = {Tuning parameters defined through 10-fold cross validation},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
-  MODEL_RATE_EMOTION_VALUES = {  bind_field('various.l1 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = .84, valence_accuracy.mean = 0.64), 
-                   'various.l2 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.mean = 0.68), 
-                   'various.l1 support vector regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.median = 0.72), 
-                   'various.reguliarized discriminant analysis.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83), 
-                   'various.logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.8),
-                   'various.polynomial svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = 0.774),
-                    'various.linear svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = .814)
+  MODEL_RATE_EMOTION_VALUES = {  bind_field('various.l1 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = .84, valence_accuracy.mean = 0.64, av_class.n = 4), 
+                   'various.l2 logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.mean = 0.68, av_class.n = 4), 
+                   'various.l1 support vector regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, valence_accuracy.median = 0.72, av_class.n = 4), 
+                   'various.reguliarized discriminant analysis.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.83, av_class.n = 4), 
+                   'various.logistic regression.intensity.zhang2015so.1' = c(arousal_accuracy.mean = 0.8, av_class.n = 4),
+                   'various.polynomial svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = 0.774, av_class.n = 4),
+                    'various.linear svm.intensity.zhang2015so.1'  = c(arousal_accuracy.mean = .814, av_class.n = 4)
 )
 },
   MODEL_VALIDATION = {10-fold cross validation (for tuning parameters)},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Use Zhang's database. Appears to use four classes. www.researchgate.net/publication/282373589_Some_issues_of_mood_classification_for_Chinese_popular_music}
 }
 
 
