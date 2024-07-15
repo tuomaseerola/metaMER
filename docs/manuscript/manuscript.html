@@ -231,7 +231,7 @@ window.Quarto = {
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
-<p>We preregistered our meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
+<p>We preregistered the meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi OR categor OR algorithm AND music   AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
 <p>The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as <span class="math inline">\(R^2\)</span> or classification accuracy (<span class="math inline">\(F1\)</span> score or <em>precision</em> or <em>recall</em>) and overall quality control; see <a href="http://">SI</a> for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number [N], duration), features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.</p>
 <p>[optional Figure: flowchart of the study inclusions/eliminations]</p>
@@ -241,8 +241,64 @@ window.Quarto = {
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>First we could describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
+<p>First we describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
 <p>TABLE 1: Summary of data (part of <code>analysis/preprocessing.qmd</code>)</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Regression</th>
+<th style="text-align: left;">Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Study N</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Model N</td>
+<td style="text-align: left;">258</td>
+<td style="text-align: left;">108</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Techniques</td>
+<td style="text-align: left;">Flexible Discriminants: 64</td>
+<td style="text-align: left;">37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Techniques</td>
+<td style="text-align: left;">KS, Add. &amp; KNN: 24</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Techniques</td>
+<td style="text-align: left;">Linear Methods: 74</td>
+<td style="text-align: left;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Techniques</td>
+<td style="text-align: left;">Neural Nets: 74</td>
+<td style="text-align: left;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Techniques</td>
+<td style="text-align: left;">Random Forests: 22</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Feature N</td>
+<td style="text-align: left;">Min=3, Md=472.5, Max=654</td>
+<td style="text-align: left;">Min=3, Md=231, Max=8904</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stimulus N</td>
+<td style="text-align: left;">Min=40, Md=324, Max=2486</td>
+<td style="text-align: left;">Min=124, Md=387, Max=5192</td>
+</tr>
+</tbody>
+</table>
 <p>Talk about the stimuli and</p>
 <p>We first report regression studies that predict valence and arousal.</p>
 <section id="prediction-success-for-valence-and-arousal-or-affect-dimensions" class="level2">
@@ -259,10 +315,9 @@ window.Quarto = {
 <p>Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.</p>
 <table class="table">
 <colgroup>
-<col style="width: 18%">
+<col style="width: 17%">
 <col style="width: 15%">
-<col style="width: 12%">
-<col style="width: 20%">
+<col style="width: 34%">
 <col style="width: 6%">
 <col style="width: 8%">
 <col style="width: 8%">
@@ -277,61 +332,64 @@ window.Quarto = {
 <th style="text-align: left;"><span class="math inline">\(p\)</span></th>
 <th style="text-align: left;"><span class="math inline">\(\tau^2\)</span></th>
 <th style="text-align: left;"><span class="math inline">\(I^2\)</span></th>
-<th style="text-align: left;"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Valence All</td>
-<td style="text-align: left;">49,42648</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">0.6137 [0.5540; 0.6672]</td>
 <td style="text-align: left;">15.9</td>
 <td style="text-align: left;">.0001</td>
 <td style="text-align: left;">0.092</td>
 <td style="text-align: left;">98.1%</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Valence Trim</td>
-<td style="text-align: left;">27,18402</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">0.6048 [0.5920; 0.6172]</td>
 <td style="text-align: left;">72.4</td>
 <td style="text-align: left;">.0001</td>
 <td style="text-align: left;">0.0007</td>
-<td style="text-align: left;">33.1% [0.0%; 58.2%]</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">33.1%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Valence M</td>
-<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">0.6038 [0.4671; 0.7124]</td>
 <td style="text-align: left;">7.83</td>
 <td style="text-align: left;">.0001</td>
 <td style="text-align: left;">0.100</td>
 <td style="text-align: left;">97.8%</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Valence Md</td>
-<td style="text-align: left;">14,10641</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">0.6018 [0.4659; 0.7099]</td>
 <td style="text-align: left;">7.87</td>
 <td style="text-align: left;">.0001</td>
 <td style="text-align: left;">0.098</td>
 <td style="text-align: left;">97.7%</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Valence Max</td>
-<td style="text-align: left;">14,10641</td>
-<td style="text-align: left;">0.6520 [0.5026; 0.7636]</td>
+<td style="text-align: left;">24,15660</td>
+<td style="text-align: left;">0.6585 [0.5574; 0.7404]</td>
 <td style="text-align: left;">7.44</td>
 <td style="text-align: left;">.0001</td>
 <td style="text-align: left;">0.142</td>
 <td style="text-align: left;">97.9%</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Val. MaxTrim</td>
+<td style="text-align: left;">13,7363</td>
+<td style="text-align: left;">0.6489 [0.5980; 0.6945]</td>
+<td style="text-align: left;">18.5</td>
+<td style="text-align: left;">.0001</td>
+<td style="text-align: left;">0.008</td>
+<td style="text-align: left;">88.5%</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><em>N Features</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -339,9 +397,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">&lt;18 F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -349,9 +406,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">18-260 F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -359,9 +415,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">260+ F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -369,9 +424,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><em>Techniques</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -379,9 +433,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">KS</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.3606 [0.3201; 0.3997]</td>
@@ -389,9 +442,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LM</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -399,9 +451,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">FD</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -409,9 +460,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">NN</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -419,9 +469,8 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">RF</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.xxxx [0.xxxx; 0.xxxx]</td>
@@ -429,10 +478,11 @@ window.Quarto = {
 <td style="text-align: left;">.xxxx</td>
 <td style="text-align: left;">0.xxx</td>
 <td style="text-align: left;">XXXX%</td>
-<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
+<p>OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION,</p>
+<p>see this to ignore I^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678</p>
 <p>Figure 1. Forest plot of valence prediction (Max?) <code>analysis/figure1.qmd</code></p>
 <p>Summarise the results here briefly</p>
 <p>Moving on the arousal, …</p>
@@ -441,8 +491,7 @@ window.Quarto = {
 <colgroup>
 <col style="width: 17%">
 <col style="width: 16%">
-<col style="width: 13%">
-<col style="width: 19%">
+<col style="width: 33%">
 <col style="width: 6%">
 <col style="width: 8%">
 <col style="width: 8%">
@@ -457,61 +506,64 @@ window.Quarto = {
 <th style="text-align: left;"><span class="math inline">\(p\)</span></th>
 <th style="text-align: left;"><span class="math inline">\(\tau^2\)</span></th>
 <th style="text-align: left;"><span class="math inline">\(I^2\)</span></th>
-<th style="text-align: left;"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Arousal</td>
-<td style="text-align: left;">14,9035</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">0.7959 [0.7666; 0.8218]</td>
+<td style="text-align: left;">29.0</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0676</td>
+<td style="text-align: left;">95.6%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Arousal Trim</td>
-<td style="text-align: left;">27,18402</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">0.7932 [0.7846; 0.8014]</td>
+<td style="text-align: left;">96.5</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0030</td>
+<td style="text-align: left;">73.3%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Arousal M</td>
-<td style="text-align: left;">14,10641</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">0.7567 [0.6752; 0.8199]</td>
+<td style="text-align: left;">12.7</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0739</td>
+<td style="text-align: left;">95.6%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Arousal Md</td>
-<td style="text-align: left;">14,10641</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">0.7627 [0.6819; 0.8252]</td>
+<td style="text-align: left;">12.7</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0757</td>
+<td style="text-align: left;">95.3%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Arousal Max</td>
-<td style="text-align: left;">14,10641</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">24,15660</td>
+<td style="text-align: left;">0.8070 [0.7453; 0.8550]</td>
+<td style="text-align: left;">10.3</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.155</td>
+<td style="text-align: left;">96.8%</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Aro.Max.Trm</td>
+<td style="text-align: left;">14,12061</td>
+<td style="text-align: left;">0.8182 [0.8021; 0.8331]</td>
+<td style="text-align: left;">25.6</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0132</td>
+<td style="text-align: left;">96.8%</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><em>N Features</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -519,9 +571,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">&lt;18 F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -529,9 +580,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">18-260 F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -539,9 +589,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">260+ F</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -549,9 +598,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><em>Techniques</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -559,9 +607,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">KS</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -569,9 +616,8 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LM</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -579,11 +625,18 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">FD</td>
-<td style="text-align: left;"></td>
+<td style="text-align: left;">NN</td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -592,18 +645,7 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NN</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">RF</td>
-<td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -620,6 +662,66 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="classification-studies">Classification studies</h2>
 <p>Summary of details contained in Table 1, but summarise at least the categories predicted before moving onto the main findings.</p>
 <p>Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 33%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Models, obs</th>
+<th style="text-align: left;"><span class="math inline">\(r\)</span> [95%-CI]</th>
+<th style="text-align: left;"><span class="math inline">\(t\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(p\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\tau^2\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(I^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">All</td>
+<td style="text-align: left;">89,87347</td>
+<td style="text-align: left;">0.8074 [0.7681; 0.8407]</td>
+<td style="text-align: left;">21.4</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.2415</td>
+<td style="text-align: left;">99.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All Trim</td>
+<td style="text-align: left;">29,6499</td>
+<td style="text-align: left;">0.8185 [0.8046; 0.8314]</td>
+<td style="text-align: left;">58.3</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0066</td>
+<td style="text-align: left;">60.4%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Max</td>
+<td style="text-align: left;">14,17184</td>
+<td style="text-align: left;">0.8564 [0.7386; 0.9234]</td>
+<td style="text-align: left;">8.32</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.329</td>
+<td style="text-align: left;">99.8%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Max Trim</td>
+<td style="text-align: left;">6,3653</td>
+<td style="text-align: left;">0.8689 [0.7760; 0.9249]</td>
+<td style="text-align: left;">11.6</td>
+<td style="text-align: left;">0.0001</td>
+<td style="text-align: left;">0.0749</td>
+<td style="text-align: left;">97.5%</td>
+</tr>
+</tbody>
+</table>
 <p>Heterogeneity issues</p>
 <p>Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)</p>
 <ul>
