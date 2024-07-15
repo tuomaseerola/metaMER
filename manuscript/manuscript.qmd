@@ -72,7 +72,7 @@ However, there is no consensus on to what degree emotions can be recognised by c
 
 # Methods
 
-We preregistered our meta-analysis plan on 21 June 2024 at OSF, [https://osf.io/c5wgd](https://osf.io/c5wgd), and the plan is also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
+We preregistered the meta-analysis plan on 21 June 2024 at OSF, [https://osf.io/c5wgd](https://osf.io/c5wgd), and the plan is also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
 
 In the search stage, we used three databases, _Web of Science_, _Scopus_, and _Open Alex_ to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi OR categor OR algorithm AND music 
  AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024. 
@@ -85,9 +85,23 @@ The initial search yielded 553 potential studies, which were interactively scree
 
 # Results
 
-First we could describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).
+First we describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).
 
 TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
+
+
+|            | Regression                   | Classification |
+|:-----------|:-----------------------------|:---------------|
+| Study N    | 24                           | 14             |
+| Model N    | 258                          | 108            |
+| Techniques | Flexible Discriminants: 64   | 37 |
+| Techniques | KS, Add. & KNN: 24           | 8 |
+| Techniques | Linear Methods: 74           | 24 |
+| Techniques | Neural Nets: 74              | 27 |
+| Techniques | Random Forests: 22           | 12 |
+| Feature N  | Min=3, Md=472.5, Max=654     | Min=3, Md=231, Max=8904 |
+| Stimulus N | Min=40, Md=324, Max=2486     |Min=124, Md=387, Max=5192 |
+
 
 Talk about the stimuli and 
 
@@ -109,12 +123,12 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 | Concept     | Models, obs|$r$ [95%-CI]            | $t$ | $p$  |$\tau^2$|$I^2$| Prediction interval
 |:------------|:----------|:--------  --------------|:----|:-----|:-----|:------|
-| Valence All | 49,42480  | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
-| Valence Trim| 27,18402  | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1%|
-| Valence M   | 14,10641  | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
-| Valence Md  | 14,10641  | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
-| Valence Max | 14,10641  | 0.6520 [0.5026; 0.7636] | 7.44|.0001 | 0.142| 97.9% | -0.0719; 0.9260
-| Val. MaxTrim|   8,7205  | 0.6140 [0.5538; 0.6679] | 18.5|.0001 | 0.008| 88.5% | 0.4470; 0.7396
+| Valence All |           | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
+| Valence Trim|           | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1%|
+| Valence M   |           | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
+| Valence Md  |           | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
+| Valence Max | 24,15660  | 0.6585 [0.5574; 0.7404] | 7.44|.0001 | 0.142| 97.9% |
+| Val. MaxTrim|   13,7363 | 0.6489 [0.5980; 0.6945] | 18.5|.0001 | 0.008| 88.5% |
 | *N Features*|           |                         |     |      |      |       |
 | <18 F       |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
 | 18-260 F    |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
@@ -144,12 +158,12 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 
 | Concept     | Models, obs|$r$ [95%-CI]             | $t$ | $p$  |$\tau^2$|$I^2$|
 |:------------|:-----------|:------------------------|:----|:-----|:-----|:------|
-| Arousal     | 55,43160   | 0.7959 [0.7666; 0.8218] |29.0 |0.0001|0.0676|95.6%  |
-| Arousal Trim| 27,18402   | 0.7932 [0.7846; 0.8014] | 96.5|0.0001|0.0030|73.3%  |
-| Arousal M   | 14,10641   | 0.7567 [0.6752; 0.8199] | 12.7|0.0001|0.0739|95.6%  |
-| Arousal Md  | 14,10641   | 0.7627 [0.6819; 0.8252] | 12.7|0.0001|0.0757|95.3%  |
-| Arousal Max | 14,10641   | 0.8077 [0.7088; 0.8755] | 10.3|0.0001|0.155 | 96.8%  | 0.2258; 0.9648
-| Aro.Max.Trm | 11,10021   | 0.7869 [0.7490; 0.8197] | 25.6|0.0001|0.0132| 96.8%  | 0.6372; 0.9047
+| Arousal     |            | 0.7959 [0.7666; 0.8218] |29.0 |0.0001|0.0676|95.6%  |
+| Arousal Trim|            | 0.7932 [0.7846; 0.8014] | 96.5|0.0001|0.0030|73.3%  |
+| Arousal M   |            | 0.7567 [0.6752; 0.8199] | 12.7|0.0001|0.0739|95.6%  |
+| Arousal Md  |            | 0.7627 [0.6819; 0.8252] | 12.7|0.0001|0.0757|95.3%  |
+| Arousal Max | 24,15660   | 0.8070 [0.7453; 0.8550] | 10.3|0.0001|0.155 | 96.8%  | 0.2258; 0.9648
+| Aro.Max.Trm | 14,12061   | 0.8182 [0.8021; 0.8331] | 25.6|0.0001|0.0132| 96.8%  | 0.6372; 0.9047
 
 | *N Features*|            |          |              |     |      |      |       |   
 | <18 F       |            |          |              |     |      |      |       |
@@ -178,7 +192,7 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 |:------------|:-----------|:------------------------|:----|:-----|:-----|:------|
 | All         | 89,87347   | 0.8074 [0.7681; 0.8407] |21.4 |0.0001|0.2415|99.7%  |
 | All Trim    | 29,6499    | 0.8185 [0.8046; 0.8314] | 58.3|0.0001|0.0066| 60.4%  |
-| Max         | 14,17184   | 0.8564 [0.7386; 0.9234] | 10.3|0.0001|0.329 | 99.8% |
+| Max         | 14,17184   | 0.8564 [0.7386; 0.9234] | 8.32|0.0001|0.329 | 99.8% |
 | Max Trim    | 6,3653     | 0.8689 [0.7760; 0.9249] | 11.6|0.0001|0.0749| 97.5% |
 
 

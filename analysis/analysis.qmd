@@ -296,7 +296,7 @@ C_summary <- read.csv("C_summary.csv")
 
 m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
-                 studlab = citekey, # unique_id
+                 studlab = studyREF, # unique_id
                  data = C_summary,
                  fixed = FALSE,
                  random = TRUE,
