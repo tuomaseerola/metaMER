@@ -1971,7 +1971,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {431}, %% subset of DEAM
-  FEATURE_N = {Features deep-learned from audio (not specified) but 1802 in DEAM},
+  FEATURE_N = {260},
   PARTICIPANT_N = {Minimum annotations per piece: 2013-14: 10; 2015: 5 MTurk workers (100 qualified workers for MediaEval)},
   PARTICIPANT_EXPERTISE = {no restrictions},
   PARTICIPANT_ORIGIN = {2013-14: MTurk; 2015: MTurk and Lab workers},
@@ -2398,7 +2398,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
 )
  }, %% not reporting on classification as those involve spectrogram images instead.
   MODEL_VALIDATION = {10-fold cross-validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {baseline features from openSMILE + additional spectral features. Unspecified, but likely > 3000 as there are 150 PCA features. They also report 15 summary stats}
 }
 
 
@@ -2443,7 +2443,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   'librosa.random forest regression.audio.psic3839.1' = c(arousal_r2.mean = 0.629, arousal_rmse.rmse = 0.147,valence_r2.mean = 0.371, valence_rmse.rmse = 0.214)
 ) },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {discuss}
+  FINAL_NOTES = {top 50 PCA features, raw number of features not revealed, nor number of audio features plus BOW features.}
 }
 
 
