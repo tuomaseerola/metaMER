@@ -52,36 +52,86 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ## set options ##
 ```
 
-
 # Introduction
 
-- Emotional expression is one of the central reasons why people engage with music.
+-   Emotional expression is one of the central reasons why people engage with music.
 
-- Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio. 
+-   Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio.
 
-- Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013;@anderson2022ex;@grimaud_eerola_2022], or acoustic features [@yang2008;@panda2013multi;@saari_et_al_2015;@eerola2011c] or emergent properties identified through deep learning [@er2019music;@sarkar2020recognition].
+-   Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], or acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c] or emergent properties identified through deep learning [@er2019music; @sarkar2020recognition].
 
-However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey]. 
+However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey].
 
 ## Aims
 
-- Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in affective circumple space (valence and arousal) and classification of emotion categories based on available and recent studies. 
-- We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.
-- To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.
-- We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
+-   Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in affective circumple space (valence and arousal) and classification of emotion categories based on available and recent studies.
+-   We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.
+-   To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.
+-   We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
 
 # Methods
 
-We preregistered the meta-analysis plan on 21 June 2024 at OSF, [https://osf.io/c5wgd](https://osf.io/c5wgd), and the plan is also available at [https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html)).
+We preregistered the meta-analysis plan on 21 June 2024 at OSF, <https://osf.io/c5wgd>, and the plan is also available at <https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html>).
 
-In the search stage, we used three databases, _Web of Science_, _Scopus_, and _Open Alex_ to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi OR categor OR algorithm AND music 
- AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024. 
+In the search stage, we used three databases, *Web of Science*, *Scopus*, and *Open Alex* to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024.
 
-The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as $R^2$ or classification accuracy ($F1$ score or _precision_ or _recall_) and overall quality control; see [SI](http://) for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number [N], duration), features extracted (number, type, source, defined by [@panda2020audio]), model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, _MSE_, _MCC_), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [_MCC_, @chicco2020advantages].
+The initial search yielded 553 potential studies, which were interactively screened for relevance in three stages by both authors, resulting in 46 studies that passed our inclusion criteria (define here: has included some form of emotion modelling with a set of features, and outcome measures such as $R^2$ or classification accuracy ($F1$ score or *precision* or *recall*) and overall quality control; see [SI](http://) for a breakdown). After the screening stage, we define a set of entities to extract characterising music (genre, stimulus number \[N\], duration), features extracted (number, type, source, defined by [@panda2020audio]), model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), model complexity (??? model architecture?), and type of model cross-validation. We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [*MCC*, @chicco2020advantages].
 
-[optional Figure: flowchart of the study inclusions/eliminations]
+\[Figure 1: flowchart of the study inclusions/eliminations\]
 
-- Devote some sentences to quality control issues (what were the most common reasons for eliminating studies).
+```{r echo=FALSE}
+library(glue)
+library(DiagrammeR)
+
+a_label <- glue('Records identified from:
+                Web of Science (n = 142)
+                Scopus (n = 227)
+                OpenALEX (n = 278)')
+b_label <- glue('Records removed before screening: 
+                Duplicates entries/errors (n = 94)')
+e_label <- glue('Records removed: 
+                Irrelevant titles/themes (n = 338)
+                Abstract screening (n = 95)
+                Discussion (n = 24)')
+h_label <- glue('Full text articles excluded
+             (n = 50)')
+grViz("
+digraph cohort_flow_chart
+{
+node [fontname = Helvetica, fontsize = 12, shape = box, width = 4]
+a[label = '@@1']
+b[label = '@@2']
+c[label = 'Records after duplicates removed (n = 553)']
+d[label = 'Records screened (n = 553)']
+e[label = '@@3']
+f[label = 'Full text articles assessed (n = 96)']
+g[label = 'Studies included (n = 46)']
+h[label = '@@4']
+
+
+
+{ rank = same; a b}
+{ rank = same; d, e}
+{ rank = same; f, h}
+
+a -> b;
+a -> c;
+c -> d;
+d -> e [ minlen = 3 ];
+d -> f;
+f -> h [ minlen = 3 ];
+f -> g;
+}
+
+[1]: a_label
+[2]: b_label
+[3]: e_label
+[4]: h_label
+
+")
+```
+
+-   Devote some sentences to quality control issues (what were the most common reasons for eliminating studies).
 
 # Results
 
@@ -89,21 +139,19 @@ First we describe the overall pattern of data (regression vs classification, mod
 
 TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 
+|            | Regression                 | Classification            |
+|:-----------|:---------------------------|:--------------------------|
+| Study N    | 24                         | 14                        |
+| Model N    | 258                        | 108                       |
+| Techniques | Flexible Discriminants: 64 | 37                        |
+| Techniques | KS, Add. & KNN: 24         | 8                         |
+| Techniques | Linear Methods: 74         | 24                        |
+| Techniques | Neural Nets: 74            | 27                        |
+| Techniques | Random Forests: 22         | 12                        |
+| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   |
+| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 |
 
-|            | Regression                   | Classification |
-|:-----------|:-----------------------------|:---------------|
-| Study N    | 24                           | 14             |
-| Model N    | 258                          | 108            |
-| Techniques | Flexible Discriminants: 64   | 37 |
-| Techniques | KS, Add. & KNN: 24           | 8 |
-| Techniques | Linear Methods: 74           | 24 |
-| Techniques | Neural Nets: 74              | 27 |
-| Techniques | Random Forests: 22           | 12 |
-| Feature N  | Min=3, Md=472.5, Max=654     | Min=3, Md=231, Max=8904 |
-| Stimulus N | Min=40, Md=324, Max=2486     |Min=124, Md=387, Max=5192 |
-
-
-Talk about the stimuli and 
+Talk about the stimuli and
 
 We first report regression studies that predict valence and arousal.
 
@@ -111,44 +159,40 @@ We first report regression studies that predict valence and arousal.
 
 See `analysis/analysis.qmd`
 
-- Decision: Report all models or the best model?
-  * Possible solution: Report all models, trimmed models, and but mainly rely on Max
+-   Decision: Report all models or the best model?
 
-- Report issues of heterogeneity right here (can be visualised with funnel plots, see below)
+    -   Possible solution: Report all models, trimmed models, and but mainly rely on Max
 
-- Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers"
+-   Report issues of heterogeneity right here (can be visualised with funnel plots, see below)
 
+-   Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers"
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
-| Concept     | Models, obs|$r$ [95%-CI]            | $t$ | $p$  |$\tau^2$|$I^2$|
-|:------------|:----------|:------------------------|:----|:-----|:-----|:------|
-| Valence All |           | 0.6137 [0.5540; 0.6672] | 15.9|.0001 | 0.092| 98.1% |
-| Valence Trim|           | 0.6048 [0.5920; 0.6172] | 72.4|.0001 | 0.0007| 33.1%|
-| Valence M   |           | 0.6038 [0.4671; 0.7124] | 7.83|.0001 | 0.100| 97.8% |
-| Valence Md  |           | 0.6018 [0.4659; 0.7099] | 7.87|.0001 | 0.098| 97.7% |
-| Valence Max | 24,15660  | 0.6585 [0.5574; 0.7404] | 7.44|.0001 | 0.142| 97.9% |
-| Val. MaxTrim|   13,7363 | 0.6489 [0.5980; 0.6945] | 18.5|.0001 | 0.008| 88.5% |
-| *N Features*|           |                         |     |      |      |       |
-| <18 F       |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-| 18-260 F    |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-| 260+ F      |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-| *Techniques*|           |                         |     |      |      |       |
-|   KS        |           | 0.3606 [0.3201; 0.3997] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   LM        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   FD        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   NN        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
-|   RF        |           | 0.xxxx [0.xxxx; 0.xxxx] | xxxx|.xxxx | 0.xxx| XXXX% |
+| Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$   | $\tau^2$ | $I^2$ |
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+| Valence All  |             | 0.6137 \[0.5540; 0.6672\] | 15.9 | .0001 | 0.092    | 98.1% |
+| Valence Trim |             | 0.6048 \[0.5920; 0.6172\] | 72.4 | .0001 | 0.0007   | 33.1% |
+| Valence M    |             | 0.6038 \[0.4671; 0.7124\] | 7.83 | .0001 | 0.100    | 97.8% |
+| Valence Md   |             | 0.6018 \[0.4659; 0.7099\] | 7.87 | .0001 | 0.098    | 97.7% |
+| Valence Max  | 24,15660    | 0.6585 \[0.5574; 0.7404\] | 7.44 | .0001 | 0.142    | 97.9% |
+| Val. MaxTrim | 13,7363     | 0.6489 \[0.5980; 0.6945\] | 18.5 | .0001 | 0.008    | 88.5% |
+| *N Features* |             |                           |      |       |          |       |
+| \<18 F       |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| 18-260 F     |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| 260+ F       |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| *Techniques* |             |                           |      |       |          |       |
+| KS           |             | 0.3606 \[0.3201; 0.3997\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| LM           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| FD           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| NN           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| RF           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
 
+OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION,
 
-OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION, 
+see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678
 
-see this to ignore I^2 and rely on prediction interval: 
-https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678
-
-
-Figure 1. Forest plot of valence prediction (Max?)
-`analysis/figure1.qmd`
+Figure 1. Forest plot of valence prediction (Max?) `analysis/figure1.qmd`
 
 Summarise the results here briefly
 
@@ -156,26 +200,24 @@ Moving on the arousal, ...
 
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
-
-| Concept     | Models, obs|$r$ [95%-CI]             | $t$ | $p$  |$\tau^2$|$I^2$|
-|:------------|:-----------|:------------------------|:----|:-----|:-----|:------|
-| Arousal     |            | 0.7959 [0.7666; 0.8218] |29.0 |0.0001|0.0676|95.6%  |
-| Arousal Trim|            | 0.7932 [0.7846; 0.8014] | 96.5|0.0001|0.0030|73.3%  |
-| Arousal M   |            | 0.7567 [0.6752; 0.8199] | 12.7|0.0001|0.0739|95.6%  |
-| Arousal Md  |            | 0.7627 [0.6819; 0.8252] | 12.7|0.0001|0.0757|95.3%  |
-| Arousal Max | 24,15660   | 0.8070 [0.7453; 0.8550] | 10.3|0.0001|0.155 | 96.8% | 
-| Aro.Max.Trm | 14,12061   | 0.8182 [0.8021; 0.8331] | 25.6|0.0001|0.0132| 96.8% | 
-| *N Features*|            |          |              |     |      |      |       |   
-| <18 F       |            |          |              |     |      |      |       |
-| 18-260 F    |            |          |              |     |      |      |       |
-| 260+ F      |            |          |              |     |      |      |       |
-| *Techniques*|            |          |              |     |      |      |       |  
-|   KS        |            |          |              |     |      |      |       |
-|   LM        |            |          |              |     |      |      |       |
-|   FD        |            |          |              |     |      |      |       |
-|   NN        |            |          |              |     |      |      |       |
-|   RF        |            |          |              |     |      |      |       |
-     
+| Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+| Arousal      |             | 0.7959 \[0.7666; 0.8218\] | 29.0 | 0.0001 | 0.0676   | 95.6% |
+| Arousal Trim |             | 0.7932 \[0.7846; 0.8014\] | 96.5 | 0.0001 | 0.0030   | 73.3% |
+| Arousal M    |             | 0.7567 \[0.6752; 0.8199\] | 12.7 | 0.0001 | 0.0739   | 95.6% |
+| Arousal Md   |             | 0.7627 \[0.6819; 0.8252\] | 12.7 | 0.0001 | 0.0757   | 95.3% |
+| Arousal Max  | 24,15660    | 0.8070 \[0.7453; 0.8550\] | 10.3 | 0.0001 | 0.155    | 96.8% |
+| Aro.Max.Trm  | 14,12061    | 0.8182 \[0.8021; 0.8331\] | 25.6 | 0.0001 | 0.0132   | 96.8% |
+| *N Features* |             |                           |      |        |          |       |
+| \<18 F       |             |                           |      |        |          |       |
+| 18-260 F     |             |                           |      |        |          |       |
+| 260+ F       |             |                           |      |        |          |       |
+| *Techniques* |             |                           |      |        |          |       |
+| KS           |             |                           |      |        |          |       |
+| LM           |             |                           |      |        |          |       |
+| FD           |             |                           |      |        |          |       |
+| NN           |             |                           |      |        |          |       |
+| RF           |             |                           |      |        |          |       |
 
 Figure 2. Forest plot of arousal prediction (using Max?)
 
@@ -187,44 +229,42 @@ Summary of details contained in Table 1, but summarise at least the categories p
 
 Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
 
-
-| Model       | Models, obs|$r$ [95%-CI]             | $t$ | $p$  |$\tau^2$|$I^2$|
-|:------------|:-----------|:------------------------|:----|:-----|:-----|:------|
-| All         | 89,87347   | 0.8074 [0.7681; 0.8407] |21.4 |0.0001|0.2415|99.7%  |
-| All Trim    | 29,6499    | 0.8185 [0.8046; 0.8314] | 58.3|0.0001|0.0066| 60.4% |
-| Max         | 14,17184   | 0.8564 [0.7386; 0.9234] | 8.32|0.0001|0.329 | 99.8% |
-| Max Trim    | 6,3653     | 0.8689 [0.7760; 0.9249] | 11.6|0.0001|0.0749| 97.5% |
-
+| Model    | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+| All      | 89,87347    | 0.8074 \[0.7681; 0.8407\] | 21.4 | 0.0001 | 0.2415   | 99.7% |
+| All Trim | 29,6499     | 0.8185 \[0.8046; 0.8314\] | 58.3 | 0.0001 | 0.0066   | 60.4% |
+| Max      | 14,17184    | 0.8564 \[0.7386; 0.9234\] | 8.32 | 0.0001 | 0.329    | 99.8% |
+| Max Trim | 6,3653      | 0.8689 \[0.7760; 0.9249\] | 11.6 | 0.0001 | 0.0749   | 97.5% |
 
 Heterogeneity issues
 
 Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)
 
-- Figure Optional: Funnel plot (I haven't seen this yet)
-
+-   Figure Optional: Funnel plot (I haven't seen this yet)
 
 # Conclusion and Discussion
 
 ## Concise summary of what we did and found
 
-## Main outcomes 
-- Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at ...
-- Classification ...
-- Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?). 
-- Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)
-- Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated 
+## Main outcomes
+
+-   Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at ...
+-   Classification ...
+-   Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?).
+-   Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)
+-   Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated
 
 ## Calls for action/points to improve in such studies
-- *Documentation* the details in full (features, stimuli, model details, cross-validation)
-- *Quality* of the underlying data (emotion ratings, classes, or even stimulus properties?
-- *Generalisibility* of the models (some studies such as X and Y address this by applying the models across several datasets)
-- Diversity in the evaluative aspects of studies: *overfitting*, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way
-- What proportion of stimuli are Western music, and what genres tend to dominate?
 
+-   *Documentation* the details in full (features, stimuli, model details, cross-validation)
+-   *Quality* of the underlying data (emotion ratings, classes, or even stimulus properties?
+-   *Generalisibility* of the models (some studies such as X and Y address this by applying the models across several datasets)
+-   Diversity in the evaluative aspects of studies: *overfitting*, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way
+-   What proportion of stimuli are Western music, and what genres tend to dominate?
 
 ### Funding statement
 
-CA was funded by Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada). 
+CA was funded by Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada).
 
 ### Competing interests statement
 
@@ -232,11 +272,10 @@ There were no competing interests.
 
 ### Open practices statement
 
-Study preregistration, data, analysis scripts and supporting information is available at Github, [https://tuomaseerola.github.io/metaMER](https://tuomaseerola.github.io/metaMER).
+Study preregistration, data, analysis scripts and supporting information is available at Github, <https://tuomaseerola.github.io/metaMER>.
 
 ### Acknowledgements
 
 We thank Greggs food-on-the-go retailer for sustaining the work with affordable sandwiches and coffee.
 
 # References
-
