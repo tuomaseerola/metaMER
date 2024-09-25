@@ -95,7 +95,7 @@ e_label <- glue('Records removed:
                 Discussion (n = 24)')
 h_label <- glue('Full text articles excluded
              (n = 50)')
-grViz("
+fig1 <- DiagrammeR::grViz("
 digraph cohort_flow_chart
 {
 node [fontname = Helvetica, fontsize = 12, shape = box, width = 4]
@@ -129,7 +129,12 @@ f -> g;
 [4]: h_label
 
 ")
+
+# Does not print this, but could this be done directly with dot syntax?
+# see https://quarto.org/docs/authoring/diagrams.html
+
 ```
+
 
 ## Quality Control
 
@@ -161,23 +166,19 @@ We first report regression studies that predict valence and arousal.
 
 See `analysis/analysis.qmd`
 
--   Decision: Report all models or the best model?
-    -   Possible solution: Report all models, trimmed models, and but mainly rely on Max
--   Report issues of heterogeneity right here (can be visualised with funnel plots, see below)
--   Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers"
-
+Since there are many models contained within the studies, we will report the results in a two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The focus on best performing model is carried out by taking the model with the highest correlation coefficient and using this model for the study. This is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline models and alternative techniques that do not represent the novelty and content of the article. Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient, and a random-effects model using `meta` library [@balduzzi2019].
 
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$   | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:--------------------------|:-----|:------|:---------|:------|
-| Valence All  |             | 0.6137 \[0.5540; 0.6672\] | 15.9 | .0001 | 0.092    | 98.1% |
-| Valence Trim |             | 0.6048 \[0.5920; 0.6172\] | 72.4 | .0001 | 0.0007   | 33.1% |
-| Valence M    |             | 0.6038 \[0.4671; 0.7124\] | 7.83 | .0001 | 0.100    | 97.8% |
-| Valence Md   |             | 0.6018 \[0.4659; 0.7099\] | 7.87 | .0001 | 0.098    | 97.7% |
-| Valence Max  | 24,15660    | 0.6585 \[0.5574; 0.7404\] | 7.44 | .0001 | 0.142    | 97.9% |
-| Val. MaxTrim | 13,7363     | 0.6489 \[0.5980; 0.6945\] | 18.5 | .0001 | 0.008    | 88.5% |
+| Valence All  |             | 0.614 \[0.554; 0.667\] | 15.9 | .0001 | 0.092    | 98.1% |
+| Valence Trim |             | 0.605 \[0.592; 0.617\] | 72.4 | .0001 | 0.0007   | 33.1% |
+| Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% |
+| Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% |
+| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\] | 7.44 | .0001 | 0.142    | 97.9% |
+| Val. MaxTrim | 13,7363     | 0.649 \[0.598; 0.695\] | 18.5 | .0001 | 0.008    | 88.5% |
 | *N Features* |             |                           |      |       |          |       |
 | \<18 F       |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
 | 18-260 F     |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
