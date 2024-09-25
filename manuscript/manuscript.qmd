@@ -133,7 +133,7 @@ f -> g;
 
 ## Quality Control
 
-The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include approx # for each?). Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes *Mathematical Problems in Engineering* which ceased publication following a large number of retractions in September 2024.
+The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis). Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes *Mathematical Problems in Engineering* which ceased publication following a large number of retractions in September 2024.
 
 # Results
 
@@ -141,19 +141,19 @@ First we describe the overall pattern of data (regression vs classification, mod
 
 TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 
-|            | Regression                 | Classification            |
-|:-----------|:---------------------------|:--------------------------|
-| Study N    | 24                         | 14                        |
-| Model N    | 258                        | 108                       |
-| Techniques | Flexible Discriminants: 64 | 37                        |
-| Techniques | KS, Add. & KNN: 24         | 8                         |
-| Techniques | Linear Methods: 74         | 24                        |
-| Techniques | Neural Nets: 74            | 27                        |
-| Techniques | Random Forests: 22         | 12                        |
-| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   |
-| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 |
+|            | Regression                 | Classification            |Total|
+|:-----------|:---------------------------|:--------------------------|:----|
+| Study N    | 24                         | 14                        | 38  |
+| Model N    | 258                        | 108                       | 366 |
+| Techniques | Flexible Discriminants: 64 | 37                        | 101 |
+| Techniques | Neural Nets: 74            | 27                        | 101 |
+| Techniques | Linear Methods: 74         | 24                        | 98  |
+| Techniques | Random Forests: 22         | 12                        | 34  |
+| Techniques | KS, Add. & KNN: 24         | 8                         | 32  |
+| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   | NA  |
+| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 | NA  |
 
-Talk about the stimuli and
+Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. [COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE].
 
 We first report regression studies that predict valence and arousal.
 
@@ -162,17 +162,16 @@ We first report regression studies that predict valence and arousal.
 See `analysis/analysis.qmd`
 
 -   Decision: Report all models or the best model?
-
     -   Possible solution: Report all models, trimmed models, and but mainly rely on Max
-
 -   Report issues of heterogeneity right here (can be visualised with funnel plots, see below)
-
 -   Optional Figure X: Funnel plot that combines valence and arousal (separate panels) with FULL/TRIMMED data shown with markers"
+
+
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$   | $\tau^2$ | $I^2$ |
-|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+|:-------------|:------------|:--------------------------|:-----|:------|:---------|:------|
 | Valence All  |             | 0.6137 \[0.5540; 0.6672\] | 15.9 | .0001 | 0.092    | 98.1% |
 | Valence Trim |             | 0.6048 \[0.5920; 0.6172\] | 72.4 | .0001 | 0.0007   | 33.1% |
 | Valence M    |             | 0.6038 \[0.4671; 0.7124\] | 7.83 | .0001 | 0.100    | 97.8% |
@@ -197,6 +196,8 @@ see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.w
 Figure 1. Forest plot of valence prediction (Max?) `analysis/figure1.qmd`
 
 Summarise the results here briefly
+
+
 
 Moving on the arousal, ...
 
