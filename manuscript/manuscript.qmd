@@ -170,30 +170,33 @@ Since there are many models contained within each of the studies, we will report
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
-| Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$   | $\tau^2$ | $I^2$ |
-|:-------------|:------------|:--------------------------|:-----|:------|:---------|:------|
-| Valence All  |             | 0.614 \[0.554; 0.667\] | 15.9 | .0001 | 0.092    | 98.1% |
-| Valence Trim |             | 0.605 \[0.592; 0.617\] | 72.4 | .0001 | 0.0007   | 33.1% |
-| Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% |
-| Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% |
-| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\] | 7.44 | .0001 | 0.142    | 97.9% |
-| Val. MaxTrim | 13,7363     | 0.649 \[0.598; 0.695\] | 18.5 | .0001 | 0.008    | 88.5% |
-| *N Features* |             |                           |      |       |          |       |
-| \<18 F       |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| 18-260 F     |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| 260+ F       |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| *Techniques* |             |                           |      |       |          |       |
-| KS           |             | 0.3606 \[0.3201; 0.3997\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| LM           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| FD           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| NN           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
-| RF           |             | 0.xxxx \[0.xxxx; 0.xxxx\] | xxxx | .xxxx | 0.xxx    | XXXX% |
+| Concept      | Models, obs | $r$ \[95%-CI\]         | $t$  | $p$   | $\tau^2$ | $I^2$ |
+|:-------------|:------------|:-----------------------|:-----|:------|:---------|:------|
+| Valence All  |  120,73685  | 0.567 \[0.530; 0.603\] | 23.7 | .0001 | 0.083    | 97.5% |
+| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\] | 10.14| .0001 | 0.138    | 98.2% |
+| *N Features* |             |                        |      |       |          |       |
+| \<18 F       |  5,3036     | 0.811 \[0.566; 0.775\] | -    | -     | 0.182    | 98.9% |
+| 18-260 F     |  11,7318    | 0.548 \[0.343; 0.703\] | -    | -     | 0.133    | 97.6% |
+| 260+ F       |  7,4562     | 0.685 \[0.566; 0.775\] | -    | -     | 0.044    | 97.2% |
+| *Techniques* |             |                        |      |       |          |       |
+| KS           |  2,2582     | 0.466 \[-0.634; 0.942\]| -    | -     | 0.0185   | 95.1% |
+| LM           |  8,1762     | 0.784 \[0.625; 0.881\] | -    | -     | 0.1370   | 96.4% |
+| FD           |  6,4993     | 0.656 \[0.484; 0.779\] | -    | -     | 0.0574   | 96.9% |
+| NN           |  4,2249     | 0.340 \[-0.097; 0.668\]| -    | -     | 0.0761   | 97.1% |
+| RF           |  4,4074     | 0.702 \[0.391; 0.869\] | -    | -     | 0.057    | 98.5% |
 
-OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION,
 
-see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678
+<!-- | Val. MaxTrim | 13,7363     | 0.649 \[0.598; 0.695\] | 18.5 | .0001 | 0.008    | 88.5% | -->
+<!-- | Valence Trim |             | 0.605 \[0.592; 0.617\] | 72.4 | .0001 | 0.0007   | 33.1% | -->
+<!-- | Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% | -->
+<!-- | Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% | -->
 
-Figure 1. Forest plot of valence prediction (Max?) `analysis/figure1.qmd`
+
+- [OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION](to explore?)
+
+<!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
+
+{{< include _figure1.qmd >}}
 
 Summarise the results here briefly
 
@@ -206,11 +209,7 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:----------|:----------|:----------|:----------|:----------|:----------|:----------|
 | Arousal      |             | 0.7959 \[0.7666; 0.8218\] | 29.0 | 0.0001 | 0.0676   | 95.6% |
-| Arousal Trim |             | 0.7932 \[0.7846; 0.8014\] | 96.5 | 0.0001 | 0.0030   | 73.3% |
-| Arousal M    |             | 0.7567 \[0.6752; 0.8199\] | 12.7 | 0.0001 | 0.0739   | 95.6% |
-| Arousal Md   |             | 0.7627 \[0.6819; 0.8252\] | 12.7 | 0.0001 | 0.0757   | 95.3% |
 | Arousal Max  | 24,15660    | 0.8070 \[0.7453; 0.8550\] | 10.3 | 0.0001 | 0.155    | 96.8% |
-| Aro.Max.Trm  | 14,12061    | 0.8182 \[0.8021; 0.8331\] | 25.6 | 0.0001 | 0.0132   | 96.8% |
 | *N Features* |             |                           |      |        |          |       |
 | \<18 F       |             |                           |      |        |          |       |
 | 18-260 F     |             |                           |      |        |          |       |
@@ -224,6 +223,12 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 
 Figure 2. Forest plot of arousal prediction (using Max?)
 
+<!-- | Arousal Trim |             | 0.7932 \[0.7846; 0.8014\] | 96.5 | 0.0001 | 0.0030   | 73.3% | -->
+<!-- | Arousal M    |             | 0.7567 \[0.6752; 0.8199\] | 12.7 | 0.0001 | 0.0739   | 95.6% | -->
+<!-- | Arousal Md   |             | 0.7627 \[0.6819; 0.8252\] | 12.7 | 0.0001 | 0.0757   | 95.3% | -->
+<!-- | Aro.Max.Trm  | 14,12061    | 0.8182 \[0.8021; 0.8331\] | 25.6 | 0.0001 | 0.0132   | 96.8% | -->
+
+
 Summarise here the pattern of results
 
 ## Classification studies
@@ -235,9 +240,10 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 | Model    | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:----------|:----------|:----------|:----------|:----------|:----------|:----------|
 | All      | 89,87347    | 0.8074 \[0.7681; 0.8407\] | 21.4 | 0.0001 | 0.2415   | 99.7% |
-| All Trim | 29,6499     | 0.8185 \[0.8046; 0.8314\] | 58.3 | 0.0001 | 0.0066   | 60.4% |
 | Max      | 14,17184    | 0.8564 \[0.7386; 0.9234\] | 8.32 | 0.0001 | 0.329    | 99.8% |
-| Max Trim | 6,3653      | 0.8689 \[0.7760; 0.9249\] | 11.6 | 0.0001 | 0.0749   | 97.5% |
+
+<!-- | All Trim | 29,6499     | 0.8185 \[0.8046; 0.8314\] | 58.3 | 0.0001 | 0.0066   | 60.4% | -->
+<!-- | Max Trim | 6,3653      | 0.8689 \[0.7760; 0.9249\] | 11.6 | 0.0001 | 0.0749   | 97.5% | -->
 
 Heterogeneity issues
 

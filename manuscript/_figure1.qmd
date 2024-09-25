@@ -1,0 +1,40 @@
+```{r}
+#| label: fig1
+#| fig.height: 7
+#| echo: false
+#| fig.cap: > 
+#|   Forest plot of valence predictions from the MER models.
+
+library(metafor)
+library(dmetar)
+library(meta)
+
+R_summary <- read.csv("../analysis/R_summary.csv")
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
+
+# Max values
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = studyREF,#citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 #                 backtransf = TRUE,
+                 #                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+
+
+forest(m.cor,
+       sortvar = TE,
+       fontfamily = "Times",
+       hetstat =FALSE,
+       prediction = FALSE, 
+       print.tau2 = FALSE,
+       leftlabs = c("Author", "g", "SE"),layout = "meta",addrows =0,rows.gr=0,col.diamond='black') # RevMan5
+
+
+```

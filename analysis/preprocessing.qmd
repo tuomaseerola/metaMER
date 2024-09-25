@@ -225,6 +225,36 @@ R_studies$stimulus_n <- as.numeric(R_studies$stimulus_n)
   
 ```
 
+#### Clean feature N field
+
+```{r}
+
+R_studies$feature_n[R_studies$feature_n==" 548; after reduction, 139 for PCA and 276 for ReliefF   "] <- 548
+
+R_studies$feature_n[str_detect(R_studies$feature_n,'pre_fitting')] <- 21
+R_studies$feature_n[str_detect(R_studies$feature_n,'but 15 reported')]<-15
+R_studies$feature_n[str_detect(R_studies$feature_n,'50 PCA features')]<-50
+R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions. Pos')]<-548
+R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and')]<-60 # this should be 14400+60!
+R_studies$feature_n[str_detect(R_studies$feature_n,'before_selection = 45')]<-45
+R_studies$feature_n[str_detect(R_studies$feature_n,'model 4 = 388')]<-388
+R_studies$feature_n[str_detect(R_studies$feature_n,'6670 in MediaEval')]<-6670
+R_studies$feature_n[str_detect(R_studies$feature_n,'557 before feature')]<-557
+R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')]<-NA
+R_studies$feature_n<-as.numeric(R_studies$feature_n)
+
+quantile(R_studies$feature_n,c(0.333,0.666),na.rm = TRUE)
+quantile(R_studies$feature_n,c(0.25,0.500,0.750),na.rm = TRUE)
+quantile(R_studies$feature_n,c(0.1,0.500,0.90),na.rm = TRUE)
+
+R_studies$feature_n_categories <-cut(R_studies$feature_n,
+                                      breaks = c(0,18,260,
+                                                 10000),
+                                      labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
+
+```
+
+
 ## Diagnostics
 
 ```{r}
@@ -248,7 +278,7 @@ library(tidyverse)
 R_studies$citekey <- factor(R_studies$citekey)
 R_studies$dimension <- factor(R_studies$dimension)
 
-R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),stimulus_genre_mixed=first(stimulus_genre_mixed))
+R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed))
 
 ```
 

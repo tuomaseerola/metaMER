@@ -16,6 +16,52 @@ library(tidyverse)
 library(meta)
 library(DescTools)
 library(ggrepel)
+```
+
+#### Using all models
+
+```{r}
+R_studies <- read.csv("R_studies.csv")
+#R_summary <- read.csv("R_summary.csv")
+
+# select regression studies with r2
+#tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp <- dplyr::filter(R_studies,dimension=="valence")
+#dim(tmp)
+
+#if all studies, remove two with NA values
+tmp <- tmp[!is.na(tmp$values),]
+#dim(tmp)
+
+# Take all models
+m.cor <- metacor(cor = values,     # values 
+                 n = stimulus_n,
+                 studlab = unique_id,
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+
+print(m.cor)
+
+print(FisherZInv(m.cor$TE.random))
+print(FisherZInv(m.cor$upper.random))
+print(FisherZInv(m.cor$lower.random))
+
+#m.cor_backtransformed <- m.cor
+#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
+#print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
+
+```
+
+#### Using the best model out of each study
+
+```{r}
 #R_studies <- read.csv("R_studies.csv")
 R_summary <- read.csv("R_summary.csv")
 
@@ -28,9 +74,13 @@ tmp <- dplyr::filter(R_summary,dimension=="valence")
 #tmp <- tmp[!is.na(tmp$values),]
 #dim(tmp)
 
+## Disambiguate the studies
+tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
+
+# Max values
 m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
-                 studlab = citekey, # unique_id
+                 studlab = studyREF,#citekey, # unique_id
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
@@ -41,7 +91,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 
-#print(m.cor)
+print(m.cor)
 
 print(FisherZInv(m.cor$TE.random))
 print(FisherZInv(m.cor$upper.random))
@@ -53,7 +103,30 @@ print(FisherZInv(m.cor$lower.random))
 
 ```
 
-sub-division based on journals (engineering vs psych)
+### Sub-division based on techniques
+
+```{r}
+m.cor1 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  model_class_id,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor1)
+
+S<-summarise(group_by(tmp,model_class_id),n=n(),obs=sum(stimulus_n))
+print(S)
+```
+
+
+### Sub-division based on journals (engineering vs psych)
 
 ```{r}
 m.cor2 <- metacor(cor = valuesMax,     # values 
@@ -71,28 +144,29 @@ m.cor2 <- metacor(cor = valuesMax,     # values
                  title = "MER: Regression: Valence: Summary")
 ```
 
-
-
-#### Custom plot
+### Sub-division based on N features
 
 ```{r}
-tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+dim(tmp)
+m.cor3 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  feature_n_categories,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor3)
+S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+print(S)
 
-tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
-tmpdata$citekey<-factor(tmpdata$citekey)
-
-g <- ggplot(tmpdata,aes(y = SE, x = Zr,label=studies,color=citekey,fill=citekey)) +
-  geom_point(show.legend = FALSE) +
-  geom_label_repel(size=1.5,max.overlaps = 39,color="black",show.legend = FALSE)+
-  ylab('Standard Error') + 
-  xlab('r')+
-  scale_y_reverse()+
-  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+
-#  coord_flip()+
-  theme_bw()
-print(g)
 ```
-
 
 
 
@@ -103,9 +177,9 @@ forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"),studlab = citekey)
+             leftlabs = c("Author", "g", "SE"),studlab = studyREF)
 
-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+#funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
 
 ```
@@ -117,9 +191,6 @@ O <- find.outliers(m.cor)
 # 6 datasets identified as outliers, without them the r drops to 0.5781
 infan <- InfluenceAnalysis(m.cor)
 print(eggers.test(m.cor))
-
-
-
 ```
 
 
@@ -157,12 +228,8 @@ fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
 To show the quality differences between core and eliminated studies.
 
 ```{r}
-tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
-
-tmpdata$studyREF <- substr(tmpdata$studies,1,nchar(tmpdata$studies)-2)
-tmpdata$studyREF <- str_replace_all(tmpdata$studyREF,'([0-9]+)',' et al \\1')
-tmpdata$studyREF <- str_to_sentence(tmpdata$studyREF)
-tmpdata$studyREF
+tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
+#tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
 
 estimate = m.cor$TE.common
 se = m.cor$seTE.common
@@ -177,15 +244,13 @@ dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
 
 fp = ggplot(NULL) +
   geom_point(aes(x = SE, y = Zr), color='grey50',data=tmpdata) +
-  geom_text_repel(aes(x = SE, y = Zr, label=studyREF), data=tmpdata,size=2.5,max.overlaps = 40)+
-  xlab('Standard Error') + ylab('Fisher\'s z transformed correlation')+
+  geom_text_repel(aes(x = SE, y = Zr, label=studies), data=tmpdata,size=2.5,max.overlaps = 40)+
+  xlab('Standard Error') + ylab('Correlation')+
   geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
   geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
-  geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
-  geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
-#  scale_x_reverse()+
+  geom_hline(yintercept = estimate, linetype='solid', color='grey50',linewidth=0.2) +
   scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.15,0),expand=c(0.00,0.00))+
-  scale_y_continuous(breaks=seq(0.3,1.25,0.20),limits=c(0.3,1.23))+
+  scale_y_continuous(breaks=seq(0.0,1.00,0.20),limits=c(0.0,1.00),expand=c(0.00,0.00))+
   coord_flip()+
   theme_bw()
 print(fp)
