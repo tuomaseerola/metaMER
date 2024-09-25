@@ -6,6 +6,8 @@ This assumes that the data has been parsed (`parse-model-output.R`, `format-stud
 
 ### Valence: Best model
 
+For creating Table 2
+
 ```{r}
 #| warning: false
 #| eval: true
@@ -26,9 +28,6 @@ tmp <- dplyr::filter(R_summary,dimension=="valence")
 #tmp <- tmp[!is.na(tmp$values),]
 #dim(tmp)
 
-#sqrt(tmp$values) # convert from R^2 to r
-#tmp$stimulus_n <- 100 # ad-hoc for now
-
 m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = citekey, # unique_id
@@ -36,19 +35,44 @@ m.cor <- metacor(cor = valuesMax,     # values
                  fixed = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 backtransf = TRUE,
-                 sm = "ZCOR",
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 
 #print(m.cor)
 
-m.cor_backtransformed <- m.cor
-m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
-print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
+print(FisherZInv(m.cor$TE.random))
+print(FisherZInv(m.cor$upper.random))
+print(FisherZInv(m.cor$lower.random))
+
+#m.cor_backtransformed <- m.cor
+#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
+#print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
 
 ```
+
+sub-division based on journals (engineering vs psych)
+
+```{r}
+m.cor2 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  journal_type,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+```
+
+
+
 #### Custom plot
 
 ```{r}
@@ -103,6 +127,7 @@ print(eggers.test(m.cor))
 
 ```{r}
 #| eval: false
+#| echo: false
 outliers <- c("chen2017co-various-GMM-mfcc-AMG1608-1", "chen2017co-various-GMM-tonal-AMG1608-1", "chen2017co-various-GMM-spectral-AMG1608-1", "chen2017co-various-GMM-temporal-AMG1608-1", "chen2017co-various-GMM-mfcctonalspectraltemporal-AMG1608-1", "griffiths2021am-various-mlr-mixed-new-validation", "griffiths2021am-various-mlr-mixed-new-validation-nooutliers", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "koh2023me-openSMILE-fullyconnectedNN-FreeMusicArchive-audioOnly-1", "koh2023me-openSMILE-longshorttermmemoryNN-FreeMusicArchive-audioOnly-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022cr-various-pls-mixed-chineseClassicalEnsembles-1", "wang2022cr-various-pls-mixed-chineseClassicalSolo-1", "wang2022cr-various-pls-mixed-westernClassicalEnsembles-1", "wang2022cr-various-pls-mixed-westernClassicalSolo-1", "zhang2019us-marsyas-NuSVR-music-xing2014-1")
 
 tmp2<-tmp[!tmp$unique_id %in% outliers,]
@@ -129,10 +154,16 @@ fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
 
 #### Custom funnel plot
 
-To show the quality differences between core and eliminated studies (in progress).
+To show the quality differences between core and eliminated studies.
 
 ```{r}
-tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE)
+tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
+
+tmpdata$studyREF <- substr(tmpdata$studies,1,nchar(tmpdata$studies)-2)
+tmpdata$studyREF <- str_replace_all(tmpdata$studyREF,'([0-9]+)',' et al \\1')
+tmpdata$studyREF <- str_to_sentence(tmpdata$studyREF)
+tmpdata$studyREF
+
 estimate = m.cor$TE.common
 se = m.cor$seTE.common
 se.seq=seq(0, max(m.cor$cor), 0.001)
@@ -144,24 +175,18 @@ meanll95 = estimate-(1.96*se)
 meanul95 = estimate+(1.96*se)
 dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
 
-fp = ggplot(aes(x = SE, y = Zr), data = tmpdata) +
-  geom_point(shape = 1) +
-  xlab('Standard Error') + ylab('Zr')+
+fp = ggplot(NULL) +
+  geom_point(aes(x = SE, y = Zr), color='grey50',data=tmpdata) +
+  geom_text_repel(aes(x = SE, y = Zr, label=studyREF), data=tmpdata,size=2.5,max.overlaps = 40)+
+  xlab('Standard Error') + ylab('Fisher\'s z transformed correlation')+
   geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
   geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
-   geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
+  geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
   geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
-#Reverse the x-axis ordering (se) so that the tip of the funnel will appear
-#at the top of the figure once we swap the x- and y-axes...
-  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.2,0))+
-#Specify the range and interval for the tick-marks of the y-axis (Zr);
-#Choose values that work for you based on your data
-  scale_y_continuous(breaks=seq(0.3,1.25,0.25),limits=c(0.3,1.25))+
-#  scale_x_continuous(breaks=seq(0.2,0,0.05))+
-#And now we flip the axes so that SE is on y- and Zr is on x-
+#  scale_x_reverse()+
+  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.15,0),expand=c(0.00,0.00))+
+  scale_y_continuous(breaks=seq(0.3,1.25,0.20),limits=c(0.3,1.23))+
   coord_flip()+
-#Finally, apply my APA-format theme (see code at end of post).
-#You could, alternatively, specify theme_bw() instead.
   theme_bw()
 print(fp)
 ```
@@ -369,6 +394,7 @@ O <- find.outliers(m.cor)
 
 ```{r}
 #| eval: false
+#| echo: false
 outliers <- c("")
 
 tmp2<-tmp[!tmp$unique_id %in% outliers,]
@@ -398,8 +424,14 @@ fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
 To show the quality differences between core and eliminated studies (in progress).
 
 ```{r}
-#| eval: false
-tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE)
+#| eval: true
+tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
+
+tmpdata$studyREF <- substr(tmpdata$studies,1,nchar(tmpdata$studies)-2)
+tmpdata$studyREF <- str_replace_all(tmpdata$studyREF,'([0-9]+)',' et al \\1')
+tmpdata$studyREF <- str_to_sentence(tmpdata$studyREF)
+tmpdata$studyREF
+
 estimate = m.cor$TE.common
 se = m.cor$seTE.common
 se.seq=seq(0, max(m.cor$cor), 0.001)
@@ -411,26 +443,22 @@ meanll95 = estimate-(1.96*se)
 meanul95 = estimate+(1.96*se)
 dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
 
-fp = ggplot(aes(x = SE, y = Zr), data = tmpdata) +
-  geom_point(shape = 1) +
-  xlab('Standard Error') + ylab('Zr')+
+fp = ggplot(NULL) +
+  geom_point(aes(x = SE, y = Zr), color='grey50',data=tmpdata) +
+  geom_text_repel(aes(x = SE, y = Zr, label=studyREF), data=tmpdata,size=2.5,max.overlaps = 40)+
+  xlab('Standard Error') + ylab('Fisher\'s z transformed correlation')+
   geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
   geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
-   geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
+  geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
   geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
-#Reverse the x-axis ordering (se) so that the tip of the funnel will appear
-#at the top of the figure once we swap the x- and y-axes...
-  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.2,0))+
-#Specify the range and interval for the tick-marks of the y-axis (Zr);
-#Choose values that work for you based on your data
-  scale_y_continuous(breaks=seq(0.3,1.25,0.25),limits=c(0.3,1.25))+
-#  scale_x_continuous(breaks=seq(0.2,0,0.05))+
-#And now we flip the axes so that SE is on y- and Zr is on x-
+#  scale_x_reverse()+
+  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.15,0),expand=c(0.00,0.00))+
+  scale_y_continuous(breaks=seq(0.3,1.25,0.20),limits=c(0.3,1.23))+
   coord_flip()+
-#Finally, apply my APA-format theme (see code at end of post).
-#You could, alternatively, specify theme_bw() instead.
   theme_bw()
 print(fp)
+
+
 ```
 
 

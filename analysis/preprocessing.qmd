@@ -241,12 +241,14 @@ g1
 ```
 ## Select a summary measure for valence and arousal separately
 
+Note: Before adding feature_n to the summary, they need to be cleaned!
+
 ```{r}
 library(tidyverse)
 R_studies$citekey <- factor(R_studies$citekey)
 R_studies$dimension <- factor(R_studies$dimension)
 
-R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),journal_type=first(journal_type),stimulus_genre_mixed=first(stimulus_genre_mixed))
+R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),stimulus_genre_mixed=first(stimulus_genre_mixed))
 
 ```
 
@@ -300,7 +302,7 @@ g3
 
 ## Simple model complexity metric
 
-Ratio of obs./features or just a classification based on feature n (quintiles).
+Ratio of obs./features or just a classification based on feature n (quantiles).
 
 ```{r}
 
