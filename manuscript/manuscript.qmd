@@ -99,14 +99,14 @@ digraph sub {
   G [label = "Studies included in final review (n = 46)"]
   H [label = "Full text articles excluded
              (n = 50)"]
-  I [label = "Studies excluded in final review (n = 8)"]
-  J [label = "Final selection (n = 38)"]
+  I [label = "Studies excluded in final review (n = 9)"]
+  J [label = "Final selection (n = 37)"]
   A->B
   A->C
   C->D
-  D->E [ minlen = 3 ]
+  D->E
   D->F
-  F->H [ minlen = 3 ]
+  F->H 
   F->G
   G->I
   G->J
@@ -155,7 +155,7 @@ Since there are many models contained within each of the studies, we will report
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]          | $t$   | $p$   | $\tau^2$ | $I^2$ |
-|:---------|:---------|:------------|:---------|:---------|:---------|:---------|
+|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
 | Valence All  | 120,73685   | 0.567 \[0.530; 0.603\]  | 23.7  | .0001 | 0.083    | 97.5% |
 | Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\]  | 10.14 | .0001 | 0.138    | 98.2% |
 | *N Features* |             |                         |       |       |          |       |
