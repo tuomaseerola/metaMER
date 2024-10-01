@@ -79,66 +79,50 @@ The initial search yielded 553 potential studies after excluding duplicate entri
 
 \[Figure 1: flowchart of the study inclusions/eliminations\]
 
-```{r echo=FALSE}
-library(glue)
-library(DiagrammeR)
+```{dot}
 
-a_label <- glue('Records identified from:
+digraph sub {
+  node [fontname = Helvetica, fontsize = 14, shape = box, width = 4]
+  A [label = "Records identified from:
                 Web of Science (n = 142)
                 Scopus (n = 227)
-                OpenALEX (n = 278)')
-b_label <- glue('Records removed before screening: 
-                Duplicates entries/errors (n = 94)')
-e_label <- glue('Records removed: 
+                OpenALEX (n = 278)" ]
+  B [label = "Records removed before screening: 
+                Duplicates entries/errors (n = 94)" ]
+  C [label = "Records after duplicates removed (n = 553)"]
+  D [label = "Records screened (n = 553)"]
+  E [label = "Records removed: 
                 Irrelevant titles/themes (n = 338)
                 Abstract screening (n = 95)
-                Discussion (n = 24)')
-h_label <- glue('Full text articles excluded
-             (n = 50)')
-fig1 <- DiagrammeR::grViz("
-digraph cohort_flow_chart
-{
-node [fontname = Helvetica, fontsize = 12, shape = box, width = 4]
-a[label = '@@1']
-b[label = '@@2']
-c[label = 'Records after duplicates removed (n = 553)']
-d[label = 'Records screened (n = 553)']
-e[label = '@@3']
-f[label = 'Full text articles assessed (n = 96)']
-g[label = 'Studies included (n = 46)']
-h[label = '@@4']
+                Discussion (n = 24)"]
+  F [label = "Full text articles assessed (n = 96)"]
+  G [label = "Studies included in final review (n = 46)"]
+  H [label = "Full text articles excluded
+             (n = 50)"]
+  I [label = "Studies excluded in final review (n = 8)"]
+  J [label = "Final selection (n = 38)"]
+  A->B
+  A->C
+  C->D
+  D->E [ minlen = 3 ]
+  D->F
+  F->H [ minlen = 3 ]
+  F->G
+  G->I
+  G->J
 
-
-
-{ rank = same; a b}
-{ rank = same; d, e}
-{ rank = same; f, h}
-
-a -> b;
-a -> c;
-c -> d;
-d -> e [ minlen = 3 ];
-d -> f;
-f -> h [ minlen = 3 ];
-f -> g;
+  
+  { rank = same; A B}
+  { rank = same; D, E}
+  { rank = same; F, H}
+  { rank = same; G, I}
 }
-
-[1]: a_label
-[2]: b_label
-[3]: e_label
-[4]: h_label
-
-")
-
-# Does not print this, but could this be done directly with dot syntax?
-# see https://quarto.org/docs/authoring/diagrams.html
 
 ```
 
-
 ## Quality Control
 
-The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis). Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes *Mathematical Problems in Engineering* which ceased publication following a large number of retractions in September 2024.
+The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include%20approx%20#%20for%20each?%20This%20would%20be%20good%20since%20the%20rest%20of%20this%20para%20already%20mentions%20counts.%20If%20this%20take%20a%20long%20time,%20we%20could%20save%20this%20for%20an%20additional%20analysis). Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes *Mathematical Problems in Engineering* which ceased publication following a large number of retractions in September 2024.
 
 # Results
 
@@ -146,19 +130,19 @@ First we describe the overall pattern of data (regression vs classification, mod
 
 TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 
-|            | Regression                 | Classification            |Total|
-|:-----------|:---------------------------|:--------------------------|:----|
-| Study N    | 24                         | 14                        | 38  |
-| Model N    | 258                        | 108                       | 366 |
-| Techniques | Flexible Discriminants: 64 | 37                        | 101 |
-| Techniques | Neural Nets: 74            | 27                        | 101 |
-| Techniques | Linear Methods: 74         | 24                        | 98  |
-| Techniques | Random Forests: 22         | 12                        | 34  |
-| Techniques | KS, Add. & KNN: 24         | 8                         | 32  |
-| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   | NA  |
-| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 | NA  |
+|            | Regression                 | Classification            | Total |
+|:-----------|:---------------------------|:--------------------------|:------|
+| Study N    | 24                         | 14                        | 38    |
+| Model N    | 258                        | 108                       | 366   |
+| Techniques | Flexible Discriminants: 64 | 37                        | 101   |
+| Techniques | Neural Nets: 74            | 27                        | 101   |
+| Techniques | Linear Methods: 74         | 24                        | 98    |
+| Techniques | Random Forests: 22         | 12                        | 34    |
+| Techniques | KS, Add. & KNN: 24         | 8                         | 32    |
+| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   | NA    |
+| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 | NA    |
 
-Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. [COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE].
+Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. \[COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE\].
 
 We first report regression studies that predict valence and arousal.
 
@@ -170,37 +154,36 @@ Since there are many models contained within each of the studies, we will report
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
-| Concept      | Models, obs | $r$ \[95%-CI\]         | $t$  | $p$   | $\tau^2$ | $I^2$ |
-|:-------------|:------------|:-----------------------|:-----|:------|:---------|:------|
-| Valence All  |  120,73685  | 0.567 \[0.530; 0.603\] | 23.7 | .0001 | 0.083    | 97.5% |
-| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\] | 10.14| .0001 | 0.138    | 98.2% |
-| *N Features* |             |                        |      |       |          |       |
-| \<18 F       |  5,3036     | 0.811 \[0.566; 0.775\] | -    | -     | 0.182    | 98.9% |
-| 18-260 F     |  11,7318    | 0.548 \[0.343; 0.703\] | -    | -     | 0.133    | 97.6% |
-| 260+ F       |  7,4562     | 0.685 \[0.566; 0.775\] | -    | -     | 0.044    | 97.2% |
-| *Techniques* |             |                        |      |       |          |       |
-| KS           |  2,2582     | 0.466 \[-0.634; 0.942\]| -    | -     | 0.0185   | 95.1% |
-| LM           |  8,1762     | 0.784 \[0.625; 0.881\] | -    | -     | 0.1370   | 96.4% |
-| FD           |  6,4993     | 0.656 \[0.484; 0.779\] | -    | -     | 0.0574   | 96.9% |
-| NN           |  4,2249     | 0.340 \[-0.097; 0.668\]| -    | -     | 0.0761   | 97.1% |
-| RF           |  4,4074     | 0.702 \[0.391; 0.869\] | -    | -     | 0.057    | 98.5% |
-
+| Concept      | Models, obs | $r$ \[95%-CI\]          | $t$   | $p$   | $\tau^2$ | $I^2$ |
+|:---------|:---------|:------------|:---------|:---------|:---------|:---------|
+| Valence All  | 120,73685   | 0.567 \[0.530; 0.603\]  | 23.7  | .0001 | 0.083    | 97.5% |
+| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\]  | 10.14 | .0001 | 0.138    | 98.2% |
+| *N Features* |             |                         |       |       |          |       |
+| \<18 F       | 5,3036      | 0.811 \[0.566; 0.775\]  | \-    | \-    | 0.182    | 98.9% |
+| 18-260 F     | 11,7318     | 0.548 \[0.343; 0.703\]  | \-    | \-    | 0.133    | 97.6% |
+| 260+ F       | 7,4562      | 0.685 \[0.566; 0.775\]  | \-    | \-    | 0.044    | 97.2% |
+| *Techniques* |             |                         |       |       |          |       |
+| KS           | 2,2582      | 0.466 \[-0.634; 0.942\] | \-    | \-    | 0.0185   | 95.1% |
+| LM           | 8,1762      | 0.784 \[0.625; 0.881\]  | \-    | \-    | 0.1370   | 96.4% |
+| FD           | 6,4993      | 0.656 \[0.484; 0.779\]  | \-    | \-    | 0.0574   | 96.9% |
+| NN           | 4,2249      | 0.340 \[-0.097; 0.668\] | \-    | \-    | 0.0761   | 97.1% |
+| RF           | 4,4074      | 0.702 \[0.391; 0.869\]  | \-    | \-    | 0.057    | 98.5% |
 
 <!-- | Val. MaxTrim | 13,7363     | 0.649 \[0.598; 0.695\] | 18.5 | .0001 | 0.008    | 88.5% | -->
+
 <!-- | Valence Trim |             | 0.605 \[0.592; 0.617\] | 72.4 | .0001 | 0.0007   | 33.1% | -->
+
 <!-- | Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% | -->
+
 <!-- | Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% | -->
 
-
-- [OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION](to explore?)
+-   [OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION](to%20explore?)
 
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
 
 {{< include _figure1.qmd >}}
 
 Summarise the results here briefly
-
-
 
 Moving on the arousal, ...
 
@@ -224,10 +207,12 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 Figure 2. Forest plot of arousal prediction (using Max?)
 
 <!-- | Arousal Trim |             | 0.7932 \[0.7846; 0.8014\] | 96.5 | 0.0001 | 0.0030   | 73.3% | -->
-<!-- | Arousal M    |             | 0.7567 \[0.6752; 0.8199\] | 12.7 | 0.0001 | 0.0739   | 95.6% | -->
-<!-- | Arousal Md   |             | 0.7627 \[0.6819; 0.8252\] | 12.7 | 0.0001 | 0.0757   | 95.3% | -->
-<!-- | Aro.Max.Trm  | 14,12061    | 0.8182 \[0.8021; 0.8331\] | 25.6 | 0.0001 | 0.0132   | 96.8% | -->
 
+<!-- | Arousal M    |             | 0.7567 \[0.6752; 0.8199\] | 12.7 | 0.0001 | 0.0739   | 95.6% | -->
+
+<!-- | Arousal Md   |             | 0.7627 \[0.6819; 0.8252\] | 12.7 | 0.0001 | 0.0757   | 95.3% | -->
+
+<!-- | Aro.Max.Trm  | 14,12061    | 0.8182 \[0.8021; 0.8331\] | 25.6 | 0.0001 | 0.0132   | 96.8% | -->
 
 Summarise here the pattern of results
 
@@ -237,12 +222,13 @@ Summary of details contained in Table 1, but summarise at least the categories p
 
 Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
 
-| Model    | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
-|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
-| All      | 89,87347    | 0.8074 \[0.7681; 0.8407\] | 21.4 | 0.0001 | 0.2415   | 99.7% |
-| Max      | 14,17184    | 0.8564 \[0.7386; 0.9234\] | 8.32 | 0.0001 | 0.329    | 99.8% |
+| Model | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
+|:------|:------------|:--------------------------|:-----|:-------|:---------|:------|
+| All   | 89,87347    | 0.8074 \[0.7681; 0.8407\] | 21.4 | 0.0001 | 0.2415   | 99.7% |
+| Max   | 14,17184    | 0.8564 \[0.7386; 0.9234\] | 8.32 | 0.0001 | 0.329    | 99.8% |
 
 <!-- | All Trim | 29,6499     | 0.8185 \[0.8046; 0.8314\] | 58.3 | 0.0001 | 0.0066   | 60.4% | -->
+
 <!-- | Max Trim | 6,3653      | 0.8689 \[0.7760; 0.9249\] | 11.6 | 0.0001 | 0.0749   | 97.5% | -->
 
 Heterogeneity issues
