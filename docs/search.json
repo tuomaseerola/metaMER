@@ -333,7 +333,7 @@
     "href": "manuscript/manuscript.html#quality-control",
     "title": "Meta-analysis of regression and classification success of emotion ratings from audio",
     "section": "Quality Control",
-    "text": "Quality Control\nThe search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture. Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes Mathematical Problems in Engineering which ceased publication following a large number of retractions in September 2024."
+    "text": "Quality Control\nThe search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture. Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., Mathematical Problems in Engineering ceased publication following 17 retractions published between July and September 2024)."
   },
   {
     "objectID": "manuscript/manuscript.html#prediction-success-for-valence-and-arousal-or-affect-dimensions",
@@ -754,5 +754,12 @@
     "title": "Pass 3 Comparison",
     "section": "Write resulting bibtex library",
     "text": "Write resulting bibtex library\n\nbib2df::df2bib(bib_df_merged, file = 'metaMER_library_template.bib')\n\nNotes:\nFor Feature classification, use this one:\nhttps://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9229494\nInsert the template the annotation fields from googledoc to the bibtex file."
+  },
+  {
+    "objectID": "manuscript/manuscript.html#study-encoding",
+    "href": "manuscript/manuscript.html#study-encoding",
+    "title": "Meta-analysis of regression and classification success of emotion ratings from audio",
+    "section": "Study Encoding",
+    "text": "Study Encoding\nTo capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable R code containing custom functions for meta-analysis. For complete details about our encoding procedure, see extraction_details/extraction_details.qmd ."
   }
 ]

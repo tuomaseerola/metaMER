@@ -75,7 +75,9 @@ We preregistered the meta-analysis plan on 21 June 2024 at OSF, <https://osf.io/
 
 In the search stage, we used three databases, *Web of Science*, *Scopus*, and *Open Alex* to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024.
 
-The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $R^2$ or $MCC$ values see [SI](http://) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [*MCC*, @chicco2020advantages].
+The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $R^2$ or $MCC$ values see [SI](http://) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.
+
+We converted all regression results into $R^2$ values for valence and arousal and classification results into Matthews correlation coefficient [*MCC*, @chicco2020advantages]. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files [@nag2022]), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately [@chin2018]).
 
 \[Figure 1: flowchart of the study inclusions/eliminations\]
 
@@ -99,8 +101,8 @@ digraph sub {
   G [label = "Studies included in final review (n = 46)"]
   H [label = "Full text articles excluded
              (n = 50)"]
-  I [label = "Studies excluded in final review (n = 9)"]
-  J [label = "Final selection (n = 37)"]
+  I [label = "Studies excluded in final review (n = 10)"]
+  J [label = "Final selection (n = 36)"]
   A->B
   A->C
   C->D
@@ -122,7 +124,11 @@ digraph sub {
 
 ## Quality Control
 
-The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include%20approx%20#%20for%20each?%20This%20would%20be%20good%20since%20the%20rest%20of%20this%20para%20already%20mentions%20counts.%20If%20this%20take%20a%20long%20time,%20we%20could%20save%20this%20for%20an%20additional%20analysis). Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes *Mathematical Problems in Engineering* which ceased publication following a large number of retractions in September 2024.
+The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include%20approx%20#%20for%20each?%20This%20would%20be%20good%20since%20the%20rest%20of%20this%20para%20already%20mentions%20counts.%20If%20this%20take%20a%20long%20time,%20we%20could%20save%20this%20for%20an%20additional%20analysis). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024).
+
+## Study Encoding
+
+To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see `studies/extraction_details.qmd` .
 
 # Results
 

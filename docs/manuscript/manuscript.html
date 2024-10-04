@@ -233,7 +233,7 @@ window.Quarto = {
 <h1>Methods</h1>
 <p>We preregistered the meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd" class="uri">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html" class="uri">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
-<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.</p>
+<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or outcome variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
 <p>[Figure 1: flowchart of the study inclusions/eliminations]</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -346,7 +346,7 @@ window.Quarto = {
 <g id="node9" class="node">
 <title>I</title>
 <polygon fill="none" stroke="black" points="594,-108 306,-108 306,-72 594,-72 594,-108"></polygon>
-<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 9)</text>
+<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 10)</text>
 </g>
 <!-- G&#45;&gt;I -->
 <g id="edge8" class="edge">
@@ -358,7 +358,7 @@ window.Quarto = {
 <g id="node10" class="node">
 <title>J</title>
 <polygon fill="none" stroke="black" points="288,-36 0,-36 0,0 288,0 288,-36"></polygon>
-<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 37)</text>
+<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 36)</text>
 </g>
 <!-- G&#45;&gt;J -->
 <g id="edge9" class="edge">
@@ -375,7 +375,11 @@ window.Quarto = {
 </div>
 <section id="quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
-<p>The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, <a href="include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis">we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture</a>. Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes <em>Mathematical Problems in Engineering</em> which ceased publication following a large number of retractions in September 2024.</p>
+<p>The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, <a href="include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis">we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture</a>. Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., <em>Mathematical Problems in Engineering</em> ceased publication following 17 retractions published between July and September 2024).</p>
+</section>
+<section id="study-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="study-encoding">Study Encoding</h2>
+<p>To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable <em>R</em> code containing custom functions for meta-analysis. For complete details about our encoding procedure, see <code>extraction_details/extraction_details.qmd</code> .</p>
 </section>
 </section>
 <section id="results" class="level1">
@@ -873,6 +877,9 @@ Battcock, A., &amp; Schutz, M. (2021). Individualized interpretation: Exploring 
 <div id="ref-chicco2020advantages" class="csl-entry" role="listitem">
 Chicco, D., &amp; Jurman, G. (2020). The advantages of the matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. <em>BMC Genomics</em>, <em>21</em>, 1–13.
 </div>
+<div id="ref-chin2018" class="csl-entry" role="listitem">
+Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE Transactions on Affective Computing</em>, <em>9</em>(4), 541 549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+</div>
 <div id="ref-eerola2011c" class="csl-entry" role="listitem">
 Eerola, T. (2011). Are the emotions expressed in music genre-specific? An audio-based evaluation of datasets spanning classical, film, pop and mixed genres. <em>Journal of New Music Research</em>, <em>40</em>(4), 349–366. <a href="https://doi.org/10.1080/09298215.2011.602195">https://doi.org/10.1080/09298215.2011.602195</a>
 </div>
@@ -893,6 +900,9 @@ Grimaud, A. M., &amp; Eerola, T. (2022). An interactive approach to emotional ex
 </div>
 <div id="ref-lindstrom2003expressivity" class="csl-entry" role="listitem">
 Lindström, E., Juslin, P. N., Bresin, R., &amp; Williamon, A. (2003). "Expressivity comes from within your soul”: A questionnaire study of music students’ perspectives on expressivity. <em>Research Studies in Music Education</em>, <em>20</em>(1), 23–47.
+</div>
+<div id="ref-nag2022" class="csl-entry" role="listitem">
+Nag, S., Basu, M., Sanyal, S., Banerjee, A., &amp; Ghosh, D. (2022). On the application of deep learning and multifractal techniques to classify emotions and instruments using indian classical music. <em>Physica A: Statistical Mechanics and Its Applications</em>, <em>597</em>. <a href="https://doi.org/10.1016/j.physa.2022.127261">https://doi.org/10.1016/j.physa.2022.127261</a>
 </div>
 <div id="ref-panda2020audio" class="csl-entry" role="listitem">
 Panda, R., Malheiro, R., &amp; Paiva, R. P. (2023). Audio features for music emotion recognition: A survey. <em>IEEE Transactions on Affective Computing</em>, <em>14</em>(1), 68–88. <a href="https://doi.org/10.1109/TAFFC.2020.3032373">https://doi.org/10.1109/TAFFC.2020.3032373</a>
