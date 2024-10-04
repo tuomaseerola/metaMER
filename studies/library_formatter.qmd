@@ -17,8 +17,14 @@ library(dplyr)
 
 ```{r}
 # read in bibtex library as data frame
-bib_df_ca <- bib2df::bib2df('metaMER_library_third_pass_ca.bib')
-bib_df_te <- bib2df::bib2df('metaMER_library_third_pass_te.bib')
+bib_df_ca <- bib2df::bib2df(paste0(here::here(),
+                                   "/studies/bib/Passes/", 
+                                   "metaMER_library_third_pass_ca.bib")
+)
+bib_df_te <- bib2df::bib2df(paste0(here::here(),
+                                   "/studies/bib/Passes/", 
+                                   "metaMER_library_third_pass_te.bib")
+)
 bib_df_ca <- dplyr::filter(bib_df_ca,PRIORITY=='prio1')
 bib_df_te <- dplyr::filter(bib_df_te,PRIORITY=='prio1')
 sum(bib_df_ca$BIBTEXKEY %in% bib_df_te$BIBTEXKEY)==nrow(bib_df_ca)

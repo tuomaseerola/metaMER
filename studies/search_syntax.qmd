@@ -22,7 +22,10 @@ library(stringr)
 library(ggplot2)
 
 #### Read first pass data ---------------------
-d <- bib2df("../studies/metaMER_library_first_pass_year_fixed.bib")
+d <- bib2df::bib2df(paste0(here::here(),
+                                   "/studies/bib/Passes/", 
+                                   "metaMER_library_first_pass.bib")
+)
 # Remove extra fields
 d <- dplyr::select(d,-C1,-DATE.ADDED,-DATE.MODIFIED,-LA,-BDSK.URL.1,-BDSK.URL.2,-ISBN)
 # Add explicit source

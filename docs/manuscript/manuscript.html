@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="author" content="Cameron J. Anderson">
 <meta name="keywords" content="music, emotion, recognition, meta-analysis">
 
-<title>metaMER – Meta-analysis of regression and classification success of emotion ratings from audio</title>
+<title>metaMER - Meta-analysis of regression and classification success of emotion ratings from audio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -235,6 +235,144 @@ window.Quarto = {
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
 <p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.</p>
 <p>[Figure 1: flowchart of the study inclusions/eliminations]</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 602.00 488.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 484)">
+<title>sub</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-484 598,-484 598,4 -4,4"></polygon>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<polygon fill="none" stroke="black" points="288,-480.1 0,-480.1 0,-404.7 288,-404.7 288,-480.1"></polygon>
+<text text-anchor="middle" x="144" y="-463.4" font-family="Helvetica,sans-Serif" font-size="14.00">Records identified from:</text>
+<text text-anchor="middle" x="144" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web of Science (n = 142)</text>
+<text text-anchor="middle" x="144" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scopus (n = 227)</text>
+<text text-anchor="middle" x="144" y="-413" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OpenALEX (n = 278)</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<polygon fill="none" stroke="black" points="594,-463 306,-463 306,-421.8 594,-421.8 594,-463"></polygon>
+<text text-anchor="middle" x="450" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed before screening: </text>
+<text text-anchor="middle" x="450" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicates entries/errors (n = 94)</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge1" class="edge">
+<title>A-&gt;B</title>
+<path fill="none" stroke="black" d="M288.04,-442.4C290.53,-442.4 293.02,-442.4 295.51,-442.4"></path>
+<polygon fill="black" stroke="black" points="295.75,-445.9 305.75,-442.4 295.75,-438.9 295.75,-445.9"></polygon>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<polygon fill="none" stroke="black" points="288,-368.8 0,-368.8 0,-332.8 288,-332.8 288,-368.8"></polygon>
+<text text-anchor="middle" x="144" y="-346.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records after duplicates removed (n = 553)</text>
+</g>
+<!-- A&#45;&gt;C -->
+<g id="edge2" class="edge">
+<title>A-&gt;C</title>
+<path fill="none" stroke="black" d="M144,-404.7C144,-396.1 144,-387.08 144,-378.98"></path>
+<polygon fill="black" stroke="black" points="147.5,-378.97 144,-368.97 140.5,-378.97 147.5,-378.97"></polygon>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<polygon fill="none" stroke="black" points="288,-277.2 0,-277.2 0,-241.2 288,-241.2 288,-277.2"></polygon>
+<text text-anchor="middle" x="144" y="-255" font-family="Helvetica,sans-Serif" font-size="14.00">Records screened (n = 553)</text>
+</g>
+<!-- C&#45;&gt;D -->
+<g id="edge3" class="edge">
+<title>C-&gt;D</title>
+<path fill="none" stroke="black" d="M144,-332.52C144,-319.76 144,-302.12 144,-287.46"></path>
+<polygon fill="black" stroke="black" points="147.5,-287.42 144,-277.42 140.5,-287.42 147.5,-287.42"></polygon>
+</g>
+<!-- E -->
+<g id="node5" class="node">
+<title>E</title>
+<polygon fill="none" stroke="black" points="594,-296.9 306,-296.9 306,-221.5 594,-221.5 594,-296.9"></polygon>
+<text text-anchor="middle" x="450" y="-280.2" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed: </text>
+<text text-anchor="middle" x="450" y="-263.4" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Irrelevant titles/themes (n = 338)</text>
+<text text-anchor="middle" x="450" y="-246.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abstract screening (n = 95)</text>
+<text text-anchor="middle" x="450" y="-229.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion (n = 24)</text>
+</g>
+<!-- D&#45;&gt;E -->
+<g id="edge4" class="edge">
+<title>D-&gt;E</title>
+<path fill="none" stroke="black" d="M288.04,-259.2C290.53,-259.2 293.02,-259.2 295.51,-259.2"></path>
+<polygon fill="black" stroke="black" points="295.75,-262.7 305.75,-259.2 295.75,-255.7 295.75,-262.7"></polygon>
+</g>
+<!-- F -->
+<g id="node6" class="node">
+<title>F</title>
+<polygon fill="none" stroke="black" points="288,-182.8 0,-182.8 0,-146.8 288,-146.8 288,-182.8"></polygon>
+<text text-anchor="middle" x="144" y="-160.6" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles assessed (n = 96)</text>
+</g>
+<!-- D&#45;&gt;F -->
+<g id="edge5" class="edge">
+<title>D-&gt;F</title>
+<path fill="none" stroke="black" d="M144,-240.82C144,-227.4 144,-208.57 144,-193.14"></path>
+<polygon fill="black" stroke="black" points="147.5,-193.1 144,-183.1 140.5,-193.1 147.5,-193.1"></polygon>
+</g>
+<!-- G -->
+<g id="node7" class="node">
+<title>G</title>
+<polygon fill="none" stroke="black" points="288,-108 0,-108 0,-72 288,-72 288,-108"></polygon>
+<text text-anchor="middle" x="144" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies included in final review (n = 46)</text>
+</g>
+<!-- F&#45;&gt;G -->
+<g id="edge7" class="edge">
+<title>F-&gt;G</title>
+<path fill="none" stroke="black" d="M144,-146.55C144,-138.12 144,-127.77 144,-118.3"></path>
+<polygon fill="black" stroke="black" points="147.5,-118.13 144,-108.13 140.5,-118.13 147.5,-118.13"></polygon>
+</g>
+<!-- H -->
+<g id="node8" class="node">
+<title>H</title>
+<polygon fill="none" stroke="black" points="594,-185.4 306,-185.4 306,-144.2 594,-144.2 594,-185.4"></polygon>
+<text text-anchor="middle" x="450" y="-169" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles excluded</text>
+<text text-anchor="middle" x="450" y="-152.2" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(n = 50)</text>
+</g>
+<!-- F&#45;&gt;H -->
+<g id="edge6" class="edge">
+<title>F-&gt;H</title>
+<path fill="none" stroke="black" d="M288.04,-164.8C290.53,-164.8 293.02,-164.8 295.51,-164.8"></path>
+<polygon fill="black" stroke="black" points="295.75,-168.3 305.75,-164.8 295.75,-161.3 295.75,-168.3"></polygon>
+</g>
+<!-- I -->
+<g id="node9" class="node">
+<title>I</title>
+<polygon fill="none" stroke="black" points="594,-108 306,-108 306,-72 594,-72 594,-108"></polygon>
+<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 9)</text>
+</g>
+<!-- G&#45;&gt;I -->
+<g id="edge8" class="edge">
+<title>G-&gt;I</title>
+<path fill="none" stroke="black" d="M288.04,-90C290.53,-90 293.02,-90 295.51,-90"></path>
+<polygon fill="black" stroke="black" points="295.75,-93.5 305.75,-90 295.75,-86.5 295.75,-93.5"></polygon>
+</g>
+<!-- J -->
+<g id="node10" class="node">
+<title>J</title>
+<polygon fill="none" stroke="black" points="288,-36 0,-36 0,0 288,0 288,-36"></polygon>
+<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 37)</text>
+</g>
+<!-- G&#45;&gt;J -->
+<g id="edge9" class="edge">
+<title>G-&gt;J</title>
+<path fill="none" stroke="black" d="M144,-71.7C144,-63.98 144,-54.71 144,-46.11"></path>
+<polygon fill="black" stroke="black" points="147.5,-46.1 144,-36.1 140.5,-46.1 147.5,-46.1"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <section id="quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
 <p>The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, <a href="include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis">we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture</a>. Additionally, we excluded results comprising algorithms trained on image features such as spectrograms (affecting two studies, one of which was eliminated).Finally, we excluded one study published in two journals of questionable relevance to MER. This includes <em>Mathematical Problems in Engineering</em> which ceased publication following a large number of retractions in September 2024.</p>
@@ -247,9 +385,9 @@ window.Quarto = {
 <table class="table">
 <colgroup>
 <col style="width: 16%">
-<col style="width: 38%">
 <col style="width: 37%">
-<col style="width: 6%">
+<col style="width: 36%">
+<col style="width: 9%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -325,13 +463,13 @@ window.Quarto = {
 <p>Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.</p>
 <table class="table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 16%">
-<col style="width: 29%">
-<col style="width: 7%">
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -621,13 +759,13 @@ window.Quarto = {
 <p>Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.</p>
 <table class="table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 34%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -860,6 +998,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -894,7 +1050,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

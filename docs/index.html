@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -117,26 +117,26 @@ ul.task-list li input[type="checkbox"] {
 <p>The public-facing version of the repository is available at <a href="https://tuomaseerola.github.io/metaMER/">https://tuomaseerola.github.io/metaMER/</a></p>
 <section id="plan" class="level2">
 <h2 class="anchored" data-anchor-id="plan">Plan</h2>
-<p>We define the aims and methods in <a href="./preregistration/preregistration.html">preregistration plan</a>, which has beeb preregistered at <a href="">OSF</a>.</p>
-</section>
-<section id="study-search-and-selection" class="level2">
-<h2 class="anchored" data-anchor-id="study-search-and-selection">Study Search and Selection</h2>
+<p>We define the aims and methods in <a href="./preregistration/preregistration.html">preregistration plan</a>, which has beeb preregistered at <a href="https://osf.io/6y3dr/">https://osf.io/6y3dr/</a>.</p>
+<section id="study-search-and-selection" class="level3">
+<h3 class="anchored" data-anchor-id="study-search-and-selection">Study Search and Selection</h3>
 <p>Search databases and criteria are documented in <a href="./studies/search_syntax.html">studies/search_syntax.qmd</a>.</p>
 </section>
-<section id="data-extraction-and-coding" class="level2">
-<h2 class="anchored" data-anchor-id="data-extraction-and-coding">Data Extraction and Coding</h2>
+<section id="data-extraction-and-coding" class="level3">
+<h3 class="anchored" data-anchor-id="data-extraction-and-coding">Data Extraction and Coding</h3>
 <p>Data extraction is described in <a href="./studies/extraction_details.html">extraction details</a>. See also <a href="./studies/pass3_comparison.html">pass3 comparison</a>.</p>
-<p>The data will be parsed to tabular format using a custom <a href="./studies/library_parser.html">library_parser.qmd</a>.</p>
+<p>The data will be parsed to a tabular format using a custom <a href="./studies/library_parser.html">library_parser.qmd</a>.</p>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
 <p>Data analysis is covered in <a href="./analysis/analysis.html">analysis/analysis.qmd</a> document.</p>
 </section>
-<section id="manuscript" class="level2">
-<h2 class="anchored" data-anchor-id="manuscript">Manuscript</h2>
+<section id="manuscript" class="level3">
+<h3 class="anchored" data-anchor-id="manuscript">Manuscript</h3>
 <p>The study report is available <a href="./manuscript/manuscript.html">manuscript/manuscript.qmd</a> document.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -220,6 +220,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -254,7 +272,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -193,16 +193,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">#### Read first pass data ---------------------</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">bib2df</span>(<span class="st">"../studies/metaMER_library_first_pass_year_fixed.bib"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove extra fields</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(d,<span class="sc">-</span>C1,<span class="sc">-</span>DATE.ADDED,<span class="sc">-</span>DATE.MODIFIED,<span class="sc">-</span>LA,<span class="sc">-</span>BDSK.URL<span class="fl">.1</span>,<span class="sc">-</span>BDSK.URL<span class="fl">.2</span>,<span class="sc">-</span>ISBN)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add explicit source</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">str_detect</span>(d<span class="sc">$</span>UNIQUE.ID,<span class="st">'WOS'</span>)] <span class="ot">&lt;-</span> <span class="st">'Web of Science'</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">is.na</span>(d<span class="sc">$</span>SOURCE)] <span class="ot">&lt;-</span> <span class="st">'Open Alex'</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#print(knitr::kable(table(d$SOURCE)))</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">freq</span>(d<span class="sc">$</span>SOURCE, <span class="at">order =</span> <span class="st">"freq"</span>,<span class="at">round.digits =</span> <span class="dv">1</span>,<span class="at">missing =</span> <span class="st">'NA'</span>,<span class="at">headings =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> bib2df<span class="sc">::</span><span class="fu">bib2df</span>(<span class="fu">paste0</span>(here<span class="sc">::</span><span class="fu">here</span>(),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"/studies/bib/Passes/"</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"metaMER_library_first_pass.bib"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove extra fields</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(d,<span class="sc">-</span>C1,<span class="sc">-</span>DATE.ADDED,<span class="sc">-</span>DATE.MODIFIED,<span class="sc">-</span>LA,<span class="sc">-</span>BDSK.URL<span class="fl">.1</span>,<span class="sc">-</span>BDSK.URL<span class="fl">.2</span>,<span class="sc">-</span>ISBN)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add explicit source</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">str_detect</span>(d<span class="sc">$</span>UNIQUE.ID,<span class="st">'WOS'</span>)] <span class="ot">&lt;-</span> <span class="st">'Web of Science'</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>SOURCE[<span class="fu">is.na</span>(d<span class="sc">$</span>SOURCE)] <span class="ot">&lt;-</span> <span class="st">'Open Alex'</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#print(knitr::kable(table(d$SOURCE)))</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">freq</span>(d<span class="sc">$</span>SOURCE, <span class="at">order =</span> <span class="st">"freq"</span>,<span class="at">round.digits =</span> <span class="dv">1</span>,<span class="at">missing =</span> <span class="st">'NA'</span>,<span class="at">headings =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="table">
 <thead>
 <tr class="header">

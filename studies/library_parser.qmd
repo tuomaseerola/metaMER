@@ -128,6 +128,7 @@ meta_df <- as.data.frame(meta_df)
 Example: Evaluate `model_rate_emotion_values` as *R* code
 
 ```{r}
+source(paste0(here::here(), "/R/format-study-results.R"))
 eval(parse(text = meta_df$model_rate_emotion_values[22]))
 ```
 
@@ -178,11 +179,18 @@ missing_2 |> dplyr::tibble()
 check_missing(3) |> dplyr::tibble()
 ```
 
+```{r eval = F, echo = F}
+
+
+
 # Outdated: Dealing with nested bibtex fields.
 
-Some studies include multiple bibtex fields for substudies/evaluations of different feature sets. E.g., `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. We need to apply special operations to separate these values for further analysis.
+# Some studies include multiple bibtex fields for 
+# substudies/evaluations of different feature sets. E.g., 
+# `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. 
+# We need to apply special operations to separate these values for 
+# further analysis.
 
-```{r eval = F, echo = F}
 ## function to parse output of multiple models nested within a single cell
 parse_model_output = function(df)
 { # loop across rows
@@ -358,7 +366,7 @@ this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testS
   model_rate_emotion_values = c("rbind('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
                                   valence_r2.sd = 0.4, arousal_r2.sd = 0.3,
   valence_mse.mean = 0.3, arousal_mse.mean = 9.1),
-  'random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))",
+  'essentia.random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))",
   "rbind('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, valence_r2.sd = 0.2, arousal_r2.sd = 0.4,
   euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))",
   "rbind('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
@@ -368,5 +376,6 @@ this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testS
 ### Summary data frame
 
 ```{r}
-dplyr::tibble(get_study_summaries(this_study))
+dplyr::tibble(get_study_summaries(this_study)) |>
+  knitr::kable()
 ```
