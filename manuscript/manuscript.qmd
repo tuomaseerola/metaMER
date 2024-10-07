@@ -29,7 +29,7 @@ abstract: |
 keywords          : "music, emotion, recognition, meta-analysis"
 wordcount         : "5555"
 
-bibliography      : ["references.bib"]
+#bibliography      : ["references.bib"]
 
 figsintext        : yes
 figurelist        : no
@@ -41,6 +41,7 @@ csl: apa7.csl
 
 class             : "man"
 output            : papaja::apa6_pdf
+bibliography: references.bib
 ---
 
 ```{r global options, include = FALSE}
@@ -61,6 +62,20 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 -   Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], or acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c] or emergent properties identified through deep learning [@er2019music; @sarkar2020recognition].
 
 However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey].
+
+# A brief history of MER
+
+Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis (@kassler1966toward; @mendel1969some). These developments would set the stage for early work in music emotion recognition (MER). Katayose et al. (1988) conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is hopeful mood on chord from 69 to 97 \[*sic*\]." [@katayose_sentiment_1988, p. 1087].
+
+In the early 2000s, several research groups conducted studies using regression [@friberg_automatic_2002; @liu_automatic_2003] and classification [@lu_automatic_2005; @feng_popular_2003; @mandel_support_2006] techniques to predict emotion in music audio or MIDI. Citing "MIR researchers' growing interest in classifying music by moods" [@downie_music_2008, p. 1], the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.[^1]
+
+[^1]: The best-performing model to date reached 69.83 % in the 2017 competition (Park et al., 2017)[\@park2017representation](https://scholar.google.com/scholar?q=Representation%20learning%20using%20artist%20labels%20for%20audio%20classification%20tasks%2C%20Park).
+
+Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence [@yang2008]. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music].
+
+# The semantic gap in MER
+
+The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang_bridge_2016]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing strong emotion predictors. To date, however, no study has systematically compared results of these diverse approaches.
 
 ## Aims
 
@@ -161,7 +176,7 @@ Since there are many models contained within each of the studies, we will report
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]          | $t$   | $p$   | $\tau^2$ | $I^2$ |
-|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+|:-------------|:------------|:------------------------|:------|:------|:---------|:------|
 | Valence All  | 120,73685   | 0.567 \[0.530; 0.603\]  | 23.7  | .0001 | 0.083    | 97.5% |
 | Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\]  | 10.14 | .0001 | 0.138    | 98.2% |
 | *N Features* |             |                         |       |       |          |       |
@@ -183,7 +198,7 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 <!-- | Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% | -->
 
--   [OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION](to%20explore?)
+-   OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION
 
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
 
@@ -196,7 +211,7 @@ Moving on the arousal, ...
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
-|:----------|:----------|:----------|:----------|:----------|:----------|:----------|
+|:-------------|:------------|:--------------------------|:-----|:-------|:---------|:------|
 | Arousal      |             | 0.7959 \[0.7666; 0.8218\] | 29.0 | 0.0001 | 0.0676   | 95.6% |
 | Arousal Max  | 24,15660    | 0.8070 \[0.7453; 0.8550\] | 10.3 | 0.0001 | 0.155    | 96.8% |
 | *N Features* |             |                           |      |        |          |       |

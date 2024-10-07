@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -27,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -68,13 +67,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -83,42 +76,13 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -127,9 +91,9 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">metaMER</span>
     </a>
@@ -141,13 +105,13 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">README</span></a>
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">README</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools ms-auto">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -170,22 +134,22 @@ window.Quarto = {
   <div class="quarto-title-meta-heading">Affiliations</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Tuomas Eerola <a href="mailto:tuomas.eerola@durham.ac.uk" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+    <p class="author">Tuomas Eerola </p>
   </div>
-  <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
         <p class="affiliation">
             1
           </p>
       </div>
-    <div class="quarto-title-meta-contents">
-    <p class="author">Cameron J. Anderson <a href="mailto:andersoc@mcmaster.ca" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+      <div class="quarto-title-meta-contents">
+    <p class="author">Cameron J. Anderson </p>
   </div>
-  <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
         <p class="affiliation">
             2
           </p>
       </div>
-  </div>
+    </div>
 
 <div class="quarto-title-meta">
 
@@ -196,29 +160,31 @@ window.Quarto = {
   
 <div>
   <div class="abstract">
-    <div class="block-title">Abstract</div>
+    <div class="abstract-title">Abstract</div>
     <p>This is a meta-analysis of music emotion recognition. An analysis of the articles published between 2014-2024 containing models predicting either valence and arousal or emotion categories was carried out. A total of xx studies were included</p>
   </div>
 </div>
 
-<div>
-  <div class="keywords">
-    <div class="block-title">Keywords</div>
-    <p>music, emotion, recognition, meta-analysis</p>
-  </div>
-</div>
-
 </header>
-
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <ul>
 <li><p>Emotional expression is one of the central reasons why people engage with music.</p></li>
 <li><p>Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio.</p></li>
-<li><p>Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music <span class="citation" data-cites="gomez2021">(<a href="#ref-gomez2021" role="doc-biblioref">Gómez-Cañón et al., 2021</a>)</span>. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features <span class="citation" data-cites="lindstrom2003expressivity">(<a href="#ref-lindstrom2003expressivity" role="doc-biblioref">Lindström et al., 2003</a>)</span>, structural aspects of music <span class="citation" data-cites="eerola_friberg_bresin_2013 anderson2022ex grimaud_eerola_2022">(<a href="#ref-anderson2022ex" role="doc-biblioref">Anderson &amp; Schutz, 2022</a>; <a href="#ref-eerola_friberg_bresin_2013" role="doc-biblioref">Eerola et al., 2013</a>; <a href="#ref-grimaud_eerola_2022" role="doc-biblioref">Grimaud &amp; Eerola, 2022</a>)</span>, or acoustic features <span class="citation" data-cites="yang2008 panda2013multi saari_et_al_2015 eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-panda2013multi" role="doc-biblioref">Panda et al., 2013</a>; <a href="#ref-saari_et_al_2015" role="doc-biblioref">Saari et al., 2015</a>; <a href="#ref-yang2008" role="doc-biblioref">Yang et al., 2008</a>)</span> or emergent properties identified through deep learning <span class="citation" data-cites="er2019music sarkar2020recognition">(<a href="#ref-er2019music" role="doc-biblioref">Er &amp; Aydilek, 2019</a>; <a href="#ref-sarkar2020recognition" role="doc-biblioref">Sarkar et al., 2020</a>)</span>.</p></li>
+<li><p>Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music <span class="citation" data-cites="gomez2021">(<a href="#ref-gomez2021" role="doc-biblioref">Gómez-Cañón et al., 2021</a>)</span>. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features <span class="citation" data-cites="lindstrom2003expressivity">(<a href="#ref-lindstrom2003expressivity" role="doc-biblioref">Lindström et al., 2003</a>)</span>, structural aspects of music <span class="citation" data-cites="eerola_friberg_bresin_2013 anderson2022ex grimaud_eerola_2022">(<a href="#ref-anderson2022ex" role="doc-biblioref">Anderson &amp; Schutz, 2022</a>; <a href="#ref-eerola_friberg_bresin_2013" role="doc-biblioref">Eerola et al., 2013</a>; <a href="#ref-grimaud_eerola_2022" role="doc-biblioref">Grimaud &amp; Eerola, 2022</a>)</span>, or acoustic features <span class="citation" data-cites="yang2008 panda2013multi saari_et_al_2015 eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-panda2013multi" role="doc-biblioref">R. Panda et al., 2013</a>; <a href="#ref-saari_et_al_2015" role="doc-biblioref">Saari et al., 2015</a>; <a href="#ref-yang2008" role="doc-biblioref">Y. H. Yang et al., 2008</a>)</span> or emergent properties identified through deep learning <span class="citation" data-cites="er2019music sarkar2020recognition">(<a href="#ref-er2019music" role="doc-biblioref">Er &amp; Aydilek, 2019</a>; <a href="#ref-sarkar2020recognition" role="doc-biblioref">Sarkar et al., 2020</a>)</span>.</p></li>
 </ul>
 <p>However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex – valence and arousal– <span class="citation" data-cites="Russell1980">(<a href="#ref-Russell1980" role="doc-biblioref">Russell, 1980</a>)</span> and classifying various emotion categories <span class="citation" data-cites="fu2010survey">(<a href="#ref-fu2010survey" role="doc-biblioref">Fu et al., 2010</a>)</span>.</p>
+</section>
+<section id="a-brief-history-of-mer" class="level1">
+<h1>A brief history of MER</h1>
+<p>Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers <span class="citation" data-cites="zaripov1969">(<a href="#ref-zaripov1969" role="doc-biblioref">Zaripov &amp; Russell, 1969</a>)</span>, attention later shifted to creating methods to predict emotion using music’s structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s <span class="citation" data-cites="fairthorne1968">(<a href="#ref-fairthorne1968" role="doc-biblioref">Fairthorne, 1968</a>)</span>, inspiring analogous developments for automated music analysis (<span class="citation" data-cites="kassler1966toward">Kassler (<a href="#ref-kassler1966toward" role="doc-biblioref">1966</a>)</span>; <span class="citation" data-cites="mendel1969some">Mendel (<a href="#ref-mendel1969some" role="doc-biblioref">1969</a>)</span>). These developments would set the stage for early work in music emotion recognition (MER). Katayose et al.&nbsp;(1988) conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like “there is hopeful mood on chord from 69 to 97 [<em>sic</em>].” <span class="citation" data-cites="katayose_sentiment_1988">(<a href="#ref-katayose_sentiment_1988" role="doc-biblioref">Katayose et al., 1988, p. 1087</a>)</span>.</p>
+<p>In the early 2000s, several research groups conducted studies using regression <span class="citation" data-cites="friberg_automatic_2002 liu_automatic_2003">(<a href="#ref-friberg_automatic_2002" role="doc-biblioref">Friberg et al., 2002</a>; <a href="#ref-liu_automatic_2003" role="doc-biblioref">Liu et al., 2003</a>)</span> and classification <span class="citation" data-cites="lu_automatic_2005 feng_popular_2003 mandel_support_2006">(<a href="#ref-feng_popular_2003" role="doc-biblioref">Feng et al., 2003</a>; <a href="#ref-lu_automatic_2005" role="doc-biblioref">Lu et al., 2005</a>; <a href="#ref-mandel_support_2006" role="doc-biblioref">Mandel et al., 2006</a>)</span> techniques to predict emotion in music audio or MIDI. Citing “MIR researchers’ growing interest in classifying music by moods” <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008, p. 1</a>)</span>, the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative—positive emotional quality) and arousal (i.e., the calm—exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence <span class="citation" data-cites="yang2008">(<a href="#ref-yang2008" role="doc-biblioref">Y. H. Yang et al., 2008</a>)</span>. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies <span class="citation" data-cites="bai2016dimensional coutinho2013psychoacoustic">(e.g., <a href="#ref-bai2016dimensional" role="doc-biblioref">Bai et al., 2016</a>; <a href="#ref-coutinho2013psychoacoustic" role="doc-biblioref">Coutinho &amp; Dibben, 2013</a>)</span>, with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal <span class="citation" data-cites="yang2007music">(<a href="#ref-yang2007music" role="doc-biblioref">Yi-Hsuan Yang et al., 2007</a>)</span>.</p>
+</section>
+<section id="the-semantic-gap-in-mer" class="level1">
+<h1>The semantic gap in MER</h1>
+<p>The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>. To address this so-called <em>semantic gap</em>, researchers have attempted to identify new feature sets with greater relevance to emotion <span class="citation" data-cites="panda2020audio chowdhury2021perceived">(<a href="#ref-chowdhury2021perceived" role="doc-biblioref">Chowdhury &amp; Widmer, 2021</a>; <a href="#ref-panda2020audio" role="doc-biblioref">Renato Panda et al., 2020</a>)</span>, combine low-, mid-, and high-level features using multimodal data <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>, or train neural networks to automatically learn features from audio <span class="citation" data-cites="zhang_bridge_2016">(<a href="#ref-zhang_bridge_2016" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>. Through these approaches, MER researchers attempt to shatter a so-called <em>glass ceiling</em> <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008</a>)</span> by establishing strong emotion predictors. To date, however, no study has systematically compared results of these diverse approaches.</p>
 <section id="aims" class="level2">
 <h2 class="anchored" data-anchor-id="aims">Aims</h2>
 <ul>
@@ -233,143 +199,97 @@ window.Quarto = {
 <h1>Methods</h1>
 <p>We preregistered the meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd" class="uri">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html" class="uri">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
-<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>.To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or outcome variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
+<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Renato Panda et al., 2020</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.</p>
+<p>We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
 <p>[Figure 1: flowchart of the study inclusions/eliminations]</p>
-<div class="cell" data-layout-align="default">
+<div class="cell">
 <div class="cell-output-display">
 <div>
-<p></p><figure class="figure"><p></p>
 <div>
 <svg width="672" height="480" viewbox="0.00 0.00 602.00 488.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 484)">
-<title>sub</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-484 598,-484 598,4 -4,4"></polygon>
-<!-- A -->
-<g id="node1" class="node">
-<title>A</title>
-<polygon fill="none" stroke="black" points="288,-480.1 0,-480.1 0,-404.7 288,-404.7 288,-480.1"></polygon>
-<text text-anchor="middle" x="144" y="-463.4" font-family="Helvetica,sans-Serif" font-size="14.00">Records identified from:</text>
-<text text-anchor="middle" x="144" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web of Science (n = 142)</text>
-<text text-anchor="middle" x="144" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scopus (n = 227)</text>
-<text text-anchor="middle" x="144" y="-413" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OpenALEX (n = 278)</text>
-</g>
-<!-- B -->
-<g id="node2" class="node">
-<title>B</title>
-<polygon fill="none" stroke="black" points="594,-463 306,-463 306,-421.8 594,-421.8 594,-463"></polygon>
-<text text-anchor="middle" x="450" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed before screening: </text>
-<text text-anchor="middle" x="450" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicates entries/errors (n = 94)</text>
-</g>
-<!-- A&#45;&gt;B -->
-<g id="edge1" class="edge">
-<title>A-&gt;B</title>
-<path fill="none" stroke="black" d="M288.04,-442.4C290.53,-442.4 293.02,-442.4 295.51,-442.4"></path>
-<polygon fill="black" stroke="black" points="295.75,-445.9 305.75,-442.4 295.75,-438.9 295.75,-445.9"></polygon>
-</g>
-<!-- C -->
-<g id="node3" class="node">
-<title>C</title>
-<polygon fill="none" stroke="black" points="288,-368.8 0,-368.8 0,-332.8 288,-332.8 288,-368.8"></polygon>
-<text text-anchor="middle" x="144" y="-346.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records after duplicates removed (n = 553)</text>
-</g>
-<!-- A&#45;&gt;C -->
-<g id="edge2" class="edge">
-<title>A-&gt;C</title>
-<path fill="none" stroke="black" d="M144,-404.7C144,-396.1 144,-387.08 144,-378.98"></path>
-<polygon fill="black" stroke="black" points="147.5,-378.97 144,-368.97 140.5,-378.97 147.5,-378.97"></polygon>
-</g>
-<!-- D -->
-<g id="node4" class="node">
-<title>D</title>
-<polygon fill="none" stroke="black" points="288,-277.2 0,-277.2 0,-241.2 288,-241.2 288,-277.2"></polygon>
-<text text-anchor="middle" x="144" y="-255" font-family="Helvetica,sans-Serif" font-size="14.00">Records screened (n = 553)</text>
-</g>
-<!-- C&#45;&gt;D -->
-<g id="edge3" class="edge">
-<title>C-&gt;D</title>
-<path fill="none" stroke="black" d="M144,-332.52C144,-319.76 144,-302.12 144,-287.46"></path>
-<polygon fill="black" stroke="black" points="147.5,-287.42 144,-277.42 140.5,-287.42 147.5,-287.42"></polygon>
-</g>
-<!-- E -->
-<g id="node5" class="node">
-<title>E</title>
-<polygon fill="none" stroke="black" points="594,-296.9 306,-296.9 306,-221.5 594,-221.5 594,-296.9"></polygon>
-<text text-anchor="middle" x="450" y="-280.2" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed: </text>
-<text text-anchor="middle" x="450" y="-263.4" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Irrelevant titles/themes (n = 338)</text>
-<text text-anchor="middle" x="450" y="-246.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abstract screening (n = 95)</text>
-<text text-anchor="middle" x="450" y="-229.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion (n = 24)</text>
-</g>
-<!-- D&#45;&gt;E -->
-<g id="edge4" class="edge">
-<title>D-&gt;E</title>
-<path fill="none" stroke="black" d="M288.04,-259.2C290.53,-259.2 293.02,-259.2 295.51,-259.2"></path>
-<polygon fill="black" stroke="black" points="295.75,-262.7 305.75,-259.2 295.75,-255.7 295.75,-262.7"></polygon>
-</g>
-<!-- F -->
-<g id="node6" class="node">
-<title>F</title>
-<polygon fill="none" stroke="black" points="288,-182.8 0,-182.8 0,-146.8 288,-146.8 288,-182.8"></polygon>
-<text text-anchor="middle" x="144" y="-160.6" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles assessed (n = 96)</text>
-</g>
-<!-- D&#45;&gt;F -->
-<g id="edge5" class="edge">
-<title>D-&gt;F</title>
-<path fill="none" stroke="black" d="M144,-240.82C144,-227.4 144,-208.57 144,-193.14"></path>
-<polygon fill="black" stroke="black" points="147.5,-193.1 144,-183.1 140.5,-193.1 147.5,-193.1"></polygon>
-</g>
-<!-- G -->
-<g id="node7" class="node">
-<title>G</title>
-<polygon fill="none" stroke="black" points="288,-108 0,-108 0,-72 288,-72 288,-108"></polygon>
-<text text-anchor="middle" x="144" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies included in final review (n = 46)</text>
-</g>
-<!-- F&#45;&gt;G -->
-<g id="edge7" class="edge">
-<title>F-&gt;G</title>
-<path fill="none" stroke="black" d="M144,-146.55C144,-138.12 144,-127.77 144,-118.3"></path>
-<polygon fill="black" stroke="black" points="147.5,-118.13 144,-108.13 140.5,-118.13 147.5,-118.13"></polygon>
-</g>
-<!-- H -->
-<g id="node8" class="node">
-<title>H</title>
-<polygon fill="none" stroke="black" points="594,-185.4 306,-185.4 306,-144.2 594,-144.2 594,-185.4"></polygon>
-<text text-anchor="middle" x="450" y="-169" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles excluded</text>
-<text text-anchor="middle" x="450" y="-152.2" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(n = 50)</text>
-</g>
-<!-- F&#45;&gt;H -->
-<g id="edge6" class="edge">
-<title>F-&gt;H</title>
-<path fill="none" stroke="black" d="M288.04,-164.8C290.53,-164.8 293.02,-164.8 295.51,-164.8"></path>
-<polygon fill="black" stroke="black" points="295.75,-168.3 305.75,-164.8 295.75,-161.3 295.75,-168.3"></polygon>
-</g>
-<!-- I -->
-<g id="node9" class="node">
-<title>I</title>
-<polygon fill="none" stroke="black" points="594,-108 306,-108 306,-72 594,-72 594,-108"></polygon>
-<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 10)</text>
-</g>
-<!-- G&#45;&gt;I -->
-<g id="edge8" class="edge">
-<title>G-&gt;I</title>
-<path fill="none" stroke="black" d="M288.04,-90C290.53,-90 293.02,-90 295.51,-90"></path>
-<polygon fill="black" stroke="black" points="295.75,-93.5 305.75,-90 295.75,-86.5 295.75,-93.5"></polygon>
-</g>
-<!-- J -->
-<g id="node10" class="node">
-<title>J</title>
-<polygon fill="none" stroke="black" points="288,-36 0,-36 0,0 288,0 288,-36"></polygon>
-<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 36)</text>
-</g>
-<!-- G&#45;&gt;J -->
-<g id="edge9" class="edge">
-<title>G-&gt;J</title>
-<path fill="none" stroke="black" d="M144,-71.7C144,-63.98 144,-54.71 144,-46.11"></path>
-<polygon fill="black" stroke="black" points="147.5,-46.1 144,-36.1 140.5,-46.1 147.5,-46.1"></polygon>
-</g>
-</g>
+<title>
+sub
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-484 598,-484 598,4 -4,4"></polygon> <!-- A --> <g id="node1" class="node">
+<title>
+A
+</title>
+<polygon fill="none" stroke="black" points="288,-480.1 0,-480.1 0,-404.7 288,-404.7 288,-480.1"></polygon> <text text-anchor="middle" x="144" y="-463.4" font-family="Helvetica,sans-Serif" font-size="14.00">Records identified from:</text> <text text-anchor="middle" x="144" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Web of Science (n = 142)</text> <text text-anchor="middle" x="144" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scopus (n = 227)</text> <text text-anchor="middle" x="144" y="-413" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OpenALEX (n = 278)</text> </g> <!-- B --> <g id="node2" class="node">
+<title>
+B
+</title>
+<polygon fill="none" stroke="black" points="594,-463 306,-463 306,-421.8 594,-421.8 594,-463"></polygon> <text text-anchor="middle" x="450" y="-446.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed before screening: </text> <text text-anchor="middle" x="450" y="-429.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Duplicates entries/errors (n = 94)</text> </g> <!-- A&#45;&gt;B --> <g id="edge1" class="edge">
+<title>
+A-&gt;B
+</title>
+<path fill="none" stroke="black" d="M288.04,-442.4C290.53,-442.4 293.02,-442.4 295.51,-442.4"></path> <polygon fill="black" stroke="black" points="295.75,-445.9 305.75,-442.4 295.75,-438.9 295.75,-445.9"></polygon> </g> <!-- C --> <g id="node3" class="node">
+<title>
+C
+</title>
+<polygon fill="none" stroke="black" points="288,-368.8 0,-368.8 0,-332.8 288,-332.8 288,-368.8"></polygon> <text text-anchor="middle" x="144" y="-346.6" font-family="Helvetica,sans-Serif" font-size="14.00">Records after duplicates removed (n = 553)</text> </g> <!-- A&#45;&gt;C --> <g id="edge2" class="edge">
+<title>
+A-&gt;C
+</title>
+<path fill="none" stroke="black" d="M144,-404.7C144,-396.1 144,-387.08 144,-378.98"></path> <polygon fill="black" stroke="black" points="147.5,-378.97 144,-368.97 140.5,-378.97 147.5,-378.97"></polygon> </g> <!-- D --> <g id="node4" class="node">
+<title>
+D
+</title>
+<polygon fill="none" stroke="black" points="288,-277.2 0,-277.2 0,-241.2 288,-241.2 288,-277.2"></polygon> <text text-anchor="middle" x="144" y="-255" font-family="Helvetica,sans-Serif" font-size="14.00">Records screened (n = 553)</text> </g> <!-- C&#45;&gt;D --> <g id="edge3" class="edge">
+<title>
+C-&gt;D
+</title>
+<path fill="none" stroke="black" d="M144,-332.52C144,-319.76 144,-302.12 144,-287.46"></path> <polygon fill="black" stroke="black" points="147.5,-287.42 144,-277.42 140.5,-287.42 147.5,-287.42"></polygon> </g> <!-- E --> <g id="node5" class="node">
+<title>
+E
+</title>
+<polygon fill="none" stroke="black" points="594,-296.9 306,-296.9 306,-221.5 594,-221.5 594,-296.9"></polygon> <text text-anchor="middle" x="450" y="-280.2" font-family="Helvetica,sans-Serif" font-size="14.00">Records removed: </text> <text text-anchor="middle" x="450" y="-263.4" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Irrelevant titles/themes (n = 338)</text> <text text-anchor="middle" x="450" y="-246.6" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abstract screening (n = 95)</text> <text text-anchor="middle" x="450" y="-229.8" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion (n = 24)</text> </g> <!-- D&#45;&gt;E --> <g id="edge4" class="edge">
+<title>
+D-&gt;E
+</title>
+<path fill="none" stroke="black" d="M288.04,-259.2C290.53,-259.2 293.02,-259.2 295.51,-259.2"></path> <polygon fill="black" stroke="black" points="295.75,-262.7 305.75,-259.2 295.75,-255.7 295.75,-262.7"></polygon> </g> <!-- F --> <g id="node6" class="node">
+<title>
+F
+</title>
+<polygon fill="none" stroke="black" points="288,-182.8 0,-182.8 0,-146.8 288,-146.8 288,-182.8"></polygon> <text text-anchor="middle" x="144" y="-160.6" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles assessed (n = 96)</text> </g> <!-- D&#45;&gt;F --> <g id="edge5" class="edge">
+<title>
+D-&gt;F
+</title>
+<path fill="none" stroke="black" d="M144,-240.82C144,-227.4 144,-208.57 144,-193.14"></path> <polygon fill="black" stroke="black" points="147.5,-193.1 144,-183.1 140.5,-193.1 147.5,-193.1"></polygon> </g> <!-- G --> <g id="node7" class="node">
+<title>
+G
+</title>
+<polygon fill="none" stroke="black" points="288,-108 0,-108 0,-72 288,-72 288,-108"></polygon> <text text-anchor="middle" x="144" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies included in final review (n = 46)</text> </g> <!-- F&#45;&gt;G --> <g id="edge7" class="edge">
+<title>
+F-&gt;G
+</title>
+<path fill="none" stroke="black" d="M144,-146.55C144,-138.12 144,-127.77 144,-118.3"></path> <polygon fill="black" stroke="black" points="147.5,-118.13 144,-108.13 140.5,-118.13 147.5,-118.13"></polygon> </g> <!-- H --> <g id="node8" class="node">
+<title>
+H
+</title>
+<polygon fill="none" stroke="black" points="594,-185.4 306,-185.4 306,-144.2 594,-144.2 594,-185.4"></polygon> <text text-anchor="middle" x="450" y="-169" font-family="Helvetica,sans-Serif" font-size="14.00">Full text articles excluded</text> <text text-anchor="middle" x="450" y="-152.2" font-family="Helvetica,sans-Serif" font-size="14.00"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(n = 50)</text> </g> <!-- F&#45;&gt;H --> <g id="edge6" class="edge">
+<title>
+F-&gt;H
+</title>
+<path fill="none" stroke="black" d="M288.04,-164.8C290.53,-164.8 293.02,-164.8 295.51,-164.8"></path> <polygon fill="black" stroke="black" points="295.75,-168.3 305.75,-164.8 295.75,-161.3 295.75,-168.3"></polygon> </g> <!-- I --> <g id="node9" class="node">
+<title>
+I
+</title>
+<polygon fill="none" stroke="black" points="594,-108 306,-108 306,-72 594,-72 594,-108"></polygon> <text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 10)</text> </g> <!-- G&#45;&gt;I --> <g id="edge8" class="edge">
+<title>
+G-&gt;I
+</title>
+<path fill="none" stroke="black" d="M288.04,-90C290.53,-90 293.02,-90 295.51,-90"></path> <polygon fill="black" stroke="black" points="295.75,-93.5 305.75,-90 295.75,-86.5 295.75,-93.5"></polygon> </g> <!-- J --> <g id="node10" class="node">
+<title>
+J
+</title>
+<polygon fill="none" stroke="black" points="288,-36 0,-36 0,0 288,0 288,-36"></polygon> <text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 36)</text> </g> <!-- G&#45;&gt;J --> <g id="edge9" class="edge">
+<title>
+G-&gt;J
+</title>
+<path fill="none" stroke="black" d="M144,-71.7C144,-63.98 144,-54.71 144,-46.11"></path> <polygon fill="black" stroke="black" points="147.5,-46.1 144,-36.1 140.5,-46.1 147.5,-46.1"></polygon> </g> </g>
 </svg>
 </div>
-<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -379,7 +299,7 @@ window.Quarto = {
 </section>
 <section id="study-encoding" class="level2">
 <h2 class="anchored" data-anchor-id="study-encoding">Study Encoding</h2>
-<p>To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable <em>R</em> code containing custom functions for meta-analysis. For complete details about our encoding procedure, see <code>extraction_details/extraction_details.qmd</code> .</p>
+<p>To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable <em>R</em> code containing custom functions for meta-analysis. For complete details about our encoding procedure, see <code>studies/extraction_details.qmd</code> .</p>
 </section>
 </section>
 <section id="results" class="level1">
@@ -458,7 +378,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">Zhang et al., 2023</a>)</span>. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in <span class="citation" data-cites="saizclar2022pr">Saiz-Clar et al. (<a href="#ref-saizclar2022pr" role="doc-biblioref">2022</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. [COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE].</p>
+<p>Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">M. Zhang et al., 2023</a>)</span>. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in <span class="citation" data-cites="saizclar2022pr">Saiz-Clar et al. (<a href="#ref-saizclar2022pr" role="doc-biblioref">2022</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. [COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE].</p>
 <p>We first report regression studies that predict valence and arousal.</p>
 <section id="prediction-success-for-valence-and-arousal-or-affect-dimensions" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-success-for-valence-and-arousal-or-affect-dimensions">Prediction success for valence and arousal (or affect dimensions)</h2>
@@ -467,13 +387,13 @@ window.Quarto = {
 <p>Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.</p>
 <table class="table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 30%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -602,7 +522,7 @@ window.Quarto = {
 <!-- | Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% | -->
 <!-- | Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% | -->
 <ul>
-<li><a href="to explore?">OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION</a></li>
+<li>OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION</li>
 </ul>
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
 <div class="cell">
@@ -610,7 +530,7 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="manuscript_files/figure-html/fig1-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Forest plot of valence predictions from the MER models.</figcaption>
+<figcaption class="figure-caption">Forest plot of valence predictions from the MER models.</figcaption>
 </figure>
 </div>
 </div>
@@ -620,13 +540,13 @@ window.Quarto = {
 <p>Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.</p>
 <table class="table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 31%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 11%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -861,12 +781,16 @@ window.Quarto = {
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
 <div id="ref-alvarez2023ri" class="csl-entry" role="listitem">
 Álvarez, P., Quirós, J. G. de, &amp; Baldassarri, S. (2023). RIADA: A machine-learning based infrastructure for recognising the emotions of spotify songs [Article]. <em>International Journal of Interactive Multimedia and Artificial Intelligence</em>, <em>8</em>(2), 168–181. <a href="https://doi.org/10.9781/ijimai.2022.04.002">https://doi.org/10.9781/ijimai.2022.04.002</a>
 </div>
 <div id="ref-anderson2022ex" class="csl-entry" role="listitem">
 Anderson, C. J., &amp; Schutz, M. (2022). Exploring historic changes in musical communication: Deconstructing emotional cues in preludes by bach and chopin. <em>Psychology of Music</em>, <em>50</em>(5), 1424–1442.
+</div>
+<div id="ref-bai2016dimensional" class="csl-entry" role="listitem">
+Bai, J., Peng, J., Shi, J., Tang, D., Wu, Y., Li, J., &amp; Luo, K. (2016). Dimensional music emotion recognition by valence-arousal regression. <em>2016 IEEE 15th International Conference on Cognitive Informatics &amp; Cognitive Computing (ICCI* CC)</em>, 42–49.
 </div>
 <div id="ref-balduzzi2019" class="csl-entry" role="listitem">
 Balduzzi, S., Rücker, G., &amp; Schwarzer, G. (2019). How to perform a meta-analysis with <span>R</span>: A practical tutorial. <em>Evidence-Based Mental Health</em>, <em>22</em>, 153–160.
@@ -874,11 +798,23 @@ Balduzzi, S., Rücker, G., &amp; Schwarzer, G. (2019). How to perform a meta-ana
 <div id="ref-battcock2021in" class="csl-entry" role="listitem">
 Battcock, A., &amp; Schutz, M. (2021). Individualized interpretation: Exploring structural and interpretive effects on evaluations of emotional content in bach’s well tempered clavier. <em>JOURNAL OF NEW MUSIC RESEARCH</em>, <em>50</em>(5), 447–468. <a href="https://doi.org/10.1080/09298215.2021.1979050">https://doi.org/10.1080/09298215.2021.1979050</a>
 </div>
+<div id="ref-celma_foafing_2006" class="csl-entry" role="listitem">
+Celma, O. (2006). Foafing the music: <span>Bridging</span> the semantic gap in music recommendation. <em>International Semantic Web Conference</em>, 927–934.
+</div>
 <div id="ref-chicco2020advantages" class="csl-entry" role="listitem">
 Chicco, D., &amp; Jurman, G. (2020). The advantages of the matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. <em>BMC Genomics</em>, <em>21</em>, 1–13.
 </div>
 <div id="ref-chin2018" class="csl-entry" role="listitem">
 Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE Transactions on Affective Computing</em>, <em>9</em>(4), 541 549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+</div>
+<div id="ref-chowdhury2021perceived" class="csl-entry" role="listitem">
+Chowdhury, S., &amp; Widmer, G. (2021). On perceived emotion in expressive piano performance: Further experimental evidence for the relevance of mid-level perceptual features. <em>International Society for Music Information Retrieval Conference (ISMIR 2023)</em>.
+</div>
+<div id="ref-coutinho2013psychoacoustic" class="csl-entry" role="listitem">
+Coutinho, E., &amp; Dibben, N. (2013). Psychoacoustic cues to emotion in speech prosody and music. <em>Cognition &amp; Emotion</em>, <em>27</em>(4), 658–684.
+</div>
+<div id="ref-downie_music_2008" class="csl-entry" role="listitem">
+Downie, J. S. (2008). The music information retrieval evaluation exchange (2005–2007): <span>A</span> window into music information retrieval research. <em>Acoustical Science and Technology</em>, <em>29</em>(4), 247–255.
 </div>
 <div id="ref-eerola2011c" class="csl-entry" role="listitem">
 Eerola, T. (2011). Are the emotions expressed in music genre-specific? An audio-based evaluation of datasets spanning classical, film, pop and mixed genres. <em>Journal of New Music Research</em>, <em>40</em>(4), 349–366. <a href="https://doi.org/10.1080/09298215.2011.602195">https://doi.org/10.1080/09298215.2011.602195</a>
@@ -889,6 +825,15 @@ Eerola, T., Friberg, A., &amp; Bresin, R. (2013). Emotional expression in music:
 <div id="ref-er2019music" class="csl-entry" role="listitem">
 Er, M. B., &amp; Aydilek, I. B. (2019). Music emotion recognition by using chroma spectrogram and deep visual features. <em>International Journal of Computational Intelligence Systems</em>, <em>12</em>(2), 1622–1634.
 </div>
+<div id="ref-fairthorne1968" class="csl-entry" role="listitem">
+Fairthorne, R. A. (1968). <em>Towards information retrieval</em>.
+</div>
+<div id="ref-feng_popular_2003" class="csl-entry" role="listitem">
+Feng, Y., Zhuang, Y., &amp; Pan, Y. (2003). Popular music retrieval by detecting mood. <em>Proceedings of the 26th Annual International <span>ACM</span> <span>SIGIR</span> Conference on <span>Research</span> and Development in Informaion Retrieval</em>, 375–376.
+</div>
+<div id="ref-friberg_automatic_2002" class="csl-entry" role="listitem">
+Friberg, A., Schoonderwaldt, E., Juslin, P. N., &amp; Bresin, R. (2002). Automatic real-time extraction of musical expression. <em>International <span>Computer</span> <span>Music</span> <span>Conference</span>, <span>ICMC</span> 2002, <span>Gothenburg</span>, <span>Sweden</span></em>, 365–367.
+</div>
 <div id="ref-fu2010survey" class="csl-entry" role="listitem">
 Fu, Z., Lu, G., Ting, K. M., &amp; Zhang, D. (2010). A survey of audio-based music classification and annotation. <em>IEEE Transactions on Multimedia</em>, <em>13</em>(2), 303–319.
 </div>
@@ -898,14 +843,32 @@ Gómez-Cañón, J. S., Cano, E., Eerola, T., Herrera, P., Hu, X., Yang, Y.-H., &
 <div id="ref-grimaud_eerola_2022" class="csl-entry" role="listitem">
 Grimaud, A. M., &amp; Eerola, T. (2022). An interactive approach to emotional expression through musical cues. <em>Music &amp; Science</em>, <em>5</em>, 1–23. https://doi.org/<a href="https://doi.org/10.1177/20592043211061745">https://doi.org/10.1177/20592043211061745</a>
 </div>
+<div id="ref-kassler1966toward" class="csl-entry" role="listitem">
+Kassler, M. (1966). Toward musical information retrieval. <em>Perspectives of New Music</em>, 59–67.
+</div>
+<div id="ref-katayose_sentiment_1988" class="csl-entry" role="listitem">
+Katayose, H., Imai, M., &amp; Inokuchi, S. (1988). Sentiment extraction in music. <em>9th <span>International</span> <span>Conference</span> on <span>Pattern</span> <span>Recognition</span></em>, 1083–1084.
+</div>
 <div id="ref-lindstrom2003expressivity" class="csl-entry" role="listitem">
 Lindström, E., Juslin, P. N., Bresin, R., &amp; Williamon, A. (2003). "Expressivity comes from within your soul”: A questionnaire study of music students’ perspectives on expressivity. <em>Research Studies in Music Education</em>, <em>20</em>(1), 23–47.
+</div>
+<div id="ref-liu_automatic_2003" class="csl-entry" role="listitem">
+Liu, D., Lu, L., &amp; Zhang, H.-J. (2003, January). Automatic <span>Mood</span> <span>Detection</span> from <span>Acoustic</span> <span>Music</span> <span>Data</span>. <em>Proc. <span>ISMIR</span> 2003; 4th <span>Int</span>. <span>Symp</span>. <span>Music</span> <span>Information</span> <span>Retrieval</span></em>.
+</div>
+<div id="ref-lu_automatic_2005" class="csl-entry" role="listitem">
+Lu, L., Liu, D., &amp; Zhang, H.-J. (2005). Automatic mood detection and tracking of music audio signals. <em>IEEE Transactions on Audio, Speech, and Language Processing</em>, <em>14</em>(1), 5–18.
+</div>
+<div id="ref-mandel_support_2006" class="csl-entry" role="listitem">
+Mandel, M. I., Poliner, G. E., &amp; Ellis, D. P. (2006). Support vector machine active learning for music retrieval. <em>Multimedia Systems</em>, <em>12</em>(1), 3–13.
+</div>
+<div id="ref-mendel1969some" class="csl-entry" role="listitem">
+Mendel, A. (1969). Some preliminary attempts at computer-assisted style analysis in music. <em>Computers and the Humanities</em>, 41–52.
 </div>
 <div id="ref-nag2022" class="csl-entry" role="listitem">
 Nag, S., Basu, M., Sanyal, S., Banerjee, A., &amp; Ghosh, D. (2022). On the application of deep learning and multifractal techniques to classify emotions and instruments using indian classical music. <em>Physica A: Statistical Mechanics and Its Applications</em>, <em>597</em>. <a href="https://doi.org/10.1016/j.physa.2022.127261">https://doi.org/10.1016/j.physa.2022.127261</a>
 </div>
 <div id="ref-panda2020audio" class="csl-entry" role="listitem">
-Panda, R., Malheiro, R., &amp; Paiva, R. P. (2023). Audio features for music emotion recognition: A survey. <em>IEEE Transactions on Affective Computing</em>, <em>14</em>(1), 68–88. <a href="https://doi.org/10.1109/TAFFC.2020.3032373">https://doi.org/10.1109/TAFFC.2020.3032373</a>
+Panda, Renato, Malheiro, R., &amp; Paiva, R. P. (2020). Audio features for music emotion recognition: A survey. <em>IEEE Transactions on Affective Computing</em>, <em>14</em>(1), 68–88.
 </div>
 <div id="ref-panda2013multi" class="csl-entry" role="listitem">
 Panda, R., Malheiro, R., Rocha, B., Oliveira, A. P., &amp; Paiva, R. P. (2013). Multi-modal music emotion recognition: A new dataset, methodology and comparative analysis. <em>10th International Symposium on Computer Music Multidisciplinary Research (CMMR 2013)</em>, 570–582.
@@ -925,10 +888,24 @@ Sarkar, R., Choudhury, S., Dutta, S., Roy, A., &amp; Saha, S. K. (2020). Recogni
 <div id="ref-yang2008" class="csl-entry" role="listitem">
 Yang, Y. H., Lin, Y. C., Su, Y. F., &amp; Chen, H. H. (2008). <span class="nocase">A regression approach to music emotion recognition</span>. <em>IEEE Transactions on Audio Speech and Language Processing</em>, <em>16</em>(2), 448–457.
 </div>
+<div id="ref-yang2007music" class="csl-entry" role="listitem">
+Yang, Yi-Hsuan, Su, Y.-F., Lin, Y.-C., &amp; Chen, H. H. (2007). Music emotion recognition: The role of individuality. <em>Proceedings of the International Workshop on Human-Centered Multimedia</em>, 13–22.
+</div>
+<div id="ref-zaripov1969" class="csl-entry" role="listitem">
+Zaripov, R. K., &amp; Russell, J. (1969). Cybernetics and music. <em>Perspectives of New Music</em>, 115154.
+</div>
+<div id="ref-zhang_bridge_2016" class="csl-entry" role="listitem">
+Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016). Bridge the semantic gap between pop music acoustic feature and emotion: <span>Build</span> an interpretable model. <em>Neurocomputing</em>, <em>208</em>, 333–341.
+</div>
 <div id="ref-zhang2023mo" class="csl-entry" role="listitem">
 Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized composite attention network for continuous music emotion recognition. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>82</em>(5), 7319–7341. <a href="https://doi.org/10.1007/s11042-022-13577-6">https://doi.org/10.1007/s11042-022-13577-6</a>
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>The best-performing model to date reached 69.83 % in the 2017 competition (Park et al., 2017)<a href="https://scholar.google.com/scholar?q=Representation%20learning%20using%20artist%20labels%20for%20audio%20classification%20tasks%2C%20Park">@park2017representation</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1008,27 +985,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1038,17 +998,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1060,130 +1011,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1227,7 +1055,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1253,32 +1080,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1341,9 +1142,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Copyright 2024, Tuomas Eerola</p>
-</div>   
+    <div class="nav-footer-left">Copyright 2024, Tuomas Eerola</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1365,7 +1164,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-
 
 
 
