@@ -43,7 +43,7 @@ m.cor <- metacor(cor = values,     # values
                  prediction = TRUE,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.tau = "PM",# was REML, but we switch to Paule-Mandel because Langan et al., 2019
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 

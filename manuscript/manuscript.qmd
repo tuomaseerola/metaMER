@@ -55,13 +55,9 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 # Introduction
 
--   Emotional expression is one of the central reasons why people engage with music.
+Emotional engagement is one of the central reasons why people engage with music in their every day activities and why music is being implicated in various health applications [@juslin2022emotions;@agres2021music]. Significant advances in music information retrieval relating to music emotion recognition (MER) tasks have been made in recent years [@gomez2021;@panda2020audio]. The available features, modelling techniques and datasets have given the field opportunities to refine the accuracy and reliability of predicting annotated emotions from audio. Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], or acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c; @panda2020audio] or emergent properties identified through deep learning [@er2019music; @sarkar2020recognition].
 
--   Great advances in music information retrieval have been made in recent years. The available features, modelling techniques and datasets have given scholars opportunities to refine the accuracy and reliability of predicting annotated emotions from audio.
-
--   Numerous studies over the last 25 years have established what emotions listeners perceive and recognise in music [@gomez2021]. In the last 15 years, it has become possible to trace the recognised emotions to musical contents such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], or acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c] or emergent properties identified through deep learning [@er2019music; @sarkar2020recognition].
-
-However, there is no consensus on to what degree emotions can be recognised by computational models and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey].
+However, there is no consensus on to what degree emotions can be recognised by computational models, and the literature to date paints a diverse picture of success for concepts in affective circumplex -- valence and arousal-- [@Russell1980] and classifying various emotion categories [@fu2010survey].
 
 # A brief history of MER
 
@@ -71,18 +67,15 @@ In the early 2000s, several research groups conducted studies using regression [
 
 [^1]: The best-performing model to date reached 69.83 % in the 2017 competition (Park et al., 2017)[\@park2017representation](https://scholar.google.com/scholar?q=Representation%20learning%20using%20artist%20labels%20for%20audio%20classification%20tasks%2C%20Park).
 
-Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence [@yang2008]. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music].
+Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence [@yang2008]. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
 
 # The semantic gap in MER
 
-The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang_bridge_2016]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing strong emotion predictors. To date, however, no study has systematically compared results of these diverse approaches.
+The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang_bridge_2016]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
 
 ## Aims
 
--   Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in affective circumple space (valence and arousal) and classification of emotion categories based on available and recent studies.
--   We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates.
--   To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years.
--   We outline broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
+Our aim is to establish the level of predictive accuracy for both models of emotional expression that can account for track-specific coordinates in (a) affective circumple space (valence and arousal) and (b) classification of emotion categories based on available and recent studies. We seek to identify the types of issues (modelling techniques, features, and musical qualities used) that significantly influence the prediction rates. To achieve these aims, we carry out a meta-analysis focused on journal articles published in the last 10 years. Based on literature, we articulate broad hypotheses such as arousal being predicted to a higher degree than valence, which is more challenging and more context dependent than arousal. For classification, simple utilitarian emotions (e.g., fear, anger) will be easier to predict than complex social emotions (e.g., sadness, nostalgia).
 
 # Methods
 
@@ -151,17 +144,17 @@ First we describe the overall pattern of data (regression vs classification, mod
 
 TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 
-|            | Regression                 | Classification            | Total |
-|:-----------|:---------------------------|:--------------------------|:------|
-| Study N    | 24                         | 14                        | 38    |
-| Model N    | 258                        | 108                       | 366   |
-| Techniques | Flexible Discriminants: 64 | 37                        | 101   |
-| Techniques | Neural Nets: 74            | 27                        | 101   |
-| Techniques | Linear Methods: 74         | 24                        | 98    |
-| Techniques | Random Forests: 22         | 12                        | 34    |
-| Techniques | KS, Add. & KNN: 24         | 8                         | 32    |
-| Feature N  | Min=3, Md=472.5, Max=654   | Min=3, Md=231, Max=8904   | NA    |
-| Stimulus N | Min=40, Md=324, Max=2486   | Min=124, Md=387, Max=5192 | NA    |
+|            | Regression                      | Classification            | Total |
+|:-----------|:--------------------------------|:--------------------------|:------|
+| Study N    | 24                              | 14                        | 38    |
+| Model N    | 258                             | 108                       | 366   |
+| Techniques | Flexible Discriminants (FD): 64 | 37                        | 101   |
+| Techniques | Neural Nets (NN): 74            | 27                        | 101   |
+| Techniques | Linear Methods (LM): 74         | 24                        | 98    |
+| Techniques | Random Forests (RF): 22         | 12                        | 34    |
+| Techniques | KS, Add. & KNN (KS): 24         | 8                         | 32    |
+| Feature N  | Min=3, Md=472.5, Max=654        | Min=3, Md=231, Max=8904   | NA    |
+| Stimulus N | Min=40, Md=324, Max=2486        | Min=124, Md=387, Max=5192 | NA    |
 
 Although the total number of studies meeting the criteria described in the previous section is modest (38 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. \[COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE\].
 
@@ -171,9 +164,9 @@ We first report regression studies that predict valence and arousal.
 
 See `analysis/analysis.qmd`
 
-Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019].
+Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into five modelling techniques introduced earlier (Table 1).
 
-Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio.
+Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]          | $t$   | $p$   | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:------------------------|:------|:------|:---------|:------|
@@ -190,13 +183,6 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 | NN           | 4,2249      | 0.340 \[-0.097; 0.668\] | \-    | \-    | 0.0761   | 97.1% |
 | RF           | 4,4074      | 0.702 \[0.391; 0.869\]  | \-    | \-    | 0.057    | 98.5% |
 
-<!-- | Val. MaxTrim | 13,7363     | 0.649 \[0.598; 0.695\] | 18.5 | .0001 | 0.008    | 88.5% | -->
-
-<!-- | Valence Trim |             | 0.605 \[0.592; 0.617\] | 72.4 | .0001 | 0.0007   | 33.1% | -->
-
-<!-- | Valence M    |             | 0.604 \[0.467; 0.712\] | 7.83 | .0001 | 0.100    | 97.8% | -->
-
-<!-- | Valence Md   |             | 0.602 \[0.466; 0.710\] | 7.87 | .0001 | 0.098    | 97.7% | -->
 
 -   OTHER GROUPINGS? STIMULUS MIXED/SINGLE GENRE, PREDICTION/EXPLANATION
 
@@ -204,7 +190,8 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 {{< include _figure1.qmd >}}
 
-Summarise the results here briefly
+The results indicate the valence can be accounted generally moderately well, _r_ = 0.658 (95%CI 0.557-0.740) for valence Max (the best model from each of the 24 studies), while all models (n=120) encoded in these studies yield significantly lower overall prediction rate ( _r_ = 0.567). We argue that the lower correlation is due to inclusion of baselines these studies report and therefore not a true measure of the success in the task for our analysis. Further on, looking at the between-study heterogeneity as indexed by $\tau^2$ (0.138) and Higgins & Thompson's $I^2$ statistic [@higgins2002quantifying] for 98.2%, which captures the percentage of variability in the effect size, both indicate substantial heterogeneity. Since $I^2$ is heavily influenced by the size of the studies (large N having low sampling error), the index is perhaps not so insightful here whereas $\tau^2$ less insentive to the size and the number of studies and directly related to the outcome variable (_r_) size, we draw our interpretations about heteregeneity from the latter. To understand the observed effects across the studies and the type of heterogeneity evident in the data, we provide Figure 2 showing a forest plot of the random effects model across all studies using the best model. [TO BE CONTINUED]
+
 
 Moving on the arousal, ...
 
