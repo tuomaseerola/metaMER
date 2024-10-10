@@ -11,8 +11,8 @@ For creating Table 2
 ```{r}
 #| warning: false
 #| eval: true
-library(dmetar)
-library(tidyverse)
+library(dmetar,quietly = TRUE)
+library(tidyverse,quietly = TRUE)
 library(meta)
 library(DescTools)
 library(ggrepel)
