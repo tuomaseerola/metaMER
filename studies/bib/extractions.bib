@@ -1253,7 +1253,7 @@ bind_field(
   )
 },
  MODEL_VALIDATION = {NTUMIR: LOO, MediaEval2013: five-fold cross-validation},
- FINAL_NOTES = {discuss}
+ FINAL_NOTES = {discuss  !EXCL!}
 }
 
 
@@ -2222,7 +2222,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   STIMULUS_DURATION = {emoMusic: 45; soundtracks: 10-30; chinese: 30}, %% ~30 seconds for Chinese Classical dataset, 10-30 for Soundtracks, ~45 for emoMusic
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {emoMusic: 744, soundtracks: 360, chinese: 500}, %% emoMusic contains full 1000? 
-  FEATURE_N = {variable, 557 before feature selection}, %% dimensionality BEFORE reduction
+  FEATURE_N = {557 before feature selection. Valence- Western: local optimal - 21, global optimal - 42; Chinese: local - 21, global - 121. Arousal- western: local - 17, global - 38; Chinese - 22, 76}, 
   PARTICIPANT_N = {c(emoMusic = 'min. 10 per excerpt' (100 qualified raters), soundtracks = 116 university students (12 expert musicologists in pilot), chinese = 20)},
   PARTICIPANT_EXPERTISE = {c(emoMusic = 'nonexperts', soundtracks = '10 years of musical training', chinese = 'audio technology')},
   PARTICIPANT_ORIGIN = {variable},
@@ -2237,14 +2237,10 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   MODEL_COMPLEXITY_PARAMETERS = {MaxAbsScaler method, 20 combinations of pre-processing and feature selection were evaluated to obtain the optimal method},
   MODEL_RATE_EMOTION_NAMES = {valence, arousal},
   MODEL_RATE_EMOTION_VALUES = {
-  bind_field('various.extremely randomized tree regression.mixed.western.1' =  c(valence_r2.globalOptimal = 0.695, 
-  valence_nFeatures.globalOptimal = 42, valence_r2.localOptimal = 0.674, valence_nFeatures.localOptimal = 21,
-  arousal_r2.globalOptimal = 0.572, 
-  arousal_nFeatures.globalOptimal = 38, arousal_r2.localOptimal = 0.560, arousal_nFeatures.localOptimal = 17),
-  'various.extremely randomized tree regression.mixed.chinese.1' =  c(valence_r2.globalOptimal = 0.621, 
-  valence_nFeatures.globalOptimal = 121, valence_r2.localOptimal = 0.607, valence_nFeatures.localOptimal = 21,
-  arousal_r2.globalOptimal = 0.673, 
-  arousal_nFeatures.globalOptimal = 76, arousal_r2.localOptimal = 0.652, arousal_nFeatures.localOptimal = 22)
+  bind_field('various.extremely randomized tree regression.mixed (local optimal).western.1' =  c(valence_r2.r2 = 0.674, arousal_r2.r2 = 0.560),
+  'various.extremely randomized tree regression.mixed (global optimal).western.1' =  c(valence_r2.r2 = 0.695, arousal_r2.r2 = 0.572),
+  'various.extremely randomized tree regression.mixed (local optimal).chinese.1' =  c(valence_r2.r2 = 0.607, arousal_r2.r2 = 0.652),
+  'various.extremely randomized tree regression.mixed (global optimal).chinese.1' =  c(valence_r2.r2 = 0.621, arousal_r2.r2 = 0.673)
   )
   },
   MODEL_VALIDATION = {five-fold cross validation},
