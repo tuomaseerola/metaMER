@@ -1,0 +1,68 @@
+```{r}
+#| label: fig2
+#| fig-width: 16
+#| fig-height: 6
+#| echo: false
+#| fig.cap: > 
+#|   Forest and funnel plots of valence predictions from the MER models.
+
+library(metafor, warn.conflicts = FALSE)
+library(dmetar,warn.conflicts = FALSE)
+library(meta,warn.conflicts = FALSE)
+library(DescTools,warn.conflicts = FALSE)
+library(ggplot2,quietly = TRUE)
+library(ggrepel,quietly = TRUE)
+
+R_summary <- read.csv("../analysis/R_summary.csv")
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
+
+# Max values
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = studyREF,#citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 #                 backtransf = TRUE,
+                 #                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+
+#### Forest plot using forestplot
+library(forestplot)
+data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
+data<-dplyr::arrange(data,mean)
+
+fp1 <- grid.grabExpr(print(data |>
+  forestplot(labeltext = c(study, n, cor),
+             xlab = "Correlation",
+             xticks = c(0, .25,.5,.75, 1),
+             clip = c(0, 1))|>
+    fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
+    fp_append_row(mean  = m.cor$TE.common,
+                lower = m.cor$lower.common,
+                upper = m.cor$upper.common,
+                study = "Summary",
+                n = sum(m.cor$n),
+                cor = round(m.cor$TE.common,2),
+                is.summary = TRUE) |>
+  fp_set_style(box = "grey50",
+               line = "grey20",
+               summary = "black",
+                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
+                                ticks = gpar(cex = 0.80),
+                                xlab  = gpar(cex = 0.80)))|>
+    fp_decorate_graph(grid = structure( m.cor$TE.common,gp = gpar(lty = 2, col = "grey30")))
+)
+)
+
+#### Funnel plot using a custom function
+source('../etc/custom_funnel_plot.R')
+fp2 <- suppressWarnings(custom_funnel_plot(m.cor))
+
+gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+
+```

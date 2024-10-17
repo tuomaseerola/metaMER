@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.5.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,8 +94,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -101,9 +109,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">metaMER</span>
     </a>
@@ -115,13 +123,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">README</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">README</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -135,6 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="analysis" class="level1">
 <h1>Analysis</h1>
 <p>This assumes that the data has been parsed (<code>parse-model-output.R</code>, <code>format-study-results.R</code>) and preprocessed (<code>processing.qmd</code>).</p>
@@ -144,8 +153,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="valence-best-model">Valence: Best model</h3>
 <p>For creating Table 2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar,<span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse,<span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(meta)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -175,7 +184,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#                 sm = "ZCOR",</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"PM"</span>,<span class="co"># was REML, but we switch to Paule-Mandel because Langan et al., 2019</span></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
@@ -187,11 +196,11 @@ Number of studies: k = 120
 Number of observations: o = 73685
 
                         COR           95%-CI     t  p-value
-Random effects model 0.5674 [0.5297; 0.6028] 23.67 &lt; 0.0001
-Prediction interval         [0.0703; 0.8387]               
+Random effects model 0.5674 [0.5298; 0.6028] 23.67 &lt; 0.0001
+Prediction interval         [0.0655; 0.8402]               
 
 Quantifying heterogeneity:
- tau^2 = 0.0831 [0.0654; 0.1127]; tau = 0.2882 [0.2557; 0.3357]
+ tau^2 = 0.0845 [0.0654; 0.1127]; tau = 0.2907 [0.2557; 0.3357]
  I^2 = 97.5% [97.2%; 97.7%]; H = 6.29 [6.02; 6.58]
 
 Test of heterogeneity:
@@ -200,7 +209,7 @@ Test of heterogeneity:
 
 Details on meta-analytical method:
 - Inverse variance method
-- Restricted maximum-likelihood estimator for tau^2
+- Paule-Mandel estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
 - Hartung-Knapp adjustment for random effects model (df = 119)
 - Prediction interval based on t-distribution (df = 118)
@@ -208,15 +217,15 @@ Details on meta-analytical method:
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5673564</code></pre>
+<pre><code>[1] 0.5673962</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6027511</code></pre>
+<pre><code>[1] 0.6027944</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5297333</code></pre>
+<pre><code>[1] 0.529769</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed &lt;- m.cor</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed$TE &lt;- FisherZInv(m.cor_backtransformed$TE)</span></span>
@@ -405,7 +414,7 @@ Details on meta-analytical method:
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tmp<span class="ot">&lt;-</span>tmp[<span class="sc">!</span><span class="fu">is.na</span>(tmp<span class="sc">$</span>feature_n_categories),] <span class="co"># remove missing values</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 23 13</code></pre>
+<pre><code>[1] 23 14</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m.cor3 <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
@@ -472,30 +481,189 @@ Details on meta-analytical method:
 3 Feature n &gt; 260            7  4562</code></pre>
 </div>
 </div>
+</section>
+<section id="sub-division-based-on-n-features-and-genres" class="level3">
+<h3 class="anchored" data-anchor-id="sub-division-based-on-n-features-and-genres">Sub-division based on N features and genres</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tmp<span class="ot">&lt;-</span>tmp[<span class="sc">!</span><span class="fu">is.na</span>(tmp<span class="sc">$</span>feature_n_categories),] <span class="co"># remove missing values</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23 14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m.cor4 <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  feature_n_complexity_genre,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                 sm = "ZCOR",</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     MER: Regression: Valence: Summary
+
+Number of studies: k = 23
+Number of observations: o = 14916
+
+                        COR            95%-CI    t  p-value
+Random effects model 0.6597 [ 0.5535; 0.7448] 9.73 &lt; 0.0001
+Prediction interval         [-0.0159; 0.9218]              
+
+Quantifying heterogeneity:
+ tau^2 = 0.1444 [0.0834; 0.2986]; tau = 0.3800 [0.2889; 0.5464]
+ I^2 = 98.3% [98.0%; 98.6%]; H = 7.65 [6.99; 8.38]
+
+Test of heterogeneity:
+       Q d.f.  p-value
+ 1288.44   22 &lt; 0.0001
+
+Results for subgroups (random effects model):
+                                                                   k    COR
+feature_n_complexity_genre = Medium-large single genre/multi ...   4 0.6694
+feature_n_complexity_genre = Small single genre study              3 0.8358
+feature_n_complexity_genre = Medium single genre/multigenre  ...  14 0.5874
+feature_n_complexity_genre = Huge multigenre study                 2 0.7203
+                                                                            95%-CI
+feature_n_complexity_genre = Medium-large single genre/multi ... [ 0.3472; 0.8503]
+feature_n_complexity_genre = Small single genre study            [-0.1966; 0.9893]
+feature_n_complexity_genre = Medium single genre/multigenre  ... [ 0.4328; 0.7084]
+feature_n_complexity_genre = Huge multigenre study               [-0.1886; 0.9645]
+                                                                  tau^2    tau
+feature_n_complexity_genre = Medium-large single genre/multi ... 0.0779 0.2791
+feature_n_complexity_genre = Small single genre study            0.3182 0.5641
+feature_n_complexity_genre = Medium single genre/multigenre  ... 0.1183 0.3439
+feature_n_complexity_genre = Huge multigenre study               0.0128 0.1131
+                                                                      Q   I^2
+feature_n_complexity_genre = Medium-large single genre/multi ... 202.35 98.5%
+feature_n_complexity_genre = Small single genre study            358.17 99.4%
+feature_n_complexity_genre = Medium single genre/multigenre  ... 481.16 97.3%
+feature_n_complexity_genre = Huge multigenre study                 6.73 85.1%
+
+Test for subgroup differences (random effects model):
+                  Q d.f. p-value
+Between groups 4.70    3  0.1949
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 22)
+- Prediction interval based on t-distribution (df = 21)
+- Fisher's z transformation of correlations</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">&lt;-</span><span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp,feature_n_complexity_genre),<span class="at">n=</span><span class="fu">n</span>(),<span class="at">obs=</span><span class="fu">sum</span>(stimulus_n))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  feature_n_complexity_genre                     n   obs
+  &lt;chr&gt;                                      &lt;int&gt; &lt;int&gt;
+1 Huge multigenre study                          2  1068
+2 Medium single genre/multigenre study          14  8130
+3 Medium-large single genre/multigenre study     4  2750
+4 Small single genre study                       3  2968</code></pre>
+</div>
+</div>
 <section id="visualise-forest-and-funnel-plots" class="level4">
 <h4 class="anchored" data-anchor-id="visualise-forest-and-funnel-plots">Visualise (forest and funnel plots)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig2a <span class="ot">&lt;-</span> <span class="fu">forest</span>(m.cor,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fig2b<span class="ot">&lt;-</span><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forestplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: checkmate</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: abind</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">mean=</span>m.cor<span class="sc">$</span>cor,<span class="at">lower=</span><span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower),<span class="at">upper=</span><span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper),<span class="at">study=</span>m.cor<span class="sc">$</span>studlab,<span class="at">n=</span>m.cor<span class="sc">$</span>n,<span class="at">cor=</span><span class="fu">round</span>(m.cor<span class="sc">$</span>cor,<span class="dv">2</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span>dplyr<span class="sc">::</span><span class="fu">arrange</span>(data,mean)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>fp1 <span class="ot">&lt;-</span> <span class="fu">grid.grabExpr</span>(<span class="fu">print</span>(data <span class="sc">|&gt;</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">forestplot</span>(<span class="at">labeltext =</span> <span class="fu">c</span>(study, n, cor),</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">"Correlation"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">xticks =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>, <span class="dv">1</span>),</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">clip =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))<span class="sc">|&gt;</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fp_add_header</span>(<span class="at">study =</span> <span class="st">"Study"</span>,<span class="at">n =</span> <span class="st">"N"</span>,<span class="at">cor =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(r))) <span class="sc">|&gt;</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fp_append_row</span>(<span class="at">mean  =</span> m.cor<span class="sc">$</span>TE.common,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">lower =</span> m.cor<span class="sc">$</span>lower.common,</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">upper =</span> m.cor<span class="sc">$</span>upper.common,</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">study =</span> <span class="st">"Summary"</span>,</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">n =</span> <span class="fu">sum</span>(m.cor<span class="sc">$</span>n),</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">cor =</span> <span class="fu">round</span>(m.cor<span class="sc">$</span>TE.common,<span class="dv">2</span>),</span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">is.summary =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fp_set_style</span>(<span class="at">box =</span> <span class="st">"grey50"</span>,</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">line =</span> <span class="st">"grey20"</span>,</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">summary =</span> <span class="st">"black"</span>,</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">txt_gp =</span> <span class="fu">fpTxtGp</span>(<span class="at">label =</span> <span class="fu">list</span>(<span class="fu">gpar</span>(<span class="at">cex =</span> <span class="fl">0.85</span>)),</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ticks =</span> <span class="fu">gpar</span>(<span class="at">cex =</span> <span class="fl">0.85</span>),</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>                                <span class="at">xlab  =</span> <span class="fu">gpar</span>(<span class="at">cex =</span> <span class="fl">0.85</span>)))<span class="sc">|&gt;</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fp_decorate_graph</span>(<span class="at">grid =</span> <span class="fu">structure</span>( m.cor<span class="sc">$</span>TE.common,<span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"grey30"</span>)))</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'../etc/custom_funnel_plot.R'</span>)</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>fp2 <span class="ot">&lt;-</span> <span class="fu">custom_funnel_plot</span>(m.cor)</span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(fp1, fp2, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">widths=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">heights=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values or values outside the scale range
+(`geom_text_repel()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 771 rows containing missing values or values outside the scale range
+(`geom_line()`).
+Removed 771 rows containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="explore-qualities-in-progress" class="level4">
 <h4 class="anchored" data-anchor-id="explore-qualities-in-progress">Explore qualities (in progress)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>infan <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>infan <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[===========================================================================] DONE </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">eggers.test</span>(m.cor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">eggers.test</span>(m.cor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Eggers' test of the intercept 
 ============================= 
@@ -514,32 +682,32 @@ Eggers' test does not indicate the presence of funnel plot asymmetry. </code></p
 <h4 class="anchored" data-anchor-id="custom-funnel-plot">Custom funnel plot</h4>
 <p>To show the quality differences between core and eliminated studies.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tmpdata &lt;- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studies), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Correlation'</span>)<span class="sc">+</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> estimate, <span class="at">linetype=</span><span class="st">'solid'</span>, <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">linewidth=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
-<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.0</span>,<span class="fl">1.00</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">1.00</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
-<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tmpdata &lt;- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studies), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Correlation'</span>)<span class="sc">+</span></span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> estimate, <span class="at">linetype=</span><span class="st">'solid'</span>, <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">linewidth=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.0</span>,<span class="fl">1.00</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.0</span>,<span class="fl">1.00</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 3 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -555,7 +723,11 @@ Removed 771 rows containing missing values or values outside the scale range
 (`geom_line()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -563,14 +735,14 @@ Removed 771 rows containing missing values or values outside the scale range
 <h4 class="anchored" data-anchor-id="subgroup-analysis-according-to-techniques">Subgroup analysis according to techniques</h4>
 <p>add <code>journal_type</code> and <code>stimulus_genre_mixed</code> as a grouping option</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
@@ -621,7 +793,7 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 22)
 - Fisher's z transformation of correlations</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Idea: visualise the distributions of the model successes within studies (done in preprocessing)</li>
@@ -631,34 +803,34 @@ Details on meta-analytical method:
 <section id="arousal-best-model" class="level3">
 <h3 class="anchored" data-anchor-id="arousal-best-model">Arousal: Best model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select regression studies with r2</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_summary,dimension<span class="sc">==</span><span class="st">"arousal"</span>)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- dplyr::filter(R_studies,dimension=="arousal")</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select regression studies with r2</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_summary,dimension<span class="sc">==</span><span class="st">"arousal"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- dplyr::filter(R_studies,dimension=="arousal")</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 24 13</code></pre>
+<pre><code>[1] 24 14</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- tmp[!is.na(tmp$values),]</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- tmp[!is.na(tmp$values),]</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 24 13</code></pre>
+<pre><code>[1] 24 14</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp&lt;-drop_na(tmp)</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax, </span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey,</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Arousal: Summary"</span>)</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp&lt;-drop_na(tmp)</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax, </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey,</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Arousal: Summary"</span>)</span>
+<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Arousal: Summary
 
@@ -690,44 +862,52 @@ Details on meta-analytical method:
 <section id="trimmed-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="trimmed-analysis">Trimmed analysis</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="visualise-forest-and-funnel-plots-1" class="level4">
 <h4 class="anchored" data-anchor-id="visualise-forest-and-funnel-plots-1">Visualise (forest and funnel plots)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">eggers.test</span>(m.cor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">eggers.test</span>(m.cor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="explore-qualities-in-progress-1" class="level4">
 <h4 class="anchored" data-anchor-id="explore-qualities-in-progress-1">Explore qualities (in progress)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">metagen</span>(valuesMax, <span class="fu">sqrt</span>(valuesMax), </span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tmp, </span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">studlab =</span> tmp<span class="sc">$</span>citekey, </span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">comb.fixed =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.tau =</span> <span class="st">"PM"</span>)</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find.outliers</span>(meta)</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>infan <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta)</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">eggers.test</span>(meta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">metagen</span>(valuesMax, <span class="fu">sqrt</span>(valuesMax), </span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> tmp, </span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">studlab =</span> tmp<span class="sc">$</span>citekey, </span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">comb.fixed =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">method.tau =</span> <span class="st">"PM"</span>)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="fu">find.outliers</span>(meta)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>infan <span class="ot">&lt;-</span> <span class="fu">InfluenceAnalysis</span>(meta)</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">eggers.test</span>(meta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="subgroup-analysis-according-to-techniques-1" class="level4">
 <h4 class="anchored" data-anchor-id="subgroup-analysis-according-to-techniques-1">Subgroup analysis according to techniques</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(m.cor, </span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update</span>(m.cor, </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Arousal: Summary
 
@@ -772,33 +952,37 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 22)
 - Fisher's z transformation of correlations</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor_subgroups,<span class="at">subgroup=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor_subgroups,<span class="at">subgroup=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <ul>
 <li>Idea: visualise the distributions of the model successes within studies (done in preprocessing)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">y=</span>valuesMax,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="at">show.legend =</span> T)<span class="sc">+</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>studyREF)<span class="sc">+</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>()</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>g1</span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="co"># S &lt;- summarise(group_by(tmp,citekey),maxvalue=max(values))</span></span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="co"># g&lt;-ggplot(S,aes(y=maxvalue))+</span></span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_histogram(bins = 14)+</span></span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   #facet_wrap(.~studyREF)+</span></span>
-<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   coord_flip()+</span></span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme_bw()</span></span>
-<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="co"># g</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">y=</span>valuesMax,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>studyREF)<span class="sc">+</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme_bw</span>()</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>g1</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co"># S &lt;- summarise(group_by(tmp,citekey),maxvalue=max(values))</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co"># g&lt;-ggplot(S,aes(y=maxvalue))+</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   geom_histogram(bins = 14)+</span></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   #facet_wrap(.~studyREF)+</span></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   coord_flip()+</span></span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   theme_bw()</span></span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a><span class="co"># g</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -806,31 +990,35 @@ Details on meta-analytical method:
 <section id="classification-studies" class="level2">
 <h2 class="anchored" data-anchor-id="classification-studies">Classification studies</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_studies.csv"</span>)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> C_studies[<span class="sc">!</span><span class="fu">is.na</span>(C_studies<span class="sc">$</span>values),]</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_summary.csv"</span>)</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF, <span class="co"># unique_id</span></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> C_summary,</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Classification: Summary"</span>)</span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a><span class="co">#print(m.cor)</span></span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed &lt;- m.cor</span></span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed$TE &lt;- FisherZInv(m.cor_backtransformed$TE)</span></span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_studies.csv"</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> C_studies[<span class="sc">!</span><span class="fu">is.na</span>(C_studies<span class="sc">$</span>values),]</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_summary.csv"</span>)</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF, <span class="co"># unique_id</span></span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> C_summary,</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb72-17"><a href="#cb72-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Classification: Summary"</span>)</span>
+<span id="cb72-18"><a href="#cb72-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-19"><a href="#cb72-19" aria-hidden="true" tabindex="-1"></a><span class="co">#print(m.cor)</span></span>
+<span id="cb72-20"><a href="#cb72-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-21"><a href="#cb72-21" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed &lt;- m.cor</span></span>
+<span id="cb72-22"><a href="#cb72-22" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed$TE &lt;- FisherZInv(m.cor_backtransformed$TE)</span></span>
+<span id="cb72-23"><a href="#cb72-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$xlim
@@ -843,51 +1031,63 @@ $ylim
 <section id="custom-plot" class="level4">
 <h4 class="anchored" data-anchor-id="custom-plot">Custom plot</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studies,<span class="st">'-.*$'</span>,<span class="st">''</span>)</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(tmpdata<span class="sc">$</span>citekey)</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmpdata,<span class="fu">aes</span>(<span class="at">y =</span> SE, <span class="at">x =</span> Zr,<span class="at">label=</span>studies,<span class="at">color=</span>citekey,<span class="at">fill=</span>citekey)) <span class="sc">+</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>,<span class="at">max.overlaps =</span> <span class="dv">39</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> </span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'r'</span>)<span class="sc">+</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+</span></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studies,<span class="st">'-.*$'</span>,<span class="st">''</span>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(tmpdata<span class="sc">$</span>citekey)</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmpdata,<span class="fu">aes</span>(<span class="at">y =</span> SE, <span class="at">x =</span> Zr,<span class="at">label=</span>studies,<span class="at">color=</span>citekey,<span class="at">fill=</span>citekey)) <span class="sc">+</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>,<span class="at">max.overlaps =</span> <span class="dv">39</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> </span>
+<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'r'</span>)<span class="sc">+</span></span>
+<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+</span></span>
+<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
+<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="visualise-forest-and-funnel-plots-2" class="level4">
 <h4 class="anchored" data-anchor-id="visualise-forest-and-funnel-plots-2">Visualise (forest and funnel plots)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="explore-qualities-in-progress-2" class="level4">
 <h4 class="anchored" data-anchor-id="explore-qualities-in-progress-2">Explore qualities (in progress)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">#infan &lt;- InfluenceAnalysis(m.cor)</span></span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(eggers.test(m.cor))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co">#infan &lt;- InfluenceAnalysis(m.cor)</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(eggers.test(m.cor))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="re-run-the-analysis-without-the-outliers-1" class="level4">
@@ -897,12 +1097,12 @@ $ylim
 <h4 class="anchored" data-anchor-id="custom-funnel-plot-1">Custom funnel plot</h4>
 <p>To show the quality differences between core and eliminated studies (in progress).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> m.cor<span class="sc">$</span>seTE, <span class="at">Zr =</span> m.cor<span class="sc">$</span>TE, <span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">substr</span>(tmpdata<span class="sc">$</span>studies,<span class="dv">1</span>,<span class="fu">nchar</span>(tmpdata<span class="sc">$</span>studies)<span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studyREF,<span class="st">'([0-9]+)'</span>,<span class="st">' et al </span><span class="sc">\\</span><span class="st">1'</span>)</span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(tmpdata<span class="sc">$</span>studyREF)</span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> m.cor<span class="sc">$</span>seTE, <span class="at">Zr =</span> m.cor<span class="sc">$</span>TE, <span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">substr</span>(tmpdata<span class="sc">$</span>studies,<span class="dv">1</span>,<span class="fu">nchar</span>(tmpdata<span class="sc">$</span>studies)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studyREF,<span class="st">'([0-9]+)'</span>,<span class="st">' et al </span><span class="sc">\\</span><span class="st">1'</span>)</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(tmpdata<span class="sc">$</span>studyREF)</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Agarwal et al  et al 20"      "Alvarez et al  et al 20"     
  [3] "Bai et al  et al 20"          "Bai et al  et al 20"         
@@ -912,31 +1112,31 @@ $ylim
 [11] "Sorussa et al  et al 20"      "Yeh et al  et al 20"         
 [13] "Zhang et al  et al 20"        "Zhang et al  et al 20"       </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studyREF), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Fisher</span><span class="sc">\'</span><span class="st">s z transformed correlation'</span>)<span class="sc">+</span></span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanll95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanll95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
-<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanul95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanul95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
-<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_reverse()+</span></span>
-<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
-<span id="cb66-22"><a href="#cb66-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.25</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.23</span>))<span class="sc">+</span></span>
-<span id="cb66-23"><a href="#cb66-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb66-25"><a href="#cb66-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studyREF), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Fisher</span><span class="sc">\'</span><span class="st">s z transformed correlation'</span>)<span class="sc">+</span></span>
+<span id="cb80-16"><a href="#cb80-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb80-17"><a href="#cb80-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb80-18"><a href="#cb80-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanll95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanll95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
+<span id="cb80-19"><a href="#cb80-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanul95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanul95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
+<span id="cb80-20"><a href="#cb80-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_reverse()+</span></span>
+<span id="cb80-21"><a href="#cb80-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
+<span id="cb80-22"><a href="#cb80-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.25</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.23</span>))<span class="sc">+</span></span>
+<span id="cb80-23"><a href="#cb80-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb80-24"><a href="#cb80-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb80-25"><a href="#cb80-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 6 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -958,7 +1158,11 @@ Removed 984 rows containing missing values or values outside the scale range
 (`geom_segment()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -966,15 +1170,15 @@ Removed 984 rows containing missing values or values outside the scale range
 <h4 class="anchored" data-anchor-id="subgroup-analysis-according-to-techniques-2">Subgroup analysis according to techniques</h4>
 <p>add <code>journal_type</code> and <code>stimulus_genre_mixed</code> as a grouping option</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span>
-<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Idea: visualise the distributions of the model successes within studies (done in preprocessing)</li>
@@ -1065,10 +1269,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1078,8 +1281,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1092,6 +1304,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1135,6 +1466,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1160,6 +1492,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1222,7 +1580,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2024, Tuomas Eerola</div>   
+    <div class="nav-footer-left">
+<p>Copyright 2024, Tuomas Eerola</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1244,6 +1604,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

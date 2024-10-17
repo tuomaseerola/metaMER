@@ -20,3 +20,4 @@ format:
     theme: pulse # lumen, pulse, materia, yeti, zephyr
     css: styles.css
     toc: false
+    page-layout: full

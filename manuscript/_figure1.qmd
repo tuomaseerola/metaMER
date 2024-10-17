@@ -1,40 +1,41 @@
-```{r}
-#| label: fig1
-#| fig.height: 7
-#| echo: false
-#| fig.cap: > 
-#|   Forest plot of valence predictions from the MER models.
+```{dot}
+//| label: fig1
+//| fig-cap: "Flowchart of the study inclusions/eliminations."
 
-library(metafor)
-library(dmetar)
-library(meta)
+digraph sub {
+  node [fontname = Helvetica, fontsize = 14, shape = box, width = 4]
+  A [label = "Records identified from:
+                Web of Science (n = 142)
+                Scopus (n = 227)
+                OpenALEX (n = 278)" ]
+  B [label = "Records removed before screening: 
+                Duplicates entries/errors (n = 94)" ]
+  C [label = "Records after duplicates removed (n = 553)"]
+  D [label = "Records screened (n = 553)"]
+  E [label = "Records removed: 
+                Irrelevant titles/themes (n = 338)
+                Abstract screening (n = 95)
+                Discussion (n = 24)"]
+  F [label = "Full text articles assessed (n = 96)"]
+  G [label = "Studies included in final review (n = 46)"]
+  H [label = "Full text articles excluded
+             (n = 50)"]
+  I [label = "Studies excluded in final review (n = 10)"]
+  J [label = "Final selection (n = 36)"]
+  A->B
+  A->C
+  C->D
+  D->E
+  D->F
+  F->H 
+  F->G
+  G->I
+  G->J
 
-R_summary <- read.csv("../analysis/R_summary.csv")
-tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
-
-# Max values
-m.cor <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = studyREF,#citekey, # unique_id
-                 data = tmp,
-                 fixed = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 #                 backtransf = TRUE,
-                 #                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-
-
-forest(m.cor,
-       sortvar = TE,
-       fontfamily = "Times",
-       hetstat =FALSE,
-       prediction = FALSE, 
-       print.tau2 = FALSE,
-       leftlabs = c("Author", "g", "SE"),layout = "meta",addrows =0,rows.gr=0,col.diamond='black') # RevMan5
-
-
+  
+  { rank = same; A B}
+  { rank = same; D, E}
+  { rank = same; F, H}
+  { rank = same; G, I}
+}
 ```
