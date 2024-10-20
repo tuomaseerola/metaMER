@@ -243,10 +243,20 @@ gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1),heights=c(2,1))
 #### Explore qualities (in progress)
 
 ```{r}
-O <- find.outliers(m.cor)
+#| eval: false
+#| echo: false
+O <- find.outliers(m.cor) # 13 remaining out of 24
 # 6 datasets identified as outliers, without them the r drops to 0.5781
 infan <- InfluenceAnalysis(m.cor)
 print(eggers.test(m.cor))
+
+# 10% most precise studies (Stanley, Jarrel, Doucouliagos 2010)
+thres<-quantile(m.cor$seTE,0.1)
+ind<-m.cor$seTE<=as.numeric(thres)
+
+m.cor10pct <- update(m.cor, subset = which(ind))
+
+
 ```
 
 

@@ -1,10 +1,10 @@
 ```{r}
-#| label: fig2
+#| label: fig3
 #| fig-width: 16
 #| fig-height: 6
 #| echo: false
 #| fig.cap: > 
-#|   Forest (A) and funnel (B) plots of the best valence models from all MER studies.
+#|   Forest (A) and funnel (B) plots of the best arousal models from all MER studies.
 
 library(metafor, warn.conflicts = FALSE)
 library(dmetar,warn.conflicts = FALSE)
@@ -12,10 +12,9 @@ library(meta,warn.conflicts = FALSE)
 library(DescTools,warn.conflicts = FALSE)
 library(ggplot2,quietly = TRUE)
 library(ggrepel,quietly = TRUE)
-library(forestplot)
 
 R_summary <- read.csv("../analysis/R_summary.csv")
-tmp <- dplyr::filter(R_summary,dimension=="arousal")
+tmp <- dplyr::filter(R_summary,dimension=="valence")
 tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
 
 # Max values
@@ -33,6 +32,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  title = "MER: Regression: Valence: Summary")
 
 #### Forest plot using forestplot
+library(forestplot)
 data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
 data<-dplyr::arrange(data,mean)
 
