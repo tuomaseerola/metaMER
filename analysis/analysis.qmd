@@ -4,7 +4,7 @@ This assumes that the data has been parsed (`parse-model-output.R`, `format-stud
 
 ## Regression studies
 
-### Valence: Best model
+### Valence
 
 For creating Table 2
 
@@ -52,17 +52,11 @@ print(m.cor)
 print(FisherZInv(m.cor$TE.random))
 print(FisherZInv(m.cor$upper.random))
 print(FisherZInv(m.cor$lower.random))
-
-#m.cor_backtransformed <- m.cor
-#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
-#print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
-
 ```
 
 #### Using the best model out of each study
 
 ```{r}
-#R_studies <- read.csv("R_studies.csv")
 R_summary <- read.csv("R_summary.csv")
 
 # select regression studies with r2
@@ -96,105 +90,32 @@ print(m.cor)
 print(FisherZInv(m.cor$TE.random))
 print(FisherZInv(m.cor$upper.random))
 print(FisherZInv(m.cor$lower.random))
-
-#m.cor_backtransformed <- m.cor
-#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
-#print(funnel(m.cor_backtransformed, common = FALSE, studlab=TRUE,backtransf=TRUE))
-
 ```
 
-### Sub-division based on techniques
+### Explore heterogeneity
 
 ```{r}
-m.cor1 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 fixed = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  model_class_id,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-print(m.cor1)
+#| eval: true
+#| echo: true
+# Method 1: Give us the Egger's test about beta coefficient from funnel
+print(eggers.test(m.cor))
 
-S<-summarise(group_by(tmp,model_class_id),n=n(),obs=sum(stimulus_n))
-print(S)
+# Method 2: Find the impact to the results when removing those outside the 95CI
+O <- find.outliers(m.cor) # 13 remaining out of 24
+print(O)
+# Method 3: Leave-out-out analysis etc for individual influence (not useful here)
+#infan <- InfluenceAnalysis(m.cor)
+
+# Method 4: Focus on 10% of most precise studies (Stanley, Jarrel, Doucouliagos 2010)
+thres<-quantile(m.cor$seTE,0.1)
+ind<-m.cor$seTE<=as.numeric(thres)
+m.cor10pct <- update(m.cor, subset = which(ind))
+
+# Method 5: P curve analysis (Simonsohn, Simmons & Nelson, 2015)
+pcurve(m.cor)
 ```
 
-
-### Sub-division based on journals (engineering vs psych)
-
-```{r}
-m.cor2 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 fixed = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  journal_type,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-```
-
-### Sub-division based on N features
-
-```{r}
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
-dim(tmp)
-m.cor3 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 fixed = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  feature_n_categories,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-print(m.cor3)
-S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
-print(S)
-
-```
-
-### Sub-division based on N features and genres
-
-```{r}
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
-dim(tmp)
-m.cor4 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 fixed = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  feature_n_complexity_genre,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-print(m.cor4)
-S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
-print(S)
-
-```
-
-
-
-#### Visualise (forest and funnel plots)
+### Visualise (forest and funnel plots)
 
 ```{r}
 #| fig-width: 12
@@ -240,202 +161,361 @@ fp2 <- custom_funnel_plot(m.cor)
 gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1),heights=c(2,1))
 ```
 
-#### Explore qualities (in progress)
 
-```{r}
-#| eval: false
-#| echo: false
-O <- find.outliers(m.cor) # 13 remaining out of 24
-# 6 datasets identified as outliers, without them the r drops to 0.5781
-infan <- InfluenceAnalysis(m.cor)
-print(eggers.test(m.cor))
+### Sub-divisions
 
-# 10% most precise studies (Stanley, Jarrel, Doucouliagos 2010)
-thres<-quantile(m.cor$seTE,0.1)
-ind<-m.cor$seTE<=as.numeric(thres)
+#### Sub-division based on techniques
 
-m.cor10pct <- update(m.cor, subset = which(ind))
-
-
+```{r,results='asis'}
+S <- summarise(group_by(tmp,model_class_id),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
 ```
 
-
-#### Re-run the analysis without the outliers
-
 ```{r}
-#| eval: false
-#| echo: false
-outliers <- c("chen2017co-various-GMM-mfcc-AMG1608-1", "chen2017co-various-GMM-tonal-AMG1608-1", "chen2017co-various-GMM-spectral-AMG1608-1", "chen2017co-various-GMM-temporal-AMG1608-1", "chen2017co-various-GMM-mfcctonalspectraltemporal-AMG1608-1", "griffiths2021am-various-mlr-mixed-new-validation", "griffiths2021am-various-mlr-mixed-new-validation-nooutliers", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "hu2017cr-various-SVR-mixed-all-1", "koh2023me-openSMILE-fullyconnectedNN-FreeMusicArchive-audioOnly-1", "koh2023me-openSMILE-longshorttermmemoryNN-FreeMusicArchive-audioOnly-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-western-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022co-various-extremelyrandomizedtreeregression-mixed-chinese-1", "wang2022cr-various-pls-mixed-chineseClassicalEnsembles-1", "wang2022cr-various-pls-mixed-chineseClassicalSolo-1", "wang2022cr-various-pls-mixed-westernClassicalEnsembles-1", "wang2022cr-various-pls-mixed-westernClassicalSolo-1", "zhang2019us-marsyas-NuSVR-music-xing2014-1")
-
-tmp2<-tmp[!tmp$unique_id %in% outliers,]
-m.cor <- metacor(cor = values, 
+m.cor1 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
-                 studlab = unique_id, # unique_id
-                 data = tmp2,
-                 fixed = FALSE,
-                 random = TRUE,
-                 sm = "ZCOR",
-                 prediction = TRUE,
-                 backtransf = TRUE,
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
-
-print(m.cor)
-
-fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
-
-
-
-```
-
-#### Custom funnel plot
-
-To show the quality differences between core and eliminated studies.
-
-```{r}
-tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
-#tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
-
-estimate = m.cor$TE.common
-se = m.cor$seTE.common
-se.seq=seq(0, max(m.cor$cor), 0.001)
-ll95 = estimate-(1.96*se.seq)
-ul95 = estimate+(1.96*se.seq)
-ll99 = estimate-(3.29*se.seq)
-ul99 = estimate+(3.29*se.seq)
-meanll95 = estimate-(1.96*se)
-meanul95 = estimate+(1.96*se)
-dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
-
-fp = ggplot(NULL) +
-  geom_point(aes(x = SE, y = Zr), color='grey50',data=tmpdata) +
-  geom_text_repel(aes(x = SE, y = Zr, label=studies), data=tmpdata,size=2.5,max.overlaps = 40)+
-  xlab('Standard Error') + ylab('Correlation')+
-  geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
-  geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
-  geom_hline(yintercept = estimate, linetype='solid', color='grey50',linewidth=0.2) +
-  scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.15,0),expand=c(0.00,0.00))+
-  scale_y_continuous(breaks=seq(0.0,1.00,0.20),limits=c(0.0,1.00),expand=c(0.00,0.00))+
-  coord_flip()+
-  theme_bw()
-print(fp)
-```
-
-
-#### Subgroup analysis according to techniques
-
-add `journal_type` and `stimulus_genre_mixed` as a grouping option
-
-```{r}
-m.cor_subgroups <- update(m.cor, 
-       subgroup = model_class_id, 
-#       subgroup = journal_type, 
-#       subgroup = stimulus_genre_mixed, 
-       tau.common = FALSE,
-       prediction = TRUE)
-
-print(m.cor_subgroups)
-#forest(m.cor_subgroups,subgroup=TRUE)
-```
-
-- Idea: visualise the distributions of the model successes within studies (done in preprocessing)
-
-
-### Arousal: Best model
-
-```{r}
-#| warning: false
-#| eval: true
-
-# select regression studies with r2
-tmp <- dplyr::filter(R_summary,dimension=="arousal")
-#tmp <- dplyr::filter(R_studies,dimension=="arousal")
-dim(tmp)
-#tmp <- tmp[!is.na(tmp$values),]
-dim(tmp)
-#tmp<-drop_na(tmp)
-
-m.cor <- metacor(cor = valuesMax, 
-                 n = stimulus_n,
-                 studlab = citekey,
+                 studlab = citekey, # unique_id
                  data = tmp,
                  fixed = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 backtransf = TRUE,
-                 sm = "ZCOR",
+                 subgroup =  model_class_id,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor1)
+```
+
+#### Sub-division based on journals (engineering vs psych)
+
+```{r,results='asis'}
+S <- summarise(group_by(tmp,journal_type),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+```
+
+```{r}
+m.cor2 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  journal_type,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor2)
+```
+
+#### Sub-division based on N features
+
+```{r,results='asis'}
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
+S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+```
+
+
+```{r}
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+m.cor3 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  feature_n_categories,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor3)
+S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+print(S)
+
+```
+
+#### Sub-division based on N features and genres
+
+```{r, results='asis'}
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # removemissing values
+
+S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+
+m.cor4 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  feature_n_complexity_genre,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor4)
+```
+
+### Arousal
+
+#### Using all models
+
+```{r}
+R_studies <- read.csv("R_studies.csv")
+tmp <- dplyr::filter(R_studies,dimension=="arousal")
+#if all studies, remove two with NA values
+tmp <- tmp[!is.na(tmp$values),]
+#dim(tmp)
+
+# Take all models
+m.cor <- metacor(cor = values,     # values 
+                 n = stimulus_n,
+                 studlab = unique_id,
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "PM",# was REML, but we switch to Paule-Mandel because Langan et al., 2019
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Arousal: Summary")
+
+print(m.cor)
+
+print(FisherZInv(m.cor$TE.random))
+print(FisherZInv(m.cor$upper.random))
+print(FisherZInv(m.cor$lower.random))
+```
+
+#### Using the best model out of each study
+
+```{r}
+R_summary <- read.csv("R_summary.csv")
+
+# select regression studies with r2
+tmp <- dplyr::filter(R_summary,dimension=="arousal")
+#tmp <- dplyr::filter(R_studies,dimension=="valence")
+#dim(tmp)
+
+#if all studies, remove two
+#tmp <- tmp[!is.na(tmp$values),]
+#dim(tmp)
+
+## Disambiguate the studies
+tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
+
+# Max values
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = studyREF,#citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Arousal: Summary")
 
 print(m.cor)
+
+print(FisherZInv(m.cor$TE.random))
+print(FisherZInv(m.cor$upper.random))
+print(FisherZInv(m.cor$lower.random))
 ```
-### Trimmed analysis
-```{r}
-O <- find.outliers(m.cor)
-```
 
-
-
-#### Visualise (forest and funnel plots)
+### Explore heterogeneity
 
 ```{r}
-forest(m.cor,
+#| eval: true
+#| echo: true
+# Method 1: Give us the Egger's test about beta coefficient from funnel
+print(eggers.test(m.cor))
+
+# Method 2: Find the impact to the results when removing those outside the 95CI
+O <- find.outliers(m.cor) # 13 remaining out of 24
+print(O)
+# Method 3: Leave-out-out analysis etc for individual influence (not useful here)
+#infan <- InfluenceAnalysis(m.cor)
+
+# Method 4: Focus on 10% of most precise studies (Stanley, Jarrel, Doucouliagos 2010)
+thres<-quantile(m.cor$seTE,0.1)
+ind<-m.cor$seTE<=as.numeric(thres)
+m.cor10pct <- update(m.cor, subset = which(ind))
+
+# Method 5: P curve analysis (Simonsohn, Simmons & Nelson, 2015)
+pcurve(m.cor)
+```
+
+### Visualise (forest and funnel plots)
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+fig2a <- forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"))
-plot(eggers.test(m.cor))
+             leftlabs = c("Author", "g", "SE"),studlab = studyREF)
+
+fig2b<-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+library(forestplot)
+data<-tibble::tibble(mean=m.cor$cor,lower=FisherZInv(m.cor$lower),upper=FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
+data<-dplyr::arrange(data,mean)
+
+fp1 <- grid.grabExpr(print(data |>
+  forestplot(labeltext = c(study, n, cor),
+             xlab = "Correlation",
+             xticks = c(0, .25,.5,.75, 1),
+             clip = c(0, 1))|>
+    fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
+    fp_append_row(mean  = m.cor$TE.common,
+                lower = m.cor$lower.common,
+                upper = m.cor$upper.common,
+                study = "Summary",
+                n = sum(m.cor$n),
+                cor = round(m.cor$TE.common,2),
+                is.summary = TRUE) |>
+  fp_set_style(box = "grey50",
+               line = "grey20",
+               summary = "black",
+                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
+                                ticks = gpar(cex = 0.80),
+                                xlab  = gpar(cex = 0.80)))|>
+    fp_decorate_graph(grid = structure( m.cor$TE.common,gp = gpar(lty = 2, col = "grey30")))
+)
+)
+
+source('../etc/custom_funnel_plot.R')
+fp2 <- custom_funnel_plot(m.cor)
+
+gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1),heights=c(2,1))
 ```
 
-#### Explore qualities (in progress)
+
+### Sub-divisions
+
+#### Sub-division based on techniques
+
+```{r,results='asis'}
+S <- summarise(group_by(tmp,model_class_id),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+```
 
 ```{r}
-#| eval: false
-meta <- metagen(valuesMax, sqrt(valuesMax), 
-                data = tmp, 
-                studlab = tmp$citekey, 
-                comb.fixed = FALSE, 
-                method.tau = "PM")
-find.outliers(meta)
-infan <- InfluenceAnalysis(meta)
-print(eggers.test(meta))
-
+m.cor1 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  model_class_id,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor1)
 ```
 
-#### Subgroup analysis according to techniques
+#### Sub-division based on journals (engineering vs psych)
+
+```{r,results='asis'}
+S <- summarise(group_by(tmp,journal_type),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+```
 
 ```{r}
-update(m.cor, 
-       subgroup = model_class_id, 
-       tau.common = FALSE)
-m.cor_subgroups <- update(m.cor, 
-       subgroup = model_class_id, 
-       tau.common = FALSE)
-
-forest(m.cor_subgroups,subgroup=TRUE)
+m.cor2 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  journal_type,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor2)
 ```
 
-- Idea: visualise the distributions of the model successes within studies (done in preprocessing)
+#### Sub-division based on N features
+
+```{r,results='asis'}
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
+S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+```
+
 
 ```{r}
-#| eval: false
-g1 <- ggplot(tmp,aes(y=valuesMax,fill=model_class_id))+
-   geom_histogram(show.legend = T)+
-  facet_wrap(.~studyREF)+
-   coord_flip()+
-   theme_bw()
-g1
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+m.cor3 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  feature_n_categories,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor3)
+S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+print(S)
 
-# S <- summarise(group_by(tmp,citekey),maxvalue=max(values))
-# g<-ggplot(S,aes(y=maxvalue))+
-#   geom_histogram(bins = 14)+
-#   #facet_wrap(.~studyREF)+
-#   coord_flip()+
-#   theme_bw()
-# g
 ```
+
+#### Sub-division based on N features and genres
+
+```{r, results='asis'}
+tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # removemissing values
+
+S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+print(knitr::kable(S))
+
+m.cor4 <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = citekey, # unique_id
+                 data = tmp,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 subgroup =  feature_n_complexity_genre,
+#                 backtransf = TRUE,
+#                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Regression: Valence: Summary")
+print(m.cor4)
+```
+
 
 
 

@@ -269,6 +269,20 @@ g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
 
 g1
 ```
+
+## Feature N and genre split
+
+```{r}
+quantile(subset(R_studies,stimulus_genre_mixed=='SingleGenre')$feature_n,probs = seq(0,1,0.333))
+quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TRUE,probs = seq(0,1,0.333))
+
+# a combination of the two
+R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
+                                      breaks = c(0,15,501,653,10000),
+                                      labels = c("Small single genre study","Medium single genre/multigenre study","Medium-large single genre/multigenre study","Huge multigenre study"))
+table(R_studies$feature_n_complexity_genre)
+```
+
 ## Select a summary measure for valence and arousal separately
 
 Note: Before adding feature_n to the summary, they need to be cleaned!
@@ -375,6 +389,7 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
 
 table(R_studies$feature_n_complexity)
 ```
+
 ## Feature N and genre split
 
 ```{r}

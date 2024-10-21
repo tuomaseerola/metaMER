@@ -14,7 +14,7 @@ library(ggplot2,quietly = TRUE)
 library(ggrepel,quietly = TRUE)
 
 R_summary <- read.csv("../analysis/R_summary.csv")
-tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp <- dplyr::filter(R_summary,dimension=="arousal")
 tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
 
 # Max values
@@ -29,11 +29,11 @@ m.cor <- metacor(cor = valuesMax,     # values
                  #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+                 title = "MER: Regression: Arousal: Summary")
 
 #### Forest plot using forestplot
 library(forestplot)
-data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
+data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=format(round(m.cor$cor, digits=3), nsmall = 3))
 data<-dplyr::arrange(data,mean)
 
 fp1 <- grid.grabExpr(print(data |>
@@ -42,12 +42,12 @@ fp1 <- grid.grabExpr(print(data |>
              xticks = c(0, .25,.5,.75, 1),
              clip = c(0, 1))|>
     fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
-    fp_append_row(mean  = m.cor$TE.common,
-                lower = m.cor$lower.common,
-                upper = m.cor$upper.common,
+    fp_append_row(mean  = FisherZInv(m.cor$TE.random),
+                lower = FisherZInv(m.cor$lower.random),
+                upper = FisherZInv(m.cor$upper.random),
                 study = "Summary",
                 n = sum(m.cor$n),
-                cor = round(m.cor$TE.common,2),
+                cor = round(FisherZInv(m.cor$TE.random),3),
                 is.summary = TRUE) |>
   fp_set_style(box = "grey50",
                line = "grey20",

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaMER – preprocessing</title>
+<title>metaMER</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -134,12 +134,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,278 × 19
+<pre><code># A tibble: 1,284 × 19
    unique_id  citekey journal stimulus_genre model_category stimulus_n feature_n
    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;    
  1 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
  9 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
 10 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
-# ℹ 1,268 more rows
+# ℹ 1,274 more rows
 # ℹ 12 more variables: participant_n &lt;chr&gt;, feature_source &lt;chr&gt;,
 #   feature_reduction_method &lt;chr&gt;, library_id &lt;chr&gt;, model_id &lt;chr&gt;,
 #   feature_id &lt;chr&gt;, data_id &lt;chr&gt;, experiment_id &lt;chr&gt;, dimension &lt;chr&gt;,
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Flexible Discriminants</td>
-<td style="text-align: right;">399</td>
+<td style="text-align: right;">379</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
@@ -296,15 +296,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">250</td>
+<td style="text-align: right;">257</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">387</td>
+<td style="text-align: right;">384</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
-<td style="text-align: right;">128</td>
+<td style="text-align: right;">125</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unclassified</td>
+<td style="text-align: right;">25</td>
 </tr>
 </tbody>
 </table>
@@ -320,8 +324,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Flexible Discriminants</td>
-<td style="text-align: right;">173</td>
-<td style="text-align: right;">226</td>
+<td style="text-align: right;">177</td>
+<td style="text-align: right;">202</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
@@ -330,27 +334,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">174</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">186</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">265</td>
-<td style="text-align: right;">122</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">114</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
-<td style="text-align: right;">74</td>
-<td style="text-align: right;">54</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unclassified</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">nrow</span>(metaMER_results), <span class="st">"observations"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We have 1278 observations</p>
+<p>We have 1284 observations</p>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">We have"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey)), <span class="st">"studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We have 37 studies</p>
+<p>We have 36 studies</p>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'regression'</span>])), <span class="st">"are regression studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Where 23 are regression studies</p>
+<p>Where 22 are regression studies</p>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'classification'</span>])), <span class="st">"are classification studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Where 14 are classification studies</p>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we have some classification studies that also do regression and vice versa?</span></span>
@@ -369,11 +378,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">"regression"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "yang2021an"      "bai2016di"       "battcock2021in"  "beveridge2018po"
- [5] "chen2017co"      "chin2018pr"      "coutinho2017sh"  "deng2015em"     
- [9] "gingras2014be"   "grekow2018au"    "griffiths2021am" "hu2017cr"       
-[13] "koh2023me"       "markov2014mu"    "orjesek2022en"   "saizclar2022pr" 
-[17] "wang2021ac"      "wang2022co"      "wang2022cr"      "xie2020mu"      
-[21] "xu2021us"        "zhang2019us"     "zhang2023mo"    </code></pre>
+ [5] "chen2017co"      "coutinho2017sh"  "deng2015em"      "gingras2014be"  
+ [9] "grekow2018au"    "griffiths2021am" "hu2017cr"        "koh2023me"      
+[13] "markov2014mu"    "orjesek2022en"   "saizclar2022pr"  "wang2021ac"     
+[17] "wang2022co"      "wang2022cr"      "xie2020mu"       "xu2021us"       
+[21] "zhang2019us"     "zhang2023mo"    </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(metaMER_results, measure <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">'r'</span>,<span class="st">'ccc'</span>,<span class="st">'pcc'</span>,<span class="st">'cc'</span>,<span class="st">'r2'</span>,<span class="st">'R2'</span>)) <span class="co">#  </span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,24 +393,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>R_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R_studies,<span class="fu">str_detect</span>(statistic,<span class="st">'adjusted|ccc|pcc|cc|globalOptimal|localOptimal|mean|r2|r'</span>))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(R_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 354  23</code></pre>
+<pre><code>[1] 349  23</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>measure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
- cc ccc pcc   r  r2  R2 
-  2   6   4  24 313   5 </code></pre>
+ cc ccc pcc   r  r2 
+  2   6   4  24 313 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>measure, R_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
-      adjusted  cc globalOptimal localOptimal mean   r  r2
-  cc         0   2             0            0    0   0   0
-  ccc        0   0             0            0    4   0   2
-  pcc        0   0             0            0    4   0   0
-  r          0   0             0            0    4  18   2
-  r2        12   0             4            4   28   0 265
-  R2         0   0             0            0    5   0   0</code></pre>
+      adjusted  cc mean   r  r2
+  cc         0   2    0   0   0
+  ccc        0   0    4   0   2
+  pcc        0   0    4   0   0
+  r          0   0    4  18   2
+  r2        12   0   28   0 273</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'R2'</span>]<span class="ot">&lt;-</span><span class="fu">sqrt</span>(R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'R2'</span>]) <span class="co"># recode R2 into r</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]<span class="ot">&lt;-</span><span class="fu">sqrt</span>(R_studies<span class="sc">$</span>values[R_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'r2'</span>]) <span class="co"># recode R2 into r</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,11 +527,42 @@ arousal valence
 </div>
 </div>
 </section>
+<section id="feature-n-and-genre-split" class="level2">
+<h2 class="anchored" data-anchor-id="feature-n-and-genre-split">Feature N and genre split</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">subset</span>(R_studies,stimulus_genre_mixed<span class="sc">==</span><span class="st">'SingleGenre'</span>)<span class="sc">$</span>feature_n,<span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.333</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     0%   33.3%   66.6%   99.9% 
+  3.000  21.000  63.524 201.000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">subset</span>(R_studies,stimulus_genre_mixed<span class="sc">==</span><span class="st">'MultiGenre'</span>)<span class="sc">$</span>feature_n,<span class="at">na.rm=</span><span class="cn">TRUE</span>,<span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.333</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0% 33.3% 66.6% 99.9% 
+   15   548   653  6670 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a combination of the two</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity_genre <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="dv">501</span>,<span class="dv">653</span>,<span class="dv">10000</span>),</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Small single genre study"</span>,<span class="st">"Medium single genre/multigenre study"</span>,<span class="st">"Medium-large single genre/multigenre study"</span>,<span class="st">"Huge multigenre study"</span>))</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>feature_n_complexity_genre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                  Small single genre study 
+                                        22 
+      Medium single genre/multigenre study 
+                                        92 
+Medium-large single genre/multigenre study 
+                                        94 
+                     Huge multigenre study 
+                                        32 </code></pre>
+</div>
+</div>
+</section>
 <section id="select-a-summary-measure-for-valence-and-arousal-separately" class="level2">
 <h2 class="anchored" data-anchor-id="select-a-summary-measure-for-valence-and-arousal-separately">Select a summary measure for valence and arousal separately</h2>
 <p>Note: Before adding feature_n to the summary, they need to be cleaned!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -535,10 +574,10 @@ arousal valence
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>R_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(R_studies,dimension,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">journal_type=</span><span class="fu">first</span>(journal_type),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">feature_n_categories=</span><span class="fu">first</span>(feature_n_categories),<span class="at">stimulus_genre_mixed=</span><span class="fu">first</span>(stimulus_genre_mixed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>R_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(R_studies,dimension,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">journal_type=</span><span class="fu">first</span>(journal_type),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">feature_n_categories=</span><span class="fu">first</span>(feature_n_categories),<span class="at">stimulus_genre_mixed=</span><span class="fu">first</span>(stimulus_genre_mixed),<span class="at">feature_n_complexity_genre=</span><span class="fu">first</span>(feature_n_complexity_genre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'dimension'. You can override using the
 `.groups` argument.</code></pre>
@@ -549,46 +588,48 @@ arousal valence
 <h2 class="anchored" data-anchor-id="visualise-summary-on-two-dimensions">Visualise Summary on two dimensions</h2>
 <p>Add variation from within the studies (alternative models)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>R_summary_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_summary,<span class="at">id_cols =</span> citekey, <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> valuesMax)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_summary_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey))<span class="sc">+</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()<span class="sc">+</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>R_summary_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_summary,<span class="at">id_cols =</span> citekey, <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> valuesMax)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_summary_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey))<span class="sc">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()<span class="sc">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="do">## could be more informative when done with the full data</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>R_studies_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_studies,<span class="at">id_cols =</span> <span class="fu">c</span>(unique_id,citekey,model_class_id), <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> <span class="fu">c</span>(values),<span class="at">values_fn =</span> mean)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>R_studies_split<span class="ot">&lt;-</span><span class="fu">drop_na</span>(R_studies_split)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">max.overlaps=</span><span class="dv">50</span>,<span class="at">show.legend =</span> T,<span class="at">color=</span><span class="st">'white'</span>)<span class="sc">+</span></span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">## could be more informative when done with the full data</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>R_studies_split <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(R_studies,<span class="at">id_cols =</span> <span class="fu">c</span>(unique_id,citekey,model_class_id), <span class="at">names_from =</span> <span class="fu">c</span>(dimension), <span class="at">values_from =</span> <span class="fu">c</span>(values),<span class="at">values_fn =</span> mean)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>R_studies_split<span class="ot">&lt;-</span><span class="fu">drop_na</span>(R_studies_split)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 68 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: package 'ggrepel' was built under R version 4.4.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies_split,<span class="fu">aes</span>(<span class="at">x=</span>valence,<span class="at">y=</span>arousal,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="dv">3</span>, <span class="at">max.overlaps=</span><span class="dv">50</span>,<span class="at">show.legend =</span> T,<span class="at">color=</span><span class="st">'white'</span>)<span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">25</span>),<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 76 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -597,14 +638,14 @@ increasing max.overlaps</code></pre>
 <section id="plot-success-across-the-years" class="level2">
 <h2 class="anchored" data-anchor-id="plot-success-across-the-years">Plot success across the years</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add year!</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_match</span>(R_studies<span class="sc">$</span>citekey,<span class="st">'[0-9]+'</span>))</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>values,<span class="at">colour=</span>model_class_id))<span class="sc">+</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> T)<span class="sc">+</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>dimension)<span class="sc">+</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add year!</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">str_match</span>(R_studies<span class="sc">$</span>citekey,<span class="st">'[0-9]+'</span>))</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(R_studies,<span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>values,<span class="at">colour=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> T)<span class="sc">+</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>dimension)<span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 12 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -612,7 +653,7 @@ increasing max.overlaps</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -622,48 +663,48 @@ increasing max.overlaps</code></pre>
 <h2 class="anchored" data-anchor-id="simple-model-complexity-metric">Simple model complexity metric</h2>
 <p>Ratio of obs./features or just a classification based on feature n (quantiles).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved from the paper</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" before_selection = 45, after_selection = 6  "</span>] <span class="ot">&lt;-</span> <span class="dv">45</span> <span class="co">#resolved</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" model 1: 52, model 2 = 68, model 3 = 260, model 4 = 388 "</span>] <span class="ot">&lt;-</span> <span class="dv">388</span> <span class="co">#resolved</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" variable, 557 before feature selection "</span>] <span class="ot">&lt;-</span> <span class="dv">557</span> <span class="co">#resolved</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 50 PCA features "</span>] <span class="ot">&lt;-</span> <span class="dv">499</span> <span class="co">#resolved</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'pre_fitting = 21'</span>)] <span class="ot">&lt;-</span> <span class="dv">21</span></span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'548 dimensions'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'548; after reduct'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span></span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'60 handcrafted and filter bank'</span>)] <span class="ot">&lt;-</span> <span class="dv">3600</span></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'Features deep-learned from audio (not specified) but 1802 in DEAM'</span>)] <span class="ot">&lt;-</span> <span class="dv">260</span></span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'not specified'</span>)] <span class="ot">&lt;-</span> <span class="dv">3000</span> <span class="co"># under-estimation based openSmile features and the paper arguing that they have 15 stat moments</span></span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(R_studies<span class="sc">$</span>feature_n)</span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>,<span class="fl">0.666</span>),<span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved from the paper</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 15; 23 in table, but 15 reported  "</span>] <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co">#resolved</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" before_selection = 45, after_selection = 6  "</span>] <span class="ot">&lt;-</span> <span class="dv">45</span> <span class="co">#resolved</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" model 1: 52, model 2 = 68, model 3 = 260, model 4 = 388 "</span>] <span class="ot">&lt;-</span> <span class="dv">388</span> <span class="co">#resolved</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" variable, 557 before feature selection "</span>] <span class="ot">&lt;-</span> <span class="dv">557</span> <span class="co">#resolved</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[R_studies<span class="sc">$</span>feature_n<span class="sc">==</span><span class="st">" 50 PCA features "</span>] <span class="ot">&lt;-</span> <span class="dv">499</span> <span class="co">#resolved</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'pre_fitting = 21'</span>)] <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'548 dimensions'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'548; after reduct'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'60 handcrafted and filter bank'</span>)] <span class="ot">&lt;-</span> <span class="dv">3600</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'Features deep-learned from audio (not specified) but 1802 in DEAM'</span>)] <span class="ot">&lt;-</span> <span class="dv">260</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(R_studies<span class="sc">$</span>feature_n,<span class="st">'not specified'</span>)] <span class="ot">&lt;-</span> <span class="dv">3000</span> <span class="co"># under-estimation based openSmile features and the paper arguing that they have 15 stat moments</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(R_studies<span class="sc">$</span>feature_n)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>,<span class="fl">0.666</span>),<span class="at">na.rm =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  33.3%   66.6% 
 106.046 653.000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>),<span class="at">na.rm =</span> T)),</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.666</span>),<span class="at">na.rm =</span> T)),</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>                                                 <span class="dv">10000</span>),</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 236"</span>,<span class="st">"Feature n &gt; 236 &amp; &lt; 653"</span>,<span class="st">"Feature n &gt; 653"</span>))</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">300</span>,<span class="dv">10000</span>),</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 30"</span>,<span class="st">"Feature n &gt; 30 &amp; &lt; 300"</span>,<span class="st">"Feature n &gt; 300"</span>))</span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>feature_n_complexity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.333</span>),<span class="at">na.rm =</span> T)),</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(R_studies<span class="sc">$</span>feature_n,<span class="fu">c</span>(<span class="fl">0.666</span>),<span class="at">na.rm =</span> T)),</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>                                                 <span class="dv">10000</span>),</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 236"</span>,<span class="st">"Feature n &gt; 236 &amp; &lt; 653"</span>,<span class="st">"Feature n &gt; 653"</span>))</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">300</span>,<span class="dv">10000</span>),</span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 30"</span>,<span class="st">"Feature n &gt; 30 &amp; &lt; 300"</span>,<span class="st">"Feature n &gt; 300"</span>))</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>feature_n_complexity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
         Feature n &lt; 30 Feature n &gt; 30 &amp; &lt; 300        Feature n &gt; 300 
@@ -671,32 +712,63 @@ increasing max.overlaps</code></pre>
 </div>
 </div>
 </section>
+<section id="feature-n-and-genre-split-1" class="level2">
+<h2 class="anchored" data-anchor-id="feature-n-and-genre-split-1">Feature N and genre split</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">subset</span>(R_studies,stimulus_genre_mixed<span class="sc">==</span><span class="st">'SingleGenre'</span>)<span class="sc">$</span>feature_n,<span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.333</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     0%   33.3%   66.6%   99.9% 
+  3.000  21.000  63.524 201.000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(<span class="fu">subset</span>(R_studies,stimulus_genre_mixed<span class="sc">==</span><span class="st">'MultiGenre'</span>)<span class="sc">$</span>feature_n,<span class="at">na.rm=</span><span class="cn">TRUE</span>,<span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.333</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0% 33.3% 66.6% 99.9% 
+   15   548   653  6670 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a combination of the two</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>feature_n_complexity_genre <span class="ot">&lt;-</span> <span class="fu">cut</span>(R_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>,<span class="dv">501</span>,<span class="dv">653</span>,<span class="dv">10000</span>),</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Small single genre study"</span>,<span class="st">"Medium single genre/multigenre study"</span>,<span class="st">"Medium-large single genre/multigenre study"</span>,<span class="st">"Huge multigenre study"</span>))</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(R_studies<span class="sc">$</span>feature_n_complexity_genre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                  Small single genre study 
+                                        22 
+      Medium single genre/multigenre study 
+                                        92 
+Medium-large single genre/multigenre study 
+                                        94 
+                     Huge multigenre study 
+                                        32 </code></pre>
+</div>
+</div>
+</section>
 <section id="explore-feature_n_complexity-and-model-success" class="level2">
 <h2 class="anchored" data-anchor-id="explore-feature_n_complexity-and-model-success">Explore feature_n_complexity and model success</h2>
 <p>Needs to be done from the unsummarised data (<code>R_studies</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- drop_na(R_studies)</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> R_studies[<span class="sc">!</span><span class="fu">is.na</span>(R_studies<span class="sc">$</span>values),]</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">str_to_title</span>(tmp<span class="sc">$</span>dimension)</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>model_class_id<span class="ot">&lt;-</span><span class="fu">factor</span>(tmp<span class="sc">$</span>model_class_id,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Neural Nets"</span>,<span class="st">"Flexible Discriminants"</span>, <span class="st">"Kernel Smoothing, Additive and KNN"</span>, <span class="st">"Random Forests"</span>,<span class="st">"Linear Methods"</span>),</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Neural</span><span class="sc">\n</span><span class="st">Nets"</span>,<span class="st">"Flexible</span><span class="sc">\n</span><span class="st">Discriminants"</span>, <span class="st">"KS</span><span class="sc">\n</span><span class="st"> &amp; KNN"</span>, <span class="st">"Random</span><span class="sc">\n</span><span class="st">Forests"</span>, <span class="st">"Linear</span><span class="sc">\n</span><span class="st">Methods"</span>))</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">x=</span>model_class_id,<span class="at">y=</span>values,<span class="at">color=</span>citekey,<span class="at">label=</span>citekey,<span class="at">shape=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="fu">aes</span>(<span class="at">fill=</span>citekey),<span class="at">point_interval=</span><span class="st">"mean_qi"</span>, <span class="at">trim=</span><span class="cn">FALSE</span>, <span class="at">expand=</span><span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,<span class="at">adjust =</span> <span class="fl">1.25</span>, <span class="at">density=</span><span class="st">"bounded"</span>, <span class="at">point_size=</span><span class="dv">3</span>,<span class="at">scale =</span> <span class="dv">1</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">show.legend =</span> F,<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">3</span>))<span class="sc">+</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_label_repel(size=2,max.overlaps = 50)+</span></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(dimension<span class="sc">~</span>feature_n_complexity)<span class="sc">+</span></span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Correlation Coefficient"</span>)<span class="sc">+</span></span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Model Technique"</span>)<span class="sc">+</span></span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>))<span class="sc">+</span></span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> model_class_id, <span class="at">y =</span> values, <span class="at">label =</span> studyREF),</span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean,<span class="at">show.legend =</span> F)<span class="sc">+</span></span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tmp &lt;- drop_na(R_studies)</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> R_studies[<span class="sc">!</span><span class="fu">is.na</span>(R_studies<span class="sc">$</span>values),]</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">str_to_title</span>(tmp<span class="sc">$</span>dimension)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>model_class_id<span class="ot">&lt;-</span><span class="fu">factor</span>(tmp<span class="sc">$</span>model_class_id,</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Neural Nets"</span>,<span class="st">"Flexible Discriminants"</span>, <span class="st">"Kernel Smoothing, Additive and KNN"</span>, <span class="st">"Random Forests"</span>,<span class="st">"Linear Methods"</span>),</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Neural</span><span class="sc">\n</span><span class="st">Nets"</span>,<span class="st">"Flexible</span><span class="sc">\n</span><span class="st">Discriminants"</span>, <span class="st">"KS</span><span class="sc">\n</span><span class="st"> &amp; KNN"</span>, <span class="st">"Random</span><span class="sc">\n</span><span class="st">Forests"</span>, <span class="st">"Linear</span><span class="sc">\n</span><span class="st">Methods"</span>))</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">x=</span>model_class_id,<span class="at">y=</span>values,<span class="at">color=</span>citekey,<span class="at">label=</span>citekey,<span class="at">shape=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="fu">aes</span>(<span class="at">fill=</span>citekey),<span class="at">point_interval=</span><span class="st">"mean_qi"</span>, <span class="at">trim=</span><span class="cn">FALSE</span>, <span class="at">expand=</span><span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,<span class="at">adjust =</span> <span class="fl">1.25</span>, <span class="at">density=</span><span class="st">"bounded"</span>, <span class="at">point_size=</span><span class="dv">3</span>,<span class="at">scale =</span> <span class="dv">1</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">show.legend =</span> F,<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">3</span>))<span class="sc">+</span></span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_label_repel(size=2,max.overlaps = 50)+</span></span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(dimension<span class="sc">~</span>feature_n_complexity)<span class="sc">+</span></span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Correlation Coefficient"</span>)<span class="sc">+</span></span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Model Technique"</span>)<span class="sc">+</span></span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>))<span class="sc">+</span></span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> model_class_id, <span class="at">y =</span> values, <span class="at">label =</span> studyREF),</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean,<span class="at">show.legend =</span> F)<span class="sc">+</span></span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 72 rows containing missing values or values outside the scale range
 (`geom_slabinterval()`).</code></pre>
@@ -728,25 +800,25 @@ increasing max.overlaps</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-descriptive-table-for-the-manuscript" class="level2">
 <h2 class="anchored" data-anchor-id="create-descriptive-table-for-the-manuscript">Create descriptive table for the manuscript</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>study_n <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(R_studies<span class="sc">$</span>citekey))</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>model_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(R_studies)</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>t<span class="ot">&lt;-</span><span class="fu">table</span>(R_studies<span class="sc">$</span>model_class_id)</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(t),<span class="st">': '</span>, <span class="fu">as.numeric</span>(t))</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>model_types_n <span class="ot">&lt;-</span> <span class="fu">str_c</span>(t2,<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>feature_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>stimulus_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>TR <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>study_n <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(R_studies<span class="sc">$</span>citekey))</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>model_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(R_studies)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>t<span class="ot">&lt;-</span><span class="fu">table</span>(R_studies<span class="sc">$</span>model_class_id)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(t),<span class="st">': '</span>, <span class="fu">as.numeric</span>(t))</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>model_types_n <span class="ot">&lt;-</span> <span class="fu">str_c</span>(t2,<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>feature_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(R_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>TR<span class="sc">$</span>stimulus_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(R_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$study_n
 [1] 24
@@ -755,7 +827,7 @@ $model_n
 [1] 258
 
 $model_types_n
-[1] "Flexible Discriminants: 64\nKernel Smoothing, Additive and KNN: 24\nLinear Methods: 74\nNeural Nets: 74\nRandom Forests: 22"
+[1] "Flexible Discriminants: 58\nKernel Smoothing, Additive and KNN: 24\nLinear Methods: 80\nNeural Nets: 74\nRandom Forests: 22"
 
 $feature_Desc
 [1] "Min=3, Md=548, Max=6670"
@@ -768,58 +840,58 @@ $stimulus_Desc
 <section id="export-as-csv" class="level2">
 <h2 class="anchored" data-anchor-id="export-as-csv">Export as csv</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_studies,<span class="at">file =</span> <span class="st">'R_studies.csv'</span>)</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_summary,<span class="at">file =</span> <span class="st">'R_summary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_studies,<span class="at">file =</span> <span class="st">'R_studies.csv'</span>)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> R_summary,<span class="at">file =</span> <span class="st">'R_summary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="pull-data-to-analyse-classification-studies" class="level1">
 <h1>Pull data to analyse classification studies</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="ot">&lt;-</span>metaMER_results</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(C_studies<span class="sc">$</span>measure)) <span class="co"># 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="ot">&lt;-</span>metaMER_results</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(C_studies<span class="sc">$</span>measure)) <span class="co"># 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(C_studies<span class="sc">$</span>statistic)) <span class="co"># 426</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(C_studies<span class="sc">$</span>statistic)) <span class="co"># 426</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 426</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>statistic[<span class="fu">is.na</span>(C_studies<span class="sc">$</span>statistic)]<span class="ot">&lt;-</span><span class="st">'acc'</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc|accuracy|auc|classification|f1|fscore|fvalue|kappa|precision|recall'</span>)) <span class="co">#</span></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>statistic[<span class="fu">is.na</span>(C_studies<span class="sc">$</span>statistic)]<span class="ot">&lt;-</span><span class="st">'acc'</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc|accuracy|auc|classification|f1|fscore|fvalue|kappa|precision|recall'</span>)) <span class="co">#</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
       accuracy            auc classification             f1         fscore 
-           264              4              2              6              8 
+           313              4              2              6              8 
         fvalue          kappa            mcc      precision         recall 
              2             40             40             12             12 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 390  23</code></pre>
+<pre><code>[1] 439  23</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    acc  lower   mean median   null pvalue  upper 
-   160     40     55     15     40     40     40 </code></pre>
+   160     40     67     52     40     40     40 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(statistic,<span class="st">'mean|median|acc'</span>)) <span class="co">#  </span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(statistic,<span class="st">'mean|median|acc'</span>)) <span class="co">#  </span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 230  23</code></pre>
+<pre><code>[1] 279  23</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(C_studies<span class="sc">$</span>citekey))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(C_studies<span class="sc">$</span>citekey))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                
                  acc mean median
-  accuracy        48   41     15
+  accuracy        48   53     52
   auc              4    0      0
   classification   0    2      0
   f1               4    2      0
@@ -830,7 +902,7 @@ $stimulus_Desc
   precision        8    4      0
   recall           8    4      0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                
                  agarwal2021an alvarez2023ri bai2016di bai2017mu
@@ -858,7 +930,7 @@ $stimulus_Desc
   recall                          0            0              8        0
                 
                  nguyen2017an panda2020no sorussa2020em yeh2014po zhang2016br
-  accuracy                  2           1             4         2          21
+  accuracy                  2           1             4         2          54
   auc                       0           0             0         0           0
   classification            0           0             0         0           0
   f1                        0           0             0         0           0
@@ -870,7 +942,7 @@ $stimulus_Desc
   recall                    0           0             0         2           0
                 
                  zhang2017fe
-  accuracy                16
+  accuracy                32
   auc                      0
   classification           0
   f1                       0
@@ -881,7 +953,7 @@ $stimulus_Desc
   precision                0
   recall                   0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>statistic,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>statistic,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          agarwal2021an alvarez2023ri bai2016di bai2017mu bhuvanakumar2023em
@@ -896,33 +968,33 @@ $stimulus_Desc
         
          sorussa2020em yeh2014po zhang2016br zhang2017fe
   acc               12         0           0           0
-  mean               0         8          14           8
-  median             0         0           7           8</code></pre>
+  mean               0         8          18          16
+  median             0         0          36          16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ToDo</span></span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># how to convert accuracy (precision, recall, f) into kappa or mcc</span></span>
-<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="co"># There IS NO solution unfortunately, accuracy and mcc can vary independently, but</span></span>
-<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co"># see Chicco and Jurman, 2020, https://doi.org/10.1186/s12864-019-6413-7</span></span>
-<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># which shows that MCC is the best. The paer compares accuracy and F1 to MCC </span></span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and shows high correlations between accuracy and MCC (r=0.90-0.92). </span></span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co"># It is only the exceptions (unbalanced datasets with binary classification) that deliver major discrepancies. Our dataset does not seem to be having these, so</span></span>
-<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co"># perhaps we can equate accuracy with MCC in a minority of cases.</span></span>
-<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion</span></span>
-<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert one 'classification' into accuracy (bai2017mu)</span></span>
-<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co"># convert one 'f1' into accuracy (hu2022de)</span></span>
-<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span>] <span class="ot">&lt;-</span> <span class="st">'accuracy'</span></span>
-<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'f1'</span>]<span class="ot">&lt;-</span><span class="st">'accuracy'</span></span>
-<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ToDo</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co"># how to convert accuracy (precision, recall, f) into kappa or mcc</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co"># There IS NO solution unfortunately, accuracy and mcc can vary independently, but</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co"># see Chicco and Jurman, 2020, https://doi.org/10.1186/s12864-019-6413-7</span></span>
+<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="co"># which shows that MCC is the best. The paer compares accuracy and F1 to MCC </span></span>
+<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and shows high correlations between accuracy and MCC (r=0.90-0.92). </span></span>
+<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="co"># It is only the exceptions (unbalanced datasets with binary classification) that deliver major discrepancies. Our dataset does not seem to be having these, so</span></span>
+<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="co"># perhaps we can equate accuracy with MCC in a minority of cases.</span></span>
+<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion</span></span>
+<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert one 'classification' into accuracy (bai2017mu)</span></span>
+<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a><span class="co"># convert one 'f1' into accuracy (hu2022de)</span></span>
+<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span>] <span class="ot">&lt;-</span> <span class="st">'accuracy'</span></span>
+<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'f1'</span>]<span class="ot">&lt;-</span><span class="st">'accuracy'</span></span>
+<span id="cb100-15"><a href="#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 230  23</code></pre>
+<pre><code>[1] 279  23</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc|accuracy'</span>)) <span class="co">#  </span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc|accuracy'</span>)) <span class="co">#  </span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 150  23</code></pre>
+<pre><code>[1] 199  23</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          
            agarwal2021an alvarez2023ri bai2016di bai2017mu bhuvanakumar2023em
@@ -934,29 +1006,29 @@ $stimulus_Desc
   mcc                 6              0        0            2           1
           
            sorussa2020em yeh2014po zhang2016br zhang2017fe
-  accuracy             4         2          21          16
+  accuracy             4         2          54          32
   mcc                  4         0           0           0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take accuracy as MCC in those studies that have not specified mcc</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>accuracy_converted_to_mcc <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>accuracy_converted_to_mcc[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2016di'</span> <span class="sc">|</span> </span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span> <span class="sc">|</span> </span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hizlisoy2021mu'</span> <span class="sc">|</span></span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">|</span>    </span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'yeh2014po'</span> <span class="sc">|</span></span>
-<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2016br'</span> <span class="sc">|</span></span>
-<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2017fe'</span> </span>
-<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'accuracy'</span>]<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2016di'</span> <span class="sc">|</span> </span>
-<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span> <span class="sc">|</span> </span>
-<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hizlisoy2021mu'</span> <span class="sc">|</span></span>
-<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">|</span>    </span>
-<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'yeh2014po'</span> <span class="sc">|</span></span>
-<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2016br'</span> <span class="sc">|</span></span>
-<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2017fe'</span> </span>
-<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'accuracy'</span>]<span class="ot">&lt;-</span><span class="st">'mcc'</span></span>
-<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take accuracy as MCC in those studies that have not specified mcc</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>accuracy_converted_to_mcc <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>accuracy_converted_to_mcc[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2016di'</span> <span class="sc">|</span> </span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span> <span class="sc">|</span> </span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hizlisoy2021mu'</span> <span class="sc">|</span></span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">|</span>    </span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'yeh2014po'</span> <span class="sc">|</span></span>
+<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2016br'</span> <span class="sc">|</span></span>
+<span id="cb106-9"><a href="#cb106-9" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2017fe'</span> </span>
+<span id="cb106-10"><a href="#cb106-10" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'accuracy'</span>]<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb106-11"><a href="#cb106-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-12"><a href="#cb106-12" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>measure[C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2016di'</span> <span class="sc">|</span> </span>
+<span id="cb106-13"><a href="#cb106-13" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'bai2017mu'</span> <span class="sc">|</span> </span>
+<span id="cb106-14"><a href="#cb106-14" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hizlisoy2021mu'</span> <span class="sc">|</span></span>
+<span id="cb106-15"><a href="#cb106-15" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'hu2022de'</span> <span class="sc">|</span>    </span>
+<span id="cb106-16"><a href="#cb106-16" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'yeh2014po'</span> <span class="sc">|</span></span>
+<span id="cb106-17"><a href="#cb106-17" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2016br'</span> <span class="sc">|</span></span>
+<span id="cb106-18"><a href="#cb106-18" aria-hidden="true" tabindex="-1"></a>                  C_studies<span class="sc">$</span>citekey<span class="sc">==</span><span class="st">'zhang2017fe'</span> </span>
+<span id="cb106-19"><a href="#cb106-19" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">&amp;</span> C_studies<span class="sc">$</span>measure<span class="sc">==</span><span class="st">'accuracy'</span>]<span class="ot">&lt;-</span><span class="st">'mcc'</span></span>
+<span id="cb106-20"><a href="#cb106-20" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          
            agarwal2021an alvarez2023ri bai2016di bai2017mu bhuvanakumar2023em
@@ -969,43 +1041,43 @@ $stimulus_Desc
           
            sorussa2020em yeh2014po zhang2016br zhang2017fe
   accuracy             4         0           0           0
-  mcc                  4         2          21          16</code></pre>
+  mcc                  4         2          54          32</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc'</span>)) <span class="co">#  </span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(C_studies, <span class="fu">str_detect</span>(measure,<span class="st">'mcc'</span>)) <span class="co">#  </span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(C_studies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 108  24</code></pre>
+<pre><code>[1] 157  24</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>accuracy_converted_to_mcc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>measure,C_studies<span class="sc">$</span>accuracy_converted_to_mcc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
-       0  1
-  mcc 40 68</code></pre>
+        0   1
+  mcc  40 117</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(C_studies<span class="sc">$</span>values,<span class="at">y =</span> C_studies<span class="sc">$</span>accuracy_converted_to_mcc) <span class="co"># There is a difference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(C_studies<span class="sc">$</span>values,<span class="at">y =</span> C_studies<span class="sc">$</span>accuracy_converted_to_mcc) <span class="co"># There is a difference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
 
 data:  C_studies$values and C_studies$accuracy_converted_to_mcc
-t = 2.3583, df = 137.37, p-value = 0.01977
+t = -0.10368, df = 200.6, p-value = 0.9175
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- 0.01905342 0.21687299
+ -0.07763623  0.06987953
 sample estimates:
 mean of x mean of y 
-0.7475928 0.6296296 </code></pre>
+0.7413446 0.7452229 </code></pre>
 </div>
 </div>
 <section id="get-the-number-of-categories-in-the-classification-task" class="level4">
 <h4 class="anchored" data-anchor-id="get-the-number-of-categories-in-the-classification-task">Get the number of categories in the classification task</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> metaMER_results</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>tmp2 <span class="ot">&lt;-</span> tmp[<span class="fu">which</span>(tmp<span class="sc">$</span>statistic<span class="sc">==</span><span class="st">'n'</span>),]</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>no_of_classes <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp2,citekey),<span class="fu">first</span>(values))</span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(no_of_classes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> metaMER_results</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>tmp2 <span class="ot">&lt;-</span> tmp[<span class="fu">which</span>(tmp<span class="sc">$</span>statistic<span class="sc">==</span><span class="st">'n'</span>),]</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>no_of_classes <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp2,citekey),<span class="fu">first</span>(values))</span>
+<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(no_of_classes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 14 × 2
+<pre><code># A tibble: 12 × 2
    citekey            `first(values)`
    &lt;chr&gt;                        &lt;dbl&gt;
  1 agarwal2021an                    4
@@ -1019,25 +1091,23 @@ mean of x mean of y
  9 nguyen2017an                     6
 10 panda2020no                      4
 11 sorussa2020em                    8
-12 yeh2014po                        4
-13 zhang2016br                      4
-14 zhang2017fe                      4</code></pre>
+12 yeh2014po                        4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(no_of_classes<span class="sc">$</span><span class="st">`</span><span class="at">first(values)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(no_of_classes<span class="sc">$</span><span class="st">`</span><span class="at">first(values)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(tmp,tmp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(tmp,tmp2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="homogenise-the-stimulus-n" class="level2">
 <h2 class="anchored" data-anchor-id="homogenise-the-stimulus-n">Homogenise the stimulus N</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>stimulus_n)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>stimulus_n)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
                                                                                                                     387   
@@ -1045,7 +1115,7 @@ mean of x mean of y
                                                                                                                     124   
                                                                                                                         8 
                                                                                                                     171   
-                                                                                                                       37 
+                                                                                                                       86 
                                                                                                                     1802  
                                                                                                                         4 
                                                                                                                     300   
@@ -1067,91 +1137,95 @@ mean of x mean of y
                                                                    total: 564; unambiguous: 416, circular validation: 39  
                                                                                                                         6 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deal with four studies involving multiple datasets: </span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" 429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)  "</span>] <span class="ot">&lt;-</span> <span class="dv">429</span> <span class="co"># resolved from the paper</span></span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" 5192; 12 per user in user validation (not included here due to little information),   AcousticBrainz validation: 60000  "</span>] <span class="ot">&lt;-</span> <span class="dv">5192</span> <span class="co"># resolved</span></span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" ISMIR2012: 2886, NJU_V1: 777, Hindi: 1037  "</span>] <span class="ot">&lt;-</span> <span class="dv">2886</span><span class="sc">+</span><span class="dv">777</span><span class="sc">+</span><span class="dv">1037</span> <span class="co"># decided to take this from validation</span></span>
-<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" total: 564; unambiguous: 416, circular validation: 39 "</span>] <span class="ot">&lt;-</span> <span class="dv">564</span> <span class="co"># </span></span>
-<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="co">#table(C_studies$stimulus_n)</span></span>
-<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(C_studies<span class="sc">$</span>stimulus_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deal with four studies involving multiple datasets: </span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" 429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)  "</span>] <span class="ot">&lt;-</span> <span class="dv">429</span> <span class="co"># resolved from the paper</span></span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" 5192; 12 per user in user validation (not included here due to little information),   AcousticBrainz validation: 60000  "</span>] <span class="ot">&lt;-</span> <span class="dv">5192</span> <span class="co"># resolved</span></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" ISMIR2012: 2886, NJU_V1: 777, Hindi: 1037  "</span>] <span class="ot">&lt;-</span> <span class="dv">2886</span><span class="sc">+</span><span class="dv">777</span><span class="sc">+</span><span class="dv">1037</span> <span class="co"># decided to take this from validation</span></span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n[C_studies<span class="sc">$</span>stimulus_n<span class="sc">==</span><span class="st">" total: 564; unambiguous: 416, circular validation: 39 "</span>] <span class="ot">&lt;-</span> <span class="dv">564</span> <span class="co"># </span></span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="co">#table(C_studies$stimulus_n)</span></span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>stimulus_n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(C_studies<span class="sc">$</span>stimulus_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="diagnostics-1" class="level2">
 <h2 class="anchored" data-anchor-id="diagnostics-1">Diagnostics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>values,<span class="at">fill=</span>citekey))<span class="sc">+</span></span>
-<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>model_class_id)<span class="sc">+</span></span>
-<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>()<span class="sc">+</span></span>
-<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
-<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>g1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>values,<span class="at">fill=</span>citekey))<span class="sc">+</span></span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>model_class_id)<span class="sc">+</span></span>
+<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>()<span class="sc">+</span></span>
+<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>))</span>
+<span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-9"><a href="#cb121-9" aria-hidden="true" tabindex="-1"></a>g1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-a-summary-measure-for-valence-and-arousal-separately-1" class="level2">
 <h2 class="anchored" data-anchor-id="select-a-summary-measure-for-valence-and-arousal-separately-1">Select a summary measure for valence and arousal separately</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(C_studies<span class="sc">$</span>citekey)</span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(C_studies,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id), <span class="at">stimulus_genre_mixed=</span><span class="fu">first</span>(stimulus_genre_mixed),<span class="at">journal_type =</span> <span class="fu">first</span>(journal_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(C_studies<span class="sc">$</span>citekey)</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(C_studies,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id), <span class="at">stimulus_genre_mixed=</span><span class="fu">first</span>(stimulus_genre_mixed),<span class="at">journal_type =</span> <span class="fu">first</span>(journal_type))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualise-summary" class="level2">
 <h2 class="anchored" data-anchor-id="visualise-summary">Visualise Summary</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_summary,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>valuesMax,<span class="at">label=</span>citekey,<span class="at">color=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>)<span class="sc">+</span></span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
-<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_summary,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>valuesMax,<span class="at">label=</span>citekey,<span class="at">color=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>)<span class="sc">+</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>g2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_summary,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>valuesMax,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id))<span class="sc">+</span></span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
-<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_summary,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>valuesMax,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
+<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a>g3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-29-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="do">## could be more informative when done with the full data</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(C_studies<span class="sc">$</span>citekey)</span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>values,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
-<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
-<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.2</span>, <span class="at">max.overlaps=</span><span class="dv">50</span>,<span class="at">show.legend =</span> T,<span class="at">color=</span><span class="st">'white'</span>)<span class="sc">+</span></span>
-<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+</span></span>
-<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_y_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+</span></span>
-<span id="cb111-11"><a href="#cb111-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb111-12"><a href="#cb111-12" aria-hidden="true" tabindex="-1"></a>g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="do">## could be more informative when done with the full data</span></span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(C_studies<span class="sc">$</span>citekey)</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>stimulus_n,<span class="at">y=</span>values,<span class="at">label=</span>citekey,<span class="at">color=</span>model_class_id,<span class="at">fill=</span>model_class_id))<span class="sc">+</span></span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.2</span>, <span class="at">max.overlaps=</span><span class="dv">50</span>,<span class="at">show.legend =</span> T,<span class="at">color=</span><span class="st">'white'</span>)<span class="sc">+</span></span>
+<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+</span></span>
+<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_y_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+</span></span>
+<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a>g4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 19 rows containing missing values or values outside the scale range
+<pre><code>Warning: Removed 30 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 19 rows containing missing values or values outside the scale range
+<pre><code>Warning: Removed 30 rows containing missing values or values outside the scale range
 (`geom_label_repel()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 30 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-29-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1160,13 +1234,13 @@ mean of x mean of y
 <section id="simple-model-complexity-metric-based-on-feature_n" class="level2">
 <h2 class="anchored" data-anchor-id="simple-model-complexity-metric-based-on-feature_n">Simple model complexity metric based on feature_n</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  'eight different non‐text‐dependent features are employed; they are rhythm, timbre,intensity, chromagram, MFCC, OSC, SSDs, and DWCH'  
                                                                                                                                      9 
                                                                                                                                  119   
-                                                                                                                                    21 
+                                                                                                                                    54 
                                                                                                                                  122   
                                                                                                                                      4 
                                                                                                                     126, retained 97   
@@ -1184,7 +1258,7 @@ mean of x mean of y
                                                                               548; after reduction, 139 for PCA and 276 for ReliefF    
                                                                                                                                     15 
                                                                                        8; 3 after shrinkage-method feature selection   
-                                                                                                                                    16 
+                                                                                                                                    32 
                                                                                                                                8904    
                                                                                                                                      8 
                                                                                                                     between 9 and 10   
@@ -1192,49 +1266,49 @@ mean of x mean of y
                                                                   summarize feature categories, but aren't explicit about which ones   
                                                                                                                                     16 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'eight different '</span>)]<span class="ot">&lt;-</span><span class="dv">600</span> <span class="co"># arbitrary!</span></span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'126, retained 97'</span>)]<span class="ot">&lt;-</span><span class="dv">126</span> </span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'1702; best model uses 100 after reduction'</span>)]<span class="ot">&lt;-</span><span class="dv">1702</span> <span class="co">#  arbitrary!</span></span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548; after reduction, '</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548 dimensions'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548. Post-reduction'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
-<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'8; 3 after'</span>)]<span class="ot">&lt;-</span><span class="dv">8</span> </span>
-<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'between 9 and 10'</span>)]<span class="ot">&lt;-</span><span class="dv">10</span> </span>
-<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'summarize feature'</span>)]<span class="ot">&lt;-</span><span class="dv">600</span> <span class="co"># arbitrary</span></span>
-<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'eight different '</span>)]<span class="ot">&lt;-</span><span class="dv">600</span> <span class="co"># arbitrary!</span></span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'126, retained 97'</span>)]<span class="ot">&lt;-</span><span class="dv">126</span> </span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'1702; best model uses 100 after reduction'</span>)]<span class="ot">&lt;-</span><span class="dv">1702</span> <span class="co">#  arbitrary!</span></span>
+<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548; after reduction, '</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
+<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548 dimensions'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
+<span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'548. Post-reduction'</span>)] <span class="ot">&lt;-</span> <span class="dv">548</span> </span>
+<span id="cb131-7"><a href="#cb131-7" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'8; 3 after'</span>)]<span class="ot">&lt;-</span><span class="dv">8</span> </span>
+<span id="cb131-8"><a href="#cb131-8" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'between 9 and 10'</span>)]<span class="ot">&lt;-</span><span class="dv">10</span> </span>
+<span id="cb131-9"><a href="#cb131-9" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n[<span class="fu">str_detect</span>(C_studies<span class="sc">$</span>feature_n,<span class="st">'summarize feature'</span>)]<span class="ot">&lt;-</span><span class="dv">600</span> <span class="co"># arbitrary</span></span>
+<span id="cb131-10"><a href="#cb131-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    119      122       231        3     397    8904          10      126 
-      21        4        4        2        2        8        2        6 
+      54        4        4        2        2        8        2        6 
     1702      548      600        8 
-       1       17       25       16 </code></pre>
+       1       17       25       32 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(C_studies<span class="sc">$</span>feature_n)</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>feature_n))<span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(C_studies<span class="sc">$</span>feature_n)</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(C_studies,<span class="fu">aes</span>(<span class="at">x=</span>feature_n))<span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(quantile(C_studies$feature_n,c(0.333,0.666),na.rm = TRUE))</span></span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)</span></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign</span></span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(C_studies<span class="sc">$</span>feature_n,</span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">300</span>,</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>                                                 <span class="dv">10000</span>),</span>
-<span id="cb120-8"><a href="#cb120-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 30"</span>,<span class="st">"Feature n &gt; 30 &amp; &lt; 300"</span>,<span class="st">"Feature n &gt; 300"</span>))</span>
-<span id="cb120-9"><a href="#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n_complexity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(quantile(C_studies$feature_n,c(0.333,0.666),na.rm = TRUE))</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="co">#quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)</span></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign</span></span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a>C_studies<span class="sc">$</span>feature_n_complexity <span class="ot">&lt;-</span> <span class="fu">cut</span>(C_studies<span class="sc">$</span>feature_n,</span>
+<span id="cb135-6"><a href="#cb135-6" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">300</span>,</span>
+<span id="cb135-7"><a href="#cb135-7" aria-hidden="true" tabindex="-1"></a>                                                 <span class="dv">10000</span>),</span>
+<span id="cb135-8"><a href="#cb135-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feature n &lt; 30"</span>,<span class="st">"Feature n &gt; 30 &amp; &lt; 300"</span>,<span class="st">"Feature n &gt; 300"</span>))</span>
+<span id="cb135-9"><a href="#cb135-9" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(C_studies<span class="sc">$</span>feature_n_complexity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
         Feature n &lt; 30 Feature n &gt; 30 &amp; &lt; 300        Feature n &gt; 300 
-                    20                     35                     53 </code></pre>
+                    36                     68                     53 </code></pre>
 </div>
 </div>
 </section>
@@ -1242,26 +1316,26 @@ mean of x mean of y
 <h2 class="anchored" data-anchor-id="explore-feature_n_complexity-and-model-success-1">Explore feature_n_complexity and model success</h2>
 <p>Needs to be done from the unsummarised data (<code>C_studies</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(C_studies)</span>
-<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-4"><a href="#cb122-4" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">str_to_title</span>(tmp<span class="sc">$</span>dimension)</span>
-<span id="cb122-5"><a href="#cb122-5" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>model_class_id<span class="ot">&lt;-</span><span class="fu">factor</span>(tmp<span class="sc">$</span>model_class_id,</span>
-<span id="cb122-6"><a href="#cb122-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Neural Nets"</span>,<span class="st">"Flexible Discriminants"</span>, <span class="st">"Kernel Smoothing, Additive and KNN"</span>, <span class="st">"Random Forests"</span>,<span class="st">"Linear Methods"</span>),</span>
-<span id="cb122-7"><a href="#cb122-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Neural</span><span class="sc">\n</span><span class="st">Nets"</span>,<span class="st">"Flexible</span><span class="sc">\n</span><span class="st">Discriminants"</span>, <span class="st">"KS</span><span class="sc">\n</span><span class="st"> &amp; KNN"</span>, <span class="st">"Random</span><span class="sc">\n</span><span class="st">Forests"</span>, <span class="st">"Linear</span><span class="sc">\n</span><span class="st">Methods"</span>))</span>
-<span id="cb122-8"><a href="#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-9"><a href="#cb122-9" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">x=</span>model_class_id,<span class="at">y=</span>values,<span class="at">color=</span>citekey,<span class="at">label=</span>citekey,<span class="at">shape=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
-<span id="cb122-10"><a href="#cb122-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="fu">aes</span>(<span class="at">fill=</span>citekey),<span class="at">point_interval=</span><span class="st">"mean_qi"</span>, <span class="at">trim=</span><span class="cn">FALSE</span>, <span class="at">expand=</span><span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,<span class="at">adjust =</span> <span class="fl">1.25</span>, <span class="at">density=</span><span class="st">"bounded"</span>, <span class="at">point_size=</span><span class="dv">3</span>,<span class="at">scale =</span> <span class="dv">1</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb122-11"><a href="#cb122-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">show.legend =</span> F,<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">3</span>))<span class="sc">+</span></span>
-<span id="cb122-12"><a href="#cb122-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_label_repel(size=2,max.overlaps = 50)+</span></span>
-<span id="cb122-13"><a href="#cb122-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>feature_n_complexity)<span class="sc">+</span></span>
-<span id="cb122-14"><a href="#cb122-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Correlation Coefficient"</span>)<span class="sc">+</span></span>
-<span id="cb122-15"><a href="#cb122-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Model Technique"</span>)<span class="sc">+</span></span>
-<span id="cb122-16"><a href="#cb122-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>))<span class="sc">+</span></span>
-<span id="cb122-17"><a href="#cb122-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> model_class_id, <span class="at">y =</span> values, <span class="at">label =</span> studyREF),</span>
-<span id="cb122-18"><a href="#cb122-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean,<span class="at">show.legend =</span> F)<span class="sc">+</span></span>
-<span id="cb122-19"><a href="#cb122-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb122-20"><a href="#cb122-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(C_studies)</span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="#cb137-4" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>dimension<span class="ot">&lt;-</span><span class="fu">str_to_title</span>(tmp<span class="sc">$</span>dimension)</span>
+<span id="cb137-5"><a href="#cb137-5" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>model_class_id<span class="ot">&lt;-</span><span class="fu">factor</span>(tmp<span class="sc">$</span>model_class_id,</span>
+<span id="cb137-6"><a href="#cb137-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Neural Nets"</span>,<span class="st">"Flexible Discriminants"</span>, <span class="st">"Kernel Smoothing, Additive and KNN"</span>, <span class="st">"Random Forests"</span>,<span class="st">"Linear Methods"</span>),</span>
+<span id="cb137-7"><a href="#cb137-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Neural</span><span class="sc">\n</span><span class="st">Nets"</span>,<span class="st">"Flexible</span><span class="sc">\n</span><span class="st">Discriminants"</span>, <span class="st">"KS</span><span class="sc">\n</span><span class="st"> &amp; KNN"</span>, <span class="st">"Random</span><span class="sc">\n</span><span class="st">Forests"</span>, <span class="st">"Linear</span><span class="sc">\n</span><span class="st">Methods"</span>))</span>
+<span id="cb137-8"><a href="#cb137-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmp,<span class="fu">aes</span>(<span class="at">x=</span>model_class_id,<span class="at">y=</span>values,<span class="at">color=</span>citekey,<span class="at">label=</span>citekey,<span class="at">shape=</span>stimulus_genre_mixed))<span class="sc">+</span></span>
+<span id="cb137-10"><a href="#cb137-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="fu">aes</span>(<span class="at">fill=</span>citekey),<span class="at">point_interval=</span><span class="st">"mean_qi"</span>, <span class="at">trim=</span><span class="cn">FALSE</span>, <span class="at">expand=</span><span class="cn">FALSE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,<span class="at">adjust =</span> <span class="fl">1.25</span>, <span class="at">density=</span><span class="st">"bounded"</span>, <span class="at">point_size=</span><span class="dv">3</span>,<span class="at">scale =</span> <span class="dv">1</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb137-11"><a href="#cb137-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>,<span class="at">show.legend =</span> F,<span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">3</span>))<span class="sc">+</span></span>
+<span id="cb137-12"><a href="#cb137-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_label_repel(size=2,max.overlaps = 50)+</span></span>
+<span id="cb137-13"><a href="#cb137-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(.<span class="sc">~</span>feature_n_complexity)<span class="sc">+</span></span>
+<span id="cb137-14"><a href="#cb137-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Correlation Coefficient"</span>)<span class="sc">+</span></span>
+<span id="cb137-15"><a href="#cb137-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Model Technique"</span>)<span class="sc">+</span></span>
+<span id="cb137-16"><a href="#cb137-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">expand =</span> <span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>))<span class="sc">+</span></span>
+<span id="cb137-17"><a href="#cb137-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> model_class_id, <span class="at">y =</span> values, <span class="at">label =</span> studyREF),</span>
+<span id="cb137-18"><a href="#cb137-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">"summary"</span>, <span class="at">fun =</span> mean,<span class="at">show.legend =</span> F)<span class="sc">+</span></span>
+<span id="cb137-19"><a href="#cb137-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb137-20"><a href="#cb137-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 116 rows containing missing values or values outside the scale range
 (`geom_slabinterval()`).</code></pre>
@@ -1274,51 +1348,55 @@ mean of x mean of y
 <pre><code>Warning: Removed 34 rows containing missing values or values outside the scale range
 (`geom_slabinterval()`).</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+increasing max.overlaps</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="preprocessing_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="preprocessing_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-descriptive-table-for-the-manuscript-1" class="level2">
 <h2 class="anchored" data-anchor-id="create-descriptive-table-for-the-manuscript-1">Create descriptive table for the manuscript</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>TC <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>study_n <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(C_studies<span class="sc">$</span>citekey))</span>
-<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>model_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(C_studies)</span>
-<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>t<span class="ot">&lt;-</span><span class="fu">table</span>(C_studies<span class="sc">$</span>model_class_id)</span>
-<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(t),<span class="st">': '</span>, <span class="fu">as.numeric</span>(t))</span>
-<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>model_types_n <span class="ot">&lt;-</span> <span class="fu">str_c</span>(t2,<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>feature_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>stimulus_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>TC <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>study_n <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unique</span>(C_studies<span class="sc">$</span>citekey))</span>
+<span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>model_n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(C_studies)</span>
+<span id="cb143-4"><a href="#cb143-4" aria-hidden="true" tabindex="-1"></a>t<span class="ot">&lt;-</span><span class="fu">table</span>(C_studies<span class="sc">$</span>model_class_id)</span>
+<span id="cb143-5"><a href="#cb143-5" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">names</span>(t),<span class="st">': '</span>, <span class="fu">as.numeric</span>(t))</span>
+<span id="cb143-6"><a href="#cb143-6" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>model_types_n <span class="ot">&lt;-</span> <span class="fu">str_c</span>(t2,<span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb143-7"><a href="#cb143-7" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>feature_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(C_studies<span class="sc">$</span>feature_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb143-8"><a href="#cb143-8" aria-hidden="true" tabindex="-1"></a>TC<span class="sc">$</span>stimulus_Desc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">'Min='</span>,<span class="fu">min</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Md='</span>,<span class="fu">median</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>),<span class="st">', Max='</span>, <span class="fu">max</span>(C_studies<span class="sc">$</span>stimulus_n,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb143-9"><a href="#cb143-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$study_n
 [1] 14
 
 $model_n
-[1] 108
+[1] 157
 
 $model_types_n
-[1] "Flexible Discriminants: 37\nKernel Smoothing, Additive and KNN: 8\nLinear Methods: 24\nNeural Nets: 27\nRandom Forests: 12"
+[1] "Flexible Discriminants: 47\nKernel Smoothing, Additive and KNN: 8\nLinear Methods: 27\nNeural Nets: 33\nRandom Forests: 17\nUnclassified: 25"
 
 $feature_Desc
-[1] "Min=3, Md=231, Max=8904"
+[1] "Min=3, Md=119, Max=8904"
 
 $stimulus_Desc
-[1] "Min=124, Md=387, Max=5192"</code></pre>
+[1] "Min=124, Md=171, Max=5192"</code></pre>
 </div>
 </div>
 </section>
 <section id="export-as-csv-1" class="level2">
 <h2 class="anchored" data-anchor-id="export-as-csv-1">Export as csv</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> C_studies,<span class="at">file =</span> <span class="st">'C_studies.csv'</span>)</span>
-<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> C_summary,<span class="at">file =</span> <span class="st">'C_summary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> C_studies,<span class="at">file =</span> <span class="st">'C_studies.csv'</span>)</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> C_summary,<span class="at">file =</span> <span class="st">'C_summary.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1405,6 +1483,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1439,7 +1535,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

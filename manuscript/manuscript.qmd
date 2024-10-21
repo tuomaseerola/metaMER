@@ -123,7 +123,11 @@ We first report regression studies that predict valence and arousal.
 
 See `analysis/analysis.qmd`
 
-Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into five modelling techniques introduced earlier (Table 1).
+Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. 
+
+### Results for valence
+
+Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into five modelling techniques introduced earlier (Table 1).
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.
 
@@ -145,7 +149,6 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 24 studies achieving an average correlation of _r_ = 0.658 (95% CI: 0.557-0.740), called "valence Max" in Table 2. However, when considering all models across these studies (n = 120), the overall prediction rate drops significantly to _r_ = 0.567. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.
 
-
 Further analysis of between-study heterogeneity, as indexed by the $\tau^2$ (0.138) and Higgins & Thompson's $I^2$ statistic [@higgins2002quantifying] at 98.2%, reveals substantial heterogeneity. Since $I^2$ is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, $\tau^2$, which is less sensitive to the number of studies and directly linked to the outcome metric (_r_), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias [@van-aertwicherts_2016].
 
 To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al. (2023) demonstrating evidence of positive correlations. A mean estimate of 0.66 is achieved by 15 out of the 24 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in @beveridge2018po (n = 20), @saizclar2022pr (n = 40), and in @griffiths2021am (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger's test ($\beta$=5.00, CI95% -0.78-10.78, _t_ = 1.70, _p_ = 0.104, @eggersmith_1997). Coming back to the mean of valence correlation of 0.66 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 13 studies in the data and resulted in the meta-analytical pooled correlation of 0.649 (CI95% 0.598-0.695). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
@@ -164,34 +167,33 @@ We also ran the sub-grouping analyses across a combination of stimulus genres (s
 
 These comparisons of sub-groupings are also influenced by other factors, such as the type of journal (psychology vs engineering) or whether the objective is to explain or predict emotions. Although the sub-groupings result in an uneven distribution of studies and observations, they still offer valuable insights. Despite these caveats, the two main sub-groupings portrayed in Table 2 enable us to identify valuable differences related to model success across the studies.
 
-Moving on the arousal, we carry out the same meta-analytical analysis applying the random-effects model to arousal. Table 3 and Figure 3 show the same outputs as was done for valence describing the broad pattern of results in tabular format, and visually illustrate the spread and heterogeneity of all studies. 
+### Results for arousal
 
-Table 3 indicates that the overall correlation across the studies using the best performing model out of each study (Max) is 0.807 (CI95% 0.745-0.855). If we examine all the models, the correlation drops to 0.796, only marginally lower.
-
-
-The indicators of heterogeneity ($\tau^2$ = 0.155 and $I^2$=96.8%) suggest high 
+Moving on the arousal, we carry out the same meta-analytical analysis applying the random-effects model to arousal. Table 3 describes the broad pattern of results in tabular format, and Figure 3 illustrates the spread and heterogeneity of all studies for arousal. The overall correlation across the studies using the best performing model out of each study (Max) is 0.807 (CI95% 0.745-0.855). If we examine all the models reported in each study, the correlation drops marginally, to 0.784 (CI95% 0.765-0.801), despite this analysis includes about five times as many models as taking the best model out of each study. For arousal, even the baseline models seem to be performing on a relative high level. However, the indicators of heterogeneity are again high ($\tau^2$ = 0.155 and $I^2$=96.8%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, $\beta$ = 0.787 95%CI -4.61-6.18, _t_ = 0.286, _p_ = 0.778). If we remove the studies that are outside the 95%CI in heterogeneity, leaves this 14 studies in the summary that has _r_ = 0.8182 (95%CI 0.802-0.833) with $\tau^2$ = 0.0038 and $I^2$ = 76.0%. In other words, no material difference to the results obtained with all 24 studies.
 
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:--------------------------|:-----|:-------|:---------|:------|
-| Arousal      |             | 0.7959 \[0.7666; 0.8218\] | 29.0 | 0.0001 | 0.0676   | 95.6% |
-| Arousal Max  | 24,15660    | 0.8070 \[0.7453; 0.8550\] | 10.3 | 0.0001 | 0.155    | 96.8% |
+| Arousal All  | 126, 74365  | 0.7837 \[0.7652-0.8009\]  | 45.2 | 0.0001 | 0.064    | 96.3% |
+| Arousal Max  | 24, 15660   | 0.8070 \[0.7453-0.8550\]  | 14.8 | 0.0001 | 0.128    | 97.7% |
 | *N Features* |             |                           |      |        |          |       |
-| \<18 F       |             |                           |      |        |          |       |
-| 18-260 F     |             |                           |      |        |          |       |
-| 260+ F       |             |                           |      |        |          |       |
+| \<18 F       | 5, 3036     | 0.8111 \[0.5342-0.9308\]  |      |        | 0.1815   | 98.9% |
+| 18-260 F     | 11, 7318    | 0.5477 \[0.3434-0.7025\]  |      |        | 0.1331   | 97.6% |
+| 260+ F       | 7, 4562     | 0.6845 \[0.5660-0.7752\]  |      |        | 0.0435   | 97.2% |
 | *Techniques* |             |                           |      |        |          |       |
-| KS           |             |                           |      |        |          |       |
-| LM           |             |                           |      |        |          |       |
-| FD           |             |                           |      |        |          |       |
-| NN           |             |                           |      |        |          |       |
-| RF           |             |                           |      |        |          |       |
+| KS           | 2, 2582     | 0.8068 \[0.5493-0.9244\]  |      |        | 0.0022   | 70.0% |
+| LM           | 8, 1762     | 0.8812 \[0.8079-0.9277\]  |      |        | 0.0846   | 93.3% |
+| FD           | 6, 4993     | 0.8077 \[0.6437-0.9008\]  |      |        | 0.1125   | 98.0% |
+| NN           | 4, 2249     | 0.5339 \[0.3281-0.6912\]  |      |        | 0.0190   | 85.8% |
+| RF           | 4, 4074     | 0.8024 \[0.7672-0.8327\]  |      |        | 0.0012   | 52.7% |
 
+The forest plot in Figure 3 reveals  
 
-<!-- {{< include _figure3.qmd >}} -->
+The subdivision of studies shows...
 
-Summarise here the pattern of results
+{{< include _figure3.qmd >}}
+
 
 ## Classification studies
 
