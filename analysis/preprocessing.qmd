@@ -165,6 +165,37 @@ cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model
 # Add a check for these properties ToDo
 
 ```
+2024-10-21: Update studies with multiple unique_ids due to multiple stats reported
+```{r}
+metaMER_results <- metaMER_results |> 
+  dplyr::filter(!(citekey == "zhang2017fe" & statistic == "mean"),
+         !(citekey == "zhang2016br" & statistic == "mean"),
+         !(citekey == "zhang2016br" & is.na(values)),
+         !(citekey == "coutinho2017sh" & statistic == "ccc"),
+         # Include only results for energy arousal
+         !(citekey == "wang2022cr" & dimension == "tension arousal"),
+         !(citekey == "wang2021ac" & dimension == "tension arousal"),
+         !(citekey == "deng2015em" & dimension == "resonance"))
+```
+Deal with repeated experiment IDs in `hu2017cr`
+```{r}
+
+# get citation keys (all currently say experiment 1)
+hu2017models <- metaMER_results[str_detect(metaMER_results$citekey, 
+                                           "hu2017cr"),]$unique_id
+
+# replace the last digit with 1:4 (representing each experiment)
+hu2017models_replacement <- paste0(
+substr(hu2017models, 
+       1, 
+       nchar(hu2017models) - 1),
+1:4
+)
+
+# overwrite original values
+metaMER_results[metaMER_results$unique_id %in% 
+                  hu2017models,]$unique_id <- hu2017models_replacement
+```
 
 
 # Pull data to analyse regression studies
@@ -189,11 +220,28 @@ R_studies$values[R_studies$measure=='R2']<-sqrt(R_studies$values[R_studies$measu
 R_studies$values[R_studies$measure=='r2']<-sqrt(R_studies$values[R_studies$measure=='r2']) # recode R2 into r
 
 ```
+## Remove NAs
+
+```{r}
+R_studies <- R_studies[!is.na(R_studies$values),]
+
+```
+
+## Check models aren't double-counted
+
+```{r}
+length(unique(paste0(R_studies$unique_id, R_studies$dimension)))
+
+
+ez::ezDesign(data = R_studies, x = unique_id, y = citekey)
+
+```
+
 
 ## Homogenise the outcome variable names to valence and arousal
 
 ```{r}
-R_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal'
+R_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal' # note: there is no longer "tension arousal" based on decision to include only energy
 R_studies$dimension[str_detect(R_studies$dimension,'pleasantness')]<-'valence'
 R_studies <- dplyr::filter(R_studies,!str_detect(dimension,'av|resonance')) # relates to distances, can be omitted
 
@@ -251,6 +299,9 @@ R_studies$feature_n_categories <-cut(R_studies$feature_n,
                                       breaks = c(0,18,260,
                                                  10000),
                                       labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
+
+
+
 
 ```
 
@@ -359,13 +410,15 @@ R_studies$feature_n[R_studies$feature_n==" variable, 557 before feature selectio
 
 R_studies$feature_n[R_studies$feature_n==" 50 PCA features "] <- 499 #resolved
 
+R_studies$feature_n[str_detect(R_studies$feature_n,'150 PCA features')] <- 3000
 R_studies$feature_n[str_detect(R_studies$feature_n,'pre_fitting = 21')] <- 21
 R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions')] <- 548
 R_studies$feature_n[str_detect(R_studies$feature_n,'548; after reduct')] <- 548
 R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and filter bank')] <- 3600
 R_studies$feature_n[str_detect(R_studies$feature_n,'Features deep-learned from audio (not specified) but 1802 in DEAM')] <- 260
 
-R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')] <- 3000 # under-estimation based openSmile features and the paper arguing that they have 15 stat moments
+# 2024-10-21: I changed the encoding for this one to "150 PCA features", so updated above.
+# R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')] <- 3000 # under-estimation based openSmile features and the paper arguing that they have 15 stat moments
   
 R_studies$feature_n<-as.numeric(R_studies$feature_n)
 
