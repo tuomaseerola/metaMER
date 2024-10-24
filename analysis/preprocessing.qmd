@@ -486,7 +486,7 @@ g
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
-## Create descriptive table for the manuscript
+## Create descriptive table for the manuscript  (Table 1, column 1)
 
 ```{r}
 TR <- NULL
@@ -721,7 +721,7 @@ print(g)
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
-## Create descriptive table for the manuscript
+## Create descriptive table for the manuscript (Table 1, column 2)
 
 ```{r}
 TC <- NULL

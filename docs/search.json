@@ -810,5 +810,19 @@
     "title": "Preprocessing",
     "section": "Check models aren’t double-counted",
     "text": "Check models aren’t double-counted\n\nlength(unique(paste0(R_studies$unique_id, R_studies$dimension)))\n\n[1] 324\n\nez::ezDesign(data = R_studies, x = unique_id, y = citekey)"
+  },
+  {
+    "objectID": "analysis/preprocessing.html#create-descriptive-table-for-the-manuscript-table-1-column-1",
+    "href": "analysis/preprocessing.html#create-descriptive-table-for-the-manuscript-table-1-column-1",
+    "title": "Preprocessing",
+    "section": "Create descriptive table for the manuscript (Table 1, column 1)",
+    "text": "Create descriptive table for the manuscript (Table 1, column 1)\n\nTR &lt;- NULL\nTR$study_n &lt;- length(unique(R_studies$citekey))\nTR$model_n &lt;- nrow(R_studies)\nt&lt;-table(R_studies$model_class_id)\nt2 &lt;- paste0(names(t),': ', as.numeric(t))\nTR$model_types_n &lt;- str_c(t2,collapse = \"\\n\")\nTR$feature_Desc &lt;- paste0('Min=',min(R_studies$feature_n,na.rm = TRUE),', Md=',median(R_studies$feature_n,na.rm = TRUE),', Max=', max(R_studies$feature_n,na.rm = TRUE))\nTR$stimulus_Desc &lt;- paste0('Min=',min(R_studies$stimulus_n,na.rm = TRUE),', Md=',median(R_studies$stimulus_n,na.rm = TRUE),', Max=', max(R_studies$stimulus_n,na.rm = TRUE))\nprint(TR)\n\n$study_n\n[1] 23\n\n$model_n\n[1] 236\n\n$model_types_n\n[1] \"Flexible Discriminants: 58\\nKernel Smoothing, Additive and KNN: 24\\nLinear Methods: 62\\nNeural Nets: 70\\nRandom Forests: 22\"\n\n$feature_Desc\n[1] \"Min=3, Md=548, Max=6670\"\n\n$stimulus_Desc\n[1] \"Min=20, Md=330, Max=2486\""
+  },
+  {
+    "objectID": "analysis/preprocessing.html#create-descriptive-table-for-the-manuscript-table-1-column-2",
+    "href": "analysis/preprocessing.html#create-descriptive-table-for-the-manuscript-table-1-column-2",
+    "title": "Preprocessing",
+    "section": "Create descriptive table for the manuscript (Table 1, column 2)",
+    "text": "Create descriptive table for the manuscript (Table 1, column 2)\n\nTC &lt;- NULL\nTC$study_n &lt;- length(unique(C_studies$citekey))\nTC$model_n &lt;- nrow(C_studies)\nt&lt;-table(C_studies$model_class_id)\nt2 &lt;- paste0(names(t),': ', as.numeric(t))\nTC$model_types_n &lt;- str_c(t2,collapse = \"\\n\")\nTC$feature_Desc &lt;- paste0('Min=',min(C_studies$feature_n,na.rm = TRUE),', Md=',median(C_studies$feature_n,na.rm = TRUE),', Max=', max(C_studies$feature_n,na.rm = TRUE))\nTC$stimulus_Desc &lt;- paste0('Min=',min(C_studies$stimulus_n,na.rm = TRUE),', Md=',median(C_studies$stimulus_n,na.rm = TRUE),', Max=', max(C_studies$stimulus_n,na.rm = TRUE))\nprint(TC)\n\n$study_n\n[1] 14\n\n$model_n\n[1] 119\n\n$model_types_n\n[1] \"Flexible Discriminants: 37\\nKernel Smoothing, Additive and KNN: 8\\nLinear Methods: 17\\nNeural Nets: 29\\nRandom Forests: 15\\nUnclassified: 13\"\n\n$feature_Desc\n[1] \"Min=3, Md=126, Max=8904\"\n\n$stimulus_Desc\n[1] \"Min=124, Md=387, Max=5192\""
   }
 ]
