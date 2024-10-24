@@ -11,5 +11,5 @@
 "10","panda2020no",0.682215557901726,0.682215557901726,0.682215557901726,900,"Panda et al 2020","Flexible Discriminants","MultiGenre","Engineering"
 "11","sorussa2020em",0.509707164744315,0.419653883220149,0.868112240363145,1802,"Sorussa et al 2020","Linear Methods","MultiGenre","Engineering"
 "12","yeh2014po",0.741291969684034,0.741291969684034,0.929699323983453,429,"Yeh et al 2014","Random Forests","SingleGenre","Engineering"
-"13","zhang2016br",0.708735294117647,0.699,0.845,171,"Zhang et al 2016","Linear Methods","SingleGenre","Engineering"
-"14","zhang2017fe",0.809304347826087,0.8,0.846,171,"Zhang et al 2017","Linear Methods","SingleGenre","Engineering"
+"13","zhang2016br",0.71178125,0.734,0.845,171,"Zhang et al 2016","Linear Methods","SingleGenre","Engineering"
+"14","zhang2017fe",0.806625,0.8,0.846,171,"Zhang et al 2017","Linear Methods","SingleGenre","Engineering"
