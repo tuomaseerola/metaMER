@@ -14,7 +14,13 @@ source(here::here('R/parse-model-output.R'))
 
 ```{r}
 #| warning: false
-library(stringr) 
+library(stringr)
+library(tidyverse)
+library(ggrepel)
+library(ez)
+library(ggdist)
+
+
 # get metaMER df:
 meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
 
@@ -91,7 +97,6 @@ print(knitr::kable(table(metaMER_results$citekey,metaMER_results$data_id)))
 ```{r}
 #| echo: false
 #| eval: true
-library(stringr)
 metaMER_results$studyREF <- substr(metaMER_results$citekey,1,nchar(metaMER_results$citekey)-2)
 metaMER_results$studyREF <- str_replace_all(metaMER_results$studyREF,'([0-9]+)',' et al \\1')
 metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
@@ -104,7 +109,6 @@ metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
 # Classify techniques according Hastie, Tibshirani, Friedman (2008)
 # https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
 #
-library(stringr)
 metaMER_results$model_id <- tolower(metaMER_results$model_id)
 metaMER_results$model_class_id <- 'Unclassified'
 metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'lr|lm|pls|mlr|pcr|logistic regression|2d model full|pentagon|gaussian process regression|sparse bayesian regression|variational bayesian regression|logistic regression|lda|rda|regularized discriminant analysis|reguliarized discriminant analysis')] <- 'Linear Methods' # Class name from Elements of Stat.."
@@ -156,10 +160,10 @@ cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model
 
 cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
 # note that we have some classification studies that also do regression and vice versa?
-# THIS IS CORRECT (updated 12 July 2024):
-# [1] "We have 1238 observations"
-# [1] "We have 37 studies"
-# [1] "Where 23 are regression studies"
+# THIS IS CORRECT (updated 24 October 2024):
+# [1] "We have 1284 observations"
+# [1] "We have 36 studies"
+# [1] "Where 22 are regression studies"
 # [1] "Where 14 are classification studies"
 
 # Add a check for these properties ToDo
@@ -233,7 +237,9 @@ R_studies <- R_studies[!is.na(R_studies$values),]
 length(unique(paste0(R_studies$unique_id, R_studies$dimension)))
 
 
-ez::ezDesign(data = R_studies, x = unique_id, y = citekey)
+ez::ezDesign(data = R_studies, x = unique_id, y = citekey)+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
 
 ```
 
@@ -309,7 +315,6 @@ R_studies$feature_n_categories <-cut(R_studies$feature_n,
 ## Diagnostics
 
 ```{r}
-library(ggplot2)
 
 g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
   geom_histogram()+
@@ -339,7 +344,6 @@ table(R_studies$feature_n_complexity_genre)
 Note: Before adding feature_n to the summary, they need to be cleaned!
 
 ```{r}
-library(tidyverse)
 R_studies$citekey <- factor(R_studies$citekey)
 R_studies$dimension <- factor(R_studies$dimension)
 
@@ -368,8 +372,6 @@ R_studies$dimension<-factor(R_studies$dimension)
 
 R_studies_split <- pivot_wider(R_studies,id_cols = c(unique_id,citekey,model_class_id), names_from = c(dimension), values_from = c(values),values_fn = mean)
 R_studies_split<-drop_na(R_studies_split)
-
-library(ggrepel)
 
 g3 <- ggplot(R_studies_split,aes(x=valence,y=arousal,label=citekey,color=model_class_id,fill=model_class_id))+
   geom_point(size=4)+
@@ -464,8 +466,6 @@ Needs to be done from the unsummarised data (`R_studies`).
 #tmp <- drop_na(R_studies)
 tmp <- R_studies[!is.na(R_studies$values),]
 
-library(ggdist)
-
 tmp$dimension<-str_to_title(tmp$dimension)
 tmp$model_class_id<-factor(tmp$model_class_id,
                            levels = c("Neural Nets","Flexible Discriminants", "Kernel Smoothing, Additive and KNN", "Random Forests","Linear Methods"),
@@ -552,7 +552,10 @@ table(C_studies$measure,C_studies$citekey)
 
 # take accuracy as MCC in those studies that have not specified mcc
 C_studies$accuracy_converted_to_mcc <- 0
-C_studies$accuracy_converted_to_mcc[C_studies$citekey=='bai2016di' | 
+C_studies$accuracy_converted_to_mcc[
+                  C_studies$unique_id==
+'alvarez2023ri-spotify-randomforest-spotify-acousticBrainz-modelvalidation'|
+                  C_studies$citekey=='bai2016di' | 
                   C_studies$citekey=='bai2017mu' | 
                   C_studies$citekey=='hizlisoy2021mu' |
                   C_studies$citekey=='hu2022de' |    
@@ -561,7 +564,9 @@ C_studies$accuracy_converted_to_mcc[C_studies$citekey=='bai2016di' |
                   C_studies$citekey=='zhang2017fe' 
                   & C_studies$measure=='accuracy']<-1
 
-C_studies$measure[C_studies$citekey=='bai2016di' | 
+C_studies$measure[C_studies$unique_id==
+'alvarez2023ri-spotify-randomforest-spotify-acousticBrainz-modelvalidation'|
+                  C_studies$citekey=='bai2016di' | 
                   C_studies$citekey=='bai2017mu' | 
                   C_studies$citekey=='hizlisoy2021mu' |
                   C_studies$citekey=='hu2022de' |    
@@ -572,10 +577,66 @@ C_studies$measure[C_studies$citekey=='bai2016di' |
 table(C_studies$measure,C_studies$citekey)
 C_studies <- dplyr::filter(C_studies, str_detect(measure,'mcc')) #  
 dim(C_studies)
+
+C_studies <- C_studies[!is.na(C_studies$values),]
+
 table(C_studies$measure,C_studies$accuracy_converted_to_mcc)
 t.test(C_studies$values,y = C_studies$accuracy_converted_to_mcc) # There is a difference
 
 ```
+
+# Average across valence and arousal for VA classification
+
+```{r}
+
+length(unique(paste0(C_studies$unique_id, C_studies$dimension)))
+
+
+ez::ezDesign(data = C_studies, x = unique_id, y = citekey)+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
+
+
+```
+
+
+
+```{r}
+va_studies <- c("zhang2016br", "hu2022de")
+  
+va_acc <- C_studies |> 
+  filter(citekey %in% va_studies) |> 
+  group_by(unique_id, measure, statistic) |> 
+  mutate(values = mean(values), 
+         accuracy_converted_to_mcc = mean(accuracy_converted_to_mcc))
+
+va_acc$dimension <- "classification"
+
+va_acc <- va_acc |> distinct()
+
+C_studies <- C_studies[!C_studies$citekey %in% va_studies,]
+
+C_studies <- rbind(C_studies, va_acc)
+
+
+
+```
+
+### Revisualize studies
+```{r}
+
+length(unique(paste0(C_studies$unique_id, C_studies$dimension)))
+
+
+ez::ezDesign(data = C_studies, x = unique_id, y = citekey)+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
+
+
+```
+
+
+
 #### Get the number of categories in the classification task
 
 ```{r}
@@ -608,7 +669,6 @@ C_studies$stimulus_n <- as.numeric(C_studies$stimulus_n)
 
 ```{r}
 #| eval: false
-library(ggplot2)
 
 g1<-ggplot(C_studies,aes(x=values,fill=citekey))+
   geom_histogram()+
@@ -622,7 +682,6 @@ g1
 ## Select a summary measure for valence and arousal separately
 
 ```{r}
-library(tidyverse)
 C_studies$citekey <- factor(C_studies$citekey)
 
 C_summary <- summarise(group_by(C_studies,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id), stimulus_genre_mixed=first(stimulus_genre_mixed),journal_type = first(journal_type))
@@ -650,7 +709,6 @@ g3
 ## could be more informative when done with the full data
 C_studies$citekey<-factor(C_studies$citekey)
 
-library(ggrepel)
 
 g4 <- ggplot(C_studies,aes(x=stimulus_n,y=values,label=citekey,color=model_class_id,fill=model_class_id))+
   geom_point(size=4)+
@@ -699,7 +757,6 @@ Needs to be done from the unsummarised data (`C_studies`).
 ```{r}
 #| eval: true
 tmp <- drop_na(C_studies)
-library(ggdist)
 
 tmp$dimension<-str_to_title(tmp$dimension)
 tmp$model_class_id<-factor(tmp$model_class_id,
@@ -722,6 +779,9 @@ print(g)
 ```
 
 ## Create descriptive table for the manuscript (Table 1, column 2)
+
+
+CA: I think this should be correct, though may need to update after averaging across VA for some classification studies (zhang2016, hu2022)
 
 ```{r}
 TC <- NULL
