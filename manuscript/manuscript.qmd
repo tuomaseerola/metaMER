@@ -105,17 +105,17 @@ TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 
 |            | Regression                      | Classification            | Total |
 |:-----------|:--------------------------------|:--------------------------|:------|
-| Study N    | 23                              | 14                        | 37    |
-| Model N    | 236                             | 119                       | 355   |
-| Techniques | Flexible Discriminants (FD): 58 | 37                        | 101   |
-| Techniques | Neural Nets (NN): 70            | 29                        | 101   |
-| Techniques | Linear Methods (LM): 62         | 17                        | 98    |
-| Techniques | Random Forests (RF): 22         | 15                        | 34    |
+| Study N    | 21                              | 14                        | 36    |
+| Model N    | 236                             | 103                       | 339   |
+| Techniques | Flexible Discriminants (FD): 58 | 30                        | 86    |
+| Techniques | Neural Nets (NN): 70            | 28                        | 98    |
+| Techniques | Linear Methods (LM): 62         | 13                        | 75    |
+| Techniques | Random Forests (RF): 22         | 14                        | 36    |
 | Techniques | KS, Add. & KNN (KS): 24         | 8                         | 32    |
-| Feature N  | Min=3, Md=548, Max=6670         | Min=3, Md=126, Max=8904   | NA    |
+| Feature N  | Min=3, Md=548, Max=6670         | Min=3, Md=397, Max=8904   | NA    |
 | Stimulus N | Min=20, Md=330, Max=2486        | Min=124, Md=387, Max=5192 | NA    |
 
-Although the total number of studies meeting the criteria described in the previous section is modest (37 in total), they encompass a large array of models (366 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (473) and classification (231) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages. \[COMMENT: IT MIGHT BE WORTWHILE TO SUMMARISE SOME OF THESE HERE\].
+Although the total number of studies meeting the criteria described in the previous section is modest (36 in total), they encompass a large array of models (339 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (548) and classification (397) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 330 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
 
 We first report regression studies that predict valence and arousal.
 
@@ -133,18 +133,18 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 | Concept      | Models, obs | $r$ \[95%-CI\]          | $t$   | $p$   | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:------------------------|:------|:------|:---------|:------|
-| Valence All  | 120,73685   | 0.567 \[0.530; 0.603\]  | 23.7  | .0001 | 0.083    | 97.5% |
-| Valence Max  | 24,15660    | 0.659 \[0.557; 0.740\]  | 10.14 | .0001 | 0.138    | 98.2% |
+| Valence All  | 90,61733    | 0.609 \[0.570-0.650\]   | 23.3  | .0001 | 0.079    | 97.3% |
+| Valence Max  | 21,13572    | 0.680 \[0.575-0.762\]   | 9.96  | .0001 | 0.136    | 98.2% |
 | *N Features* |             |                         |       |       |          |       |
-| \<18 F       | 5,3036      | 0.811 \[0.566; 0.???\]  | \-    | \-    | 0.182    | 98.9% |
-| 18-260 F     | 11,7318     | 0.548 \[0.343; 0.703\]  | \-    | \-    | 0.133    | 97.6% |
-| 260+ F       | 7,4562      | 0.685 \[0.566; 0.775\]  | \-    | \-    | 0.044    | 97.2% |
+| \<18 F       | 5,3036      | 0.811 \[0.542-0.823\]  | \-    | \-    | 0.182    | 98.9% |
+| 18-260 F     | 11,7042     | 0.584 \[0.534-0.931\]  | \-    | \-    | 0.133    | 97.6% |
+| 260+ F       | 5,3494      | 0.710 \[0.542-0.823\]  | \-    | \-    | 0.044    | 97.2% |
 | *Techniques* |             |                         |       |       |          |       |
-| KS           | 2,2582      | 0.466 \[-0.634; 0.942\] | \-    | \-    | 0.0185   | 95.1% |
-| LM           | 8,1762      | 0.784 \[0.625; 0.881\]  | \-    | \-    | 0.1370   | 96.4% |
-| FD           | 6,4993      | 0.656 \[0.484; 0.779\]  | \-    | \-    | 0.0574   | 96.9% |
-| NN           | 4,2249      | 0.340 \[-0.097; 0.668\] | \-    | \-    | 0.0761   | 97.1% |
-| RF           | 4,4074      | 0.702 \[0.391; 0.869\]  | \-    | \-    | 0.057    | 98.5% |
+| KS           | 2,2582      | 0.466 \[-0.634-0.942\]  | \-    | \-    | 0.0185   | 95.1% |
+| LM           | 7,1438      | 0.797 \[0.614-0.899\]   | \-    | \-    | 0.1370   | 96.4% |
+| FD           | 6,4993      | 0.656 \[0.484-0.779\]  | \-    | \-     | 0.0574   | 96.9% |
+| NN           | 3,1229      | 0.393 \[-0.355-0.835\] | \-    | \-     | 0.0761   | 97.1% |
+| RF           | 3,3330      | 0.750 \[0.292-0.928\]  | \-    | \-     | 0.093    | 98.5% |
 
 
 The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 24 studies achieving an average correlation of _r_ = 0.658 (95% CI: 0.557-0.740), called "valence Max" in Table 2. However, when considering all models across these studies (n = 120), the overall prediction rate drops significantly to _r_ = 0.567. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.
@@ -175,18 +175,18 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:--------------------------|:-----|:-------|:---------|:------|
-| Arousal All  | 126, 74365  | 0.7837 \[0.7652-0.8009\]  | 45.2 | 0.0001 | 0.064    | 96.3% |
-| Arousal Max  | 24, 15660   | 0.8070 \[0.7453-0.8550\]  | 14.8 | 0.0001 | 0.128    | 97.7% |
+| Arousal All  | 90, 61733   | 0.795 \[0.774-0.814\]     | 39.4 | 0.0001 | 0.064    | 96.3% |
+| Arousal Max  | 21, 13572   | 0.815 \[0.749-0.865\]     | 14.0 | 0.0001 | 0.131    | 97.7% |
 | *N Features* |             |                           |      |        |          |       |
-| \<18 F       | 5, 3036     | 0.8111 \[0.5342-0.9308\]  |      |        | 0.1815   | 98.9% |
-| 18-260 F     | 11, 7318    | 0.5477 \[0.3434-0.7025\]  |      |        | 0.1331   | 97.6% |
-| 260+ F       | 7, 4562     | 0.6845 \[0.5660-0.7752\]  |      |        | 0.0435   | 97.2% |
+| \<18 F       | 5, 3036     | 0.811 \[0.534-0.931\]     |      |        | 0.1815   | 98.9% |
+| 18-260 F     | 11, 7042    | 0.584 \[0.534-0.931\]     |      |        | 0.1331   | 97.6% |
+| 260+ F       | 5, 3494     | 0.710 \[0.542-0.823\]     |      |        | 0.0435   | 97.2% |
 | *Techniques* |             |                           |      |        |          |       |
-| KS           | 2, 2582     | 0.8068 \[0.5493-0.9244\]  |      |        | 0.0022   | 70.0% |
-| LM           | 8, 1762     | 0.8812 \[0.8079-0.9277\]  |      |        | 0.0846   | 93.3% |
-| FD           | 6, 4993     | 0.8077 \[0.6437-0.9008\]  |      |        | 0.1125   | 98.0% |
-| NN           | 4, 2249     | 0.5339 \[0.3281-0.6912\]  |      |        | 0.0190   | 85.8% |
-| RF           | 4, 4074     | 0.8024 \[0.7672-0.8327\]  |      |        | 0.0012   | 52.7% |
+| KS           | 2, 2582     | 0.807 \[0.549-0.924\]     |      |        | 0.0022   | 70.0% |
+| LM           | 7, 1438     | 0.885 \[0.796-0.936\]     |      |        | 0.0846   | 93.3% |
+| FD           | 6, 4993     | 0.808 \[0.644-0.901\]    |      |        | 0.1125   | 98.0% |
+| NN           | 3, 1229     | 0.533 \[0.082-0.803\]     |      |        | 0.0190   | 85.8% |
+| RF           | 3, 3330     | 0.809 \[0.733-0.864\]  |      |        | 0.0012   | 52.7% |
 
 The forest plot in Figure 3 reveals  
 
