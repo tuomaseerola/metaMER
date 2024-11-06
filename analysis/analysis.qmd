@@ -531,7 +531,7 @@ C_studies <- C_studies[!is.na(C_studies$values),]
 C_summary <- read.csv("C_summary.csv")
 C_classes <- read.csv("C_study_class_n.csv")
 
-C_summary_2 <- merge(C_summary, C_classes)
+C_summary <- merge(C_summary, C_classes)
 
 m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
@@ -590,6 +590,39 @@ funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
 
 ```
+#### By class n = 2 vs. > 2
+```{r}
+C_summary$classes <- 0
+C_summary[C_summary$n_classes < 3,]$classes <- "2"
+C_summary[C_summary$n_classes >= 3,]$classes <- ">2"
+
+
+
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n, # could also change to n_classes
+                 studlab = studyREF, # unique_id
+                 data = C_summary,
+                 subgroup = classes,
+                 fixed = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
+                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Classification: Summary")
+
+
+forest(m.cor,
+       sortvar = TE,
+       prediction = FALSE, 
+             print.tau2 = FALSE,
+             leftlabs = c("Author", "g", "SE"),studlab = citekey)
+
+funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+```
+
 
 #### Explore qualities (in progress)
 
