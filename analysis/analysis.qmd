@@ -529,6 +529,9 @@ C_studies <- read.csv("C_studies.csv")
 C_studies <- C_studies[!is.na(C_studies$values),]
 
 C_summary <- read.csv("C_summary.csv")
+C_classes <- read.csv("C_study_class_n.csv")
+
+C_summary_2 <- merge(C_summary, C_classes)
 
 m.cor <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
