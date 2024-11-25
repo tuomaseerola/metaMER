@@ -2,32 +2,25 @@
 
 This assumes that the data has been parsed from the BibTeX files into table and exported as CSV file.
 
-```{r}
-#| warning: false
-#| echo: false
-#| eval: true
-# Set parameters and libraries
-export_decision <- TRUE
-verbose <- FALSE
-require(here)
-library(stringr)
-library(tidyverse)
-library(ggrepel)
-library(ez)
-library(ggdist)
-```
-
 ## Read annotated data
 
 ```{r}
-#| echo: true
+#| warning: false
+require(here)
 source(here::here('R/build-df.R'))
 source(here::here('R/format-study-results.R'))
 source(here::here('R/parse-model-output.R'))
 ```
 
 ```{r}
-#| echo: true
+#| warning: false
+library(stringr)
+library(tidyverse)
+library(ggrepel)
+library(ez)
+library(ggdist)
+
+
 # get metaMER df:
 meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
 
@@ -35,6 +28,7 @@ meta_df <- get_metaMER_df(path_2_studies = here::here('studies'))
 included_studies <- meta_df[which(
   !stringr::str_detect(meta_df$final_notes, '!EXCL!')),] |> 
   dplyr::tibble()
+
 ```
 
 ### Recoded
@@ -62,6 +56,7 @@ do.call(
 ) 
 
 # add unique identifiers
+
 unique_id <- apply(metaMER_results[,c('citekey',
                         'library_id',
                          'model_id',
@@ -79,6 +74,7 @@ metaMER_results <- metaMER_results |> dplyr::select(unique_id,
                                  dplyr::everything()) 
 
 metaMER_results |> dplyr::tibble()
+
 ```
 
 
@@ -110,7 +106,6 @@ metaMER_results$studyREF <- str_to_sentence(metaMER_results$studyREF)
 
 ```{r}
 #| eval: true
-#| echo: false
 # Classify techniques according Hastie, Tibshirani, Friedman (2008)
 # https://www.sas.upenn.edu/~fdiebold/NoHesitations/BookAdvanced.pdf
 #
@@ -134,7 +129,6 @@ metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely
 
 ```{r}
 #| eval: true
-#| echo: false
 metaMER_results$stimulus_genre_mixed <- 'SingleGenre'
 metaMER_results$stimulus_genre_mixed[str_detect(metaMER_results$stimulus_genre,',|multi')] <- 'MultiGenre' # Class name from Elements of Stat.."
 #table(metaMER_results$stimulus_genre_mixed)
@@ -143,13 +137,12 @@ metaMER_results$stimulus_genre_mixed[str_detect(metaMER_results$stimulus_genre,'
 ### Classify journals
 
 ```{r}
-#| echo: false
-#| eval: true
 metaMER_results$journal_type <- "Engineering"
 metaMER_results$journal_type[str_detect(metaMER_results$journal,'Quarterly Journal of Experimental Psychology|PSYCHOLOGY OF MUSIC|PLOS ONE|JOURNAL OF NEW MUSIC RESEARCH|IEEE-ACM TRANSACTIONS ON AUDIO SPEECH AND LANGUAGE PROCESSING|FRONTIERS IN PSYCHOLOGY|Frontiers in Psychology')] <- 'Psychology' # Class name from Elements of Stat.."
 
 #table(metaMER_results$journal_type)
 ```
+
 
 ## Summarise all
 
@@ -177,16 +170,12 @@ cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model
 
 ```
 2024-10-21: Update studies with multiple unique_ids due to multiple stats reported
-
 ```{r}
-#| echo: true
-#| eval: true
-
 metaMER_results <- metaMER_results |> 
   dplyr::filter(!(citekey == "zhang2017fe" & statistic == "mean"),
          !(citekey == "zhang2016br" & statistic == "mean"),
          !(citekey == "zhang2016br" & is.na(values)),
-         !(citekey == "coutinho2017sh" & statistic == "ccc"),
+         !(citekey == "coutinho2017sh" & measure == "ccc"),
          # Include only results for energy arousal
          !(citekey == "wang2022cr" & dimension == "tension arousal"),
          !(citekey == "wang2021ac" & dimension == "tension arousal"),
@@ -194,8 +183,6 @@ metaMER_results <- metaMER_results |>
 ```
 Deal with repeated experiment IDs in `hu2017cr`
 ```{r}
-#| echo: true
-#| eval: true
 
 # get citation keys (all currently say experiment 1)
 hu2017models <- metaMER_results[str_detect(metaMER_results$citekey, 
@@ -214,28 +201,24 @@ metaMER_results[metaMER_results$unique_id %in%
                   hu2017models,]$unique_id <- hu2017models_replacement
 ```
 
+
 # Pull data to analyse regression studies
 
 ```{r}
-#| echo: false
-#| eval: true
 
 unique(metaMER_results$citekey[metaMER_results$model_category=="regression"])
 
-length(unique(metaMER_results$citekey[metaMER_results$model_category=='regression']))
-
-R_studies <- dplyr::filter(metaMER_results, measure %in% c('r','ccc','pcc','cc','r2','R2') & model_category=="regression") # brings some classification studies! I have added an additional filter for model category
-# Cameron: Can you check that this is correct now?
+R_studies <- dplyr::filter(metaMER_results, measure %in% c('r','ccc','pcc','cc','r2','R2')) #  
 
 # explicit NA coding
 R_studies$statistic[is.na(R_studies$statistic)]<-'r2'
 
 # include measures we need 
 R_studies <- dplyr::filter(R_studies,str_detect(statistic,'adjusted|ccc|pcc|cc|globalOptimal|localOptimal|mean|r2|r'))
-#dim(R_studies)
-#table(R_studies$measure)
+dim(R_studies)
+table(R_studies$measure)
 
-#table(R_studies$measure, R_studies$statistic)
+table(R_studies$measure, R_studies$statistic)
 
 R_studies$values[R_studies$measure=='R2']<-sqrt(R_studies$values[R_studies$measure=='R2']) # recode R2 into r
 R_studies$values[R_studies$measure=='r2']<-sqrt(R_studies$values[R_studies$measure=='r2']) # recode R2 into r
@@ -244,18 +227,15 @@ R_studies$values[R_studies$measure=='r2']<-sqrt(R_studies$values[R_studies$measu
 ## Remove NAs
 
 ```{r}
-#| echo: true
-#| eval: true
 R_studies <- R_studies[!is.na(R_studies$values),]
+
 ```
 
 ## Check models aren't double-counted
 
 ```{r}
-#| echo: true
-#| eval: true
-
 length(unique(paste0(R_studies$unique_id, R_studies$dimension)))
+
 
 ez::ezDesign(data = R_studies, x = unique_id, y = citekey)+
   theme(axis.text.x = element_blank(),
@@ -267,14 +247,11 @@ ez::ezDesign(data = R_studies, x = unique_id, y = citekey)+
 ## Homogenise the outcome variable names to valence and arousal
 
 ```{r}
-#| echo: false
-#| eval: true
-
 R_studies$dimension[str_detect(R_studies$dimension,'activation|energy arousal|tension arousal')]<-'arousal' # note: there is no longer "tension arousal" based on decision to include only energy
 R_studies$dimension[str_detect(R_studies$dimension,'pleasantness')]<-'valence'
 R_studies <- dplyr::filter(R_studies,!str_detect(dimension,'av|resonance')) # relates to distances, can be omitted
 
-#table(R_studies$dimension)  
+table(R_studies$dimension)  
 
 #table(R_studies$stimulus_n)  
 
@@ -296,19 +273,15 @@ eliminate <- str_detect(R_studies$unique_id,"hu2017cr") & !str_detect(R_studies$
 R_studies <- R_studies[!eliminate,]
 R_studies$stimulus_n[R_studies$stimulus_n==" MER60: 60, CH818: 818, AMG1608: 1608  "] <- 60+818+1608 #
 
-#table(R_studies$stimulus_n)
+table(R_studies$stimulus_n)
 
 R_studies$stimulus_n <- as.numeric(R_studies$stimulus_n)
-
-length(unique(metaMER_results$citekey[metaMER_results$model_category=='regression']))
   
 ```
 
 #### Clean feature N field
 
 ```{r}
-#| echo: false
-#| eval: true
 
 R_studies$feature_n[R_studies$feature_n==" 548; after reduction, 139 for PCA and 276 for ReliefF   "] <- 548
 
@@ -333,28 +306,29 @@ R_studies$feature_n_categories <-cut(R_studies$feature_n,
                                                  10000),
                                       labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
 
+
+
+
 ```
 
 
 ## Diagnostics
 
 ```{r}
-#| echo: false
-#| eval: false
+
 g1<-ggplot(R_studies,aes(x=values,fill=citekey,color=dimension))+
   geom_histogram()+
   facet_wrap(.~model_class_id)+
+#  scale_color_manual(values = c('black','white'))+
   theme_dark()+
   scale_x_continuous(breaks = seq(0,1,by=.1))
-print(g1)
+
+g1
 ```
 
 ## Feature N and genre split
 
 ```{r}
-#| echo: false
-#| eval: true
-
 quantile(subset(R_studies,stimulus_genre_mixed=='SingleGenre')$feature_n,probs = seq(0,1,0.333))
 quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TRUE,probs = seq(0,1,0.333))
 
@@ -362,7 +336,7 @@ quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TR
 R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
                                       breaks = c(0,15,501,653,10000),
                                       labels = c("Small single genre study","Medium single genre/multigenre study","Medium-large single genre/multigenre study","Huge multigenre study"))
-#table(R_studies$feature_n_complexity_genre)
+table(R_studies$feature_n_complexity_genre)
 ```
 
 ## Select a summary measure for valence and arousal separately
@@ -370,14 +344,11 @@ R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
 Note: Before adding feature_n to the summary, they need to be cleaned!
 
 ```{r}
-#| echo: true
-#| eval: true
-R_studies$citekey <- factor(R_studies$citekey) # 21 unique values
+R_studies$citekey <- factor(R_studies$citekey)
 R_studies$dimension <- factor(R_studies$dimension)
 
 R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
 
-print(dim(R_summary))
 ```
 
 ## Visualise Summary on two dimensions
@@ -385,9 +356,6 @@ print(dim(R_summary))
 Add variation from within the studies (alternative models)
 
 ```{r}
-#| echo: false
-#| eval: false
-
 R_summary_split <- pivot_wider(R_summary,id_cols = citekey, names_from = c(dimension), values_from = valuesMax)
 
 g2 <- ggplot(R_summary_split,aes(x=valence,y=arousal,label=citekey))+
@@ -395,7 +363,8 @@ g2 <- ggplot(R_summary_split,aes(x=valence,y=arousal,label=citekey))+
   theme_bw()+
   scale_x_continuous(breaks = seq(0,1,by=.1))+
   scale_y_continuous(breaks = seq(0,1,by=.1))
-print(g2)
+
+g2
 
 ## could be more informative when done with the full data
 R_studies$citekey<-factor(R_studies$citekey)
@@ -410,14 +379,14 @@ g3 <- ggplot(R_studies_split,aes(x=valence,y=arousal,label=citekey,color=model_c
   scale_x_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+
   scale_y_continuous(breaks = seq(0,1,by=.25),limits = c(0,1))+
   theme_bw()
-print(g3)
+g3
+
 ```
 
 ## Plot success across the years
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
 # Add year!
 R_studies$year <- as.numeric(str_match(R_studies$citekey,'[0-9]+'))
 
@@ -425,7 +394,7 @@ g3 <- ggplot(R_studies,aes(x=year,y=values,colour=model_class_id))+
   geom_point(show.legend = T)+
   facet_wrap(.~dimension)+
   theme_bw()
-print(g3)
+g3
 ```
 
 ## Simple model complexity metric
@@ -433,8 +402,6 @@ print(g3)
 Ratio of obs./features or just a classification based on feature n (quantiles).
 
 ```{r}
-#| echo: false
-#| eval: true
 
 R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved from the paper
 
@@ -473,14 +440,14 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
                                       breaks = c(0,30,300,10000),
                                       labels = c("Feature n < 30","Feature n > 30 & < 300","Feature n > 300"))
 
-#table(R_studies$feature_n_complexity)
+
+
+table(R_studies$feature_n_complexity)
 ```
 
 ## Feature N and genre split
 
 ```{r}
-#| echo: false
-#| eval: true
 quantile(subset(R_studies,stimulus_genre_mixed=='SingleGenre')$feature_n,probs = seq(0,1,0.333))
 quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TRUE,probs = seq(0,1,0.333))
 
@@ -488,7 +455,7 @@ quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TR
 R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
                                       breaks = c(0,15,501,653,10000),
                                       labels = c("Small single genre study","Medium single genre/multigenre study","Medium-large single genre/multigenre study","Huge multigenre study"))
-#table(R_studies$feature_n_complexity_genre)
+table(R_studies$feature_n_complexity_genre)
 ```
 
 ## Explore feature_n_complexity and model success
@@ -496,9 +463,6 @@ R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
 Needs to be done from the unsummarised data (`R_studies`).
 
 ```{r}
-#| echo: false
-#| eval: false
-
 #tmp <- drop_na(R_studies)
 tmp <- R_studies[!is.na(R_studies$values),]
 
@@ -518,16 +482,13 @@ g <- ggplot(tmp,aes(x=model_class_id,y=values,color=citekey,label=citekey,shape=
   geom_text_repel(aes(x = model_class_id, y = values, label = studyREF),
              stat = "summary", fun = mean,show.legend = F)+
   theme_bw()
-print(g)
+g
 #ggsave(filename = 'FeatureN_regression.pdf',g,height = 7,width = 11)
 ```
 
 ## Create descriptive table for the manuscript  (Table 1, column 1)
 
 ```{r}
-#| echo: true
-#| eval: true
-
 TR <- NULL
 TR$study_n <- length(unique(R_studies$citekey))
 TR$model_n <- nrow(R_studies)
@@ -543,24 +504,17 @@ print(TR)
 ## Export as csv 
 
 ```{r}
-#| echo: true
-#| eval: true
-if (export_decision == TRUE){
-  write.csv(x = R_studies,file = 'R_studies.csv')
-  write.csv(x = R_summary,file = 'R_summary.csv')
-}
+write.csv(x = R_studies,file = 'R_studies.csv')
+write.csv(x = R_summary,file = 'R_summary.csv')
 ```
 
 
 # Pull data to analyse classification studies
 
 ```{r}
-#| echo: false
-#| eval: true
-
 C_studies<-metaMER_results
-sum(is.na(C_studies$measure)) 
-sum(is.na(C_studies$statistic)) 
+sum(is.na(C_studies$measure)) # 0
+sum(is.na(C_studies$statistic)) # 426
 
 C_studies$statistic[is.na(C_studies$statistic)]<-'acc'
 
@@ -570,12 +524,12 @@ dim(C_studies)
 table(C_studies$statistic)
 
 C_studies <- dplyr::filter(C_studies, str_detect(statistic,'mean|median|acc')) #  
-#dim(C_studies)
+dim(C_studies)
 length(unique(C_studies$citekey))
 
-#table(C_studies$measure,C_studies$statistic)
-#table(C_studies$measure,C_studies$citekey)
-#table(C_studies$statistic,C_studies$citekey)
+table(C_studies$measure,C_studies$statistic)
+table(C_studies$measure,C_studies$citekey)
+table(C_studies$statistic,C_studies$citekey)
 
 # ToDo
 # how to convert accuracy (precision, recall, f) into kappa or mcc
@@ -591,10 +545,10 @@ length(unique(C_studies$citekey))
 # convert one 'f1' into accuracy (hu2022de)
 C_studies$measure[C_studies$citekey=='bai2017mu'] <- 'accuracy'
 C_studies$measure[C_studies$citekey=='hu2022de' & C_studies$measure=='f1']<-'accuracy'
-#dim(C_studies)
+dim(C_studies)
 C_studies <- dplyr::filter(C_studies, str_detect(measure,'mcc|accuracy')) #  
-#dim(C_studies)
-#table(C_studies$measure,C_studies$citekey)
+dim(C_studies)
+table(C_studies$measure,C_studies$citekey)
 
 # take accuracy as MCC in those studies that have not specified mcc
 C_studies$accuracy_converted_to_mcc <- 0
@@ -620,39 +574,34 @@ C_studies$measure[C_studies$unique_id==
                   C_studies$citekey=='zhang2016br' |
                   C_studies$citekey=='zhang2017fe' 
                   & C_studies$measure=='accuracy']<-'mcc'
-#table(C_studies$measure,C_studies$citekey)
+table(C_studies$measure,C_studies$citekey)
 C_studies <- dplyr::filter(C_studies, str_detect(measure,'mcc')) #  
-#dim(C_studies)
+dim(C_studies)
 
 C_studies <- C_studies[!is.na(C_studies$values),]
 
-#table(C_studies$measure,C_studies$accuracy_converted_to_mcc)
-#t.test(C_studies$values,y = C_studies$accuracy_converted_to_mcc) # There is a difference
-
-length(unique(C_studies$citekey))
+table(C_studies$measure,C_studies$accuracy_converted_to_mcc)
+t.test(C_studies$values,y = C_studies$accuracy_converted_to_mcc) # There is a difference
 
 ```
 
-## Average across valence and arousal for VA classification
+# Average across valence and arousal for VA classification
 
 ```{r}
-#| echo: true
-#| eval: true
 
-#length(unique(paste0(C_studies$unique_id, C_studies$dimension)))
+length(unique(paste0(C_studies$unique_id, C_studies$dimension)))
+
 
 ez::ezDesign(data = C_studies, x = unique_id, y = citekey)+
   theme(axis.text.x = element_blank(),
         axis.title.x = element_blank())
 
+
 ```
 
 
 
 ```{r}
-#| echo: true
-#| eval: true
-
 va_studies <- c("zhang2016br", "hu2022de")
   
 va_acc <- C_studies |> 
@@ -666,21 +615,24 @@ va_acc$dimension <- "classification"
 va_acc <- va_acc |> distinct()
 
 C_studies <- C_studies[!C_studies$citekey %in% va_studies,]
+
 C_studies <- rbind(C_studies, va_acc)
+
+
 
 ```
 
 ### Revisualize studies
-
 ```{r}
-#| echo: true
-#| eval: true
 
 length(unique(paste0(C_studies$unique_id, C_studies$dimension)))
+
 
 ez::ezDesign(data = C_studies, x = unique_id, y = citekey)+
   theme(axis.text.x = element_blank(),
         axis.title.x = element_blank())
+
+
 ```
 
 
@@ -688,9 +640,6 @@ ez::ezDesign(data = C_studies, x = unique_id, y = citekey)+
 #### Get the number of categories in the classification task
 
 ```{r}
-#| echo: true
-#| eval: true
-
 tmp <- metaMER_results
 tmp2 <- tmp[which(tmp$statistic=='n'),]
 no_of_classes <- summarise(group_by(tmp2,citekey),first(values))
@@ -704,10 +653,7 @@ rm(tmp,tmp2)
 ## Homogenise the stimulus N
 
 ```{r}
-#| echo: false
-#| eval: true
-
-#table(C_studies$stimulus_n)  
+table(C_studies$stimulus_n)  
 
 # Deal with four studies involving multiple datasets: 
 C_studies$stimulus_n[C_studies$stimulus_n==" 429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)  "] <- 429 # resolved from the paper
@@ -722,7 +668,6 @@ C_studies$stimulus_n <- as.numeric(C_studies$stimulus_n)
 ## Diagnostics
 
 ```{r}
-#| echo: false
 #| eval: false
 
 g1<-ggplot(C_studies,aes(x=values,fill=citekey))+
@@ -730,15 +675,13 @@ g1<-ggplot(C_studies,aes(x=values,fill=citekey))+
   facet_wrap(.~model_class_id)+
   theme_dark()+
   scale_x_continuous(breaks = seq(0,1,by=.1))
-print(g1)
+
+g1
 ```
 
 ## Select a summary measure for valence and arousal separately
 
 ```{r}
-#| echo: true
-#| eval: true
-
 C_studies$citekey <- factor(C_studies$citekey)
 
 C_summary <- summarise(group_by(C_studies,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id), stimulus_genre_mixed=first(stimulus_genre_mixed),journal_type = first(journal_type))
@@ -748,8 +691,6 @@ C_summary <- summarise(group_by(C_studies,citekey),valuesMean=mean(values,na.rm=
 ## Visualise Summary
 
 ```{r}
-#| echo: false
-#| eval: false
 
 g2 <- ggplot(C_summary,aes(x=stimulus_n,y=valuesMax,label=citekey,color=stimulus_genre_mixed))+
   geom_point()+
@@ -782,10 +723,7 @@ g4
 ## Simple model complexity metric based on feature_n
 
 ```{r}
-#| echo: false
-#| eval: true
-
-#table(C_studies$feature_n)
+table(C_studies$feature_n)
 C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-600 # arbitrary!
 C_studies$feature_n[str_detect(C_studies$feature_n,'126, retained 97')]<-126 
 C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  arbitrary!
@@ -795,11 +733,11 @@ C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')] <- 54
 C_studies$feature_n[str_detect(C_studies$feature_n,'8; 3 after')]<-8 
 C_studies$feature_n[str_detect(C_studies$feature_n,'between 9 and 10')]<-10 
 C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-600 # arbitrary
-#table(C_studies$feature_n)
+table(C_studies$feature_n)
 
 C_studies$feature_n <- as.numeric(C_studies$feature_n)
 
-#ggplot(C_studies,aes(x=feature_n))+geom_histogram()
+ggplot(C_studies,aes(x=feature_n))+geom_histogram()
 
 #print(quantile(C_studies$feature_n,c(0.333,0.666),na.rm = TRUE))
 #quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)
@@ -809,7 +747,7 @@ C_studies$feature_n_complexity <- cut(C_studies$feature_n,
                                       breaks = c(0,30,300,
                                                  10000),
                                       labels = c("Feature n < 30","Feature n > 30 & < 300","Feature n > 300"))
-#table(C_studies$feature_n_complexity)
+table(C_studies$feature_n_complexity)
 ```
 
 ## Explore feature_n_complexity and model success
@@ -817,10 +755,9 @@ C_studies$feature_n_complexity <- cut(C_studies$feature_n,
 Needs to be done from the unsummarised data (`C_studies`).
 
 ```{r}
-#| echo: false
-#| eval: false
-
+#| eval: true
 tmp <- drop_na(C_studies)
+
 tmp$dimension<-str_to_title(tmp$dimension)
 tmp$model_class_id<-factor(tmp$model_class_id,
                            levels = c("Neural Nets","Flexible Discriminants", "Kernel Smoothing, Additive and KNN", "Random Forests","Linear Methods"),
@@ -843,12 +780,10 @@ print(g)
 
 ## Create descriptive table for the manuscript (Table 1, column 2)
 
+
 CA: I think this should be correct, though may need to update after averaging across VA for some classification studies (zhang2016, hu2022)
 
 ```{r}
-#| echo: true
-#| eval: true
-
 TC <- NULL
 TC$study_n <- length(unique(C_studies$citekey))
 TC$model_n <- nrow(C_studies)
@@ -864,10 +799,7 @@ print(TC)
 ## Export as csv 
 
 ```{r}
-#| echo: true
-#| eval: true
-if (export_decision == TRUE){
-  write.csv(x = C_studies,file = 'C_studies.csv')
-  write.csv(x = C_summary,file = 'C_summary.csv')
-}
+write.csv(x = C_studies,file = 'C_studies.csv')
+write.csv(x = C_summary,file = 'C_summary.csv')
 ```
+
