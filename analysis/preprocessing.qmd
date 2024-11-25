@@ -186,7 +186,7 @@ metaMER_results <- metaMER_results |>
   dplyr::filter(!(citekey == "zhang2017fe" & statistic == "mean"),
          !(citekey == "zhang2016br" & statistic == "mean"),
          !(citekey == "zhang2016br" & is.na(values)),
-         !(citekey == "coutinho2017sh" & statistic == "ccc"),
+         !(citekey == "coutinho2017sh" & measure == "ccc"),
          # Include only results for energy arousal
          !(citekey == "wang2022cr" & dimension == "tension arousal"),
          !(citekey == "wang2021ac" & dimension == "tension arousal"),
