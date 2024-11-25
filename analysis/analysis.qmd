@@ -528,6 +528,7 @@ print(m.cor4)
 C_studies <- read.csv("C_studies.csv")
 C_studies <- C_studies[!is.na(C_studies$values),]
 
+# yang2021an needs to be encoded for classification (currently just regression)
 C_summary <- read.csv("C_summary.csv")
 C_classes <- read.csv("C_study_class_n.csv")
 
@@ -546,7 +547,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  method.random.ci = "HK", 
                  title = "MER: Classification: Summary")
 
-#print(m.cor)
+print(m.cor)
 
 #m.cor_backtransformed <- m.cor
 #m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
