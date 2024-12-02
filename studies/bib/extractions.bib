@@ -128,12 +128,12 @@
   EMOTION_LOCUS = {perceived},
   STIMULUS_TYPE = {Spotify},
  STIMULUS_GENRE = {multi},
-  STIMULUS_DURATION = {150 approx},
+  STIMULUS_DURATION = {210 approx},
   STIMULUS_DURATION_UNIT = {s}, 
   STIMULUS_N = {5192; 12 per user in user validation (not included here due to little information),
   AcousticBrainz validation: 60000},
   FEATURE_N = {between 9 and 10},
-  PARTICIPANT_N = {25},
+  PARTICIPANT_N = {25 (not reported in results here)},
   PARTICIPANT_EXPERTISE = {not specified},
   PARTICIPANT_ORIGIN = {online},
   PARTICIPANT_SAMPLING = {not specified},
@@ -172,7 +172,7 @@ bind_field(
                                                                       'classification_f1.mean' = mean(c(0.623,0.700,0.745,0.719)),
 						       'classification_class.n' = 4)
 )
-}, %% don't know how to report user-validation study
+},
   MODEL_VALIDATION = {Repeated five-fold cross validation, AcousticBrainz, experimental validation with real users},
   FINAL_NOTES = {Did not report results from user validation due to differences in formatting.}
 }
