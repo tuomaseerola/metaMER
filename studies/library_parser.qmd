@@ -2,13 +2,6 @@
 title: "Library Parser"
 ---
 
-**Status:** in progress.
-
-**TODO**: \
-- Separate scripts and functions into separate .qmd files/directories. \
-- Update `model_rate_emotion_values` nomenclature process for classification papers.\
-- Replace rbind with custom bind function throughout
-
 # Pre-processing
 
 ## Preparing data
@@ -18,6 +11,9 @@ The follow code extracts information from the .bib library to format it as a `da
 ```{r results = 'hide'}
 library(stringr)
 library(knitr, include.only = 'kable')
+source(paste0(here::here(), "/R/format-study-results.R"))
+source(paste0(here::here(), "/R/parse-model-output.R"))
+
 ```
 
 ```{r}
@@ -128,7 +124,6 @@ meta_df <- as.data.frame(meta_df)
 Example: Evaluate `model_rate_emotion_values` as *R* code
 
 ```{r}
-source(paste0(here::here(), "/R/format-study-results.R"))
 eval(parse(text = meta_df$model_rate_emotion_values[22]))
 ```
 
@@ -168,214 +163,110 @@ missing_1 |> dplyr::tibble()
 
 ```{r}
 ## AT LEAST 2 MISSING FIELDS
-check_missing(2) -> missing_2 
-
-
-missing_2 |> dplyr::tibble()
-```
-
-```{r}
+check_missing(2) |> dplyr::tibble()
 ## AT LEAST 3 MISSING FIELDS
 check_missing(3) |> dplyr::tibble()
 ```
 
-```{r eval = F, echo = F}
 
 
+# Parsing Studies
 
-# Outdated: Dealing with nested bibtex fields.
-
-# Some studies include multiple bibtex fields for 
-# substudies/evaluations of different feature sets. E.g., 
-# `MODEL_RATE_EMOTION_VALUES_A` and `MODEL_RATE_EMOTION_VALUES_B`. 
-# We need to apply special operations to separate these values for 
-# further analysis.
-
-## function to parse output of multiple models nested within a single cell
-parse_model_output = function(df)
-{ # loop across rows
-  # apply function to replace NAs with empty string
-  sapply(1:nrow(df), function(x) {
-    df$model_rate_emotion_values <- tidyr::replace_na(df$model_rate_emotion_values, '') # detect cells with rbind in them
-    if(str_count(df$model_rate_emotion_values[x], "rbind") > 1) {
-      # match first model (name between first underscore and rbind)
-      model_1_name <- str_match(df$model_rate_emotion_values[x], 
-                                "(?<=_).*?(?=rbind)")
-      # match subsequent models (name between MODEL_RATE_EMOTION_VALUES_ and rbind)
-      model_names <- str_extract_all(df$model_rate_emotion_values[x], 
-                                     "(?<=MODEL_RATE_EMOTION_VALUES_).*?(?=rbind)")
-      # combine names
-      model_names <- unlist(c(model_1_name, model_names))
-      # remove special characters
-      model_names <- gsub("[^[:alnum:]]", "", model_names)
-      # get corresponding values for each model
-      model_results <- str_split(df$model_rate_emotion_values[x], 
-                "MODEL_RATE_EMOTION_VALUES")
-      # get rid of everything up to "rbind"
-      model_results <- lapply(model_results, function(x) str_remove(x, 
-                                                          '.+?(?=rbind)'))
-      # now unlist the models and give them names to add later
-      model_results <- unlist(model_results)
-       model_results <- paste(model_names, '=', model_results)
-      names(model_results) <- model_names
-     # return(model_results)
-    }
-    else { # otherwise, if dealing with non-listed, just return the existing value
-      model_results <- df$model_rate_emotion_values[x]
-    }
-    return(model_results)
-  }
-    )
-  # see whether rbind appears multiple times
-  
-}
-
-# get results from nested models:
-model_outputs <- parse_model_output(meta_df)
-# assign unique names
-model_names <- lapply(model_outputs, names)
-
-```
-
-## Data Frame Expansion
-
-Next we want to copy the number of rows for each of the bibtex cells requiring special nesting
-
-```{r eval = F, echo = F}
-# count the numbers 
-n_entries <- unlist(lapply(model_outputs, function(x) length(x)))
-# for those returning 0, change value to 1
-n_entries[n_entries == 0]<- 1
-# replicate rows based on number of models reported
-meta_df_unpacked <- meta_df[rep(seq_len(nrow(meta_df)), n_entries), ]
-# now overwrite model_rate_emotion_values with the output of parse_model_output
-meta_df_unpacked$model_rate_emotion_values <- unlist(model_outputs)
-
-```
-
-## Sanity check
-
-```{r eval = F, echo = F}
-# ex_substudy_1 <- eval(parse(text = meta_df_unpacked[7, 'model_rate_emotion_values']))
-# ex_substudy_2 <- eval(parse(text = meta_df_unpacked[8, 'model_rate_emotion_values']))
-```
-
-## Print output of all studies:
-
-```{r eval = F, echo = F}
-sapply(1:nrow(meta_df_unpacked), function(i) {
-  print(i) 
-  print(eval(parse(text = meta_df_unpacked$model_rate_emotion_values[i])))
-}
-)
-```
-
-```{r eval = F, echo = F}
-classification_studies = subset(meta_df_unpacked, paradigm == " classification  ")
-
-sapply(1:nrow(classification_studies), function(i) {
-  print(i) 
-  print(eval(parse(text = classification_studies$model_rate_emotion_values[i])))
-}
-)
-```
-
-```{r eval = F, echo = F}
-regression_studies = subset(meta_df_unpacked, paradigm == " regression  ")
-
-sapply(1:nrow(regression_studies), function(i) {
-  print(i) 
-  print(eval(parse(text = regression_studies$model_rate_emotion_values[i])))
-}
-)
-```
+The following functions provide a working example for converting the *R* code contained in `model_rate_emotion_values` to a data frame for further analysis. `get_study_summaries` is a simple function to demonstrate how the preprocessing routines work in the following examples
 
 ```{r}
-# low-level function to extract relevant values from named array
-model_result_2_df <- function(x) {
-  # evaluate the expression
-  x <- rlang::eval_tidy(rlang::parse_expr(x))
-  # get name of fitted models from column names
-  model_names <- colnames(x)
-  # print(model_names)
-  # split across model name for summary statistic (e.g., mean, sd, etc.)
-  model_statistic <- str_split(model_names, '\\.')
-  model_statistic <- unlist(lapply(model_statistic, function(x) x[2]))
-  # get values
-  model_values <- as.numeric(x)
-  # names(model_values) <- 'score'
-  print(model_values)
-  # get additional attributes (feature.data.exp)
-  model_attributes <- rownames(x)
-  data.frame(model_attributes)
-  # get additional model details
-  model_attributes <- data.frame(do.call('rbind', str_split(model_attributes, '\\.')))
-  names(model_attributes) <- c('library_id', 'model_id', 'feature_id', 'data_id', 'experiment_id')
-  print(names(model_attributes))
-  # split across '_' to 
-  model_measures <- data.frame(do.call('rbind', stringr::str_split(colnames(x), '_')))
-  print(model_measures)
-  names(model_measures) <- c('dimension', 'measure')
-  model_measures_split <- stringr::str_split(model_measures[,'measure'], '\\.')
-  model_measures[,'measure'] <- unlist(lapply(model_measures_split, 
-                                              function(x) x[1]))
-  return(data.frame(
-             model_attributes, 
-             model_measures, 
-             values = model_values,
-             statistic = model_statistic))
-}
-
-# high level function to apply model_result_2_df to multiple studies
+# high level function to apply parse_model_output to multiple studies
 get_study_summaries <- function(df) {
-  do.call(rbind,
-          lapply(df$model_rate_emotion_values, 
-                 FUN = function(x) {
-                   study_id <- unique(df$citekey[which(df$model_rate_emotion_values == x)])
-                   model_results <- model_result_2_df(x)
-                   return(cbind(study_id, model_results))
-                   }
-                 )
-          )
+do.call(rbind,
+  lapply(df$model_rate_emotion_values, 
+         FUN = function(x) {
+           study_id <- unique(df$citekey[which(df$model_rate_emotion_values == x)])
+           model_results <- parse_model_output(x)
+           return(cbind(study_id, model_results))
+           }
+         )
+  )
 }
 
 ```
 
-# Parsing Regression Studies
+## Regression studies
 
-The following functions provide a working example for converting the r code contained in `model_rate_emotion_values` to a data frame for further analysis (currently working for regression studies).
+Encoded values should use the following nomenclature. In this synthetic example, dim_measure.summary2 exists for the study in the second row, but not the first, so an NA is encoded for summary2 in row 1.
 
-### Template
-
-Encoded values should use the following nomenclature:
-
-```         
-library = rbind(library.model.features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), library.model.features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
-
-# e.g.
-
-rbind(librosa.randomforest.mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
-librosa.randomforest.temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
-valence_r2.sd = 0.1, arousal_r2.sd = 0.1))
-```
-
-### Working example
-
-```{r}
-this_study <- data.frame(citekey = c('testStudy2023ab','testStudy2023ab', 'testStudy2020of'),
-  model_rate_emotion_values = c("rbind('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
-                                  valence_r2.sd = 0.4, arousal_r2.sd = 0.3,
-  valence_mse.mean = 0.3, arousal_mse.mean = 9.1),
-  'essentia.random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))",
-  "rbind('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, valence_r2.sd = 0.2, arousal_r2.sd = 0.4,
-  euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))",
-  "rbind('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
+```{r warning=FALSE}
+bind_field(
+  'library.model.features.data.exp1' = c(dim_measure1.summary = 0.5, dim_measure2.summary = 0.1), 
+  'library.model.features.data.exp2' = c(dim_measure1.summary = 0.2, dim_measure2.summary = 0.5, dim_measure.summary2 = 0.3)
 )
 ```
 
-### Summary data frame
+### Example 2
+
+This example is more extensive, and shows how this procedure can work with multiple studies:
 
 ```{r}
-dplyr::tibble(get_study_summaries(this_study)) |>
+regression_example <- data.frame(citekey = c('testStudy2023aa','testStudy2023bb', 'testStudy2020cc'),
+  model_rate_emotion_values = c("bind_field('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,
+ valence_r2.sd = 0.4, arousal_r2.sd = 0.3),
+  'essentia.random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))",
+  "bind_field('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, euclid_euclid.mean = 0.32))",
+  "bind_field('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))")
+)
+
+
+dplyr::tibble(get_study_summaries(regression_example)) |>
+  knitr::kable()
+```
+
+## Classification studies
+
+For classification studies, we can extract results from a matrix-like representation.
+
+`unflatten` is a convenience function for preparing a confusion matrix, and `summarize_matrix` calls on the *caret* package to compute summary statistics for the matrix.
+
+```{r warning = FALSE}
+bind_field(
+  lapply(
+    list(
+      'library.model.features.data.exp' = unflatten(
+      "Class_A" = 0.8, "Class_B" = 0.2,
+      0.2, 0.8
+      ),
+      'library.model.features.data.exp' = unflatten(
+      "Class_A" = 0.4, "Class_B" = 0.6,
+      0.6, 0.4
+      )
+    ),
+    summarize_matrix
+  )
+)
+```
+
+```{r warning = FALSE}
+
+classification_example <- data.frame(
+  citekey = "classificationStudy2020aa",
+  model_rate_emotion_values = 
+  "bind_field(
+    lapply(
+      list(
+        'marsyas.smo unambiguous.mixed.new.1' = unflatten(
+          'A' = 52.6, 'B' = 17.1, 'C' = 0.0,
+          12, 65.2, 7.6, 
+          1.1,9.9,73.6),
+        'marsyas.smo full.mixed.new.1' = unflatten(
+          'C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 2, 
+          11.3,58.9,13.7,15,
+          0,13.2,68.6, 3,
+          15,1,4, 6)
+      ),
+      summarize_matrix
+    )
+  )"
+)
+
+
+dplyr::tibble(get_study_summaries(classification_example)) |>
   knitr::kable()
 ```
