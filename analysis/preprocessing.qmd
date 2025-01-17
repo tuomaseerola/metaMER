@@ -7,7 +7,7 @@ This assumes that the data has been parsed from the BibTeX files into table and 
 #| echo: false
 #| eval: true
 # Set parameters and libraries
-export_decision <- TRUE
+export_decision <- FALSE
 verbose <- FALSE
 require(here)
 library(stringr)
@@ -316,19 +316,18 @@ length(unique(metaMER_results$citekey[metaMER_results$model_category=='regressio
 # R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions. Pos')]<-548
 R_studies$feature_n[str_detect(R_studies$feature_n,'pre_fitting')] <- 21
 R_studies$feature_n[str_detect(R_studies$feature_n,'but 15 reported')]<-15 #resolved from the paper
-R_studies$feature_n[str_detect(R_studies$feature_n,'150 PCA features')]<-3000 #discuss
+R_studies$feature_n[str_detect(R_studies$feature_n,'150 PCA features')]<-3000 #resolved
 R_studies$feature_n[str_detect(R_studies$feature_n,' 50 PCA features')]<-  499 #resolved
-R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and')]<-60 # this should be 14400+60! discuss
+R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and')]<-14400+60 # this should be 14400+60! resolved
 R_studies$feature_n[str_detect(R_studies$feature_n,'before_selection = 45')]<-45 #resolved
 R_studies$feature_n[str_detect(R_studies$feature_n,'model 4 = 388')]<-388 #resolved
-R_studies$feature_n[str_detect(R_studies$feature_n,'6670 in MediaEval')]<-6670 #discuss
+# yang2021an appears there are nine unique features based on table 1
+R_studies$feature_n[str_detect(R_studies$feature_n,'6669 in MediaEval')]<-6669 # resolved. 9 reported in table 1, but likely used full mediaeval feature set. 
 R_studies$feature_n[str_detect(R_studies$feature_n,'557 before feature')]<-557 #resolved
-# this seems to refer to yang2021an, which is handled above with "6670 in mediaeval"
+# this seems to refer to yang2021an, which is handled above with "6669 in mediaeval"
 # R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')]<-NA
 # 2025-01-15
-# beveridge2018po. This one is worth discussing as the two studies might be worth differentiating. 
-# Using higher value for now. DISCUSS
-R_studies$feature_n[str_detect(R_studies$feature_n,'study 1: 26, study 2: 28')] <- 28
+R_studies$feature_n[str_detect(R_studies$feature_n,'study 1: 26, study 2: 28')] <- 54 # resolved used audio and midi features. study 2 was external validation
 R_studies$feature_n<-as.numeric(R_studies$feature_n)
 
 
@@ -774,16 +773,16 @@ g4
 #| eval: true
 
 #table(C_studies$feature_n)
-C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-600 # arbitrary!
+C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-21+12+4+14+39+1+1+6 # estimated from feature subsection 4.1.2 (encoded in reverse order from h to a)
 C_studies$feature_n[str_detect(C_studies$feature_n,'126, retained 97')]<-126 
-C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  arbitrary!
+C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  resolved
 # these seem to refer to the excluded bai studies
 # C_studies$feature_n[str_detect(C_studies$feature_n,'548; after reduction, ')] <- 548 
 #C_studies$feature_n[str_detect(C_studies$feature_n,'548 dimensions')] <- 548 
 # C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')] <- 548 
 C_studies$feature_n[str_detect(C_studies$feature_n,'8; 3 after')]<-8 
 C_studies$feature_n[str_detect(C_studies$feature_n,'between 9 and 10')]<-10 
-C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-600 # arbitrary
+C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-2+2+2 # estimated from 3.2.1 to 3.2.3
 #table(C_studies$feature_n)
 
 C_studies$feature_n <- as.numeric(C_studies$feature_n)
