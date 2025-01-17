@@ -38,7 +38,7 @@ m.cor <- metacor(cor = values,     # values
                  n = stimulus_n,
                  studlab = unique_id,
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
 #                 backtransf = TRUE,
@@ -76,7 +76,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = studyREF,#citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
 #                 backtransf = TRUE,
@@ -120,13 +120,13 @@ pcurve(m.cor)
 ```{r}
 #| fig-width: 12
 #| fig-height: 6
-fig2a <- forest(m.cor,
+fig2a <- meta::forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"),studlab = studyREF)
+             leftlabs = c("Author", "N"),studlab = studyREF)
 
-fig2b<-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+fig2b <- funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
 library(forestplot)
 data<-tibble::tibble(mean=m.cor$cor,lower=FisherZInv(m.cor$lower),upper=FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
@@ -176,7 +176,7 @@ m.cor1 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  model_class_id,
@@ -200,7 +200,7 @@ m.cor2 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  journal_type,
@@ -229,7 +229,7 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  feature_n_categories,
@@ -257,7 +257,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  feature_n_complexity_genre,
@@ -285,7 +285,7 @@ m.cor <- metacor(cor = values,     # values
                  n = stimulus_n,
                  studlab = unique_id,
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
 #                 backtransf = TRUE,
@@ -323,7 +323,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = studyREF,#citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
 #                 backtransf = TRUE,
@@ -371,7 +371,7 @@ fig2a <- forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"),studlab = studyREF)
+             leftlabs = c("Author", "N"),studlab = studyREF)
 
 fig2b<-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
@@ -423,7 +423,7 @@ m.cor1 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  model_class_id,
@@ -447,7 +447,7 @@ m.cor2 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  journal_type,
@@ -476,7 +476,7 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  feature_n_categories,
@@ -504,7 +504,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  subgroup =  feature_n_complexity_genre,
@@ -538,7 +538,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = studyREF, # unique_id
                  data = C_summary,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  backtransf = TRUE,
@@ -585,7 +585,7 @@ forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"),studlab = citekey)
+             leftlabs = c("Author", "N"),studlab = citekey)
 
 funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
@@ -604,7 +604,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  studlab = studyREF, # unique_id
                  data = C_summary,
                  subgroup = classes,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  backtransf = TRUE,
@@ -618,7 +618,7 @@ forest(m.cor,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "g", "SE"),studlab = citekey)
+             leftlabs = c("Author", "N"),studlab = citekey)
 
 funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
@@ -650,7 +650,7 @@ m.cor <- metacor(cor = values,
                  n = stimulus_n,
                  studlab = unique_id, # unique_id
                  data = tmp2,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  sm = "ZCOR",
                  prediction = TRUE,

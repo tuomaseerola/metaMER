@@ -168,10 +168,11 @@ cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model
 cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
 # note that we have some classification studies that also do regression and vice versa?
 # THIS IS CORRECT (updated 24 October 2024):
-# [1] "We have 1284 observations"
-# [1] "We have 36 studies"
+# THIS IS CORRECT (updated 17 January 2025):
+# [1] "We have 1114 observations"
+# [1] "We have 34 studies"
 # [1] "Where 22 are regression studies"
-# [1] "Where 14 are classification studies"
+# [1] "Where 12 are classification studies"
 
 # Add a check for these properties ToDo
 

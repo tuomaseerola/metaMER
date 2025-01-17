@@ -115,7 +115,7 @@ TABLE 1: Summary of data (part of `analysis/preprocessing.qmd`)
 | Feature N  | Min=3, Md=548, Max=6670         | Min=3, Md=397, Max=8904   | NA    |
 | Stimulus N | Min=20, Md=330, Max=2486        | Min=124, Md=387, Max=5192 | NA    |
 
-Although the total number of studies meeting the criteria described in the previous section is modest (36 in total), they encompass a large array of models (339 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (548) and classification (397) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 330 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
+Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (339 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (548) and classification (397) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 330 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in @saizclar2022pr to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
 
 We first report regression studies that predict valence and arousal.
 
@@ -224,6 +224,8 @@ TABLE
 
 # Conclusion and Discussion
 
+There has been a considerable number of studies published involving MER models (N=96/46 full text articles considered), but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to reject a substantial proportion of studies. At the end, 34 studies remained in the analysis that overall reported xxxxx models.    
+
 ## Concise summary of what we did and found
 
 ## Main outcomes
@@ -234,7 +236,12 @@ TABLE
 -   Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)
 -   Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated
 
+[this is the discussion section]
+
 ## Calls for action/points to improve in such studies
+
+
+
 
 -   *Documentation* the details in full (features, stimuli, model details, cross-validation)
 -   *Quality* of the underlying data (emotion ratings, classes, or even stimulus properties?
