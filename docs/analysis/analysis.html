@@ -686,8 +686,8 @@ Details of meta-analysis methods:
 </tr>
 <tr class="even">
 <td style="text-align: left;">Feature n &gt; 18 &amp; &lt; 260</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">4966</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4222</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Feature n &gt; 260</td>
@@ -716,42 +716,42 @@ Details of meta-analysis methods:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 22
-Number of observations: o = 14172
+Number of studies: k = 21
+Number of observations: o = 13428
 
-                        COR            95%-CI    t  p-value
-Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001
-Prediction interval         [-0.0120; 0.9258]              
+                        COR           95%-CI    t  p-value
+Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001
+Prediction interval         [0.0238; 0.9276]              
 
 Quantifying heterogeneity (with 95%-CIs):
- tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587]
- I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]
+ tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552]
+ I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1288.63   21 &lt; 0.0001
+ 1192.85   20 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                 k    COR           95%-CI
 feature_n_categories = Feature n &lt; 18           4 0.8165 [0.3609; 0.9575]
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  11 0.5630 [0.3496; 0.7209]
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  10 0.5864 [0.3599; 0.7476]
 feature_n_categories = Feature n &gt; 260          7 0.7023 [0.6122; 0.7744]
                                                tau^2    tau      Q   I^2
 feature_n_categories = Feature n &lt; 18         0.2295 0.4791 360.71 99.2%
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1482 0.3849 301.72 96.7%
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1542 0.3927 290.30 96.9%
 feature_n_categories = Feature n &gt; 260        0.0285 0.1689 178.35 96.6%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 4.60    2  0.1002
+Between groups 3.47    2  0.1761
 
 Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
 - Calculation of I^2 based on Q
-- Hartung-Knapp adjustment for random effects model (df = 21)
-- Prediction interval based on t-distribution (df = 21)
+- Hartung-Knapp adjustment for random effects model (df = 20)
+- Prediction interval based on t-distribution (df = 20)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">&lt;-</span><span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp,feature_n_categories),<span class="at">n=</span><span class="fu">n</span>(),<span class="at">obs=</span><span class="fu">sum</span>(stimulus_n))</span>
@@ -761,7 +761,7 @@ Details of meta-analysis methods:
   feature_n_categories       n   obs
   &lt;chr&gt;                  &lt;int&gt; &lt;int&gt;
 1 Feature n &lt; 18             4  3016
-2 Feature n &gt; 18 &amp; &lt; 260    11  4966
+2 Feature n &gt; 18 &amp; &lt; 260    10  4222
 3 Feature n &gt; 260            7  6190</code></pre>
 </div>
 </div>
@@ -789,8 +789,8 @@ Details of meta-analysis methods:
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medium single genre/multigenre study</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">8130</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7386</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medium-large single genre/multigenre study</td>
@@ -819,14 +819,14 @@ Details of meta-analysis methods:
 <span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
 <span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Review: MER: Regression: Valence: Summary</p>
-<p>Number of studies: k = 22 Number of observations: o = 14172</p>
-<pre><code>                    COR            95%-CI    t  p-value</code></pre>
-<p>Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001 Prediction interval [-0.0120; 0.9258]</p>
-<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587] I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]</p>
-<p>Test of heterogeneity: Q d.f. p-value 1288.63 21 &lt; 0.0001</p>
-<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 14 0.5874 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4328; 0.7084] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1183 0.3439 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 481.16 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
-<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 4.96 3 0.1750</p>
-<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 21) - Prediction interval based on t-distribution (df = 21) - Fisher’s z transformation of correlations</p>
+<p>Number of studies: k = 21 Number of observations: o = 13428</p>
+<pre><code>                    COR           95%-CI    t  p-value</code></pre>
+<p>Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001 Prediction interval [0.0238; 0.9276]</p>
+<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552] I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]</p>
+<p>Test of heterogeneity: Q d.f. p-value 1192.85 20 &lt; 0.0001</p>
+<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 13 0.6065 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4491; 0.7274] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1174 0.3427 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 437.57 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
+<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.99 3 0.2625</p>
+<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 20) - Fisher’s z transformation of correlations</p>
 </section>
 </section>
 <section id="arousal" class="level3">
@@ -1341,8 +1341,8 @@ Details of meta-analysis methods:
 </tr>
 <tr class="even">
 <td style="text-align: left;">Feature n &gt; 18 &amp; &lt; 260</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">4966</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4222</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Feature n &gt; 260</td>
@@ -1371,42 +1371,42 @@ Details of meta-analysis methods:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 22
-Number of observations: o = 14172
+Number of studies: k = 21
+Number of observations: o = 13428
 
-                        COR            95%-CI    t  p-value
-Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001
-Prediction interval         [-0.0120; 0.9258]              
+                        COR           95%-CI    t  p-value
+Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001
+Prediction interval         [0.0238; 0.9276]              
 
 Quantifying heterogeneity (with 95%-CIs):
- tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587]
- I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]
+ tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552]
+ I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1288.63   21 &lt; 0.0001
+ 1192.85   20 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                 k    COR           95%-CI
 feature_n_categories = Feature n &lt; 18           4 0.8165 [0.3609; 0.9575]
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  11 0.5630 [0.3496; 0.7209]
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  10 0.5864 [0.3599; 0.7476]
 feature_n_categories = Feature n &gt; 260          7 0.7023 [0.6122; 0.7744]
                                                tau^2    tau      Q   I^2
 feature_n_categories = Feature n &lt; 18         0.2295 0.4791 360.71 99.2%
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1482 0.3849 301.72 96.7%
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1542 0.3927 290.30 96.9%
 feature_n_categories = Feature n &gt; 260        0.0285 0.1689 178.35 96.6%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 4.60    2  0.1002
+Between groups 3.47    2  0.1761
 
 Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
 - Calculation of I^2 based on Q
-- Hartung-Knapp adjustment for random effects model (df = 21)
-- Prediction interval based on t-distribution (df = 21)
+- Hartung-Knapp adjustment for random effects model (df = 20)
+- Prediction interval based on t-distribution (df = 20)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">&lt;-</span><span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp,feature_n_categories),<span class="at">n=</span><span class="fu">n</span>(),<span class="at">obs=</span><span class="fu">sum</span>(stimulus_n))</span>
@@ -1416,7 +1416,7 @@ Details of meta-analysis methods:
   feature_n_categories       n   obs
   &lt;chr&gt;                  &lt;int&gt; &lt;int&gt;
 1 Feature n &lt; 18             4  3016
-2 Feature n &gt; 18 &amp; &lt; 260    11  4966
+2 Feature n &gt; 18 &amp; &lt; 260    10  4222
 3 Feature n &gt; 260            7  6190</code></pre>
 </div>
 </div>
@@ -1444,8 +1444,8 @@ Details of meta-analysis methods:
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medium single genre/multigenre study</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">8130</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7386</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medium-large single genre/multigenre study</td>
@@ -1474,14 +1474,14 @@ Details of meta-analysis methods:
 <span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
 <span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Review: MER: Regression: Valence: Summary</p>
-<p>Number of studies: k = 22 Number of observations: o = 14172</p>
-<pre><code>                    COR            95%-CI    t  p-value</code></pre>
-<p>Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001 Prediction interval [-0.0120; 0.9258]</p>
-<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587] I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]</p>
-<p>Test of heterogeneity: Q d.f. p-value 1288.63 21 &lt; 0.0001</p>
-<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 14 0.5874 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4328; 0.7084] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1183 0.3439 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 481.16 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
-<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 4.96 3 0.1750</p>
-<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 21) - Prediction interval based on t-distribution (df = 21) - Fisher’s z transformation of correlations</p>
+<p>Number of studies: k = 21 Number of observations: o = 13428</p>
+<pre><code>                    COR           95%-CI    t  p-value</code></pre>
+<p>Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001 Prediction interval [0.0238; 0.9276]</p>
+<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552] I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]</p>
+<p>Test of heterogeneity: Q d.f. p-value 1192.85 20 &lt; 0.0001</p>
+<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 13 0.6065 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4491; 0.7274] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1174 0.3427 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 437.57 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
+<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.99 3 0.2625</p>
+<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 20) - Fisher’s z transformation of correlations</p>
 </section>
 </section>
 </section>

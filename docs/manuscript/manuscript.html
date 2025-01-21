@@ -10,7 +10,7 @@
 <meta name="author" content="Cameron J. Anderson">
 <meta name="keywords" content="music, emotion, recognition, meta-analysis">
 
-<title>metaMER – Meta-analysis of regression and classification success of emotion ratings from audio</title>
+<title>metaMER – A Meta-Analysis of Music Emotion Recognition Studies</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -161,7 +161,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Meta-analysis of regression and classification success of emotion ratings from audio</h1>
+<h1 class="title">A Meta-Analysis of Music Emotion Recognition Studies</h1>
 </div>
 
 
@@ -234,8 +234,8 @@ window.Quarto = {
 <h1>Methods</h1>
 <p>We preregistered the meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd" class="uri">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html" class="uri">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
-<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(R^2\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.</p>
-<p>We converted all regression results into <span class="math inline">\(R^2\)</span> values for valence and arousal and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
+<p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(r\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.</p>
+<p>We converted all regression results from <span class="math inline">\(R^2\)</span> values into <span class="math inline">\(r\)</span> values for valence and arousal, and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig1">
@@ -346,7 +346,7 @@ window.Quarto = {
 <g id="node9" class="node">
 <title>I</title>
 <polygon fill="none" stroke="black" points="594,-108 306,-108 306,-72 594,-72 594,-108"></polygon>
-<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 10)</text>
+<text text-anchor="middle" x="450" y="-85.8" font-family="Helvetica,sans-Serif" font-size="14.00">Studies excluded in final review (n = 12)</text>
 </g>
 <!-- G&#45;&gt;I -->
 <g id="edge8" class="edge">
@@ -358,7 +358,7 @@ window.Quarto = {
 <g id="node10" class="node">
 <title>J</title>
 <polygon fill="none" stroke="black" points="288,-36 0,-36 0,0 288,0 288,-36"></polygon>
-<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 36)</text>
+<text text-anchor="middle" x="144" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">Final selection (n = 34)</text>
 </g>
 <!-- G&#45;&gt;J -->
 <g id="edge9" class="edge">
@@ -375,7 +375,7 @@ window.Quarto = {
 </div>
 <section id="quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="quality-control">Quality Control</h2>
-<p>The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, <a href="include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis">we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture</a>. Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., <em>Mathematical Problems in Engineering</em> ceased publication following 17 retractions published between July and September 2024).</p>
+<p>The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, <a href="include approx # for each? This would be good since the rest of this para already mentions counts. If this take a long time, we could save this for an additional analysis">we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture</a>. Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., <em>Mathematical Problems in Engineering</em> ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.</p>
 </section>
 <section id="study-encoding" class="level2">
 <h2 class="anchored" data-anchor-id="study-encoding">Study Encoding</h2>
@@ -385,7 +385,7 @@ window.Quarto = {
 <section id="results" class="level1">
 <h1>Results</h1>
 <p>First we describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
-<p>TABLE 1: Summary of data (part of <code>analysis/preprocessing.qmd</code>)</p>
+<p>TABLE 1: Summary of data (part of <code>analysis/preprocessing.qmd</code> updated 21/1/2025)</p>
 <table class="table">
 <colgroup>
 <col style="width: 15%">
@@ -404,27 +404,27 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Study N</td>
-<td style="text-align: left;">21</td>
-<td style="text-align: left;">14</td>
-<td style="text-align: left;">36</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">34</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Model N</td>
-<td style="text-align: left;">236</td>
-<td style="text-align: left;">103</td>
-<td style="text-align: left;">339</td>
+<td style="text-align: left;">204</td>
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">290</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Flexible Discriminants (FD): 58</td>
-<td style="text-align: left;">30</td>
-<td style="text-align: left;">86</td>
+<td style="text-align: left;">Neural Nets (NN): 66</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">91</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Neural Nets (NN): 70</td>
-<td style="text-align: left;">28</td>
-<td style="text-align: left;">98</td>
+<td style="text-align: left;">Flexible Discriminants (FD): 50</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">76</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
@@ -434,35 +434,35 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Random Forests (RF): 22</td>
-<td style="text-align: left;">14</td>
-<td style="text-align: left;">36</td>
+<td style="text-align: left;">Random Forests (RF): 14</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">34</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">KS, Add. &amp; KNN (KS): 24</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">32</td>
+<td style="text-align: left;">KS, Add. &amp; KNN (KS): 12</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Feature N</td>
-<td style="text-align: left;">Min=3, Md=548, Max=6670</td>
-<td style="text-align: left;">Min=3, Md=397, Max=8904</td>
+<td style="text-align: left;">Min=3, Md=605, Max=6670</td>
+<td style="text-align: left;">Min=8, Md=126, Max=8904</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Stimulus N</td>
-<td style="text-align: left;">Min=20, Md=330, Max=2486</td>
-<td style="text-align: left;">Min=124, Md=387, Max=5192</td>
+<td style="text-align: left;">Min=20, Md=324, Max=2486</td>
+<td style="text-align: left;">Min=124, Md=300, Max=5192</td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
-<p>Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (339 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">M. Zhang et al., 2023</a>)</span>. The median number of features differs between regression (548) and classification (397) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 330 for regression and 387 for classification), though there is substantial variation, with the extremes from 40 stimuli in <span class="citation" data-cites="saizclar2022pr">Saiz-Clar et al. (<a href="#ref-saizclar2022pr" role="doc-biblioref">2022</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the source of the extracted features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.</p>
+<p>Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">M. Zhang et al., 2023</a>)</span>. The median number of features differs between regression (605) and classification (126) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.</p>
 <p>We first report regression studies that predict valence and arousal.</p>
 <section id="prediction-success-for-affect-dimensions" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-success-for-affect-dimensions">Prediction success for affect dimensions</h2>
-<p>See <code>analysis/analysis.qmd</code></p>
+<p>See <code>analysis/analysis.qmd</code> (updated 17/1/2025)</p>
 <p>Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article.</p>
 <section id="results-for-valence" class="level3">
 <h3 class="anchored" data-anchor-id="results-for-valence">Results for valence</h3>
@@ -492,21 +492,21 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Valence All</td>
-<td style="text-align: left;">90,61733</td>
-<td style="text-align: left;">0.609 [0.570-0.650]</td>
-<td style="text-align: left;">23.3</td>
+<td style="text-align: left;">102,60017</td>
+<td style="text-align: left;">0.583 [0.541-0.623]</td>
+<td style="text-align: left;">21.40</td>
 <td style="text-align: left;">.0001</td>
-<td style="text-align: left;">0.079</td>
-<td style="text-align: left;">97.3%</td>
+<td style="text-align: left;">0.094</td>
+<td style="text-align: left;">97.7%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Valence Max</td>
-<td style="text-align: left;">21,13572</td>
-<td style="text-align: left;">0.680 [0.575-0.762]</td>
-<td style="text-align: left;">9.96</td>
+<td style="text-align: left;">22,14172</td>
+<td style="text-align: left;">0.669 [0.560-0.755]</td>
+<td style="text-align: left;">9.58</td>
 <td style="text-align: left;">.0001</td>
-<td style="text-align: left;">0.136</td>
-<td style="text-align: left;">98.2%</td>
+<td style="text-align: left;">0.148</td>
+<td style="text-align: left;">98.4%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><em>N Features</em></td>
@@ -555,7 +555,7 @@ window.Quarto = {
 </tr>
 <tr class="even">
 <td style="text-align: left;">KS</td>
-<td style="text-align: left;">2,2582</td>
+<td style="text-align: left;">1,1838</td>
 <td style="text-align: left;">0.466 [-0.634-0.942]</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">-</td>
@@ -564,7 +564,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LM</td>
-<td style="text-align: left;">7,1438</td>
+<td style="text-align: left;">8,1762</td>
 <td style="text-align: left;">0.797 [0.614-0.899]</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">-</td>
@@ -582,7 +582,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NN</td>
-<td style="text-align: left;">3,1229</td>
+<td style="text-align: left;">4,2249</td>
 <td style="text-align: left;">0.393 [-0.355-0.835]</td>
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">-</td>
@@ -600,9 +600,11 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 24 studies achieving an average correlation of <em>r</em> = 0.658 (95% CI: 0.557-0.740), called “valence Max” in Table 2. However, when considering all models across these studies (n = 120), the overall prediction rate drops significantly to <em>r</em> = 0.567. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.</p>
-<p>Further analysis of between-study heterogeneity, as indexed by the <span class="math inline">\(\tau^2\)</span> (0.138) and Higgins &amp; Thompson’s <span class="math inline">\(I^2\)</span> statistic <span class="citation" data-cites="higgins2002quantifying">(<a href="#ref-higgins2002quantifying" role="doc-biblioref">Higgins &amp; Thompson, 2002</a>)</span> at 98.2%, reveals substantial heterogeneity. Since <span class="math inline">\(I^2\)</span> is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, <span class="math inline">\(\tau^2\)</span>, which is less sensitive to the number of studies and directly linked to the outcome metric (<em>r</em>), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias <span class="citation" data-cites="van-aertwicherts_2016">(<a href="#ref-van-aertwicherts_2016" role="doc-biblioref">Van Aert et al., 2016</a>)</span>.</p>
-<p>To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al.&nbsp;(2023) demonstrating evidence of positive correlations. A mean estimate of 0.66 is achieved by 15 out of the 24 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> (n = 20), <span class="citation" data-cites="saizclar2022pr">Saiz-Clar et al. (<a href="#ref-saizclar2022pr" role="doc-biblioref">2022</a>)</span> (n = 40), and in <span class="citation" data-cites="griffiths2021am">Griffiths et al. (<a href="#ref-griffiths2021am" role="doc-biblioref">2021</a>)</span> (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger’s test (<span class="math inline">\(\beta\)</span>=5.00, CI95% -0.78-10.78, <em>t</em> = 1.70, <em>p</em> = 0.104, <span class="citation" data-cites="eggersmith_1997">Egger et al. (<a href="#ref-eggersmith_1997" role="doc-biblioref">1997</a>)</span>). Coming back to the mean of valence correlation of 0.66 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 13 studies in the data and resulted in the meta-analytical pooled correlation of 0.649 (CI95% 0.598-0.695). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.</p>
+<!-- table updated TE 21/1/2025 -->
+<p>The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 22 studies achieving an average correlation of <em>r</em> = 0.669 (95% CI: 0.560-0.755), called “valence Max” in Table 2. However, when considering all models across these studies (n = 102), the overall prediction rate drops significantly to <em>r</em> = 0.583. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.</p>
+<p>Further analysis of between-study heterogeneity, as indexed by the <span class="math inline">\(\tau^2\)</span> (0.148) and Higgins &amp; Thompson’s <span class="math inline">\(I^2\)</span> statistic <span class="citation" data-cites="higgins2002quantifying">(<a href="#ref-higgins2002quantifying" role="doc-biblioref">Higgins &amp; Thompson, 2002</a>)</span> at 98.4%, reveals substantial heterogeneity. Since <span class="math inline">\(I^2\)</span> is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, <span class="math inline">\(\tau^2\)</span>, which is less sensitive to the number of studies and directly linked to the outcome metric (<em>r</em>), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias <span class="citation" data-cites="van-aertwicherts_2016">(<a href="#ref-van-aertwicherts_2016" role="doc-biblioref">Van Aert et al., 2016</a>)</span>.</p>
+<p>To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al.&nbsp;(2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> (n = 20), and in <span class="citation" data-cites="griffiths2021am">Griffiths et al. (<a href="#ref-griffiths2021am" role="doc-biblioref">2021</a>)</span> (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger’s test (<span class="math inline">\(\beta\)</span>=5.05, CI95% -0.99-11.09, <em>t</em> = 1.64, <em>p</em> = 0.112, <span class="citation" data-cites="eggersmith_1997">Egger et al. (<a href="#ref-eggersmith_1997" role="doc-biblioref">1997</a>)</span>). Coming back to the mean of valence correlation of 0.67 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.</p>
+<!-- numbers in the text updated up to here, TE 21/1/2025 -->
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -613,12 +615,14 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modeling techniques employed. In terms of feature sets, we categorized them into three groups: few features (&lt;18), a large number of features (18–260), and massive feature sets (260+). Interestingly, models using a relatively small number of features (&lt;18) performed best (<em>r</em> = 0.881, 95% CI: 0.566–0.???) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (260+) also performed well (<em>r</em> = 0.685), achieving better and more consistent results than the overall prediction rate (<em>r</em> = 0.659). This observation is supported by the lowest heterogeneity index for the massive feature set group (<span class="math inline">\(\tau^2\)</span> = 0.044), indicating more consistent results across studies.</p>
-<p>When analyzing the studies across the five modeling techniques used. Notably, linear models (LM) and flexible discriminants (FD) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (<em>r</em> = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.137) compared to other techniques, where <span class="math inline">\(\tau^2\)</span> values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (<em>r</em> = 0.656, 95% CI: 0.484–0.779). The relatively poor performance of the neural network (NN) models (<em>r</em> = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies.</p>
-<p>We also ran the sub-grouping analyses across a combination of stimulus genres (single vs mixed) and number of the features to explore where the differences in the model prediction rates might lie. For this purpose, we grouped the studies into small single genre/multigenre studies, medium single genre/multigenre studies, and medium-large single genre/multigenre studies, and huge multigenre studies. The small single genre/multigenre studies generally performed best (<em>r</em> = 0.836, 95% CI: -0.197-0.989), followed by huge multi-genre studies (<em>r</em> = 0.720, 95% CI: -0.189-0.965) while the medium and medium-large sized studies performance was between close the overall average (medium-large, <em>r</em> = 0.669, 95% CI: 0.347-0.850 and medium <em>r</em> = 0.587, 95% CI: 0.433-0.708). The heterogeneity was lowest in the huge multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.013) and highest in the small single genre/multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.318).</p>
+<p>To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modeling techniques employed. In terms of feature sets, we categorized them into three groups: few features (&lt;18), a large number of features (18–260), and massive feature sets (260+). Interestingly, models (4 in total) using a relatively small number of features (&lt;18) performed best (<em>r</em> = 0.817, 95% CI: 0.361–0.958) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (260+, 7 studies in total) also performed well (<em>r</em> = 0.702), achieving better and more consistent results than the overall prediction rate (<em>r</em> = 0.669). This observation is supported by the lowest heterogeneity index for the massive feature set group (<span class="math inline">\(\tau^2\)</span> = 0.029), indicating more consistent results across studies. Studies with large number of features (18-260 features, 10 studies in total) delivered the worst results, <em>r</em> = 0.586 (95% CI: 0.360–0.748). Despite the fluctuation in the overall model accuracy between the number of features, the differences are not substantially large to pass the test of statistical significance (<em>Q</em>(2) = 3.47, <em>p</em>=.176).</p>
+<!-- numbers in the text updated up to here, TE 21/1/2025 -->
+<p>When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (<em>Q</em>(4) = 45.7, <em>p</em> &lt; .0001). Notably, linear models (LM) and flexible discriminants (FD) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (<em>r</em> = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.137) compared to other techniques, where <span class="math inline">\(\tau^2\)</span> values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (<em>r</em> = 0.656, 95% CI: 0.484–0.779). While there were only 3 studies involving random forests, these performed well, achieving <em>r</em> = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network models represented in four studies (<em>r</em> = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, <em>r</em> = 0.383, 95% CI: 0.348–0.426).</p>
+<p>We also ran the sub-grouping analyses across a combination of stimulus genres (single vs mixed) and number of the features to explore where the differences in the model prediction rates might lie. For this purpose, we grouped the studies into small single genre/multigenre studies, medium single genre/multigenre studies, and medium-large single genre/multigenre studies, and huge multigenre studies. The small single genre/multigenre studies generally performed best (<em>r</em> = 0.836), followed by huge multi-genre studies (<em>r</em> = 0.693) while the medium and medium-large sized studies performance was between close the overall average (medium-large, <em>r</em> = 0.768 and medium <em>r</em> = 0.607). The heterogeneity was lowest in the huge multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.013) and highest in the small single genre/multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.318).</p>
 <!-- However, these analyses did not reveal any clear patterns, likely due to the small number of studies in each subgroup.  -->
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
 <p>These comparisons of sub-groupings are also influenced by other factors, such as the type of journal (psychology vs engineering) or whether the objective is to explain or predict emotions. Although the sub-groupings result in an uneven distribution of studies and observations, they still offer valuable insights. Despite these caveats, the two main sub-groupings portrayed in Table 2 enable us to identify valuable differences related to model success across the studies.</p>
+<!-- numbers in the text updated up to here, TE 21/1/2025 -->
 </section>
 <section id="results-for-arousal" class="level3">
 <h3 class="anchored" data-anchor-id="results-for-arousal">Results for arousal</h3>
@@ -832,6 +836,7 @@ window.Quarto = {
 </section>
 <section id="conclusion-and-discussion" class="level1">
 <h1>Conclusion and Discussion</h1>
+<p>There has been a considerable number of studies published involving MER models (N=96/46 full text articles considered), but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to reject a substantial proportion of studies. At the end, 34 studies remained in the analysis that overall reported xxxxx models.</p>
 <section id="concise-summary-of-what-we-did-and-found" class="level2">
 <h2 class="anchored" data-anchor-id="concise-summary-of-what-we-did-and-found">Concise summary of what we did and found</h2>
 </section>
@@ -844,6 +849,7 @@ window.Quarto = {
 <li>Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)</li>
 <li>Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated</li>
 </ul>
+<p>[this is the discussion section]</p>
 </section>
 <section id="calls-for-actionpoints-to-improve-in-such-studies" class="level2">
 <h2 class="anchored" data-anchor-id="calls-for-actionpoints-to-improve-in-such-studies">Calls for action/points to improve in such studies</h2>
@@ -1000,9 +1006,6 @@ Russell, J. A. (1980). A circumplex model of affect. <em>Journal of Personality 
 </div>
 <div id="ref-saari_et_al_2015" class="csl-entry" role="listitem">
 Saari, P., Eerola, T., Barthet, M., Fazekas, G., &amp; Lartillot, O. (2015). Genre-adaptive semantic computing and audio-based modelling for music mood annotation. <em>IEEE Transactions on Affective Computing</em>, <em>7</em>(2), 122–135.
-</div>
-<div id="ref-saizclar2022pr" class="csl-entry" role="listitem">
-Saiz-Clar, E., Angel Serrano, M., &amp; Manuel Reales, J. (2022). Predicting emotions in music using the onset curve. <em>PSYCHOLOGY OF MUSIC</em>, <em>50</em>(4), 1107–1120. <a href="https://doi.org/10.1177/03057356211031658">https://doi.org/10.1177/03057356211031658</a>
 </div>
 <div id="ref-sarkar2020recognition" class="csl-entry" role="listitem">
 Sarkar, R., Choudhury, S., Dutta, S., Roy, A., &amp; Saha, S. K. (2020). Recognition of emotion in music based on deep convolutional neural network. <em>Multimedia Tools and Applications</em>, <em>79</em>(1), 765–783.
