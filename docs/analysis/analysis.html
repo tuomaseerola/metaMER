@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> unique_id,</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
@@ -192,40 +192,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 90
-Number of observations: o = 61733
+Number of studies: k = 102
+Number of observations: o = 60017
 
                         COR           95%-CI     t  p-value
-Random effects model 0.6093 [0.5699; 0.6459] 23.28 &lt; 0.0001
-Prediction interval         [0.1466; 0.8532]               
+Random effects model 0.5832 [0.5410; 0.6226] 21.41 &lt; 0.0001
+Prediction interval         [0.0552; 0.8563]               
 
-Quantifying heterogeneity:
- tau^2 = 0.0785 [0.0582; 0.1102]; tau = 0.2802 [0.2413; 0.3320]
- I^2 = 97.6% [97.3%; 97.8%]; H = 6.42 [6.11; 6.75]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0942 [0.0715; 0.1288]; tau = 0.3070 [0.2674; 0.3589]
+ I^2 = 97.7% [97.5%; 97.9%]; H = 6.58 [6.28; 6.89]
 
 Test of heterogeneity:
        Q d.f. p-value
- 3671.81   89       0
+ 4371.49  101       0
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Paule-Mandel estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 89)
-- Prediction interval based on t-distribution (df = 88)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 101)
+- Prediction interval based on t-distribution (df = 101)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6092692</code></pre>
+<pre><code>[1] 0.5832415</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6458615</code></pre>
+<pre><code>[1] 0.6225642</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5698839</code></pre>
+<pre><code>[1] 0.5409809</code></pre>
 </div>
 </div>
 </section>
@@ -251,7 +252,7 @@ Details on meta-analytical method:
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF,<span class="co">#citekey, # unique_id</span></span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
@@ -264,40 +265,41 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
-                        COR           95%-CI    t  p-value
-Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001
-Prediction interval         [0.0361; 0.9247]              
+                        COR            95%-CI    t  p-value
+Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001
+Prediction interval         [-0.0120; 0.9258]              
 
-Quantifying heterogeneity:
- tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439]
- I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587]
+ I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1024.93   20 &lt; 0.0001
+ 1288.63   21 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6796064</code></pre>
+<pre><code>[1] 0.6685242</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7623891</code></pre>
+<pre><code>[1] 0.7545765</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5749387</code></pre>
+<pre><code>[1] 0.5598682</code></pre>
 </div>
 </div>
 </section>
@@ -312,7 +314,7 @@ Details on meta-analytical method:
 ============================= 
 
  intercept        95% CI     t         p
-     4.781 -0.79 - 10.35 1.683 0.1087766
+      5.05 -0.99 - 11.09 1.637 0.1171758
 
 Eggers' test does not indicate the presence of funnel plot asymmetry. </code></pre>
 </div>
@@ -322,33 +324,34 @@ Eggers' test does not indicate the presence of funnel plot asymmetry. </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Identified outliers (random-effects model) 
 ------------------------------------------ 
-"Battcock et al 2021", "Chen et al 2017", "Griffiths et al 2021", "Hu et al 2017", "Koh et al 2023", "Wang et al. 2022a", "Wang et al. 2022b", "Zhang et al 2019", "Zhang et al 2023" 
+"Battcock et al 2021", "Chen et al 2017", "Coutinho et al 2017", "Griffiths et al 2021", "Hu et al 2017", "Koh et al 2023", "Wang et al. 2022a", "Wang et al. 2022b", "Zhang et al 2019", "Zhang et al 2023" 
  
 Results with outliers removed 
 ----------------------------- 
 Review:     MER: Regression: Valence: Summary
 
 Number of studies: k = 12
-Number of observations: o = 6570
+Number of observations: o = 6150
 
                         COR           95%-CI     t  p-value
-Random effects model 0.6743 [0.6135; 0.7271] 17.33 &lt; 0.0001
-Prediction interval         [0.4517; 0.8178]               
+Random effects model 0.6855 [0.6346; 0.7306] 20.44 &lt; 0.0001
+Prediction interval         [0.5143; 0.8042]               
 
-Quantifying heterogeneity:
- tau^2 = 0.0200 [0.0076; 0.0766]; tau = 0.1413 [0.0869; 0.2768]
- I^2 = 86.9% [78.9%; 91.9%]; H = 2.76 [2.18; 3.51]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0135 [0.0047; 0.0606]; tau = 0.1164 [0.0682; 0.2461]
+ I^2 = 82.9% [71.4%; 89.7%]; H = 2.42 [1.87; 3.12]
 
 Test of heterogeneity:
      Q d.f.  p-value
- 84.00   11 &lt; 0.0001
+ 64.22   11 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
 - Hartung-Knapp adjustment for random effects model (df = 11)
-- Prediction interval based on t-distribution (df = 10)
+- Prediction interval based on t-distribution (df = 11)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 3: Leave-out-out analysis etc for individual influence (not useful here)</span></span>
@@ -371,15 +374,15 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>P-curve analysis 
  ----------------------- 
-- Total number of provided studies: k = 21 
-- Total number of p&lt;0.05 studies included into the analysis: k = 20 (95.24%) 
-- Total number of studies with p&lt;0.025: k = 20 (95.24%) 
+- Total number of provided studies: k = 22 
+- Total number of p&lt;0.05 studies included into the analysis: k = 21 (95.45%) 
+- Total number of studies with p&lt;0.025: k = 21 (95.45%) 
    
 Results 
  ----------------------- 
                     pBinomial   zFull pFull   zHalf pHalf
-Right-skewness test         0 -31.933     0 -31.449     0
-Flatness test               1  31.635     1  31.928     1
+Right-skewness test         0 -32.247     0 -31.745     0
+Flatness test               1  31.712     1  32.038     1
 Note: p-values of 0 or 1 correspond to p&lt;0.001 and p&gt;0.999, respectively.   
 Power Estimate: 99% (99%-99%)
    
@@ -393,11 +396,11 @@ Evidential value
 <section id="visualise-forest-and-funnel-plots" class="level3">
 <h3 class="anchored" data-anchor-id="visualise-forest-and-funnel-plots">Visualise (forest and funnel plots)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig2a <span class="ot">&lt;-</span> <span class="fu">forest</span>(m.cor,</span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig2a <span class="ot">&lt;-</span> meta<span class="sc">::</span><span class="fu">forest</span>(m.cor,</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"N"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -405,7 +408,7 @@ Evidential value
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig2b<span class="ot">&lt;-</span><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig2b <span class="ot">&lt;-</span> <span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -458,7 +461,7 @@ Evidential value
 (`geom_line()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 768 rows containing missing values or values outside the scale range
+<pre><code>Warning: Removed 753 rows containing missing values or values outside the scale range
 (`geom_line()`).</code></pre>
 </div>
 <div class="cell-output-display">
@@ -492,18 +495,18 @@ Evidential value
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2582</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1838</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">1438</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1762</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1229</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2249</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
@@ -517,7 +520,7 @@ Evidential value
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  model_class_id,</span>
@@ -530,51 +533,52 @@ Evidential value
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
-                        COR           95%-CI    t  p-value
-Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001
-Prediction interval         [0.0361; 0.9247]              
+                        COR            95%-CI    t  p-value
+Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001
+Prediction interval         [-0.0120; 0.9258]              
 
-Quantifying heterogeneity:
- tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439]
- I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587]
+ I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1024.93   20 &lt; 0.0001
+ 1288.63   21 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                       k    COR
-model_class_id = Kernel Smoothing, Additive and KNN   2 0.4662
-model_class_id = Linear Methods                       7 0.7970
+model_class_id = Linear Methods                       8 0.7840
 model_class_id = Random Forests                       3 0.7503
+model_class_id = Kernel Smoothing, Additive and KNN   1 0.3873
+model_class_id = Neural Nets                          4 0.3404
 model_class_id = Flexible Discriminants               6 0.6555
-model_class_id = Neural Nets                          3 0.3933
                                                                95%-CI  tau^2
-model_class_id = Kernel Smoothing, Additive and KNN [-0.6342; 0.9424] 0.0185
-model_class_id = Linear Methods                     [ 0.6139; 0.8987] 0.1514
+model_class_id = Linear Methods                     [ 0.6249; 0.8806] 0.1370
 model_class_id = Random Forests                     [ 0.2922; 0.9284] 0.0740
+model_class_id = Kernel Smoothing, Additive and KNN [ 0.3477; 0.4255]     --
+model_class_id = Neural Nets                        [-0.0970; 0.6676] 0.0761
 model_class_id = Flexible Discriminants             [ 0.4838; 0.7786] 0.0574
-model_class_id = Neural Nets                        [-0.3553; 0.8345] 0.0929
                                                        tau      Q   I^2
-model_class_id = Kernel Smoothing, Additive and KNN 0.1361  20.56 95.1%
-model_class_id = Linear Methods                     0.3891 184.86 96.8%
+model_class_id = Linear Methods                     0.3701 195.78 96.4%
 model_class_id = Random Forests                     0.2721 163.33 98.8%
+model_class_id = Kernel Smoothing, Additive and KNN     --   0.00    --
+model_class_id = Neural Nets                        0.2759 102.54 97.1%
 model_class_id = Flexible Discriminants             0.2396 161.22 96.9%
-model_class_id = Neural Nets                        0.3049  56.87 96.5%
 
 Test for subgroup differences (random effects model):
-                   Q d.f. p-value
-Between groups 16.38    4  0.0025
+                   Q d.f.  p-value
+Between groups 45.71    4 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 </div>
@@ -595,12 +599,12 @@ Details on meta-analytical method:
 <tr class="odd">
 <td style="text-align: left;">Engineering</td>
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">10422</td>
+<td style="text-align: right;">10002</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Psychology</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">3150</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">4170</td>
 </tr>
 </tbody>
 </table>
@@ -609,7 +613,7 @@ Details on meta-analytical method:
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  journal_type,</span>
@@ -622,39 +626,40 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
-                        COR           95%-CI    t  p-value
-Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001
-Prediction interval         [0.0361; 0.9247]              
+                        COR            95%-CI    t  p-value
+Random effects model 0.6685 [ 0.5599; 0.7546] 9.58 &lt; 0.0001
+Prediction interval         [-0.0120; 0.9258]              
 
-Quantifying heterogeneity:
- tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439]
- I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1484 [0.0847; 0.3121]; tau = 0.3852 [0.2910; 0.5587]
+ I^2 = 98.4% [98.0%; 98.6%]; H = 7.83 [7.15; 8.58]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1024.93   20 &lt; 0.0001
+ 1288.63   21 &lt; 0.0001
 
 Results for subgroups (random effects model):
                              k    COR           95%-CI  tau^2    tau      Q
-journal_type = Engineering  13 0.6465 [0.4909; 0.7621] 0.1402 0.3744 632.53
-journal_type = Psychology    8 0.7323 [0.5491; 0.8484] 0.1334 0.3653 385.42
+journal_type = Psychology    9 0.6880 [0.4683; 0.8276] 0.1830 0.4278 562.98
+journal_type = Engineering  13 0.6564 [0.5052; 0.7685] 0.1378 0.3712 627.09
                              I^2
+journal_type = Psychology  98.6%
 journal_type = Engineering 98.1%
-journal_type = Psychology  98.2%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 0.92    1  0.3366
+Between groups 0.10    1  0.7482
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 </div>
@@ -676,18 +681,18 @@ Details on meta-analytical method:
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Feature n &lt; 18</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">3036</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3016</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Feature n &gt; 18 &amp; &lt; 260</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">7042</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4222</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Feature n &gt; 260</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">3494</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6190</td>
 </tr>
 </tbody>
 </table>
@@ -698,7 +703,7 @@ Details on meta-analytical method:
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  feature_n_categories,</span>
@@ -712,40 +717,41 @@ Details on meta-analytical method:
 <pre><code>Review:     MER: Regression: Valence: Summary
 
 Number of studies: k = 21
-Number of observations: o = 13572
+Number of observations: o = 13428
 
                         COR           95%-CI    t  p-value
-Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001
-Prediction interval         [0.0361; 0.9247]              
+Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001
+Prediction interval         [0.0238; 0.9276]              
 
-Quantifying heterogeneity:
- tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439]
- I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552]
+ I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1024.93   20 &lt; 0.0001
+ 1192.85   20 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                 k    COR           95%-CI
-feature_n_categories = Feature n &gt; 260          5 0.7096 [0.5423; 0.8228]
-feature_n_categories = Feature n &lt; 18           5 0.8111 [0.5342; 0.9308]
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  11 0.5843 [0.4076; 0.7187]
+feature_n_categories = Feature n &lt; 18           4 0.8165 [0.3609; 0.9575]
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  10 0.5864 [0.3599; 0.7476]
+feature_n_categories = Feature n &gt; 260          7 0.7023 [0.6122; 0.7744]
                                                tau^2    tau      Q   I^2
-feature_n_categories = Feature n &gt; 260        0.0492 0.2217 162.32 97.5%
-feature_n_categories = Feature n &lt; 18         0.1815 0.4260 362.55 98.9%
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1089 0.3300 295.76 96.6%
+feature_n_categories = Feature n &lt; 18         0.2295 0.4791 360.71 99.2%
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1542 0.3927 290.30 96.9%
+feature_n_categories = Feature n &gt; 260        0.0285 0.1689 178.35 96.6%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 5.06    2  0.0798
+Between groups 3.47    2  0.1761
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
 - Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Prediction interval based on t-distribution (df = 20)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">&lt;-</span><span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp,feature_n_categories),<span class="at">n=</span><span class="fu">n</span>(),<span class="at">obs=</span><span class="fu">sum</span>(stimulus_n))</span>
@@ -754,9 +760,9 @@ Details on meta-analytical method:
 <pre><code># A tibble: 3 × 3
   feature_n_categories       n   obs
   &lt;chr&gt;                  &lt;int&gt; &lt;int&gt;
-1 Feature n &lt; 18             5  3036
-2 Feature n &gt; 18 &amp; &lt; 260    11  7042
-3 Feature n &gt; 260            5  3494</code></pre>
+1 Feature n &lt; 18             4  3016
+2 Feature n &gt; 18 &amp; &lt; 260    10  4222
+3 Feature n &gt; 260            7  6190</code></pre>
 </div>
 </div>
 </section>
@@ -778,18 +784,18 @@ Details on meta-analytical method:
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Huge multigenre study</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1068</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1812</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medium single genre/multigenre study</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">7854</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7386</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medium-large single genre/multigenre study</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">1682</td>
+<td style="text-align: right;">1262</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Small single genre study</td>
@@ -802,7 +808,7 @@ Details on meta-analytical method:
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  feature_n_complexity_genre,</span>
@@ -813,14 +819,14 @@ Details on meta-analytical method:
 <span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
 <span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Review: MER: Regression: Valence: Summary</p>
-<p>Number of studies: k = 21 Number of observations: o = 13572</p>
+<p>Number of studies: k = 21 Number of observations: o = 13428</p>
 <pre><code>                    COR           95%-CI    t  p-value</code></pre>
-<p>Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001 Prediction interval [0.0361; 0.9247]</p>
-<p>Quantifying heterogeneity: tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439] I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]</p>
-<p>Test of heterogeneity: Q d.f. p-value 1024.93 20 &lt; 0.0001</p>
-<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7179 feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 14 0.6142 feature_n_complexity_genre = Huge multigenre study 2 0.7203 95%-CI feature_n_complexity_genre = Medium-large single genre/multi … [-0.9936; 0.9998] feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4814; 0.7194] feature_n_complexity_genre = Huge multigenre study [-0.1886; 0.9645] tau^2 tau feature_n_complexity_genre = Medium-large single genre/multi … 0.1752 0.4186 feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.0937 0.3061 feature_n_complexity_genre = Huge multigenre study 0.0128 0.1131 Q I^2 feature_n_complexity_genre = Medium-large single genre/multi … 145.88 99.3% feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 332.50 96.1% feature_n_complexity_genre = Huge multigenre study 6.73 85.1%</p>
-<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.88 3 0.2742</p>
-<p>Details on meta-analytical method: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 19) - Fisher’s z transformation of correlations</p>
+<p>Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001 Prediction interval [0.0238; 0.9276]</p>
+<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552] I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]</p>
+<p>Test of heterogeneity: Q d.f. p-value 1192.85 20 &lt; 0.0001</p>
+<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 13 0.6065 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4491; 0.7274] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1174 0.3427 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 437.57 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
+<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.99 3 0.2625</p>
+<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 20) - Fisher’s z transformation of correlations</p>
 </section>
 </section>
 <section id="arousal" class="level3">
@@ -839,7 +845,7 @@ Details on meta-analytical method:
 <span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> unique_id,</span>
 <span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
@@ -852,40 +858,41 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Arousal: Summary
 
-Number of studies: k = 90
-Number of observations: o = 61733
+Number of studies: k = 102
+Number of observations: o = 60017
 
                         COR           95%-CI     t  p-value
-Random effects model 0.7945 [0.7735; 0.8138] 39.40 &lt; 0.0001
-Prediction interval         [0.5224; 0.9198]               
+Random effects model 0.7909 [0.7700; 0.8101] 39.90 &lt; 0.0001
+Prediction interval         [0.4999; 0.9214]               
 
-Quantifying heterogeneity:
- tau^2 = 0.0635 [0.0466; 0.0901]; tau = 0.2520 [0.2159; 0.3001]
- I^2 = 95.9% [95.4%; 96.4%]; H = 4.95 [4.67; 5.26]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0692 [0.0520; 0.0955]; tau = 0.2631 [0.2280; 0.3090]
+ I^2 = 96.2% [95.8%; 96.6%]; H = 5.14 [4.87; 5.43]
 
 Test of heterogeneity:
        Q d.f. p-value
- 2183.40   89       0
+ 2666.55  101       0
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Paule-Mandel estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 89)
-- Prediction interval based on t-distribution (df = 88)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 101)
+- Prediction interval based on t-distribution (df = 101)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7945095</code></pre>
+<pre><code>[1] 0.7908857</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8138027</code></pre>
+<pre><code>[1] 0.8100518</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7734669</code></pre>
+<pre><code>[1] 0.7700316</code></pre>
 </div>
 </div>
 </section>
@@ -911,7 +918,7 @@ Details on meta-analytical method:
 <span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF,<span class="co">#citekey, # unique_id</span></span>
 <span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a><span class="co">#                 backtransf = TRUE,</span></span>
@@ -924,40 +931,41 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Arousal: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
                         COR           95%-CI     t  p-value
-Random effects model 0.8146 [0.7487; 0.8646] 13.95 &lt; 0.0001
-Prediction interval         [0.3498; 0.9576]               
+Random effects model 0.8087 [0.7404; 0.8604] 13.60 &lt; 0.0001
+Prediction interval         [0.3127; 0.9582]               
 
-Quantifying heterogeneity:
- tau^2 = 0.1306 [0.0734; 0.2867]; tau = 0.3614 [0.2710; 0.5354]
- I^2 = 97.2% [96.5%; 97.8%]; H = 6.00 [5.37; 6.70]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1411 [0.0805; 0.2999]; tau = 0.3756 [0.2838; 0.5476]
+ I^2 = 97.9% [97.4%; 98.3%]; H = 6.90 [6.26; 7.62]
 
 Test of heterogeneity:
-      Q d.f.  p-value
- 718.90   20 &lt; 0.0001
+       Q d.f.  p-value
+ 1001.16   21 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8146178</code></pre>
+<pre><code>[1] 0.8086765</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>upper.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8645681</code></pre>
+<pre><code>[1] 0.8604211</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>lower.random))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7487273</code></pre>
+<pre><code>[1] 0.7404257</code></pre>
 </div>
 </div>
 </section>
@@ -972,7 +980,7 @@ Details on meta-analytical method:
 ============================= 
 
  intercept       95% CI     t         p
-     0.375 -4.62 - 5.37 0.147 0.8846051
+     0.789 -4.87 - 6.45 0.273 0.7876923
 
 Eggers' test does not indicate the presence of funnel plot asymmetry. </code></pre>
 </div>
@@ -982,33 +990,34 @@ Eggers' test does not indicate the presence of funnel plot asymmetry. </code></p
 <div class="cell-output cell-output-stdout">
 <pre><code>Identified outliers (random-effects model) 
 ------------------------------------------ 
-"Gingras et al 2014", "Koh et al 2023", "Orjesek et al 2022", "Wang et al. 2022b", "Zhang et al 2019", "Zhang et al 2023" 
+"Battcock et al 2021", "Coutinho et al 2017", "Gingras et al 2014", "Grekow et al 2018", "Koh et al 2023", "Orjesek et al 2022", "Wang et al. 2022b", "Zhang et al 2019", "Zhang et al 2023" 
  
 Results with outliers removed 
 ----------------------------- 
 Review:     MER: Regression: Arousal: Summary
 
-Number of studies: k = 15
-Number of observations: o = 11693
+Number of studies: k = 13
+Number of observations: o = 10613
 
                         COR           95%-CI     t  p-value
-Random effects model 0.8350 [0.8092; 0.8577] 32.32 &lt; 0.0001
-Prediction interval         [0.7359; 0.8992]               
+Random effects model 0.8262 [0.8061; 0.8445] 42.44 &lt; 0.0001
+Prediction interval         [0.7721; 0.8684]               
 
-Quantifying heterogeneity:
- tau^2 = 0.0136 [0.0060; 0.0575]; tau = 0.1167 [0.0776; 0.2398]
- I^2 = 85.3% [77.2%; 90.5%]; H = 2.61 [2.09; 3.24]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0042 [0.0016; 0.0501]; tau = 0.0649 [0.0401; 0.2239]
+ I^2 = 76.8% [60.6%; 86.4%]; H = 2.08 [1.59; 2.71]
 
 Test of heterogeneity:
      Q d.f.  p-value
- 95.03   14 &lt; 0.0001
+ 51.82   12 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 14)
-- Prediction interval based on t-distribution (df = 13)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 12)
+- Prediction interval based on t-distribution (df = 12)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 3: Leave-out-out analysis etc for individual influence (not useful here)</span></span>
@@ -1031,15 +1040,15 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>P-curve analysis 
  ----------------------- 
-- Total number of provided studies: k = 21 
-- Total number of p&lt;0.05 studies included into the analysis: k = 21 (100%) 
-- Total number of studies with p&lt;0.025: k = 21 (100%) 
+- Total number of provided studies: k = 22 
+- Total number of p&lt;0.05 studies included into the analysis: k = 22 (100%) 
+- Total number of studies with p&lt;0.025: k = 22 (100%) 
    
 Results 
  ----------------------- 
                     pBinomial   zFull pFull   zHalf pHalf
-Right-skewness test         0 -32.873     0 -32.346     0
-Flatness test               1  33.215     1  33.480     1
+Right-skewness test         0 -33.770     0 -33.237     0
+Flatness test               1  34.184     1  34.443     1
 Note: p-values of 0 or 1 correspond to p&lt;0.001 and p&gt;0.999, respectively.   
 Power Estimate: 99% (99%-99%)
    
@@ -1057,7 +1066,7 @@ Evidential value
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
 <span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"N"</span>),<span class="at">studlab =</span> studyREF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1105,7 +1114,7 @@ Evidential value
 <span id="cb71-30"><a href="#cb71-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-31"><a href="#cb71-31" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(fp1, fp2, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">widths=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>),<span class="at">heights=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 770 rows containing missing values or values outside the scale range
+<pre><code>Warning: Removed 754 rows containing missing values or values outside the scale range
 (`geom_line()`).</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -1147,18 +1156,18 @@ Evidential value
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2582</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1838</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">1438</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1762</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">1229</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2249</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
@@ -1172,7 +1181,7 @@ Evidential value
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  model_class_id,</span>
@@ -1185,45 +1194,46 @@ Evidential value
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
                         COR           95%-CI     t  p-value
-Random effects model 0.8146 [0.7487; 0.8646] 13.95 &lt; 0.0001
-Prediction interval         [0.3498; 0.9576]               
+Random effects model 0.8087 [0.7404; 0.8604] 13.60 &lt; 0.0001
+Prediction interval         [0.3127; 0.9582]               
 
-Quantifying heterogeneity:
- tau^2 = 0.1306 [0.0734; 0.2867]; tau = 0.3614 [0.2710; 0.5354]
- I^2 = 97.2% [96.5%; 97.8%]; H = 6.00 [5.37; 6.70]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1411 [0.0805; 0.2999]; tau = 0.3756 [0.2838; 0.5476]
+ I^2 = 97.9% [97.4%; 98.3%]; H = 6.90 [6.26; 7.62]
 
 Test of heterogeneity:
-      Q d.f.  p-value
- 718.90   20 &lt; 0.0001
+       Q d.f.  p-value
+ 1001.16   21 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                       k    COR           95%-CI
-model_class_id = Kernel Smoothing, Additive and KNN   2 0.8068 [0.5493; 0.9244]
-model_class_id = Linear Methods                       7 0.8849 [0.7962; 0.9364]
+model_class_id = Linear Methods                       8 0.8812 [0.8079; 0.9277]
 model_class_id = Random Forests                       3 0.8085 [0.7334; 0.8641]
+model_class_id = Kernel Smoothing, Additive and KNN   1 0.8185 [0.8029; 0.8331]
+model_class_id = Neural Nets                          4 0.5339 [0.3281; 0.6912]
 model_class_id = Flexible Discriminants               6 0.8077 [0.6437; 0.9008]
-model_class_id = Neural Nets                          3 0.5329 [0.0822; 0.8027]
                                                      tau^2    tau      Q   I^2
-model_class_id = Kernel Smoothing, Additive and KNN 0.0022 0.0470   3.33 70.0%
-model_class_id = Linear Methods                     0.0993 0.3151 104.83 94.3%
+model_class_id = Linear Methods                     0.0846 0.2908 104.87 93.3%
 model_class_id = Random Forests                     0.0025 0.0505   5.77 65.4%
+model_class_id = Kernel Smoothing, Additive and KNN     --     --   0.00    --
+model_class_id = Neural Nets                        0.0190 0.1379  21.17 85.8%
 model_class_id = Flexible Discriminants             0.1125 0.3354 246.31 98.0%
-model_class_id = Neural Nets                        0.0344 0.1856  19.40 89.7%
 
 Test for subgroup differences (random effects model):
                    Q d.f.  p-value
-Between groups 24.07    4 &lt; 0.0001
+Between groups 50.47    4 &lt; 0.0001
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 </div>
@@ -1244,12 +1254,12 @@ Details on meta-analytical method:
 <tr class="odd">
 <td style="text-align: left;">Engineering</td>
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">10422</td>
+<td style="text-align: right;">10002</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Psychology</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">3150</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">4170</td>
 </tr>
 </tbody>
 </table>
@@ -1258,7 +1268,7 @@ Details on meta-analytical method:
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  journal_type,</span>
@@ -1271,39 +1281,40 @@ Details on meta-analytical method:
 <div class="cell-output cell-output-stdout">
 <pre><code>Review:     MER: Regression: Valence: Summary
 
-Number of studies: k = 21
-Number of observations: o = 13572
+Number of studies: k = 22
+Number of observations: o = 14172
 
                         COR           95%-CI     t  p-value
-Random effects model 0.8146 [0.7487; 0.8646] 13.95 &lt; 0.0001
-Prediction interval         [0.3498; 0.9576]               
+Random effects model 0.8087 [0.7404; 0.8604] 13.60 &lt; 0.0001
+Prediction interval         [0.3127; 0.9582]               
 
-Quantifying heterogeneity:
- tau^2 = 0.1306 [0.0734; 0.2867]; tau = 0.3614 [0.2710; 0.5354]
- I^2 = 97.2% [96.5%; 97.8%]; H = 6.00 [5.37; 6.70]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1411 [0.0805; 0.2999]; tau = 0.3756 [0.2838; 0.5476]
+ I^2 = 97.9% [97.4%; 98.3%]; H = 6.90 [6.26; 7.62]
 
 Test of heterogeneity:
-      Q d.f.  p-value
- 718.90   20 &lt; 0.0001
+       Q d.f.  p-value
+ 1001.16   21 &lt; 0.0001
 
 Results for subgroups (random effects model):
                              k    COR           95%-CI  tau^2    tau      Q
-journal_type = Engineering  13 0.7799 [0.6625; 0.8600] 0.1613 0.4016 639.25
-journal_type = Psychology    8 0.8628 [0.8028; 0.9054] 0.0405 0.2013  45.81
+journal_type = Psychology    9 0.8389 [0.7417; 0.9016] 0.1079 0.3286 345.30
+journal_type = Engineering  13 0.7858 [0.6693; 0.8647] 0.1655 0.4068 650.86
                              I^2
-journal_type = Engineering 98.1%
-journal_type = Psychology  84.7%
+journal_type = Psychology  97.7%
+journal_type = Engineering 98.2%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 3.36    1  0.0668
+Between groups 0.94    1  0.3332
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 21)
+- Prediction interval based on t-distribution (df = 21)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 </div>
@@ -1325,18 +1336,18 @@ Details on meta-analytical method:
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Feature n &lt; 18</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">3036</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3016</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Feature n &gt; 18 &amp; &lt; 260</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">7042</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4222</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Feature n &gt; 260</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">3494</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">6190</td>
 </tr>
 </tbody>
 </table>
@@ -1347,7 +1358,7 @@ Details on meta-analytical method:
 <span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  feature_n_categories,</span>
@@ -1361,40 +1372,41 @@ Details on meta-analytical method:
 <pre><code>Review:     MER: Regression: Valence: Summary
 
 Number of studies: k = 21
-Number of observations: o = 13572
+Number of observations: o = 13428
 
                         COR           95%-CI    t  p-value
-Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001
-Prediction interval         [0.0361; 0.9247]              
+Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001
+Prediction interval         [0.0238; 0.9276]              
 
-Quantifying heterogeneity:
- tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439]
- I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552]
+ I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]
 
 Test of heterogeneity:
        Q d.f.  p-value
- 1024.93   20 &lt; 0.0001
+ 1192.85   20 &lt; 0.0001
 
 Results for subgroups (random effects model):
                                                 k    COR           95%-CI
-feature_n_categories = Feature n &gt; 260          5 0.7096 [0.5423; 0.8228]
-feature_n_categories = Feature n &lt; 18           5 0.8111 [0.5342; 0.9308]
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  11 0.5843 [0.4076; 0.7187]
+feature_n_categories = Feature n &lt; 18           4 0.8165 [0.3609; 0.9575]
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260  10 0.5864 [0.3599; 0.7476]
+feature_n_categories = Feature n &gt; 260          7 0.7023 [0.6122; 0.7744]
                                                tau^2    tau      Q   I^2
-feature_n_categories = Feature n &gt; 260        0.0492 0.2217 162.32 97.5%
-feature_n_categories = Feature n &lt; 18         0.1815 0.4260 362.55 98.9%
-feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1089 0.3300 295.76 96.6%
+feature_n_categories = Feature n &lt; 18         0.2295 0.4791 360.71 99.2%
+feature_n_categories = Feature n &gt; 18 &amp; &lt; 260 0.1542 0.3927 290.30 96.9%
+feature_n_categories = Feature n &gt; 260        0.0285 0.1689 178.35 96.6%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 5.06    2  0.0798
+Between groups 3.47    2  0.1761
 
-Details on meta-analytical method:
+Details of meta-analysis methods:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
 - Hartung-Knapp adjustment for random effects model (df = 20)
-- Prediction interval based on t-distribution (df = 19)
+- Prediction interval based on t-distribution (df = 20)
 - Fisher's z transformation of correlations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>S<span class="ot">&lt;-</span><span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp,feature_n_categories),<span class="at">n=</span><span class="fu">n</span>(),<span class="at">obs=</span><span class="fu">sum</span>(stimulus_n))</span>
@@ -1403,9 +1415,9 @@ Details on meta-analytical method:
 <pre><code># A tibble: 3 × 3
   feature_n_categories       n   obs
   &lt;chr&gt;                  &lt;int&gt; &lt;int&gt;
-1 Feature n &lt; 18             5  3036
-2 Feature n &gt; 18 &amp; &lt; 260    11  7042
-3 Feature n &gt; 260            5  3494</code></pre>
+1 Feature n &lt; 18             4  3016
+2 Feature n &gt; 18 &amp; &lt; 260    10  4222
+3 Feature n &gt; 260            7  6190</code></pre>
 </div>
 </div>
 </section>
@@ -1427,18 +1439,18 @@ Details on meta-analytical method:
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Huge multigenre study</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">1068</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1812</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medium single genre/multigenre study</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">7854</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7386</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medium-large single genre/multigenre study</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">1682</td>
+<td style="text-align: right;">1262</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Small single genre study</td>
@@ -1451,7 +1463,7 @@ Details on meta-analytical method:
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> citekey, <span class="co"># unique_id</span></span>
 <span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> tmp,</span>
-<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span>  feature_n_complexity_genre,</span>
@@ -1462,14 +1474,14 @@ Details on meta-analytical method:
 <span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Regression: Valence: Summary"</span>)</span>
 <span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Review: MER: Regression: Valence: Summary</p>
-<p>Number of studies: k = 21 Number of observations: o = 13572</p>
+<p>Number of studies: k = 21 Number of observations: o = 13428</p>
 <pre><code>                    COR           95%-CI    t  p-value</code></pre>
-<p>Random effects model 0.6796 [0.5749; 0.7624] 9.96 &lt; 0.0001 Prediction interval [0.0361; 0.9247]</p>
-<p>Quantifying heterogeneity: tau^2 = 0.1364 [0.0767; 0.2959]; tau = 0.3693 [0.2769; 0.5439] I^2 = 98.0% [97.6%; 98.4%]; H = 7.16 [6.48; 7.90]</p>
-<p>Test of heterogeneity: Q d.f. p-value 1024.93 20 &lt; 0.0001</p>
-<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7179 feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 14 0.6142 feature_n_complexity_genre = Huge multigenre study 2 0.7203 95%-CI feature_n_complexity_genre = Medium-large single genre/multi … [-0.9936; 0.9998] feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4814; 0.7194] feature_n_complexity_genre = Huge multigenre study [-0.1886; 0.9645] tau^2 tau feature_n_complexity_genre = Medium-large single genre/multi … 0.1752 0.4186 feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.0937 0.3061 feature_n_complexity_genre = Huge multigenre study 0.0128 0.1131 Q I^2 feature_n_complexity_genre = Medium-large single genre/multi … 145.88 99.3% feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 332.50 96.1% feature_n_complexity_genre = Huge multigenre study 6.73 85.1%</p>
-<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.88 3 0.2742</p>
-<p>Details on meta-analytical method: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 19) - Fisher’s z transformation of correlations</p>
+<p>Random effects model 0.6817 [0.5751; 0.7656] 9.80 &lt; 0.0001 Prediction interval [0.0238; 0.9276]</p>
+<p>Quantifying heterogeneity (with 95%-CIs): tau^2 = 0.1430 [0.0804; 0.3083]; tau = 0.3782 [0.2836; 0.5552] I^2 = 98.3% [98.0%; 98.6%]; H = 7.72 [7.03; 8.48]</p>
+<p>Test of heterogeneity: Q d.f. p-value 1192.85 20 &lt; 0.0001</p>
+<p>Results for subgroups (random effects model): k COR feature_n_complexity_genre = Small single genre study 3 0.8358 feature_n_complexity_genre = Medium single genre/multigenre … 13 0.6065 feature_n_complexity_genre = Huge multigenre study 3 0.6927 feature_n_complexity_genre = Medium-large single genre/multi … 2 0.7681 95%-CI feature_n_complexity_genre = Small single genre study [-0.1966; 0.9893] feature_n_complexity_genre = Medium single genre/multigenre … [ 0.4491; 0.7274] feature_n_complexity_genre = Huge multigenre study [ 0.4915; 0.8237] feature_n_complexity_genre = Medium-large single genre/multi … [-0.8767; 0.9977] tau^2 tau feature_n_complexity_genre = Small single genre study 0.3182 0.5641 feature_n_complexity_genre = Medium single genre/multigenre … 0.1174 0.3427 feature_n_complexity_genre = Huge multigenre study 0.0137 0.1170 feature_n_complexity_genre = Medium-large single genre/multi … 0.0679 0.2606 Q I^2 feature_n_complexity_genre = Small single genre study 358.17 99.4% feature_n_complexity_genre = Medium single genre/multigenre … 437.57 97.3% feature_n_complexity_genre = Huge multigenre study 14.21 85.9% feature_n_complexity_genre = Medium-large single genre/multi … 33.46 97.0%</p>
+<p>Test for subgroup differences (random effects model): Q d.f. p-value Between groups 3.99 3 0.2625</p>
+<p>Details of meta-analysis methods: - Inverse variance method - Restricted maximum-likelihood estimator for tau^2 - Q-Profile method for confidence interval of tau^2 and tau - Calculation of I^2 based on Q - Hartung-Knapp adjustment for random effects model (df = 20) - Prediction interval based on t-distribution (df = 20) - Fisher’s z transformation of correlations</p>
 </section>
 </section>
 </section>
@@ -1479,26 +1491,56 @@ Details on meta-analytical method:
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_studies.csv"</span>)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>C_studies <span class="ot">&lt;-</span> C_studies[<span class="sc">!</span><span class="fu">is.na</span>(C_studies<span class="sc">$</span>values),]</span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_summary.csv"</span>)</span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
-<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
-<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF, <span class="co"># unique_id</span></span>
-<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> C_summary,</span>
-<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fixed =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
-<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
-<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
-<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Classification: Summary"</span>)</span>
-<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a><span class="co">#print(m.cor)</span></span>
-<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed &lt;- m.cor</span></span>
-<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed$TE &lt;- FisherZInv(m.cor_backtransformed$TE)</span></span>
-<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># yang2021an needs to be encoded for classification (currently just regression)</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_summary.csv"</span>)</span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>C_classes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C_study_class_n.csv"</span>)</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>C_summary <span class="ot">&lt;-</span> <span class="fu">merge</span>(C_summary, C_classes)</span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n,</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF, <span class="co"># unique_id</span></span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> C_summary,</span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Classification: Summary"</span>)</span>
+<span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Review:     MER: Classification: Summary
+
+Number of studies: k = 12
+Number of observations: o = 15696
+
+                        COR           95%-CI    t  p-value
+Random effects model 0.8753 [0.7555; 0.9384] 8.07 &lt; 0.0001
+Prediction interval         [0.0256; 0.9907]              
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.3366 [0.1675; 0.9707]; tau = 0.5802 [0.4093; 0.9853]
+ I^2 = 99.8%; H = 21.40
+
+Test of heterogeneity:
+       Q d.f. p-value
+ 5039.29   11       0
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q
+- Hartung-Knapp adjustment for random effects model (df = 11)
+- Prediction interval based on t-distribution (df = 11)
+- Fisher's z transformation of correlations</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed &lt;- m.cor</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co">#m.cor_backtransformed$TE &lt;- FisherZInv(m.cor_backtransformed$TE)</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1507,7 +1549,35 @@ Details on meta-analytical method:
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$xlim
+<pre><code>$xvals
+ [1] 2.3799720 1.6709175 2.2544044 0.6136900 1.6394812 0.7841811 0.7610522
+ [8] 0.8332468 1.3253662 1.6561690 1.0986123 1.2419119
+
+$yvals
+ [1] 0.01459116 0.01388220 0.05103104 0.04222003 0.09090909 0.03239318
+ [7] 0.05802589 0.03338903 0.02357678 0.04845016 0.07715167 0.07715167
+
+$pch
+ [1] 21 21 21 21 21 21 21 21 21 21 21 21
+
+$text
+NULL
+
+$cex
+ [1] 1 1 1 1 1 1 1 1 1 1 1 1
+
+$col
+ [1] "black" "black" "black" "black" "black" "black" "black" "black" "black"
+[10] "black" "black" "black"
+
+$bg
+ [1] "darkgray" "darkgray" "darkgray" "darkgray" "darkgray" "darkgray"
+ [7] "darkgray" "darkgray" "darkgray" "darkgray" "darkgray" "darkgray"
+
+$cex.studlab
+ [1] 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8
+
+$xlim
 [1] 0.598722 2.439471
 
 $ylim
@@ -1517,22 +1587,22 @@ $ylim
 <section id="custom-plot" class="level4">
 <h4 class="anchored" data-anchor-id="custom-plot">Custom plot</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studies,<span class="st">'-.*$'</span>,<span class="st">''</span>)</span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(tmpdata<span class="sc">$</span>citekey)</span>
-<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmpdata,<span class="fu">aes</span>(<span class="at">y =</span> SE, <span class="at">x =</span> Zr,<span class="at">label=</span>studies,<span class="at">color=</span>citekey,<span class="at">fill=</span>citekey)) <span class="sc">+</span></span>
-<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>,<span class="at">max.overlaps =</span> <span class="dv">39</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
-<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> </span>
-<span id="cb91-11"><a href="#cb91-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'r'</span>)<span class="sc">+</span></span>
-<span id="cb91-12"><a href="#cb91-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
-<span id="cb91-13"><a href="#cb91-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+</span></span>
-<span id="cb91-14"><a href="#cb91-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
-<span id="cb91-15"><a href="#cb91-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>seTE), <span class="at">Zr =</span> <span class="fu">FisherZInv</span>(m.cor<span class="sc">$</span>TE),<span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studies,<span class="st">'-.*$'</span>,<span class="st">''</span>)</span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>citekey<span class="ot">&lt;-</span><span class="fu">factor</span>(tmpdata<span class="sc">$</span>citekey)</span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tmpdata,<span class="fu">aes</span>(<span class="at">y =</span> SE, <span class="at">x =</span> Zr,<span class="at">label=</span>studies,<span class="at">color=</span>citekey,<span class="at">fill=</span>citekey)) <span class="sc">+</span></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size=</span><span class="fl">1.5</span>,<span class="at">max.overlaps =</span> <span class="dv">39</span>,<span class="at">color=</span><span class="st">"black"</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> </span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'r'</span>)<span class="sc">+</span></span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()<span class="sc">+</span></span>
+<span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+</span></span>
+<span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a><span class="co">#  coord_flip()+</span></span>
+<span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb93-16"><a href="#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1545,11 +1615,11 @@ $ylim
 <section id="visualise-forest-and-funnel-plots-2" class="level4">
 <h4 class="anchored" data-anchor-id="visualise-forest-and-funnel-plots-2">Visualise (forest and funnel plots)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"g"</span>, <span class="st">"SE"</span>),<span class="at">studlab =</span> citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"N"</span>),<span class="at">studlab =</span> citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1557,7 +1627,7 @@ $ylim
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1567,13 +1637,59 @@ $ylim
 </div>
 </div>
 </section>
+<section id="by-class-n-2-vs.-2" class="level4">
+<h4 class="anchored" data-anchor-id="by-class-n-2-vs.-2">By class n = 2 vs.&nbsp;&gt; 2</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>C_summary<span class="sc">$</span>classes <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>C_summary[C_summary<span class="sc">$</span>n_classes <span class="sc">&lt;</span> <span class="dv">3</span>,]<span class="sc">$</span>classes <span class="ot">&lt;-</span> <span class="st">"2"</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>C_summary[C_summary<span class="sc">$</span>n_classes <span class="sc">&gt;=</span> <span class="dv">3</span>,]<span class="sc">$</span>classes <span class="ot">&lt;-</span> <span class="st">"&gt;2"</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a>m.cor <span class="ot">&lt;-</span> <span class="fu">metacor</span>(<span class="at">cor =</span> valuesMax,     <span class="co"># values </span></span>
+<span id="cb96-8"><a href="#cb96-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">n =</span> stimulus_n, <span class="co"># could also change to n_classes</span></span>
+<span id="cb96-9"><a href="#cb96-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">studlab =</span> studyREF, <span class="co"># unique_id</span></span>
+<span id="cb96-10"><a href="#cb96-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> C_summary,</span>
+<span id="cb96-11"><a href="#cb96-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">subgroup =</span> classes,</span>
+<span id="cb96-12"><a href="#cb96-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">common =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb96-13"><a href="#cb96-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">random =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb96-14"><a href="#cb96-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">prediction =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb96-15"><a href="#cb96-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">backtransf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb96-16"><a href="#cb96-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sm =</span> <span class="st">"ZCOR"</span>,</span>
+<span id="cb96-17"><a href="#cb96-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.tau =</span> <span class="st">"REML"</span>,<span class="co"># could be PM (Paule-Mandel) as well</span></span>
+<span id="cb96-18"><a href="#cb96-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method.random.ci =</span> <span class="st">"HK"</span>, </span>
+<span id="cb96-19"><a href="#cb96-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">title =</span> <span class="st">"MER: Classification: Summary"</span>)</span>
+<span id="cb96-20"><a href="#cb96-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-21"><a href="#cb96-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-22"><a href="#cb96-22" aria-hidden="true" tabindex="-1"></a><span class="fu">forest</span>(m.cor,</span>
+<span id="cb96-23"><a href="#cb96-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">sortvar =</span> TE,</span>
+<span id="cb96-24"><a href="#cb96-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb96-25"><a href="#cb96-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">print.tau2 =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb96-26"><a href="#cb96-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">leftlabs =</span> <span class="fu">c</span>(<span class="st">"Author"</span>, <span class="st">"N"</span>),<span class="at">studlab =</span> citekey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funnel</span>(m.cor, <span class="at">common =</span> <span class="cn">FALSE</span>, <span class="at">studlab=</span><span class="cn">TRUE</span>,<span class="at">backtransf=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="explore-qualities-in-progress" class="level4">
 <h4 class="anchored" data-anchor-id="explore-qualities-in-progress">Explore qualities (in progress)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co">#infan &lt;- InfluenceAnalysis(m.cor)</span></span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(eggers.test(m.cor))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>O <span class="ot">&lt;-</span> <span class="fu">find.outliers</span>(m.cor)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 datasets identified as outliers, without them the r drops to 0.5781</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co">#infan &lt;- InfluenceAnalysis(m.cor)</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(eggers.test(m.cor))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="re-run-the-analysis-without-the-outliers" class="level4">
@@ -1583,46 +1699,45 @@ $ylim
 <h4 class="anchored" data-anchor-id="custom-funnel-plot">Custom funnel plot</h4>
 <p>To show the quality differences between core and eliminated studies (in progress).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> m.cor<span class="sc">$</span>seTE, <span class="at">Zr =</span> m.cor<span class="sc">$</span>TE, <span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">substr</span>(tmpdata<span class="sc">$</span>studies,<span class="dv">1</span>,<span class="fu">nchar</span>(tmpdata<span class="sc">$</span>studies)<span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studyREF,<span class="st">'([0-9]+)'</span>,<span class="st">' et al </span><span class="sc">\\</span><span class="st">1'</span>)</span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(tmpdata<span class="sc">$</span>studyREF)</span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>tmpdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">SE =</span> m.cor<span class="sc">$</span>seTE, <span class="at">Zr =</span> m.cor<span class="sc">$</span>TE, <span class="at">studies=</span>m.cor<span class="sc">$</span>studlab)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">substr</span>(tmpdata<span class="sc">$</span>studies,<span class="dv">1</span>,<span class="fu">nchar</span>(tmpdata<span class="sc">$</span>studies)<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(tmpdata<span class="sc">$</span>studyREF,<span class="st">'([0-9]+)'</span>,<span class="st">' et al </span><span class="sc">\\</span><span class="st">1'</span>)</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(tmpdata<span class="sc">$</span>studyREF)</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>tmpdata<span class="sc">$</span>studyREF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Agarwal et al  et al 20"      "Alvarez et al  et al 20"     
- [3] "Bai et al  et al 20"          "Bai et al  et al 20"         
- [5] "Bhuvanakumar et al  et al 20" "Dufour et al  et al 20"      
- [7] "Hizlisoy et al  et al 20"     "Hu et al  et al 20"          
- [9] "Nguyen et al  et al 20"       "Panda et al  et al 20"       
-[11] "Sorussa et al  et al 20"      "Yeh et al  et al 20"         
-[13] "Zhang et al  et al 20"        "Zhang et al  et al 20"       </code></pre>
+ [3] "Bhuvanakumar et al  et al 20" "Dufour et al  et al 20"      
+ [5] "Hizlisoy et al  et al 20"     "Hu et al  et al 20"          
+ [7] "Nguyen et al  et al 20"       "Panda et al  et al 20"       
+ [9] "Sorussa et al  et al 20"      "Yeh et al  et al 20"         
+[11] "Zhang et al  et al 20"        "Zhang et al  et al 20"       </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
-<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
-<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
-<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
-<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-12"><a href="#cb97-12" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb97-13"><a href="#cb97-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
-<span id="cb97-14"><a href="#cb97-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studyREF), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
-<span id="cb97-15"><a href="#cb97-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Fisher</span><span class="sc">\'</span><span class="st">s z transformed correlation'</span>)<span class="sc">+</span></span>
-<span id="cb97-16"><a href="#cb97-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb97-17"><a href="#cb97-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
-<span id="cb97-18"><a href="#cb97-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanll95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanll95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
-<span id="cb97-19"><a href="#cb97-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanul95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanul95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
-<span id="cb97-20"><a href="#cb97-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_reverse()+</span></span>
-<span id="cb97-21"><a href="#cb97-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
-<span id="cb97-22"><a href="#cb97-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.25</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.23</span>))<span class="sc">+</span></span>
-<span id="cb97-23"><a href="#cb97-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
-<span id="cb97-24"><a href="#cb97-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb97-25"><a href="#cb97-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>estimate <span class="ot">=</span> m.cor<span class="sc">$</span>TE.common</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">=</span> m.cor<span class="sc">$</span>seTE.common</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>se.seq<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(m.cor<span class="sc">$</span>cor), <span class="fl">0.001</span>)</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>ll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>ul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se.seq)</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>ll99 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>ul99 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">3.29</span><span class="sc">*</span>se.seq)</span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a>meanll95 <span class="ot">=</span> estimate<span class="sc">-</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a>meanul95 <span class="ot">=</span> estimate<span class="sc">+</span>(<span class="fl">1.96</span><span class="sc">*</span>se)</span>
+<span id="cb101-10"><a href="#cb101-10" aria-hidden="true" tabindex="-1"></a>dfCI <span class="ot">=</span> <span class="fu">data.frame</span>(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)</span>
+<span id="cb101-11"><a href="#cb101-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-12"><a href="#cb101-12" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb101-13"><a href="#cb101-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr), <span class="at">color=</span><span class="st">'grey50'</span>,<span class="at">data=</span>tmpdata) <span class="sc">+</span></span>
+<span id="cb101-14"><a href="#cb101-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> SE, <span class="at">y =</span> Zr, <span class="at">label=</span>studyREF), <span class="at">data=</span>tmpdata,<span class="at">size=</span><span class="fl">2.5</span>,<span class="at">max.overlaps =</span> <span class="dv">40</span>)<span class="sc">+</span></span>
+<span id="cb101-15"><a href="#cb101-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'Standard Error'</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">'Fisher</span><span class="sc">\'</span><span class="st">s z transformed correlation'</span>)<span class="sc">+</span></span>
+<span id="cb101-16"><a href="#cb101-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ll95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb101-17"><a href="#cb101-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> se.seq, <span class="at">y =</span> ul95), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">data =</span> dfCI) <span class="sc">+</span></span>
+<span id="cb101-18"><a href="#cb101-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanll95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanll95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
+<span id="cb101-19"><a href="#cb101-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">min</span>(se.seq), <span class="at">y =</span> meanul95, <span class="at">xend =</span> <span class="fu">max</span>(se.seq), <span class="at">yend =</span> meanul95), <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">data=</span>dfCI) <span class="sc">+</span></span>
+<span id="cb101-20"><a href="#cb101-20" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_reverse()+</span></span>
+<span id="cb101-21"><a href="#cb101-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reverse</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="fl">0.2</span>,<span class="fl">0.05</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>),<span class="at">expand=</span><span class="fu">c</span>(<span class="fl">0.00</span>,<span class="fl">0.00</span>))<span class="sc">+</span></span>
+<span id="cb101-22"><a href="#cb101-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.25</span>,<span class="fl">0.20</span>),<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">1.23</span>))<span class="sc">+</span></span>
+<span id="cb101-23"><a href="#cb101-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb101-24"><a href="#cb101-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb101-25"><a href="#cb101-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -1646,7 +1761,7 @@ Removed 984 rows containing missing values or values outside the scale range
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1656,15 +1771,15 @@ Removed 984 rows containing missing values or values outside the scale range
 <h4 class="anchored" data-anchor-id="subgroup-analysis-according-to-techniques">Subgroup analysis according to techniques</h4>
 <p>add <code>journal_type</code> and <code>stimulus_genre_mixed</code> as a grouping option</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
-<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
-<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span>
-<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>m.cor_subgroups <span class="ot">&lt;-</span> <span class="fu">update</span>(m.cor, </span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">subgroup =</span> model_class_id, </span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = journal_type, </span></span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       subgroup = stimulus_genre_mixed, </span></span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">tau.common =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">prediction =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb106-7"><a href="#cb106-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-8"><a href="#cb106-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(m.cor_subgroups)</span>
+<span id="cb106-9"><a href="#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="co">#forest(m.cor_subgroups,subgroup=TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Idea: visualise the distributions of the model successes within studies (done in preprocessing)</li>

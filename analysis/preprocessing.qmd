@@ -7,7 +7,7 @@ This assumes that the data has been parsed from the BibTeX files into table and 
 #| echo: false
 #| eval: true
 # Set parameters and libraries
-export_decision <- TRUE
+export_decision <- FALSE
 verbose <- FALSE
 require(here)
 library(stringr)
@@ -168,10 +168,11 @@ cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model
 cat(paste("\nWhere", length(unique(metaMER_results$citekey[metaMER_results$model_category=='classification'])), "are classification studies"))
 # note that we have some classification studies that also do regression and vice versa?
 # THIS IS CORRECT (updated 24 October 2024):
-# [1] "We have 1284 observations"
-# [1] "We have 36 studies"
+# THIS IS CORRECT (updated 17 January 2025):
+# [1] "We have 1114 observations"
+# [1] "We have 34 studies"
 # [1] "Where 22 are regression studies"
-# [1] "Where 14 are classification studies"
+# [1] "Where 12 are classification studies"
 
 # Add a check for these properties ToDo
 
@@ -208,6 +209,7 @@ substr(hu2017models,
        nchar(hu2017models) - 1),
 1:4
 )
+
 
 # overwrite original values
 metaMER_results[metaMER_results$unique_id %in% 
@@ -309,20 +311,27 @@ length(unique(metaMER_results$citekey[metaMER_results$model_category=='regressio
 ```{r}
 #| echo: false
 #| eval: true
-
-R_studies$feature_n[R_studies$feature_n==" 548; after reduction, 139 for PCA and 276 for ReliefF   "] <- 548
-
+# this entry no longer appears due to exclusion:
+# R_studies$feature_n[R_studies$feature_n==" 548; after reduction, 139 for PCA and 276 for ReliefF   "] <- 548
+# R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions. Pos')]<-548
 R_studies$feature_n[str_detect(R_studies$feature_n,'pre_fitting')] <- 21
-R_studies$feature_n[str_detect(R_studies$feature_n,'but 15 reported')]<-15
-R_studies$feature_n[str_detect(R_studies$feature_n,'50 PCA features')]<-50
-R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions. Pos')]<-548
-R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and')]<-60 # this should be 14400+60!
-R_studies$feature_n[str_detect(R_studies$feature_n,'before_selection = 45')]<-45
-R_studies$feature_n[str_detect(R_studies$feature_n,'model 4 = 388')]<-388
-R_studies$feature_n[str_detect(R_studies$feature_n,'6670 in MediaEval')]<-6670
-R_studies$feature_n[str_detect(R_studies$feature_n,'557 before feature')]<-557
-R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')]<-NA
+R_studies$feature_n[str_detect(R_studies$feature_n,'but 15 reported')]<-15 #resolved from the paper
+R_studies$feature_n[str_detect(R_studies$feature_n,'150 PCA features')]<-3000 #resolved
+R_studies$feature_n[str_detect(R_studies$feature_n,' 50 PCA features')]<-  499 #resolved
+R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and')]<-14400+60 # this should be 14400+60! resolved
+R_studies$feature_n[str_detect(R_studies$feature_n,'before_selection = 45')]<-45 #resolved
+R_studies$feature_n[str_detect(R_studies$feature_n,'model 4 = 388')]<-388 #resolved
+# yang2021an appears there are nine unique features based on table 1
+R_studies$feature_n[str_detect(R_studies$feature_n,'6669 in MediaEval')]<-6669 # resolved. 9 reported in table 1, but likely used full mediaeval feature set. 
+R_studies$feature_n[str_detect(R_studies$feature_n,'557 before feature')]<-557 #resolved
+# this seems to refer to yang2021an, which is handled above with "6669 in mediaeval"
+# R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')]<-NA
+# 2025-01-15
+R_studies$feature_n[str_detect(R_studies$feature_n,'study 1: 26, study 2: 28')] <- 54 # resolved used audio and midi features. study 2 was external validation
 R_studies$feature_n<-as.numeric(R_studies$feature_n)
+
+
+
 
 quantile(R_studies$feature_n,c(0.333,0.666),na.rm = TRUE)
 quantile(R_studies$feature_n,c(0.25,0.500,0.750),na.rm = TRUE)
@@ -372,7 +381,7 @@ Note: Before adding feature_n to the summary, they need to be cleaned!
 ```{r}
 #| echo: true
 #| eval: true
-R_studies$citekey <- factor(R_studies$citekey) # 21 unique values
+R_studies$citekey <- factor(R_studies$citekey) # 22 unique values
 R_studies$dimension <- factor(R_studies$dimension)
 
 R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
@@ -435,28 +444,6 @@ Ratio of obs./features or just a classification based on feature n (quantiles).
 ```{r}
 #| echo: false
 #| eval: true
-
-R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved from the paper
-
-R_studies$feature_n[R_studies$feature_n==" 15; 23 in table, but 15 reported  "] <- 15 #resolved
-R_studies$feature_n[R_studies$feature_n==" before_selection = 45, after_selection = 6  "] <- 45 #resolved
-R_studies$feature_n[R_studies$feature_n==" model 1: 52, model 2 = 68, model 3 = 260, model 4 = 388 "] <- 388 #resolved
-R_studies$feature_n[R_studies$feature_n==" variable, 557 before feature selection "] <- 557 #resolved
-
-R_studies$feature_n[R_studies$feature_n==" 50 PCA features "] <- 499 #resolved
-
-R_studies$feature_n[str_detect(R_studies$feature_n,'150 PCA features')] <- 3000
-R_studies$feature_n[str_detect(R_studies$feature_n,'pre_fitting = 21')] <- 21
-R_studies$feature_n[str_detect(R_studies$feature_n,'548 dimensions')] <- 548
-R_studies$feature_n[str_detect(R_studies$feature_n,'548; after reduct')] <- 548
-R_studies$feature_n[str_detect(R_studies$feature_n,'60 handcrafted and filter bank')] <- 3600
-R_studies$feature_n[str_detect(R_studies$feature_n,'Features deep-learned from audio (not specified) but 1802 in DEAM')] <- 260
-
-# 2024-10-21: I changed the encoding for this one to "150 PCA features", so updated above.
-# R_studies$feature_n[str_detect(R_studies$feature_n,'not specified')] <- 3000 # under-estimation based openSmile features and the paper arguing that they have 15 stat moments
-  
-R_studies$feature_n<-as.numeric(R_studies$feature_n)
-
 print(quantile(R_studies$feature_n,c(0.333,0.666),na.rm = T))
 #quantile(R_studies$feature_n,c(0.25,0.50,0.75),na.rm = T)
 
@@ -786,15 +773,16 @@ g4
 #| eval: true
 
 #table(C_studies$feature_n)
-C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-600 # arbitrary!
+C_studies$feature_n[str_detect(C_studies$feature_n,'eight different ')]<-21+12+4+14+39+1+1+6 # estimated from feature subsection 4.1.2 (encoded in reverse order from h to a)
 C_studies$feature_n[str_detect(C_studies$feature_n,'126, retained 97')]<-126 
-C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  arbitrary!
-C_studies$feature_n[str_detect(C_studies$feature_n,'548; after reduction, ')] <- 548 
-C_studies$feature_n[str_detect(C_studies$feature_n,'548 dimensions')] <- 548 
-C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')] <- 548 
+C_studies$feature_n[str_detect(C_studies$feature_n,'1702; best model uses 100 after reduction')]<-1702 #  resolved
+# these seem to refer to the excluded bai studies
+# C_studies$feature_n[str_detect(C_studies$feature_n,'548; after reduction, ')] <- 548 
+#C_studies$feature_n[str_detect(C_studies$feature_n,'548 dimensions')] <- 548 
+# C_studies$feature_n[str_detect(C_studies$feature_n,'548. Post-reduction')] <- 548 
 C_studies$feature_n[str_detect(C_studies$feature_n,'8; 3 after')]<-8 
 C_studies$feature_n[str_detect(C_studies$feature_n,'between 9 and 10')]<-10 
-C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-600 # arbitrary
+C_studies$feature_n[str_detect(C_studies$feature_n,'summarize feature')]<-2+2+2 # estimated from 3.2.1 to 3.2.3
 #table(C_studies$feature_n)
 
 C_studies$feature_n <- as.numeric(C_studies$feature_n)

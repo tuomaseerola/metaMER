@@ -35,7 +35,7 @@ parse_model_output <- function(x) {
 
 
 
-summarize_matrix = function(matrix) {
+summarize_matrix <- function(matrix) {
   # convert named array to table
   class_table <- as.table(matrix)
   # make row and column names consistent

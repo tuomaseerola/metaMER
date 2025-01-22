@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>metaMER_results <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,284 × 19
+<pre><code># A tibble: 1,114 × 19
    unique_id  citekey journal stimulus_genre model_category stimulus_n feature_n
    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;    
  1 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
  9 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
 10 agarwal20… agarwa… "   IE… " popular, hi… classification " ISMIR20… " 'eight…
-# ℹ 1,274 more rows
+# ℹ 1,104 more rows
 # ℹ 12 more variables: participant_n &lt;chr&gt;, feature_source &lt;chr&gt;,
 #   feature_reduction_method &lt;chr&gt;, library_id &lt;chr&gt;, model_id &lt;chr&gt;,
 #   feature_id &lt;chr&gt;, data_id &lt;chr&gt;, experiment_id &lt;chr&gt;, dimension &lt;chr&gt;,
@@ -256,11 +256,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Flexible Discriminants</td>
-<td style="text-align: right;">379</td>
+<td style="text-align: right;">339</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
-<td style="text-align: right;">114</td>
+<td style="text-align: right;">54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
@@ -268,11 +268,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">384</td>
+<td style="text-align: right;">354</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
-<td style="text-align: right;">125</td>
+<td style="text-align: right;">85</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Unclassified</td>
@@ -292,28 +292,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Flexible Discriminants</td>
-<td style="text-align: right;">177</td>
-<td style="text-align: right;">202</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">184</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Kernel Smoothing, Additive and KNN</td>
 <td style="text-align: right;">18</td>
-<td style="text-align: right;">96</td>
+<td style="text-align: right;">36</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Linear Methods</td>
-<td style="text-align: right;">71</td>
-<td style="text-align: right;">186</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">198</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Neural Nets</td>
-<td style="text-align: right;">270</td>
-<td style="text-align: right;">114</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">164</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Random Forests</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">46</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Unclassified</td>
@@ -323,13 +323,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"We have"</span>, <span class="fu">nrow</span>(metaMER_results), <span class="st">"observations"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We have 1284 observations</p>
+<p>We have 1114 observations</p>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">We have"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey)), <span class="st">"studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We have 36 studies</p>
+<p>We have 34 studies</p>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'regression'</span>])), <span class="st">"are regression studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Where 22 are regression studies</p>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Where"</span>, <span class="fu">length</span>(<span class="fu">unique</span>(metaMER_results<span class="sc">$</span>citekey[metaMER_results<span class="sc">$</span>model_category<span class="sc">==</span><span class="st">'classification'</span>])), <span class="st">"are classification studies"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Where 14 are classification studies</p>
+<p>Where 12 are classification studies</p>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that we have some classification studies that also do regression and vice versa?</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># THIS IS CORRECT (updated 24 October 2024):</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] "We have 1284 observations"</span></span>
@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"zhang2017fe"</span> <span class="sc">&amp;</span> statistic <span class="sc">==</span> <span class="st">"mean"</span>),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"zhang2016br"</span> <span class="sc">&amp;</span> statistic <span class="sc">==</span> <span class="st">"mean"</span>),</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"zhang2016br"</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(values)),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"coutinho2017sh"</span> <span class="sc">&amp;</span> statistic <span class="sc">==</span> <span class="st">"ccc"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"coutinho2017sh"</span> <span class="sc">&amp;</span> measure <span class="sc">==</span> <span class="st">"ccc"</span>),</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Include only results for energy arousal</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"wang2022cr"</span> <span class="sc">&amp;</span> dimension <span class="sc">==</span> <span class="st">"tension arousal"</span>),</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>(citekey <span class="sc">==</span> <span class="st">"wang2021ac"</span> <span class="sc">&amp;</span> dimension <span class="sc">==</span> <span class="st">"tension arousal"</span>),</span>
@@ -364,9 +364,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite original values</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>metaMER_results[metaMER_results<span class="sc">$</span>unique_id <span class="sc">%in%</span> </span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>                  hu2017models,]<span class="sc">$</span>unique_id <span class="ot">&lt;-</span> hu2017models_replacement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># overwrite original values</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>metaMER_results[metaMER_results<span class="sc">$</span>unique_id <span class="sc">%in%</span> </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>                  hu2017models,]<span class="sc">$</span>unique_id <span class="ot">&lt;-</span> hu2017models_replacement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -374,15 +375,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Pull data to analyse regression studies</h1>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "yang2021an"      "bai2016di"       "battcock2021in"  "beveridge2018po"
- [5] "chen2017co"      "deng2015em"      "gingras2014be"   "grekow2018au"   
- [9] "griffiths2021am" "hu2017cr"        "koh2023me"       "markov2014mu"   
-[13] "orjesek2022en"   "saizclar2022pr"  "wang2021ac"      "wang2022co"     
-[17] "wang2022cr"      "xie2020mu"       "xu2021us"        "zhang2019us"    
-[21] "zhang2023mo"    </code></pre>
+<pre><code> [1] "yang2021an"      "battcock2021in"  "beveridge2018po" "chen2017co"     
+ [5] "coutinho2017sh"  "deng2015em"      "gingras2014be"   "grekow2018au"   
+ [9] "grekow2021mu"    "griffiths2021am" "hu2017cr"        "koh2023me"      
+[13] "markov2014mu"    "orjesek2022en"   "saizclar2022pr"  "wang2021ac"     
+[17] "wang2022co"      "wang2022cr"      "xie2020mu"       "xu2021us"       
+[21] "zhang2019us"     "zhang2023mo"    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21</code></pre>
+<pre><code>[1] 22</code></pre>
 </div>
 </div>
 <section id="remove-nas" class="level2">
@@ -396,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">paste0</span>(R_studies<span class="sc">$</span>unique_id, R_studies<span class="sc">$</span>dimension)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 268</code></pre>
+<pre><code>[1] 292</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ez<span class="sc">::</span><span class="fu">ezDesign</span>(<span class="at">data =</span> R_studies, <span class="at">x =</span> unique_id, <span class="at">y =</span> citekey)<span class="sc">+</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
@@ -414,23 +415,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="homogenise-the-outcome-variable-names-to-valence-and-arousal">Homogenise the outcome variable names to valence and arousal</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21</code></pre>
+<pre><code>[1] 22</code></pre>
 </div>
 </div>
 <section id="clean-feature-n-field" class="level4">
 <h4 class="anchored" data-anchor-id="clean-feature-n-field">Clean feature N field</h4>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>33.3% 66.6% 
-   50   548 </code></pre>
+<pre><code>  33.3%   66.6% 
+236.341 653.000 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>25% 50% 75% 
- 50 260 548 </code></pre>
+ 72 605 653 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  10%   50%   90% 
- 15.9 260.0 654.0 </code></pre>
+<pre><code> 10%  50%  90% 
+  18  605 3000 </code></pre>
 </div>
 </div>
 </section>
@@ -443,11 +444,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   0% 33.3% 66.6% 99.9% 
-    3    21    72   201 </code></pre>
+    3    21    72   499 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   0% 33.3% 66.6% 99.9% 
-   15   260   548  6670 </code></pre>
+   15   557   653  6670 </code></pre>
 </div>
 </div>
 </section>
@@ -455,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="select-a-summary-measure-for-valence-and-arousal-separately">Select a summary measure for valence and arousal separately</h2>
 <p>Note: Before adding feature_n to the summary, they need to be cleaned!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey) <span class="co"># 21 unique values</span></span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>citekey <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>citekey) <span class="co"># 22 unique values</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>R_studies<span class="sc">$</span>dimension <span class="ot">&lt;-</span> <span class="fu">factor</span>(R_studies<span class="sc">$</span>dimension)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>R_summary <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(R_studies,dimension,citekey),<span class="at">valuesMean=</span><span class="fu">mean</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMedian=</span><span class="fu">median</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">valuesMax=</span><span class="fu">max</span>(values,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="at">stimulus_n=</span><span class="fu">first</span>(stimulus_n),<span class="at">studyREF=</span><span class="fu">first</span>(studyREF),<span class="at">model_class_id=</span><span class="fu">first</span>(model_class_id),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">journal_type=</span><span class="fu">first</span>(journal_type),<span class="at">feature_n=</span><span class="fu">first</span>(feature_n),<span class="at">feature_n_categories=</span><span class="fu">first</span>(feature_n_categories),<span class="at">stimulus_genre_mixed=</span><span class="fu">first</span>(stimulus_genre_mixed),<span class="at">feature_n_complexity_genre=</span><span class="fu">first</span>(feature_n_complexity_genre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -465,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(R_summary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 42 13</code></pre>
+<pre><code>[1] 44 13</code></pre>
 </div>
 </div>
 </section>
@@ -481,8 +482,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ratio of obs./features or just a classification based on feature n (quantiles).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>33.3% 66.6% 
-   50   548 </code></pre>
+<pre><code>  33.3%   66.6% 
+236.341 653.000 </code></pre>
 </div>
 </div>
 </section>
@@ -491,11 +492,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   0% 33.3% 66.6% 99.9% 
-    3    21    72   201 </code></pre>
+    3    21    72   499 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   0% 33.3% 66.6% 99.9% 
-   15   260   548  6670 </code></pre>
+   15   557   653  6670 </code></pre>
 </div>
 </div>
 </section>
@@ -517,19 +518,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$study_n
-[1] 21
+[1] 22
 
 $model_n
-[1] 180
+[1] 204
 
 $model_types_n
-[1] "Flexible Discriminants: 50\nKernel Smoothing, Additive and KNN: 24\nLinear Methods: 56\nNeural Nets: 30\nRandom Forests: 20"
+[1] "Flexible Discriminants: 50\nKernel Smoothing, Additive and KNN: 12\nLinear Methods: 62\nNeural Nets: 66\nRandom Forests: 14"
 
 $feature_Desc
-[1] "Min=3, Md=260, Max=6670"
+[1] "Min=3, Md=605, Max=6670"
 
 $stimulus_Desc
-[1] "Min=20, Md=744, Max=2486"</code></pre>
+[1] "Min=20, Md=324, Max=2486"</code></pre>
 </div>
 </div>
 </section>
@@ -550,28 +551,28 @@ $stimulus_Desc
 <pre><code>[1] 0</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 414</code></pre>
+<pre><code>[1] 384</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-      accuracy            auc classification             f1         fscore 
-           275              4              2              6              8 
-        fvalue          kappa            mcc      precision         recall 
-             2             40             40             12             12 </code></pre>
+ accuracy       auc        f1    fscore    fvalue     kappa       mcc precision 
+      260         4         6         8         2        40        40        12 
+   recall 
+       12 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 401  23</code></pre>
+<pre><code>[1] 384  23</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    acc  lower   mean median   null pvalue  upper 
-   160     40     33     48     40     40     40 </code></pre>
+   160     40     16     48     40     40     40 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14</code></pre>
+<pre><code>[1] 12</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14</code></pre>
+<pre><code>[1] 12</code></pre>
 </div>
 </div>
 <section id="average-across-valence-and-arousal-for-va-classification" class="level2">
@@ -611,7 +612,7 @@ $stimulus_Desc
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">paste0</span>(C_studies<span class="sc">$</span>unique_id, C_studies<span class="sc">$</span>dimension)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 103</code></pre>
+<pre><code>[1] 86</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>ez<span class="sc">::</span><span class="fu">ezDesign</span>(<span class="at">data =</span> C_studies, <span class="at">x =</span> unique_id, <span class="at">y =</span> citekey)<span class="sc">+</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
@@ -632,21 +633,19 @@ $stimulus_Desc
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>no_of_classes <span class="ot">&lt;-</span> <span class="fu">summarise</span>(<span class="fu">group_by</span>(tmp2,citekey),<span class="fu">first</span>(values))</span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(no_of_classes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
+<pre><code># A tibble: 10 × 2
    citekey            `first(values)`
    &lt;chr&gt;                        &lt;dbl&gt;
  1 agarwal2021an                    4
  2 alvarez2023ri                    4
- 3 bai2016di                        4
- 4 bai2017mu                        4
- 5 bhuvanakumar2023em               2
- 6 dufour2021us                     5
- 7 hizlisoy2021mu                   3
- 8 hu2022de                         2
- 9 nguyen2017an                     6
-10 panda2020no                      4
-11 sorussa2020em                    8
-12 yeh2014po                        4</code></pre>
+ 3 bhuvanakumar2023em               2
+ 4 dufour2021us                     5
+ 5 hizlisoy2021mu                   3
+ 6 hu2022de                         2
+ 7 nguyen2017an                     6
+ 8 panda2020no                      4
+ 9 sorussa2020em                    8
+10 yeh2014po                        4</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(no_of_classes<span class="sc">$</span><span class="st">`</span><span class="at">first(values)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -700,19 +699,19 @@ $stimulus_Desc
 <span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(TC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$study_n
-[1] 14
+[1] 12
 
 $model_n
-[1] 103
+[1] 86
 
 $model_types_n
-[1] "Flexible Discriminants: 30\nKernel Smoothing, Additive and KNN: 8\nLinear Methods: 13\nNeural Nets: 28\nRandom Forests: 14\nUnclassified: 10"
+[1] "Flexible Discriminants: 26\nKernel Smoothing, Additive and KNN: 2\nLinear Methods: 13\nNeural Nets: 25\nRandom Forests: 10\nUnclassified: 10"
 
 $feature_Desc
-[1] "Min=3, Md=397, Max=8904"
+[1] "Min=8, Md=126, Max=8904"
 
 $stimulus_Desc
-[1] "Min=124, Md=387, Max=5192"</code></pre>
+[1] "Min=124, Md=300, Max=5192"</code></pre>
 </div>
 </div>
 </section>

@@ -138,7 +138,7 @@
   PARTICIPANT_ORIGIN = {online},
   PARTICIPANT_SAMPLING = {not specified},
   PARTICIPANT_TASK = {classification},
-  FEATURE_CATEGORIES = {timbre,  dynamic, high-level, expressivity},
+  FEATURE_CATEGORIES = {Dynamic, Harmony, High-level},
   FEATURE_SOURCE = {Spotify API},
   FEATURE_REDUCTION_METHOD = {expert validation},
   MODEL_CATEGORY = {classification},
@@ -211,7 +211,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsource},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {rhythm, tonality, timbre, pitch, melody},
+  FEATURE_CATEGORIES = {Rhythm, Tonality, Timbre, Melody},
   FEATURE_SOURCE = {Daubechies, Sound Description Toolbox, MIRToolbox},
   FEATURE_REDUCTION_METHOD = {PCA, ReliefF},
   MODEL_CATEGORY = {classification},
@@ -236,7 +236,7 @@ bind_field(
 )
 },
   MODEL_VALIDATION = {"The experiments adopted 619 training samples and 125 test sets provided in the annotation file of the music database"},
-  FINAL_NOTES = {Only reporting best model}
+  FINAL_NOTES = {Only reporting best model 2024-12-09: IGI on Beall's list as vanity press !EXCL!}
 }
 
 
@@ -270,7 +270,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {presumably the researchers},
   PARTICIPANT_TASK = {classify},
-  FEATURE_CATEGORIES = {harmony, dynamic, rhythm, timbre}, 
+  FEATURE_CATEGORIES = {Harmony, Dynamic, Rhythm, Timbre}, 
   FEATURE_SOURCE = {PrettyMIDI},
   FEATURE_REDUCTION_METHOD = {NA},
   MODEL_CATEGORY = {classification},
@@ -343,7 +343,7 @@ summarize_matrix
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate, label},
-  FEATURE_CATEGORIES = {intensity, timbre, rhythm, pitch}, %% they call pitch "register"
+  FEATURE_CATEGORIES = {Dynamic, Timbre, Melodic, Rhythm, Harmonic}, 
   FEATURE_SOURCE = {marsyas},
   FEATURE_REDUCTION_METHOD = {observation from previous studies},
   MODEL_CATEGORY = {classification},
@@ -396,7 +396,7 @@ summarize_matrix
 )
 },
   MODEL_VALIDATION =  {10-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {melodic features not mentioned explicitly, though they do say register which I assume is closer to pitch than harmony features}
 }
 
 @Article{feng2024ex,
@@ -476,8 +476,8 @@ summarize_matrix
   PARTICIPANT_ORIGIN = {Turkey},
   PARTICIPANT_SAMPLING = {convenience}, %% presumably
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {standard features: 7368, MFCC: 768, log-mel filterbank: 768}, %% Double-check
-  FEATURE_SOURCE = {OpenSMILE, MIRToolbox, MFCC, log-mel filterbank energies},
+  FEATURE_CATEGORIES = {Harmonic, Timbre, Rhythm, Melodic, Dynamic, Expressivity, Form, High-Level}, %% Double-check
+  FEATURE_SOURCE = {jAudio, OpenSMILE, MIRToolbox, MFCC, log-mel filterbank energies},
   FEATURE_REDUCTION_METHOD = {Correlation-based Feature Selection. Adaptive-moment estimation optimizer},
   MODEL_CATEGORY = {classification},
   MODEL_DETAIL = {support vector machine, k-nearest neighbours, randomforest, Long Short-Term Memory-Deep Neural Network},
@@ -499,7 +499,7 @@ summarize_matrix
 )
 },
   MODEL_VALIDATION = {10-fold cross validation},
- FINAL_NOTES = {discuss. unsure how to report features for different models, subsets...} 
+ FINAL_NOTES = {I believe they used all features from MIRToolbox, OpenSMILE, and jAudio (they use ~9000), so I've attributed all feature categories in MIRToolbox for the Panda categories.} 
 }
 
 
@@ -648,7 +648,7 @@ summarize_matrix
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {not specified},
   PARTICIPANT_TASK = {c(experts = 'annotate', subjects = 'rate')}, %% task given to subjects, for which no information seems to be provided. subjects rate VA and the experts previously categorized
-  FEATURE_CATEGORIES = {melodic, dynamic, rhythmic, texture, expressivity},
+  FEATURE_CATEGORIES = {Melodic, Dynamic, Rhythm, Texture, Expressivity, Form, High-Level},
   FEATURE_SOURCE = {MIRToolbox, Marsyas, PsySound, new features},
   FEATURE_REDUCTION_METHOD = {ReliefF},
   MODEL_CATEGORY = {classification},
@@ -667,7 +667,7 @@ summarize_matrix
 )
   },
   MODEL_VALIDATION = {20 x 10-fold cross validation},
-  FINAL_NOTES = {DISCUSS}
+  FINAL_NOTES = {Include 1702 features. I added high-level and form on 2024-12-09 assuming they're using all baseline MIRTB features}
 }
 
 
@@ -703,7 +703,7 @@ summarize_matrix
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsourced},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {dynamics, rhythm, timbre, pitch, tonality}, %% check against Panda
+  FEATURE_CATEGORIES = {Dynamics, Rhythm, Timbre, Melodic, Harmonic}, %% check against Panda
   FEATURE_SOURCE = {MIR Toolbox},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
@@ -790,13 +790,13 @@ summarize_matrix
   STIMULUS_DURATION = {45},
   STIMULUS_DURATION_UNIT =  {s},
   STIMULUS_N = {744},
-  FEATURE_N = {not specified? 7 in best model; 6670 in MediaEval}, 
+  FEATURE_N = {not specified explicitly, but 9 reported in Table 1, and 7 in best model (6669 in MediaEval, which they extracted features from)}, 
   PARTICIPANT_N = {10 per clip (100 qualified workers)},
   PARTICIPANT_EXPERTISE = {Nonexperts (Mturk) + experts},
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsource},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {Pitch, Timbre, Voice, Dynamic},
+  FEATURE_CATEGORIES = {Timbre, Dynamic},
   FEATURE_SOURCE =  {OpenSMILE},
   FEATURE_REDUCTION_METHOD =  {back-propogation},
   MODEL_CATEGORY = {regression},
@@ -815,7 +815,7 @@ bind_field(
     'not specified.artificial bee colony nn.mixed.mediaeval.1' = c(0.8872,0.1066,0.4606,0.9156,0.1322,0.6687)
 )},
   MODEL_VALIDATION = {80/20 train-test split},
-  FINAL_NOTES = {discuss}
+  FINAL_NOTES = {Panda categories based on Table 1. I don't believe they explicitly mention the number of features anywhere, though I assume there are 9}
 }
 
 
@@ -846,13 +846,13 @@ bind_field(
   STIMULUS_DURATION = {variable},
   STIMULUS_DURATION_UNIT = {s},
   STIMULUS_N = {429; 350 popular songs + 79 songs from the Beatles (Mirex 2009 collection)},
-  FEATURE_N = {3}, %% intensity, rhythm regularity, frequency subband
+  FEATURE_N = {11}, 
   PARTICIPANT_N = {5},
   PARTICIPANT_EXPERTISE = {professional music content editors, authors},
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {none},
   PARTICIPANT_TASK = {annotate},
-  FEATURE_CATEGORIES = {dynamic, rhythm, timbre}, %% not sure where frequency subband falls
+  FEATURE_CATEGORIES = {Dynamic, Rhythm, Timbre}, %% not sure where frequency subband falls
   FEATURE_SOURCE = {not specified},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
@@ -879,7 +879,7 @@ bind_field(
 )
   },
   MODEL_VALIDATION = {validation set},
-  FINAL_NOTES = {possibly modeled as OvR.}
+  FINAL_NOTES = {possibly modeled as OvR.Previously encoded as 3 features, but those categories are actually reported as 11 distinct features}
 }
 
 
@@ -916,7 +916,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {not specified; presumably china},
   PARTICIPANT_SAMPLING = {not specified},
   PARTICIPANT_TASK = {annotate},
-  FEATURE_CATEGORIES = {dynamic},
+  FEATURE_CATEGORIES = {Dynamic},
   FEATURE_SOURCE = {MA toolbox, mirtoolbox},
   FEATURE_REDUCTION_METHOD = {Relief-F, CFS, Pearson correlation filter, Spearman correlation filter, information gain, gain-ratio },
   MODEL_CATEGORY = {classification},
@@ -952,7 +952,7 @@ bind_field(
 )
 },
   MODEL_VALIDATION = {cross-validation (for tuning parameters)},
-  FINAL_NOTES = {discuss, insufficient details on classification} 
+  FINAL_NOTES = {Include loudness flux, centroid and flatness, which could conceivably be encoded as Timbre features by Panda categorization} 
 }
 
 
@@ -1018,7 +1018,7 @@ bind_field(
 )
 },
   MODEL_VALIDATION = {none},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {IGI on Beall's list as vanity press !EXCL!}
 }
 
 
@@ -1053,7 +1053,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {canada},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {melody, harmony, rhythm},
+  FEATURE_CATEGORIES = {Melody, Harmony, Rhythm},
   FEATURE_SOURCE = {manual},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {regression},
@@ -1094,14 +1094,14 @@ STIMULUS_TYPE = {stimuli composed in style of popular music; vocal line substitu
 STIMULUS_DURATION = {~30},
 STIMULUS_DURATION_UNIT = {s},
 STIMULUS_N = {study 1: 100; study 2: 20},
-FEATURE_N = {16},
+FEATURE_N = {study 1: 26, study 2: 28},
 PARTICIPANT_N = {study 1: 196; study 2: 30}, %% each excerpt assessed by 49
 PARTICIPANT_EXPERTISE = {not specified},
 PARTICIPANT_ORIGIN = {audio or psychology programs},
 PARTICIPANT_SAMPLING = {convenience},
 PARTICIPANT_TASK = {rate},
-FEATURE_CATEGORIES = {dynamics, timbre, harmony, rhythm}, %% their breakdown of features likely differs from panda's, but use similar category names p. 414
-FEATURE_SOURCE = {MIDI Toolbox, jSymbolic}, %% report on midi features but not audio features
+FEATURE_CATEGORIES = {Melodic, Dynamics, Timbre, Harmony, Rhythm}, %% their breakdown of features likely differs from panda's, but use similar category names p. 414
+FEATURE_SOURCE = {MIDI Toolbox, jSymbolic},
 FEATURE_REDUCTION_METHOD = {recursive feature elimination},
 MODEL_CATEGORY = {regression},
 MODEL_DETAIL = {random forest},
@@ -1113,7 +1113,7 @@ MODEL_RATE_EMOTION_VALUES = {bind_field(
 'various.rfr (external validation).mixed (midi).popular.1' = c('valence_r2' = 0.61, 'arousal_r2' = 0.69))
 },
 MODEL_VALIDATION = {cross validation, external validation (study 2)},
-FINAL_NOTES = {models differ in number of relevant features.}
+FINAL_NOTES = {They include some interesting features that aren't covered in Panda review, but seem to align with the categories there.}
 }
 
 @Article{cao2023th,
@@ -1190,7 +1190,7 @@ FINAL_NOTES = {models differ in number of relevant features.}
   PARTICIPANT_ORIGIN = {22 from campus, 643 from mechanical turk},
   PARTICIPANT_SAMPLING = {convenience, online},
   PARTICIPANT_TASK = {annotation},
-  FEATURE_CATEGORIES = {Timbre = 67, Temporal? = 4}, %% temporal: shape statistics of audio signal? not sure if fits entirely
+  FEATURE_CATEGORIES = {Timbre},
   FEATURE_SOURCE = {Yaafe, MIRToolbox},
   FEATURE_REDUCTION_METHOD = {not specified},
   MODEL_CATEGORY = {regression},
@@ -1207,7 +1207,7 @@ FINAL_NOTES = {models differ in number of relevant features.}
   'various.GMM.mfcc tonal spectral temporal.AMG1608.1' = c(0.29,0.15, 0.67, 0.15,0.01,0.02)
 )},
   MODEL_VALIDATION = {three-fold cross-validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {They also mention temporal shape statistics of audio signal (kurtosis, skewness, spread, etc.). and octave-band signal intensity. Not sure exactly how this fits with Panda categorizations}
  
 }
 
@@ -1261,7 +1261,7 @@ bind_field(
   )
 },
  MODEL_VALIDATION = {NTUMIR: LOO, MediaEval2013: five-fold cross-validation},
- FINAL_NOTES = {discuss  !EXCL!}
+ FINAL_NOTES = {discuss. Regresses VA together !EXCL!}
 }
 
 
@@ -1302,7 +1302,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {MediaEval: MTurk; psychology databases: various},
   PARTICIPANT_SAMPLING = {crowd source, convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {pitch, timbre, dynamic}, %% i simplify their table. they call some cues vocal, but they seem to fit better with panda's timbre features. includes jitter and shimmer which aren't in panda tables,
+  FEATURE_CATEGORIES = {Melodic, Harmonic, Timbre, Dynamic}, 
   FEATURE_SOURCE = {ComParE},
   FEATURE_REDUCTION_METHOD =  {denoising autoencoder},
   MODEL_CATEGORY = {regression}, 
@@ -1324,7 +1324,7 @@ bind_field(
   ) 
 },
   MODEL_VALIDATION = {nested LOO cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Features are 65 low-level descriptors and first order derivatives. They call some cues vocal, but they seem to fit better with Panda's timbre/melodic features. includes jitter and shimmer which aren't in panda tables}
 }
 
 
@@ -1359,7 +1359,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {Hong Kong},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {dynamic, timbre, tonal, rhythm},
+  FEATURE_CATEGORIES = {Dynamic, Timbre, Harmonic, Rhythm, Melodic},
   FEATURE_SOURCE = {MIRToolbox, marsyas},
   FEATURE_REDUCTION_METHOD = {graph embedding, sequential floating forward search (feature selection)},
   MODEL_CATEGORY = {regression},
@@ -1380,7 +1380,7 @@ bind_field(
 )
  },
   MODEL_VALIDATION = {cross-validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {I added "melodic" because they include chroma. The Panda categorization does not classify chroma in their tables, but to me this is closer to melodic than harmonic.}
 }
 
 
@@ -1431,7 +1431,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {not specified}, %% presumably austria
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {dynamics, timbre, rhythm, tonality},
+  FEATURE_CATEGORIES = {Dynamic, Timbre, Rhythm, Harmonic},
   FEATURE_SOURCE = {mirtoolbox, praat},
   FEATURE_REDUCTION_METHOD = {stepwise-forward procedure based on BIC},
   MODEL_CATEGORY = {regression},
@@ -1487,7 +1487,7 @@ bind_field(
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {rhythm, timbre, harmony, dynamics, melody, high-level},
+  FEATURE_CATEGORIES = {Rhythm, Timbre, Harmony, Dynamic, Melody, High-level, Expressivity},
   FEATURE_SOURCE = {essentia, marsyas},
   FEATURE_REDUCTION_METHOD = {'WrapperSubsetEval'},
   MODEL_CATEGORY = {regression},
@@ -1510,7 +1510,7 @@ bind_field(
    'essentia.smoreg.lowlevel rhythm tonal.new.1' = c(0.79, 0.09,0.58, 0.10)
 )},
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {I added expressivity to feature categories due to inclusion of silence rate}
 }
 
 
@@ -1547,10 +1547,10 @@ bind_field(
   PARTICIPANT_ORIGIN = {not specified},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {rhythm, timbre, harmony, dynamics, melody, high-level},
+  FEATURE_CATEGORIES = {Rhythm, Timbre, Harmony, Dynamics, Melody, High-level, Form, Expressivity},
   FEATURE_SOURCE = {essentia, marsyas},
   FEATURE_REDUCTION_METHOD = {pretrained model, neural networks},
-  MODEL_CATEGORY = {classification},
+  MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {recurrent neural networks, long short-term memory units},
   MODEL_MEASURE = {R2, MAE},
   MODEL_COMPLEXITY_PARAMETERS = {training_epochs = 100, n layers = 1-2, lstm_units = 124 or 248},
@@ -1622,7 +1622,7 @@ MODEL_RATE_EMOTION_VALUES = {bind_field(
   PARTICIPANT_ORIGIN = {Auditory Mailing List, Social Media},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {self-report}, %% categorical emotions with intensity prompt; reverse-engineered for circumplex representation
-  FEATURE_CATEGORIES = {before selection: dynamic, timbre, tonality, rhythm; after_selection: dynamic, timbre},
+  FEATURE_CATEGORIES = {before selection: Dynamic, Timbre, Harmonic, Rhythm; after_selection: Dynamic, Timbre},
   FEATURE_SOURCE = {MIR Toolbox, Matlab Audio Analysis Library},
   FEATURE_REDUCTION_METHOD = {Spearman correlation ranking},
   MODEL_CATEGORY = {regression},
@@ -1635,9 +1635,9 @@ various.mlr.mixed.new.validation = c(arousal_r2.r2 = 0.708, arousal_sse.sse = 29
                   valence_r2.r2 = 0.674, valence_sse.sse = 30.581, valence_rmse.rmse = 0.897, 'valence_r2-95l.r2-95l' = 0.562, 'valence_r2-95u.r2-95u' = 0.894),
   'various.mlr.mixed.new.validation-no outliers' = c(0.85,12.341,0.585,0.841,1.118,
                   0.776,19.7,0.74,0.63,0.91)
-)}, %% only reported results of study 2, as study 1 regressed only individual features
+)}, 
   MODEL_VALIDATION = {study2}, %% study 2 is the validation of model developed in study 1
-  FINAL_NOTES = {}
+  FINAL_NOTES = {results from study 2}
 }
 
 
@@ -1672,8 +1672,8 @@ various.mlr.mixed.new.validation = c(arousal_r2.r2 = 0.708, arousal_sse.sse = 29
   PARTICIPANT_ORIGIN = {MER60 = Taiwan, CH818 = China, AMG1608 = MTurk},
   PARTICIPANT_SAMPLING = {MER60 = convenience, CH818 = experts, AMG1608 = crowdsource},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {Loudness, Pitch, Rhythm, Tonality, Timbre},
-  FEATURE_SOURCE = {MIR Toolbox, PsySound, Chroma Toolbox,, Tempogram Toolbox},
+  FEATURE_CATEGORIES = {Dynamic, Melodic, Rhythm, Harmonic, Timbre},
+  FEATURE_SOURCE = {MIR Toolbox, PsySound, Chroma Toolbox, Tempogram Toolbox},
   FEATURE_REDUCTION_METHOD = {step-wise forward feature selection algorithm},
   MODEL_CATEGORY = {regression},
   MODEL_DETAIL = {support vector regression with radial basis function,
@@ -1737,7 +1737,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   PARTICIPANT_ORIGIN = {Hong Kong},
   PARTICIPANT_SAMPLING = {convenience}, %% assumed
   PARTICIPANT_TASK = {survey, rate},
-  FEATURE_CATEGORIES = {dynamic, rhythm, timbre, tonal, pitch},
+  FEATURE_CATEGORIES = {Dynamic, Rhythm, Timbre, Harmonic},
   FEATURE_SOURCE = {Librosa},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {classification},
@@ -1753,7 +1753,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   )
   },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {From article: "all classification experiments were thus implemented as a binomial classification problem (positive valence/arousal versus negative valence/arousal), in which we excluded the samples with neutral labels in this study"}
+  FINAL_NOTES = {From article: "all classification experiments were thus implemented as a binomial classification problem (positive valence/arousal versus negative valence/arousal), in which we excluded the samples with neutral labels in this study" They report pitch features, but all are chromagram transformations, which, according to Panda (2020), are harmony features}
 }
 
 
@@ -1788,7 +1788,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsourcing},
   PARTICIPANT_TASK = {rate}, %% continuous
-  FEATURE_CATEGORIES = {timbre, dynamic, pitch},
+  FEATURE_CATEGORIES = {Timbre, Dynamic, Melodic},
   FEATURE_SOURCE = {openSMILE},
   FEATURE_REDUCTION_METHOD = {unsure},
   MODEL_CATEGORY = {regression},
@@ -1884,7 +1884,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsource},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {timbre, speech, pitch},
+  FEATURE_CATEGORIES = {Timbre, Harmonic},
   FEATURE_SOURCE = {Marsyas},
   FEATURE_REDUCTION_METHOD = {none},
   MODEL_CATEGORY = {regression},
@@ -1905,7 +1905,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
 )
   },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {also report different kernel tunings for gpr, and OvR classification. not current encoded.}
+  FINAL_NOTES = {also report different kernel tunings for gpr, and OvR classification. not current encoded. Mention lyric features, though these map to timbre features based on Panda encodings}
 }
 
 
@@ -1986,7 +1986,7 @@ exp5: train = selected sets (varied), test = selected sets (varied), factor exam
   PARTICIPANT_ORIGIN = {2013-14: MTurk; 2015: MTurk and Lab workers},
   PARTICIPANT_SAMPLING = {crowdsourcing, convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {Pitch, Timbre, Voice, Dynamic},
+  FEATURE_CATEGORIES = {Melodic, Timbre, Dynamic, Harmony},
   FEATURE_SOURCE = {OpenSMILE}, 
   FEATURE_REDUCTION_METHOD = {deep-learning study},
   MODEL_CATEGORY = {regression},
@@ -2002,7 +2002,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
 )
 },
   MODEL_VALIDATION = {not specified},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Feature categories encoded from DEAM spreadsheet}
 }
 
 
@@ -2085,7 +2085,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {not specified}, %% presumably Spain
   PARTICIPANT_SAMPLING = {not specified}, %% presumably convenience
   PARTICIPANT_TASK = {rate, categorize},
-  FEATURE_CATEGORIES = {rhythm},
+  FEATURE_CATEGORIES = {Rhythm, Timbre},
   FEATURE_SOURCE = {MIRToolbox},
   FEATURE_REDUCTION_METHOD = {correlation significance, PCA},
   MODEL_CATEGORY = {regression},
@@ -2096,7 +2096,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   MODEL_RATE_EMOTION_VALUES = {bind_field('MIRToolbox.MLR.onset curves.1.1' = c(activation_r2.r2 = 0.537, activation_eta2.eta2 = 0.537,
   valence_r2.r2 = 0.218, valence_eta2.eta2 = 0.218))},
   MODEL_VALIDATION = {cross-validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {features extracted from onset curves and later input to a PCA (using 18 OC variables)}
 }
 
 
@@ -2180,7 +2180,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {Canada, China},
   PARTICIPANT_SAMPLING = {not specified}, %% presumably convenience
   PARTICIPANT_TASK = {rate}, %%
-  FEATURE_CATEGORIES = {timbre},
+  FEATURE_CATEGORIES = {Timbre, Rhythm},
   FEATURE_SOURCE = {MIRToolbox, Timbre Toolbox},
   FEATURE_REDUCTION_METHOD = {PLSR},
   MODEL_CATEGORY = {regression},
@@ -2201,7 +2201,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   )
   },
   MODEL_VALIDATION = {6-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {2024-12-10: added rhythm as event density included in features}
 }
 
 
@@ -2236,7 +2236,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {variable},
   PARTICIPANT_SAMPLING = {variable},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {Timbre, Pitch, Dynamic, Rhythm},
+  FEATURE_CATEGORIES = {Timbre, Harmonic, Rhythm, High-level, Expressivity},
   FEATURE_SOURCE = {MIRToolbox, Essentia},
   FEATURE_REDUCTION_METHOD = {StandardScaler, Min-MaxScaler, MaxAbsScaler, Quantile Transformer Uniform distribution (QTU), Quantile Transformer with Gaussian distribution (QTG)},
   MODEL_CATEGORY = {regression},
@@ -2252,7 +2252,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   )
   },
   MODEL_VALIDATION = {five-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {2024-12-10: I added expressivity as they encode silence rate and silence ratio is included in Panda's categories as expressivity feature. I removed what they call "dynamic" as these seem to fit in the categories of high-level, timbre, and expressivity}
 }
 
 
@@ -2287,7 +2287,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {China},
   PARTICIPANT_SAMPLING = {online, convenience}, %% presumably convenience
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {Timbre, Rhythm, Dynamics, Pitch},
+  FEATURE_CATEGORIES = {Timbre, Rhythm, Dynamic, Melodic, Expressivity},
   FEATURE_SOURCE = {ppmBatch, MIRToolbox, expert annotation},
   FEATURE_REDUCTION_METHOD = {PCA},%% part of PLSR
   MODEL_CATEGORY = {regression},
@@ -2305,7 +2305,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
 )
 },
   MODEL_VALIDATION = {six-fold cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Combination of manual evaluation and automatic extraction in features. Feature categories reflect both and may be worth discussing further as manual annotations seem to reflect higher-level processes}
 }
 
 
@@ -2383,7 +2383,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {MTurk},
   PARTICIPANT_SAMPLING = {crowdsource},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {timbre},
+  FEATURE_CATEGORIES = {Timbre, Melodic, Harmonic, Dynamic},
   FEATURE_SOURCE = {openSMILE},
   FEATURE_REDUCTION_METHOD = {Sinusoidal Transform Coding},
   MODEL_CATEGORY = {regression},
@@ -2403,7 +2403,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
 )
  }, %% not reporting on classification as those involve spectrogram images instead.
   MODEL_VALIDATION = {10-fold cross-validation},
-  FINAL_NOTES = {baseline features from openSMILE + additional spectral features. Unspecified, but likely > 3000 as there are 150 PCA features. They also report 15 summary stats}
+  FINAL_NOTES = {baseline features from openSMILE + additional spectral features. Unspecified, but likely > 3000 as there are 150 PCA features. They also report 15 summary stats. I encoded feature categories from OpenSMILE webpage.}
 }
 
 
@@ -2436,7 +2436,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {China},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {rhythm, timbre, pitch, harmony},
+  FEATURE_CATEGORIES = {Rhythm, Harmonic, Timbre},
   FEATURE_SOURCE = {librosa},
   FEATURE_REDUCTION_METHOD = {PCA, later grid parameter search},
   MODEL_CATEGORY = {regression},
@@ -2448,7 +2448,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   'librosa.random forest regression.audio.psic3839.1' = c(arousal_r2.mean = 0.629, arousal_rmse.rmse = 0.147,valence_r2.mean = 0.371, valence_rmse.rmse = 0.214)
 ) },
   MODEL_VALIDATION = {10-fold cross validation},
-  FINAL_NOTES = {top 50 PCA features, raw number of features not revealed, nor number of audio features plus BOW features.}
+  FINAL_NOTES = {top 50 PCA features. These seem to be generated from nine low or middle-level features.}
 }
 
 
@@ -2483,7 +2483,7 @@ time-distributed-layer: CNN, iterative reconstruction, bidirectional gated recur
   PARTICIPANT_ORIGIN = {China},
   PARTICIPANT_SAMPLING = {convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {dynamic, timbre, rhythm, tonality }, %% "we make an assumption that the arousal is only dependent on the intensity features, and valence is dependent on the whole feature sets" 
+  FEATURE_CATEGORIES = {Dynamic, Timbre, Rhythm, Harmonic, Melodic},  
   FEATURE_SOURCE = {MA Toolbox, MIR Toolbox, coversongs},
   FEATURE_REDUCTION_METHOD = {filter methods, wrapper methods, shrinkage methods. Details: Relief-R-2, Relief-F-3, Correlation-Based (Pearson, Spearman, information-gain, gain-ratio) Forward Selection-AIC, L1-regularized logistic regression. Optimized through grid search},
   MODEL_CATEGORY = {classification},
@@ -2520,7 +2520,7 @@ Discriminant Analysis (RDA).},
 )
 },
   MODEL_VALIDATION = {10-fold cross validation (for tuning parameters)},
-  FINAL_NOTES = {Use Zhang's database. Appears to use four classes. www.researchgate.net/publication/282373589_Some_issues_of_mood_classification_for_Chinese_popular_music}
+  FINAL_NOTES = {I added "melodic" because they include chroma. The Panda categorization does not classify chroma in their tables, but to me this is closer to melodic than harmonic. Use Zhang's database. Appears to use four classes. Quote: "we make an assumption that the arousal is only dependent on the intensity features, and valence is dependent on the whole feature sets"}
 }
 
 
@@ -2548,14 +2548,14 @@ Discriminant Analysis (RDA).},
   STIMULUS_GENRE = {chinese folk},
   STIMULUS_DURATION = {10},
   STIMULUS_DURATION_UNIT = {s},
-  STIMULUS_N = {420}, %% cite Xing et al. (2015). Stimuli divided into 21 groups each with 20 stimuli (five per quadrant). Each participant listened to 3 groups
-  FEATURE_N = {64}, %% 63 found relevant for valence, 64 for arousal (from feature selection method including other sources)
+  STIMULUS_N = {420}, 
+  FEATURE_N = {64}, 
   PARTICIPANT_N = {21},
   PARTICIPANT_EXPERTISE = {no specific music training},
-  PARTICIPANT_ORIGIN = {not specified}, %% presumably china
+  PARTICIPANT_ORIGIN = {not specified}, 
   PARTICIPANT_SAMPLING = {volunteer},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {timbre},
+  FEATURE_CATEGORIES = {Timbre},
   FEATURE_SOURCE = {marsyas},
   FEATURE_REDUCTION_METHOD = {ANOVA, PCA. PCA may not be relevant to music-only model},
   MODEL_CATEGORY = {regression},
@@ -2567,7 +2567,7 @@ Discriminant Analysis (RDA).},
   marsyas.NuSVR.music.xing2014.1 = c(arousal_mse.mse = 0.0437, arousal_cc.cc = 0.425, valence_mse.mse = 0.0373, valence_cc.cc = 0.420)
 )},
   MODEL_VALIDATION = {10 x 10 cross validation},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {63 features found relevant for valence, 64 for arousal (from feature selection method including other sources). They cite Xing et al. (2015). Stimuli divided into 21 groups each with 20 stimuli (five per quadrant). Each participant listened to 3 groups. Only reporting audio-only model}
 }
 
 @Article{zhang2023mo,
@@ -2603,8 +2603,8 @@ Discriminant Analysis (RDA).},
   PARTICIPANT_ORIGIN = {DEAM: MTurk; PMEmo: lab},
   PARTICIPANT_SAMPLING = {DEAM: crowdsource; PMEmo: convenience},
   PARTICIPANT_TASK = {rate},
-  FEATURE_CATEGORIES = {filter banks, handcrafted},
-  FEATURE_SOURCE = {daubechie, MIRToolbox, Sound Description Toolbox, filter bank output (size = 120*120), 60 handcrafted features (size = 60*60)},
+  FEATURE_CATEGORIES = {Melodic, Timbre, Dynamic, Harmony},
+  FEATURE_SOURCE = {filter bank output (size = 120*120), 60 handcrafted features (size = 60*60). Cite  DEAM (Aljanaki et al., 2017)},
   FEATURE_REDUCTION_METHOD = {weighted attention module, feature augmentation},
   MODEL_CATEGORY =  {regression},
   MODEL_DETAIL = {Modularized Composite Attention Network. Case 1: no sample reconstruction. Case 2: no handcrafted features (or feature augmentation). Case 3: No self-attention mechanism or BLSTM. Case 4: no style embedding module}, %% new method
@@ -2620,7 +2620,7 @@ alpha = 0.18, beta = 0.49},
    'ns.MCAN. handcrafted and filter bank.PMEmo.1' = c(.215,.144,.892,0.265,.102,.030,.401,.135,.901,.315,0.057,0.103)
  )}, %% only reporting final results (not five cases. Can add if important)
   MODEL_VALIDATION = {ablation, train/test},
-  FINAL_NOTES = {}
+  FINAL_NOTES = {Inserted feature categories for DEAM in Secondary databases, as that's what they cite for the 60 handcrafted features.}
 }
 
 @Article{zhang2024ap,
