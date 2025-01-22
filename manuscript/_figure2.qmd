@@ -13,7 +13,7 @@ library(DescTools,warn.conflicts = FALSE)
 library(ggplot2,quietly = TRUE)
 library(ggrepel,quietly = TRUE)
 library(forestplot)
-
+library(ggpubr)
 R_summary <- read.csv("../analysis/R_summary.csv")
 tmp <- dplyr::filter(R_summary,dimension=="valence")
 tmp$studyREF[tmp$studyREF=="Wang et al 2022"] <- c("Wang et al. 2022a","Wang et al. 2022b")
@@ -23,7 +23,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = studyREF,#citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  #                 backtransf = TRUE,
@@ -63,6 +63,8 @@ fp1 <- grid.grabExpr(print(data |>
 source('../etc/custom_funnel_plot.R')
 fp2 <- suppressWarnings(custom_funnel_plot(m.cor))
 
-gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+#gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+
+ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
 
 ```

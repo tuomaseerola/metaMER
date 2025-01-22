@@ -22,7 +22,7 @@ m.cor <- metacor(cor = valuesMax,     # values
                  n = stimulus_n,
                  studlab = studyREF,#citekey, # unique_id
                  data = tmp,
-                 fixed = FALSE,
+                 common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
                  #                 backtransf = TRUE,
@@ -32,7 +32,6 @@ m.cor <- metacor(cor = valuesMax,     # values
                  title = "MER: Regression: Arousal: Summary")
 
 #### Forest plot using forestplot
-library(forestplot)
 data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=format(round(m.cor$cor, digits=3), nsmall = 3))
 data<-dplyr::arrange(data,mean)
 
@@ -55,7 +54,7 @@ fp1 <- grid.grabExpr(print(data |>
                 txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
                                 ticks = gpar(cex = 0.80),
                                 xlab  = gpar(cex = 0.80)))|>
-    fp_decorate_graph(grid = structure( m.cor$TE.common,gp = gpar(lty = 2, col = "grey30")))
+    fp_decorate_graph(grid = structure(FisherZInv(m.cor$TE.random),gp = gpar(lty = 2, col = "grey30")))
 )
 )
 
@@ -63,6 +62,7 @@ fp1 <- grid.grabExpr(print(data |>
 source('../etc/custom_funnel_plot.R')
 fp2 <- suppressWarnings(custom_funnel_plot(m.cor))
 
-gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+#gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
 
 ```

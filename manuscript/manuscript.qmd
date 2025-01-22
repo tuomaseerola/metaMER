@@ -176,28 +176,33 @@ These comparisons of sub-groupings are also influenced by other factors, such as
 
 ### Results for arousal
 
-Moving on the arousal, we carry out the same meta-analytical analysis applying the random-effects model to arousal. Table 3 describes the broad pattern of results in tabular format, and Figure 3 illustrates the spread and heterogeneity of all studies for arousal. The overall correlation across the studies using the best performing model out of each study (Max) is 0.807 (CI95% 0.745-0.855). If we examine all the models reported in each study, the correlation drops marginally, to 0.784 (CI95% 0.765-0.801), despite this analysis includes about five times as many models as taking the best model out of each study. For arousal, even the baseline models seem to be performing on a relative high level. However, the indicators of heterogeneity are again high ($\tau^2$ = 0.155 and $I^2$=96.8%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, $\beta$ = 0.787 95%CI -4.61-6.18, _t_ = 0.286, _p_ = 0.778). If we remove the studies that are outside the 95%CI in heterogeneity, leaves this 14 studies in the summary that has _r_ = 0.8182 (95%CI 0.802-0.833) with $\tau^2$ = 0.0038 and $I^2$ = 76.0%. In other words, no material difference to the results obtained with all 24 studies.
+Moving on the arousal, we carry out the same meta-analytical analysis applying the random-effects model to arousal. Table 3 describes the broad pattern of results in tabular format, and Figure 3 illustrates the spread and heterogeneity of all studies for arousal. The overall correlation across the studies using the best performing model out of each study (Max) is 0.809 (CI95% 0.740-0.860). If we examine all the models reported in each study, the correlation drops marginally, to 0.791 (CI95% 0.770-0.810), despite this analysis includes about four times as many models as taking the best model out of each study. For arousal, even the baseline models seem to be performing on a relative high level. However, the indicators of heterogeneity are again high ($\tau^2$ = 0.141 and $I^2$=97.9%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, $\beta$ = 0.789 95%CI -4.87-6.45, _t_ = 0.273, _p_ = 0.788). If we remove the studies that are outside the 95%CI in heterogeneity, leaves this 13 studies in the summary that has _r_ = 0.826 (95%CI 0.806-0.845) with $\tau^2$ = 0.0042 and $I^2$ = 76.8%. In other words, no material difference to the results obtained with all 22 studies.
 
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:--------------------------|:-----|:-------|:---------|:------|
-| Arousal All  | 90, 61733   | 0.795 \[0.774-0.814\]     | 39.4 | 0.0001 | 0.064    | 96.3% |
-| Arousal Max  | 21, 13572   | 0.815 \[0.749-0.865\]     | 14.0 | 0.0001 | 0.131    | 97.7% |
+| Arousal All  | 102, 60017  | 0.791 \[0.770-0.810\]     | 39.9 | 0.0001 | 0.069    | 96.2% |
+| Arousal Max  | 22, 14172   | 0.809 \[0.740-0.860\]     | 13.6 | 0.0001 | 0.141    | 97.9% |
 | *N Features* |             |                           |      |        |          |       |
-| \<18 F       | 5, 3036     | 0.811 \[0.534-0.931\]     |      |        | 0.1815   | 98.9% |
-| 18-260 F     | 11, 7042    | 0.584 \[0.534-0.931\]     |      |        | 0.1331   | 97.6% |
-| 260+ F       | 5, 3494     | 0.710 \[0.542-0.823\]     |      |        | 0.0435   | 97.2% |
+| \<18 F       | 4, 3016     | 0.817 \[0.361-0.958\]     |      |        | 0.2295   | 99.2% |
+| 18-260 F     | 10, 4222    | 0.586 \[0.356-0.748\]     |      |        | 0.1542   | 96.9% |
+| 260+ F       | 7, 6190     | 0.702 \[0.612-0.774\]     |      |        | 0.0285   | 96.6% |
 | *Techniques* |             |                           |      |        |          |       |
-| KS           | 2, 2582     | 0.807 \[0.549-0.924\]     |      |        | 0.0022   | 70.0% |
-| LM           | 7, 1438     | 0.885 \[0.796-0.936\]     |      |        | 0.0846   | 93.3% |
-| FD           | 6, 4993     | 0.808 \[0.644-0.901\]    |      |        | 0.1125   | 98.0% |
-| NN           | 3, 1229     | 0.533 \[0.082-0.803\]     |      |        | 0.0190   | 85.8% |
-| RF           | 3, 3330     | 0.809 \[0.733-0.864\]  |      |        | 0.0012   | 52.7% |
+| KS           | 1, 1838     | 0.819 \[0.803-0.833\]     |      |        |  -       | -     |
+| LM           | 8, 1762     | 0.881 \[0.808-0.928\]     |      |        | 0.0846   | 93.3% |
+| FD           | 6, 4993     | 0.808 \[0.644-0.901\]     |      |        | 0.1125   | 98.0% |
+| NN           | 4, 2249     | 0.533 \[0.328-0.691\]     |      |        | 0.0190   | 85.8% |
+| RF           | 3, 3330     | 0.809 \[0.733-0.864\]     |      |        | 0.0025   | 65.4% |
 
-The forest plot in Figure 3 reveals  
+<!-- numbers in the text updated up to here, TE 22/1/2025 -->
 
-The subdivision of studies shows...
+<!-- Schwarzer and colleagues (Schwarzer, Carpenter, and Rücker 2015, chap. 4.3) mention, as a general rule of thumb, that subgroup analyses only make sense when your meta-analysis contains at least 
+K= 10 studies.-->
+
+Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (15 out of the 22 models). Due to large sample in ost studies, the confidence intervals are narrow, although the exceptions ($N < 55$) are clearly visible [@beveridge2018po; @griffiths2021am;@koh2023me; @saizclar2022pr; @wang2021ac]. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger's test reported above. 
+
+The analysis of the subdivision of studies shows that there is no significant differences between the studies using different number of features (_Q_(2) = 3.47, _p_ = .176) despite the differing means (_r_ = 0.817 for studies with less than 18 features, _r_ = 0.586 for 18 to 260 features, and _r_ = 0.702 for studies utilising over 260 features). The differences in the techniques, however, does show variance between subgroups that is statistically significant (_Q_(4) = 50.47, _p_ < .0001), where at least Neural Nets achieve poor prediction of arousal (_r_ = 0.533) in comparison to other techniques. The caveat of this subgroup analysis is the small number of observations for five techniques. When other subgroupings were explored, such as the type of journal (Engineering with 13 studies vs Psychology with 9 studies), no significant differences were observed (_Q_(1) = 0.94, _p_ = .333). 
 
 {{< include _figure3.qmd >}}
 

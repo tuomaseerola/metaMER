@@ -462,7 +462,7 @@ print(m.cor2)
 #### Sub-division based on N features
 
 ```{r,results='asis'}
-tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp <- dplyr::filter(R_summary,dimension=="arousal")
 tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
 S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
@@ -470,7 +470,7 @@ print(knitr::kable(S))
 
 
 ```{r}
-tmp <- dplyr::filter(R_summary,dimension=="valence")
+tmp <- dplyr::filter(R_summary,dimension=="arousal")
 tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
 m.cor3 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
@@ -494,8 +494,8 @@ print(S)
 #### Sub-division based on N features and genres
 
 ```{r, results='asis'}
-tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # removemissing values
+tmp <- dplyr::filter(R_summary,dimension=="arousal")
+tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
 
 S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
