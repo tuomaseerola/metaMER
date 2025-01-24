@@ -530,6 +530,37 @@ C_studies <- C_studies[!is.na(C_studies$values),]
 
 # yang2021an needs to be encoded for classification (currently just regression)
 C_summary <- read.csv("C_summary.csv")
+
+# 2025-01-24: averaging valence and arousal for this study, which makes the max equivalent to both the mean and median (two models: one valence, one arousal)
+C_summary[C_summary$citekey == "nguyen2017an",]$valuesMax <- C_summary[C_summary$citekey == "nguyen2017an",]$valuesMean 
+
+# 2025-01-24: averaging across quadrants for bhuvanakumar study
+# subset study
+bhuvanakumar <- subset(
+  C_studies, 
+  stringr::str_detect(
+    C_studies$citekey,
+    "bhuvanakumar"
+    )
+)
+# group by algorithm to average across the four quadrants
+bhuvanakumar$model_algorithm <- substr(
+  bhuvanakumar$model_id, 
+  1, 
+  4
+)
+# take the average for each algorithm
+bhuvanakumar |> 
+  group_by(model_algorithm) |>
+  mutate(values = mean(values)) -> bhuvanakumar
+# overwrite values in C_summary
+C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMean <- mean(unique(bhuvanakumar$values))
+C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMedian <- median(unique(bhuvanakumar$values))
+C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMax <- max(unique(bhuvanakumar$values))
+
+remove(bhuvanakumar)
+
+
 C_classes <- read.csv("C_study_class_n.csv")
 
 C_summary <- merge(C_summary, C_classes)
@@ -717,7 +748,7 @@ add `journal_type` and `stimulus_genre_mixed` as a grouping option
 ```{r}
 #| eval: false
 m.cor_subgroups <- update(m.cor, 
-       subgroup = model_class_id, 
+#       subgroup = model_class_id, 
 #       subgroup = journal_type, 
 #       subgroup = stimulus_genre_mixed, 
        tau.common = FALSE,
