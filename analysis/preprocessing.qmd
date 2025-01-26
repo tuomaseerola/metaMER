@@ -338,7 +338,7 @@ quantile(R_studies$feature_n,c(0.1,0.500,0.90),na.rm = TRUE)
 
 R_studies$feature_n_categories <-cut(R_studies$feature_n,
                                       breaks = c(0,18,260,
-                                                 10000),
+                                                 14460),
                                       labels = c("Feature n < 18","Feature n > 18 & < 260","Feature n > 260"))
 
 ```
@@ -368,7 +368,7 @@ quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TR
 
 # a combination of the two
 R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
-                                      breaks = c(0,15,501,653,20000),
+                                      breaks = c(0,15,501,653,14460),
                                       labels = c("Small single genre study","Medium single genre/multigenre study","Medium-large single genre/multigenre study","Huge multigenre study"))
 #table(R_studies$feature_n_complexity_genre)
 ```
@@ -383,7 +383,15 @@ Note: Before adding feature_n to the summary, they need to be cleaned!
 R_studies$citekey <- factor(R_studies$citekey) # 22 unique values
 R_studies$dimension <- factor(R_studies$dimension)
 
-R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
+R_summary <- summarise(group_by(R_studies,dimension,citekey,model_class_id),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
+
+### Now filter out best model
+R_summary |> 
+  ungroup() |> 
+  filter(
+    valuesMax == max(valuesMax), 
+    .by = c(citekey, dimension)
+  ) -> R_summary
 
 print(dim(R_summary))
 ```
@@ -396,7 +404,7 @@ Add variation from within the studies (alternative models)
 #| echo: false
 #| eval: false
 
-R_summary_split <- pivot_wider(R_summary,id_cols = citekey, names_from = c(dimension), values_from = valuesMax)
+R_summary_split <- pivot_wider(R_summary,id_cols = c(citekey, model_class_id), names_from = c(dimension), values_from = valuesMax)
 
 g2 <- ggplot(R_summary_split,aes(x=valence,y=arousal,label=citekey))+
   geom_label()+
@@ -451,12 +459,12 @@ R_studies$feature_n_complexity <- cut(R_studies$feature_n,
                                       breaks = c(0,
                                                  as.numeric(quantile(R_studies$feature_n,c(0.333),na.rm = T)),
                                                  as.numeric(quantile(R_studies$feature_n,c(0.666),na.rm = T)),
-                                                 10000),
+                                                 14460),
                                       labels = c("Feature n < 236","Feature n > 236 & < 653","Feature n > 653"))
 
 
 R_studies$feature_n_complexity <- cut(R_studies$feature_n,
-                                      breaks = c(0,30,300,10000),
+                                      breaks = c(0,30,300,14460),
                                       labels = c("Feature n < 30","Feature n > 30 & < 300","Feature n > 300"))
 
 #table(R_studies$feature_n_complexity)
@@ -472,7 +480,7 @@ quantile(subset(R_studies,stimulus_genre_mixed=='MultiGenre')$feature_n,na.rm=TR
 
 # a combination of the two
 R_studies$feature_n_complexity_genre <- cut(R_studies$feature_n,
-                                      breaks = c(0,15,501,653,10000),
+                                      breaks = c(0,15,501,653,14460),
                                       labels = c("Small single genre study","Medium single genre/multigenre study","Medium-large single genre/multigenre study","Huge multigenre study"))
 #table(R_studies$feature_n_complexity_genre)
 ```
@@ -785,7 +793,7 @@ print(g)
 ## Aggregate valence and arousal results for nguygen2017, bhuvanakumar2023
 
 ```{r}
-C_summary <- summarise(group_by(C_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),model_class_id=first(model_class_id),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_complexity=first(feature_n_complexity),stimulus_genre_mixed=first(stimulus_genre_mixed)#,
+C_summary <- summarise(group_by(C_studies,dimension,citekey,model_class_id),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_complexity=first(feature_n_complexity),stimulus_genre_mixed=first(stimulus_genre_mixed)#,
                         #feature_n_complexity_genre=first(feature_n_complexity_genre)
                         )
 # 2025-01-24: averaging valence and arousal for this study, which makes the max equivalent to both the mean and median (two models: one valence, one arousal)
@@ -816,6 +824,13 @@ C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMedian <- median(uni
 C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMax <- max(unique(bhuvanakumar$values))
 
 remove(bhuvanakumar)
+
+C_summary |> 
+  ungroup() |> 
+  filter(
+    valuesMax == max(valuesMax), 
+    .by = c(citekey, dimension)
+) -> C_summary
 
 
 ```
