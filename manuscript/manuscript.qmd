@@ -95,7 +95,7 @@ The search yielded studies of variable (and occasionally questionable) quality. 
 
 ## Study Encoding
 
-To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see `studies/extraction_details.qmd` .
+To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type -- Neural Nets (NN), Support Vector Machines (SVM), Linear Methods (LM), Tree-based Methods (TM), KS, Add. and KNN Methods (KM) -- validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see `studies/extraction_details.qmd` .
 
 # Results
 
@@ -107,15 +107,15 @@ TABLE 1: Summary of data (part of `analysis/preprocessing.qmd` updated 21/1/2025
 |:-----------|:--------------------------------|:--------------------------|:------|
 | Study N    | 22                              | 12                        | 34    |
 | Model N    | 204                             | 86                        | 290   |
-| Techniques | Neural Nets (NN): 66            | 25                        | 91    |
-| Techniques | Flexible Discriminants (FD): 50 | 26                        | 76    |
-| Techniques | Linear Methods (LM): 62         | 13                        | 75    |
-| Techniques | Random Forests (RF): 14         | 10                        | 34    |
-| Techniques | KS, Add. & KNN (KS): 12         | 12                        | 24    |
+| Techniques | Neural Nets: 66                 | 25                        | 91    |
+| Techniques | Support Vector Machines: 50     | 26                        | 76    |
+| Techniques | Linear Methods: 62              | 13                        | 75    |
+| Techniques | Tree-based methods: 14          | 10                        | 34    |
+| Techniques | KS, Add. & KNN: 12              | 12                        | 24    |
 | Feature N  | Min=3, Md=605, Max=6670         | Min=8, Md=126, Max=8904   | NA    |
 | Stimulus N | Min=20, Md=324, Max=2486        | Min=124, Md=300, Max=5192 | NA    |
 
-Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (605) and classification (126) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in @beveridge2018po to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
+Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: Neural Nets, SVMs, and Linear Methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 9000 features [@zhang2023mo]. The median number of features differs between regression (605) and classification (126) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in @beveridge2018po to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
 
 We first report regression studies that predict valence and arousal.
 
@@ -142,11 +142,11 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 | *Techniques* |             |                         |       |       |          |       |
 | KS           | 1,1838      | 0.466 \[-0.634-0.942\]  | \-    | \-    | 0.0185   | 95.1% |
 | LM           | 8,1762      | 0.797 \[0.614-0.899\]   | \-    | \-    | 0.1370   | 96.4% |
-| FD           | 6,4993      | 0.656 \[0.484-0.779\]   | \-    | \-     | 0.0574  | 96.9% |
+| SVM          | 6,4993      | 0.656 \[0.484-0.779\]   | \-    | \-     | 0.0574  | 96.9% |
 | NN           | 4,2249      | 0.393 \[-0.355-0.835\]  | \-    | \-     | 0.0761  | 97.1% |
-| RF           | 3,3330      | 0.750 \[0.292-0.928\]   | \-    | \-     | 0.093   | 98.5% |
+| TM           | 3,3330      | 0.750 \[0.292-0.928\]   | \-    | \-     | 0.093   | 98.5% |
 
-<!-- table updated TE 21/1/2025 -->
+<!-- table updated TE 21/1/2025, revised terms 28/1/2025 -->
 
 The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 22 studies achieving an average correlation of _r_ = 0.669 (95% CI: 0.560-0.755), called "valence Max" in Table 2. However, when considering all models across these studies (n = 102), the overall prediction rate drops significantly to _r_ = 0.583. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.
 
@@ -162,7 +162,7 @@ To gain insights into the factors contributing to the wide range of model succes
 
 <!-- numbers in the text updated up to here, TE 21/1/2025 -->
 
-When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (_Q_(4) = 45.7, _p_ < .0001). Notably, linear models (LM) and flexible discriminants (FD) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (_r_ = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity ($\tau^2$ = 0.137) compared to other techniques, where $\tau^2$ values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (_r_ = 0.656, 95% CI: 0.484–0.779). While there were only 3 studies involving random forests, these performed well, achieving _r_ = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network models represented in four studies (_r_ = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, _r_ = 0.383, 95% CI: 0.348–0.426).
+When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (_Q_(4) = 45.7, _p_ < .0001). Notably, linear models (LM) and Support Vector Machines (SVM) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (_r_ = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity ($\tau^2$ = 0.137) compared to other techniques, where $\tau^2$ values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (_r_ = 0.656, 95% CI: 0.484–0.779). While there were only 3 studies involving random forests, these performed well, achieving _r_ = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network models represented in four studies (_r_ = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, _r_ = 0.383, 95% CI: 0.348–0.426).
 
 We also ran the sub-grouping analyses across a combination of stimulus genres (single vs mixed) and number of the features to explore where the differences in the model prediction rates might lie. For this purpose, we grouped the studies into small single genre/multigenre studies, medium single genre/multigenre studies, and medium-large single genre/multigenre studies, and huge multigenre studies. The small single genre/multigenre studies generally performed best (_r_ = 0.836), followed by huge multi-genre studies (_r_ = 0.693) while the medium and medium-large sized studies performance was between close the overall average (medium-large, _r_ = 0.768 and medium _r_ = 0.607). The heterogeneity was lowest in the huge multigenre studies ($\tau^2$ = 0.013) and highest in the small single genre/multigenre studies ($\tau^2$ = 0.318). 
 
@@ -191,9 +191,9 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 | *Techniques* |             |                           |      |        |          |       |
 | KS           | 1, 1838     | 0.819 \[0.803-0.833\]     |      |        |  -       | -     |
 | LM           | 8, 1762     | 0.881 \[0.808-0.928\]     |      |        | 0.0846   | 93.3% |
-| FD           | 6, 4993     | 0.808 \[0.644-0.901\]     |      |        | 0.1125   | 98.0% |
+| SVM          | 6, 4993     | 0.808 \[0.644-0.901\]     |      |        | 0.1125   | 98.0% |
 | NN           | 4, 2249     | 0.533 \[0.328-0.691\]     |      |        | 0.0190   | 85.8% |
-| RF           | 3, 3330     | 0.809 \[0.733-0.864\]     |      |        | 0.0025   | 65.4% |
+| TM           | 3, 3330     | 0.809 \[0.733-0.864\]     |      |        | 0.0025   | 65.4% |
 
 <!-- numbers in the text updated up to here, TE 22/1/2025 -->
 
