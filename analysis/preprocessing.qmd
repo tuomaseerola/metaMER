@@ -383,15 +383,18 @@ Note: Before adding feature_n to the summary, they need to be cleaned!
 R_studies$citekey <- factor(R_studies$citekey) # 22 unique values
 R_studies$dimension <- factor(R_studies$dimension)
 
-R_summary <- summarise(group_by(R_studies,dimension,citekey,model_class_id),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
+# get best model class
+R_studies |> 
+  group_by(citekey, dimension, model_class_id) |> 
+  summarize(best_model = max(values)) |> 
+  filter(best_model == max(best_model)) -> best_model_class
 
-### Now filter out best model
-R_summary |> 
-  ungroup() |> 
-  filter(
-    valuesMax == max(valuesMax), 
-    .by = c(citekey, dimension)
-  ) -> R_summary
+best_model_class <- best_model_class[,c("citekey", "dimension", "model_class_id")] 
+
+R_summary <- summarise(group_by(R_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_categories=first(feature_n_categories),stimulus_genre_mixed=first(stimulus_genre_mixed),feature_n_complexity_genre=first(feature_n_complexity_genre))
+
+R_summary <- left_join(R_summary, best_model_class)
+
 
 print(dim(R_summary))
 ```
@@ -662,6 +665,40 @@ va_acc <- va_acc |> distinct()
 C_studies <- C_studies[!C_studies$citekey %in% va_studies,]
 C_studies <- rbind(C_studies, va_acc)
 
+
+# These are encoded slightly differently, so need to use a different approach
+
+# 2025-01-24: averaging across quadrants for bhuvanakumar study
+# subset study
+bhuvanakumar <- subset(
+  C_studies, 
+  stringr::str_detect(
+    C_studies$citekey,
+    "bhuvanakumar"
+    )
+)
+# group by algorithm to average across the four quadrants
+bhuvanakumar$model_algorithm <- substr(
+  bhuvanakumar$model_id, 
+  1, 
+  4
+)
+# take the average for each algorithm
+bhuvanakumar |> 
+  group_by(model_algorithm) |>
+  mutate(values = mean(values)) -> bhuvanakumar
+
+C_studies <-C_studies |> filter(citekey != "bhuvanakumar2023em")
+bhuvanakumar$model_algorithm <- NULL
+C_studies <- rbind(C_studies, bhuvanakumar)
+
+remove(bhuvanakumar)
+
+# 2025-01-24: averaging valence and arousal for this study, which makes the max equivalent to both the mean and median (two models: one valence, one arousal)
+C_studies[C_studies$citekey == "nguyen2017an",]$values <- mean(C_studies[C_studies$citekey == "nguyen2017an",]$values)
+
+
+
 ```
 
 ### Revisualize studies
@@ -793,44 +830,26 @@ print(g)
 ## Aggregate valence and arousal results for nguygen2017, bhuvanakumar2023
 
 ```{r}
-C_summary <- summarise(group_by(C_studies,dimension,citekey,model_class_id),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_complexity=first(feature_n_complexity),stimulus_genre_mixed=first(stimulus_genre_mixed)#,
+# get best model class
+C_studies |> 
+  group_by(citekey, dimension, model_class_id) |> 
+  summarize(best_model = max(values)) |> 
+  filter(best_model == max(best_model)) -> best_model_class_C
+
+best_model_class_C <- best_model_class_C[,c("citekey", "dimension", "model_class_id")] 
+
+
+
+
+```
+
+```{r}
+C_summary <- summarise(group_by(C_studies,dimension,citekey),valuesMean=mean(values,na.rm=TRUE),valuesMedian=median(values,na.rm=TRUE),valuesMax=max(values,na.rm=TRUE),stimulus_n=first(stimulus_n),studyREF=first(studyREF),feature_n=first(feature_n),journal_type=first(journal_type),feature_n=first(feature_n),feature_n_complexity=first(feature_n_complexity),stimulus_genre_mixed=first(stimulus_genre_mixed)#,
                         #feature_n_complexity_genre=first(feature_n_complexity_genre)
                         )
-# 2025-01-24: averaging valence and arousal for this study, which makes the max equivalent to both the mean and median (two models: one valence, one arousal)
-C_summary[C_summary$citekey == "nguyen2017an",]$valuesMax <- C_summary[C_summary$citekey == "nguyen2017an",]$valuesMean 
 
-# 2025-01-24: averaging across quadrants for bhuvanakumar study
-# subset study
-bhuvanakumar <- subset(
-  C_studies, 
-  stringr::str_detect(
-    C_studies$citekey,
-    "bhuvanakumar"
-    )
-)
-# group by algorithm to average across the four quadrants
-bhuvanakumar$model_algorithm <- substr(
-  bhuvanakumar$model_id, 
-  1, 
-  4
-)
-# take the average for each algorithm
-bhuvanakumar |> 
-  group_by(model_algorithm) |>
-  mutate(values = mean(values)) -> bhuvanakumar
-# overwrite values in C_summary
-C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMean <- mean(unique(bhuvanakumar$values))
-C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMedian <- median(unique(bhuvanakumar$values))
-C_summary[C_summary$citekey == "bhuvanakumar2023em",]$valuesMax <- max(unique(bhuvanakumar$values))
+C_summary <- left_join(C_summary, best_model_class_C)
 
-remove(bhuvanakumar)
-
-C_summary |> 
-  ungroup() |> 
-  filter(
-    valuesMax == max(valuesMax), 
-    .by = c(citekey, dimension)
-) -> C_summary
 
 
 ```
