@@ -7,7 +7,7 @@ This assumes that the data has been parsed from the BibTeX files into table and 
 #| echo: false
 #| eval: true
 # Set parameters and libraries
-export_decision <- FALSE
+export_decision <- TRUE
 verbose <- FALSE
 require(here)
 library(stringr)
@@ -122,9 +122,9 @@ metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'lr|lm|pls|ml
 metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rbf|gmm|local|polynomial|polygonal|knn|mars|gam')]<-'Kernel Smoothing, Additive and KNN'
 #metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'adaboost|gradient')]<-'Boosting'
 metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'nn|gru|lstm|ltsm|long short term memory|rprop|mcan')]<-'Neural Nets'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'svm|svr|support vector regression|smoreg|smo ')]<-'Flexible Discriminants'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'svm|svr|support vector regression|smoreg|smo ')]<-'Support Vector Machines'
 #metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'knn')]<-'Prototype methods'
-metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely randomized tree regression|random forest|adaboost|gradient|tree|bag|boost')]<-'Random Forests'
+metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf|extremely randomized tree regression|random forest|adaboost|gradient|tree|bag|boost')]<-'Tree-based Methods'
 #metaMER_results$model_class_id[str_detect(metaMER_results$model_id,'rf')]<-'Ensemble Learning'
 
 ```
@@ -501,7 +501,7 @@ tmp <- R_studies[!is.na(R_studies$values),]
 
 tmp$dimension<-str_to_title(tmp$dimension)
 tmp$model_class_id<-factor(tmp$model_class_id,
-                           levels = c("Neural Nets","Flexible Discriminants", "Kernel Smoothing, Additive and KNN", "Random Forests","Linear Methods"),
+                           levels = c("Neural Nets","Support Vector Machines", "Kernel Smoothing, Additive and KNN", "Tree-based Methods","Linear Methods"),
                            labels = c("Neural\nNets","Flexible\nDiscriminants", "KS\n & KNN", "Random\nForests", "Linear\nMethods"))
 
 g <- ggplot(tmp,aes(x=model_class_id,y=values,color=citekey,label=citekey,shape=stimulus_genre_mixed))+
@@ -809,7 +809,7 @@ C_studies$citekey <- factor(C_studies$citekey)
 tmp <- drop_na(C_studies)
 tmp$dimension<-str_to_title(tmp$dimension)
 tmp$model_class_id<-factor(tmp$model_class_id,
-                           levels = c("Neural Nets","Flexible Discriminants", "Kernel Smoothing, Additive and KNN", "Random Forests","Linear Methods"),
+                           levels = c("Neural Nets","Support Vector Machines", "Kernel Smoothing, Additive and KNN", "Tree-based Methods","Linear Methods"),
                            labels = c("Neural\nNets","Flexible\nDiscriminants", "KS\n & KNN", "Random\nForests", "Linear\nMethods"))
 
 g <- ggplot(tmp,aes(x=model_class_id,y=values,color=citekey,label=citekey,shape=stimulus_genre_mixed))+
