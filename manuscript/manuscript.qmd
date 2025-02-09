@@ -110,7 +110,7 @@ TABLE 1: Summary of data (part of `analysis/preprocessing.qmd` updated 21/1/2025
 | Techniques | Neural Nets: 66                 | 25                        | 91    |
 | Techniques | Support Vector Machines: 50     | 26                        | 76    |
 | Techniques | Linear Methods: 62              | 13                        | 75    |
-| Techniques | Tree-based methods: 14          | 10                        | 34    |
+| Techniques | Tree-based Methods: 14          | 10                        | 34    |
 | Techniques | KS, Add. & KNN: 12              | 12                        | 24    |
 | Feature N  | Min=3, Md=605, Max=6670         | Min=8, Md=126, Max=8904   | NA    |
 | Stimulus N | Min=20, Md=324, Max=2486        | Min=124, Md=300, Max=5192 | NA    |
@@ -152,7 +152,7 @@ The results indicate that valence can generally be predicted with moderately acc
 
 Further analysis of between-study heterogeneity, as indexed by the $\tau^2$ (0.148) and Higgins & Thompson's $I^2$ statistic [@higgins2002quantifying] at 98.4%, reveals substantial heterogeneity. Since $I^2$ is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, $\tau^2$, which is less sensitive to the number of studies and directly linked to the outcome metric (_r_), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias [@van-aertwicherts_2016].
 
-To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al. (2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in @beveridge2018po (n = 20), and in @griffiths2021am (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger's test ($\beta$=5.05, CI95% -0.99-11.09, _t_ = 1.64, _p_ = 0.112, @eggersmith_1997). Coming back to the mean of valence correlation of 0.67 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
+To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al. (2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in @beveridge2018po (n = 20), and in @griffiths2021am (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger's test ($\beta$ = 5.05, CI95% -0.99-11.09, _t_ = 1.64, _p_ = 0.112, @eggersmith_1997). Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
 
 <!-- numbers in the text updated up to here, TE 21/1/2025 -->
 
@@ -162,7 +162,7 @@ To gain insights into the factors contributing to the wide range of model succes
 
 <!-- numbers in the text updated up to here, TE 21/1/2025 -->
 
-When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (_Q_(4) = 45.7, _p_ < .0001). Notably, linear models (LM) and Support Vector Machines (SVM) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (_r_ = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity ($\tau^2$ = 0.137) compared to other techniques, where $\tau^2$ values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (_r_ = 0.656, 95% CI: 0.484–0.779). While there were only 3 studies involving random forests, these performed well, achieving _r_ = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network models represented in four studies (_r_ = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, _r_ = 0.383, 95% CI: 0.348–0.426).
+When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (_Q_(4) = 45.7, _p_ < .0001). Notably, linear models (LM) and Support Vector Machines (SVM) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (_r_ = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity ($\tau^2$ = 0.137) compared to other techniques, where $\tau^2$ values were less than half of this. While there were only 3 studies involving tree-based model (TM), these performed well, achieving _r_ = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network (NN) models represented in four studies (_r_ = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, _r_ = 0.383, 95% CI: 0.348–0.426).
 
 We also ran the sub-grouping analyses across a combination of stimulus genres (single vs mixed) and number of the features to explore where the differences in the model prediction rates might lie. For this purpose, we grouped the studies into small single genre/multigenre studies, medium single genre/multigenre studies, and medium-large single genre/multigenre studies, and huge multigenre studies. The small single genre/multigenre studies generally performed best (_r_ = 0.836), followed by huge multi-genre studies (_r_ = 0.693) while the medium and medium-large sized studies performance was between close the overall average (medium-large, _r_ = 0.768 and medium _r_ = 0.607). The heterogeneity was lowest in the huge multigenre studies ($\tau^2$ = 0.013) and highest in the small single genre/multigenre studies ($\tau^2$ = 0.318). 
 
@@ -200,9 +200,9 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 <!-- Schwarzer and colleagues (Schwarzer, Carpenter, and Rücker 2015, chap. 4.3) mention, as a general rule of thumb, that subgroup analyses only make sense when your meta-analysis contains at least 
 K= 10 studies.-->
 
-Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (15 out of the 22 models). Due to large sample in ost studies, the confidence intervals are narrow, although the exceptions ($N < 55$) are clearly visible [@beveridge2018po; @griffiths2021am;@koh2023me; @saizclar2022pr; @wang2021ac]. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger's test reported above. 
+Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (15 out of the 22 models). Due to large sample in most studies, the confidence intervals are narrow, although the exceptions ($N < 55$) are clearly visible [@beveridge2018po; @griffiths2021am;@koh2023me; @saizclar2022pr; @wang2021ac]. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger's test reported above.
 
-The analysis of the subdivision of studies shows that there is no significant differences between the studies using different number of features (_Q_(2) = 3.47, _p_ = .176) despite the differing means (_r_ = 0.817 for studies with less than 18 features, _r_ = 0.586 for 18 to 260 features, and _r_ = 0.702 for studies utilising over 260 features). The differences in the techniques, however, does show variance between subgroups that is statistically significant (_Q_(4) = 50.47, _p_ < .0001), where at least Neural Nets achieve poor prediction of arousal (_r_ = 0.533) in comparison to other techniques. The caveat of this subgroup analysis is the small number of observations for five techniques. When other subgroupings were explored, such as the type of journal (Engineering with 13 studies vs Psychology with 9 studies), no significant differences were observed (_Q_(1) = 0.94, _p_ = .333). 
+The analysis of the subdivision of studies shows that there is no significant differences between the studies using different number of features (_Q_(2) = 3.47, _p_ = .176) despite the differing means (_r_ = 0.817 for studies with less than 18 features, _r_ = 0.586 for 18 to 260 features, and _r_ = 0.702 for studies utilising over 260 features). The differences in the techniques, however, does show statistically significant variance between subgroups (_Q_(4) = 50.47, _p_ < .0001). The Neural Nets (NN) achieve poor prediction of arousal (_r_ = 0.533) in comparison to other techniques. The caveat of this subgroup analysis is the small number of observations for five techniques. When other subgroupings were explored, such as the type of journal (Engineering with 13 studies vs Psychology with 9 studies), no significant differences were observed (_Q_(1) = 0.94, _p_ = .333). 
 
 {{< include _figure3.qmd >}}
 
@@ -228,38 +228,58 @@ Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plo
 
 -   Figure Optional: Funnel plot (I haven't seen this yet)
 
-### 
+## Datasets
 
-secondary datasets, include a table, with an index of which studies/counts 
+<!-- Note: this might take too much space in the main text, perhaps need to be moved to Supporting Information -->
 
-TABLE
+As we noted that several studies rely on the same datasets, summarising these could aid interpretation of the results. 
+
+Table 5. Summary of datasets and studies utilising them.
+
+{{< include _datasets.qmd >}}
+
+The most frequently used 3 datasets are MediaEval [@soleymani20131000], DEAM[@aljanaki2017developing], and AMG1608[@chen2015amg1608]. These datasets represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by relative large number of participants (either by experts, students, or crowdsourced workers). Two of the most popular datasets offer a large number (260 to 6669) features extracted with OpenSMILE [@eyben2010opensmile]. Looking at the datasets more broadly, the diversity in size of the datasets (the number of tracks and features) is notable. While there are 
+
 
 # Conclusion and Discussion
 
-There has been a considerable number of studies published involving MER models (N=96/46 full text articles considered), but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to reject a substantial proportion of studies. At the end, 34 studies remained in the analysis that overall reported xxxxx models.    
+<!-- first para is your text from ICMPC paper -->
 
-## Concise summary of what we did and found
+Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike—spurring improvements in performance. Despite increasing complexity in the types of models and data sets used, no extant study has evaluated the relative merits of the tools, stimuli, and feature sets employed in MER studies. To provide a benchmark to guide future research, we present the first meta-analysis of music emotion recognition. 
 
-## Main outcomes
+<!-- Concise summary of what we did and found -->
 
--   Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at ...
--   Classification ...
--   Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?).
--   Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)
--   Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated
+We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 of them related to regression and 86 in classification studies. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (r = 0.67 [0.56, 0.76]), and arousal (r = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence r = 0.78, arousal r = 0.88) and tree-based models (valence = 0.75, arousal r = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence r = 0.58, arousal r = 0.79). In contrast, neural networks performed most accurately in classification studies (MCC = 0.93), followed by SVMs (MCC = 0.87) and tree-based models (MCC = 0.85). The models are applied to a variety of datasets that differ substantially in terms of size, annotation principles, and acoustic features counts and sources. 
 
-[this is the discussion section]
+These results offer several important insights. First, compared to a 2013 report by @barthet2013, the glass ceiling for valence has risen from _r_ = 0.51 to 0.67. Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at _r_ = 0.83). For classification, studies reached variable classification rates from 0.497 F1 score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in 2013, whereas now the accuracy is XX.
 
-## Calls for action/points to improve in such studies
+<!-- These numbers above could be reinterpreted here, they are not comparable with our MCC -->
+
+There is no single modelling technique that seems to arise on top although linear models and random forests perform best in regression studies, and neural networks and support vector machines excelling in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size, likely the result of  cross-validation techniques used to avoid overfitting, but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with large amount of features. We surmise that this might relate to disciplinary difference, where the smaller datasets come from music psychology which put premium on data quality (quality control of the ground truth data and features) rather than on data size and modelling tecniques. If the quality control is succesful, it decreases the random error inherent in the human judgements. Also feature relevance and precision impacts the accuracy of the models. Unfortunately in many cases it is impossible to attribute the sources of error as the studies so far have not compared the feature sets systematically, nor a comparison of the datasets with identical features has been carried out. In future, it would be advantageous to systematically assess these sources of error in MER studies to allow to focus on where significant improvements can be made.
+
+More broadly, the present study revealed uncomfortable large variation in overall quality control and reporting in MER studies. In many cases, the reporting was insufficient to determine the features or their sources used in the models, and a high number of studies were discarded due to insufficient information about the data, model architectures, or the outcome measures. 
+
+<!-- recommendations 1: reporting --> 
+Future reporting should contain the minimal information about the data, models, and success metrics. The modelling process should include the description of cross-validation, feature extraction techniques, feature reduction, and the actual accuracy measures. We would recommend future studies to utilise Matthews correlation coefficient for classification studies as currently there are numerous metrics (F1, F precision, recall, F average, classification rate), which are not mutually comparable. 
+
+<!-- feature validation? -->
+
+Feature validation...? (Two extreme positions: a limited number of features that are perceptual validated (psychology) vs a large number of features where the models identify what is needed (deep learning/engineering).
+
+<!-- recommendations 2: sharing --> 
+
+It would be highly beneficial to share the models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code) and features would allow more direct comparison of model techniques for the same dataset. Also, not all datasets are shared or at least the sharing is only done partially. The copyright restrictions will limit the sharing of some datasets, but at least features and examples should be available.
+
+<!-- size, type of data --> 
+We also note that the majority of the dataset used in MER studies are relatively small in comparison to studies carried out in other fields of emotion recognition (refs here).
+
+The majority of the datasets are Western pop ... Music and annotators that represent the Global North do dominate the studies at the moment, ....
+
+Are the emotion recognition targets valid from the psychological and application point of view? Prediction of valence and arousal is popular, but has limited usefulness in practical applications that aim to capture experiences with music that are more aligned with models of music-induced emotions (such as GEMS etc.). 
 
 
+Future efforts prioritizing feature validation, standardized reporting, and transparent sharing of research materials will lead to further improvements in MER. 
 
-
--   *Documentation* the details in full (features, stimuli, model details, cross-validation)
--   *Quality* of the underlying data (emotion ratings, classes, or even stimulus properties?
--   *Generalisibility* of the models (some studies such as X and Y address this by applying the models across several datasets)
--   Diversity in the evaluative aspects of studies: *overfitting*, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way
--   What proportion of stimuli are Western music, and what genres tend to dominate?
 
 ### Funding statement
 
@@ -275,6 +295,6 @@ Study preregistration, data, analysis scripts and supporting information is avai
 
 ### Acknowledgements
 
-We thank Greggs food-on-the-go retailer for sustaining the work with affordable sandwiches and coffee.
+We thank the _Institute of Advanced Study_ at Durham University for creating the environment in which this study was created.
 
 # References
