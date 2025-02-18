@@ -774,24 +774,16 @@ print(m.cor_subgroups)
 #forest(m.cor_subgroups,subgroup=TRUE)
 ```
 
-### By genre + feature complexity
+### By feature complexity
 
 ```{r}
-<<<<<<< HEAD
-# m.cor_complexity <- update(m.cor.c, 
-#        subgroup = C_summary$feature_n_complexity_genre, 
-#        tau.common = FALSE,
-#        prediction = TRUE)
-# 
-# print(m.cor_complexity)
-=======
-m.cor_complexity <- update(m.cor.c, 
-       subgroup = C_summary$feature_n_complexity_genre, 
+m.cor_complexity <- update(m.cor.c,
+       subgroup = C_summary$feature_n_complexity,
        tau.common = FALSE,
        prediction = TRUE)
 
 print(m.cor_complexity)
->>>>>>> main
+
 ```
 ### By model type
 
