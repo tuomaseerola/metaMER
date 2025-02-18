@@ -197,7 +197,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>This is a meta-analysis of music emotion recognition. An analysis of the articles published between 2014-2024 containing models predicting either valence and arousal or emotion categories was carried out. A total of xx studies were included</p>
+    <p>This meta-analysis examines music emotion recognition (MER) models published between 2014 and 2024, focusing on predictions of valence, arousal, and categorical emotions. A total of 553 studies were identified, of which 96 full-text articles were assessed, resulting in a final review of 34 studies. These studies reported 204 models, including 86 for emotion classification and 204 for regression. Using the best-performing model from each study, we found that valence and arousal were predicted with reasonable accuracy (r = 0.67 and r = 0.81, respectively), while classification models achieved an accuracy of 0.xx. Across modeling approaches, linear and tree-based methods generally outperformed neural networks in regression tasks, whereas neural networks and support vector machines (SVMs) showed superior performance in classification tasks. We highlight key recommendations for future MER research, emphasizing the need for greater transparency, feature validation, and standardized reporting to improve comparability across studies.</p>
   </div>
 </div>
 
@@ -220,11 +220,11 @@ window.Quarto = {
 <h1>A brief history of MER</h1>
 <p>Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers <span class="citation" data-cites="zaripov1969">(<a href="#ref-zaripov1969" role="doc-biblioref">Zaripov &amp; Russell, 1969</a>)</span>, attention later shifted to creating methods to predict emotion using music’s structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s <span class="citation" data-cites="fairthorne1968">(<a href="#ref-fairthorne1968" role="doc-biblioref">Fairthorne, 1968</a>)</span>, inspiring analogous developments for automated music analysis (<span class="citation" data-cites="kassler1966toward">Kassler (<a href="#ref-kassler1966toward" role="doc-biblioref">1966</a>)</span>; <span class="citation" data-cites="mendel1969some">Mendel (<a href="#ref-mendel1969some" role="doc-biblioref">1969</a>)</span>). These developments would set the stage for early work in music emotion recognition (MER). Katayose et al.&nbsp;(1988) conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like “there is hopeful mood on chord from 69 to 97 [<em>sic</em>].” <span class="citation" data-cites="katayose_sentiment_1988">(<a href="#ref-katayose_sentiment_1988" role="doc-biblioref">Katayose et al., 1988, p. 1087</a>)</span>.</p>
 <p>In the early 2000s, several research groups conducted studies using regression <span class="citation" data-cites="friberg_automatic_2002 liu_automatic_2003">(<a href="#ref-friberg_automatic_2002" role="doc-biblioref">Friberg et al., 2002</a>; <a href="#ref-liu_automatic_2003" role="doc-biblioref">Liu et al., 2003</a>)</span> and classification <span class="citation" data-cites="lu_automatic_2005 feng_popular_2003 mandel_support_2006">(<a href="#ref-feng_popular_2003" role="doc-biblioref">Feng et al., 2003</a>; <a href="#ref-lu_automatic_2005" role="doc-biblioref">Lu et al., 2005</a>; <a href="#ref-mandel_support_2006" role="doc-biblioref">Mandel et al., 2006</a>)</span> techniques to predict emotion in music audio or MIDI. Citing “MIR researchers’ growing interest in classifying music by moods” <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008, p. 1</a>)</span>, the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative—positive emotional quality) and arousal (i.e., the calm—exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence <span class="citation" data-cites="yang2008">(<a href="#ref-yang2008" role="doc-biblioref">Y. H. Yang et al., 2008</a>)</span>. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies <span class="citation" data-cites="bai2016dimensional coutinho2013psychoacoustic">(e.g., <a href="#ref-bai2016dimensional" role="doc-biblioref">Bai et al., 2016</a>; <a href="#ref-coutinho2013psychoacoustic" role="doc-biblioref">Coutinho &amp; Dibben, 2013</a>)</span>, with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal <span class="citation" data-cites="yang2007music eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-yang2007music" role="doc-biblioref">Yi-Hsuan Yang et al., 2007</a>)</span>.</p>
+<p>Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative—positive emotional quality) and arousal (i.e., the calm—exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence <span class="citation" data-cites="yang2008">(<a href="#ref-yang2008" role="doc-biblioref">Y. H. Yang et al., 2008</a>)</span>. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies <span class="citation" data-cites="bai2016dimensional coutinho2013psychoacoustic">(e.g., <a href="#ref-bai2016dimensional" role="doc-biblioref">Bai, Peng, et al., 2016</a>; <a href="#ref-coutinho2013psychoacoustic" role="doc-biblioref">Coutinho &amp; Dibben, 2013</a>)</span>, with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal <span class="citation" data-cites="yang2007music eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-yang2007music" role="doc-biblioref">Yi-Hsuan Yang et al., 2007</a>)</span>.</p>
 </section>
 <section id="the-semantic-gap-in-mer" class="level1">
 <h1>The semantic gap in MER</h1>
-<p>The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>. To address this so-called <em>semantic gap</em>, researchers have attempted to identify new feature sets with greater relevance to emotion <span class="citation" data-cites="panda2020audio chowdhury2021perceived">(<a href="#ref-chowdhury2021perceived" role="doc-biblioref">Chowdhury &amp; Widmer, 2021</a>; <a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>, combine low-, mid-, and high-level features using multimodal data <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>, or train neural networks to automatically learn features from audio <span class="citation" data-cites="zhang_bridge_2016">(<a href="#ref-zhang_bridge_2016" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>. Through these approaches, MER researchers attempt to shatter a so-called <em>glass ceiling</em> <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008</a>)</span> by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.</p>
+<p>The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>. To address this so-called <em>semantic gap</em>, researchers have attempted to identify new feature sets with greater relevance to emotion <span class="citation" data-cites="panda2020audio chowdhury2021perceived">(<a href="#ref-chowdhury2021perceived" role="doc-biblioref">Chowdhury &amp; Widmer, 2021</a>; <a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>, combine low-, mid-, and high-level features using multimodal data <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>, or train neural networks to automatically learn features from audio <span class="citation" data-cites="zhang_bridge_2016">(<a href="#ref-zhang_bridge_2016" role="doc-biblioref">J. Zhang et al., 2016a</a>)</span>. Through these approaches, MER researchers attempt to shatter a so-called <em>glass ceiling</em> <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008</a>)</span> by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.</p>
 <section id="aims" class="level2">
 <h2 class="anchored" data-anchor-id="aims">Aims</h2>
 <p>Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent to identify key factors such as modeling techniques and features that significantly affect prediction accuracy. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).</p>
@@ -235,7 +235,7 @@ window.Quarto = {
 <p>We preregistered the meta-analysis plan on 21 June 2024 at OSF, <a href="https://osf.io/c5wgd" class="uri">https://osf.io/c5wgd</a>, and the plan is also available at <a href="https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html" class="uri">https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html</a>).</p>
 <p>In the search stage, we used three databases, <em>Web of Science</em>, <em>Scopus</em>, and <em>Open Alex</em> to identify journal articles published between 2014 and 2024 containing keywords/title <code>valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition</code> (see specific search strings for each database in <a href="http://">SI</a>). All searches were done in May 2024.</p>
 <p>The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to <span class="math inline">\(r\)</span> or <span class="math inline">\(MCC\)</span> values see <a href="http://">SI</a> for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number [N], duration), (ii) features extracted (number, type, source, defined by <span class="citation" data-cites="panda2020audio">(<a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>), (iii) model type (regression, neural network, SVM, etc.) and outcome measure (<span class="math inline">\(R^2\)</span>, <em>MSE</em>, <em>MCC</em>), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.</p>
-<p>We converted all regression results from <span class="math inline">\(R^2\)</span> values into <span class="math inline">\(r\)</span> values for valence and arousal, and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018</a>)</span>).</p>
+<p>We converted all regression results from <span class="math inline">\(R^2\)</span> values into <span class="math inline">\(r\)</span> values for valence and arousal, and classification results into Matthews correlation coefficient <span class="citation" data-cites="chicco2020advantages">(<em>MCC</em>, <a href="#ref-chicco2020advantages" role="doc-biblioref">Chicco &amp; Jurman, 2020</a>)</span>. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files <span class="citation" data-cites="nag2022">(<a href="#ref-nag2022" role="doc-biblioref">Nag et al., 2022</a>)</span>), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately <span class="citation" data-cites="chin2018">(<a href="#ref-chin2018" role="doc-biblioref">Chin et al., 2018a</a>)</span>).</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig1">
@@ -379,7 +379,7 @@ window.Quarto = {
 </section>
 <section id="study-encoding" class="level2">
 <h2 class="anchored" data-anchor-id="study-encoding">Study Encoding</h2>
-<p>To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type, validation procedure and output measures. Additionally, we included study results using executable <em>R</em> code containing custom functions for meta-analysis. For complete details about our encoding procedure, see <code>studies/extraction_details.qmd</code> .</p>
+<p>To capture key details of each study, we added additional fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type – Neural Nets (NN), Support Vector Machines (SVM), Linear Methods (LM), Tree-based Methods (TM), KS, Add. and KNN Methods (KM) – validation procedure and output measures. Additionally, we included study results using executable <em>R</em> code containing custom functions for meta-analysis. For complete details about our encoding procedure, see <code>studies/extraction_details.qmd</code> .</p>
 </section>
 </section>
 <section id="results" class="level1">
@@ -416,31 +416,31 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Neural Nets (NN): 66</td>
+<td style="text-align: left;">Neural Nets: 66</td>
 <td style="text-align: left;">25</td>
 <td style="text-align: left;">91</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Flexible Discriminants (FD): 50</td>
+<td style="text-align: left;">Support Vector Machines: 50</td>
 <td style="text-align: left;">26</td>
 <td style="text-align: left;">76</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Linear Methods (LM): 62</td>
+<td style="text-align: left;">Linear Methods: 62</td>
 <td style="text-align: left;">13</td>
 <td style="text-align: left;">75</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">Random Forests (RF): 14</td>
+<td style="text-align: left;">Tree-based Methods: 14</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">34</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Techniques</td>
-<td style="text-align: left;">KS, Add. &amp; KNN (KS): 12</td>
+<td style="text-align: left;">KS, Add. &amp; KNN: 12</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">24</td>
 </tr>
@@ -458,7 +458,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: flexible discriminants, neural nets, and linear methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">M. Zhang et al., 2023</a>)</span>. The median number of features differs between regression (605) and classification (126) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.</p>
+<p>Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: Neural Nets, SVMs, and Linear Methods. The number of features and stimuli within these studies varies significantly, ranging from as few as three features <span class="citation" data-cites="battcock2021in">(<a href="#ref-battcock2021in" role="doc-biblioref">Battcock &amp; Schutz, 2021</a>)</span> to a maximum of almost 9000 features <span class="citation" data-cites="zhang2023mo">(<a href="#ref-zhang2023mo" role="doc-biblioref">M. Zhang et al., 2023</a>)</span>. The median number of features differs between regression (605) and classification (126) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> to 5192 stimuli in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span>. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of journal in which the studies were published, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.</p>
 <p>We first report regression studies that predict valence and arousal.</p>
 <section id="prediction-success-for-affect-dimensions" class="level2">
 <h2 class="anchored" data-anchor-id="prediction-success-for-affect-dimensions">Prediction success for affect dimensions</h2>
@@ -572,7 +572,7 @@ window.Quarto = {
 <td style="text-align: left;">96.4%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">FD</td>
+<td style="text-align: left;">SVM</td>
 <td style="text-align: left;">6,4993</td>
 <td style="text-align: left;">0.656 [0.484-0.779]</td>
 <td style="text-align: left;">-</td>
@@ -590,7 +590,7 @@ window.Quarto = {
 <td style="text-align: left;">97.1%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">RF</td>
+<td style="text-align: left;">TM</td>
 <td style="text-align: left;">3,3330</td>
 <td style="text-align: left;">0.750 [0.292-0.928]</td>
 <td style="text-align: left;">-</td>
@@ -600,10 +600,10 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<!-- table updated TE 21/1/2025 -->
+<!-- table updated TE 21/1/2025, revised terms 28/1/2025 -->
 <p>The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 22 studies achieving an average correlation of <em>r</em> = 0.669 (95% CI: 0.560-0.755), called “valence Max” in Table 2. However, when considering all models across these studies (n = 102), the overall prediction rate drops significantly to <em>r</em> = 0.583. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.</p>
 <p>Further analysis of between-study heterogeneity, as indexed by the <span class="math inline">\(\tau^2\)</span> (0.148) and Higgins &amp; Thompson’s <span class="math inline">\(I^2\)</span> statistic <span class="citation" data-cites="higgins2002quantifying">(<a href="#ref-higgins2002quantifying" role="doc-biblioref">Higgins &amp; Thompson, 2002</a>)</span> at 98.4%, reveals substantial heterogeneity. Since <span class="math inline">\(I^2\)</span> is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, <span class="math inline">\(\tau^2\)</span>, which is less sensitive to the number of studies and directly linked to the outcome metric (<em>r</em>), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias <span class="citation" data-cites="van-aertwicherts_2016">(<a href="#ref-van-aertwicherts_2016" role="doc-biblioref">Van Aert et al., 2016</a>)</span>.</p>
-<p>To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al.&nbsp;(2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> (n = 20), and in <span class="citation" data-cites="griffiths2021am">Griffiths et al. (<a href="#ref-griffiths2021am" role="doc-biblioref">2021</a>)</span> (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger’s test (<span class="math inline">\(\beta\)</span>=5.05, CI95% -0.99-11.09, <em>t</em> = 1.64, <em>p</em> = 0.112, <span class="citation" data-cites="eggersmith_1997">Egger et al. (<a href="#ref-eggersmith_1997" role="doc-biblioref">1997</a>)</span>). Coming back to the mean of valence correlation of 0.67 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.</p>
+<p>To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al.&nbsp;(2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in <span class="citation" data-cites="beveridge2018po">Beveridge &amp; Knox (<a href="#ref-beveridge2018po" role="doc-biblioref">2018</a>)</span> (n = 20), and in <span class="citation" data-cites="griffiths2021am">Griffiths et al. (<a href="#ref-griffiths2021am" role="doc-biblioref">2021</a>)</span> (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger’s test (<span class="math inline">\(\beta\)</span> = 5.05, CI95% -0.99-11.09, <em>t</em> = 1.64, <em>p</em> = 0.112, <span class="citation" data-cites="eggersmith_1997">Egger et al. (<a href="#ref-eggersmith_1997" role="doc-biblioref">1997</a>)</span>). Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.</p>
 <!-- numbers in the text updated up to here, TE 21/1/2025 -->
 <div class="cell">
 <div class="cell-output-display">
@@ -617,7 +617,7 @@ window.Quarto = {
 </div>
 <p>To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modeling techniques employed. In terms of feature sets, we categorized them into three groups: few features (&lt;18), a large number of features (18–260), and massive feature sets (260+). Interestingly, models (4 in total) using a relatively small number of features (&lt;18) performed best (<em>r</em> = 0.817, 95% CI: 0.361–0.958) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (260+, 7 studies in total) also performed well (<em>r</em> = 0.702), achieving better and more consistent results than the overall prediction rate (<em>r</em> = 0.669). This observation is supported by the lowest heterogeneity index for the massive feature set group (<span class="math inline">\(\tau^2\)</span> = 0.029), indicating more consistent results across studies. Studies with large number of features (18-260 features, 10 studies in total) delivered the worst results, <em>r</em> = 0.586 (95% CI: 0.360–0.748). Despite the fluctuation in the overall model accuracy between the number of features, the differences are not substantially large to pass the test of statistical significance (<em>Q</em>(2) = 3.47, <em>p</em>=.176).</p>
 <!-- numbers in the text updated up to here, TE 21/1/2025 -->
-<p>When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (<em>Q</em>(4) = 45.7, <em>p</em> &lt; .0001). Notably, linear models (LM) and flexible discriminants (FD) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (<em>r</em> = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.137) compared to other techniques, where <span class="math inline">\(\tau^2\)</span> values were less than half of this. Flexible discriminants performed at a similar level to the overall model average (<em>r</em> = 0.656, 95% CI: 0.484–0.779). While there were only 3 studies involving random forests, these performed well, achieving <em>r</em> = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network models represented in four studies (<em>r</em> = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, <em>r</em> = 0.383, 95% CI: 0.348–0.426).</p>
+<p>When analyzing the studies across the five modeling techniques used, the prediction do differ significantly (<em>Q</em>(4) = 45.7, <em>p</em> &lt; .0001). Notably, linear models (LM) and Support Vector Machines (SVM) were the most common, with 8 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (<em>r</em> = 0.784, 95% CI: 0.625–0.881), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited substantially higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.137) compared to other techniques, where <span class="math inline">\(\tau^2\)</span> values were less than half of this. While there were only 3 studies involving tree-based model (TM), these performed well, achieving <em>r</em> = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network (NN) models represented in four studies (<em>r</em> = 0.340, 95% CI: -0.097–0.668) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies. Kernel smoothing and KNN models (with only 1 study represented) achieved relatively poor success as well, <em>r</em> = 0.383, 95% CI: 0.348–0.426).</p>
 <p>We also ran the sub-grouping analyses across a combination of stimulus genres (single vs mixed) and number of the features to explore where the differences in the model prediction rates might lie. For this purpose, we grouped the studies into small single genre/multigenre studies, medium single genre/multigenre studies, and medium-large single genre/multigenre studies, and huge multigenre studies. The small single genre/multigenre studies generally performed best (<em>r</em> = 0.836), followed by huge multi-genre studies (<em>r</em> = 0.693) while the medium and medium-large sized studies performance was between close the overall average (medium-large, <em>r</em> = 0.768 and medium <em>r</em> = 0.607). The heterogeneity was lowest in the huge multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.013) and highest in the small single genre/multigenre studies (<span class="math inline">\(\tau^2\)</span> = 0.318).</p>
 <!-- However, these analyses did not reveal any clear patterns, likely due to the small number of studies in each subgroup.  -->
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
@@ -732,7 +732,7 @@ window.Quarto = {
 <td style="text-align: left;">93.3%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">FD</td>
+<td style="text-align: left;">SVM</td>
 <td style="text-align: left;">6, 4993</td>
 <td style="text-align: left;">0.808 [0.644-0.901]</td>
 <td style="text-align: left;"></td>
@@ -750,7 +750,7 @@ window.Quarto = {
 <td style="text-align: left;">85.8%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">RF</td>
+<td style="text-align: left;">TM</td>
 <td style="text-align: left;">3, 3330</td>
 <td style="text-align: left;">0.809 [0.733-0.864]</td>
 <td style="text-align: left;"></td>
@@ -763,8 +763,8 @@ window.Quarto = {
 <!-- numbers in the text updated up to here, TE 22/1/2025 -->
 <!-- Schwarzer and colleagues (Schwarzer, Carpenter, and Rücker 2015, chap. 4.3) mention, as a general rule of thumb, that subgroup analyses only make sense when your meta-analysis contains at least 
 K= 10 studies.-->
-<p>Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (15 out of the 22 models). Due to large sample in ost studies, the confidence intervals are narrow, although the exceptions (<span class="math inline">\(N &lt; 55\)</span>) are clearly visible <span class="citation" data-cites="beveridge2018po griffiths2021am koh2023me saizclar2022pr wang2021ac">(<a href="#ref-beveridge2018po" role="doc-biblioref">Beveridge &amp; Knox, 2018</a>; <a href="#ref-griffiths2021am" role="doc-biblioref">Griffiths et al., 2021</a>; <a href="#ref-koh2023me" role="doc-biblioref">Koh et al., 2023</a>; <a href="#ref-saizclar2022pr" role="doc-biblioref">Saiz-Clar et al., 2022</a>; <a href="#ref-wang2021ac" role="doc-biblioref">Wang et al., 2021</a>)</span>. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger’s test reported above.</p>
-<p>The analysis of the subdivision of studies shows that there is no significant differences between the studies using different number of features (<em>Q</em>(2) = 3.47, <em>p</em> = .176) despite the differing means (<em>r</em> = 0.817 for studies with less than 18 features, <em>r</em> = 0.586 for 18 to 260 features, and <em>r</em> = 0.702 for studies utilising over 260 features). The differences in the techniques, however, does show variance between subgroups that is statistically significant (<em>Q</em>(4) = 50.47, <em>p</em> &lt; .0001), where at least Neural Nets achieve poor prediction of arousal (<em>r</em> = 0.533) in comparison to other techniques. The caveat of this subgroup analysis is the small number of observations for five techniques. When other subgroupings were explored, such as the type of journal (Engineering with 13 studies vs Psychology with 9 studies), no significant differences were observed (<em>Q</em>(1) = 0.94, <em>p</em> = .333).</p>
+<p>Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (15 out of the 22 models). Due to large sample in most studies, the confidence intervals are narrow, although the exceptions (<span class="math inline">\(N &lt; 55\)</span>) are clearly visible <span class="citation" data-cites="beveridge2018po griffiths2021am koh2023me saizclar2022pr wang2021ac">(<a href="#ref-beveridge2018po" role="doc-biblioref">Beveridge &amp; Knox, 2018</a>; <a href="#ref-griffiths2021am" role="doc-biblioref">Griffiths et al., 2021</a>; <a href="#ref-koh2023me" role="doc-biblioref">Koh et al., 2023</a>; <a href="#ref-saizclar2022pr" role="doc-biblioref">Saiz-Clar et al., 2022</a>; <a href="#ref-wang2021ac" role="doc-biblioref">Wang et al., 2021</a>)</span>. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger’s test reported above.</p>
+<p>The analysis of the subdivision of studies shows that there is no significant differences between the studies using different number of features (<em>Q</em>(2) = 3.47, <em>p</em> = .176) despite the differing means (<em>r</em> = 0.817 for studies with less than 18 features, <em>r</em> = 0.586 for 18 to 260 features, and <em>r</em> = 0.702 for studies utilising over 260 features). The differences in the techniques, however, does show statistically significant variance between subgroups (<em>Q</em>(4) = 50.47, <em>p</em> &lt; .0001). The Neural Nets (NN) achieve poor prediction of arousal (<em>r</em> = 0.533) in comparison to other techniques. The caveat of this subgroup analysis is the small number of observations for five techniques. When other subgroupings were explored, such as the type of journal (Engineering with 13 studies vs Psychology with 9 studies), no significant differences were observed (<em>Q</em>(1) = 0.94, <em>p</em> = .333).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -830,39 +830,235 @@ K= 10 studies.-->
 <ul>
 <li>Figure Optional: Funnel plot (I haven’t seen this yet)</li>
 </ul>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
-<p>secondary datasets, include a table, with an index of which studies/counts</p>
-<p>TABLE</p>
+<section id="notes-to-results-in-the-pre-registration-we-promised-the-following" class="level4">
+<h4 class="anchored" data-anchor-id="notes-to-results-in-the-pre-registration-we-promised-the-following">Notes to results: In the pre-registration, we promised the following:</h4>
+<ul>
+<li>groupings based on genre, model complexity (high, medium, low), model validation (exists or not)</li>
+<li>we promised to carry out sensitivity analyses based on type of journal the studies were published in.</li>
+</ul>
 </section>
+</section>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<!-- Note: this might take too much space in the main text, perhaps need to be moved to Supporting Information -->
+<p>As we noted that several studies rely on the same datasets, summarising these could aid interpretation of the results.</p>
+<p>Table 5. Summary of datasets and studies utilising them.</p>
+<!-- This is a reduced table from /etc/Secondary Databases.md -->
+<table class="table">
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Stim. Type</th>
+<th>Stim. Dur. (s)</th>
+<th>Stim. N</th>
+<th>Feature N</th>
+<th>Ppt. N</th>
+<th>Feature Source</th>
+<th>In studies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://cvml.unige.ch/databases/emoMusic/"><strong>MediaEval</strong></a></td>
+<td>Western pop</td>
+<td>45</td>
+<td>744</td>
+<td>6669</td>
+<td>10/track</td>
+<td>OpenSMILE</td>
+<td><span class="citation" data-cites="bai2016di">Bai, Feng, et al. (<a href="#ref-bai2016di" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bai2017mu">Bai et al. (<a href="#ref-bai2017mu" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="yang2021an">J. Yang (<a href="#ref-yang2021an" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="chin2018pr">Chin et al. (<a href="#ref-chin2018pr" role="doc-biblioref">2018b</a>)</span>, <span class="citation" data-cites="coutinho2017sh">Coutinho &amp; Schuller (<a href="#ref-coutinho2017sh" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="markov2014mu">Markov &amp; Matsui (<a href="#ref-markov2014mu" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="medina2020em">Medina et al. (<a href="#ref-medina2020em" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="xie2020mu">Xie et al. (<a href="#ref-xie2020mu" role="doc-biblioref">2020</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://cvml.unige.ch/databases/DEAM/"><strong>DEAM</strong></a></td>
+<td>Pop</td>
+<td>45</td>
+<td>1802</td>
+<td>260</td>
+<td>5-10/track</td>
+<td>OpenSMILE</td>
+<td><span class="citation" data-cites="sorussa2020em">Sorussa et al. (<a href="#ref-sorussa2020em" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="orjesek2022en">Orjesek et al. (<a href="#ref-orjesek2022en" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="panwar2019ar">Panwar et al. (<a href="#ref-panwar2019ar" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="zhang2023mo">M. Zhang et al. (<a href="#ref-zhang2023mo" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/loichan-tw/AMG1608_release"><strong>AMG1608</strong></a></td>
+<td>Pop</td>
+<td>30</td>
+<td>1608</td>
+<td>72</td>
+<td>643</td>
+<td>MIR Toolbox, YAAFE</td>
+<td><span class="citation" data-cites="chen2017co">Chen et al. (<a href="#ref-chen2017co" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="hu2017cr">Hu &amp; Yang (<a href="#ref-hu2017cr" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="wang2022cr">Wang, Wei, et al. (<a href="#ref-wang2022cr" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://annahung31.github.io/EMOPIA/"><strong>EMOPIA</strong></a></td>
+<td>Piano Solo (pop music)</td>
+<td>30-40</td>
+<td>387</td>
+<td>24</td>
+<td>1 annot./track</td>
+<td>MIDI Toolbox</td>
+<td><span class="citation" data-cites="bhuvanakumar2023em">Bhuvana Kumar &amp; Kathiravan (<a href="#ref-bhuvanakumar2023em" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://web.archive.org/web/20170510081611/mac.citi.sinica.edu.tw/~yang/MER/NTUMIR-60"><strong>NTUMIR</strong></a></td>
+<td>Famous pop songs</td>
+<td>25</td>
+<td>60</td>
+<td>46</td>
+<td>40 annot./track</td>
+<td>MIR Toolbox, Sound Description Toolbox, MA Toolbox</td>
+<td><span class="citation" data-cites="chin2018pr">Chin et al. (<a href="#ref-chin2018pr" role="doc-biblioref">2018b</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://osf.io/p6vkg/wiki/home/"><strong>Soundtracks</strong></a></td>
+<td>Obscure film soundtracks</td>
+<td>15</td>
+<td>110</td>
+<td>NA</td>
+<td>116</td>
+<td>NA</td>
+<td><span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/xl2218066/PSIC3839"><strong>PSIC3839</strong></a></td>
+<td>Chinese popular</td>
+<td>180</td>
+<td>3839</td>
+<td>NA</td>
+<td>87</td>
+<td>Librosa</td>
+<td><span class="citation" data-cites="xu2021us">Xu et al. (<a href="#ref-xu2021us" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="ccmir.cite.hku.hk/data/"><strong>CH818</strong></a></td>
+<td>Chinese pop</td>
+<td>30</td>
+<td>818</td>
+<td>15</td>
+<td>3</td>
+<td>MIR Toolbox, PsySound, Chroma Toolbox, Tempogram Toolbox</td>
+<td><span class="citation" data-cites="hu2017cr">Hu &amp; Yang (<a href="#ref-hu2017cr" role="doc-biblioref">2017</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="LINK"><strong>Zhang et al.&nbsp;(2015)</strong></a></td>
+<td>Chinese pop</td>
+<td>30</td>
+<td>171</td>
+<td>84</td>
+<td>10</td>
+<td>MA Toolbox, MIR Toolbox, Coversongs</td>
+<td><span class="citation" data-cites="zhang2016br">J. Zhang et al. (<a href="#ref-zhang2016br" role="doc-biblioref">2016b</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://huisblog.cn/PMEmo/"><strong>PMEmo</strong></a></td>
+<td>Pop songs</td>
+<td>Variable</td>
+<td>794</td>
+<td>6373</td>
+<td>457</td>
+<td>ComParE 2013 baseline feature set</td>
+<td><span class="citation" data-cites="zhang2023mo">M. Zhang et al. (<a href="#ref-zhang2023mo" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://cs.nju.edu.cn/sufeng/data/musicmood.htm"><strong>NJU-V1</strong></a></td>
+<td>Limited detail</td>
+<td>Variable</td>
+<td>777</td>
+<td>Not reported</td>
+<td>NA (tags)</td>
+<td>NA</td>
+<td><span class="citation" data-cites="agarwal2021an">Agarwal &amp; Om (<a href="#ref-agarwal2021an" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://yadingsong.blogspot.com/2015/03/popular-music-emotion-dataset-ismir2012.html"><strong>ISMIR-2012</strong></a></td>
+<td>Popular music</td>
+<td>30 or 60</td>
+<td>2904</td>
+<td>54</td>
+<td>NA (tags)</td>
+<td>MIR Toolbox</td>
+<td><span class="citation" data-cites="agarwal2021an">Agarwal &amp; Om (<a href="#ref-agarwal2021an" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.music-ir.org/mirex/wiki/2009:Music_Structure_Segmentation_Results"><strong>MIREX2009</strong></a></td>
+<td>Popular</td>
+<td>Full</td>
+<td>297</td>
+<td>3</td>
+<td>NA</td>
+<td>Paulus &amp; Klapuri (2009)</td>
+<td><span class="citation" data-cites="yeh2014po">Yeh et al. (<a href="#ref-yeh2014po" role="doc-biblioref">2014</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://millionsongdataset.com/pages/getting-dataset/"><strong>Million Songs Dataset</strong></a></td>
+<td>Pop</td>
+<td>Full</td>
+<td>1,000,000</td>
+<td>55</td>
+<td>None</td>
+<td>EchoNest</td>
+<td><span class="citation" data-cites="cao2023th">Cao &amp; Park (<a href="#ref-cao2023th" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://freemusicarchive.org/home"><strong>Free Music Archive</strong></a></td>
+<td>Various</td>
+<td>Variable</td>
+<td>&gt;100,000</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td><span class="citation" data-cites="koh2023me">Koh et al. (<a href="#ref-koh2023me" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.music-ir.org/mirex/wiki/2015:Main_Page"><strong>Jamendo</strong></a></td>
+<td>Various</td>
+<td>Variable</td>
+<td>10,000</td>
+<td>24</td>
+<td>NA</td>
+<td>Metadata</td>
+<td><span class="citation" data-cites="hu2022de">Hu et al. (<a href="#ref-hu2022de" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Chinese Classical Music Dataset</strong></td>
+<td>Chinese classical</td>
+<td>~30s</td>
+<td>500</td>
+<td>557</td>
+<td>20</td>
+<td>Essentia, MIR Toolbox</td>
+<td><span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes: <span class="math inline">\(\dagger\)</span> Used in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span></p>
+<!-- I TOOK THESE OUT FOR NOW
+| [**Spotify API**](https://developer.spotify.com/documentation/web-api)                                 | Various                    | Variable        | 5192$\dagger$    | 12           | NA              | EchoNest                                              | @alvarez2023ri                                                                                                           |
+| [**Acoustic Brainz**](https://acousticbrainz.org/)                                                     | Various                    | Variable        | 60,000$\dagger$  | Not reported | NA (tags)       | Essentia                                              | @alvarez2023ri                                                                                                           |
+-->
+<p>The most frequently used 3 datasets are MediaEval <span class="citation" data-cites="soleymani20131000">(<a href="#ref-soleymani20131000" role="doc-biblioref">Soleymani et al., 2013</a>)</span>, DEAM <span class="citation" data-cites="aljanaki2017developing">(<a href="#ref-aljanaki2017developing" role="doc-biblioref">Aljanaki et al., 2017</a>)</span>, and AMG1608 <span class="citation" data-cites="chen2015amg1608">(<a href="#ref-chen2015amg1608" role="doc-biblioref">Chen et al., 2015</a>)</span>. These datasets represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by relative large number of participants (either by experts, students, or crowdsourced workers). Two of the most popular datasets offer a large number (260 to 6669) features extracted with OpenSMILE <span class="citation" data-cites="eyben2010opensmile">(<a href="#ref-eyben2010opensmile" role="doc-biblioref">Eyben et al., 2010</a>)</span>. Looking at the datasets more broadly, the diversity in the size and the features of the datasets is notable. Only two feature extraction tools are used across multiple datasets (OpenSMILE and MIR Toolbox, <span class="citation" data-cites="lartillot2007matlab">Lartillot &amp; Toiviainen (<a href="#ref-lartillot2007matlab" role="doc-biblioref">2007</a>)</span>). However, despite this diversity, there does not seem to be a direct link between the model success rates and the features themselves, or at least separating the features from variation created by the dataset size, annotation accuracy and genre is not possible.</p>
 </section>
 </section>
 <section id="conclusion-and-discussion" class="level1">
 <h1>Conclusion and Discussion</h1>
-<p>There has been a considerable number of studies published involving MER models (N=96/46 full text articles considered), but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to reject a substantial proportion of studies. At the end, 34 studies remained in the analysis that overall reported xxxxx models.</p>
-<section id="concise-summary-of-what-we-did-and-found" class="level2">
-<h2 class="anchored" data-anchor-id="concise-summary-of-what-we-did-and-found">Concise summary of what we did and found</h2>
-</section>
-<section id="main-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="main-outcomes">Main outcomes</h2>
-<ul>
-<li>Arousal is easier to predict (r = 0.7627) than valence (r = 0.6236), as we predicted. The glass ceiling seems to be at …</li>
-<li>Classification …</li>
-<li>Model accuracy is surprisingly little affected by the number of features (?) or modelling technique (?).</li>
-<li>Some of the complex state-of-the-art techniques (e.g., NNs) do not deliver impressive improvements over older techniques (e.g., SVR, RF)</li>
-<li>Variation in study/model/data quality is large and can be seen in heterogenuity and the amount of studies eliminated</li>
-</ul>
-<p>[this is the discussion section]</p>
-</section>
-<section id="calls-for-actionpoints-to-improve-in-such-studies" class="level2">
-<h2 class="anchored" data-anchor-id="calls-for-actionpoints-to-improve-in-such-studies">Calls for action/points to improve in such studies</h2>
-<ul>
-<li><em>Documentation</em> the details in full (features, stimuli, model details, cross-validation)</li>
-<li><em>Quality</em> of the underlying data (emotion ratings, classes, or even stimulus properties?</li>
-<li><em>Generalisibility</em> of the models (some studies such as X and Y address this by applying the models across several datasets)</li>
-<li>Diversity in the evaluative aspects of studies: <em>overfitting</em>, numerous ways of cross-validating, not sharing data or analysis scripts, not reporting in the same way</li>
-<li>What proportion of stimuli are Western music, and what genres tend to dominate?</li>
-</ul>
+<!-- first para is your text from ICMPC paper -->
+<p>Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike—spurring improvements in performance. Despite increasing complexity in the types of models and data sets used, no extant study has evaluated the relative merits of the tools, stimuli, and feature sets employed in MER studies. To provide a benchmark to guide future research, we present the first meta-analysis of music emotion recognition.</p>
+<!-- Concise summary of what we did and found -->
+<p>We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 related to regression and 86 classification. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (<em>r</em> = 0.67 [0.56, 0.76]), and arousal (<em>r</em> = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence <em>r</em> = 0.78, arousal <em>r</em> = 0.88) and tree-based models (valence <em>r</em> = 0.75, arousal <em>r</em> = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence <em>r</em> = 0.58, arousal <em>r</em> = 0.79). In contrast, neural networks performed most accurately in classification studies (<em>MCC</em> = 0.93), followed by SVMs (<em>MCC</em> = 0.87) and tree-based models (<em>MCC</em> = 0.85). The models applied to a variety of datasets differ substantially in terms of size, annotation principles, and the number of features and sources of these features.</p>
+<p>These results offer several important insights. First, compared to a 2013 report by <span class="citation" data-cites="barthet2013">Barthet et al. (<a href="#ref-barthet2013" role="doc-biblioref">2013</a>)</span>, the glass ceiling for valence has risen from <em>r</em> = 0.51 to 0.67. Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at <em>r</em> = 0.83). For classification, studies reached variable classification rates from 0.497 using <em>F<sub>1</sub></em> score <span class="citation" data-cites="sanden2011empirical">(<a href="#ref-sanden2011empirical" role="doc-biblioref">Sanden &amp; Zhang, 2011</a>)</span> to 79% average precision <span class="citation" data-cites="trohidis2008multi">(<a href="#ref-trohidis2008multi" role="doc-biblioref">Trohidis et al., 2008</a>)</span> in the past, whereas now the accuracy is 0.930 (?).</p>
+<!-- These numbers above could be reinterpreted here, they are not comparable with our MCC -->
+<p>Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size, likely the result of cross-validation techniques used to avoid overfitting, but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary difference, where the smaller datasets come from music psychology, which puts a premium on data quality (quality control of the ground-truth data and features) rather than on data size and modelling techniques. If quality control is succesful, it decreases the random error inherent in human judgements. Furthermore, the relevance and the precision of the features impacts the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error, as the studies so far have not compared the feature sets systematically, nor a comparison of the datasets with identical features has been carried out. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where significant improvements can be made.</p>
+<p>More broadly, the present study revealed an uncomfortable large variation in overall quality control and reporting in MER studies. In many cases, the reporting was insufficient to determine the features or their sources used in the models, and a large number of studies were discarded due to insufficient information about the data, model architectures, or outcome measures.</p>
+<!-- recommendations 1: reporting -->
+<p>Future reports should contain viable information about the data, models, and success metrics. The modelling process should include a description of cross-validation, feature extraction technique, feature reduction (if used), and actual accuracy measures. We would recommend future studies to use Matthews correlation coefficient for classification studies as currently there are numerous metrics (<em>F<sub>1</sub></em>, precision, recall, balanced accuracy, etc.), which do not operate in the same range.</p>
+<!-- feature validation? -->
+<p>Feature validation…? (Two extreme positions: a limited number of features that are perceptual validated (psychology) – domain knowledge –– vs a large number of features where the models identify what is needed (deep learning/engineering).</p>
+<!-- recommendations 2: sharing -->
+<p>It would be beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for more direct comparison of model techniques for the same dataset. Also, not all datasets are shared, or at least the sharing is only done partially. The copyright restrictions may limit the sharing of some datasets, but at least features and examples should be available.</p>
+<!-- size, type of data -->
+<p>We also note that the majority of the datasets used in MER studies are relatively small, but comparable to datasets for modeling facial expressions (median N=502, <span class="citation" data-cites="krumhuber2017">Krumhuber et al. (<a href="#ref-krumhuber2017" role="doc-biblioref">2017</a>)</span>) and speech expressions (median of 1287, <span class="citation" data-cites="hashem2023">Hashem et al. (<a href="#ref-hashem2023" role="doc-biblioref">2023</a>)</span>). However, annotated datasets for visual scenes and objects tend to be much larger, often exceeding 100,000 annotated examples <span class="citation" data-cites="deng2009imagenet krishna2017visual">(<a href="#ref-deng2009imagenet" role="doc-biblioref">Deng et al., 2009</a>; <a href="#ref-krishna2017visual" role="doc-biblioref">Krishna et al., 2017</a>)</span>. Datasets of these magnitudes seem to be required for appropriate utilisation of deep learning algorithms, which may explain the modest results observed in the music emotion recognition studies.</p>
+<p>The majority of the datasets are Western pop … Music and annotators that represent the Global North do dominate the studies at the moment, and … <span class="citation" data-cites="bornDiversifyingMIRKnowledge2020">(<a href="#ref-bornDiversifyingMIRKnowledge2020" role="doc-biblioref">Born, 2020</a>)</span>.</p>
+<p>Are the emotion recognition targets valid from the psychological and application point of view? Prediction of valence and arousal is popular, but has limited usefulness in practical applications that aim to capture experiences with music that are more aligned with models of music-induced emotions (such as GEMS by <span class="citation" data-cites="zentner2008emotions">Zentner et al. (<a href="#ref-zentner2008emotions" role="doc-biblioref">2008</a>)</span>).</p>
+<p>Future efforts to prioritize feature validation, standardized reporting, and transparent sharing of research materials are needed for consistent improvements in MER.</p>
 <section id="funding-statement" class="level3">
 <h3 class="anchored" data-anchor-id="funding-statement">Funding statement</h3>
 <p>CA was funded by Mitacs Globalink Research Award (Mitacs &amp; British High Commission - Ottawa, Canada).</p>
@@ -875,11 +1071,6 @@ K= 10 studies.-->
 <h3 class="anchored" data-anchor-id="open-practices-statement">Open practices statement</h3>
 <p>Study preregistration, data, analysis scripts and supporting information is available at Github, <a href="https://tuomaseerola.github.io/metaMER" class="uri">https://tuomaseerola.github.io/metaMER</a>.</p>
 </section>
-<section id="acknowledgements" class="level3">
-<h3 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h3>
-<p>We thank Greggs food-on-the-go retailer for sustaining the work with affordable sandwiches and coffee.</p>
-</section>
-</section>
 </section>
 <section id="references" class="level1">
 
@@ -890,8 +1081,14 @@ K= 10 studies.-->
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-agarwal2021an" class="csl-entry" role="listitem">
+Agarwal, G., &amp; Om, H. (2021). An efficient supervised framework for music mood recognition using autoencoder-based optimised support vector regression model [Article]. <em>IET Signal Processing</em>, <em>15</em>(2), 98–121. <a href="https://doi.org/10.1049/sil2.12015">https://doi.org/10.1049/sil2.12015</a>
+</div>
 <div id="ref-agres2021music" class="csl-entry" role="listitem">
 Agres, K. R., Schaefer, R. S., Volk, A., Van Hooren, S., Holzapfel, A., Dalla Bella, S., Müller, M., De Witte, M., Herremans, D., Ramirez Melendez, R., et al. (2021). Music, computing, and health: A roadmap for the current and future roles of music technology for health care and well-being. <em>Music &amp; Science</em>, <em>4</em>, 2059204321997709.
+</div>
+<div id="ref-aljanaki2017developing" class="csl-entry" role="listitem">
+Aljanaki, A., Yang, Y.-H., &amp; Soleymani, M. (2017). Developing a benchmark for emotional analysis of music. <em>PloS One</em>, <em>12</em>(3), e0173392.
 </div>
 <div id="ref-alvarez2023ri" class="csl-entry" role="listitem">
 Álvarez, P., Quirós, J. G. de, &amp; Baldassarri, S. (2023). RIADA: A machine-learning based infrastructure for recognising the emotions of spotify songs [Article]. <em>International Journal of Interactive Multimedia and Artificial Intelligence</em>, <em>8</em>(2), 168–181. <a href="https://doi.org/10.9781/ijimai.2022.04.002">https://doi.org/10.9781/ijimai.2022.04.002</a>
@@ -899,11 +1096,20 @@ Agres, K. R., Schaefer, R. S., Volk, A., Van Hooren, S., Holzapfel, A., Dalla Be
 <div id="ref-anderson2022ex" class="csl-entry" role="listitem">
 Anderson, C. J., &amp; Schutz, M. (2022). Exploring historic changes in musical communication: Deconstructing emotional cues in preludes by bach and chopin. <em>Psychology of Music</em>, <em>50</em>(5), 1424–1442.
 </div>
+<div id="ref-bai2016di" class="csl-entry" role="listitem">
+Bai, J., Feng, L., Peng, J., Shi, J., Luo, K., Li, Z., Liao, L., &amp; Wang, Y. (2016). Dimensional music emotion recognition by machine learning. <em>INTERNATIONAL JOURNAL OF COGNITIVE INFORMATICS AND NATURAL INTELLIGENCE</em>, <em>10</em>(4), 74–89. <a href="https://doi.org/10.4018/IJCINI.2016100104">https://doi.org/10.4018/IJCINI.2016100104</a>
+</div>
+<div id="ref-bai2017mu" class="csl-entry" role="listitem">
+Bai, J., Luo, K., Peng, J., Shi, J., Wu, Y., Feng, L., Li, J., &amp; Wang, Y. (2017). Music emotions recognition by machine learning with cognitive classification methodologies [Article]. <em>International Journal of Cognitive Informatics and Natural Intelligence</em>, <em>11</em>(4), 80–92. <a href="https://doi.org/10.4018/IJCINI.2017100105">https://doi.org/10.4018/IJCINI.2017100105</a>
+</div>
 <div id="ref-bai2016dimensional" class="csl-entry" role="listitem">
 Bai, J., Peng, J., Shi, J., Tang, D., Wu, Y., Li, J., &amp; Luo, K. (2016). Dimensional music emotion recognition by valence-arousal regression. <em>2016 IEEE 15th International Conference on Cognitive Informatics &amp; Cognitive Computing (ICCI* CC)</em>, 42–49.
 </div>
 <div id="ref-balduzzi2019" class="csl-entry" role="listitem">
 Balduzzi, S., Rücker, G., &amp; Schwarzer, G. (2019). How to perform a meta-analysis with <span>R</span>: A practical tutorial. <em>Evidence-Based Mental Health</em>, <em>22</em>, 153–160.
+</div>
+<div id="ref-barthet2013" class="csl-entry" role="listitem">
+Barthet, M., Fazekas, G., &amp; Sandler, M. (2013). Music emotion recognition: From content- to context-based models. In M. Aramaki, M. Barthet, R. Kronland-Martinet, &amp; S. Ystad (Eds.), <em>From sounds to music and emotions</em> (pp. 228–252). Springer Berlin Heidelberg.
 </div>
 <div id="ref-battcock2021in" class="csl-entry" role="listitem">
 Battcock, A., &amp; Schutz, M. (2021). Individualized interpretation: Exploring structural and interpretive effects on evaluations of emotional content in bach’s well tempered clavier. <em>JOURNAL OF NEW MUSIC RESEARCH</em>, <em>50</em>(5), 447–468. <a href="https://doi.org/10.1080/09298215.2021.1979050">https://doi.org/10.1080/09298215.2021.1979050</a>
@@ -911,20 +1117,44 @@ Battcock, A., &amp; Schutz, M. (2021). Individualized interpretation: Exploring 
 <div id="ref-beveridge2018po" class="csl-entry" role="listitem">
 Beveridge, S., &amp; Knox, D. (2018). Popular music and the role of vocal melody in perceived emotion. <em>PSYCHOLOGY OF MUSIC</em>, <em>46</em>(3), 411–423. <a href="https://doi.org/10.1177/0305735617713834">https://doi.org/10.1177/0305735617713834</a>
 </div>
+<div id="ref-bhuvanakumar2023em" class="csl-entry" role="listitem">
+Bhuvana Kumar, V., &amp; Kathiravan, M. (2023). Emotion recognition from MIDI musical file using enhanced residual gated recurrent unit architecture [Article]. <em>Frontiers in Computer Science</em>, <em>5</em>. <a href="https://doi.org/10.3389/fcomp.2023.1305413">https://doi.org/10.3389/fcomp.2023.1305413</a>
+</div>
+<div id="ref-bornDiversifyingMIRKnowledge2020" class="csl-entry" role="listitem">
+Born, G. (2020). Diversifying <span>MIR</span>: Knowledge and real-world challenges, and new interdisciplinary futures. <em>Transactions of the International Society for Music Information Retrieval</em>, <em>3</em>(1), 193–204. <a href="https://doi.org/10.5334/tismir.58">https://doi.org/10.5334/tismir.58</a>
+</div>
+<div id="ref-cao2023th" class="csl-entry" role="listitem">
+Cao, Y., &amp; Park, J. (2023). The analysis of music emotion and visualization fusing long short-term memory networks under the internet of things. <em>IEEE ACCESS</em>, <em>11</em>, 141192–141204. <a href="https://doi.org/10.1109/ACCESS.2023.3341926">https://doi.org/10.1109/ACCESS.2023.3341926</a>
+</div>
 <div id="ref-celma_foafing_2006" class="csl-entry" role="listitem">
 Celma, O. (2006). Foafing the music: <span>Bridging</span> the semantic gap in music recommendation. <em>International Semantic Web Conference</em>, 927–934.
+</div>
+<div id="ref-chen2017co" class="csl-entry" role="listitem">
+Chen, Y.-A., Wang, J.-C., Yang, Y.-H., &amp; Chen, H. H. (2017). Component tying for mixture model adaptation in personalization of music emotion recognition. <em>IEEE-ACM TRANSACTIONS ON AUDIO SPEECH AND LANGUAGE PROCESSING</em>, <em>25</em>(7), 1409–1420. <a href="https://doi.org/10.1109/TASLP.2017.2693565">https://doi.org/10.1109/TASLP.2017.2693565</a>
+</div>
+<div id="ref-chen2015amg1608" class="csl-entry" role="listitem">
+Chen, Y.-A., Yang, Y.-H., Wang, J.-C., &amp; Chen, H. (2015). The AMG1608 dataset for music emotion recognition. <em>2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 693–697.
 </div>
 <div id="ref-chicco2020advantages" class="csl-entry" role="listitem">
 Chicco, D., &amp; Jurman, G. (2020). The advantages of the matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. <em>BMC Genomics</em>, <em>21</em>, 1–13.
 </div>
+<div id="ref-chin2018pr" class="csl-entry" role="listitem">
+Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018b). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>9</em>(4), 541–549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+</div>
 <div id="ref-chin2018" class="csl-entry" role="listitem">
-Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE Transactions on Affective Computing</em>, <em>9</em>(4), 541 549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018a). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE Transactions on Affective Computing</em>, <em>9</em>(4), 541 549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
 </div>
 <div id="ref-chowdhury2021perceived" class="csl-entry" role="listitem">
 Chowdhury, S., &amp; Widmer, G. (2021). On perceived emotion in expressive piano performance: Further experimental evidence for the relevance of mid-level perceptual features. <em>International Society for Music Information Retrieval Conference (ISMIR 2023)</em>.
 </div>
 <div id="ref-coutinho2013psychoacoustic" class="csl-entry" role="listitem">
 Coutinho, E., &amp; Dibben, N. (2013). Psychoacoustic cues to emotion in speech prosody and music. <em>Cognition &amp; Emotion</em>, <em>27</em>(4), 658–684.
+</div>
+<div id="ref-coutinho2017sh" class="csl-entry" role="listitem">
+Coutinho, E., &amp; Schuller, B. (2017). Shared acoustic codes underlie emotional communication in music and speech-evidence from deep transfer learning. <em>PLOS ONE</em>, <em>12</em>(6). <a href="https://doi.org/10.1371/journal.pone.0179289">https://doi.org/10.1371/journal.pone.0179289</a>
+</div>
+<div id="ref-deng2009imagenet" class="csl-entry" role="listitem">
+Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., &amp; Fei-Fei, L. (2009). Imagenet: <span>A</span> large-scale hierarchical image database. <em>2009 <span>IEEE</span> Conference on Computer Vision and Pattern Recognition</em>, 248–255.
 </div>
 <div id="ref-downie_music_2008" class="csl-entry" role="listitem">
 Downie, J. S. (2008). The music information retrieval evaluation exchange (2005–2007): <span>A</span> window into music information retrieval research. <em>Acoustical Science and Technology</em>, <em>29</em>(4), 247–255.
@@ -940,6 +1170,9 @@ Egger, M., Smith, G. D., Schneider, M., &amp; Minder, C. (1997). Bias in meta-an
 </div>
 <div id="ref-er2019music" class="csl-entry" role="listitem">
 Er, M. B., &amp; Aydilek, I. B. (2019). Music emotion recognition by using chroma spectrogram and deep visual features. <em>International Journal of Computational Intelligence Systems</em>, <em>12</em>(2), 1622–1634.
+</div>
+<div id="ref-eyben2010opensmile" class="csl-entry" role="listitem">
+Eyben, F., Wöllmer, M., &amp; Schuller, B. (2010). Opensmile: The munich versatile and fast open-source audio feature extractor. <em>Proceedings of the 18th ACM International Conference on Multimedia</em>, 1459–1462.
 </div>
 <div id="ref-fairthorne1968" class="csl-entry" role="listitem">
 Fairthorne, R. A. (1968). <em>Towards information retrieval</em>.
@@ -962,8 +1195,17 @@ Griffiths, D., Cunningham, S., Weinel, J., &amp; Picking, R. (2021). A multi-gen
 <div id="ref-grimaud_eerola_2022" class="csl-entry" role="listitem">
 Grimaud, A. M., &amp; Eerola, T. (2022). An interactive approach to emotional expression through musical cues. <em>Music &amp; Science</em>, <em>5</em>, 1–23. https://doi.org/<a href="https://doi.org/10.1177/20592043211061745">https://doi.org/10.1177/20592043211061745</a>
 </div>
+<div id="ref-hashem2023" class="csl-entry" role="listitem">
+Hashem, A., Arif, M., &amp; Alghamdi, M. (2023). Speech emotion recognition approaches: <span>A</span> systematic review. <em>Speech Communication</em>, <em>154</em>, 102974. <a href="https://doi.org/10.1016/j.specom.2023.102974">https://doi.org/10.1016/j.specom.2023.102974</a>
+</div>
 <div id="ref-higgins2002quantifying" class="csl-entry" role="listitem">
 Higgins, J. P., &amp; Thompson, S. G. (2002). Quantifying heterogeneity in a meta-analysis. <em>Statistics in Medicine</em>, <em>21</em>(11), 1539–1558.
+</div>
+<div id="ref-hu2022de" class="csl-entry" role="listitem">
+Hu, X., Li, F., &amp; Liu, R. (2022). Detecting music-induced emotion based on acoustic analysis and physiological sensing: A multimodal approach. <em>APPLIED SCIENCES-BASEL</em>, <em>12</em>(18). <a href="https://doi.org/10.3390/app12189354">https://doi.org/10.3390/app12189354</a>
+</div>
+<div id="ref-hu2017cr" class="csl-entry" role="listitem">
+Hu, X., &amp; Yang, Y.-H. (2017). Cross-dataset and cross-cultural music mood prediction: A case on western and chinese pop songs. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>8</em>(2), 228–240. <a href="https://doi.org/10.1109/TAFFC.2016.2523503">https://doi.org/10.1109/TAFFC.2016.2523503</a>
 </div>
 <div id="ref-juslin2022emotions" class="csl-entry" role="listitem">
 Juslin, P. N., Sakka, L. S., Barradas, G. T., &amp; Lartillot, O. (2022). Emotions, mechanisms, and individual differences in music listening: A stratified random sampling approach. <em>Music Perception: An Interdisciplinary Journal</em>, <em>40</em>(1), 55–86.
@@ -980,8 +1222,17 @@ Knapp, G., &amp; Hartung, J. (2003). Improved tests for a random effects meta-re
 <div id="ref-koh2023me" class="csl-entry" role="listitem">
 Koh, E. Y., Cheuk, K. W., Heung, K. Y., Agres, K. R., &amp; Herremans, D. (2023). MERP: A music dataset with emotion ratings and raters’ profile information. <em>SENSORS</em>, <em>23</em>(1). <a href="https://doi.org/10.3390/s23010382">https://doi.org/10.3390/s23010382</a>
 </div>
+<div id="ref-krishna2017visual" class="csl-entry" role="listitem">
+Krishna, R., Zhu, Y., Groth, O., Johnson, J., Hata, K., Kravitz, J., Chen, S., Kalantidis, Y., Li, L.-J., Shamma, D. A., et al. (2017). Visual genome: <span>Connecting</span> language and vision using crowdsourced dense image annotations. <em>International Journal of Computer Vision</em>, <em>123</em>, 32–73.
+</div>
+<div id="ref-krumhuber2017" class="csl-entry" role="listitem">
+Krumhuber, E. G., Skora, L., Küster, D., &amp; Fou, L. (2017). A review of dynamic datasets for facial expression research. <em>Emotion Review</em>, <em>9</em>(3), 280–292. <a href="https://doi.org/10.1177/1754073916670022">https://doi.org/10.1177/1754073916670022</a>
+</div>
 <div id="ref-langan2019comparison" class="csl-entry" role="listitem">
 Langan, D., Higgins, J. P., Jackson, D., Bowden, J., Veroniki, A. A., Kontopantelis, E., Viechtbauer, W., &amp; Simmonds, M. (2019). A comparison of heterogeneity variance estimators in simulated random-effects meta-analyses. <em>Research Synthesis Methods</em>, <em>10</em>(1), 83–98.
+</div>
+<div id="ref-lartillot2007matlab" class="csl-entry" role="listitem">
+Lartillot, O., &amp; Toiviainen, P. (2007). A matlab toolbox for musical feature extraction from audio. <em>International Conference on Digital Audio Effects</em>, <em>237</em>, 244.
 </div>
 <div id="ref-lindstrom2003expressivity" class="csl-entry" role="listitem">
 Lindström, E., Juslin, P. N., Bresin, R., &amp; Williamon, A. (2003). "Expressivity comes from within your soul”: A questionnaire study of music students’ perspectives on expressivity. <em>Research Studies in Music Education</em>, <em>20</em>(1), 23–47.
@@ -995,17 +1246,32 @@ Lu, L., Liu, D., &amp; Zhang, H.-J. (2005). Automatic mood detection and trackin
 <div id="ref-mandel_support_2006" class="csl-entry" role="listitem">
 Mandel, M. I., Poliner, G. E., &amp; Ellis, D. P. (2006). Support vector machine active learning for music retrieval. <em>Multimedia Systems</em>, <em>12</em>(1), 3–13.
 </div>
+<div id="ref-markov2014mu" class="csl-entry" role="listitem">
+Markov, K., &amp; Matsui, T. (2014). Music genre and emotion recognition using gaussian processes [Article]. <em>IEEE Access</em>, <em>2</em>, 688–697. <a href="https://doi.org/10.1109/ACCESS.2014.2333095">https://doi.org/10.1109/ACCESS.2014.2333095</a>
+</div>
+<div id="ref-medina2020em" class="csl-entry" role="listitem">
+Medina, Y. O., Beltran, J. R., &amp; Baldassarri, S. (2020). Emotional classification of music using neural networks with the MediaEval dataset. <em>PERSONAL AND UBIQUITOUS COMPUTING</em>. <a href="https://doi.org/10.1007/s00779-020-01393-4">https://doi.org/10.1007/s00779-020-01393-4</a>
+</div>
 <div id="ref-mendel1969some" class="csl-entry" role="listitem">
 Mendel, A. (1969). Some preliminary attempts at computer-assisted style analysis in music. <em>Computers and the Humanities</em>, 41–52.
 </div>
 <div id="ref-nag2022" class="csl-entry" role="listitem">
 Nag, S., Basu, M., Sanyal, S., Banerjee, A., &amp; Ghosh, D. (2022). On the application of deep learning and multifractal techniques to classify emotions and instruments using indian classical music. <em>Physica A: Statistical Mechanics and Its Applications</em>, <em>597</em>. <a href="https://doi.org/10.1016/j.physa.2022.127261">https://doi.org/10.1016/j.physa.2022.127261</a>
 </div>
+<div id="ref-orjesek2022en" class="csl-entry" role="listitem">
+Orjesek, R., Jarina, R., &amp; Chmulik, M. (2022). End-to-end music emotion variation detection using iteratively reconstructed deep features. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>81</em>(4), 5017–5031. <a href="https://doi.org/10.1007/s11042-021-11584-7">https://doi.org/10.1007/s11042-021-11584-7</a>
+</div>
 <div id="ref-panda2020audio" class="csl-entry" role="listitem">
 Panda, R., Malheiro, R., &amp; Paiva, R. P. (2023). Audio features for music emotion recognition: A survey. <em>IEEE Transactions on Affective Computing</em>, <em>14</em>(1), 68–88. <a href="https://doi.org/10.1109/TAFFC.2020.3032373">https://doi.org/10.1109/TAFFC.2020.3032373</a>
 </div>
 <div id="ref-panda2013multi" class="csl-entry" role="listitem">
 Panda, R., Malheiro, R., Rocha, B., Oliveira, A. P., &amp; Paiva, R. P. (2013). Multi-modal music emotion recognition: A new dataset, methodology and comparative analysis. <em>10th International Symposium on Computer Music Multidisciplinary Research (CMMR 2013)</em>, 570–582.
+</div>
+<div id="ref-panwar2019ar" class="csl-entry" role="listitem">
+Panwar, S., Rad, P., Choo, K.-K. R., &amp; Roopaei, M. (2019). Are you emotional or depressed? Learning about your emotional state from your music using machine learning. <em>JOURNAL OF SUPERCOMPUTING</em>, <em>75</em>(6, SI), 2986–3009. <a href="https://doi.org/10.1007/s11227-018-2499-y">https://doi.org/10.1007/s11227-018-2499-y</a>
+</div>
+<div id="ref-park2017representation" class="csl-entry" role="listitem">
+Park, J., Lee, J., Nam, J., Park, J., &amp; Ha, J.-W. (2017). Representation learning using artist labels for audio classification tasks. <em>The 13th Music Information Retrieval Evaluation eXchange, MIREX</em>.
 </div>
 <div id="ref-Russell1980" class="csl-entry" role="listitem">
 Russell, J. A. (1980). A circumplex model of affect. <em>Journal of Personality and Social Psychology</em>, <em>39</em>(6), 1161–1178.
@@ -1016,14 +1282,41 @@ Saari, P., Eerola, T., Barthet, M., Fazekas, G., &amp; Lartillot, O. (2015). Gen
 <div id="ref-saizclar2022pr" class="csl-entry" role="listitem">
 Saiz-Clar, E., Angel Serrano, M., &amp; Manuel Reales, J. (2022). Predicting emotions in music using the onset curve. <em>PSYCHOLOGY OF MUSIC</em>, <em>50</em>(4), 1107–1120. <a href="https://doi.org/10.1177/03057356211031658">https://doi.org/10.1177/03057356211031658</a>
 </div>
+<div id="ref-sanden2011empirical" class="csl-entry" role="listitem">
+Sanden, C., &amp; Zhang, J. Z. (2011). An empirical study of multi-label classifiers for music tag annotation. <em>ISMIR</em>, 717–722.
+</div>
 <div id="ref-sarkar2020recognition" class="csl-entry" role="listitem">
 Sarkar, R., Choudhury, S., Dutta, S., Roy, A., &amp; Saha, S. K. (2020). Recognition of emotion in music based on deep convolutional neural network. <em>Multimedia Tools and Applications</em>, <em>79</em>(1), 765–783.
+</div>
+<div id="ref-soleymani20131000" class="csl-entry" role="listitem">
+Soleymani, M., Caro, M. N., Schmidt, E. M., Sha, C.-Y., &amp; Yang, Y.-H. (2013). 1000 songs for emotional analysis of music. <em>Proceedings of the 2nd ACM International Workshop on Crowdsourcing for Multimedia</em>, 1–6.
+</div>
+<div id="ref-sorussa2020em" class="csl-entry" role="listitem">
+Sorussa, K., Choksuriwong, A., &amp; Karnjanadecha, M. (2020). Emotion classi cation system for digital music with a cascaded technique [Article]. <em>ECTI Transactions on Computer and Information Technology</em>, <em>14</em>(1), 53–66. <a href="https://doi.org/10.37936/ecti-cit.2020141.205317">https://doi.org/10.37936/ecti-cit.2020141.205317</a>
+</div>
+<div id="ref-trohidis2008multi" class="csl-entry" role="listitem">
+Trohidis, K., Tsoumakas, G., Kalliris, G., Vlahavas, I. P., et al. (2008). Multi-label classification of music into emotions. <em>ISMIR</em>, <em>8</em>, 325–330.
 </div>
 <div id="ref-van-aertwicherts_2016" class="csl-entry" role="listitem">
 Van Aert, R. C., Wicherts, J. M., &amp; Assen, M. A. van. (2016). Conducting meta-analyses based on p values: Reservations and recommendations for applying p-uniform and p-curve. <em>Perspectives on Psychological Science</em>, <em>11</em>(5), 713–729.
 </div>
+<div id="ref-wang2022co" class="csl-entry" role="listitem">
+Wang, X., Wang, L., &amp; Xie, L. (2022). Comparison and analysis of acoustic features of western and chinese classical music emotion recognition based on v‐a model [Article]. <em>Applied Sciences</em>, <em>12</em>(12). <a href="https://doi.org/10.3390/app12125787">https://doi.org/10.3390/app12125787</a>
+</div>
 <div id="ref-wang2021ac" class="csl-entry" role="listitem">
 Wang, X., Wei, Y., Heng, L., &amp; McAdams, S. (2021). A cross-cultural analysis of the influence of timbre on affect perception in western classical music and chinese music traditions. <em>FRONTIERS IN PSYCHOLOGY</em>, <em>12</em>. <a href="https://doi.org/10.3389/fpsyg.2021.732865">https://doi.org/10.3389/fpsyg.2021.732865</a>
+</div>
+<div id="ref-wang2022cr" class="csl-entry" role="listitem">
+Wang, X., Wei, Y., &amp; Yang, D. (2022). Cross-cultural analysis of the correlation between musical elements and emotion. <em>COGNITIVE COMPUTATION AND SYSTEMS</em>, <em>4</em>(2, SI), 116–129. <a href="https://doi.org/10.1049/ccs2.12032">https://doi.org/10.1049/ccs2.12032</a>
+</div>
+<div id="ref-xie2020mu" class="csl-entry" role="listitem">
+Xie, B., Kim, J. C., &amp; Park, C. H. (2020). Musical emotion recognition with spectral feature extraction based on a sinusoidal model with model-based and deep-learning approaches. <em>APPLIED SCIENCES-BASEL</em>, <em>10</em>(3). <a href="https://doi.org/10.3390/app10030902">https://doi.org/10.3390/app10030902</a>
+</div>
+<div id="ref-xu2021us" class="csl-entry" role="listitem">
+Xu, L., Sun, Z., Wen, X., Huang, Z., Chao, C., &amp; Xu, L. (2021). Using machine learning analysis to interpret the relationship between music emotion and lyric features. <em>PEERJ COMPUTER SCIENCE</em>, <em>7</em>. <a href="https://doi.org/10.7717/peerj-cs.785">https://doi.org/10.7717/peerj-cs.785</a>
+</div>
+<div id="ref-yang2021an" class="csl-entry" role="listitem">
+Yang, J. (2021). A novel music emotion recognition model using neural network technology [Article]. <em>Frontiers in Psychology</em>, <em>12</em>. <a href="https://doi.org/10.3389/fpsyg.2021.760060">https://doi.org/10.3389/fpsyg.2021.760060</a>
 </div>
 <div id="ref-yang2008" class="csl-entry" role="listitem">
 Yang, Y. H., Lin, Y. C., Su, Y. F., &amp; Chen, H. H. (2008). <span class="nocase">A regression approach to music emotion recognition</span>. <em>IEEE Transactions on Audio Speech and Language Processing</em>, <em>16</em>(2), 448–457.
@@ -1031,11 +1324,20 @@ Yang, Y. H., Lin, Y. C., Su, Y. F., &amp; Chen, H. H. (2008). <span class="nocas
 <div id="ref-yang2007music" class="csl-entry" role="listitem">
 Yang, Yi-Hsuan, Su, Y.-F., Lin, Y.-C., &amp; Chen, H. H. (2007). Music emotion recognition: The role of individuality. <em>Proceedings of the International Workshop on Human-Centered Multimedia</em>, 13–22.
 </div>
+<div id="ref-yeh2014po" class="csl-entry" role="listitem">
+Yeh, C.-H., Tseng, W.-Y., Chen, C.-Y., Lin, Y.-D., Tsai, Y.-R., Bi, H.-I., Lin, Y.-C., &amp; Lin, H.-Y. (2014). Popular music representation: Chorus detection &amp; emotion recognition [Article]. <em>Multimedia Tools and Applications</em>, <em>73</em>(3), 2103–2128. <a href="https://doi.org/10.1007/s11042-013-1687-2">https://doi.org/10.1007/s11042-013-1687-2</a>
+</div>
 <div id="ref-zaripov1969" class="csl-entry" role="listitem">
 Zaripov, R. K., &amp; Russell, J. (1969). Cybernetics and music. <em>Perspectives of New Music</em>, 115154.
 </div>
+<div id="ref-zentner2008emotions" class="csl-entry" role="listitem">
+Zentner, M., Grandjean, D., &amp; Scherer, K. R. (2008). Emotions evoked by the sound of music: Characterization, classification, and measurement. <em>Emotion</em>, <em>8</em>(4), 494–521.
+</div>
+<div id="ref-zhang2016br" class="csl-entry" role="listitem">
+Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016b). Bridge the semantic gap between pop music acoustic feature and emotion: Build an interpretable model. <em>NEUROCOMPUTING</em>, <em>208</em>(SI), 333–341. <a href="https://doi.org/10.1016/j.neucom.2016.01.099">https://doi.org/10.1016/j.neucom.2016.01.099</a>
+</div>
 <div id="ref-zhang_bridge_2016" class="csl-entry" role="listitem">
-Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016). Bridge the semantic gap between pop music acoustic feature and emotion: <span>Build</span> an interpretable model. <em>Neurocomputing</em>, <em>208</em>, 333–341.
+Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016a). Bridge the semantic gap between pop music acoustic feature and emotion: <span>Build</span> an interpretable model. <em>Neurocomputing</em>, <em>208</em>, 333–341.
 </div>
 <div id="ref-zhang2023mo" class="csl-entry" role="listitem">
 Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized composite attention network for continuous music emotion recognition. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>82</em>(5), 7319–7341. <a href="https://doi.org/10.1007/s11042-022-13577-6">https://doi.org/10.1007/s11042-022-13577-6</a>
@@ -1043,7 +1345,7 @@ Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized compo
 </div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>The best-performing model to date reached 69.83 % in the 2017 competition (Park et al., 2017)<a href="https://scholar.google.com/scholar?q=Representation%20learning%20using%20artist%20labels%20for%20audio%20classification%20tasks%2C%20Park">@park2017representation</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>The best-performing model to date reached 69.83 % in the 2017 competition <span class="citation" data-cites="park2017representation">(<a href="#ref-park2017representation" role="doc-biblioref">Park et al., 2017</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

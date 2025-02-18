@@ -777,12 +777,21 @@ print(m.cor_subgroups)
 ### By genre + feature complexity
 
 ```{r}
+<<<<<<< HEAD
 # m.cor_complexity <- update(m.cor.c, 
 #        subgroup = C_summary$feature_n_complexity_genre, 
 #        tau.common = FALSE,
 #        prediction = TRUE)
 # 
 # print(m.cor_complexity)
+=======
+m.cor_complexity <- update(m.cor.c, 
+       subgroup = C_summary$feature_n_complexity_genre, 
+       tau.common = FALSE,
+       prediction = TRUE)
+
+print(m.cor_complexity)
+>>>>>>> main
 ```
 ### By model type
 
