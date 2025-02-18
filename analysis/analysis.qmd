@@ -216,15 +216,15 @@ print(m.cor2)
 
 ```{r,results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
-S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove 
+S <- summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 ```
 
 
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 m.cor3 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = citekey, # unique_id
@@ -232,14 +232,14 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_categories,
+                 subgroup =  feature_n_complexity,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 print(m.cor3)
-S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
 
 ```
@@ -248,9 +248,9 @@ print(S)
 
 ```{r, results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # removemissing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # removemissing values
 
-S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
 m.cor4 <- metacor(cor = valuesMax,     # values 
@@ -260,7 +260,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_complexity_genre,
+                 subgroup =  stimulus_genre_mixed,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
@@ -463,15 +463,15 @@ print(m.cor2)
 
 ```{r,results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
-S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove 
+S <- summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 ```
 
 
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 m.cor3 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = citekey, # unique_id
@@ -479,14 +479,14 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_categories,
+                 subgroup =  feature_n_complexity,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 print(m.cor3)
-S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
 
 ```
@@ -495,9 +495,9 @@ print(S)
 
 ```{r, results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 
-S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
 m.cor4 <- metacor(cor = valuesMax,     # values 
@@ -507,7 +507,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_complexity_genre,
+                 subgroup =  stimulus_genre_mixed,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
@@ -519,7 +519,7 @@ print(m.cor4)
 
 
 
-## Classification studies
+## Classification studies: overall success
 
 ```{r}
 #| warning: false
@@ -530,12 +530,72 @@ C_studies <- C_studies[!is.na(C_studies$values),]
 
 # yang2021an needs to be encoded for classification (currently just regression)
 C_summary <- read.csv("C_summary.csv")
-
 C_classes <- read.csv("C_study_class_n.csv")
 
 C_summary <- merge(C_summary, C_classes)
 
-m.cor <- metacor(cor = valuesMax,     # values 
+m.cor.c.all <- metacor(cor = values,     # values 
+                 n = stimulus_n,
+                 studlab = studyREF, # unique_id
+                 data = C_studies,
+                 common = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
+                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Classification: Summary")
+
+m.cor.c.all
+
+#m.cor_backtransformed <- m.cor
+#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
+print(funnel(m.cor.c.all, common = FALSE, studlab=TRUE,backtransf=TRUE))
+
+```
+## Define splits for genre & stimulus n combinations
+
+```{r}
+# get stimulus and genre metadata for classification studies:
+C_studies |>
+  group_by(citekey) |>
+  summarize(feature_n = unique(feature_n),
+            feature_n_complexity = unique(feature_n_complexity),
+            stimulus_genre_mixed = unique(stimulus_genre_mixed)) -> C_splits
+
+# create feature_n_complexity_genre column:
+C_splits$feature_n_complexity_genre <- ""
+
+# define splits
+C_splits[C_splits$feature_n_complexity %in% "Feature n > 30 & < 300" &
+        C_splits$stimulus_genre_mixed == "MultiGenre",]$feature_n_complexity_genre <- "Medium multi-genre study"
+C_splits[C_splits$stimulus_genre_mixed %in% "SingleGenre" &
+                             C_splits$feature_n_complexity %in% "Feature n < 30" ,]$feature_n_complexity_genre <- "Small single-genre study"
+C_splits[C_splits$feature_n_complexity == "Feature n > 300",]$feature_n_complexity_genre <- "Huge single or multigenre study"
+C_splits[C_splits$citekey == "alvarez2023ri",]$feature_n_complexity_genre <- "Small, multi-genre study"
+C_splits[C_splits$citekey == "zhang2016br",]$feature_n_complexity_genre <- "Medium, single-genre study"
+# add splits to summary:
+C_summary <- left_join(C_summary, C_splits)
+
+
+```
+
+### Define splits for binary vs. multiclass
+
+```{r}
+C_summary$classes <- 0
+C_summary[C_summary$n_classes < 3,]$classes <- "Binary"
+C_summary[C_summary$n_classes >= 3,]$classes <- "Multiclass"
+
+
+```
+
+
+## Classification models: best models
+
+```{r}
+m.cor.c <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = studyREF, # unique_id
                  data = C_summary,
@@ -548,18 +608,64 @@ m.cor <- metacor(cor = valuesMax,     # values
                  method.random.ci = "HK", 
                  title = "MER: Classification: Summary")
 
-print(m.cor)
+```
 
-#m.cor_backtransformed <- m.cor
-#m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
-print(funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE))
+### Custom funnel for classification studies
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+fig3a <- forest(m.cor.c,
+                sortvar = TE,
+                prediction = FALSE, 
+                print.tau2 = FALSE,
+                leftlabs = c("Author", "N"),studlab = studyREF)
+
+fig3b<-funnel(m.cor.c, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+library(forestplot)
+data<-tibble::tibble(mean=m.cor.c$cor,lower=FisherZInv(m.cor.c$lower),upper=FisherZInv(m.cor.c$upper),study=m.cor.c$studlab,n=m.cor.c$n,cor=round(m.cor.c$cor,2))
+data<-dplyr::arrange(data,mean)
+
+fp3 <- grid.grabExpr(print(data |>
+                             forestplot(labeltext = c(study, n, cor),
+                                        xlab = "Correlation",
+                                        xticks = c(0, .25,.5,.75, 1),
+                                        clip = c(0, 1))|>
+                             fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
+                             fp_append_row(mean  = m.cor.c$TE.common,
+                                           lower = m.cor.c$lower.common,
+                                           upper = m.cor.c$upper.common,
+                                           study = "Summary",
+                                           n = sum(m.cor.c$n),
+                                           cor = round(m.cor.c$TE.common,2),
+                                           is.summary = TRUE) |>
+                             fp_set_style(box = "grey50",
+                                          line = "grey20",
+                                          summary = "black",
+                                          txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
+                                                           ticks = gpar(cex = 0.80),
+                                                           xlab  = gpar(cex = 0.80)))|>
+                             fp_decorate_graph(grid = structure( m.cor.c$TE.common,gp = gpar(lty = 2, col = "grey30")))
+)
+)
+
+source('../etc/custom_funnel_plot.R')
+fp4 <- custom_funnel_plot(m.cor.c)
+
+gridExtra::grid.arrange(fp3, fp4, ncol=2, widths=c(2,1),heights=c(2,1))
+
+
 
 ```
+
+
+
 #### Custom plot
 
 ```{r}
 library(ggrepel)
-tmpdata <- data.frame(SE = FisherZInv(m.cor$seTE), Zr = FisherZInv(m.cor$TE),studies=m.cor$studlab)
+tmpdata <- data.frame(SE = FisherZInv(m.cor.c$seTE), Zr = FisherZInv(m.cor.c$TE),studies=m.cor.c$studlab)
 
 tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
 tmpdata$citekey<-factor(tmpdata$citekey)
@@ -576,152 +682,39 @@ g <- ggplot(tmpdata,aes(y = SE, x = Zr,label=studies,color=citekey,fill=citekey)
 print(g)
 ```
 
-
-
-
-#### Visualise (forest and funnel plots)
+## Exploring heterogeneity
 
 ```{r}
-forest(m.cor,
-       sortvar = TE,
-       prediction = FALSE, 
-             print.tau2 = FALSE,
-             leftlabs = c("Author", "N"),studlab = citekey)
+#| eval: true
+#| echo: true
+# Method 1: Give us the Egger's test about beta coefficient from funnel
+print(eggers.test(m.cor.c))
 
-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
-
-
-```
-#### By class n = 2 vs. > 2
-```{r}
-C_summary$classes <- 0
-C_summary[C_summary$n_classes == 2,]$classes <- "Binary"
-C_summary[C_summary$n_classes >= 3,]$classes <- "Multiclass"
-
-
-
-m.cor <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n, # could also change to n_classes
-                 studlab = studyREF, # unique_id
-                 data = C_summary,
-                 subgroup = classes,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 backtransf = TRUE,
-                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Classification: Summary")
-
-
-forest(m.cor,
-       sortvar = TE,
-       prediction = FALSE, 
-             print.tau2 = FALSE,
-             leftlabs = c("Author", "N"),studlab = citekey)
-
-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
-
-```
-```{r}
-m.cor <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n, # could also change to n_classes
-                 studlab = studyREF, # unique_id
-                 data = C_summary,
-                 subgroup = model_class_id,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 backtransf = TRUE,
-                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Classification: Summary")
-
-
-m.cor
-forest(m.cor,
-       sortvar = TE,
-       prediction = FALSE, 
-             print.tau2 = FALSE,
-             leftlabs = c("Author", "N"),studlab = citekey)
-
-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
-
-```
-
-
-```{r}
-#| fig-width: 12
-#| fig-height: 6
-forest(m.cor,
-       sortvar = TE,
-       prediction = FALSE, 
-             print.tau2 = FALSE,
-             leftlabs = c("Author", "N"),studlab = studyREF)
-
-fig2b<-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
-
-library(forestplot)
-data<-tibble::tibble(mean=m.cor$cor,lower=FisherZInv(m.cor$lower),upper=FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
-data<-dplyr::arrange(data,mean)
-
-fp1 <- grid.grabExpr(print(data |>
-  forestplot(labeltext = c(study, n, cor),
-             xlab = "Correlation",
-             xticks = c(0, .25,.5,.75, 1),
-             clip = c(0, 1))|>
-    fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
-    fp_append_row(mean  = m.cor$TE.common,
-                lower = m.cor$lower.common,
-                upper = m.cor$upper.common,
-                study = "Summary",
-                n = sum(m.cor$n),
-                cor = round(m.cor$TE.common,2),
-                is.summary = TRUE) |>
-  fp_set_style(box = "grey50",
-               line = "grey20",
-               summary = "black",
-                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
-                                ticks = gpar(cex = 0.80),
-                                xlab  = gpar(cex = 0.80)))|>
-    fp_decorate_graph(grid = structure( m.cor$TE.common,gp = gpar(lty = 2, col = "grey30")))
-)
-)
-
-source('../etc/custom_funnel_plot.R')
-fp2 <- custom_funnel_plot(m.cor)
-
-gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1),heights=c(2,1))
-
-```
-
-
-#### Explore qualities (in progress)
-
-```{r}
-O <- find.outliers(m.cor)
-# 6 datasets identified as outliers, without them the r drops to 0.5781
+# Method 2: Find the impact to the results when removing those outside the 95CI
+O <- find.outliers(m.cor.c) # 13 remaining out of 24
+print(O)
+# Method 3: Leave-out-out analysis etc for individual influence (not useful here)
 #infan <- InfluenceAnalysis(m.cor)
-#print(eggers.test(m.cor))
 
-O
+# Method 4: Focus on 10% of most precise studies (Stanley, Jarrel, Doucouliagos 2010)
+thres<-quantile(m.cor.c$seTE,0.1)
+ind<-m.cor.c$seTE<=as.numeric(thres)
+m.cor10pct <- update(m.cor.c, subset = which(ind))
 
+# Method 5: P curve analysis (Simonsohn, Simmons & Nelson, 2015)
+pcurve(m.cor.c)
 ```
-
-
-#### Re-run the analysis without the outliers
+### Re-run the analysis without outliers
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: false
-outliers <- c("")
+outliers <- O$out.study.random
 
-tmp2<-tmp[!tmp$unique_id %in% outliers,]
-m.cor <- metacor(cor = values, 
+tmp2<-C_summary[!C_summary$studyREF %in% outliers,]
+m.cor.c.o <- metacor(cor = valuesMax, 
                  n = stimulus_n,
-                 studlab = unique_id, # unique_id
+                 studlab = tmp2$studyREF,
                  data = tmp2,
                  common = FALSE,
                  random = TRUE,
@@ -732,13 +725,78 @@ m.cor <- metacor(cor = values,
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 
-print(m.cor)
+```
 
-fp <- funnel(m.cor, common = TRUE,studlab=FALSE)
+#### Visualise (forest and funnel plots)
 
+```{r}
+forest(m.cor.c.o,
+       sortvar = TE,
+       prediction = FALSE, 
+             print.tau2 = FALSE,
+             leftlabs = c("Author", "N"),studlab = citekey)
+
+funnel(m.cor.c.o, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
 
 ```
+## Subgroup analyses
+
+### By binary vs. multi-class classification
+
+```{r}
+m.cor_classes <- update(m.cor.c, 
+       subgroup = C_summary$classes, 
+       tau.common = FALSE,
+       prediction = TRUE)
+
+forest(m.cor_classes,
+       sortvar = TE,
+       prediction = FALSE, 
+             print.tau2 = FALSE,
+             leftlabs = c("Author", "N"),studlab = citekey)
+
+funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
+
+```
+
+
+### By single vs. multi-genre
+
+```{r}
+#| eval: false
+m.cor_subgroups <- update(m.cor.c, 
+       subgroup = stimulus_genre_mixed, 
+       tau.common = FALSE,
+       prediction = TRUE)
+
+print(m.cor_subgroups)
+#forest(m.cor_subgroups,subgroup=TRUE)
+```
+
+### By genre + feature complexity
+
+```{r}
+# m.cor_complexity <- update(m.cor.c, 
+#        subgroup = C_summary$feature_n_complexity_genre, 
+#        tau.common = FALSE,
+#        prediction = TRUE)
+# 
+# print(m.cor_complexity)
+```
+### By model type
+
+```{r}
+#| eval: false
+m.cor_subgroups <- update(m.cor.c, 
+       subgroup = model_class_id, 
+       tau.common = FALSE,
+       prediction = TRUE)
+
+print(m.cor_subgroups)
+#forest(m.cor_subgroups,subgroup=TRUE)
+```
+
 
 #### Custom funnel plot
 
@@ -746,16 +804,16 @@ To show the quality differences between core and eliminated studies (in progress
 
 ```{r}
 #| eval: true
-tmpdata <- data.frame(SE = m.cor$seTE, Zr = m.cor$TE, studies=m.cor$studlab)
+tmpdata <- data.frame(SE = m.cor.c$seTE, Zr = m.cor.c$TE, studies=m.cor.c$studlab)
 
 tmpdata$studyREF <- substr(tmpdata$studies,1,nchar(tmpdata$studies)-2)
 tmpdata$studyREF <- str_replace_all(tmpdata$studyREF,'([0-9]+)',' et al \\1')
 tmpdata$studyREF <- str_to_sentence(tmpdata$studyREF)
 tmpdata$studyREF
 
-estimate = m.cor$TE.common
-se = m.cor$seTE.common
-se.seq=seq(0, max(m.cor$cor), 0.001)
+estimate = m.cor.c$TE.common
+se = m.cor.c$seTE.common
+se.seq=seq(0, max(m.cor.c$cor), 0.001)
 ll95 = estimate-(1.96*se.seq)
 ul95 = estimate+(1.96*se.seq)
 ll99 = estimate-(3.29*se.seq)
@@ -774,7 +832,7 @@ fp = ggplot(NULL) +
   geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
 #  scale_x_reverse()+
   scale_x_reverse(breaks=seq(0,0.2,0.05),limits=c(0.15,0),expand=c(0.00,0.00))+
-  scale_y_continuous(breaks=seq(0.3,1.25,0.20),limits=c(0.3,1.23))+
+ # scale_y_continuous(breaks=seq(0.3,1.25,0.20),limits=c(0.3,1.23))+
   coord_flip()+
   theme_bw()
 print(fp)
@@ -783,22 +841,6 @@ print(fp)
 ```
 
 
-#### Subgroup analysis according to techniques
-
-add `journal_type` and `stimulus_genre_mixed` as a grouping option
-
-```{r}
-#| eval: false
-m.cor_subgroups <- update(m.cor, 
-#       subgroup = model_class_id, 
-#       subgroup = journal_type, 
-       subgroup = stimulus_genre_mixed, 
-       tau.common = FALSE,
-       prediction = TRUE)
-
-print(m.cor_subgroups)
-#forest(m.cor_subgroups,subgroup=TRUE)
-```
-
 - Idea: visualise the distributions of the model successes within studies (done in preprocessing)
+
 
