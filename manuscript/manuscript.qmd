@@ -233,17 +233,7 @@ Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plo
 - groupings based on genre, model complexity (high, medium, low), model validation (exists or not)
 - we promised to carry out sensitivity analyses based on type of journal the studies were published in.
 
-## Datasets
 
-<!-- Note: this might take too much space in the main text, perhaps need to be moved to Supporting Information -->
-
-As we noted that several studies rely on the same datasets, summarising these could aid interpretation of the results. 
-
-Table 5. Summary of datasets and studies utilising them.
-
-{{< include _datasets.qmd >}}
-
-The most frequently used 3 datasets are MediaEval [@soleymani20131000], DEAM [@aljanaki2017developing], and AMG1608 [@chen2015amg1608]. These datasets represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by relative large number of participants (either by experts, students, or crowdsourced workers). Two of the most popular datasets offer a large number (260 to 6669) features extracted with OpenSMILE [@eyben2010opensmile]. Looking at the datasets more broadly, the diversity in the size and the features of the datasets is notable. Only two feature extraction tools are used across multiple datasets (OpenSMILE and MIR Toolbox, @lartillot2007matlab). However, despite this diversity, there does not seem to be a direct link between the model success rates and the features themselves, or at least separating the features from variation created by the dataset size, annotation accuracy and genre is not possible. 
 
 # Conclusion and Discussion
 
