@@ -1,0 +1,67 @@
+```{r}
+#| label: fig3
+#| fig-width: 16
+#| fig-height: 6
+#| echo: false
+#| fig.cap: > 
+#|   Forest (A) and funnel (B) plots of the best classification models from all MER studies.
+
+library(metafor, warn.conflicts = FALSE)
+library(dmetar,warn.conflicts = FALSE)
+library(meta,warn.conflicts = FALSE)
+library(DescTools,warn.conflicts = FALSE)
+library(ggplot2,quietly = TRUE)
+library(ggrepel,quietly = TRUE)
+
+C_summary <- read.csv("../analysis/C_summary.csv")
+tmp <- C_summary
+
+# Max values
+m.cor <- metacor(cor = valuesMax,     # values 
+                 n = stimulus_n,
+                 studlab = studyREF, # unique_id
+                 data = C_summary,
+                 common = FALSE,
+                 random = TRUE,
+                 prediction = TRUE,
+                 backtransf = TRUE,
+                 sm = "ZCOR",
+                 method.tau = "REML",# could be PM (Paule-Mandel) as well
+                 method.random.ci = "HK", 
+                 title = "MER: Classification: Summary")
+
+#### Forest plot using forestplot
+data<-tibble::tibble(mean=m.cor$cor,lower=DescTools::FisherZInv(m.cor$lower),upper=DescTools::FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=format(round(m.cor$cor, digits=3), nsmall = 3))
+data<-dplyr::arrange(data,mean)
+
+fp1 <- grid.grabExpr(print(data |>
+  forestplot(labeltext = c(study, n, cor),
+             xlab = "Correlation",
+             xticks = c(0, .25,.5,.75, 1),
+             clip = c(0, 1))|>
+    fp_add_header(study = "Study",n = "N",cor = expression(italic(r))) |>
+    fp_append_row(mean  = FisherZInv(m.cor$TE.random),
+                lower = FisherZInv(m.cor$lower.random),
+                upper = FisherZInv(m.cor$upper.random),
+                study = "Summary",
+                n = sum(m.cor$n),
+                cor = round(FisherZInv(m.cor$TE.random),3),
+                is.summary = TRUE) |>
+  fp_set_style(box = "grey50",
+               line = "grey20",
+               summary = "black",
+                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
+                                ticks = gpar(cex = 0.80),
+                                xlab  = gpar(cex = 0.80)))|>
+    fp_decorate_graph(grid = structure(FisherZInv(m.cor$TE.random),gp = gpar(lty = 2, col = "grey30")))
+)
+)
+
+#### Funnel plot using a custom function
+source('../etc/custom_funnel_plot.R')
+fp2 <- suppressWarnings(custom_funnel_plot(m.cor))
+
+#gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
+ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
+
+```
