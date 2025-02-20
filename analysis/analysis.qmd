@@ -216,15 +216,15 @@ print(m.cor2)
 
 ```{r,results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
-S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove 
+S <- summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 ```
 
 
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 m.cor3 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = citekey, # unique_id
@@ -232,14 +232,14 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_categories,
+                 subgroup =  feature_n_complexity,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 print(m.cor3)
-S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
 
 ```
@@ -248,9 +248,9 @@ print(S)
 
 ```{r, results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # removemissing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # removemissing values
 
-S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
 m.cor4 <- metacor(cor = valuesMax,     # values 
@@ -260,7 +260,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_complexity_genre,
+                 subgroup =  stimulus_genre_mixed,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
@@ -463,15 +463,15 @@ print(m.cor2)
 
 ```{r,results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove 
-S <- summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove 
+S <- summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 ```
 
 
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 m.cor3 <- metacor(cor = valuesMax,     # values 
                  n = stimulus_n,
                  studlab = citekey, # unique_id
@@ -479,14 +479,14 @@ m.cor3 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_categories,
+                 subgroup =  feature_n_complexity,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
                  title = "MER: Regression: Valence: Summary")
 print(m.cor3)
-S<-summarise(group_by(tmp,feature_n_categories),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
 
 ```
@@ -495,9 +495,9 @@ print(S)
 
 ```{r, results='asis'}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
-tmp<-tmp[!is.na(tmp$feature_n_categories),] # remove missing values
+tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 
-S<-summarise(group_by(tmp,feature_n_complexity_genre),n=n(),obs=sum(stimulus_n))
+S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
 m.cor4 <- metacor(cor = valuesMax,     # values 
@@ -507,7 +507,7 @@ m.cor4 <- metacor(cor = valuesMax,     # values
                  common = FALSE,
                  random = TRUE,
                  prediction = TRUE,
-                 subgroup =  feature_n_complexity_genre,
+                 subgroup =  stimulus_genre_mixed,
 #                 backtransf = TRUE,
 #                 sm = "ZCOR",
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
@@ -774,15 +774,16 @@ print(m.cor_subgroups)
 #forest(m.cor_subgroups,subgroup=TRUE)
 ```
 
-### By genre + feature complexity
+### By feature complexity
 
 ```{r}
-m.cor_complexity <- update(m.cor.c, 
-       subgroup = C_summary$feature_n_complexity_genre, 
+m.cor_complexity <- update(m.cor.c,
+       subgroup = C_summary$feature_n_complexity,
        tau.common = FALSE,
        prediction = TRUE)
 
 print(m.cor_complexity)
+
 ```
 ### By model type
 
