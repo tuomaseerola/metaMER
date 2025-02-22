@@ -1,4 +1,4 @@
-custom_funnel_plot <- function(data) {
+custom_funnel_plot <- function(data, metric = "cor") {
   # Function to plot a funnel plot with 95% and 99% confidence intervals
   # assumes data from dmetar::metacor function
   
@@ -18,7 +18,17 @@ custom_funnel_plot <- function(data) {
   meanll95 = estimate - (1.96 * se)
   meanul95 = estimate + (1.96 * se)
   dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
-  
+
+  if(metric=="cor"){
+    metric_label <- "Correlation"
+  }
+  if(metric=="MCC"){
+      metric_label <- "Matthews Correlation Coefficient"
+    }
+  else {
+    metric_label <- 'Not defined!'
+  }
+
   fp = ggplot(NULL) +
     geom_point(aes(x = SE, y = Zr), color = 'grey50', data = tmpdata) +
     geom_text_repel(
@@ -27,7 +37,7 @@ custom_funnel_plot <- function(data) {
       size = 2.5,
       max.overlaps = 45
     ) +
-    xlab('Standard Error') + ylab('Correlation') +
+    xlab('Standard Error') + ylab(metric_label) +
     geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
     geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
     geom_hline(

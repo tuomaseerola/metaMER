@@ -212,6 +212,8 @@ Figure 4 shows forest and funnel plot visualizations from the random-effects mod
 
 {{< include _figure4.qmd >}}
 
+Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
+
 | Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:-------------|:------------|:--------------------------|:-----|:-------|:---------|:------|
 | All Models   | 86, 80544   | 0.8245 \[0.7904-0.8535\]  | 23.7 | 0.0001 | 0.2082   | 99.7% |
@@ -226,26 +228,21 @@ Figure 4 shows forest and funnel plot visualizations from the random-effects mod
 | NN           | 3, 2313     | 0.9307  \[0.6523-0.9878\] |      |        | 0.1250   | 98.8% |
 | TM           | 4, 6092     | 0.8534 \[0.4464-0.9679\]  |      |        | 0.2430   | 99.1% |
 
+
 ### Outlier analysis
 
-Accounting for outliers among the classifications results removes 6 studie, affecting both performance ($MCC$ = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores ($\tau^2$ = 0.0569, $I^2$ = 97.7%). However, Eggers' test does not indicate an asymmetric funnel plot ($\beta$ = -19.769, 95%CI: -39.29--0.24). After aggregating across dimensions, some of the best models included only classified arousal (@zhang2016; @zhang2017). To assess these studies' impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy ($MCC$ = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Conseqeuntly, we report on all 12 in subsequent analyses.
+Accounting for outliers among the classifications results removes 6 studie, affecting both performance ($MCC$ = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores ($\tau^2$ = 0.0569, $I^2$ = 97.7%). However, Eggers' test does not indicate an asymmetric funnel plot ($\beta$ = -19.769, 95%CI: -39.29--0.24). After aggregating across dimensions, some of the best models included only classified arousal (@zhang2016br; @zhang2017fe). To assess these studies' impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy ($MCC$ = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Conseqeuntly, we report on all 12 in subsequent analyses.
 
 ### Reporting splits
 
 The number of features analyzed does not significantly impact results (_Q_(2) = 3.91, _p_ = 0.1419), though $MCC$ shows differences on averages based on the number of features (< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; >300 F: $MCC$ = 0.7754). Conversely, model classes differ significantly (_Q_(3) = 4.22, _p_ = 0.239). Specifiaclly, neural networks outperform all other model types ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Studies did not differ based on whether stimuli comprised one or multiple genres (_Q_(1) = 0.12, _p_ = 0.7324), or whether studies employed binary or multi-class models (_Q_(1) = 0.03, _p_ = 0.8694). 
 
-Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
 
 
-<!-- | All Trim | 29,6499     | 0.8185 \[0.8046; 0.8314\] | 58.3 | 0.0001 | 0.0066   | 60.4% | -->
-
-<!-- | Max Trim | 6,3653      | 0.8689 \[0.7760; 0.9249\] | 11.6 | 0.0001 | 0.0749   | 97.5% | -->
 
 Heterogeneity issues
 
-Figure 3. Forest plot of arousal prediction (Max?) (Unless we do some custom plotting)
 
--   Figure Optional: Funnel plot (I haven't seen this yet)
 
 
 #### Notes to results: In the pre-registration, we promised the following:

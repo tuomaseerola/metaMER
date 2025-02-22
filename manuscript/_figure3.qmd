@@ -60,7 +60,7 @@ fp1 <- grid.grabExpr(print(data |>
 
 #### Funnel plot using a custom function
 source('../etc/custom_funnel_plot.R')
-fp2 <- suppressWarnings(custom_funnel_plot(m.cor))
+fp2 <- suppressWarnings(custom_funnel_plot(m.cor, metric = "cor"))
 
 #gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
 ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
