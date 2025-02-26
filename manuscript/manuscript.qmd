@@ -24,7 +24,7 @@ author_note: |
   Cameron J. Anderson is at the Department of Psychology, Neuroscience & Behaviour, McMaster University, Canada.
 
 abstract: |
- This meta-analysis examines music emotion recognition (MER) models published between 2014 and 2024, focusing on predictions of valence, arousal, and categorical emotions. A total of 553 studies were identified, of which 96 full-text articles were assessed, resulting in a final review of 34 studies. These studies reported 204 models, including 86 for emotion classification and 204 for regression. Using the best-performing model from each study, we found that valence and arousal were predicted with reasonable accuracy (r = 0.67 and r = 0.81, respectively), while classification models achieved an accuracy of 0.87 as measured with Matthews correlation coefficient. Across modeling approaches, linear and tree-based methods generally outperformed neural networks in regression tasks, whereas neural networks and support vector machines (SVMs) showed superior performance in classification tasks. We highlight key recommendations for future MER research, emphasizing the need for greater transparency, feature validation, and standardized reporting to improve comparability across studies.  
+ This meta-analysis examines music emotion recognition (MER) models published between 2014 and 2024, focusing on predictions of valence, arousal, and categorical emotions. A total of 553 studies were identified, of which 96 full-text articles were assessed, resulting in a final review of 34 studies. These studies reported 204 models, including 86 for emotion classification and 204 for regression. Using the best-performing model from each study, we found that valence and arousal were predicted with reasonable accuracy (r = 0.67 and r = 0.81, respectively), while classification models achieved an accuracy of 0.87 as measured with Matthews correlation coefficient. Across modeling approaches, linear and tree-based methods generally outperformed neural networks in regression tasks, whereas neural networks and support vector machines (SVMs) showed highest performance in classification tasks. We highlight key recommendations for future MER research, emphasizing the need for greater transparency, feature validation, and standardized reporting to improve comparability across studies.  
 keywords          : "music, emotion, recognition, meta-analysis"
 wordcount         : "5555"
 
@@ -150,7 +150,7 @@ Table 2. Meta-analytic diagnostic for all regression studies predicting valence 
 
 The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 22 studies achieving an average correlation of _r_ = 0.669 (95% CI: 0.560-0.755), called "valence Max" in Table 2. However, when considering all models across these studies (n = 102), the overall prediction rate drops significantly to _r_ = 0.583. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.
 
-#### Study heterogeneity
+#### Quantifying study heterogeneity
 
 Further analysis of between-study heterogeneity, as indexed by the $\tau^2$ (0.148) and Higgins & Thompson's $I^2$ statistic [@higgins2002quantifying] at 98.4%, reveals substantial heterogeneity. Since $I^2$ is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, $\tau^2$, which is less sensitive to the number of studies and directly linked to the outcome metric (_r_), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias [@van-aertwicherts_2016].
 
@@ -183,7 +183,7 @@ These comparisons of sub-groupings are also influenced by other factors, such as
 
 Moving on the arousal, we carry out the same meta-analytical analysis applying the random-effects model to arousal. Table 3 describes the broad pattern of results in tabular format, and Figure 3 illustrates the spread and heterogeneity of all studies for arousal. The overall correlation across the studies using the best performing model out of each study (Max) is 0.809 (CI95% 0.740-0.860). If we examine all the models reported in each study, the correlation drops marginally, to 0.791 (CI95% 0.770-0.810), despite this analysis including about four times as many models as taking the best model out of each study. For arousal, even the baseline models seem to perform at a relatively high level. 
 
-#### Study heterogeneity
+#### Quantifying study heterogeneity
 
 However, the indicators of heterogeneity are again high ($\tau^2$ = 0.141 and $I^2$=97.9%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, $\beta$ = 0.789 95%CI -4.87-6.45, _t_ = 0.273, _p_ = 0.788). If we remove the studies that are outside the 95%CI in heterogeneity, leaves this 13 studies in the summary that has _r_ = 0.826 (95%CI 0.806-0.845) with $\tau^2$ = 0.0042 and $I^2$ = 76.8%. In other words, no material difference to the results obtained with all 22 studies.
 
@@ -242,11 +242,9 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 | TM           | 4, 6092     | 0.8534 \[0.4464-0.9679\]  |      |        | 0.2430   | 99.1% |
 
 
-### Outlier analysis
+### Quantifying study heterogeneity
 
-Accounting for outliers among the classifications results removes 6 studies, affecting both performance ($MCC$ = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores ($\tau^2$ = 0.0569, $I^2$ = 97.7%). However, Eggers' test does not indicate an asymmetric funnel plot ($\beta$ = -19.769, 95%CI: -39.29--0.24). After aggregating across dimensions, some of the best models included only classified arousal (@zhang2016br; @zhang2017fe). To assess these studies' impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy ($MCC$ = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Consequently, we report on all 12 in subsequent analyses.
-
-More heterogeneity issues?
+Accounting for outliers among the classifications results removes 6 studies, affecting both performance ($MCC$ = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores ($\tau^2$ = 0.0569, $I^2$ = 97.7%). However, Eggers' test does not indicate an asymmetric funnel plot ($\beta$ = -19.769, 95%CI: -39.29--0.24). After aggregating across dimensions, some of the best models included only classified arousal [@zhang2016br; @zhang2017fe]. To assess these studies' impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy ($MCC$ = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Consequently, we report on all 12 in subsequent analyses.
 
 ### Reporting splits
 
@@ -260,11 +258,6 @@ Notes to results: In the pre-registration, we promised the following:
 - we promised to carry out sensitivity analyses based on type of journal the studies were published in.
 -->
 
-Anything missing?
-
-- Leave-one-out sensitivity analyses?
-
-
 # Discussion and conclusions
 
 <!-- first para is your text from ICMPC paper -->
@@ -275,7 +268,7 @@ Research on Music Emotion Recognition has steadily increased in popularity since
 
 We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 related to regression and 86 classification. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (_r_ = 0.67 [0.56, 0.76]), and arousal (_r_ = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence _r_ = 0.78, arousal _r_ = 0.88) and tree-based models (valence _r_ = 0.75, arousal _r_ = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence _r_ = 0.58, arousal _r_ = 0.79). In contrast, neural networks performed most accurately in classification studies ($MCC$ = 0.93), followed by SVMs ($MCC$ = 0.87) and tree-based models ($MCC$ = 0.85). The models applied to a variety of datasets differ substantially in terms of size, annotation principles, and the number of features and sources of these features.
 
-## Moderate but systematic increases in accuracy
+## Improvements to predictive accuracy
 
 The results of the meta-analysis offer several important insights. First, compared to a 2013 report by @barthet2013, the glass ceiling for valence has risen from _r_ = 0.51 to 0.67. Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at _r_ = 0.83). For classification, studies reached variable classification rates from 0.497 using _F~1~_ score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in the past, whereas now the accuracy is generally notably better, here $MCC$ = 0.87, albeit the differences in metrics.
 
