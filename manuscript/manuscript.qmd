@@ -248,9 +248,7 @@ Accounting for outliers among the classifications results removes 6 studies, aff
 
 ### Reporting splits
 
-The number of features (as classified into under 30, between 30 and 300, and above 300 features) analyzed does not significantly impact results (_Q_(2) = 3.91, _p_ = 0.1419), though $MCC$ shows differences on averages based on the number of features (< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; >300 F: $MCC$ = 0.7754). Conversely, model classes differ significantly (_Q_(3) = 4.22, _p_ = 0.239). Specifically, neural networks outperform all other model types ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Studies did not differ based on whether stimuli comprised one or multiple genres (_Q_(1) = 0.12, _p_ = 0.7324), or whether studies employed binary or multi-class models (_Q_(1) = 0.03, _p_ = 0.8694). 
-
-NOTE. Model classes do not seem to differ significantly!?
+The number of features (as classified into under 30, between 30 and 300, and above 300 features) analyzed does not significantly impact results (_Q_(2) = 3.91, _p_ = 0.1419), despite $MCC$s showing average differences according to the number of features (< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; >300 F: $MCC$ = 0.7754). Similarly, the class of model did not differ significantly (_Q_(3) = 4.22, _p_ = 0.239) despite neural networks attaining highest average performance ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Finally, neither single- vs. multigenre studies (_Q_(1) = 0.12, _p_ = 0.7324), nor binary vs. multi-class models (_Q_(1) = 0.03, _p_ = 0.8694) differed significantly. 
 
 <!--
 Notes to results: In the pre-registration, we promised the following:
