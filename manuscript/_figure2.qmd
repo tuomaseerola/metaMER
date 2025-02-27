@@ -1,10 +1,10 @@
 ```{r}
 #| label: fig2
-#| fig-width: 16
+#| fig-width: 12
 #| fig-height: 6
 #| echo: false
 #| fig.cap: > 
-#|   Forest (A) and funnel (B) plots of the best valence models from all MER studies.
+#|   Forest plot of the best valence models from all MER studies.
 
 library(metafor, warn.conflicts = FALSE)
 library(dmetar,warn.conflicts = FALSE)
@@ -60,11 +60,13 @@ fp1 <- grid.grabExpr(print(data |>
 )
 
 #### Funnel plot using a custom function
-source('../etc/custom_funnel_plot.R')
-fp2 <- suppressWarnings(custom_funnel_plot(m.cor, metric = "cor"))
+#source('../etc/custom_funnel_plot.R')
+#fp2 <- suppressWarnings(custom_funnel_plot(m.cor, metric = "cor"))
 
 #gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
 
-ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
+#ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
+
+gridExtra::grid.arrange(fp1)
 
 ```

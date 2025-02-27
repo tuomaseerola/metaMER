@@ -61,9 +61,13 @@ tmp |>
          )) +
   geom_raster()+
   facet_wrap(facets = vars(dimension))+
-  scale_fill_gradient2(name = "Accuracy")+
+  scale_fill_distiller(name = "Accuracy", palette = "Spectral")+
+#  scale_fill_gradient2(name = "Accuracy")+
   scale_x_discrete(labels = c("LM", "NN", "SVM", "TM"))+
   scale_y_discrete(labels = c("<30", "30-300", ">300"))+
   geom_text(aes(label = label))+
   labs(x = "Model Class Type", y = "Feature N Category")+
   theme_classic()
+
+
+ggsave("heat_map_figure.png", width = 14, height = 4, units = "in")
