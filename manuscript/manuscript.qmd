@@ -323,6 +323,6 @@ There were no competing interests.
 
 ### Open practices statement
 
-Study preregistration, data, analysis scripts and supporting information is available at Github, <https://tuomaseerola.github.io/metaMER>.
+Study preregistration, data, analysis scripts and supporting information is available at GitHub, <https://tuomaseerola.github.io/metaMER>.
 
 # References
