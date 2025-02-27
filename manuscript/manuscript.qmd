@@ -90,11 +90,11 @@ We converted all regression results from $R^2$ values into $r$ values for valenc
 
 {{< include _figure1.qmd >}}
 
-## Quality Control
+## Quality control
 
 The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include%20approx%20#%20for%20each?%20This%20would%20be%20good%20since%20the%20rest%20of%20this%20para%20already%20mentions%20counts.%20If%20this%20take%20a%20long%20time,%20we%20could%20save%20this%20for%20an%20additional%20analysis). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.
 
-## Study Encoding
+## Study encoding
 
 To capture key details of each study, we added extra fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type -- Neural Nets (NN), Support Vector Machines (SVM), Linear Methods (LM), Tree-based Methods (TM), KS, Add. and KNN Methods (KM) -- validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see `studies/extraction_details.qmd` .
 
@@ -102,7 +102,9 @@ To capture key details of each study, we added extra fields to BibTeX entries fo
 
 First we describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).
 
-TABLE 1: Summary of data (part of `analysis/preprocessing.qmd` updated 20/2/2025)
+<!-- table 1 is part of `analysis/preprocessing.qmd` updated 20/2/2025) -->
+
+TABLE 1: Summary of data 
 
 |            | Regression                      | Classification            | Total |
 |:-----------|:--------------------------------|:--------------------------|:------|
@@ -120,9 +122,9 @@ Although the total number of studies meeting the criteria described in the previ
 
 We first report regression studies that predict valence and arousal.
 
-## Prediction success for affect dimensions
+## Results for regression studies
 
-See `analysis/analysis.qmd` (updated 17/1/2025)
+<!-- See `analysis/analysis.qmd` (updated 17/1/2025) -->
 
 Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. 
 
@@ -250,8 +252,10 @@ Accounting for outliers among the classifications results removes 6 studies, aff
 
 The number of features (as classified into under 30, between 30 and 300, and above 300 features) analyzed does not significantly impact results (_Q_(2) = 3.91, _p_ = 0.1419), despite $MCC$s showing average differences according to the number of features (< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; >300 F: $MCC$ = 0.7754). Similarly, the class of model did not differ significantly (_Q_(3) = 4.22, _p_ = 0.239) despite neural networks attaining highest average performance ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Finally, neither single- vs. multigenre studies (_Q_(1) = 0.12, _p_ = 0.7324), nor binary vs. multi-class models (_Q_(1) = 0.03, _p_ = 0.8694) differed significantly. 
 
-<!--
-Notes to results: In the pre-registration, we promised the following:
+<!-- TODO @Cameron: could you also check whether the journal type made a difference to classification results? We report these in the regression section (a had talked about this in the pre-registration so it might be worth 1 sentence). -->
+
+
+<!-- Notes to results: In the pre-registration, we promised the following:
 - groupings based on genre, model complexity (high, medium, low), model validation (exists or not)
 - we promised to carry out sensitivity analyses based on type of journal the studies were published in.
 -->
@@ -260,52 +264,54 @@ Notes to results: In the pre-registration, we promised the following:
 
 <!-- first para is your text from ICMPC paper -->
 
-Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike—spurring improvements in performance. Despite increasing complexity in the types of models and data sets used, no extant study has evaluated the relative merits of the tools, stimuli, and feature sets employed in MER studies. To provide a benchmark to guide future research, we present the first meta-analysis of music emotion recognition. 
+Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike—spurring improvements in performance. Despite increasing complexity in the types of models and data sets used, no extant study has evaluated the relative merits of the tools, stimuli, and feature sets employed in MER studies. The present study offers the first meta-analysis of music emotion recognition. 
 
 <!-- Concise summary of what we did and found -->
 
-We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 related to regression and 86 classification. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (_r_ = 0.67 [0.56, 0.76]), and arousal (_r_ = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence _r_ = 0.78, arousal _r_ = 0.88) and tree-based models (valence _r_ = 0.75, arousal _r_ = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence _r_ = 0.58, arousal _r_ = 0.79). In contrast, neural networks performed most accurately in classification studies ($MCC$ = 0.93), followed by SVMs ($MCC$ = 0.87) and tree-based models ($MCC$ = 0.85). The models applied to a variety of datasets differ substantially in terms of size, annotation principles, and the number of features and sources of these features.
+We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 related to regression and 86 classification. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (_r_ = 0.67 [0.56, 0.76]), and arousal (_r_ = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence _r_ = 0.78, arousal _r_ = 0.88) and tree-based models (valence _r_ = 0.75, arousal _r_ = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence _r_ = 0.58, arousal _r_ = 0.79). In contrast, neural networks performed most accurately in classification studies ($MCC$ = 0.93), followed by SVMs ($MCC$ = 0.87) and tree-based models ($MCC$ = 0.85). Despite the high overall success of the research in this topic, the models applied to a variety of datasets differ substantially in terms of size, feature extraction methods, the number of features and their reduction, the actual modeling architecture, and the way the model outcomes are cross-validated.
 
 ## Improvements to predictive accuracy
 
 The results of the meta-analysis offer several important insights. First, compared to a 2013 report by @barthet2013, the glass ceiling for valence has risen from _r_ = 0.51 to 0.67. Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at _r_ = 0.83). For classification, studies reached variable classification rates from 0.497 using _F~1~_ score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in the past, whereas now the accuracy is generally notably better, here $MCC$ = 0.87, albeit the differences in metrics.
 
-<!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data -->
+<!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. -->
 
-Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size, likely the result of cross-validation techniques used to avoid overfitting, but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary difference, where the smaller datasets come from music psychology, which puts a premium on data quality (quality control of the ground-truth data and features) rather than on data size and modelling techniques. If quality control is successful, it decreases the random error inherent in human judgements. 
+Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size, likely the result of cross-validation techniques used to avoid overfitting, but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary difference, where the smaller datasets come from music psychology, which puts a premium on data quality (quality control of the ground-truth data and features) rather than on data size and model techniques. If quality control is successful, it decreases the random error inherent in human judgements. This argument is largely consistent with the analysis of the studies divided across journal types (psychology vs engineering).
 
-Third, there is little work on the relevance of the features and how these impact the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error to features (as opposed to target emotions obtained from participants), as the studies so far have not compared the feature sets systematically, nor a comparison of the datasets with identical features has been carried out. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where and how significant improvements can be made.
+Third, there is little work on the relevance of the features and how these impact the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error to features (as opposed to target emotions obtained from participants or from the modelling architecture, cross-validation or the size of data), as the studies so far have not compared the feature sets systematically, nor a comparison of the datasets with identical features has been carried out. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where and how significant improvements can be made.
+
+<!-- Question to @Cameron: We are a bit coy here as we don't really mention the tools by name (e.g. MIR toolbox, psysound, essentia, librosa, etc.). We have the information and should we write about them? Another gem to the supporting information as the space does not allow expansion. -->
 
 ## Recommendations for future MER studies
 
 Broadly speaking, the present study revealed an uncomfortably large variation in overall quality control and reporting in MER studies. In many cases, the reporting was insufficient to determine the features used in the models or their sources. Additionally, a significant number of studies had to be discarded due to a lack of information about the data, model architectures, or outcome measures. We summarize these issues below as recommendations for improving (1) reporting and transparency, (2) feature definition, (3) dataset scale and content, and (4) the selection of emotion frameworks.
 
-
 <!-- ### Reporting and transparency -->
 
 Future reports should contain viable information about the data, models, and success metrics. The modelling process should include a description of cross-validation, feature extraction technique, feature reduction (if used), and actual accuracy measures. We would recommend future studies to use Matthews correlation coefficient ($MCC$) for classification studies as currently there are numerous metrics (_F~1~_, precision, recall, balanced accuracy, etc.), which do not operate in the same range. The situation is regression studies tends to be less volatile, but model accuracy may be reported with error measures (Mean Squared Error, Root Mean Squared Error, or Mean Absolute Error, or $MSE$, $RMSE$, $MAE$), which cannot be converted to relative measure such as $R^2$ without knowing the variance of the data.
 
-It would be beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for a more direct comparison of model techniques for the same dataset. Also, not all datasets are shared [@akiki2021; @santana2020], or at least the sharing is only done partially. The copyright restrictions may limit the sharing of some datasets, but at least features and examples should be available.
+It would be also highly beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for a more direct comparison of model techniques for the same dataset. Also, not all datasets are shared [@akiki2021; @santana2020], or at least the sharing is only done partially. The copyright restrictions may limit the sharing of some datasets, but at least features and examples should be available.
+
+<!-- Question to @Cameron: Could you add some of the studies included in the meta-analysis in the references to those studies that do not share datasets to make this more relevant. I just copied two references that I know are examples of datasets that require extra steps, but we have studies where we just don't even know whether the data is available, right? -->
 
 <!-- ### Feature definition/validations -->
 
-One of the crucial aspects of modeling is the choice of features, their quantity, and their validation. In the present materials, we observe a continuum defined by two extremes: one approach relies on domain knowledge, starting with a limited number of features that are assumed to be perceptually relevant, while the other employs a large number of features, allowing the model to determine which are most relevant for prediction. The former is typically favored in music psychology studies, whereas the latter is more common in engineering and machine learning fields. Our results suggest that the domain knowledge-driven approach leads to the highest model accuracy across all studies and techniques. However, as our sample includes studies from the past 10 years, it is important to note that deep learning models have only gained prominence in this field since 2021. Consequently, it is too early to generalize that models based on domain knowledge, with a limited number of features and classical techniques, will continue to outperform machine learning approaches that utilize a large (300+) feature set. We believe that the relatively modest size of datasets available so far has prevented deep learning approaches from fully leveraging their potential to learn generalizable patterns in the data.
-
-<!-- ### Dataset scale and content -->
-
-We also note that the majority of the datasets used in MER studies are relatively small, but comparable to datasets for modeling facial expressions (median N=502, @krumhuber2017) and speech expressions (median of 1287, @hashem2023). However, annotated datasets for visual scenes and objects tend to be much larger, often exceeding 100,000 annotated examples [@deng2009imagenet; @krishna2017visual]. Datasets of these magnitudes seem to be required for appropriate utilisation of deep learning algorithms, which may explain the modest results observed in the music emotion recognition studies.
+One of the crucial aspects of modeling is the choice of features, their quantity, and their validation. In the present materials, we observe a continuum defined by two extremes: one approach relies on domain knowledge, starting with a limited number of features that are assumed to be perceptually relevant, while the other employs a large number of features, allowing the model to determine which are most relevant for prediction. The former is typically favored in music psychology studies, whereas the latter is more common in engineering and machine learning fields. Our results suggest that the domain knowledge-driven approach leads to the highest model accuracy across all studies and techniques. However, as our sample includes studies from the past 10 years, it is important to note that deep learning models have only gained prominence in this field since 2021. Consequently, it is too early to generalize that models based on domain knowledge, with a limited number of features and classical techniques, will continue to outperform machine learning approaches that utilize a large (300+) feature sets. We believe that the relatively modest size of datasets available so far has prevented deep learning approaches from fully leveraging their potential to learn generalizable patterns in the data. For reference, the size of the datasets in MER are currently comparable to dataset sizes for modeling facial expressions (median N=502, @krumhuber2017) and speech expressions (median of 1287, @hashem2023). However, annotated datasets for visual scenes and objects tend to be much larger, often exceeding 100,000 annotated examples [@deng2009imagenet; @krishna2017visual]. Datasets of these magnitudes seem to be required for appropriate utilisation of deep learning algorithms, which may explain the modest results observed in the music emotion recognition studies.
 
 <!-- Western bias --> 
 
-The majority of the datasets are Western pop, which represent only a fraction of the musical styles consumed globally. Also, the annotators represent the Global North do dominate the studies at the moment with some exceptions [@gomez-canon2023; @zhangPMEmo2018]. This lack of diversity may contribute the success of the task but presents a significant limitation in our understanding of MER more broadly [@bornDiversifyingMIRKnowledge2020].
+At present, the majority of the datasets are Western pop, which represent only a fraction of the musical styles consumed globally. Also, the annotators represent the Global North do dominate the studies at the moment with some exceptions [@gomez-canon2023; @zhangPMEmo2018]. This lack of diversity may contribute the success of the task but presents a significant limitation in our understanding of MER more broadly [@bornDiversifyingMIRKnowledge2020].
 
 <!-- ### Emotion frameworks chosen -->
 
-Finally, we note that the relevance of of the emotion frameworks used in MER is not always explicitly discussed. The majority of studies rely either on valence and arousal or some combination of basic emotion categories. However, the relevance of quadrants of the affective circumplex or basic emotions for music consumers can have limited usefulness in practical applications that aim to capture experiences with music that are more aligned with models of music-induced emotions such as GEMS by @zentner2008emotions or what emotions music are thought to express [@eerola2025what]. 
+Finally, we note that the relevance of the emotion frameworks used in MER is not always explicitly discussed. The majority of studies rely either on valence and arousal or some combination of basic emotion categories. However, these frameworks may have limited usefulness for some practical applications that aim to capture experiences with music that are more aligned with models of music-induced emotions such as GEMS by @zentner2008emotions or AESTHEMOS [@schindler2017me], or what emotions music are shown to be able to express [@eerola2025what], or what are assumed to be worthwhile clusters of concepts (moods, emotions, tags) from crowdsourced, non-theory driven data [@saari_et_al_2015].
 
-## Implications and Conclusion
+## Implications and conclusion
 
 The present meta-analysis demonstrates that significant progress has been made toward developing accurate and scalable MER models over the past decade. Future efforts should prioritize feature validation, standardized reporting, the construction of larger and more diverse datasets, and the transparent sharing of research materials to ensure further consistent improvements in MER.
+
+<!-- This last section needs to be expanded. Or text moved from above to here? -->
+
 
 ### Funding statement
 
