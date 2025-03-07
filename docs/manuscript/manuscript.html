@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="author" content="Cameron J. Anderson">
 <meta name="keywords" content="music, emotion, recognition, meta-analysis">
 
-<title>metaMER – A Meta-Analysis of Music Emotion Recognition Studies</title>
+<title>A Meta-Analysis of Music Emotion Recognition Studies – metaMER</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,10 +58,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b6254045a21d07dd46cfe160e8c2e3db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,7 +90,7 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -135,7 +135,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -146,7 +146,7 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -387,15 +387,15 @@ window.Quarto = {
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>First we describe the overall pattern of data (regression vs classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
+<p>First we describe the overall pattern of data (regression vs.&nbsp;classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).</p>
 <!-- table 1 is part of `analysis/preprocessing.qmd` updated 20/2/2025) -->
 <p>TABLE 1: Summary of data</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 41%">
-<col style="width: 34%">
-<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 38%">
+<col style="width: 36%">
+<col style="width: 9%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -472,15 +472,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="results-for-valence">Results for valence</h3>
 <p>Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(I^2\)</span>, calculated through appropriate transformations (Fisher’s Z) for the correlation coefficient as part of a random-effects model using <code>meta</code> library <span class="citation" data-cites="balduzzi2019">(<a href="#ref-balduzzi2019" role="doc-biblioref">Balduzzi et al., 2019</a>)</span>. We used Paule-Mandel estimator for between-study heterogeneity <span class="citation" data-cites="langan2019comparison">(<a href="#ref-langan2019comparison" role="doc-biblioref">Langan et al., 2019</a>)</span> and Knapp-Hartung <span class="citation" data-cites="knapp2003improved">(<a href="#ref-knapp2003improved" role="doc-biblioref">Knapp &amp; Hartung, 2003</a>)</span> adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into five modelling techniques introduced earlier (Table 1).</p>
 <p>Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 15%">
-<col style="width: 30%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 12%">
-<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -531,6 +531,15 @@ window.Quarto = {
 <td style="text-align: left;">98.6%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 3-22; Mdn = 16.5; <em>M</em> = 15.7)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">30-300 F</td>
 <td style="text-align: left;">8,4098</td>
 <td style="text-align: left;">0.580 [0.276-0.778]</td>
@@ -538,6 +547,15 @@ window.Quarto = {
 <td style="text-align: left;">-</td>
 <td style="text-align: left;">0.188</td>
 <td style="text-align: left;">97.4%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Range: 45-260; Mdn = 101; <em>M</em> = 136)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">300+ F</td>
@@ -549,6 +567,15 @@ window.Quarto = {
 <td style="text-align: left;">98.0%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 388-14460; Mdn = 654; <em>M</em> = 3360)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><em>Techniques</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -557,7 +584,7 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LM</td>
 <td style="text-align: left;">9,2457</td>
 <td style="text-align: left;">0.784 [0.652-0.870]</td>
@@ -566,7 +593,7 @@ window.Quarto = {
 <td style="text-align: left;">0.1194</td>
 <td style="text-align: left;">96.3%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SVM</td>
 <td style="text-align: left;">4,5068</td>
 <td style="text-align: left;">0.539 [0.171-0.774]</td>
@@ -575,7 +602,7 @@ window.Quarto = {
 <td style="text-align: left;">0.0702</td>
 <td style="text-align: left;">97.1%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">NN</td>
 <td style="text-align: left;">6,3317</td>
 <td style="text-align: left;">0.473 [0.167-0.696]</td>
@@ -584,7 +611,7 @@ window.Quarto = {
 <td style="text-align: left;">0.1029</td>
 <td style="text-align: left;">98.2%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TM</td>
 <td style="text-align: left;">3,3330</td>
 <td style="text-align: left;">0.750 [0.292-0.928]</td>
@@ -615,7 +642,7 @@ window.Quarto = {
 </section>
 <section id="reporting-splits" class="level4">
 <h4 class="anchored" data-anchor-id="reporting-splits">Reporting splits</h4>
-<p>To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modeling techniques employed. In terms of feature sets, we categorized them into three groups: few features (&lt;30), a large number of features (30–300), and massive feature sets (300+). Interestingly, models (6 in total) using a relatively small number of features (&lt;30) performed best (<em>r</em> = 0.766, 95% CI: 0.488–0.903) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (300+, 8 studies in total) also performed reasonably well (<em>r</em> = 0.666), achieving more consistent results than the overall prediction rate (<em>r</em> = 0.669). This observation is supported by the lowest heterogeneity index for the massive feature set group (<span class="math inline">\(\tau^2\)</span> = 0.062), indicating more consistent results across studies. Studies with large number of features (30-300 features, 8 studies in total) delivered the worst results, <em>r</em> = 0.580 (95% CI: 0.276–0.778). Despite the fluctuation in the overall model accuracy between the number of features, the differences are not substantially large to pass the test of statistical significance (<em>Q</em>(2) = 2.03, <em>p</em>=.363).</p>
+<p>To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modeling techniques employed. In terms of feature sets, we categorized them into three groups: few features (&lt;30), a large number of features (30–300), and massive feature sets (300+). These splits produced reasonably comparable representations of regression and classification studies, though the actual ranges differed. For transparency, we report a summary of the actual feature counts in Table 2. Models (6 in total) using a relatively small number of features (&lt;30) performed best (<em>r</em> = 0.766, 95% CI: 0.488–0.903) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (300+, 8 studies in total) also performed reasonably well (<em>r</em> = 0.666), achieving more consistent results than the overall prediction rate (<em>r</em> = 0.669). This observation is supported by the lowest heterogeneity index for the massive feature set group (<span class="math inline">\(\tau^2\)</span> = 0.062), indicating more consistent results across studies. Studies with large number of features (30-300 features, 8 studies in total) delivered the worst results, <em>r</em> = 0.580 (95% CI: 0.276–0.778). Despite the fluctuation in the overall model accuracy between the number of features, the differences are not substantially large to pass the test of statistical significance (<em>Q</em>(2) = 2.03, <em>p</em>=.363).</p>
 <!-- numbers in the text updated up to here, CA 20/2/2025 -->
 <p>When analyzing the studies across the four modeling techniques used, the prediction do differ significantly (<em>Q</em>(3) = 12.43, <em>p</em> = .0061). Notably, linear models (LM) and neural networks (NN) were the most common, with 9 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (<em>r</em> = 0.784, 95% CI: 0.652–0.870), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.119) compared to other techniques. While there were only 3 studies involving tree-based model (TM), these performed well, achieving <em>r</em> = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network (NN) models represented in six studies (<em>r</em> = 0.473, 95% CI: 0.167–0.696) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies.</p>
 <p>We also ran the sub-grouping analyses across stimulus genres (single vs mixed), finding no significant difference (<em>Q</em>(1) = 0.01, <em>p</em> = .9158). Both single-genre (<em>r</em> = 0.675 95% CI: 0.465, 0.813, <em>n</em> = 8) and multi-genre (<em>r</em> = 0.665, 95% CI: 0.508-0.779, <em>n</em> = 14) achieved similar results, although multi-genre studies exhibited slightly higher heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.167) than single-genre studies (<span class="math inline">\(\tau^2\)</span> = 0.137).</p>
@@ -632,15 +659,15 @@ window.Quarto = {
 <h4 class="anchored" data-anchor-id="quantifying-study-heterogeneity-1">Quantifying study heterogeneity</h4>
 <p>However, the indicators of heterogeneity are again high (<span class="math inline">\(\tau^2\)</span> = 0.141 and <span class="math inline">\(I^2\)</span>=97.9%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, <span class="math inline">\(\beta\)</span> = 0.789 95%CI -4.87-6.45, <em>t</em> = 0.273, <em>p</em> = 0.788). If we remove the studies that are outside the 95%CI in heterogeneity, leaves this 13 studies in the summary that has <em>r</em> = 0.826 (95%CI 0.806-0.845) with <span class="math inline">\(\tau^2\)</span> = 0.0042 and <span class="math inline">\(I^2\)</span> = 76.8%. In other words, no material difference to the results obtained with all 22 studies.</p>
 <p>Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 15%">
-<col style="width: 31%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 11%">
-<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -691,6 +718,15 @@ window.Quarto = {
 <td style="text-align: left;">93.5%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 3-22; Mdn = 16.5; <em>M</em> = 15.7)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">30-300 F</td>
 <td style="text-align: left;">8, 4098</td>
 <td style="text-align: left;">0.735 [0.501-0.868]</td>
@@ -698,6 +734,15 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.1971</td>
 <td style="text-align: left;">98.2%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Range: 45-260; Mdn = 101; <em>M</em> = 136)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">300+ F</td>
@@ -709,6 +754,15 @@ window.Quarto = {
 <td style="text-align: left;">97.4%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 388-14460; Mdn = 654; <em>M</em> = 3360)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><em>Techniques</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -717,7 +771,7 @@ window.Quarto = {
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LM</td>
 <td style="text-align: left;">8, 1713</td>
 <td style="text-align: left;">0.882 [0.809-0.928]</td>
@@ -726,7 +780,7 @@ window.Quarto = {
 <td style="text-align: left;">0.0846</td>
 <td style="text-align: left;">93.3%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SVM</td>
 <td style="text-align: left;">5, 5812</td>
 <td style="text-align: left;">0.796 [0.559-0.913]</td>
@@ -735,7 +789,7 @@ window.Quarto = {
 <td style="text-align: left;">0.1325</td>
 <td style="text-align: left;">98.3%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">NN</td>
 <td style="text-align: left;">6, 3317</td>
 <td style="text-align: left;">0.660 [0.395-0.823]</td>
@@ -744,7 +798,7 @@ window.Quarto = {
 <td style="text-align: left;">0.1209</td>
 <td style="text-align: left;">98.1%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TM</td>
 <td style="text-align: left;">3, 3330</td>
 <td style="text-align: left;">0.809 [0.733-0.864]</td>
@@ -773,7 +827,6 @@ K= 10 studies.-->
 </div>
 </div>
 </div>
-<!-- numbers in the text updated up to here, CA 20/2/2025 -->
 </section>
 </section>
 </section>
@@ -792,15 +845,15 @@ K= 10 studies.-->
 </div>
 </div>
 <p>Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 15%">
-<col style="width: 31%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 11%">
-<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -851,6 +904,15 @@ K= 10 studies.-->
 <td style="text-align: left;">96.2%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 6-11; Mdn = 9; <em>M</em> = 8.75)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">30-300 F</td>
 <td style="text-align: left;">5, 8193</td>
 <td style="text-align: left;">0.8458 [0.3613-0.9707]</td>
@@ -858,6 +920,15 @@ K= 10 studies.-->
 <td style="text-align: left;"></td>
 <td style="text-align: left;">0.4822</td>
 <td style="text-align: left;">99.9%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Range: 98-231; Mdn = 122; <em>M</em> = 139)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">300+ F</td>
@@ -869,6 +940,15 @@ K= 10 studies.-->
 <td style="text-align: left;">97.7%</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">(Range: 397-8904; Mdn = 1702; <em>M</em> = 3668)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><em>Techniques</em></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
@@ -877,7 +957,7 @@ K= 10 studies.-->
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LM</td>
 <td style="text-align: left;">2, 735</td>
 <td style="text-align: left;">0.7280 [-0.9957-0.9999]</td>
@@ -886,7 +966,7 @@ K= 10 studies.-->
 <td style="text-align: left;">0.1935</td>
 <td style="text-align: left;">98.0%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SVM</td>
 <td style="text-align: left;">3, 6556</td>
 <td style="text-align: left;">0.8699 [-0.7268-0.9985]</td>
@@ -895,7 +975,7 @@ K= 10 studies.-->
 <td style="text-align: left;">0.8233</td>
 <td style="text-align: left;">99.9%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">NN</td>
 <td style="text-align: left;">3, 2313</td>
 <td style="text-align: left;">0.9307 [0.6523-0.9878]</td>
@@ -904,7 +984,7 @@ K= 10 studies.-->
 <td style="text-align: left;">0.1250</td>
 <td style="text-align: left;">98.8%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TM</td>
 <td style="text-align: left;">4, 6092</td>
 <td style="text-align: left;">0.8534 [0.4464-0.9679]</td>
@@ -921,11 +1001,12 @@ K= 10 studies.-->
 </section>
 <section id="reporting-splits-2" class="level3">
 <h3 class="anchored" data-anchor-id="reporting-splits-2">Reporting splits</h3>
-<p>The number of features (as classified into under 30, between 30 and 300, and above 300 features) analyzed does not significantly impact results (<em>Q</em>(2) = 3.91, <em>p</em> = 0.1419), despite <span class="math inline">\(MCC\)</span>s showing average differences according to the number of features (&lt; 30 F: <span class="math inline">\(MCC\)</span> = 0.9293; 30-300 F: <span class="math inline">\(MCC\)</span> = 0.8458; &gt;300 F: <span class="math inline">\(MCC\)</span> = 0.7754). Similarly, the class of model did not differ significantly (<em>Q</em>(3) = 4.22, <em>p</em> = 0.239) despite neural networks attaining highest average performance (<span class="math inline">\(MCC\)</span> = 0.9307), followed by SVMs (<span class="math inline">\(MCC\)</span> = 0.870) and tree-based methods (<span class="math inline">\(MCC\)</span> = 0.854), then linear methods (<span class="math inline">\(MCC\)</span> = 0.728). Finally, neither single- vs.&nbsp;multigenre studies (<em>Q</em>(1) = 0.12, <em>p</em> = 0.7324), nor binary vs.&nbsp;multi-class models (<em>Q</em>(1) = 0.03, <em>p</em> = 0.8694) differed significantly.</p>
-<!-- TODO @Cameron: could you also check whether the journal type made a difference to classification results? We report these in the regression section (a had talked about this in the pre-registration so it might be worth 1 sentence). -->
+<p>The number of features (as classified into under 30, between 30 and 300, and above 300 features; see Table 3 for actual ranges) analyzed does not significantly impact results (<em>Q</em>(2) = 3.91, <em>p</em> = 0.1419), despite <span class="math inline">\(MCC\)</span>s showing average differences according to the number of features (&lt; 30 F: <span class="math inline">\(MCC\)</span> = 0.9293; 30-300 F: <span class="math inline">\(MCC\)</span> = 0.8458; &gt;300 F: <span class="math inline">\(MCC\)</span> = 0.7754). Similarly, the class of model did not differ significantly (<em>Q</em>(3) = 4.22, <em>p</em> = 0.239) despite neural networks attaining highest average performance (<span class="math inline">\(MCC\)</span> = 0.9307), followed by SVMs (<span class="math inline">\(MCC\)</span> = 0.870) and tree-based methods (<span class="math inline">\(MCC\)</span> = 0.854), then linear methods (<span class="math inline">\(MCC\)</span> = 0.728). Finally, neither single- vs.&nbsp;multigenre studies (<em>Q</em>(1) = 0.12, <em>p</em> = 0.7324), nor binary vs.&nbsp;multi-class models (<em>Q</em>(1) = 0.03, <em>p</em> = 0.8694) differed significantly. Unlike regression, no classification studies were published in engineering journals.</p>
 <!-- Notes to results: In the pre-registration, we promised the following:
 - groupings based on genre, model complexity (high, medium, low), model validation (exists or not)
 - we promised to carry out sensitivity analyses based on type of journal the studies were published in.
+
+CA: It looks like we've accounted for genre (single- vs. multi-genre), complexity (if feature n is a suitable substitute), and subgroup analyses for journal type (though this is not possible for classification studies). We have info on validation, though I'm not sure how this will play out depending on model type and whether cross-validation is necessary based on the algorithm. We might still be able to do a simple T/F encoding for cross-validation, and report the outcomes regardless of what the actual algorithm is.
 -->
 </section>
 </section>
@@ -935,26 +1016,35 @@ K= 10 studies.-->
 <!-- first para is your text from ICMPC paper -->
 <p>Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike—spurring improvements in performance. Despite increasing complexity in the types of models and data sets used, no extant study has evaluated the relative merits of the tools, stimuli, and feature sets employed in MER studies. The present study offers the first meta-analysis of music emotion recognition.</p>
 <!-- Concise summary of what we did and found -->
-<p>We initially identified 96 studies involving MER models, but in many cases the reporting standards or other quality issues or the lack of dedicated focus on music led us to include 34 studies in the analysis that overall reported 290 models, 204 related to regression and 86 classification. Comparing the most accurate model in each study, we observed reasonably accurate prediction of valence (<em>r</em> = 0.67 [0.56, 0.76]), and arousal (<em>r</em> = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence <em>r</em> = 0.78, arousal <em>r</em> = 0.88) and tree-based models (valence <em>r</em> = 0.75, arousal <em>r</em> = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence <em>r</em> = 0.58, arousal <em>r</em> = 0.79). In contrast, neural networks performed most accurately in classification studies (<span class="math inline">\(MCC\)</span> = 0.93), followed by SVMs (<span class="math inline">\(MCC\)</span> = 0.87) and tree-based models (<span class="math inline">\(MCC\)</span> = 0.85). Despite the high overall success of the research in this topic, the models applied to a variety of datasets differ substantially in terms of size, feature extraction methods, the number of features and their reduction, the actual modeling architecture, and the way the model outcomes are cross-validated.</p>
+<p>We initially identified 96 studies involving MER models, but narrowed our selection to 34 after filtering studies to ensure consistent quality, reporting standards, and a dedicated focus on music. From these studies, we encoded accuracy scores for 290 models, with 204 related to regression and 86 to classification. Comparing the most accurate model in each study revealed reasonably accurate prediction of valence (<em>r</em> = 0.67 [0.56, 0.76]), and arousal (<em>r</em> = 0.81 [0.74, 0.86]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence <em>r</em> = 0.78, arousal <em>r</em> = 0.88) and tree-based models (valence <em>r</em> = 0.75, arousal <em>r</em> = 0.81) outperformed neural networks (valence = 0.47, arousal = 0.66) and support vector machines (SVMs) (valence <em>r</em> = 0.58, arousal <em>r</em> = 0.79). In contrast, neural networks performed most accurately in classification studies (<span class="math inline">\(MCC\)</span> = 0.93), followed by SVMs (<span class="math inline">\(MCC\)</span> = 0.87) and tree-based models (<span class="math inline">\(MCC\)</span> = 0.85). Despite the high overall success of the research in this topic, the models exhibited several differences relating to (i) the scale and quantity of data sets employed, (ii) feature extraction methods, (iii) the number and types of features and reduction methods used, (iv) the actual modeling architecture, and (v) how model outcomes are cross-validated.</p>
 <section id="improvements-to-predictive-accuracy" class="level2">
 <h2 class="anchored" data-anchor-id="improvements-to-predictive-accuracy">Improvements to predictive accuracy</h2>
-<p>The results of the meta-analysis offer several important insights. First, compared to a 2013 report by <span class="citation" data-cites="barthet2013">Barthet et al. (<a href="#ref-barthet2013" role="doc-biblioref">2013</a>)</span>, the glass ceiling for valence has risen from <em>r</em> = 0.51 to 0.67. Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at <em>r</em> = 0.83). For classification, studies reached variable classification rates from 0.497 using <em>F<sub>1</sub></em> score <span class="citation" data-cites="sanden2011empirical">(<a href="#ref-sanden2011empirical" role="doc-biblioref">Sanden &amp; Zhang, 2011</a>)</span> to 79% average precision <span class="citation" data-cites="trohidis2008multi">(<a href="#ref-trohidis2008multi" role="doc-biblioref">Trohidis et al., 2008</a>)</span> in the past, whereas now the accuracy is generally notably better, here <span class="math inline">\(MCC\)</span> = 0.87, albeit the differences in metrics.</p>
-<!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. -->
-<p>Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size, likely the result of cross-validation techniques used to avoid overfitting, but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary difference, where the smaller datasets come from music psychology, which puts a premium on data quality (quality control of the ground-truth data and features) rather than on data size and model techniques. If quality control is successful, it decreases the random error inherent in human judgements. This argument is largely consistent with the analysis of the studies divided across journal types (psychology vs engineering).</p>
-<p>Third, there is little work on the relevance of the features and how these impact the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error to features (as opposed to target emotions obtained from participants or from the modelling architecture, cross-validation or the size of data), as the studies so far have not compared the feature sets systematically, nor a comparison of the datasets with identical features has been carried out. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where and how significant improvements can be made.</p>
-<!-- Question to @Cameron: We are a bit coy here as we don't really mention the tools by name (e.g. MIR toolbox, psysound, essentia, librosa, etc.). We have the information and should we write about them? Another gem to the supporting information as the space does not allow expansion. -->
+<p>The results of the meta-analysis offer several important insights. First, compared to a 2013 report by <span class="citation" data-cites="barthet2013">Barthet et al. (<a href="#ref-barthet2013" role="doc-biblioref">2013</a>)</span>, the glass ceiling for valence has risen from <em>r</em> = 0.51 to 0.67.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at <em>r</em> = 0.83). For classification, studies reached variable classification rates from 0.497 using <em>F<sub>1</sub></em> score <span class="citation" data-cites="sanden2011empirical">(<a href="#ref-sanden2011empirical" role="doc-biblioref">Sanden &amp; Zhang, 2011</a>)</span> to 79% average precision <span class="citation" data-cites="trohidis2008multi">(<a href="#ref-trohidis2008multi" role="doc-biblioref">Trohidis et al., 2008</a>)</span> in the past, whereas now the accuracy is generally notably better, here <span class="math inline">\(MCC\)</span> = 0.87, albeit the differences in metrics.</p>
+<!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. CA: this sounds like an interesting and achievable idea. The confusion matrices are encoded and then summarized with the caret and yardstick packages, and we can potentially extract many other useful measures from them with yardstick::summary(), demonstrated here: https://yardstick.tidymodels.org/reference/summary.conf_mat.html. 
+
+TE: Interesting, it is a potential weakness and it would make our promotion of MCC more valuable when we could demonstrate how these two are linked, but perhaps to limit the workload, we could try identify a small subset to which to apply to this idea. -->
+<p>Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size—likely the result of cross-validation techniques used to avoid overfitting—but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary differences. For example, the smaller datasets often come from music psychology studies, which put a premium on data quality (quality control of the ground-truth data and features) rather than on data size and model techniques. Successful quality control is thought to decrease random errors inherent in human judgments. This argument is largely consistent with the analysis of the studies divided across journal types (psychology vs.&nbsp;engineering).</p>
+<p>Third, there is little work on the relevance of the features and how these impact the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error to features (as opposed to target emotions obtained from participants or from the modelling architecture, cross-validation, or the size of data), as the studies so far have not compared the feature sets systematically, nor has a comparison of the datasets with identical features has been carried out. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where and how significant improvements can be made.</p>
+<!-- Question to @Cameron: We are a bit coy here as we don't really mention the tools by name (e.g. MIR toolbox, psysound, essentia, librosa, etc.). We have the information and should we write about them? Another gem to the supporting information as the space does not allow expansion. 
+
+CA: This is a great idea, and reminds me we also have the Panda categories, which we have encoded, but haven't touched. We could explore whether we can find additional patterns about feature categories, and possibly libraries by extending out our new heat map visualization approach. 
+
+TE: Or if we submit the meta-analysis soon and create a more pragmatic breakdown of what is the state of the art technologies in MER, this could be sufficient for a brief article separately. The selling point would not be the prediction rate, but quality control issues and the techniques/tools/crossvals/datasets chosen so far.  -->
 </section>
 <section id="recommendations-for-future-mer-studies" class="level2">
 <h2 class="anchored" data-anchor-id="recommendations-for-future-mer-studies">Recommendations for future MER studies</h2>
 <p>Broadly speaking, the present study revealed an uncomfortably large variation in overall quality control and reporting in MER studies. In many cases, the reporting was insufficient to determine the features used in the models or their sources. Additionally, a significant number of studies had to be discarded due to a lack of information about the data, model architectures, or outcome measures. We summarize these issues below as recommendations for improving (1) reporting and transparency, (2) feature definition, (3) dataset scale and content, and (4) the selection of emotion frameworks.</p>
 <!-- ### Reporting and transparency -->
-<p>Future reports should contain viable information about the data, models, and success metrics. The modelling process should include a description of cross-validation, feature extraction technique, feature reduction (if used), and actual accuracy measures. We would recommend future studies to use Matthews correlation coefficient (<span class="math inline">\(MCC\)</span>) for classification studies as currently there are numerous metrics (<em>F<sub>1</sub></em>, precision, recall, balanced accuracy, etc.), which do not operate in the same range. The situation is regression studies tends to be less volatile, but model accuracy may be reported with error measures (Mean Squared Error, Root Mean Squared Error, or Mean Absolute Error, or <span class="math inline">\(MSE\)</span>, <span class="math inline">\(RMSE\)</span>, <span class="math inline">\(MAE\)</span>), which cannot be converted to relative measure such as <span class="math inline">\(R^2\)</span> without knowing the variance of the data.</p>
-<p>It would be also highly beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for a more direct comparison of model techniques for the same dataset. Also, not all datasets are shared <span class="citation" data-cites="akiki2021 santana2020">(<a href="#ref-akiki2021" role="doc-biblioref">Akiki &amp; Burghardt, 2021</a>; <a href="#ref-santana2020" role="doc-biblioref">Santana et al., 2020</a>)</span>, or at least the sharing is only done partially. The copyright restrictions may limit the sharing of some datasets, but at least features and examples should be available.</p>
-<!-- Question to @Cameron: Could you add some of the studies included in the meta-analysis in the references to those studies that do not share datasets to make this more relevant. I just copied two references that I know are examples of datasets that require extra steps, but we have studies where we just don't even know whether the data is available, right? -->
+<p>Future reports should contain viable information about the data, models, and success metrics. The modelling process should include a description of cross-validation, feature extraction technique, feature reduction (if used), and actual accuracy measures. We would recommend future studies to use Matthews correlation coefficient (<span class="math inline">\(MCC\)</span>) for classification studies as currently there are numerous metrics (<em>F<sub>1</sub></em>, precision, recall, balanced accuracy, etc.), which do not operate in the same range. The situation for regression studies tends to be less volatile, but model accuracy may be reported with error measures (Mean Squared Error, Root Mean Squared Error, or Mean Absolute Error, or <span class="math inline">\(MSE\)</span>, <span class="math inline">\(RMSE\)</span>, <span class="math inline">\(MAE\)</span>), which cannot be converted to relative measure such as <span class="math inline">\(R^2\)</span> without knowing the variance of the data.</p>
+<p>It would be also highly beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for a more direct comparison of model techniques for the same dataset. Also, not all datasets are shared <span class="citation" data-cites="akiki2021 santana2020 hizlisoy2021mu zhang2017fe">(<a href="#ref-akiki2021" role="doc-biblioref">Akiki &amp; Burghardt, 2021</a>; <a href="#ref-hizlisoy2021mu" role="doc-biblioref">Hizlisoy et al., 2021</a>; <a href="#ref-santana2020" role="doc-biblioref">Santana et al., 2020</a>; <a href="#ref-zhang2017fe" role="doc-biblioref">J. L. Zhang et al., 2017</a>)</span>, or at least the sharing is only done partially. Standardizing reporting of datasets to include subsections explaining detailed information about stimuli (including genre, duration, sampling rate, and encoding format), features (types, extraction/analysis software, quantity of features, transformations, reduction methods), and models (types, tuning parameters, cross-validation) will enable more accurate comparisons between studies. The reporting in <span class="citation" data-cites="grekow2018au">Grekow (<a href="#ref-grekow2018au" role="doc-biblioref">2018</a>)</span> serves as a useful example by providing enough detail in these areas to facilitate reproducibility. Although copyright restrictions may limit the sharing of some datasets, features and examples should be made available.</p>
+<!-- Question to Cameron: Could you add some of the studies included in the meta-analysis in the references to those studies that do not share datasets to make this more relevant. I just copied two references that I know are examples of datasets that require extra steps, but we have studies where we just don't even know whether the data is available, right? 
+
+CA: I've added some studies now, though these were excluded from the final meta-analysis. I also have a few examples of those which were included in the final results based on scrolling through the articles. Many are psychology papers, where it seems less common to share data publicly, but those also tend to have more case-specific goals rather than comparing results to existing benchmarks, so I didn't cite them. @hizlisoy2021mu proposes a new turkish music database, but I wasn't able to find the data from the article, so I added that. @zhang2017fe uses a dataset but doesn't seem to provide information on how to access it.
+TE: great, well done, job done. -->
 <!-- ### Feature definition/validations -->
 <p>One of the crucial aspects of modeling is the choice of features, their quantity, and their validation. In the present materials, we observe a continuum defined by two extremes: one approach relies on domain knowledge, starting with a limited number of features that are assumed to be perceptually relevant, while the other employs a large number of features, allowing the model to determine which are most relevant for prediction. The former is typically favored in music psychology studies, whereas the latter is more common in engineering and machine learning fields. Our results suggest that the domain knowledge-driven approach leads to the highest model accuracy across all studies and techniques. However, as our sample includes studies from the past 10 years, it is important to note that deep learning models have only gained prominence in this field since 2021. Consequently, it is too early to generalize that models based on domain knowledge, with a limited number of features and classical techniques, will continue to outperform machine learning approaches that utilize a large (300+) feature sets. We believe that the relatively modest size of datasets available so far has prevented deep learning approaches from fully leveraging their potential to learn generalizable patterns in the data. For reference, the size of the datasets in MER are currently comparable to dataset sizes for modeling facial expressions (median N=502, <span class="citation" data-cites="krumhuber2017">Krumhuber et al. (<a href="#ref-krumhuber2017" role="doc-biblioref">2017</a>)</span>) and speech expressions (median of 1287, <span class="citation" data-cites="hashem2023">Hashem et al. (<a href="#ref-hashem2023" role="doc-biblioref">2023</a>)</span>). However, annotated datasets for visual scenes and objects tend to be much larger, often exceeding 100,000 annotated examples <span class="citation" data-cites="deng2009imagenet krishna2017visual">(<a href="#ref-deng2009imagenet" role="doc-biblioref">Deng et al., 2009</a>; <a href="#ref-krishna2017visual" role="doc-biblioref">Krishna et al., 2017</a>)</span>. Datasets of these magnitudes seem to be required for appropriate utilisation of deep learning algorithms, which may explain the modest results observed in the music emotion recognition studies.</p>
 <!-- Western bias -->
-<p>At present, the majority of the datasets are Western pop, which represent only a fraction of the musical styles consumed globally. Also, the annotators represent the Global North do dominate the studies at the moment with some exceptions <span class="citation" data-cites="gomez-canon2023 zhangPMEmo2018">(<a href="#ref-gomez-canon2023" role="doc-biblioref">Gómez-Cañón et al., 2023</a>; <a href="#ref-zhangPMEmo2018" role="doc-biblioref">K. Zhang et al., 2018</a>)</span>. This lack of diversity may contribute the success of the task but presents a significant limitation in our understanding of MER more broadly <span class="citation" data-cites="bornDiversifyingMIRKnowledge2020">(<a href="#ref-bornDiversifyingMIRKnowledge2020" role="doc-biblioref">Born, 2020</a>)</span>.</p>
+<p>At present, the majority of the datasets are Western pop, which represent only a fraction of the musical styles consumed globally. Also, the annotators representing the Global North dominate the studies at the moment, with some exceptions <span class="citation" data-cites="gomez-canon2023 zhangPMEmo2018">(<a href="#ref-gomez-canon2023" role="doc-biblioref">Gómez-Cañón et al., 2023</a>; <a href="#ref-zhangPMEmo2018" role="doc-biblioref">K. Zhang et al., 2018</a>)</span>. This lack of diversity may contribute the success of the task but presents a significant limitation in our understanding of MER more broadly <span class="citation" data-cites="bornDiversifyingMIRKnowledge2020">(<a href="#ref-bornDiversifyingMIRKnowledge2020" role="doc-biblioref">Born, 2020</a>)</span>.</p>
 <!-- ### Emotion frameworks chosen -->
 <p>Finally, we note that the relevance of the emotion frameworks used in MER is not always explicitly discussed. The majority of studies rely either on valence and arousal or some combination of basic emotion categories. However, these frameworks may have limited usefulness for some practical applications that aim to capture experiences with music that are more aligned with models of music-induced emotions such as GEMS by <span class="citation" data-cites="zentner2008emotions">Zentner et al. (<a href="#ref-zentner2008emotions" role="doc-biblioref">2008</a>)</span> or AESTHEMOS <span class="citation" data-cites="schindler2017me">(<a href="#ref-schindler2017me" role="doc-biblioref">Schindler et al., 2017</a>)</span>, or what emotions music are shown to be able to express <span class="citation" data-cites="eerola2025what">(<a href="#ref-eerola2025what" role="doc-biblioref">Eerola &amp; Saari, 2025</a>)</span>, or what are assumed to be worthwhile clusters of concepts (moods, emotions, tags) from crowdsourced, non-theory driven data <span class="citation" data-cites="saari_et_al_2015">(<a href="#ref-saari_et_al_2015" role="doc-biblioref">Saari et al., 2015</a>)</span>.</p>
 </section>
@@ -972,7 +1062,7 @@ K= 10 studies.-->
 </section>
 <section id="open-practices-statement" class="level3">
 <h3 class="anchored" data-anchor-id="open-practices-statement">Open practices statement</h3>
-<p>Study preregistration, data, analysis scripts and supporting information is available at Github, <a href="https://tuomaseerola.github.io/metaMER" class="uri">https://tuomaseerola.github.io/metaMER</a>.</p>
+<p>Study preregistration, data, analysis scripts and supporting information is available at GitHub, <a href="https://tuomaseerola.github.io/metaMER" class="uri">https://tuomaseerola.github.io/metaMER</a>.</p>
 </section>
 </section>
 </section>
@@ -1074,6 +1164,9 @@ Gómez-Cañón, J. S., Cano, E., Eerola, T., Herrera, P., Hu, X., Yang, Y.-H., &
 </div>
 <div id="ref-gomez-canon2023" class="csl-entry" role="listitem">
 Gómez-Cañón, J. S., Gutiérrez-Páez, N., Porcaro, L., Porter, A., Cano, E., Herrera-Boyer, P., Gkiokas, A., Santos, P., Hernández-Leo, D., Karreman, C., &amp; Gómez, E. (2023). <span>TROMPA-MER</span>: An open dataset for personalized music emotion recognition. <em>Journal of Intelligent Information Systems</em>, <em>60</em>(2), 549–570. <a href="https://doi.org/10.1007/s10844-022-00746-0">https://doi.org/10.1007/s10844-022-00746-0</a>
+</div>
+<div id="ref-grekow2018au" class="csl-entry" role="listitem">
+Grekow, J. (2018). Audio features dedicated to the detection and tracking of arousal and valence in musical compositions. <em>Journal of Information and Telecommunication</em>, <em>2</em>(3), 322–333.
 </div>
 <div id="ref-griffiths2021am" class="csl-entry" role="listitem">
 Griffiths, D., Cunningham, S., Weinel, J., &amp; Picking, R. (2021). A multi-genre model for music emotion recognition using linear regressors. <em>JOURNAL OF NEW MUSIC RESEARCH</em>, <em>50</em>(4), 355–372. <a href="https://doi.org/10.1080/09298215.2021.1977336">https://doi.org/10.1080/09298215.2021.1977336</a>
@@ -1214,6 +1307,7 @@ Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized compo
 
 <ol>
 <li id="fn1"><p>The best-performing model to date reached 69.83 % in the 2017 competition <span class="citation" data-cites="park2017representation">(<a href="#ref-park2017representation" role="doc-biblioref">Park et al., 2017</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Values reported as <span class="math inline">\(R^2\)</span> in original study.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1251,18 +1345,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1294,7 +1377,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1329,7 +1450,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1377,7 +1502,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
