@@ -16,6 +16,7 @@ library(tidyverse,quietly = TRUE)
 library(meta)
 library(DescTools)
 library(ggrepel)
+library(forestplot)
 ```
 
 #### Using all models
@@ -58,6 +59,15 @@ print(FisherZInv(m.cor$lower.random))
 
 ```{r}
 R_summary <- read.csv("R_summary.csv")
+
+# print a summary of features
+
+R_summary |> 
+  group_by(feature_n_complexity) |> 
+  summarize(min = min(feature_n), 
+            max = max(feature_n), 
+            mean = mean(feature_n), 
+            mdn = median(feature_n))
 
 # select regression studies with r2
 tmp <- dplyr::filter(R_summary,dimension=="valence")
@@ -128,7 +138,6 @@ fig2a <- meta::forest(m.cor,
 
 fig2b <- funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
-library(forestplot)
 data<-tibble::tibble(mean=m.cor$cor,lower=FisherZInv(m.cor$lower),upper=FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
 data<-dplyr::arrange(data,mean)
 
@@ -172,19 +181,8 @@ print(knitr::kable(S))
 ```
 
 ```{r}
-m.cor1 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  model_class_id,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor1 <- update(m.cor,
+       subgroup = model_class_id)
 print(m.cor1)
 ```
 
@@ -196,19 +194,8 @@ print(knitr::kable(S))
 ```
 
 ```{r}
-m.cor2 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  journal_type,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor2 <- update(m.cor,
+       subgroup = journal_type)
 print(m.cor2)
 ```
 
@@ -225,19 +212,8 @@ print(knitr::kable(S))
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="valence")
 tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
-m.cor3 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  feature_n_complexity,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor3 <- update(m.cor,
+       subgroup = feature_n_complexity)
 print(m.cor3)
 S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
@@ -253,19 +229,9 @@ tmp<-tmp[!is.na(tmp$feature_n_complexity),] # removemissing values
 S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
-m.cor4 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  stimulus_genre_mixed,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor4 <- update(m.cor,
+       subgroup = stimulus_genre_mixed)
+
 print(m.cor4)
 ```
 
@@ -375,7 +341,6 @@ fig2a <- forest(m.cor,
 
 fig2b<-funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
-library(forestplot)
 data<-tibble::tibble(mean=m.cor$cor,lower=FisherZInv(m.cor$lower),upper=FisherZInv(m.cor$upper),study=m.cor$studlab,n=m.cor$n,cor=round(m.cor$cor,2))
 data<-dplyr::arrange(data,mean)
 
@@ -419,19 +384,9 @@ print(knitr::kable(S))
 ```
 
 ```{r}
-m.cor1 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  model_class_id,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor1 <- update(m.cor,
+                 subgroup = model_class_id
+)
 print(m.cor1)
 ```
 
@@ -443,19 +398,10 @@ print(knitr::kable(S))
 ```
 
 ```{r}
-m.cor2 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  journal_type,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor2 <- update(
+  m.cor,
+  subgroup = journal_type
+)
 print(m.cor2)
 ```
 
@@ -472,19 +418,10 @@ print(knitr::kable(S))
 ```{r}
 tmp <- dplyr::filter(R_summary,dimension=="arousal")
 tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
-m.cor3 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  feature_n_complexity,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+m.cor3 <- update(
+  m.cor,
+  subgroup = feature_n_complexity
+)
 print(m.cor3)
 S<-summarise(group_by(tmp,feature_n_complexity),n=n(),obs=sum(stimulus_n))
 print(S)
@@ -500,19 +437,12 @@ tmp<-tmp[!is.na(tmp$feature_n_complexity),] # remove missing values
 S<-summarise(group_by(tmp,stimulus_genre_mixed),n=n(),obs=sum(stimulus_n))
 print(knitr::kable(S))
 
-m.cor4 <- metacor(cor = valuesMax,     # values 
-                 n = stimulus_n,
-                 studlab = citekey, # unique_id
-                 data = tmp,
-                 common = FALSE,
-                 random = TRUE,
-                 prediction = TRUE,
-                 subgroup =  stimulus_genre_mixed,
-#                 backtransf = TRUE,
-#                 sm = "ZCOR",
-                 method.tau = "REML",# could be PM (Paule-Mandel) as well
-                 method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+
+m.cor4 <- update(
+  m.cor,
+  subgroup = stimulus_genre_mixed
+)
+
 print(m.cor4)
 ```
 
@@ -533,6 +463,15 @@ C_summary <- read.csv("C_summary.csv")
 C_classes <- read.csv("C_study_class_n.csv")
 
 C_summary <- merge(C_summary, C_classes)
+
+# print a summary of features
+
+C_summary |> 
+  group_by(feature_n_complexity) |> 
+  summarize(min = min(feature_n), 
+            max = max(feature_n), 
+            mean = mean(feature_n), 
+            mdn = median(feature_n))
 
 m.cor.c.all <- metacor(cor = values,     # values 
                  n = stimulus_n,
@@ -608,6 +547,8 @@ m.cor.c <- metacor(cor = valuesMax,     # values
                  method.random.ci = "HK", 
                  title = "MER: Classification: Summary")
 
+print(m.cor.c)
+
 ```
 
 ### Custom funnel for classification studies
@@ -623,7 +564,6 @@ fig3a <- forest(m.cor.c,
 
 fig3b<-funnel(m.cor.c, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
-library(forestplot)
 data<-tibble::tibble(mean=m.cor.c$cor,lower=FisherZInv(m.cor.c$lower),upper=FisherZInv(m.cor.c$upper),study=m.cor.c$studlab,n=m.cor.c$n,cor=round(m.cor.c$cor,2))
 data<-dplyr::arrange(data,mean)
 
@@ -664,7 +604,6 @@ gridExtra::grid.arrange(fp3, fp4, ncol=2, widths=c(2,1),heights=c(2,1))
 #### Custom plot
 
 ```{r}
-library(ggrepel)
 tmpdata <- data.frame(SE = FisherZInv(m.cor.c$seTE), Zr = FisherZInv(m.cor.c$TE),studies=m.cor.c$studlab)
 
 tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
@@ -714,7 +653,7 @@ outliers <- O$out.study.random
 tmp2<-C_summary[!C_summary$studyREF %in% outliers,]
 m.cor.c.o <- metacor(cor = valuesMax, 
                  n = stimulus_n,
-                 studlab = tmp2$studyREF,
+                 studlab = studyREF,
                  data = tmp2,
                  common = FALSE,
                  random = TRUE,
@@ -723,7 +662,7 @@ m.cor.c.o <- metacor(cor = valuesMax,
                  backtransf = TRUE,
                  method.tau = "REML",# could be PM (Paule-Mandel) as well
                  method.random.ci = "HK", 
-                 title = "MER: Regression: Valence: Summary")
+                 title = "MER: Classification: Summary")
 
 ```
 
@@ -745,30 +684,43 @@ funnel(m.cor.c.o, common = FALSE, studlab=TRUE,backtransf=TRUE)
 ### By binary vs. multi-class classification
 
 ```{r}
-m.cor_classes <- update(m.cor.c, 
-       subgroup = C_summary$classes, 
-       tau.common = FALSE,
-       prediction = TRUE)
+m.cor_classes <- update(
+  m.cor.c, 
+  subgroup = classes)
+
+print(m.cor_classes)
 
 forest(m.cor_classes,
        sortvar = TE,
        prediction = FALSE, 
              print.tau2 = FALSE,
-             leftlabs = c("Author", "N"),studlab = citekey)
+             leftlabs = c("Author", "N"),
+       studlab = citekey)
 
 funnel(m.cor, common = FALSE, studlab=TRUE,backtransf=TRUE)
 
 ```
 
+### By journal type
+
+```{r}
+m.cor_journal <- update(
+  m.cor.c, 
+  subgroup = journal_type
+)
+
+print(m.cor_journal)
+
+```
 
 ### By single vs. multi-genre
 
 ```{r}
 #| eval: false
-m.cor_subgroups <- update(m.cor.c, 
-       subgroup = stimulus_genre_mixed, 
-       tau.common = FALSE,
-       prediction = TRUE)
+m.cor_subgroups <- update(
+  m.cor.c, 
+  subgroup = stimulus_genre_mixed
+)
 
 print(m.cor_subgroups)
 #forest(m.cor_subgroups,subgroup=TRUE)
@@ -777,10 +729,10 @@ print(m.cor_subgroups)
 ### By feature complexity
 
 ```{r}
-m.cor_complexity <- update(m.cor.c,
-       subgroup = C_summary$feature_n_complexity,
-       tau.common = FALSE,
-       prediction = TRUE)
+m.cor_complexity <- update(
+  m.cor.c,
+  subgroup = feature_n_complexity
+)
 
 print(m.cor_complexity)
 
@@ -789,10 +741,10 @@ print(m.cor_complexity)
 
 ```{r}
 #| eval: false
-m.cor_subgroups <- update(m.cor.c, 
-       subgroup = model_class_id, 
-       tau.common = FALSE,
-       prediction = TRUE)
+m.cor_subgroups <- update(
+  m.cor.c, 
+  subgroup = model_class_id, 
+)
 
 print(m.cor_subgroups)
 #forest(m.cor_subgroups,subgroup=TRUE)
