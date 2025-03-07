@@ -260,6 +260,12 @@ Accounting for outliers among the classifications results removes 6 studies, aff
 
 The number of features (as classified into under 30, between 30 and 300, and above 300 features; see Table 3 for actual ranges) analyzed does not significantly impact results (*Q*(2) = 3.91, *p* = 0.1419), despite $MCC$s showing average differences according to the number of features (\< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; \>300 F: $MCC$ = 0.7754). Similarly, the class of model did not differ significantly (*Q*(3) = 4.22, *p* = 0.239) despite neural networks attaining highest average performance ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Finally, neither single- vs. multigenre studies (*Q*(1) = 0.12, *p* = 0.7324), nor binary vs. multi-class models (*Q*(1) = 0.03, *p* = 0.8694) differed significantly. Unlike regression, no classification studies were published in engineering journals.
 
+### Model success across concepts
+
+To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 reveals studies using smaller feature sets tend to perform best, whereas the best model class differs depending on the prediction task.
+
+![Heatmap Depicting Success Across Tasks](../heat_map_figure.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses.")
+
 ```{=html}
 <!-- Notes to results: In the pre-registration, we promised the following:
 - groupings based on genre, model complexity (high, medium, low), model validation (exists or not)
@@ -285,9 +291,11 @@ The results of the meta-analysis offer several important insights. First, compar
 
 [^2]: Values reported as $R^2$ in original study.
 
+```{=html}
 <!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. CA: this sounds like an interesting and achievable idea. The confusion matrices are encoded and then summarized with the caret and yardstick packages, and we can potentially extract many other useful measures from them with yardstick::summary(), demonstrated here: https://yardstick.tidymodels.org/reference/summary.conf_mat.html. 
 
 TE: Interesting, it is a potential weakness and it would make our promotion of MCC more valuable when we could demonstrate how these two are linked, but perhaps to limit the workload, we could try identify a small subset to which to apply to this idea. -->
+```
 
 Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size—likely the result of cross-validation techniques used to avoid overfitting—but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary differences. For example, the smaller datasets often come from music psychology studies, which put a premium on data quality (quality control of the ground-truth data and features) rather than on data size and model techniques. Successful quality control is thought to decrease random errors inherent in human judgments. This argument is largely consistent with the analysis of the studies divided across journal types (psychology vs. engineering).
 
