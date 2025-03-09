@@ -291,7 +291,7 @@ We initially identified 96 studies involving MER models, but narrowed our select
 
 The results of the meta-analysis offer several important insights. First, compared to a 2013 report by @barthet2013, the glass ceiling for valence has risen from *r* = 0.51 to 0.67.[^3] Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at *r* = 0.83). For classification, studies reached variable classification rates from 0.497 using *F~1~* score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in the past, whereas now the accuracy is generally notably better, here $MCC$ = 0.87, albeit the differences in metrics.
 
-[^3]: @chen2017co was the only study in the included studies using Gaussian Mixture Models. We decided to group this with SVMs, as they are commonly applied in similar contexts and have been used together in hybrid systems.
+[^3]: Values reported as $R^2$ in original study.
 
 ```{=html}
 <!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. CA: this sounds like an interesting and achievable idea. The confusion matrices are encoded and then summarized with the caret and yardstick packages, and we can potentially extract many other useful measures from them with yardstick::summary(), demonstrated here: https://yardstick.tidymodels.org/reference/summary.conf_mat.html. 
@@ -334,8 +334,7 @@ One of the crucial aspects of modeling is the choice of features, their quantity
 
 <!-- ### Validation -->
 
-An encouraging finding is that ~94% of the studies analyzed here reported some form of model validation. The majority of studies validated models by splitting the dataset into separate sets for training and testing [e.g., @yang2021an], sometimes including an additional set for validation [@sorussa2020em]. Most used some form of cross validation (CV), with the most common type being 10-fold CV. Other varieties included 3-fold, 5-fold, or 6-fold CV, as well as more complex variants like nested leave-one-out CV [@coutinho2017sh] and 20 x 10-fold CV [@panda2020no]. Whereas many engineering studies performed model validation using one or more large databases, some psychological studies evaluating smaller datasets validated models by designing new experiments. Examples include comparing a model's performance on ground-truth data with annotations from a second experiment [@griffiths2021am; @beveridge2018po], or comparing a model's performance across different versions of the same music pieces [@battcock2021in].
-
+An encouraging finding is that \~94% of the studies analyzed here reported some form of model validation. The majority of studies validated models by splitting the dataset into separate sets for training and testing [e.g., @yang2021an], sometimes including an additional set for validation [@sorussa2020em]. Most used some form of cross validation (CV), with the most common type being 10-fold CV. Other varieties included 3-fold, 5-fold, or 6-fold CV, as well as more complex variants like nested leave-one-out CV [@coutinho2017sh] and 20 x 10-fold CV [@panda2020no]. Whereas many engineering studies performed model validation using one or more large databases, some psychological studies evaluating smaller datasets validated models by designing new experiments. Examples include comparing a model's performance on ground-truth data with annotations from a second experiment [@griffiths2021am; @beveridge2018po], or comparing a model's performance across different versions of the same music pieces [@battcock2021in].
 
 <!-- Western bias -->
 
