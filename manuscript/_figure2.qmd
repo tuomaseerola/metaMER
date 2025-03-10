@@ -3,6 +3,8 @@
 #| fig-width: 12
 #| fig-height: 6
 #| echo: false
+#| warning: false
+#| message: false
 #| fig.cap: > 
 #|   Forest plot of the best valence models from all MER studies.
 

@@ -1,0 +1,160 @@
+---
+title: "A Meta-Analysis of Music Emotion Recognition Studies"
+# If blank, the running header is the title in upper case.
+shorttitle: "Meta-analysis of music emotion recognition"
+# Set names and affiliations.
+# It is nice to specify everyone's orcid, if possible.
+# There can be only one corresponding author, but declaring one is optional.
+author:
+  - name: Tuomas Eerola
+    corresponding: true
+    orcid: 0000-0002-2896-929X
+    email: tuomas.eerola@durham.ac.uk
+    url: https://tuomaseerola.github.io/
+    # Roles are optional. 
+    # Select from the CRediT: Contributor Roles Taxonomy https://credit.niso.org/
+    # conceptualization, data curation, formal Analysis, funding acquisition, investigation, 
+    # methodology, project administration, resources, software, supervision, validation, 
+    # visualization, writing, editing
+    roles:
+      - conceptualization
+      - methodology
+      - formal Analysis
+      - writing
+    affiliations:
+      - id: id1
+        name: "Durham University"
+        department: Department of Music
+        address: Palace Green
+        city: Durham
+        region: Durham
+        country: United Kingdom
+        postal-code: DH1 3DA
+  - name: Cameron J. Anderson
+    orcid: 0000-0002-4334-5696
+    roles:
+      - data curation
+      - formal analysis
+      - writing
+    affiliations: 
+      - ref: id2
+        name: "McMaster University"
+        department: "Department of Psychology, Neuroscience & Behaviour"
+        city: Hamilton
+        region: Ontario
+        country: Canada
+author-note:
+    study-registration: "the meta-analysis plan was pre-registered on 21 June 2024 at OSF, https://osf.io/c5wgd"
+    # Acknowledge and cite data/materials to be shared.
+    data-sharing: "https://tuomaseerola.github.io/metaMER"
+    related-report: ~
+    conflict-of-interest: The authors have no conflicts of interest to disclose.
+    # Example: This study was supported by Grant [Grant Number] from [Funding Source].
+    financial-support: ~
+    # Example: The authors are grateful to [Person] for [Reason].
+    gratitude: ~
+    # Example. Because the authors are equal contributors, order of authorship was determined by a fair coin toss.
+    authorship-agreements: ~
+abstract: "This meta-analysis examines music emotion recognition (MER) models published between 2014 and 2024, focusing on predictions of valence, arousal, and categorical emotions. A total of 553 studies were identified, of which 96 full-text articles were assessed, resulting in a final review of 34 studies. These studies reported 204 models, including 86 for emotion classification and 204 for regression. Using the best-performing model from each study, we found that valence and arousal were predicted with reasonable accuracy (r = 0.67 and r = 0.81, respectively), while classification models achieved an accuracy of 0.87 as measured with Matthews correlation coefficient. Across modeling approaches, linear and tree-based methods generally outperformed neural networks in regression tasks, whereas neural networks and support vector machines (SVMs) showed highest performance in classification tasks. We highlight key recommendations for future MER research, emphasizing the need for greater transparency, feature validation, and standardized reporting to improve comparability across studies."
+# Put as many keywords at you like, separated by commmas (e.g., [reliability, validity, generalizability])
+keywords: [music, emotion, recognition, computational, model, meta-analysis]
+# If true, tables and figures are mingled with the text instead of listed at the end of the document.
+impact-statement: ~
+floatsintext: true
+# Numbered lines (.pdf and .docx only)
+numbered-lines: false
+# File with references
+bibliography: references.bib
+# Suppress title page
+suppress-title-page: false
+# Link citations to references
+link-citations: true
+# Masks references that appear in the masked-citations list
+mask: false
+# If true, adds today's date below author affiliations. If text, can be any value.
+# This is not standard APA format, but it is convenient.
+# Works with docx, html, and typst. 
+draft-date: false
+# Language options. See https://quarto.org/docs/authoring/language.html
+lang: en
+language:
+  citation-last-author-separator: "and"
+  citation-masked-author: "Masked Citation"
+  citation-masked-date: "n.d."
+  citation-masked-title: "Masked Title"
+  email: "Email"
+  title-block-author-note: "Author Note"
+  title-block-correspondence-note: "Correspondence concerning this article should be addressed to"
+  title-block-role-introduction: "Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows:"
+  title-impact-statement: "Impact Statement"
+  references-meta-analysis: "References marked with an asterisk indicate studies included in the meta-analysis."
+format:
+#  apaquarto-docx: default
+#  apaquarto-html: default
+  apaquarto-typst: 
+    keep-typ: true
+    list-of-figures: false
+    list-of-tables: false
+#    toc: true
+#  apaquarto-pdf:
+    # Can be jou (journal), man (manuscript), stu (student), or doc (document)
+#    documentmode: jou
+#    keep-tex: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+```
+
+
+
+# Introduction
+
+Emotional engagement is a key reason why people engage with music in their every day activities, and it is also why music is increasingly being used in various health applications [@juslin2022emotions; @agres2021music]. 
+
+# Methods
+
+
+
+{{< include _figure1.qmd >}}
+
+
+
+# Results
+
+```{r}
+#| label: tbl-table1
+#| tbl-cap: Summary of the models for regression and classification studies.
+#| ft.align: left
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(flextable)
+
+tibble(Info = c("Study N","Model N","Techniques","Techniques","Techniques","Techniques","Techniques","Feature N","Stimulus N"), 
+       Regression = c("22","204","Neural Nets: 64","Support Vector Machines: 62","Linear Methods: 62","Tree-based Methods: 14","KS, Add. & KNN: 2","Min=3, Md=653, Max=14460","Min=20, Md=324, Max=2486"),
+       Classification = c("12","86","21","26","19","16","4","Min=6, Md=98, Max=8904","Min=124, Md=300, Max=5192"),
+       Total = c("34","290","85","88","81","30","6","NA","NA")) %>% 
+  flextable(cwidth = c(.7,2.3,2.3,.4)) %>%
+  theme_apa() 
+```
+
+# Discussion and conclusions
+
+
+### Funding statement
+
+CA was funded by Mitacs Globalink Research Award (Mitacs & British High Commission - Ottawa, Canada).
+
+### Competing interests statement
+
+There were no competing interests.
+
+### Open practices statement
+
+Study preregistration, data, analysis scripts and supporting information is available at GitHub, <https://tuomaseerola.github.io/metaMER>.
+
+# References
