@@ -1,7 +1,6 @@
 ---
 title             : "A Meta-Analysis of Music Emotion Recognition Studies"
 shorttitle        : "Meta-analysis of music emotion recognition"
-
 author: 
   - name          : "Tuomas Eerola"
     affiliation   : "1"
@@ -12,7 +11,6 @@ author:
     affiliation   : "2"
     address       : "Department of Psychology, Neuroscience & Behaviour, McMaster University, Hamilton, ON, Canada"
     email         : "andersoc@mcmaster.ca"
-
 affiliation:
   - id            : "1"
     institution   : "Department of Music, Durham University"
@@ -27,9 +25,6 @@ abstract: |
  This meta-analysis examines music emotion recognition (MER) models published between 2014 and 2024, focusing on predictions of valence, arousal, and categorical emotions. A total of 553 studies were identified, of which 96 full-text articles were assessed, resulting in a final review of 34 studies. These studies reported 204 models, including 86 for emotion classification and 204 for regression. Using the best-performing model from each study, we found that valence and arousal were predicted with reasonable accuracy (r = 0.67 and r = 0.81, respectively), while classification models achieved an accuracy of 0.87 as measured with Matthews correlation coefficient. Across modeling approaches, linear and tree-based methods generally outperformed neural networks in regression tasks, whereas neural networks and support vector machines (SVMs) showed highest performance in classification tasks. We highlight key recommendations for future MER research, emphasizing the need for greater transparency, feature validation, and standardized reporting to improve comparability across studies.  
 keywords          : "music, emotion, recognition, meta-analysis"
 wordcount         : "5555"
-
-#bibliography      : ["references.bib"]
-
 figsintext        : yes
 figurelist        : no
 tablelist         : no
@@ -37,10 +32,10 @@ footnotelist      : no
 lineno            : no
 mask              : no
 csl: apa7.csl
-
 class             : "man"
-output            : papaja::apa6_pdf
 bibliography: references.bib
+format:
+  html: default
 ---
 
 ```{r global options, include = FALSE}
