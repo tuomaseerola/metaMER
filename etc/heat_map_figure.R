@@ -1,4 +1,4 @@
-
+library(ggplot2)
 
 # Read in best models ---------------------------------------------
 
@@ -54,7 +54,10 @@ tmp <- tmp |> dplyr::group_by(
 tmp$dimension <- factor(tmp$dimension,
                         levels = c("valence", 
                                    "arousal", 
-                                   "classification"))
+                                   "classification"),
+                        labels = c("Valence", 
+                                   "Arousal", 
+                                   "Classification"))
 
 heatmap_facets <- tmp |>
   ggplot(aes(x = model_class_id, 
@@ -69,12 +72,12 @@ heatmap_facets <- tmp |>
   scale_y_discrete(labels = c("<30", "30-300", ">300"))+
   geom_text(aes(label = label))+
   labs(x = "Model class type", y = "Feature N category")+
-  theme_classic()
+  theme_classic(base_size = 14,base_family = "Helvetica")
 
 
 heatmap_facets
 
-ggsave("heat_map_figure.png", width = 14, height = 4, units = "in")
+ggsave("heat_map_figure_R1.png", width = 14, height = 4, units = "in",dpi = 300)
 
 
 

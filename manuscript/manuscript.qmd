@@ -261,7 +261,7 @@ The number of features (as classified into under 30, between 30 and 300, and abo
 
 To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 reveals studies using smaller feature sets tend to perform best, whereas the best model class differs depending on the prediction task.
 
-![Heatmap Depicting Success Across Tasks](../manuscript/heat_map_figure.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="892"}
+![Heatmap Depicting Success Across Tasks](../manuscript/heat_map_figure_R1.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="892"}
 
 ```{=html}
 <!-- Notes to results: In the pre-registration, we promised the following:
