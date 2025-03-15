@@ -1,0 +1,58 @@
+,citekey,dimension,model_class_id,model_id,best_model,paradigm
+1,battcock2021in,arousal,Linear Methods,Linear Regression,0.887693640846886,regression
+2,battcock2021in,valence,Linear Methods,Linear Regression,0.898888202169769,regression
+3,beveridge2018po,arousal,Tree-based Methods,Random Forest,0.888819441731559,regression
+4,beveridge2018po,valence,Tree-based Methods,Random Forest,0.781024967590665,regression
+5,chen2017co,arousal,Support Vector Machines,Gaussian Mixture Model,0.818535277187245,regression
+6,chen2017co,valence,Support Vector Machines,Gaussian Mixture Model,0.387298334620742,regression
+7,coutinho2017sh,arousal,Neural Nets,Recurrent Neural Network,0.517,regression
+8,coutinho2017sh,valence,Neural Nets,Recurrent Neural Network,0.175,regression
+9,deng2015em,arousal,Linear Methods,Sparse Bayesian Regression,0.859127464349732,regression
+10,deng2015em,valence,Linear Methods,Variational Bayesian Regression,0.795487272054054,regression
+11,gingras2014be,arousal,Linear Methods,Partial Least Squares,0.92736184954957,regression
+12,gingras2014be,valence,Linear Methods,Partial Least Squares,0.730068489937759,regression
+13,grekow2018au,arousal,Support Vector Machines,Support Vector Regression,0.888819441731559,regression
+14,grekow2018au,valence,Support Vector Machines,Support Vector Regression,0.761577310586391,regression
+15,grekow2021mu,arousal,Neural Nets,Recurrent Neural Network,0.854400374531753,regression
+16,grekow2021mu,valence,Neural Nets,Recurrent Neural Network,0.678232998312527,regression
+17,griffiths2021am,arousal,Linear Methods,Linear Regression,0.921954445729289,regression
+18,griffiths2021am,valence,Linear Methods,Linear Regression,0.88090862182181,regression
+19,hu2017cr,arousal,Support Vector Machines,Support Vector Regression,0.842614977317636,regression
+20,hu2017cr,valence,Support Vector Machines,Support Vector Regression,0.509901951359279,regression
+21,koh2023me,arousal,Neural Nets,Fully-Connected Neural Network,0.3507,regression
+22,koh2023me,valence,Neural Nets,Fully-Connected Neural Network,0.1314,regression
+23,markov2014mu,arousal,Support Vector Machines,Support Vector Regression,0.828251169633946,regression
+24,markov2014mu,valence,Linear Methods,Gaussian Process Regression,0.664830805543786,regression
+25,orjesek2022en,arousal,Neural Nets,Convolutional Neural Network,0.66,regression
+26,orjesek2022en,valence,Neural Nets,Convolutional Neural Network,0.637,regression
+27,saizclar2022pr,arousal,Linear Methods,Linear Regression,0.73280283842245,regression
+28,saizclar2022pr,valence,Linear Methods,Linear Regression,0.46690470119715,regression
+29,wang2021ac,arousal,Linear Methods,Partial Least Squares Regression,0.836660026534076,regression
+30,wang2021ac,valence,Linear Methods,Partial Least Squares Regression,0.741619848709566,regression
+31,wang2022co,arousal,Tree-based Methods,Extremely Randomized Tree Regression,0.820365772079747,regression
+32,wang2022co,valence,Tree-based Methods,Extremely Randomized Tree Regression,0.833666600026653,regression
+33,wang2022cr,arousal,Linear Methods,Partial Least Squares Regression,0.953939201416946,regression
+34,wang2022cr,valence,Linear Methods,Partial Least Squares Regression,0.921954445729289,regression
+35,xie2020mu,arousal,Linear Methods,Principal Component Regression,0.793,regression
+36,xie2020mu,arousal,Linear Methods,Partial Least Squares Regression,0.793,regression
+37,xie2020mu,valence,Linear Methods,Principal Component Regression,0.634,regression
+38,xu2021us,arousal,Tree-based Methods,Random Forest,0.793095202355934,regression
+39,xu2021us,valence,Tree-based Methods,Random Forest,0.609097693313642,regression
+40,yang2021an,arousal,Neural Nets,Backpropagation Neural Network,0.817740790226341,regression
+41,yang2021an,valence,Neural Nets,Backpropagation Neural Network,0.678675180038286,regression
+42,zhang2019us,arousal,Support Vector Machines,Support Vector Regression,0.425,regression
+43,zhang2019us,valence,Support Vector Machines,Support Vector Regression,0.42,regression
+44,zhang2023mo,arousal,Neural Nets,Recurrent Neural Network,0.502,regression
+45,zhang2023mo,valence,Neural Nets,Recurrent Neural Network,0.309,regression
+46,agarwal2021an,classification,Support Vector Machines,Support Vector Machine,0.983013331151751,classification
+47,alvarez2023ri,classification,Tree-based Methods,Random Forest,0.931672888789692,classification
+48,bhuvanakumar2023em,classification,Neural Nets,Recurrent Neural Network,0.966090557283397,classification
+49,dufour2021us,classification,Linear Methods,Polygonal Regression,0.546719382625914,classification
+50,hizlisoy2021mu,classification,Neural Nets,Deep Neural Network,0.9274,classification
+51,hu2022de,classification,Support Vector Machines,Support Vector Machine,0.6551,classification
+52,nguyen2017an,classification,Tree-based Methods,Random Forest,0.56521335176247,classification
+53,panda2020no,classification,Support Vector Machines,Support Vector Machine,0.682215557901726,classification
+54,sorussa2020em,classification,Neural Nets,Backpropagation Neural Network,0.868112240363145,classification
+55,yeh2014po,classification,Tree-based Methods,AdaBoost,0.929699323983453,classification
+56,zhang2016br,classification,Tree-based Methods,Bagging,0.8,classification
+57,zhang2017fe,classification,Linear Methods,Logistic Regression,0.846,classification
