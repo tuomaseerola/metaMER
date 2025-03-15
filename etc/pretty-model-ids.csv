@@ -9,8 +9,8 @@
 8,coutinho2017sh,valence,Neural Nets,Recurrent Neural Network,0.175,regression
 9,deng2015em,arousal,Linear Methods,Sparse Bayesian Regression,0.859127464349732,regression
 10,deng2015em,valence,Linear Methods,Variational Bayesian Regression,0.795487272054054,regression
-11,gingras2014be,arousal,Linear Methods,Partial Least Squares,0.92736184954957,regression
-12,gingras2014be,valence,Linear Methods,Partial Least Squares,0.730068489937759,regression
+11,gingras2014be,arousal,Linear Methods,Partial Least Squares Regression,0.92736184954957,regression
+12,gingras2014be,valence,Linear Methods,Partial Least Squares Regression,0.730068489937759,regression
 13,grekow2018au,arousal,Support Vector Machines,Support Vector Regression,0.888819441731559,regression
 14,grekow2018au,valence,Support Vector Machines,Support Vector Regression,0.761577310586391,regression
 15,grekow2021mu,arousal,Neural Nets,Recurrent Neural Network,0.854400374531753,regression
