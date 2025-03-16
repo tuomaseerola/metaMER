@@ -259,9 +259,9 @@ The number of features (as classified into under 30, between 30 and 300, and abo
 
 ### Model success across concepts
 
-To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 reveals studies using smaller feature sets tend to perform best, whereas the best model class differs depending on the prediction task.
+To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success across categories (a), as well as the algorithms in each model class (b). Oveall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task.
 
-![Heatmap Depicting Success Across Tasks](../manuscript/heat_map_figure_R1.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="892"}
+![Heatmaps summarizing models. 5(a) depicts overall success across tasks according to model type and feature *n* summaries. Text labels summarize the number of models belonging to each subgroup, whereas the numbers in parentheses summarize the median number of stimuli used. 5(b) summarizes the algorithms pertaining to each class, colour-coded by frequency. Grey rectangles are visual aids aligning with *x*-axis groupings in 5(a) (white: LM; light grey: NN; dark grey: other).](../manuscript/model-summary-fig.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="668"}
 
 ```{=html}
 <!-- Notes to results: In the pre-registration, we promised the following:
