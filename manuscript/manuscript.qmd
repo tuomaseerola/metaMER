@@ -61,14 +61,65 @@ In the early 2000s, several research groups conducted studies using regression [
 
 [^1]: The best-performing model to date reached 69.83 % in the 2017 competition [@park2017representation].
 
+<!--Paragraph on MER as regression task-->
+
 Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence [@yang2008]. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
 
+<!--paragraph on models used across regession & classification tasks-->
+```{=html}
+<!-- 
+- Types of classification algorithms employed
+- Popularity of SVMs (for both classification and regression)
+- Algorithms used for personalized and nonpersonalized MER models?
+- Success with regression varieties
+- Introduction of neural networks & deep learning paradigms
+-->
+```
+
+<!--summary of feature sets and quantity-->
+```{=html}
+<!-- 
+- Wide set of features explored
+- Summary of categories commonly used/discussed (Panda)
+- Audio, midi, lyric features
+- Low-, mid-, and high-level features
+- Emphasize focus on audio-based featuers
+- Small, medium, and large data sets 
+- Could emphasize that types of features differ based on type of study
+(psychology, engineering) due to different goals
+-->
+```
+
+<!--MER approaches: psychology, engineering approaches-->
+```{=html}
+<!-- 
+- Summary of findings, success with MER approaches.
+  - Scope of topic areas explored
+  - Annotations: sometimes presented as a game, either experts or participants,
+  sometimes secondary data from web databases (LastFM). Treated as "ground truth" (reference standard may be more accurate). Training/testing/validation. Comparisons with previously collected data/benchmarks
+  - Participants: e.g., 5 experts, MTurk, etc.
+  - Demographics
+  - Common stimuli/genres: predominately pop
+- Summary of findings, success with psychological approaches
+  - Scope of topic areas explored
+  - Annotations: Used to explain variance in participants' responses. Cross-validation rare.
+  - Participants: psychology students, Prolific/MTurk?
+  - Demographics
+  - Common stimuli/genres: predominately classical
+-->
+```
+
 ## The semantic gap in MER
+```{=html}
+<!--
+I'm considering now reworking this paragraph and de-emphasizing the semantic gap given the limited extent to which can address this. It might be worth including to show the semantic gap has narrowed, and we can point to the Barthet estimate, or to conclude that "linear methods with small to mid-sized feature sets appear perform best for this dimension".
+-->
+```
 
 The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
 
 ## Aims
-
+<!--This paragraph now is somewhat inconsistent with the analyses we actually perform motivating the journal/feature N/model discussion-->
 Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent to identify key factors such as modeling techniques and features that significantly affect prediction accuracy. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
 
 # Methods
