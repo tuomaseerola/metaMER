@@ -129,7 +129,6 @@ Our aim is to evaluate the predictive accuracy of two models of emotional expres
 Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent studies to identify the overall success rate in MER tasks and the key factors such as modeling techniques and features that contribute to the prediction accuracy of the models. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
 
 <!-- DISCUSS: we have not address this last thought at all, TE 19/3/2025 -->
->>>>>>> a1c1aab (updates to manuscript, notes about conversion to pdf)
 
 # Methods
 
@@ -294,7 +293,7 @@ The analysis of the subdivision of studies shows that there is no significant di
 
 We next evaluated classification studies. The number of emotion classes predicted varied between studies, ranging from two to eight. Across studies, most operationalizations corresponded to either affective dimensions of the circumplex model or discrete emotion labels mapping to those dimensions [e.g., happy, sad, nervous, and calm and similar variants used in @agarwal2021an; @alvarez2023ri; @yeh2014po]. Despite common adoption of the circumplex quadrants, studies differed in modeling decisions: one study predicted quadrants in a multi-class problem [@panda2020no], whereas another predicted them in a series of binary classification tasks [@bhuvanakumar2023em]. Others predicted valence and arousal in separate tasks [@hu2022de; @zhang2016br], and some of the models analyzed only predicted arousal [e.g., all models in @zhang2017fe; the CART model in @zhang2016br]. Finally, some studies excluded specific quadrants [@hizlisoy2021mu] due to a lack of relevant stimuli, whereas others divided quadrants into multiple levels of valence and arousal [@nguyen2017an; @sorussa2020em]. Because only a few studies separately reported valence and arousal or quadrant classification, we averaged prediction success across them for each model to increase comparability with other studies.
 
-Figure 4 shows forest and funnel plot visualizations from the random-effects model of the best-performing models in classification studies. $MCC$s vary across a wide range, reporting $MCC$s between 0.55 to 0.98. Table 4 indicates that using the best model from each study increases performance relative to all models ($MCC$ = 0.8684 95%CI: 0.7475-0.9336), yet slightly increases heterogeneity ($\tau^2$ = 0.3180, $I^2$ = 99.8%).
+Figure 4 shows forest plot visualization from the random-effects model of the best-performing models in classification studies. $MCC$s vary across a wide range, reporting $MCC$s between 0.55 to 0.98. Table 4 indicates that using the best model from each study increases performance relative to all models ($MCC$ = 0.8684 95%CI: 0.7475-0.9336), yet slightly increases heterogeneity ($\tau^2$ = 0.3180, $I^2$ = 99.8%).
 
 {{< include _figure4.qmd >}}
 
@@ -317,7 +316,7 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 | NN | 3, 2313 | 0.9307 \[0.6523-0.9878\] |  |  | 0.1250 | 98.8% |
 | TM | 4, 6092 | 0.8534 \[0.4464-0.9679\] |  |  | 0.2430 | 99.1% |
 
-<! -- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
+<!-- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
 
 ### Quantifying study heterogeneity
 
