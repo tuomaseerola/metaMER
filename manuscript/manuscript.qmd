@@ -55,7 +55,7 @@ However, there is no consensus on the extent to which emotions can be accurately
 
 ## A brief history of MER
 
-Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis (@kassler1966toward; @mendel1969some). These developments would set the stage for early work in music emotion recognition (MER). Katayose et al. (1988) conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is hopeful mood on chord from 69 to 97 \[*sic*\]." [@katayose_sentiment_1988, p. 1087].
+Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis [@kassler1966toward; @mendel1969some]. These developments would set the stage for early work in music emotion recognition (MER). @katayose_sentiment_1988 conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is hopeful mood on chord from 69 to 97 \[*sic*\]." [@katayose_sentiment_1988, p. 1087].
 
 In the early 2000s, several research groups conducted studies using regression [@friberg_automatic_2002; @liu_automatic_2003] and classification [@lu_automatic_2005; @feng_popular_2003; @mandel_support_2006] techniques to predict emotion in music audio or MIDI. Citing "MIR researchers' growing interest in classifying music by moods" [@downie_music_2008, p. 1], the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.[^1]
 
@@ -65,11 +65,15 @@ Researchers have assessed regression and classification techniques on diverse co
 
 ## The semantic gap in MER
 
-The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
+The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br;@alvarez2023ri;@agarwal2021an]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
+
+<!-- added more recent references to make the neural network mention more up to date, TE 19/3/2025 -->
 
 ## Aims
 
-Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent to identify key factors such as modeling techniques and features that significantly affect prediction accuracy. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
+Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent studies to identify the overall success rate in MER tasks and the key factors such as modeling techniques and features that contribute to the prediction accuracy of the models. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
+
+<!-- DISCUSS: we have not address this last thought at all, TE 19/3/2025 -->
 
 # Methods
 
@@ -107,10 +111,10 @@ TABLE 1: Summary of data
 |:-----------|:----------------------------|:--------------------------|:------|
 | Study N    | 22                          | 12                        | 34    |
 | Model N    | 204                         | 86                        | 290   |
-| Techniques | Neural Nets: 64             | 21                        | 85    |
-| Techniques | Support Vector Machines: 62 | 26                        | 88    |
-| Techniques | Linear Methods: 62          | 19                        | 81    |
-| Techniques | Tree-based Methods: 14      | 16                        | 30    |
+| Techniques | Neural Nets (NN): 64             | 21                        | 85    |
+| Techniques | Support Vector Machines (SVM): 62 | 26                        | 88    |
+| Techniques | Linear Methods (LM): 62          | 19                        | 81    |
+| Techniques | Tree-based Methods (TM): 14      | 16                        | 30    |
 | Techniques | KS, Add. & KNN: 2           | 4                         | 6     |
 | Feature N  | Min=3, Md=653, Max=14460    | Min=6, Md=98, Max=8904    | NA    |
 | Stimulus N | Min=20, Md=324, Max=2486    | Min=124, Md=300, Max=5192 | NA    |
@@ -123,11 +127,13 @@ We first report regression studies that predict valence and arousal.
 
 <!-- See `analysis/analysis.qmd` (updated 17/1/2025) -->
 
-Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article.
+Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. We also provide a summary of the results with all models included in addition to the chosen strategy, where the best model of each study is considered.
 
 ### Results for valence
 
-Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into five modelling techniques introduced earlier (Table 1).
+Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into four modelling techniques introduced earlier (Table 1).
+
+<!-- DISCUSS: I have changed the modelling techniques into FOUR categories, TE 19/3/2025 -->
 
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.
 
@@ -156,9 +162,12 @@ The results indicate that valence can generally be predicted with moderately acc
 
 Further analysis of between-study heterogeneity, as indexed by the $\tau^2$ (0.148) and Higgins & Thompson's $I^2$ statistic [@higgins2002quantifying] at 98.4%, reveals substantial heterogeneity. Since $I^2$ is heavily influenced by study size (with larger N leading to lower sampling error), its value may be less insightful in this context. In contrast, $\tau^2$, which is less sensitive to the number of studies and directly linked to the outcome metric (*r*), provides a more reliable measure of heterogeneity in this case. Also, we note that because the overall heterogeneity in the data is high, we are cautious in our interpretation of the publication bias [@van-aertwicherts_2016].
 
-To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents (A) a forest and (B) funnel plot of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al. (2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in @beveridge2018po (n = 20), and in @griffiths2021am (n = 40). The funnel plot in panel B of Figure 2 shows clustering at the top of the plot (studies with low standard error) and no assumed larger diversity in the correlations when the error rates increase. However, there is no clear asymmetry in the plot, verified by non-significant Egger's test ($\beta$ = 5.05, CI95% -0.99-11.09, *t* = 1.64, *p* = 0.112, @eggersmith_1997). Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
+To better understand the effects across studies and the nature of the observed heterogeneity, Figure 2 presents a forest of the random-effects model, based on the best-performing models from all studies. In terms of the forest plot, the range of prediction values (correlations) is broad, spanning from 0.13 to 0.92, with all studies except Koh et al. (2023) demonstrating evidence of positive correlations. A mean estimate of 0.67 is achieved by 15 out of the 22 models. While the confidence intervals are generally narrow due to the large sample sizes in each study, there are exceptions, such as smaller sample sizes in @beveridge2018po (n = 20), and in @griffiths2021am (n = 40). If we explore the asymmetry of the model prediction rate across standard error, we do not observe particular asymmetries that would indicate particular bias in the reported studies. This is verified by non-significant Egger's test ($\beta$ = 5.05, CI95% -0.99-11.09, *t* = 1.64, *p* = 0.112, @eggersmith_1997).
+
+Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
 
 <!-- numbers in the text updated up to here, CA 20/2/2025 -->
+<!-- I've removed the reference to the funnel plot, TE 19/3/2025 -->
 
 {{< include _figure2.qmd >}}
 
@@ -179,6 +188,7 @@ We also ran the sub-grouping analyses across stimulus genres (single vs mixed), 
 These comparisons of sub-groupings are also influenced by other factors, such as the type of journal (psychology vs engineering) or whether the objective is to explain or predict emotions. Although the sub-groupings result in an uneven distribution of studies and observations, they still offer valuable insights. Despite these caveats, the two main sub-groupings portrayed in Table 2 enable us to identify valuable differences related to model success across the studies.
 
 <!-- numbers in the text updated up to here, CA 20/2/2025 -->
+<!-- DISCUSS: we don't report journal type of explain/predict differences, although we do some of these in arousal, TE 19/3/2025 -->
 
 ### Results for arousal
 
@@ -214,7 +224,9 @@ Table 3. Meta-analytic diagnostic for all regression studies predicting arousal 
 K= 10 studies.-->
 ```
 
-Figure 3 presents (A) a forest and (B) funnel plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.82 or higher is achieved by the majority (14 out of the 22 models). Due to large sample in most studies, the confidence intervals are narrow, although the exceptions ($N < 55$) are clearly visible [@beveridge2018po; @griffiths2021am; @koh2023me; @saizclar2022pr; @wang2021ac]. The funnel plot in panel B illustrates the limited range of the correlations and show heavy clustering at the top of the plot (studies with low standard error). There is no clear asymmetry in the plot, verified by non-significant Egger's test reported above.
+Figure 3 presents a forest plot of the random-effects model of the best-performing models from all studies. Similarly to valence, the range of correlations is also wide for arousal, ranging from 0.35 to 0.95, with all studies demonstrating evidence of positive correlations. A mean estimate of 0.81 or higher is achieved by the majority (14 out of the 22 models). Due to large sample in most studies, the confidence intervals are narrow, although the exceptions ($N < 55$) are clearly visible [@beveridge2018po; @griffiths2021am; @koh2023me; @saizclar2022pr; @wang2021ac]. 
+
+<!-- Removed reference to the funnel plot, TE 19/3/2025 -->
 
 #### Reporting splits
 
@@ -249,6 +261,8 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 | NN | 3, 2313 | 0.9307 \[0.6523-0.9878\] |  |  | 0.1250 | 98.8% |
 | TM | 4, 6092 | 0.8534 \[0.4464-0.9679\] |  |  | 0.2430 | 99.1% |
 
+<! -- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
+
 ### Quantifying study heterogeneity
 
 Accounting for outliers among the classifications results removes 6 studies, affecting both performance ($MCC$ = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores ($\tau^2$ = 0.0569, $I^2$ = 97.7%). However, Eggers' test does not indicate an asymmetric funnel plot ($\beta$ = -19.769, 95%CI: -39.29--0.24). After aggregating across dimensions, some of the best models included only classified arousal [@zhang2016br; @zhang2017fe]. To assess these studies' impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy ($MCC$ = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Consequently, we report on all 12 in subsequent analyses.
@@ -257,11 +271,13 @@ Accounting for outliers among the classifications results removes 6 studies, aff
 
 The number of features (as classified into under 30, between 30 and 300, and above 300 features; see Table 3 for actual ranges) analyzed does not significantly impact results (*Q*(2) = 3.91, *p* = 0.1419), despite $MCC$s showing average differences according to the number of features (\< 30 F: $MCC$ = 0.9293; 30-300 F: $MCC$ = 0.8458; \>300 F: $MCC$ = 0.7754). Similarly, the class of model did not differ significantly (*Q*(3) = 4.22, *p* = 0.239) despite neural networks attaining highest average performance ($MCC$ = 0.9307), followed by SVMs ($MCC$ = 0.870) and tree-based methods ($MCC$ = 0.854), then linear methods ($MCC$ = 0.728). Finally, neither single- vs. multigenre studies (*Q*(1) = 0.12, *p* = 0.7324), nor binary vs. multi-class models (*Q*(1) = 0.03, *p* = 0.8694) differed significantly. Unlike regression, no classification studies were published in engineering journals.
 
-### Model success across concepts
+### Model success across concepts, model types and feature counts
 
-To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success across categories (a), as well as the algorithms in each model class (b). Oveall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task.
+<!-- Changed the header slightly, TE 19/3/2025-->
 
-![Heatmaps summarizing models. 5(a) depicts overall success across tasks according to model type and feature *n* summaries. Text labels summarize the number of models belonging to each subgroup, whereas the numbers in parentheses summarize the median number of stimuli used. 5(b) summarizes the algorithms pertaining to each class, colour-coded by frequency. Grey rectangles are visual aids aligning with *x*-axis groupings in 5(a) (white: LM; light grey: NN; dark grey: other).](../manuscript/model-summary-fig.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="668"}
+To assess how the use of different model types affected performance, we prepared heatmap visualizations depicting differences in success across feature *n* categories. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success (a) across categories, as well as (b) the algorithms in each model class. Overall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task.
+
+![Heatmaps summarizing models. Panel a depicts overall success across tasks according to model type and feature *n* summaries. Text labels summarize the number of models belonging to each subgroup, whereas the numbers in parentheses summarize the median number of stimuli used. Panel b summarizes the algorithms pertaining to each class, colour-coded by frequency. Grey rectangles are visual aids aligning with *x*-axis groupings in panel a (white: LM; light grey: NN; dark grey: other).](../manuscript/model-summary-fig.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="668"}
 
 ```{=html}
 <!-- Notes to results: In the pre-registration, we promised the following:

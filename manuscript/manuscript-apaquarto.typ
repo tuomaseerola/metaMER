@@ -448,42 +448,28 @@ Emotional engagement is a key reason why people engage with music in their every
 
 = Methods
 <methods>
-#block[
-#block[
-#box(image("manuscript-apaquarto_files/figure-typst/dot-figure-1.png", height: 6.6in, width: 6.5in))
-
-]
+#figure([
+#box(image("figure1.svg", width: 4.1666666666667in))
+], caption: figure.caption(
+position: bottom, 
+[
 Flowchart of the study inclusions/eliminations.
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
 
-] <fig1>
+
 = Results
 <results>
-#figure([
-```
-── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-Attaching package: 'kableExtra'
-
-
-The following object is masked from 'package:dplyr':
-
-    group_rows
-```
-
+#block[
 #table(
+stroke: none,
+table.hline(start: 0),
   columns: (15.49%, 39.44%, 36.62%, 8.45%),
   align: (left,left,left,left,),
   table.header([Info], [Regression], [Classification], [Total],),
-  table.hline(),
+  table.hline(start: 0),
   [Study N], [22], [12], [34],
   [Model N], [204], [86], [290],
   [Techniques], [Neural Nets: 64], [21], [85],
@@ -493,16 +479,43 @@ The following object is masked from 'package:dplyr':
   [Techniques], [KS, Add. & KNN: 2], [4], [6],
   [Feature N], [Min=3, Md=653, Max=14460], [Min=6, Md=98, Max=8904], [NA],
   [Stimulus N], [Min=20, Md=324, Max=2486], [Min=124, Md=300, Max=5192], [NA],
+table.hline(start: 0),
 )
+]
+#figure([
+#box(image("manuscript-apaquarto_files/figure-typst/fig2-1.svg"))
 ], caption: figure.caption(
-position: top, 
+position: bottom, 
 [
-Summary of the models for regression and classification studies.
+Forest plot of the best valence models from all MER studies.
 ]), 
-kind: "quarto-float-tbl", 
-supplement: "Table", 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
 )
-<tbl-table1>
+
+
+#figure([
+#box(image("manuscript-apaquarto_files/figure-typst/fig3-1.svg"))
+], caption: figure.caption(
+position: bottom, 
+[
+Forest plot of the best arousal models from all MER studies.
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
+
+
+#figure([
+#box(image("manuscript-apaquarto_files/figure-typst/fig4-1.svg"))
+], caption: figure.caption(
+position: bottom, 
+[
+Forest plot of the best classification models from all MER studies.
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
 
 
 = Discussion and conclusions

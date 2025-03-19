@@ -3,12 +3,9 @@ project:
   output-dir: docs
 website:
   page-footer: 
-    left: "Copyright 2024, Tuomas Eerola" 
     right: 
       - icon: github
         href: https://github.com/tuomaseerola/
-      - icon: twitter 
-        href: https://twitter.com/tuomas_ee 
   title: "metaMER"
   navbar:
     left:
