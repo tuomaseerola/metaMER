@@ -66,5 +66,4 @@ fp1 <- grid.grabExpr(print(data |>
 #gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
 #ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
 ggarrange(fp1)
-
 ```

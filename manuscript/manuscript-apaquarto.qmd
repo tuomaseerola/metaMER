@@ -117,31 +117,39 @@ Emotional engagement is a key reason why people engage with music in their every
 # Methods
 
 
-
-{{< include _figure1.qmd >}}
-
+![Flowchart of the study inclusions/eliminations.](figure1.svg){width="580"}
 
 
 # Results
 
 ```{r}
-#| label: tbl-table1
-#| id: tbl-table1
+#| id: table1
 #| output: asis
+#| error: false
 #| warning: false
 #| message: false
 #| tbl-cap: Summary of the models for regression and classification studies.
-library(tidyverse)
-library(kableExtra)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(kableExtra))
+#suppressPackageStartupMessages(library(flextable))
+
 
 t <- tibble(Info = c("Study N","Model N","Techniques","Techniques","Techniques","Techniques","Techniques","Feature N","Stimulus N"), 
        Regression = c("22","204","Neural Nets: 64","Support Vector Machines: 62","Linear Methods: 62","Tree-based Methods: 14","KS, Add. & KNN: 2","Min=3, Md=653, Max=14460","Min=20, Md=324, Max=2486"),
        Classification = c("12","86","21","26","19","16","4","Min=6, Md=98, Max=8904","Min=124, Md=300, Max=5192"),
        Total = c("34","290","85","88","81","30","6","NA","NA")) 
 print(knitr::kable(t,bookstabs=TRUE))
-#  theme_apa() 
+#flextable(t) %>% theme_apa() 
 
 ```
+
+{{< include _figure2.qmd >}}
+
+
+{{< include _figure3.qmd >}}
+
+{{< include _figure4.qmd >}}
 
 # Discussion and conclusions
 
