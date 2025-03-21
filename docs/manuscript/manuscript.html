@@ -219,15 +219,55 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="a-brief-history-of-mer">A brief history of MER</h2>
 <p>Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers <span class="citation" data-cites="zaripov1969">(<a href="#ref-zaripov1969" role="doc-biblioref">Zaripov &amp; Russell, 1969</a>)</span>, attention later shifted to creating methods to predict emotion using music’s structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s <span class="citation" data-cites="fairthorne1968">(<a href="#ref-fairthorne1968" role="doc-biblioref">Fairthorne, 1968</a>)</span>, inspiring analogous developments for automated music analysis <span class="citation" data-cites="kassler1966toward mendel1969some">(<a href="#ref-kassler1966toward" role="doc-biblioref">Kassler, 1966</a>; <a href="#ref-mendel1969some" role="doc-biblioref">Mendel, 1969</a>)</span>. These developments would set the stage for early work in music emotion recognition (MER). <span class="citation" data-cites="katayose_sentiment_1988">Katayose et al. (<a href="#ref-katayose_sentiment_1988" role="doc-biblioref">1988</a>)</span> conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like “there is hopeful mood on chord from 69 to 97 [<em>sic</em>].” <span class="citation" data-cites="katayose_sentiment_1988">(<a href="#ref-katayose_sentiment_1988" role="doc-biblioref">Katayose et al., 1988, p. 1087</a>)</span>.</p>
 <p>In the early 2000s, several research groups conducted studies using regression <span class="citation" data-cites="friberg_automatic_2002 liu_automatic_2003">(<a href="#ref-friberg_automatic_2002" role="doc-biblioref">Friberg et al., 2002</a>; <a href="#ref-liu_automatic_2003" role="doc-biblioref">Liu et al., 2003</a>)</span> and classification <span class="citation" data-cites="lu_automatic_2005 feng_popular_2003 mandel_support_2006">(<a href="#ref-feng_popular_2003" role="doc-biblioref">Feng et al., 2003</a>; <a href="#ref-lu_automatic_2005" role="doc-biblioref">Lu et al., 2005</a>; <a href="#ref-mandel_support_2006" role="doc-biblioref">Mandel et al., 2006</a>)</span> techniques to predict emotion in music audio or MIDI. Citing “MIR researchers’ growing interest in classifying music by moods” <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008, p. 1</a>)</span>, the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<!--Paragraph on MER as regression task-->
 <p>Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative—positive emotional quality) and arousal (i.e., the calm—exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence <span class="citation" data-cites="yang2008">(<a href="#ref-yang2008" role="doc-biblioref">Y. H. Yang et al., 2008</a>)</span>. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies <span class="citation" data-cites="bai2016dimensional coutinho2013psychoacoustic">(e.g., <a href="#ref-bai2016dimensional" role="doc-biblioref">Bai et al., 2016</a>; <a href="#ref-coutinho2013psychoacoustic" role="doc-biblioref">Coutinho &amp; Dibben, 2013</a>)</span>, with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal <span class="citation" data-cites="yang2007music eerola2011c">(<a href="#ref-eerola2011c" role="doc-biblioref">Eerola, 2011</a>; <a href="#ref-yang2007music" role="doc-biblioref">Y.-H. Yang et al., 2007</a>)</span>.</p>
+<!--paragraph on models used across regession & classification tasks-->
+<!-- 
+- Types of classification algorithms employed
+- Popularity of SVMs (for both classification and regression)
+- Algorithms used for personalized and nonpersonalized MER models?
+- Success with regression varieties
+- Introduction of neural networks & deep learning paradigms
+-->
+<!--summary of feature sets and quantity-->
+<!-- 
+- Wide set of features explored
+- Summary of categories commonly used/discussed (Panda)
+- Audio, midi, lyric features
+- Low-, mid-, and high-level features
+- Emphasize focus on audio-based featuers
+- Small, medium, and large data sets 
+- Could emphasize that types of features differ based on type of study
+(psychology, engineering) due to different goals
+-->
+<!--MER approaches: psychology, engineering approaches-->
+<!-- 
+- Summary of findings, success with MER approaches.
+  - Scope of topic areas explored
+  - Annotations: sometimes presented as a game, either experts or participants,
+  sometimes secondary data from web databases (LastFM). Treated as "ground truth" (reference standard may be more accurate). Training/testing/validation. Comparisons with previously collected data/benchmarks
+  - Participants: e.g., 5 experts, MTurk, etc.
+  - Demographics
+  - Common stimuli/genres: predominately pop
+- Summary of findings, success with psychological approaches
+  - Scope of topic areas explored
+  - Annotations: Used to explain variance in participants' responses. Cross-validation rare.
+  - Participants: psychology students, Prolific/MTurk?
+  - Demographics
+  - Common stimuli/genres: predominately classical
+-->
 </section>
 <section id="the-semantic-gap-in-mer" class="level2">
 <h2 class="anchored" data-anchor-id="the-semantic-gap-in-mer">The semantic gap in MER</h2>
+<!--
+I'm considering now reworking this paragraph and de-emphasizing the semantic gap given the limited extent to which can address this. It might be worth including to show the semantic gap has narrowed, and we can point to the Barthet estimate, or to conclude that "linear methods with small to mid-sized feature sets appear perform best for this dimension".
+-->
 <p>The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>. To address this so-called <em>semantic gap</em>, researchers have attempted to identify new feature sets with greater relevance to emotion <span class="citation" data-cites="panda2020audio chowdhury2021perceived">(<a href="#ref-chowdhury2021perceived" role="doc-biblioref">Chowdhury &amp; Widmer, 2021</a>; <a href="#ref-panda2020audio" role="doc-biblioref">Panda et al., 2023</a>)</span>, combine low-, mid-, and high-level features using multimodal data <span class="citation" data-cites="celma_foafing_2006">(<a href="#ref-celma_foafing_2006" role="doc-biblioref">Celma, 2006</a>)</span>, or train neural networks to automatically learn features from audio <span class="citation" data-cites="zhang2016br alvarez2023ri agarwal2021an">(<a href="#ref-agarwal2021an" role="doc-biblioref">Agarwal &amp; Om, 2021</a>; <a href="#ref-alvarez2023ri" role="doc-biblioref">Álvarez et al., 2023</a>; <a href="#ref-zhang2016br" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>. Through these approaches, MER researchers attempt to shatter a so-called <em>glass ceiling</em> <span class="citation" data-cites="downie_music_2008">(<a href="#ref-downie_music_2008" role="doc-biblioref">Downie, 2008</a>)</span> by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.</p>
 <!-- added more recent references to make the neural network mention more up to date, TE 19/3/2025 -->
 </section>
 <section id="aims" class="level2">
 <h2 class="anchored" data-anchor-id="aims">Aims</h2>
+<!--This paragraph now is somewhat inconsistent with the analyses we actually perform motivating the journal/feature N/model discussion-->
 <p>Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent studies to identify the overall success rate in MER tasks and the key factors such as modeling techniques and features that contribute to the prediction accuracy of the models. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).</p>
 <!-- DISCUSS: we have not address this last thought at all, TE 19/3/2025 -->
 </section>
@@ -840,7 +880,7 @@ K= 10 studies.-->
 <section id="results-for-classification-studies" class="level2">
 <h2 class="anchored" data-anchor-id="results-for-classification-studies">Results for classification studies</h2>
 <p>We next evaluated classification studies. The number of emotion classes predicted varied between studies, ranging from two to eight. Across studies, most operationalizations corresponded to either affective dimensions of the circumplex model or discrete emotion labels mapping to those dimensions <span class="citation" data-cites="agarwal2021an alvarez2023ri yeh2014po">(e.g., happy, sad, nervous, and calm and similar variants used in <a href="#ref-agarwal2021an" role="doc-biblioref">Agarwal &amp; Om, 2021</a>; <a href="#ref-alvarez2023ri" role="doc-biblioref">Álvarez et al., 2023</a>; <a href="#ref-yeh2014po" role="doc-biblioref">Yeh et al., 2014</a>)</span>. Despite common adoption of the circumplex quadrants, studies differed in modeling decisions: one study predicted quadrants in a multi-class problem <span class="citation" data-cites="panda2020no">(<a href="#ref-panda2020no" role="doc-biblioref">Panda et al., 2020</a>)</span>, whereas another predicted them in a series of binary classification tasks <span class="citation" data-cites="bhuvanakumar2023em">(<a href="#ref-bhuvanakumar2023em" role="doc-biblioref">Bhuvana Kumar &amp; Kathiravan, 2023</a>)</span>. Others predicted valence and arousal in separate tasks <span class="citation" data-cites="hu2022de zhang2016br">(<a href="#ref-hu2022de" role="doc-biblioref">Hu et al., 2022</a>; <a href="#ref-zhang2016br" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>, and some of the models analyzed only predicted arousal <span class="citation" data-cites="zhang2017fe zhang2016br">(e.g., all models in <a href="#ref-zhang2017fe" role="doc-biblioref">J. L. Zhang et al., 2017</a>; the CART model in <a href="#ref-zhang2016br" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>. Finally, some studies excluded specific quadrants <span class="citation" data-cites="hizlisoy2021mu">(<a href="#ref-hizlisoy2021mu" role="doc-biblioref">Hizlisoy et al., 2021</a>)</span> due to a lack of relevant stimuli, whereas others divided quadrants into multiple levels of valence and arousal <span class="citation" data-cites="nguyen2017an sorussa2020em">(<a href="#ref-nguyen2017an" role="doc-biblioref">Nguyen et al., 2017</a>; <a href="#ref-sorussa2020em" role="doc-biblioref">Sorussa et al., 2020</a>)</span>. Because only a few studies separately reported valence and arousal or quadrant classification, we averaged prediction success across them for each model to increase comparability with other studies.</p>
-<p>Figure 4 shows forest and funnel plot visualizations from the random-effects model of the best-performing models in classification studies. <span class="math inline">\(MCC\)</span>s vary across a wide range, reporting <span class="math inline">\(MCC\)</span>s between 0.55 to 0.98. Table 4 indicates that using the best model from each study increases performance relative to all models (<span class="math inline">\(MCC\)</span> = 0.8684 95%CI: 0.7475-0.9336), yet slightly increases heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.3180, <span class="math inline">\(I^2\)</span> = 99.8%).</p>
+<p>Figure 4 shows forest plot visualization from the random-effects model of the best-performing models in classification studies. <span class="math inline">\(MCC\)</span>s vary across a wide range, reporting <span class="math inline">\(MCC\)</span>s between 0.55 to 0.98. Table 4 indicates that using the best model from each study increases performance relative to all models (<span class="math inline">\(MCC\)</span> = 0.8684 95%CI: 0.7475-0.9336), yet slightly increases heterogeneity (<span class="math inline">\(\tau^2\)</span> = 0.3180, <span class="math inline">\(I^2\)</span> = 99.8%).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1002,7 +1042,7 @@ K= 10 studies.-->
 </tr>
 </tbody>
 </table>
-<p>&lt;! – DISCUSS: 4 digits is too much, let’s make this consistent, 3 in all places?, TE 19/3/2025 –&gt;</p>
+<!-- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
 <section id="quantifying-study-heterogeneity-2" class="level3">
 <h3 class="anchored" data-anchor-id="quantifying-study-heterogeneity-2">Quantifying study heterogeneity</h3>
 <p>Accounting for outliers among the classifications results removes 6 studies, affecting both performance (<span class="math inline">\(MCC\)</span> = 0.8941, 95%CI: 0.8282-0.9356) and heterogeneity scores (<span class="math inline">\(\tau^2\)</span> = 0.0569, <span class="math inline">\(I^2\)</span> = 97.7%). However, Eggers’ test does not indicate an asymmetric funnel plot (<span class="math inline">\(\beta\)</span> = -19.769, 95%CI: -39.29–0.24). After aggregating across dimensions, some of the best models included only classified arousal <span class="citation" data-cites="zhang2016br zhang2017fe">(<a href="#ref-zhang2017fe" role="doc-biblioref">J. L. Zhang et al., 2017</a>; <a href="#ref-zhang2016br" role="doc-biblioref">J. Zhang et al., 2016</a>)</span>. To assess these studies’ impact on overall performance, we conducted the same meta-analytic procedure after excluding them. Classification accuracy (<span class="math inline">\(MCC\)</span> = 0.8758, 95%CI: 0.7235-0.9468) does not change notably, nor does the rank order of model classes in terms of performance. Consequently, we report on all 12 in subsequent analyses.</p>
@@ -1765,8 +1805,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Tuomas Eerola</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1775,12 +1815,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/tuomaseerola/">
       <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/tuomas_ee">
-      <i class="bi bi-twitter" role="img">
 </i> 
     </a>
   </li>  

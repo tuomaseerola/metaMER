@@ -76,17 +76,15 @@ Researchers have assessed regression and classification techniques on diverse co
 -->
 ```
 
-<<<<<<< HEAD
-=======
 <!--summary of feature sets and quantity-->
 ```{=html}
 <!-- 
 - Wide set of features explored
 - Summary of categories commonly used/discussed (Panda)
-- Audio, midi, lyric features
+- Audio, midi, lyric features, tags 
 - Low-, mid-, and high-level features
 - Emphasize focus on audio-based featuers
-- Small, medium, and large data sets 
+- Small, medium, and large data sets (Features: 30, 300, 3000) 
 - Could emphasize that types of features differ based on type of study
 (psychology, engineering) due to different goals
 -->
@@ -95,6 +93,7 @@ Researchers have assessed regression and classification techniques on diverse co
 <!--MER approaches: psychology, engineering approaches-->
 ```{=html}
 <!-- 
+- Big picture: explanation vs predicting
 - Summary of findings, success with MER approaches.
   - Scope of topic areas explored
   - Annotations: sometimes presented as a game, either experts or participants,
@@ -111,30 +110,28 @@ Researchers have assessed regression and classification techniques on diverse co
 -->
 ```
 
-## The semantic gap in MER
+## The semantic gap in MER / What are the reported standards? / ceiling
 ```{=html}
 <!--
 I'm considering now reworking this paragraph and de-emphasizing the semantic gap given the limited extent to which can address this. It might be worth including to show the semantic gap has narrowed, and we can point to the Barthet estimate, or to conclude that "linear methods with small to mid-sized feature sets appear perform best for this dimension".
+
+- semantic challenge
+- inherent error in all stages (annotation, features, models)
+
 -->
 ```
 
->>>>>>> temp-main
 The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br;@alvarez2023ri;@agarwal2021an]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
 
 <!-- added more recent references to make the neural network mention more up to date, TE 19/3/2025 -->
 
 ## Aims
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 <!--This paragraph now is somewhat inconsistent with the analyses we actually perform motivating the journal/feature N/model discussion-->
-Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent to identify key factors such as modeling techniques and features that significantly affect prediction accuracy. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
-=======
->>>>>>> temp-main
 
-Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent studies to identify the overall success rate in MER tasks and the key factors such as modeling techniques and features that contribute to the prediction accuracy of the models. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. For emotion classification, we expect simple utilitarian emotions (e.g., fear, anger) will be easier to predict than more complex social emotions (e.g., sadness, nostalgia).
+Our aim is to evaluate the predictive accuracy of two models of emotional expression in music: (a) models that predict track-specific coordinates in affective circumplex space (valence and arousal), and (b) models that classify discrete emotion categories. We focus on recent studies to identify the overall success rate in MER tasks and the key factors such as modeling techniques, the number of features, or the inferential goal (explanation vs prediction) that might contribute to the prediction accuracy of the models. To achieve this, we conduct a meta-analysis of journal articles published in the past 10 years. Based on existing literature, we hypothesize that arousal will be predicted with higher accuracy than valence, as valence tends to be more context-dependent and challenging to model. 
 
-<!-- DISCUSS: we have not address this last thought at all, TE 19/3/2025 -->
+<!-- incorporate splits into above? -->
 
 # Methods
 
@@ -322,11 +319,7 @@ Table 4. Meta-analytic diagnostic for all classification studies predicting emot
 | NN | 3, 2313 | 0.9307 \[0.6523-0.9878\] |  |  | 0.1250 | 98.8% |
 | TM | 4, 6092 | 0.8534 \[0.4464-0.9679\] |  |  | 0.2430 | 99.1% |
 
-<<<<<<< HEAD
-<! -- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
-=======
-<!-- DISCUSS: 4 digits is too much, let's make this consistent, 3 in all places?, TE 19/3/2025 -->
->>>>>>> temp-main
+<!-- DISCUSS: 4 digits is too much, let's make this consistent, 2 in all places?, TE 19/3/2025 -->
 
 ### Quantifying study heterogeneity
 

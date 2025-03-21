@@ -449,7 +449,7 @@ Emotional engagement is a key reason why people engage with music in their every
 = Methods
 <methods>
 #figure([
-#box(image("figure1.svg", width: 4.1666666666667in))
+#box(image("figure1.svg", width: 6.0416666666667in))
 ], caption: figure.caption(
 position: bottom, 
 [
@@ -464,12 +464,10 @@ supplement: "Figure",
 <results>
 #block[
 #table(
-stroke: none,
-table.hline(start: 0),
   columns: (15.49%, 39.44%, 36.62%, 8.45%),
   align: (left,left,left,left,),
   table.header([Info], [Regression], [Classification], [Total],),
-  table.hline(start: 0),
+  table.hline(),
   [Study N], [22], [12], [34],
   [Model N], [204], [86], [290],
   [Techniques], [Neural Nets: 64], [21], [85],
@@ -479,7 +477,6 @@ table.hline(start: 0),
   [Techniques], [KS, Add. & KNN: 2], [4], [6],
   [Feature N], [Min=3, Md=653, Max=14460], [Min=6, Md=98, Max=8904], [NA],
   [Stimulus N], [Min=20, Md=324, Max=2486], [Min=124, Md=300, Max=5192], [NA],
-table.hline(start: 0),
 )
 ]
 #figure([
