@@ -52,7 +52,7 @@ fp1 <- grid.grabExpr(print(data |>
   fp_set_style(box = "grey50",
                line = "grey20",
                summary = "black",
-                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80)),
+                txt_gp = fpTxtGp(label = list(gpar(cex = 0.80, fontfamily="Times")),
                                 ticks = gpar(cex = 0.80),
                                 xlab  = gpar(cex = 0.80)))|>
     fp_decorate_graph(grid = structure(FisherZInv(m.cor$TE.random),gp = gpar(lty = 2, col = "grey30")))
@@ -66,4 +66,6 @@ fp1 <- grid.grabExpr(print(data |>
 #gridExtra::grid.arrange(fp1, fp2, ncol=2, widths=c(2,1))
 #ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
 ggarrange(fp1)
+ggsave(filename = 'figure4.pdf', width = 12, height = 6, units = 'in',fp1)
+
 ```
