@@ -1,5 +1,6 @@
 library(ggplot2)
 library(dplyr)
+library(ggpubr)
 
 # Read in best models ---------------------------------------------
 
@@ -80,90 +81,67 @@ heatmap_facets <- tmp |>
 
 best_mods <- read.csv("etc/pretty-model-ids.csv")
 
-# select relevant columns
-
-best_mods <- best_mods |> select(
-  citekey, 
-  paradigm, 
-  model_class_id,
-  model_id
+best_mods$model_class_id <- factor(
+  best_mods$model_class_id,
+  labels = c("LM", "NN", "SVM", "TM")
 )
 
-# count the number of models, making sure they aren't doubly
-# represented for VA studies
+best_mods <- best_mods[
+  order(
+    best_mods$model_class_id, 
+    best_mods$model_id),
+] 
 
-model_id_summary <- best_mods |>
-  group_by(
-    paradigm,
-    citekey
-  ) |>
-  reframe(
-    model_id = unique(
-      model_id
-    ),
-    model_class_id = unique(
-      model_class_id
-    )
-  ) 
-
-model_id_summary <- model_id_summary |>
-  ungroup() |>
-  group_by(paradigm) |>
-  add_count(model_id)
-
-# change factor order for regression and classification
-
-model_id_summary$paradigm <- factor(
-  model_id_summary$paradigm,
-  levels = c("regression", "classification"),
-  labels = c("Regression", "Classification")
+best_mods$tally <- 1
+best_mods$ind <- 1:nrow(best_mods)
+best_mods$model_id <- forcats::fct_reorder(
+  best_mods$model_id,
+  best_mods$ind
+)
+best_mods$dimension <- factor(
+  best_mods$dimension,
+  levels = c("valence", "arousal", "classification"),
+  labels = c("Valence", "Arousal", "Classification")
 )
 
-# re-order models so they follow model classes
+best_mods <- best_mods |> group_by(
+  dimension, 
+  model_class_id, 
+  model_id) |>
+  mutate(best_model = sort(best_model))
 
-model_id_summary <- model_id_summary[
-  order(model_id_summary$model_class_id),]
 
-model_id_summary$model_id <- factor(
-  model_id_summary$model_id,
-  levels = unique(model_id_summary$model_id
+best_mods <- best_mods |> 
+  group_by(dimension, model_id) |> 
+  mutate(
+    tally = cumsum(tally)
   )
+
+
+model_summary <- ggplot(best_mods, 
+       aes(x=tally, 
+           y=model_id, 
+           fill=best_model,
+       )) + 
+  geom_tile(color = "black")+
+  facet_grid(cols = vars(dimension), 
+             rows = vars(model_class_id),
+             scales="free_y",
+             space = "free_y"
+  )+
+  scale_fill_distiller(palette = "Spectral")+
+  labs(x = "Frequency", y = "Algorithm", fill = "Accuracy")+
+  theme_classic()
+
+fig5 <- ggarrange(
+  heatmap_facets,
+  model_summary,
+  common.legend = TRUE,
+  labels = c("(a)", "(b)")
 )
 
-# now generate a heatmap counting model frequency across categories
 
-figure_models <- model_id_summary |> 
-  ggplot(aes(y = model_id, 
-             x = model_class_id,
-             fill = n
-  )) +
-  geom_rect(xmin=0,xmax=5,ymin=0,ymax=7.5, 
-            fill = "#ffffff")+
-  geom_rect(xmin=0,xmax=5,ymin=7.5,ymax=11.5, 
-            fill = "#dddddd")+
-  geom_rect(xmin=0,xmax=5,ymin=11.5,ymax=17.7, 
-            fill = "#bebebe")+
-  #  geom_rect(xmin=0, xmax =5, ymin=13.5, ymax=17.7,
-  #            fill = "#a2a2a2")+
-  geom_tile(colour="black")+
-  scale_fill_distiller(name = "Count", 
-                       direction = -1,
-                       palette = "Spectral",
-                       type = "seq")+
-  scale_x_discrete(labels = c("LM", "NN", "SVM", "TM"))+
-  labs(x = "Model class type", y = "Algorithm")+
-  theme_bw()+
-  facet_wrap(vars(paradigm))
-
-
-model_summary_fig <- gridExtra::grid.arrange(
-  heatmap_facets+theme(legend.position = "top")+labs(title = "(a)"), 
-  figure_models+theme(legend.position = "top")+labs(title = "(b)"), 
-  ncol = 2,
-  widths= c(4,3)
-)
-
-# ggsave("etc/model-summary-fig.png", 
-#        plot = model_summary_fig,
+# ggsave("manuscript/model-summary-fig.png",
+#        plot = fig5,
 #        width = 12, height = 7.5, units = "in")
 
