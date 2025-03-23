@@ -57,38 +57,23 @@ However, there is no consensus on the extent to which emotions can be accurately
 
 Emotion has been widely discussed since the earliest artificial intelligence (AI) applications to music in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis [@kassler1966toward; @mendel1969some]. These developments would set the stage for early work in music emotion recognition (MER). @katayose_sentiment_1988 conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is hopeful mood on chord from 69 to 97 \[*sic*\]." [@katayose_sentiment_1988, p. 1087].
 
-In the early 2000s, several research groups conducted studies using regression [@friberg_automatic_2002; @liu_automatic_2003] and classification [@lu_automatic_2005; @feng_popular_2003; @mandel_support_2006] techniques to predict emotion in music audio or MIDI. Citing "MIR researchers' growing interest in classifying music by moods" [@downie_music_2008, p. 1], the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.[^1]
+## Classification and regression approaches
 
-[^1]: The best-performing model to date reached 69.83 % in the 2017 competition [@park2017representation].
+In the early 2000s, several research groups conducted studies using regression [@friberg_automatic_2002; @liu_automatic_2003] and classification [@lu_automatic_2005; @feng_popular_2003; @mandel_support_2006] techniques to predict emotion in music audio or MIDI. Citing "MIR researchers' growing interest in classifying music by moods" [@downie_music_2008, p. 1], the Music Information Retrieval EXchange (MIREX) introduced Audio Mood Classification (AMC) to their rotation of tasks in 2007. In the first year, nine systems classified mood labels in a common data set, reaching 52.65% accuracy (SD = 11.19%). These events, along with growing interest in the burgeoning field of affective computing, would lead to an explosion of interest in MER research.
 
 <!--Paragraph on MER as regression task-->
 
-Researchers have assessed regression and classification techniques on diverse corpora with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). In one widely-cited study, Yang (2008) approached MER as a regression task, predicting the valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) of 195 Chinese pop songs, achieving 62% accuracy for arousal but only 28% for valence [@yang2008]. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
+- Following one decade of competitions, the AMC task's highest performing model reached 69.83% accuracy [@park2017representation]. In parallel, other researchers began assessing MER as a regression task. The first study to popularize this approach predicted valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) in 195 Chinese pop songs [@yang2008] using audio-extracted features. The regression model predicted arousal with 62% accuracy, but only achieved 28% accuracy for valence. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
 
 <!--paragraph on models used across regession & classification tasks-->
-```{=html}
-<!-- 
-- Types of classification algorithms employed
-- Popularity of SVMs (for both classification and regression)
-- Algorithms used for personalized and nonpersonalized MER models?
-- Success with regression varieties
-- Introduction of neural networks & deep learning paradigms
--->
-```
 
-<!--summary of feature sets and quantity-->
-```{=html}
-<!-- 
-- Wide set of features explored
-- Summary of categories commonly used/discussed (Panda)
-- Audio, midi, lyric features, tags 
-- Low-, mid-, and high-level features
-- Emphasize focus on audio-based featuers
-- Small, medium, and large data sets (Features: 30, 300, 3000) 
-- Could emphasize that types of features differ based on type of study
-(psychology, engineering) due to different goals
--->
-```
+Since the early days of MER, researchers have adopted a wide range of models to predict emotions, ranging in complexity from linear regression models [@saizclar2022pr; @griffiths2021am; @yang2008] to neural networks [@orjesek2022en; @hizlisoy2021mu]. Whereas early classification studies commonly employed Gaussian mixture models [@lu_automatic_2005; @liu_automatic_2003] and support vector machines [@mandel2007labrosa; @lin2009eeg; @tzanetakis2007marsyas], convolutional, recurrent, and fully-connected neural networks have become increasingly popular in recent years [@grekow2021music; @song2018audio; @coutinho2017sh]. In regression tasks, a wide range of algorithms have been tested, including partial least squares [@gingras2014be; @wang2021ac], support vector machines [@grekow2018au; @hu2017cr; @agarwal2021an], random forests [@beveridge2018po; @xu2021us], and convolutional neural networks [@orjesek2022en; @orjesek2022en].
+
+## Large vs. small data
+
+Researchers have assessed regression and classification techniques on diverse datasets with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). To facilitate model comparison, several databases have been shared publicly, including MediaEval [@soleymani20131000], DEAM[@aljanaki2017developing], and AMG1608[@chen2015amg1608]. These datasets, represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by a relatively large number of participants (either by experts, students, or crowdsourced workers). Many datasets include audio features analyzed with software toolboxes for audio analysis such as OpenSMILE [@] and MIRToolbox [@lartillot2007matlab]---enabling models that predict ratings using tens, or even hundreds, of audio features. 
+
+Although MER studies increasingly perform prediction on large-scale datasets, others use small datasets to evaluate models trained for specific contexts. For example, @gingras2014be evaluates the effect of amplitude normalization on emotion ratings using 84 six-second classical excerpts rated by two separate groups of 30 participants. @griffiths2021am test MER in a multi-genre context using two corpora with 20 and 40 songs across 20 distinct genres. @saizclar2022pr predicts the affective dimensions of the circumplex model in 40 short (8-12s) piano excerpts using onset curves (changes in the energy of a note starting from its onset). 
 
 <!--MER approaches: psychology, engineering approaches-->
 ```{=html}
