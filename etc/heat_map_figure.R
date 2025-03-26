@@ -72,7 +72,7 @@ heatmap_facets <- tmp |>
   scale_y_discrete(labels = c("<30", "30-300", ">300"))+
   geom_text(aes(label = label))+
   labs(x = "Model class type", y = "Feature N category")+
-  theme_classic(base_size = 14,base_family = "Helvetica")
+  theme_classic(base_size = 14,base_family = "Times")
 
 
 # Model Types -----------------------------------------------------
