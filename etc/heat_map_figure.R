@@ -45,7 +45,7 @@ tmp <- tmp |> group_by(
   mutate(
     study_n = length(citekey),
     stim_mid = median(stimulus_n),
-    label = paste0("n=",study_n,"\n(", stim_mid, ")")
+    label = paste0("n = ",study_n,"\n(", stim_mid, ")")
   )
 
 # Combine C and R studies, then facet based on type.
@@ -104,34 +104,39 @@ best_mods$dimension <- factor(
   labels = c("Valence", "Arousal", "Classification")
 )
 
-best_mods <- best_mods |> group_by(
-  dimension, 
-  model_class_id, 
-  model_id) |>
-  mutate(best_model = sort(best_model))
-
-
 best_mods <- best_mods |> 
-  group_by(dimension, model_id) |> 
-  mutate(
-    tally = cumsum(tally)
+  group_by(
+    dimension, 
+    model_class_id,
+    model_id
+    ) |> 
+  reframe(
+    tally = sum(tally),
+    label = paste("n =", max(tally)),
+    best_model = mean(best_model)
   )
 
 
 model_summary <- ggplot(best_mods, 
-       aes(x=tally, 
+       aes(x=dimension, 
            y=model_id, 
            fill=best_model,
        )) + 
   geom_tile(color = "black")+
+  geom_text(aes(label = label))+
   facet_grid(cols = vars(dimension), 
              rows = vars(model_class_id),
-             scales="free_y",
-             space = "free_y"
+             scales="free",
+             space = "free"
   )+
   scale_fill_distiller(palette = "Spectral")+
-  labs(x = "Frequency", y = "Algorithm", fill = "Accuracy")+
-  theme_classic()
+  labs(y = "Algorithm", fill = "Accuracy")+
+  theme_classic()+
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()
+  )
 
 fig5 <- ggarrange(
   heatmap_facets,
@@ -140,8 +145,8 @@ fig5 <- ggarrange(
   labels = c("(a)", "(b)")
 )
 
-
-# ggsave("manuscript/model-summary-fig.png",
-#        plot = fig5,
-#        width = 12, height = 7.5, units = "in")
+fig5
+ggsave("manuscript/model-summary-fig.png",
+       plot = fig5,
+       width = 12, height = 7.5, units = "in")
 
