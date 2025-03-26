@@ -63,50 +63,34 @@ In the early 2000s, several research groups conducted studies using regression [
 
 <!--Paragraph on MER as regression task-->
 
-- Following one decade of competitions, the AMC task's highest performing model reached 69.83% accuracy [@park2017representation]. In parallel, other researchers began assessing MER as a regression task. The first study to popularize this approach predicted valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) in 195 Chinese pop songs [@yang2008] using audio-extracted features. The regression model predicted arousal with 62% accuracy, but only achieved 28% accuracy for valence. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
+In the tenth annual AMC task, the highest performing model reached 69.83% accuracy [@park2017representation]. In parallel, other researchers began assessing MER as a regression task. The first study to popularize this approach predicted valence (i.e., the negative---positive emotional quality) and arousal (i.e., the calm---exciting quality) in 195 Chinese pop songs [@yang2008] using audio-extracted features. The regression model predicted arousal with 62% accuracy, but only achieved 28% accuracy for valence. This difference in prediction accuracy between dimensions has reappeared in several subsequent studies [e.g., @bai2016dimensional; @coutinho2013psychoacoustic], with some research suggesting this challenge reflects fewer well-established predictors and more individual differences for valence than arousal [@yang2007music; @eerola2011c].
 
 <!--paragraph on models used across regession & classification tasks-->
 
-Since the early days of MER, researchers have adopted a wide range of models to predict emotions, ranging in complexity from linear regression models [@saizclar2022pr; @griffiths2021am; @yang2008] to neural networks [@orjesek2022en; @hizlisoy2021mu]. Whereas early classification studies commonly employed Gaussian mixture models [@lu_automatic_2005; @liu_automatic_2003] and support vector machines [@mandel2007labrosa; @lin2009eeg; @tzanetakis2007marsyas], convolutional, recurrent, and fully-connected neural networks have become increasingly popular in recent years [@grekow2021music; @song2018audio; @coutinho2017sh]. In regression tasks, a wide range of algorithms have been tested, including partial least squares [@gingras2014be; @wang2021ac], support vector machines [@grekow2018au; @hu2017cr; @agarwal2021an], random forests [@beveridge2018po; @xu2021us], and convolutional neural networks [@orjesek2022en; @orjesek2022en].
+Across regression and classification paradigms, a wide range of models have been employed, ranging from linear regression models [@saizclar2022pr; @griffiths2021am; @yang2008] to deep neural networks [@orjesek2022en; @hizlisoy2021mu]. In classification tasks, early work has commonly employed Gaussian mixture models [@lu_automatic_2005; @liu_automatic_2003] and support vector machines [@mandel2007labrosa; @lin2009eeg; @tzanetakis2007marsyas], whereas convolutional, recurrent, and fully-connected neural networks have become increasingly popular in recent years [@grekow2021music; @song2018audio; @coutinho2017sh]. In regression tasks, a wide range of algorithms have been tested, including partial least squares [@gingras2014be; @wang2021ac], support vector machines [@grekow2018au; @hu2017cr; @agarwal2021an], random forests [@beveridge2018po; @xu2021us], and convolutional neural networks [@orjesek2022en].
 
 ## Large vs. small data
 
-Researchers have assessed regression and classification techniques on diverse datasets with features drawn from music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). To facilitate model comparison, several databases have been shared publicly, including MediaEval [@soleymani20131000], DEAM[@aljanaki2017developing], and AMG1608[@chen2015amg1608]. These datasets, represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by a relatively large number of participants (either by experts, students, or crowdsourced workers). Many datasets include audio features analyzed with software toolboxes for audio analysis such as OpenSMILE [@] and MIRToolbox [@lartillot2007matlab]---enabling models that predict ratings using tens, or even hundreds, of audio features. 
+MER tasks commonly apply regression and classification techniques to diverse datasets with features drawn from both music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). To facilitate model comparison, several databases have been shared publicly, including MediaEval [@soleymani20131000], DEAM [@aljanaki2017developing], and AMG1608[@chen2015amg1608]. These datasets represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by a relatively large number of participants (either by experts, students, or crowdsourced workers). Many datasets include audio features analyzed with software toolboxes for audio analysis such as OpenSMILE [@] and MIRToolbox [@lartillot2007matlab]---enabling models that predict ratings using tens, or even hundreds, of audio features. Large datasets are ideal for generalizing predictions across diverse musical samples and are commonly employed in machine learning applications focused on maximizing accuracy of a MER system. 
 
-Although MER studies increasingly perform prediction on large-scale datasets, others use small datasets to evaluate models trained for specific contexts. For example, @gingras2014be evaluates the effect of amplitude normalization on emotion ratings using 84 six-second classical excerpts rated by two separate groups of 30 participants. @griffiths2021am test MER in a multi-genre context using two corpora with 20 and 40 songs across 20 distinct genres. @saizclar2022pr predicts the affective dimensions of the circumplex model in 40 short (8-12s) piano excerpts using onset curves (changes in the energy of a note starting from its onset). 
-
-<!--MER approaches: psychology, engineering approaches-->
-```{=html}
-<!-- 
-- Big picture: explanation vs predicting
-- Summary of findings, success with MER approaches.
-  - Scope of topic areas explored
-  - Annotations: sometimes presented as a game, either experts or participants,
-  sometimes secondary data from web databases (LastFM). Treated as "ground truth" (reference standard may be more accurate). Training/testing/validation. Comparisons with previously collected data/benchmarks
-  - Participants: e.g., 5 experts, MTurk, etc.
-  - Demographics
-  - Common stimuli/genres: predominately pop
-- Summary of findings, success with psychological approaches
-  - Scope of topic areas explored
-  - Annotations: Used to explain variance in participants' responses. Cross-validation rare.
-  - Participants: psychology students, Prolific/MTurk?
-  - Demographics
-  - Common stimuli/genres: predominately classical
--->
-```
+Although training MER systems with a wide range of stimuli and features can be useful for generalizable and accurate modeling, small datasets can be more appropriate in explorations that require precise control of stimuli or analyzed features to understand a model's performance. For example,  @griffiths2021am evaluated a MER model's performance when predicting 20 tracks different genres, validating the model on another 40 tracks. @saizclar2022pr evaluated how onset curves (changes in the energy of a note starting from its onset) can be incorporated into a predictive framework using 40 short (8-12s) piano excerpts. Smaller datasets are also useful in studies attempting to explain how stimulus qualities such as amplitude normalization [@gingras2014be] or different performers' interpretations [@battcock2021in] affect ratings of valence and arousal. Although these studies are not always designed with MER applications in mind, their similar framework has enabled direct application [e.g., @chowdhury2021perceived]. 
 
 ## The semantic gap in MER / What are the reported standards? / ceiling
+
 ```{=html}
 <!--
-I'm considering now reworking this paragraph and de-emphasizing the semantic gap given the limited extent to which can address this. It might be worth including to show the semantic gap has narrowed, and we can point to the Barthet estimate, or to conclude that "linear methods with small to mid-sized feature sets appear perform best for this dimension".
-
-- semantic challenge
+- Wide range of MER models attempting to outperform previous benchmarks, comparing performance against baseline models
+- Introduce ceilings for classification, valence, and arousal, citing Barthet study
+- Citing what some researchers attribute limitations to (e.g., lower valence than arousal)
+- MIR discussions of "semantic" challenge
 - inherent error in all stages (annotation, features, models)
+- Due to wide range of approaches, difficult to evaluate how successful attempts to raise glass ceiling have been
+- How do modeling techniques, and the number of features used affect performance? Which combinations perform best?
 
 -->
 ```
 
-The difficulty in predicting valence reflects a broader challenge in information retrieval. Specifically, relations between low-level predictors from music and text and the perceptual phenomena they model remain poorly understood, reaching a ceiling in prediction accuracy [@celma_foafing_2006]. To address this so-called *semantic gap*, researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br;@alvarez2023ri;@agarwal2021an]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
+Researchers have attempted to identify new feature sets with greater relevance to emotion [@panda2020audio; @chowdhury2021perceived], combine low-, mid-, and high-level features using multimodal data [@celma_foafing_2006], or train neural networks to automatically learn features from audio [@zhang2016br;@alvarez2023ri;@agarwal2021an]. Through these approaches, MER researchers attempt to shatter a so-called *glass ceiling* [@downie_music_2008] by establishing central predictors for emotions. To date, however, no study has systematically compared results of these diverse approaches.
 
 <!-- added more recent references to make the neural network mention more up to date, TE 19/3/2025 -->
 
