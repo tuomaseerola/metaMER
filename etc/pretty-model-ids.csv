@@ -29,8 +29,8 @@
 28,saizclar2022pr,valence,Linear Methods,Multiple Linear Regression,0.46690470119715,regression
 29,wang2021ac,arousal,Linear Methods,Partial Least Squares Regression,0.836660026534076,regression
 30,wang2021ac,valence,Linear Methods,Partial Least Squares Regression,0.741619848709566,regression
-31,wang2022co,arousal,Tree-based Methods,Extremely Randomized Tree Regression,0.820365772079747,regression
-32,wang2022co,valence,Tree-based Methods,Extremely Randomized Tree Regression,0.833666600026653,regression
+31,wang2022co,arousal,Tree-based Methods,Extremely Randomized Trees,0.820365772079747,regression
+32,wang2022co,valence,Tree-based Methods,Extremely Randomized Trees,0.833666600026653,regression
 33,wang2022cr,arousal,Linear Methods,Partial Least Squares Regression,0.953939201416946,regression
 34,wang2022cr,valence,Linear Methods,Partial Least Squares Regression,0.921954445729289,regression
 35,xie2020mu,arousal,Linear Methods,Principal Component Regression,0.793,regression

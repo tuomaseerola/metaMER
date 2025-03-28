@@ -66,13 +66,14 @@ heatmap_facets <- tmp |>
          )) +
   geom_raster()+
   facet_wrap(facets = vars(dimension))+
-  scale_fill_distiller(name = "Accuracy", palette = "Spectral")+
+  scale_fill_distiller(name = "Accuracy", palette = "Spectral",breaks=seq(0,1,by=.20),limits=c(0,1))+
 #  scale_fill_gradient2(name = "Accuracy")+
   scale_x_discrete(labels = c("LM", "NN", "Other"))+
   scale_y_discrete(labels = c("<30", "30-300", ">300"))+
-  geom_text(aes(label = label))+
+  geom_text(aes(label = label),family='Times')+
   labs(x = "Model class type", y = "Feature N category")+
-  theme_classic(base_size = 14,base_family = "Times")
+  theme_classic(base_size = 14, base_family = "Times")+
+  theme(legend.key.width= unit(2, 'cm'))
 
 
 # Model Types -----------------------------------------------------
@@ -116,37 +117,38 @@ best_mods <- best_mods |>
     best_model = mean(best_model)
   )
 
-
 model_summary <- ggplot(best_mods, 
        aes(x=dimension, 
            y=model_id, 
            fill=best_model,
        )) + 
   geom_tile(color = "black")+
-  geom_text(aes(label = label))+
+  geom_text(aes(label = label,family='Times'))+
   facet_grid(cols = vars(dimension), 
              rows = vars(model_class_id),
              scales="free",
              space = "free"
   )+
-  scale_fill_distiller(palette = "Spectral")+
+  scale_fill_distiller(palette = "Spectral",breaks=seq(0,1,by=.20),limits=c(0,1))+
   labs(y = "Algorithm", fill = "Accuracy")+
-  theme_classic()+
+  theme_classic(base_size = 14, base_family = "Times")+
   theme(
     axis.text.x = element_blank(),
     axis.ticks.x = element_blank(),
-    axis.title.x = element_blank()
+    axis.title.x = element_blank(),
+    legend.key.width = unit(2, 'cm')
   )
 
 fig5 <- ggarrange(
   heatmap_facets,
   model_summary,
   common.legend = TRUE,
+  font.label = list(size = 14, color = "black", face = "bold", family = 'Times'),
   labels = c("(a)", "(b)")
 )
 
 fig5
 ggsave("manuscript/model-summary-fig.png",
        plot = fig5,
-       width = 12, height = 7.5, units = "in")
+       width = 12, height = 7.5, units = "in",dpi=300)
 
