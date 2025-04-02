@@ -126,7 +126,7 @@ We converted all regression results from $R^2$ values into $r$ values for valenc
 
 ## Quality control
 
-The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](include%20approx%20#%20for%20each?%20This%20would%20be%20good%20since%20the%20rest%20of%20this%20para%20already%20mentions%20counts.%20If%20this%20take%20a%20long%20time,%20we%20could%20save%20this%20for%20an%20additional%20analysis). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.
+The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](xxx). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.
 
 ## Study encoding
 
