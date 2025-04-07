@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Datasets – metaMER</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b6254045a21d07dd46cfe160e8c2e3db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">metaMER</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">README</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Datasets</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The most frequently used 3 datasets are MediaEval <span class="citation" data-cites="soleymani2013">(<a href="#ref-soleymani2013" role="doc-biblioref">Soleymani et al., 2013</a>)</span>, DEAM <span class="citation" data-cites="aljanaki2017developing">(<a href="#ref-aljanaki2017developing" role="doc-biblioref">Aljanaki et al., 2017</a>)</span>, and AMG1608 <span class="citation" data-cites="chen2015amg1608">(<a href="#ref-chen2015amg1608" role="doc-biblioref">Chen et al., 2015</a>)</span>. These datasets represent Western pop music, are moderate in terms of the size (containing from 744 to 1802 music excerpts) and have been manually annotated by relative large number of participants (either by experts, students, or crowdsourced workers). Two of the most popular datasets offer a large number (260 to 6669) features extracted with OpenSMILE <span class="citation" data-cites="eyben2010opensmile">(<a href="#ref-eyben2010opensmile" role="doc-biblioref">Eyben et al., 2010</a>)</span>. Looking at the datasets more broadly, the diversity in the size and the features of the datasets is notable. Only two feature extraction tools are used across multiple datasets (OpenSMILE <span class="citation" data-cites="eyben2010opensmile">Eyben et al. (<a href="#ref-eyben2010opensmile" role="doc-biblioref">2010</a>)</span> and MIR Toolbox, <span class="citation" data-cites="lartillot2007matlab">Lartillot &amp; Toiviainen (<a href="#ref-lartillot2007matlab" role="doc-biblioref">2007</a>)</span>). However, despite this diversity, there does not seem to be a direct link between the model success rates and the features themselves, or at least separating the features from variation created by the dataset size, annotation accuracy and genre is not possible.</p>
+<!-- This is a reduced table from /etc/Secondary Databases.md -->
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Dataset</th>
+<th>Stim. Type</th>
+<th>Stim. Dur. (s)</th>
+<th>Stim. N</th>
+<th>Feature N</th>
+<th>Ppt. N</th>
+<th>Feature Source</th>
+<th>In studies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://cvml.unige.ch/databases/emoMusic/"><strong>MediaEval</strong></a></td>
+<td>Western pop</td>
+<td>45</td>
+<td>744</td>
+<td>6669</td>
+<td>10/track</td>
+<td>OpenSMILE</td>
+<td><span class="citation" data-cites="bai2016di">Bai et al. (<a href="#ref-bai2016di" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="bai2017mu">Bai et al. (<a href="#ref-bai2017mu" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="yang2021an">Yang (<a href="#ref-yang2021an" role="doc-biblioref">2021</a>)</span>, <span class="citation" data-cites="chin2018pr">Chin et al. (<a href="#ref-chin2018pr" role="doc-biblioref">2018</a>)</span>, <span class="citation" data-cites="coutinho2017sh">Coutinho &amp; Schuller (<a href="#ref-coutinho2017sh" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="markov2014mu">Markov &amp; Matsui (<a href="#ref-markov2014mu" role="doc-biblioref">2014</a>)</span>, <span class="citation" data-cites="medina2020em">Medina et al. (<a href="#ref-medina2020em" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="xie2020mu">Xie et al. (<a href="#ref-xie2020mu" role="doc-biblioref">2020</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://cvml.unige.ch/databases/DEAM/"><strong>DEAM</strong></a></td>
+<td>Pop</td>
+<td>45</td>
+<td>1802</td>
+<td>260</td>
+<td>5-10/track</td>
+<td>OpenSMILE</td>
+<td><span class="citation" data-cites="sorussa2020em">Sorussa et al. (<a href="#ref-sorussa2020em" role="doc-biblioref">2020</a>)</span>, <span class="citation" data-cites="orjesek2022en">Orjesek et al. (<a href="#ref-orjesek2022en" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="panwar2019ar">Panwar et al. (<a href="#ref-panwar2019ar" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="zhang2023mo">M. Zhang et al. (<a href="#ref-zhang2023mo" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/loichan-tw/AMG1608_release"><strong>AMG1608</strong></a></td>
+<td>Pop</td>
+<td>30</td>
+<td>1608</td>
+<td>72</td>
+<td>643</td>
+<td>MIR Toolbox, YAAFE</td>
+<td><span class="citation" data-cites="chen2017co">Chen et al. (<a href="#ref-chen2017co" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="hu2017cr">X. Hu &amp; Yang (<a href="#ref-hu2017cr" role="doc-biblioref">2017</a>)</span>, <span class="citation" data-cites="wang2022cr">Wang, Wei, et al. (<a href="#ref-wang2022cr" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://annahung31.github.io/EMOPIA/"><strong>EMOPIA</strong></a></td>
+<td>Piano Solo (pop music)</td>
+<td>30-40</td>
+<td>387</td>
+<td>24</td>
+<td>1 annot./track</td>
+<td>MIDI Toolbox</td>
+<td><span class="citation" data-cites="bhuvanakumar2023em">Bhuvana Kumar &amp; Kathiravan (<a href="#ref-bhuvanakumar2023em" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://web.archive.org/web/20170510081611/mac.citi.sinica.edu.tw/~yang/MER/NTUMIR-60"><strong>NTUMIR</strong></a></td>
+<td>Famous pop songs</td>
+<td>25</td>
+<td>60</td>
+<td>46</td>
+<td>40 annot./track</td>
+<td>MIR Toolbox, Sound Description Toolbox, MA Toolbox</td>
+<td><span class="citation" data-cites="chin2018pr">Chin et al. (<a href="#ref-chin2018pr" role="doc-biblioref">2018</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://osf.io/p6vkg/wiki/home/"><strong>Soundtracks</strong></a></td>
+<td>Obscure film soundtracks</td>
+<td>15</td>
+<td>110</td>
+<td>NA</td>
+<td>116</td>
+<td>NA</td>
+<td><span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/xl2218066/PSIC3839"><strong>PSIC3839</strong></a></td>
+<td>Chinese popular</td>
+<td>180</td>
+<td>3839</td>
+<td>NA</td>
+<td>87</td>
+<td>Librosa</td>
+<td><span class="citation" data-cites="xu2021us">Xu et al. (<a href="#ref-xu2021us" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="ccmir.cite.hku.hk/data/"><strong>CH818</strong></a></td>
+<td>Chinese pop</td>
+<td>30</td>
+<td>818</td>
+<td>15</td>
+<td>3</td>
+<td>MIR Toolbox, PsySound, Chroma Toolbox, Tempogram Toolbox</td>
+<td><span class="citation" data-cites="hu2017cr">X. Hu &amp; Yang (<a href="#ref-hu2017cr" role="doc-biblioref">2017</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="LINK"><strong>Zhang et al.&nbsp;(2015)</strong></a></td>
+<td>Chinese pop</td>
+<td>30</td>
+<td>171</td>
+<td>84</td>
+<td>10</td>
+<td>MA Toolbox, MIR Toolbox, Coversongs</td>
+<td><span class="citation" data-cites="zhang2016br">J. Zhang et al. (<a href="#ref-zhang2016br" role="doc-biblioref">2016</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://huisblog.cn/PMEmo/"><strong>PMEmo</strong></a></td>
+<td>Pop songs</td>
+<td>Variable</td>
+<td>794</td>
+<td>6373</td>
+<td>457</td>
+<td>ComParE 2013 baseline feature set</td>
+<td><span class="citation" data-cites="zhang2023mo">M. Zhang et al. (<a href="#ref-zhang2023mo" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://cs.nju.edu.cn/sufeng/data/musicmood.htm"><strong>NJU-V1</strong></a></td>
+<td>Limited detail</td>
+<td>Variable</td>
+<td>777</td>
+<td>Not reported</td>
+<td>NA (tags)</td>
+<td>NA</td>
+<td><span class="citation" data-cites="agarwal2021an">Agarwal &amp; Om (<a href="#ref-agarwal2021an" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://yadingsong.blogspot.com/2015/03/popular-music-emotion-dataset-ismir2012.html"><strong>ISMIR-2012</strong></a></td>
+<td>Popular music</td>
+<td>30 or 60</td>
+<td>2904</td>
+<td>54</td>
+<td>NA (tags)</td>
+<td>MIR Toolbox</td>
+<td><span class="citation" data-cites="agarwal2021an">Agarwal &amp; Om (<a href="#ref-agarwal2021an" role="doc-biblioref">2021</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.music-ir.org/mirex/wiki/2009:Music_Structure_Segmentation_Results"><strong>MIREX2009</strong></a></td>
+<td>Popular</td>
+<td>Full</td>
+<td>297</td>
+<td>3</td>
+<td>NA</td>
+<td>Paulus &amp; Klapuri (2009)</td>
+<td><span class="citation" data-cites="yeh2014po">Yeh et al. (<a href="#ref-yeh2014po" role="doc-biblioref">2014</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="http://millionsongdataset.com/pages/getting-dataset/"><strong>Million Songs Dataset</strong></a></td>
+<td>Pop</td>
+<td>Full</td>
+<td>1,000,000</td>
+<td>55</td>
+<td>None</td>
+<td>EchoNest</td>
+<td><span class="citation" data-cites="cao2023th">Cao &amp; Park (<a href="#ref-cao2023th" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><a href="https://freemusicarchive.org/home"><strong>Free Music Archive</strong></a></td>
+<td>Various</td>
+<td>Variable</td>
+<td>&gt;100,000</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td><span class="citation" data-cites="koh2023me">Koh et al. (<a href="#ref-koh2023me" role="doc-biblioref">2023</a>)</span></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.music-ir.org/mirex/wiki/2015:Main_Page"><strong>Jamendo</strong></a></td>
+<td>Various</td>
+<td>Variable</td>
+<td>10,000</td>
+<td>24</td>
+<td>NA</td>
+<td>Metadata</td>
+<td><span class="citation" data-cites="hu2022de">Xiao Hu et al. (<a href="#ref-hu2022de" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Chinese Classical Music Dataset</strong></td>
+<td>Chinese classical</td>
+<td>~30s</td>
+<td>500</td>
+<td>557</td>
+<td>20</td>
+<td>Essentia, MIR Toolbox</td>
+<td><span class="citation" data-cites="wang2022co">Wang, Wang, et al. (<a href="#ref-wang2022co" role="doc-biblioref">2022</a>)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Notes: <span class="math inline">\(\dagger\)</span> Used in <span class="citation" data-cites="alvarez2023ri">Álvarez et al. (<a href="#ref-alvarez2023ri" role="doc-biblioref">2023</a>)</span></p>
+<!-- I TOOK THESE OUT FOR NOW
+| [**Spotify API**](https://developer.spotify.com/documentation/web-api)                                 | Various                    | Variable        | 5192$\dagger$    | 12           | NA              | EchoNest                                              | @alvarez2023ri                                                                                                           |
+| [**Acoustic Brainz**](https://acousticbrainz.org/)                                                     | Various                    | Variable        | 60,000$\dagger$  | Not reported | NA (tags)       | Essentia                                              | @alvarez2023ri                                                                                                           |
+-->
+
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-agarwal2021an" class="csl-entry" role="listitem">
+Agarwal, G., &amp; Om, H. (2021). An efficient supervised framework for music mood recognition using autoencoder-based optimised support vector regression model [Article]. <em>IET Signal Processing</em>, <em>15</em>(2), 98–121. <a href="https://doi.org/10.1049/sil2.12015">https://doi.org/10.1049/sil2.12015</a>
+</div>
+<div id="ref-aljanaki2017developing" class="csl-entry" role="listitem">
+Aljanaki, A., Yang, Y.-H., &amp; Soleymani, M. (2017). Developing a benchmark for emotional analysis of music. <em>PloS One</em>, <em>12</em>(3), e0173392.
+</div>
+<div id="ref-alvarez2023ri" class="csl-entry" role="listitem">
+Álvarez, P., Quirós, J. G. de, &amp; Baldassarri, S. (2023). RIADA: A machine-learning based infrastructure for recognising the emotions of spotify songs [Article]. <em>International Journal of Interactive Multimedia and Artificial Intelligence</em>, <em>8</em>(2), 168–181. <a href="https://doi.org/10.9781/ijimai.2022.04.002">https://doi.org/10.9781/ijimai.2022.04.002</a>
+</div>
+<div id="ref-bai2016di" class="csl-entry" role="listitem">
+Bai, J., Feng, L., Peng, J., Shi, J., Luo, K., Li, Z., Liao, L., &amp; Wang, Y. (2016). Dimensional music emotion recognition by machine learning. <em>INTERNATIONAL JOURNAL OF COGNITIVE INFORMATICS AND NATURAL INTELLIGENCE</em>, <em>10</em>(4), 74–89. <a href="https://doi.org/10.4018/IJCINI.2016100104">https://doi.org/10.4018/IJCINI.2016100104</a>
+</div>
+<div id="ref-bai2017mu" class="csl-entry" role="listitem">
+Bai, J., Luo, K., Peng, J., Shi, J., Wu, Y., Feng, L., Li, J., &amp; Wang, Y. (2017). Music emotions recognition by machine learning with cognitive classification methodologies [Article]. <em>International Journal of Cognitive Informatics and Natural Intelligence</em>, <em>11</em>(4), 80–92. <a href="https://doi.org/10.4018/IJCINI.2017100105">https://doi.org/10.4018/IJCINI.2017100105</a>
+</div>
+<div id="ref-bhuvanakumar2023em" class="csl-entry" role="listitem">
+Bhuvana Kumar, V., &amp; Kathiravan, M. (2023). Emotion recognition from MIDI musical file using enhanced residual gated recurrent unit architecture [Article]. <em>Frontiers in Computer Science</em>, <em>5</em>. <a href="https://doi.org/10.3389/fcomp.2023.1305413">https://doi.org/10.3389/fcomp.2023.1305413</a>
+</div>
+<div id="ref-cao2023th" class="csl-entry" role="listitem">
+Cao, Y., &amp; Park, J. (2023). The analysis of music emotion and visualization fusing long short-term memory networks under the internet of things. <em>IEEE ACCESS</em>, <em>11</em>, 141192–141204. <a href="https://doi.org/10.1109/ACCESS.2023.3341926">https://doi.org/10.1109/ACCESS.2023.3341926</a>
+</div>
+<div id="ref-chen2017co" class="csl-entry" role="listitem">
+Chen, Y.-A., Wang, J.-C., Yang, Y.-H., &amp; Chen, H. H. (2017). Component tying for mixture model adaptation in personalization of music emotion recognition. <em>IEEE-ACM TRANSACTIONS ON AUDIO SPEECH AND LANGUAGE PROCESSING</em>, <em>25</em>(7), 1409–1420. <a href="https://doi.org/10.1109/TASLP.2017.2693565">https://doi.org/10.1109/TASLP.2017.2693565</a>
+</div>
+<div id="ref-chen2015amg1608" class="csl-entry" role="listitem">
+Chen, Y.-A., Yang, Y.-H., Wang, J.-C., &amp; Chen, H. (2015). The AMG1608 dataset for music emotion recognition. <em>2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 693–697.
+</div>
+<div id="ref-chin2018pr" class="csl-entry" role="listitem">
+Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>9</em>(4), 541–549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+</div>
+<div id="ref-coutinho2017sh" class="csl-entry" role="listitem">
+Coutinho, E., &amp; Schuller, B. (2017). Shared acoustic codes underlie emotional communication in music and speech-evidence from deep transfer learning. <em>PLOS ONE</em>, <em>12</em>(6). <a href="https://doi.org/10.1371/journal.pone.0179289">https://doi.org/10.1371/journal.pone.0179289</a>
+</div>
+<div id="ref-eyben2010opensmile" class="csl-entry" role="listitem">
+Eyben, F., Wöllmer, M., &amp; Schuller, B. (2010). Opensmile: The munich versatile and fast open-source audio feature extractor. <em>Proceedings of the 18th ACM International Conference on Multimedia</em>, 1459–1462.
+</div>
+<div id="ref-hu2022de" class="csl-entry" role="listitem">
+Hu, Xiao, Li, F., &amp; Liu, R. (2022). Detecting music-induced emotion based on acoustic analysis and physiological sensing: A multimodal approach. <em>APPLIED SCIENCES-BASEL</em>, <em>12</em>(18). <a href="https://doi.org/10.3390/app12189354">https://doi.org/10.3390/app12189354</a>
+</div>
+<div id="ref-hu2017cr" class="csl-entry" role="listitem">
+Hu, X., &amp; Yang, Y.-H. (2017). Cross-dataset and cross-cultural music mood prediction: A case on western and chinese pop songs. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>8</em>(2), 228–240. <a href="https://doi.org/10.1109/TAFFC.2016.2523503">https://doi.org/10.1109/TAFFC.2016.2523503</a>
+</div>
+<div id="ref-koh2023me" class="csl-entry" role="listitem">
+Koh, E. Y., Cheuk, K. W., Heung, K. Y., Agres, K. R., &amp; Herremans, D. (2023). MERP: A music dataset with emotion ratings and raters’ profile information. <em>SENSORS</em>, <em>23</em>(1). <a href="https://doi.org/10.3390/s23010382">https://doi.org/10.3390/s23010382</a>
+</div>
+<div id="ref-lartillot2007matlab" class="csl-entry" role="listitem">
+Lartillot, O., &amp; Toiviainen, P. (2007). A matlab toolbox for musical feature extraction from audio. <em>International Conference on Digital Audio Effects</em>, <em>237</em>, 244.
+</div>
+<div id="ref-markov2014mu" class="csl-entry" role="listitem">
+Markov, K., &amp; Matsui, T. (2014). Music genre and emotion recognition using gaussian processes [Article]. <em>IEEE Access</em>, <em>2</em>, 688–697. <a href="https://doi.org/10.1109/ACCESS.2014.2333095">https://doi.org/10.1109/ACCESS.2014.2333095</a>
+</div>
+<div id="ref-medina2020em" class="csl-entry" role="listitem">
+Medina, Y. O., Beltran, J. R., &amp; Baldassarri, S. (2020). Emotional classification of music using neural networks with the MediaEval dataset. <em>PERSONAL AND UBIQUITOUS COMPUTING</em>. <a href="https://doi.org/10.1007/s00779-020-01393-4">https://doi.org/10.1007/s00779-020-01393-4</a>
+</div>
+<div id="ref-orjesek2022en" class="csl-entry" role="listitem">
+Orjesek, R., Jarina, R., &amp; Chmulik, M. (2022). End-to-end music emotion variation detection using iteratively reconstructed deep features. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>81</em>(4), 5017–5031. <a href="https://doi.org/10.1007/s11042-021-11584-7">https://doi.org/10.1007/s11042-021-11584-7</a>
+</div>
+<div id="ref-panwar2019ar" class="csl-entry" role="listitem">
+Panwar, S., Rad, P., Choo, K.-K. R., &amp; Roopaei, M. (2019). Are you emotional or depressed? Learning about your emotional state from your music using machine learning. <em>JOURNAL OF SUPERCOMPUTING</em>, <em>75</em>(6, SI), 2986–3009. <a href="https://doi.org/10.1007/s11227-018-2499-y">https://doi.org/10.1007/s11227-018-2499-y</a>
+</div>
+<div id="ref-soleymani2013" class="csl-entry" role="listitem">
+Soleymani, M., Caro, M. N., Schmidt, E. M., Sha, C.-Y., &amp; Yang, Y.-H. (2013). 1000 songs for emotional analysis of music. <em>Proceedings of the 2nd ACM International Workshop on Crowdsourcing for Multimedia</em>, 1–6. <a href="https://doi.org/10.1145/2506364.2506365">https://doi.org/10.1145/2506364.2506365</a>
+</div>
+<div id="ref-sorussa2020em" class="csl-entry" role="listitem">
+Sorussa, K., Choksuriwong, A., &amp; Karnjanadecha, M. (2020). Emotion classi cation system for digital music with a cascaded technique [Article]. <em>ECTI Transactions on Computer and Information Technology</em>, <em>14</em>(1), 53–66. <a href="https://doi.org/10.37936/ecti-cit.2020141.205317">https://doi.org/10.37936/ecti-cit.2020141.205317</a>
+</div>
+<div id="ref-wang2022co" class="csl-entry" role="listitem">
+Wang, X., Wang, L., &amp; Xie, L. (2022). Comparison and analysis of acoustic features of western and chinese classical music emotion recognition based on v‐a model [Article]. <em>Applied Sciences</em>, <em>12</em>(12). <a href="https://doi.org/10.3390/app12125787">https://doi.org/10.3390/app12125787</a>
+</div>
+<div id="ref-wang2022cr" class="csl-entry" role="listitem">
+Wang, X., Wei, Y., &amp; Yang, D. (2022). Cross-cultural analysis of the correlation between musical elements and emotion. <em>COGNITIVE COMPUTATION AND SYSTEMS</em>, <em>4</em>(2, SI), 116–129. <a href="https://doi.org/10.1049/ccs2.12032">https://doi.org/10.1049/ccs2.12032</a>
+</div>
+<div id="ref-xie2020mu" class="csl-entry" role="listitem">
+Xie, B., Kim, J. C., &amp; Park, C. H. (2020). Musical emotion recognition with spectral feature extraction based on a sinusoidal model with model-based and deep-learning approaches. <em>APPLIED SCIENCES-BASEL</em>, <em>10</em>(3). <a href="https://doi.org/10.3390/app10030902">https://doi.org/10.3390/app10030902</a>
+</div>
+<div id="ref-xu2021us" class="csl-entry" role="listitem">
+Xu, L., Sun, Z., Wen, X., Huang, Z., Chao, C., &amp; Xu, L. (2021). Using machine learning analysis to interpret the relationship between music emotion and lyric features. <em>PEERJ COMPUTER SCIENCE</em>, <em>7</em>. <a href="https://doi.org/10.7717/peerj-cs.785">https://doi.org/10.7717/peerj-cs.785</a>
+</div>
+<div id="ref-yang2021an" class="csl-entry" role="listitem">
+Yang, J. (2021). A novel music emotion recognition model using neural network technology [Article]. <em>Frontiers in Psychology</em>, <em>12</em>. <a href="https://doi.org/10.3389/fpsyg.2021.760060">https://doi.org/10.3389/fpsyg.2021.760060</a>
+</div>
+<div id="ref-yeh2014po" class="csl-entry" role="listitem">
+Yeh, C.-H., Tseng, W.-Y., Chen, C.-Y., Lin, Y.-D., Tsai, Y.-R., Bi, H.-I., Lin, Y.-C., &amp; Lin, H.-Y. (2014). Popular music representation: Chorus detection &amp; emotion recognition [Article]. <em>Multimedia Tools and Applications</em>, <em>73</em>(3), 2103–2128. <a href="https://doi.org/10.1007/s11042-013-1687-2">https://doi.org/10.1007/s11042-013-1687-2</a>
+</div>
+<div id="ref-zhang2016br" class="csl-entry" role="listitem">
+Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016). Bridge the semantic gap between pop music acoustic feature and emotion: Build an interpretable model. <em>Neurocomputing</em>, <em>208</em>(SI), 333–341. <a href="https://doi.org/10.1016/j.neucom.2016.01.099">https://doi.org/10.1016/j.neucom.2016.01.099</a>
+</div>
+<div id="ref-zhang2023mo" class="csl-entry" role="listitem">
+Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized composite attention network for continuous music emotion recognition. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>82</em>(5), 7319–7341. <a href="https://doi.org/10.1007/s11042-022-13577-6">https://doi.org/10.1007/s11042-022-13577-6</a>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/tuomaseerola/">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

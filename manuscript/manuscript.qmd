@@ -116,9 +116,9 @@ We preregistered the meta-analysis plan on 21 June 2024 at OSF, <https://osf.io/
 
 ## Study identification
 
-In the search stage, we used three databases, *Web of Science*, *Scopus*, and *Open Alex* to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition` (see specific search strings for each database in [SI](http://)). All searches were done in May 2024.
+In the search stage, we used three databases, *Web of Science*, *Scopus*, and *Open Alex* to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition` (see specific search strings for each database in [Study Data and Code Repository - Search Syntax](https://tuomaseerola.github.io/metaMER/studies/search_syntax.html)). All searches were done in May 2024.
 
-The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $r$ or $MCC$ values see [SI](http://) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation.
+The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $r$ or $MCC$ values see [Study Data and Code Repository - Extraction Details](https://tuomaseerola.github.io/metaMER/studies/extraction_details.html) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. Summary of the common datasets used in the studies in available at [Study Data and Code Repository - Datasets](https://tuomaseerola.github.io/metaMER/manuscript/datasets.html).
 
 We converted all regression results from $R^2$ values into $r$ values for valence and arousal, and classification results into Matthews correlation coefficient [*MCC*, @chicco2020advantages]. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files [@nag2022]), or dependent variables (e.g., one regression study analyzed valence and arousal together, but not separately [@chin2018]).
 
@@ -126,17 +126,17 @@ We converted all regression results from $R^2$ values into $r$ values for valenc
 
 ## Quality control
 
-The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, [we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture](xxx). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.
+The search yielded studies of variable (and occasionally questionable) quality. To mitigate potentially spurious effects resulting from the inclusion of low-quality studies, we excluded studies lacking sufficient details about stimuli, analyzed features, or model architecture [Study Data and Code Repository - Comparison](https://tuomaseerola.github.io/metaMER/studies/pass3_comparison.html). Finally, we excluded studies published in journals of questionable relevance/quality, (e.g., *Mathematical Problems in Engineering* ceased publication following 17 retractions published between July and September 2024). Overall this step eliminated 12 studies, leaving us with 34 studies in total.
 
 ## Study encoding
 
-To capture key details of each study, we added extra fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type -- Neural Nets (NN), Support Vector Machines (SVM),[^1] Linear Methods (LM), Tree-based Methods (TM), KS, Add. and KNN Methods (KM) -- validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see `studies/extraction_details.qmd` .
+To capture key details of each study, we added extra fields to BibTeX entries for each study. Fields included information about the genre/type of stimuli employed, along with their duration and number; the number of analyzed features; and the model type -- Neural Nets (NN), Support Vector Machines (SVM),[^1] Linear Methods (LM), Tree-based Methods (TM), KS, Add. and KNN Methods (KM) -- validation procedure and output measures. Additionally, we included study results using executable *R* code containing custom functions for meta-analysis. For complete details about our encoding procedure, see [Study Data and Code Repository - Extraction Details](https://tuomaseerola.github.io/metaMER/studies/extraction_details.html).
 
 [^1]: @chen2017co was the only study of those included to use Gaussian Mixture Models. We decided to group this with Support Vector Machines as they have been reported to perform similarly on mid-sized data sets [@mashao2003co].
 
 # Results
 
-First we describe the overall pattern of data (regression vs. classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details).
+First we describe the overall pattern of data (regression vs. classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details). The analysis code is available at [Study Data and Code Repository - Analysis](https://tuomaseerola.github.io/metaMER/analysis/analysis.html).
 
 <!-- table 1 is part of `analysis/preprocessing.qmd` updated 20/2/2025) -->
 
@@ -221,11 +221,10 @@ We also ran the sub-grouping analyses across stimulus genres (single vs mixed), 
 
 <!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
 
-These comparisons of sub-groupings are also influenced by other factors, such as the type of journal (psychology vs engineering) or whether the objective is to explain or predict emotions. Although the sub-groupings result in an uneven distribution of studies and observations, they still offer valuable insights. Despite these caveats, the two main sub-groupings portrayed in Table 2 enable us to identify valuable differences related to model success across the studies.
-
+These comparisons of sub-groupings may also be influenced by other factors, such as the aim of the study (i.e. whether it focused on prediction or explanation). To address this, we used the type of journal in which each study was published as a proxy indicator, classifying journals as either psychology or engineering. Of the 22 regression studies, 13 were published in engineering journals, yielding an average correlation of *r* = 0.656 (9% CI: 0.505–0.769). Studies published in psychology journals (9) showed a similar overall correlation of *r* = 0.688 (95% CI: 0.468–0.827). No significant difference in model accuracy was observed between the two types of study aims, *Q*(1) = 0.10, *p* = 0.748. More broadly, while the sub-groupings based on modelling techniques result in an uneven distribution of studies and observations, the two main sub-groupings presented in Table 2 highlight valuable differences in model performance across the studies.
 <!-- numbers in the text updated up to here, CA 20/2/2025 -->
 
-<!-- DISCUSS: we don't report journal type of explain/predict differences, although we do some of these in arousal, TE 19/3/2025 -->
+<!-- DISCUSS: we don't report journal type of explain/predict differences, although we do some of these in arousal, TE 19/3/2025: Now added! -->
 
 ### Results for arousal
 
