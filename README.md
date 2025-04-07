@@ -12,19 +12,19 @@ The public-facing version of the repository is available at
 
 We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd).
 
-## Study Search and Selection
+### Study Search and Selection
 
 Search databases and criteria are documented in [studies/search_syntax.qmd](studies/search_syntax.qmd).
 
-## Data Extraction and Coding
+### Data Extraction and Coding
 
 Data coding and extraction is described in data template [studies/extraction_details.qmd](studies/extraction_details.qmd). 
 
-## Analysis
+### Analysis
 
 Data analysis is covered in [analysis/analysis.qmd](analysis/analysis.qmd) document.
 
-## Manuscript
+### Manuscript
 
 The study report is available [manuscript/manuscript.qmd](manuscript/manuscript.qmd) document.
 
