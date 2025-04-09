@@ -31,5 +31,5 @@ The study report is available [manuscript/manuscript.qmd](manuscript/manuscript.
 
 ### Common datasets
 
-Commonly used datasets [manuscript/datasets.qmd](manuscript/datasets.qmd).
+Commonly used datasets are available [manuscript/datasets.qmd](manuscript/datasets.qmd).
 
