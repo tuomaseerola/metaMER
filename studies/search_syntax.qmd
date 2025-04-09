@@ -73,6 +73,5 @@ eliminated$TITLE[is.na(eliminated$themes)]
 
 ## Second pass: Assessment of relevant content
 
-
-Out of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established [link to prereg] was carried out.
+Out of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established in the [preregistration plan](preregistration/preregistration.qmd) was carried out.
 

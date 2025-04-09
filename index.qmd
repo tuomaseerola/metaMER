@@ -27,9 +27,9 @@ Data analysis is covered in [analysis/analysis.qmd](analysis/analysis.qmd) docum
 
 ### Manuscript
 
-The study report is available [manuscript/manuscript.qmd](manuscript/manuscript.qmd) document.
+The study report is available at [manuscript/manuscript.qmd](manuscript/manuscript.qmd) document.
 
 ### Common datasets
 
-Commonly used datasets are available [manuscript/datasets.qmd](manuscript/datasets.qmd).
+Commonly used datasets are available at [manuscript/datasets.qmd](manuscript/datasets.qmd).
 

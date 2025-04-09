@@ -732,21 +732,21 @@
     "href": "studies/search_syntax.html#second-pass-assessment-of-relevant-content",
     "title": "Search Syntax",
     "section": "Second pass: Assessment of relevant content",
-    "text": "Second pass: Assessment of relevant content\nOut of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established [link to prereg] was carried out."
+    "text": "Second pass: Assessment of relevant content\nOut of the studies identified in the first pass, a closer look at the priority 2 studies using the criteria established in the preregistration plan was carried out."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "README",
     "section": "",
-    "text": "How well we can predict emotions in music? What is the evidence in the published literature for explaining what emotions the listeners can perceive in music when the source consists of audio examples. To what degree the results are dependent on the actual models, type of emotions predicted, musical/acoustic features, or musical materials?\nTo obtain answers to these questions, we have set out to record and analyse the current state of the art from the literature using a meta-analysis paradigm. We focus on Music Emotion Recognition (MER) and hence the acronym metaMER.\nThe public-facing version of the repository is available at https://tuomaseerola.github.io/metaMER/\n\n\nWe define the aims and methods in preregistration plan, which has been preregistered at https://osf.io/6y3dr/.\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to a tabular format using a custom library_parser.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available manuscript/manuscript.qmd document.\n\n\n\nCommonly used datasets are available manuscript/datasets.qmd."
+    "text": "How well we can predict emotions in music? What is the evidence in the published literature for explaining what emotions the listeners can perceive in music when the source consists of audio examples. To what degree the results are dependent on the actual models, type of emotions predicted, musical/acoustic features, or musical materials?\nTo obtain answers to these questions, we have set out to record and analyse the current state of the art from the literature using a meta-analysis paradigm. We focus on Music Emotion Recognition (MER) and hence the acronym metaMER.\nThe public-facing version of the repository is available at https://tuomaseerola.github.io/metaMER/\n\n\nWe define the aims and methods in preregistration plan, which has been preregistered at https://osf.io/6y3dr/.\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to a tabular format using a custom library_parser.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available at manuscript/manuscript.qmd document.\n\n\n\nCommonly used datasets are available at manuscript/datasets.qmd."
   },
   {
     "objectID": "index.html#plan",
     "href": "index.html#plan",
     "title": "README",
     "section": "",
-    "text": "We define the aims and methods in preregistration plan, which has been preregistered at https://osf.io/6y3dr/.\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to a tabular format using a custom library_parser.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available manuscript/manuscript.qmd document.\n\n\n\nCommonly used datasets are available manuscript/datasets.qmd."
+    "text": "We define the aims and methods in preregistration plan, which has been preregistered at https://osf.io/6y3dr/.\n\n\nSearch databases and criteria are documented in studies/search_syntax.qmd.\n\n\n\nData extraction is described in extraction details. See also pass3 comparison.\nThe data will be parsed to a tabular format using a custom library_parser.qmd.\n\n\n\nData analysis is covered in analysis/analysis.qmd document.\n\n\n\nThe study report is available at manuscript/manuscript.qmd document.\n\n\n\nCommonly used datasets are available at manuscript/datasets.qmd."
   },
   {
     "objectID": "analysis/analysis.html",
