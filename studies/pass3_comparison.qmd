@@ -320,10 +320,3 @@ bib_df_merged$final_decision <- NULL
 bib2df::df2bib(bib_df_merged, file = 'metaMER_library_template.bib')
 ```
 
-Notes:
-
-For Feature classification, use this one:
-
-https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9229494
-
-Insert the template the annotation fields from googledoc to the bibtex file.
