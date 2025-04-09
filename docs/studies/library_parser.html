@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaMER - Library Parser</title>
+<title>Library Parser – metaMER</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,17 +69,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b6254045a21d07dd46cfe160e8c2e3db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,8 +94,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -97,41 +105,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">metaMER</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">README</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">README</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -140,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -148,13 +156,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<p><strong>Status:</strong> in progress.</p>
-<p><strong>TODO</strong>:<br>
-- Separate scripts and functions into separate .qmd files/directories.<br>
-- Update <code>model_rate_emotion_values</code> nomenclature process for classification papers.<br>
-- Replace rbind with custom bind function throughout</p>
+
 <section id="pre-processing" class="level1">
 <h1>Pre-processing</h1>
 <section id="preparing-data" class="level2">
@@ -162,7 +167,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The follow code extracts information from the .bib library to format it as a <code>data.frame</code> for further processing. The code makes use of the stringr package and uses regular expressions to extract relevant parameters. First we read in the .bib file and use some string manipulations to retrieve the citation keys.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">include.only =</span> <span class="st">'kable'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">include.only =</span> <span class="st">'kable'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">paste0</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"/R/format-study-results.R"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">paste0</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"/R/parse-model-output.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bib_file <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">'bib/extractions.bib'</span>,</span>
@@ -261,8 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Example: Evaluate <code>model_rate_emotion_values</code> as <em>R</em> code</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">paste0</span>(here<span class="sc">::</span><span class="fu">here</span>(), <span class="st">"/R/format-study-results.R"</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> meta_df<span class="sc">$</span>model_rate_emotion_values[<span class="dv">22</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> meta_df<span class="sc">$</span>model_rate_emotion_values[<span class="dv">22</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                                          arousal_r2
 various.svr.mixed.classical.1                                 0.7249
@@ -296,18 +302,21 @@ various.variational bayesian regression.mixed.classical.1                       
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>meta_df[<span class="fu">which</span>(<span class="fu">str_detect</span>(meta_df<span class="sc">$</span>final_notes, <span class="st">'!EXCL!'</span>)),] <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 × 28
-  citekey        paradigm notes_ca notes_te emotions emotion_locus stimulus_type
-  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
-1 "feng2024ex"   " class… " inclu… " inclu… "    "   "    "        "    "       
-2 "nag2022on"    " class… " inclu… " inclu… " happy… "    "        "    "       
-3 "cao2023th"    " regre… " inclu… " inclu… " valen… " perceived … " million so…
-4 "malheiro2018… " regre… " inclu… " inclu… "    "   "    "        "    "       
-5 "medina2020em" " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
-6 "panwar2019ar" " regre… " inclu… " inclu… "    "   "    "        "    "       
-7 "vempala2024p… " regre… " inclu… " inclu… " valen… " perceived … " classical …
-8 "xia2022st"    " regre… " inclu… " inclu… "   "    "    "        "   "        
-9 "zhang2024ap"  " regre… " inclu… " inclu… "    "   "    "        "    "       
+<pre><code># A tibble: 12 × 28
+   citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
+   &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
+ 1 "bai2017mu"   " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 2 "feng2024ex"  " class… " inclu… " inclu… "    "   "    "        "    "       
+ 3 "nag2022on"   " class… " inclu… " inclu… " happy… "    "        "    "       
+ 4 "bai2016di"   " regre… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 5 "cao2023th"   " regre… " inclu… " inclu… " valen… " perceived … " million so…
+ 6 "chin2018pr"  " regre… " inclu… " inclu… " valen… " perceived … " NTUMIR, Me…
+ 7 "malheiro201… " regre… " inclu… " inclu… "    "   "    "        "    "       
+ 8 "medina2020e… " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
+ 9 "panwar2019a… " regre… " inclu… " inclu… "    "   "    "        "    "       
+10 "vempala2024… " regre… " inclu… " inclu… " valen… " perceived … " classical …
+11 "xia2022st"   " regre… " inclu… " inclu… "   "    "    "        "   "        
+12 "zhang2024ap" " regre… " inclu… " inclu… "    "   "    "        "    "       
 # ℹ 21 more variables: stimulus_genre &lt;chr&gt;, stimulus_duration &lt;chr&gt;,
 #   stimulus_duration_unit &lt;chr&gt;, stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;,
 #   participant_n &lt;chr&gt;, participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
@@ -322,20 +331,20 @@ various.variational bayesian regression.mixed.classical.1                       
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>included_studies <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 28
+<pre><code># A tibble: 34 × 28
    citekey       paradigm notes_ca notes_te emotions emotion_locus stimulus_type
    &lt;chr&gt;         &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;        
  1 agarwal2021an " class… " inclu… " inclu… " discr… " perceived … " Hindi musi…
  2 alvarez2023ri " class… " inclu… " inclu… " discr… " perceived … " Spotify "  
- 3 bai2017mu     " class… " inclu… " inclu… " valen… " perceived … " MediaEval …
- 4 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " EMOPIA; po…
- 5 dufour2021us  " class… " inclu… " inclu… "  c1 (… " perceived … " pop, disco…
- 6 hizlisoy2021… " class… " inclu… " inclu… " valen… " perceived … " Turkish tr…
- 7 nguyen2017an  " class… " inclu… " inclu… " 288 e… " perceived … " pop  "     
- 8 panda2020no   " class… " inclu… " inclu… " valen… " perceived … " AllMusic  "
- 9 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
-10 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
-# ℹ 27 more rows
+ 3 bhuvanakumar… " class… " inclu… " inclu… " quadr… " not specif… " EMOPIA; po…
+ 4 dufour2021us  " class… " inclu… " inclu… "  c1 (… " perceived … " pop, disco…
+ 5 hizlisoy2021… " class… " inclu… " inclu… " valen… " perceived … " Turkish tr…
+ 6 nguyen2017an  " class… " inclu… " inclu… " 288 e… " perceived … " pop  "     
+ 7 panda2020no   " class… " inclu… " inclu… " valen… " perceived … " AllMusic  "
+ 8 sorussa2020em " class… " inclu… " inclu… " valen… " perceived … " DEAM  "    
+ 9 yang2021an    " class… " inclu… " inclu… " happy… " perceived … " MediaEval …
+10 yeh2014po     " class… " inclu… " inclu… " happy… " perceived … " chorus of …
+# ℹ 24 more rows
 # ℹ 21 more variables: stimulus_genre &lt;chr&gt;, stimulus_duration &lt;chr&gt;,
 #   stimulus_duration_unit &lt;chr&gt;, stimulus_n &lt;chr&gt;, feature_n &lt;chr&gt;,
 #   participant_n &lt;chr&gt;, participant_expertise &lt;chr&gt;, participant_origin &lt;chr&gt;,
@@ -383,10 +392,7 @@ various.variational bayesian regression.mixed.classical.1                       
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 2 MISSING FIELDS</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>(<span class="dv">2</span>) <span class="ot">-&gt;</span> missing_2 </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>missing_2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>(<span class="dv">2</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 28
 # ℹ 28 variables: citekey &lt;chr&gt;, paradigm &lt;chr&gt;, notes_ca &lt;chr&gt;,
@@ -397,8 +403,6 @@ various.variational bayesian regression.mixed.classical.1                       
 #   participant_sampling &lt;chr&gt;, participant_task &lt;chr&gt;,
 #   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;, …</code></pre>
 </div>
-</div>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## AT LEAST 3 MISSING FIELDS</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_missing</span>(<span class="dv">3</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -412,129 +416,61 @@ various.variational bayesian regression.mixed.classical.1                       
 #   feature_categories &lt;chr&gt;, feature_source &lt;chr&gt;, …</code></pre>
 </div>
 </div>
-<section id="data-frame-expansion" class="level2">
-<h2 class="anchored" data-anchor-id="data-frame-expansion">Data Frame Expansion</h2>
-<p>Next we want to copy the number of rows for each of the bibtex cells requiring special nesting</p>
 </section>
-<section id="sanity-check" class="level2">
-<h2 class="anchored" data-anchor-id="sanity-check">Sanity check</h2>
-</section>
-<section id="print-output-of-all-studies" class="level2">
-<h2 class="anchored" data-anchor-id="print-output-of-all-studies">Print output of all studies:</h2>
+<section id="parsing-studies" class="level1">
+<h1>Parsing Studies</h1>
+<p>The following functions provide a working example for converting the <em>R</em> code contained in <code>model_rate_emotion_values</code> to a data frame for further analysis. <code>get_study_summaries</code> is a simple function to demonstrate how the preprocessing routines work in the following examples</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># low-level function to extract relevant values from named array</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>model_result_2_df <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># evaluate the expression</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">eval_tidy</span>(rlang<span class="sc">::</span><span class="fu">parse_expr</span>(x))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get name of fitted models from column names</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  model_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(x)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(model_names)</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># split across model name for summary statistic (e.g., mean, sd, etc.)</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  model_statistic <span class="ot">&lt;-</span> <span class="fu">str_split</span>(model_names, <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  model_statistic <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(model_statistic, <span class="cf">function</span>(x) x[<span class="dv">2</span>]))</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get values</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  model_values <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># names(model_values) &lt;- 'score'</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_values)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get additional attributes (feature.data.exp)</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  model_attributes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(x)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(model_attributes)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get additional model details</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  model_attributes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">'rbind'</span>, <span class="fu">str_split</span>(model_attributes, <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)))</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(model_attributes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'library_id'</span>, <span class="st">'model_id'</span>, <span class="st">'feature_id'</span>, <span class="st">'data_id'</span>, <span class="st">'experiment_id'</span>)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">names</span>(model_attributes))</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># split across '_' to </span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  model_measures <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">do.call</span>(<span class="st">'rbind'</span>, stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="fu">colnames</span>(x), <span class="st">'_'</span>)))</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(model_measures)</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(model_measures) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dimension'</span>, <span class="st">'measure'</span>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  model_measures_split <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(model_measures[,<span class="st">'measure'</span>], <span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>)</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  model_measures[,<span class="st">'measure'</span>] <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(model_measures_split, </span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>                                              <span class="cf">function</span>(x) x[<span class="dv">1</span>]))</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">data.frame</span>(</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>             model_attributes, </span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>             model_measures, </span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>             <span class="at">values =</span> model_values,</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">statistic =</span> model_statistic))</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="co"># high level function to apply model_result_2_df to multiple studies</span></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>get_study_summaries <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind,</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>          <span class="fu">lapply</span>(df<span class="sc">$</span>model_rate_emotion_values, </span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>                   study_id <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>citekey[<span class="fu">which</span>(df<span class="sc">$</span>model_rate_emotion_values <span class="sc">==</span> x)])</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>                   model_results <span class="ot">&lt;-</span> <span class="fu">model_result_2_df</span>(x)</span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">return</span>(<span class="fu">cbind</span>(study_id, model_results))</span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>                   }</span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># high level function to apply parse_model_output to multiple studies</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>get_study_summaries <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">do.call</span>(rbind,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(df<span class="sc">$</span>model_rate_emotion_values, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>           study_id <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>citekey[<span class="fu">which</span>(df<span class="sc">$</span>model_rate_emotion_values <span class="sc">==</span> x)])</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>           model_results <span class="ot">&lt;-</span> <span class="fu">parse_model_output</span>(x)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">return</span>(<span class="fu">cbind</span>(study_id, model_results))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>           }</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="parsing-regression-studies" class="level1">
-<h1>Parsing Regression Studies</h1>
-<p>The following functions provide a working example for converting the r code contained in <code>model_rate_emotion_values</code> to a data frame for further analysis (currently working for regression studies).</p>
-<section id="template" class="level3">
-<h3 class="anchored" data-anchor-id="template">Template</h3>
-<p>Encoded values should use the following nomenclature:</p>
-<pre><code>library = rbind(library.model.features.data.exp = c(dim_measure.summary = 0.5, dim_measure.summary = 0.1), library.model.features.data.exp = c(dim_measure.summary = 0.2, dim_measure.summary = 0.5))
-
-# e.g.
-
-rbind(librosa.randomforest.mfcc.msd.1 = c(valence_r2.mean = 0.5, arousal_r2.mean = 0.1), 
-librosa.randomforest.temporal.msd.1 = c(valence_r2.mean = 0.2, arousal_r2.mean = 0.5,
-valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
-</section>
-<section id="working-example" class="level3">
-<h3 class="anchored" data-anchor-id="working-example">Working example</h3>
+<section id="regression-studies" class="level2">
+<h2 class="anchored" data-anchor-id="regression-studies">Regression studies</h2>
+<p>Encoded values should use the following nomenclature. In this synthetic example, dim_measure.summary2 exists for the study in the second row, but not the first, so an NA is encoded for summary2 in row 1.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>this_study <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">citekey =</span> <span class="fu">c</span>(<span class="st">'testStudy2023ab'</span>,<span class="st">'testStudy2023ab'</span>, <span class="st">'testStudy2020of'</span>),</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_rate_emotion_values =</span> <span class="fu">c</span>(<span class="st">"rbind('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">                                  valence_r2.sd = 0.4, arousal_r2.sd = 0.3,</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  valence_mse.mean = 0.3, arousal_mse.mean = 9.1),</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">  'essentia.random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rbind('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, valence_r2.sd = 0.2, arousal_r2.sd = 0.4,</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">  euclid_euclid.mean = 0.32, euclid_euclid.sd = 0.1))"</span>,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rbind('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))"</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="summary-data-frame" class="level3">
-<h3 class="anchored" data-anchor-id="summary-data-frame">Summary data frame</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="fu">get_study_summaries</span>(this_study)) <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_field</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'library.model.features.data.exp1'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="at">dim_measure1.summary =</span> <span class="fl">0.5</span>, <span class="at">dim_measure2.summary =</span> <span class="fl">0.1</span>), </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'library.model.features.data.exp2'</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="at">dim_measure1.summary =</span> <span class="fl">0.2</span>, <span class="at">dim_measure2.summary =</span> <span class="fl">0.5</span>, <span class="at">dim_measure.summary2 =</span> <span class="fl">0.3</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.9 0.9 0.5 0.5 0.4 0.9 0.3 0.5 0.3 0.9 9.1 0.5
-[1] "library_id"    "model_id"      "feature_id"    "data_id"      
-[5] "experiment_id"
-       X1       X2
-1 valence  r2.mean
-2 arousal  r2.mean
-3 valence    r2.sd
-4 arousal    r2.sd
-5 valence mse.mean
-6 arousal mse.mean
-[1] 0.10 0.30 0.20 0.40 0.32 0.10
-[1] "library_id"    "model_id"      "feature_id"    "data_id"      
-[5] "experiment_id"
-       X1          X2
-1 valence     r2.mean
-2 arousal     r2.mean
-3 valence       r2.sd
-4 arousal       r2.sd
-5  euclid euclid.mean
-6  euclid   euclid.sd
-[1] 0.1 0.3
-[1] "library_id"    "model_id"      "feature_id"    "data_id"      
-[5] "experiment_id"
-       X1      X2
-1 valence r2.mean
-2 arousal r2.mean</code></pre>
+<pre><code>                                 dim_measure.summary2 dim_measure1.summary
+library.model.features.data.exp1                   NA                  0.5
+library.model.features.data.exp2                  0.3                  0.2
+                                 dim_measure2.summary
+library.model.features.data.exp1                  0.1
+library.model.features.data.exp2                  0.5</code></pre>
+</div>
+</div>
+<section id="example-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-2">Example 2</h3>
+<p>This example is more extensive, and shows how this procedure can work with multiple studies:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>regression_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">citekey =</span> <span class="fu">c</span>(<span class="st">'testStudy2023aa'</span>,<span class="st">'testStudy2023bb'</span>, <span class="st">'testStudy2020cc'</span>),</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_rate_emotion_values =</span> <span class="fu">c</span>(<span class="st">"bind_field('marsyas.random forest.mfcc.msd.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5,</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st"> valence_r2.sd = 0.4, arousal_r2.sd = 0.3),</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">  'essentia.random forest.mfcc.deam.1' = c(valence_r2.mean = 0.9, arousal_r2.mean = 0.5))"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bind_field('librosa.linear regression.mfcc.ismir.1' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3, euclid_euclid.mean = 0.32))"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bind_field('mirtoolbox.neural net.pitch.filmMusic.2' = c(valence_r2.mean = 0.1, arousal_r2.mean = 0.3))"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="fu">get_study_summaries</span>(regression_example)) <span class="sc">|&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fill_missing_names(...): Mismatch in input lengths.</code></pre>
 </div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 13%">
 <col style="width: 9%">
@@ -544,8 +480,8 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <col style="width: 12%">
 <col style="width: 8%">
 <col style="width: 6%">
-<col style="width: 6%">
 <col style="width: 8%">
+<col style="width: 6%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -557,97 +493,61 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <th style="text-align: left;">experiment_id</th>
 <th style="text-align: left;">dimension</th>
 <th style="text-align: left;">measure</th>
-<th style="text-align: right;">values</th>
 <th style="text-align: left;">statistic</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">marsyas</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
 <td style="text-align: left;">msd</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: left;">mean</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">essentia</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">deam</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.90</td>
 <td style="text-align: left;">mean</td>
+<td style="text-align: right;">0.50</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
+<tr class="even">
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">marsyas</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
 <td style="text-align: left;">msd</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: left;">sd</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">essentia</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">deam</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.50</td>
 <td style="text-align: left;">sd</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">marsyas</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
 <td style="text-align: left;">msd</td>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">valence</td>
-<td style="text-align: left;">mse</td>
+<td style="text-align: left;">r2</td>
+<td style="text-align: left;">mean</td>
+<td style="text-align: right;">0.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">testStudy2023aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">random forest</td>
+<td style="text-align: left;">mfcc</td>
+<td style="text-align: left;">msd</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">valence</td>
+<td style="text-align: left;">r2</td>
+<td style="text-align: left;">sd</td>
 <td style="text-align: right;">0.40</td>
-<td style="text-align: left;">mean</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">essentia</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">deam</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">arousal</td>
-<td style="text-align: left;">mse</td>
-<td style="text-align: right;">0.90</td>
-<td style="text-align: left;">mean</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">marsyas</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">msd</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: left;">mean</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">essentia</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
@@ -655,23 +555,11 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
+<td style="text-align: left;">mean</td>
 <td style="text-align: right;">0.50</td>
-<td style="text-align: left;">mean</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">marsyas</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">msd</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: left;">sd</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">essentia</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
@@ -679,35 +567,35 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
+<td style="text-align: left;">sd</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">testStudy2023aa</td>
+<td style="text-align: left;">essentia</td>
+<td style="text-align: left;">random forest</td>
+<td style="text-align: left;">mfcc</td>
+<td style="text-align: left;">deam</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">valence</td>
+<td style="text-align: left;">r2</td>
+<td style="text-align: left;">mean</td>
 <td style="text-align: right;">0.90</td>
-<td style="text-align: left;">sd</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">marsyas</td>
-<td style="text-align: left;">random forest</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">msd</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">mse</td>
-<td style="text-align: right;">9.10</td>
-<td style="text-align: left;">mean</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023aa</td>
 <td style="text-align: left;">essentia</td>
 <td style="text-align: left;">random forest</td>
 <td style="text-align: left;">mfcc</td>
 <td style="text-align: left;">deam</td>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">arousal</td>
-<td style="text-align: left;">mse</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: left;">mean</td>
+<td style="text-align: left;">valence</td>
+<td style="text-align: left;">r2</td>
+<td style="text-align: left;">sd</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023bb</td>
 <td style="text-align: left;">librosa</td>
 <td style="text-align: left;">linear regression</td>
 <td style="text-align: left;">mfcc</td>
@@ -715,11 +603,11 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">valence</td>
 <td style="text-align: left;">r2</td>
+<td style="text-align: left;">mean</td>
 <td style="text-align: right;">0.10</td>
-<td style="text-align: left;">mean</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
+<td style="text-align: left;">testStudy2023bb</td>
 <td style="text-align: left;">librosa</td>
 <td style="text-align: left;">linear regression</td>
 <td style="text-align: left;">mfcc</td>
@@ -727,59 +615,23 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">1</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
+<td style="text-align: left;">mean</td>
 <td style="text-align: right;">0.30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">testStudy2023bb</td>
+<td style="text-align: left;">librosa</td>
+<td style="text-align: left;">linear regression</td>
+<td style="text-align: left;">mfcc</td>
+<td style="text-align: left;">ismir</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">euclid</td>
+<td style="text-align: left;">euclid</td>
 <td style="text-align: left;">mean</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">librosa</td>
-<td style="text-align: left;">linear regression</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">ismir</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">valence</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: left;">sd</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">librosa</td>
-<td style="text-align: left;">linear regression</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">ismir</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">arousal</td>
-<td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: left;">sd</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">librosa</td>
-<td style="text-align: left;">linear regression</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">ismir</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">euclid</td>
-<td style="text-align: left;">euclid</td>
 <td style="text-align: right;">0.32</td>
-<td style="text-align: left;">mean</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">testStudy2023ab</td>
-<td style="text-align: left;">librosa</td>
-<td style="text-align: left;">linear regression</td>
-<td style="text-align: left;">mfcc</td>
-<td style="text-align: left;">ismir</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">euclid</td>
-<td style="text-align: left;">euclid</td>
-<td style="text-align: right;">0.10</td>
-<td style="text-align: left;">sd</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">testStudy2020of</td>
+<td style="text-align: left;">testStudy2020cc</td>
 <td style="text-align: left;">mirtoolbox</td>
 <td style="text-align: left;">neural net</td>
 <td style="text-align: left;">pitch</td>
@@ -787,11 +639,11 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">valence</td>
 <td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.10</td>
 <td style="text-align: left;">mean</td>
+<td style="text-align: right;">0.10</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">testStudy2020of</td>
+<tr class="odd">
+<td style="text-align: left;">testStudy2020cc</td>
 <td style="text-align: left;">mirtoolbox</td>
 <td style="text-align: left;">neural net</td>
 <td style="text-align: left;">pitch</td>
@@ -799,8 +651,331 @@ valence_r2.sd = 0.1, arousal_r2.sd = 0.1))</code></pre>
 <td style="text-align: left;">2</td>
 <td style="text-align: left;">arousal</td>
 <td style="text-align: left;">r2</td>
-<td style="text-align: right;">0.30</td>
 <td style="text-align: left;">mean</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="classification-studies" class="level2">
+<h2 class="anchored" data-anchor-id="classification-studies">Classification studies</h2>
+<p>For classification studies, we can extract results from a matrix-like representation.</p>
+<p><code>unflatten</code> is a convenience function for preparing a confusion matrix, and <code>summarize_matrix</code> calls on the <em>caret</em> package to compute summary statistics for the matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_field</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">'library.model.features.data.exp'</span> <span class="ot">=</span> <span class="fu">unflatten</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Class_A"</span> <span class="ot">=</span> <span class="fl">0.8</span>, <span class="st">"Class_B"</span> <span class="ot">=</span> <span class="fl">0.2</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.2</span>, <span class="fl">0.8</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">'library.model.features.data.exp'</span> <span class="ot">=</span> <span class="fu">unflatten</span>(</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Class_A"</span> <span class="ot">=</span> <span class="fl">0.4</span>, <span class="st">"Class_B"</span> <span class="ot">=</span> <span class="fl">0.6</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      <span class="fl">0.6</span>, <span class="fl">0.4</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    summarize_matrix</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                classification_accuracy
+library.model.features.data.exp                     0.8
+library.model.features.data.exp                     0.4
+                                classification_accuracy.lower
+library.model.features.data.exp                            NA
+library.model.features.data.exp                            NA
+                                classification_accuracy.null
+library.model.features.data.exp                           NA
+library.model.features.data.exp                           NA
+                                classification_accuracy.pvalue
+library.model.features.data.exp                             NA
+library.model.features.data.exp                             NA
+                                classification_accuracy.upper
+library.model.features.data.exp                            NA
+library.model.features.data.exp                            NA
+                                classification_class.n classification_kappa
+library.model.features.data.exp                      2                  0.6
+library.model.features.data.exp                      2                 -0.2
+                                classification_mcc
+library.model.features.data.exp                0.6
+library.model.features.data.exp               -0.2
+                                classification_mcnemar.pvalue
+library.model.features.data.exp                             1
+library.model.features.data.exp                             1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>classification_example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">citekey =</span> <span class="st">"classificationStudy2020aa"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_rate_emotion_values =</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bind_field(</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="st">    lapply(</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="st">      list(</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="st">        'marsyas.smo unambiguous.mixed.new.1' = unflatten(</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="st">          'A' = 52.6, 'B' = 17.1, 'C' = 0.0,</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="st">          12, 65.2, 7.6, </span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="st">          1.1,9.9,73.6),</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="st">        'marsyas.smo full.mixed.new.1' = unflatten(</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="st">          'C1' = 56.0, 'C2' = 19, 'C3' = 0.0, 'C4' = 2, </span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="st">          11.3,58.9,13.7,15,</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="st">          0,13.2,68.6, 3,</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="st">          15,1,4, 6)</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="st">      ),</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="st">      summarize_matrix</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="st">    )</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="st">  )"</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="fu">get_study_summaries</span>(classification_example)) <span class="sc">|&gt;</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">study_id</th>
+<th style="text-align: left;">library_id</th>
+<th style="text-align: left;">model_id</th>
+<th style="text-align: left;">feature_id</th>
+<th style="text-align: left;">data_id</th>
+<th style="text-align: left;">experiment_id</th>
+<th style="text-align: left;">dimension</th>
+<th style="text-align: left;">measure</th>
+<th style="text-align: left;">statistic</th>
+<th style="text-align: right;">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.8005019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">lower</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">null</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">pvalue</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">upper</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">class</td>
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">3.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">kappa</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.6990861</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">mcc</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.6998487</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo unambiguous</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">mcnemar</td>
+<td style="text-align: left;">pvalue</td>
+<td style="text-align: right;">0.5132684</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.6609697</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">lower</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">null</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">pvalue</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: left;">upper</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">class</td>
+<td style="text-align: left;">n</td>
+<td style="text-align: right;">4.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">kappa</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.5257194</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">mcc</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0.5260629</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">classificationStudy2020aa</td>
+<td style="text-align: left;">marsyas</td>
+<td style="text-align: left;">smo full</td>
+<td style="text-align: left;">mixed</td>
+<td style="text-align: left;">new</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">classification</td>
+<td style="text-align: left;">mcnemar</td>
+<td style="text-align: left;">pvalue</td>
+<td style="text-align: right;">NaN</td>
 </tr>
 </tbody>
 </table>
@@ -847,18 +1022,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -890,11 +1054,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -904,8 +1105,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -917,7 +1127,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -961,6 +1293,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -986,6 +1319,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1048,7 +1407,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2024, Tuomas Eerola</div>   
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1060,16 +1421,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </i> 
     </a>
   </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/tuomas_ee">
-      <i class="bi bi-twitter" role="img">
-</i> 
-    </a>
-  </li>  
 </ul>
     </div>
   </div>
 </footer>
+
 
 
 
