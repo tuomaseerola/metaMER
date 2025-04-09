@@ -9,7 +9,7 @@ The public-facing version of the repository is available at
 
 ## Plan
 
-We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd), which has beeb preregistered at [https://osf.io/6y3dr/](https://osf.io/6y3dr/).
+We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd), which has been preregistered at [https://osf.io/6y3dr/](https://osf.io/6y3dr/).
 
 ### Study Search and Selection
 
