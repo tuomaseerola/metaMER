@@ -490,7 +490,7 @@ m.cor.c.all
 
 #m.cor_backtransformed <- m.cor
 #m.cor_backtransformed$TE <- FisherZInv(m.cor_backtransformed$TE)
-print(funnel(m.cor.c.all, common = FALSE, studlab=TRUE,backtransf=TRUE))
+#print(funnel(m.cor.c.all, common = FALSE, studlab=TRUE,backtransf=TRUE))
 
 ```
 ## Define splits for genre & stimulus n combinations
@@ -595,30 +595,6 @@ fp4 <- custom_funnel_plot(m.cor.c)
 
 gridExtra::grid.arrange(fp3, fp4, ncol=2, widths=c(2,1),heights=c(2,1))
 
-
-
-```
-
-
-
-#### Custom plot
-
-```{r}
-tmpdata <- data.frame(SE = FisherZInv(m.cor.c$seTE), Zr = FisherZInv(m.cor.c$TE),studies=m.cor.c$studlab)
-
-tmpdata$citekey<-str_replace_all(tmpdata$studies,'-.*$','')
-tmpdata$citekey<-factor(tmpdata$citekey)
-
-g <- ggplot(tmpdata,aes(y = SE, x = Zr,label=studies,color=citekey,fill=citekey)) +
-  geom_point(show.legend = FALSE) +
-  geom_label_repel(size=1.5,max.overlaps = 39,color="black",show.legend = FALSE)+
-  ylab('Standard Error') + 
-  xlab('r')+
-  scale_y_reverse()+
-#  scale_x_continuous(breaks=seq(0.0,1.0,0.25),limits=c(0,1.0))+
-#  coord_flip()+
-  theme_bw()
-print(g)
 ```
 
 ## Exploring heterogeneity
