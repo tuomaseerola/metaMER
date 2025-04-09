@@ -2,6 +2,8 @@
 
 This assumes that the data has been parsed (`parse-model-output.R`, `format-study-results.R`) and preprocessed (`processing.qmd`).
 
+Updated 9/4/2025
+
 ## Regression studies
 
 ### Valence
