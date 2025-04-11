@@ -1,20 +1,55 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    port: 4200
+    browser: true
+    navigate: true
+
 website:
+  title: "metaMER"
+  description: "A Meta-Analysis of Music Emotion Recognition Studies."
+  repo-url: https://github.com/tuomaseerola/metaMER/
+  repo-actions: [source, edit, issue]
+  site-url: "https://tuomaseerola.github.io/metaMER/"
+  search: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - icon: github
+        href: https://github.com/tuomaseerola/metaMER/
+        aria-label: GitHub
+  page-navigation: true
+  back-to-top-navigation: true
+  sidebar:
+    - title: "Home"
+      style: "floating"
+      collapse-level: 3
+      align: left
+      contents: 
+          - text: "Home"
+            href: index.qmd
+          - text: "Plan"
+            href: preregistration/preregistration.qmd
+          - section: "Analysis"
+            contents:
+                - studies/search_syntax.qmd
+                - studies/extraction_details.qmd
+                - studies/pass3_comparison.qmd
+                - studies/library_parser.qmd
+                - analysis/analysis.qmd
+          - text: "Manuscript"
+            href: manuscript/manuscript.qmd
+          - text: "Common datasets"
+            href: manuscript/datasets.qmd
   page-footer: 
     right: 
       - icon: github
         href: https://github.com/tuomaseerola/
-  title: "metaMER"
-  navbar:
-    left:
-      - href: index.qmd
-  page-navigation: true
-  back-to-top-navigation: true
 format:
   html:
     theme: pulse # lumen, pulse, materia, yeti, zephyr
     css: styles.css
-    toc: false
+    toc: true
     page-layout: full

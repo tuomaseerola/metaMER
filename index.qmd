@@ -1,4 +1,20 @@
-# README
+---
+title: "A Meta-Analysis of Music Emotion Recognition Studies"
+author:
+  - name: Tuomas Eerola
+    orcid: 0000-0002-2896-929X
+    email: tuomas.eerola@durham.ac.uk
+    affiliations:
+      - name: Durham University
+  - name: Cameron J. Anderson
+    orcid: 0000-0002-8737-2055
+    email: andersoc@mcmaster.ca
+    affiliations:
+      - name: McMaster University
+description: "A Meta-Analysis of Music Emotion Recognition Studies."
+date: 4-11-2025
+title-block-style: default
+---
 
 How well we can predict emotions in music? What is the evidence in the published literature for explaining what emotions the listeners can perceive in music when the source consists of audio examples. To what degree the results are dependent on the actual models, type of emotions predicted, musical/acoustic features, or musical materials?
 
@@ -7,29 +23,29 @@ To obtain answers to these questions, we have set out to record and analyse the 
 The public-facing version of the repository is available at
 [https://tuomaseerola.github.io/metaMER/](https://tuomaseerola.github.io/metaMER/)
 
-## Plan
+### Plan
 
 We define the aims and methods in [preregistration plan](preregistration/preregistration.qmd), which has been preregistered at [https://osf.io/6y3dr/](https://osf.io/6y3dr/).
 
-### Study Search and Selection
+#### Study Search and Selection
 
 Search databases and criteria are documented in [studies/search_syntax.qmd](studies/search_syntax.qmd).
 
-### Data Extraction and Coding
+#### Data Extraction and Coding
 
 Data extraction is described in [extraction details](studies/extraction_details.qmd). See also [pass3 comparison ](studies/pass3_comparison.qmd). 
 
 The data will be parsed to a tabular format using a custom [library_parser.qmd](studies/library_parser.qmd).
 
-### Analysis
+#### Analysis
 
-Data analysis is covered in [analysis/analysis.qmd](analysis/analysis.qmd) document.
+Data analysis steps are covered in the [analysis/analysis.qmd](analysis/analysis.qmd) document.
 
-### Manuscript
+#### Manuscript
 
-The study report is available at [manuscript/manuscript.qmd](manuscript/manuscript.qmd) document.
+The study report is available in [manuscript/manuscript.qmd](manuscript/manuscript.qmd) document.
 
-### Common datasets
+#### Common datasets
 
-Commonly used datasets are available at [manuscript/datasets.qmd](manuscript/datasets.qmd).
+Commonly used datasets are available in [manuscript/datasets.qmd](manuscript/datasets.qmd).
 

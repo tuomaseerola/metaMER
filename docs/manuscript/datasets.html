@@ -50,6 +50,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../manuscript/manuscript.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -120,7 +121,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,8 +139,13 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">README</span></a>
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/tuomaseerola/metaMER/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -147,14 +153,98 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manuscript/datasets.html">Common datasets</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preregistration/preregistration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plan</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../studies/search_syntax.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Search Syntax</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../studies/extraction_details.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extraction Details</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../studies/pass3_comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pass 3 Comparison</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../studies/library_parser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Library Parser</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../analysis/analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/manuscript.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manuscript</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../manuscript/datasets.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Common datasets</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -163,7 +253,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -374,34 +464,34 @@ window.Quarto = {
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-agarwal2021an" class="csl-entry" role="listitem">
-Agarwal, G., &amp; Om, H. (2021). An efficient supervised framework for music mood recognition using autoencoder-based optimised support vector regression model [Article]. <em>IET Signal Processing</em>, <em>15</em>(2), 98–121. <a href="https://doi.org/10.1049/sil2.12015">https://doi.org/10.1049/sil2.12015</a>
+Agarwal, G., &amp; Om, H. (2021). An efficient supervised framework for music mood recognition using autoencoder-based optimised support vector regression model. <em>IET Signal Processing</em>, <em>15</em>(2), 98–121. <a href="https://doi.org/10.1049/sil2.12015">https://doi.org/10.1049/sil2.12015</a>
 </div>
 <div id="ref-aljanaki2017developing" class="csl-entry" role="listitem">
 Aljanaki, A., Yang, Y.-H., &amp; Soleymani, M. (2017). Developing a benchmark for emotional analysis of music. <em>PloS One</em>, <em>12</em>(3), e0173392.
 </div>
 <div id="ref-alvarez2023ri" class="csl-entry" role="listitem">
-Álvarez, P., Quirós, J. G. de, &amp; Baldassarri, S. (2023). RIADA: A machine-learning based infrastructure for recognising the emotions of spotify songs [Article]. <em>International Journal of Interactive Multimedia and Artificial Intelligence</em>, <em>8</em>(2), 168–181. <a href="https://doi.org/10.9781/ijimai.2022.04.002">https://doi.org/10.9781/ijimai.2022.04.002</a>
+Álvarez, P., Quirós, J. G. de, &amp; Baldassarri, S. (2023). RIADA: A machine-learning based infrastructure for recognising the emotions of spotify songs. <em>International Journal of Interactive Multimedia and Artificial Intelligence</em>, <em>8</em>(2), 168–181. <a href="https://doi.org/10.9781/ijimai.2022.04.002">https://doi.org/10.9781/ijimai.2022.04.002</a>
 </div>
 <div id="ref-bai2016di" class="csl-entry" role="listitem">
 Bai, J., Feng, L., Peng, J., Shi, J., Luo, K., Li, Z., Liao, L., &amp; Wang, Y. (2016). Dimensional music emotion recognition by machine learning. <em>INTERNATIONAL JOURNAL OF COGNITIVE INFORMATICS AND NATURAL INTELLIGENCE</em>, <em>10</em>(4), 74–89. <a href="https://doi.org/10.4018/IJCINI.2016100104">https://doi.org/10.4018/IJCINI.2016100104</a>
 </div>
 <div id="ref-bai2017mu" class="csl-entry" role="listitem">
-Bai, J., Luo, K., Peng, J., Shi, J., Wu, Y., Feng, L., Li, J., &amp; Wang, Y. (2017). Music emotions recognition by machine learning with cognitive classification methodologies [Article]. <em>International Journal of Cognitive Informatics and Natural Intelligence</em>, <em>11</em>(4), 80–92. <a href="https://doi.org/10.4018/IJCINI.2017100105">https://doi.org/10.4018/IJCINI.2017100105</a>
+Bai, J., Luo, K., Peng, J., Shi, J., Wu, Y., Feng, L., Li, J., &amp; Wang, Y. (2017). Music emotions recognition by machine learning with cognitive classification methodologies. <em>International Journal of Cognitive Informatics and Natural Intelligence</em>, <em>11</em>(4), 80–92. <a href="https://doi.org/10.4018/IJCINI.2017100105">https://doi.org/10.4018/IJCINI.2017100105</a>
 </div>
 <div id="ref-bhuvanakumar2023em" class="csl-entry" role="listitem">
-Bhuvana Kumar, V., &amp; Kathiravan, M. (2023). Emotion recognition from MIDI musical file using enhanced residual gated recurrent unit architecture [Article]. <em>Frontiers in Computer Science</em>, <em>5</em>. <a href="https://doi.org/10.3389/fcomp.2023.1305413">https://doi.org/10.3389/fcomp.2023.1305413</a>
+Bhuvana Kumar, V., &amp; Kathiravan, M. (2023). Emotion recognition from MIDI musical file using enhanced residual gated recurrent unit architecture. <em>Frontiers in Computer Science</em>, <em>5</em>. <a href="https://doi.org/10.3389/fcomp.2023.1305413">https://doi.org/10.3389/fcomp.2023.1305413</a>
 </div>
 <div id="ref-cao2023th" class="csl-entry" role="listitem">
 Cao, Y., &amp; Park, J. (2023). The analysis of music emotion and visualization fusing long short-term memory networks under the internet of things. <em>IEEE ACCESS</em>, <em>11</em>, 141192–141204. <a href="https://doi.org/10.1109/ACCESS.2023.3341926">https://doi.org/10.1109/ACCESS.2023.3341926</a>
 </div>
 <div id="ref-chen2017co" class="csl-entry" role="listitem">
-Chen, Y.-A., Wang, J.-C., Yang, Y.-H., &amp; Chen, H. H. (2017). Component tying for mixture model adaptation in personalization of music emotion recognition. <em>IEEE-ACM TRANSACTIONS ON AUDIO SPEECH AND LANGUAGE PROCESSING</em>, <em>25</em>(7), 1409–1420. <a href="https://doi.org/10.1109/TASLP.2017.2693565">https://doi.org/10.1109/TASLP.2017.2693565</a>
+Chen, Y.-A., Wang, J.-C., Yang, Y.-H., &amp; Chen, H. H. (2017). Component tying for mixture model adaptation in personalization of music emotion recognition. <em>IEEE/ACM Transactions on Audio, Speech, and Language Processing</em>, <em>25</em>(7), 1409–1420. <a href="https://doi.org/10.1109/TASLP.2017.2693565">https://doi.org/10.1109/TASLP.2017.2693565</a>
 </div>
 <div id="ref-chen2015amg1608" class="csl-entry" role="listitem">
 Chen, Y.-A., Yang, Y.-H., Wang, J.-C., &amp; Chen, H. (2015). The AMG1608 dataset for music emotion recognition. <em>2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>, 693–697.
 </div>
 <div id="ref-chin2018pr" class="csl-entry" role="listitem">
-Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>9</em>(4), 541–549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
+Chin, Y.-H., Wang, J.-C., Wang, J.-C., &amp; Yang, Y.-H. (2018). Predicting the probability density function of music emotion using emotion space mapping. <em>IEEE Transactions on Affective Computing</em>, <em>9</em>(4), 541–549. <a href="https://doi.org/10.1109/TAFFC.2016.2628794">https://doi.org/10.1109/TAFFC.2016.2628794</a>
 </div>
 <div id="ref-coutinho2017sh" class="csl-entry" role="listitem">
 Coutinho, E., &amp; Schuller, B. (2017). Shared acoustic codes underlie emotional communication in music and speech-evidence from deep transfer learning. <em>PLOS ONE</em>, <em>12</em>(6). <a href="https://doi.org/10.1371/journal.pone.0179289">https://doi.org/10.1371/journal.pone.0179289</a>
@@ -410,10 +500,10 @@ Coutinho, E., &amp; Schuller, B. (2017). Shared acoustic codes underlie emotiona
 Eyben, F., Wöllmer, M., &amp; Schuller, B. (2010). Opensmile: The munich versatile and fast open-source audio feature extractor. <em>Proceedings of the 18th ACM International Conference on Multimedia</em>, 1459–1462.
 </div>
 <div id="ref-hu2022de" class="csl-entry" role="listitem">
-Hu, Xiao, Li, F., &amp; Liu, R. (2022). Detecting music-induced emotion based on acoustic analysis and physiological sensing: A multimodal approach. <em>APPLIED SCIENCES-BASEL</em>, <em>12</em>(18). <a href="https://doi.org/10.3390/app12189354">https://doi.org/10.3390/app12189354</a>
+Hu, Xiao, Li, F., &amp; Liu, R. (2022). Detecting music-induced emotion based on acoustic analysis and physiological sensing: A multimodal approach. <em>Applied Sciences</em>, <em>12</em>(18). <a href="https://doi.org/10.3390/app12189354">https://doi.org/10.3390/app12189354</a>
 </div>
 <div id="ref-hu2017cr" class="csl-entry" role="listitem">
-Hu, X., &amp; Yang, Y.-H. (2017). Cross-dataset and cross-cultural music mood prediction: A case on western and chinese pop songs. <em>IEEE TRANSACTIONS ON AFFECTIVE COMPUTING</em>, <em>8</em>(2), 228–240. <a href="https://doi.org/10.1109/TAFFC.2016.2523503">https://doi.org/10.1109/TAFFC.2016.2523503</a>
+Hu, X., &amp; Yang, Y.-H. (2017). Cross-dataset and cross-cultural music mood prediction: A case on western and chinese pop songs. <em>IEEE Transactions on Affective Computing</em>, <em>8</em>(2), 228–240. <a href="https://doi.org/10.1109/TAFFC.2016.2523503">https://doi.org/10.1109/TAFFC.2016.2523503</a>
 </div>
 <div id="ref-koh2023me" class="csl-entry" role="listitem">
 Koh, E. Y., Cheuk, K. W., Heung, K. Y., Agres, K. R., &amp; Herremans, D. (2023). MERP: A music dataset with emotion ratings and raters’ profile information. <em>SENSORS</em>, <em>23</em>(1). <a href="https://doi.org/10.3390/s23010382">https://doi.org/10.3390/s23010382</a>
@@ -422,13 +512,13 @@ Koh, E. Y., Cheuk, K. W., Heung, K. Y., Agres, K. R., &amp; Herremans, D. (2023)
 Lartillot, O., &amp; Toiviainen, P. (2007). A matlab toolbox for musical feature extraction from audio. <em>International Conference on Digital Audio Effects</em>, <em>237</em>, 244.
 </div>
 <div id="ref-markov2014mu" class="csl-entry" role="listitem">
-Markov, K., &amp; Matsui, T. (2014). Music genre and emotion recognition using gaussian processes [Article]. <em>IEEE Access</em>, <em>2</em>, 688–697. <a href="https://doi.org/10.1109/ACCESS.2014.2333095">https://doi.org/10.1109/ACCESS.2014.2333095</a>
+Markov, K., &amp; Matsui, T. (2014). Music genre and emotion recognition using gaussian processes. <em>IEEE Access</em>, <em>2</em>, 688–697. <a href="https://doi.org/10.1109/ACCESS.2014.2333095">https://doi.org/10.1109/ACCESS.2014.2333095</a>
 </div>
 <div id="ref-medina2020em" class="csl-entry" role="listitem">
 Medina, Y. O., Beltran, J. R., &amp; Baldassarri, S. (2020). Emotional classification of music using neural networks with the MediaEval dataset. <em>PERSONAL AND UBIQUITOUS COMPUTING</em>. <a href="https://doi.org/10.1007/s00779-020-01393-4">https://doi.org/10.1007/s00779-020-01393-4</a>
 </div>
 <div id="ref-orjesek2022en" class="csl-entry" role="listitem">
-Orjesek, R., Jarina, R., &amp; Chmulik, M. (2022). End-to-end music emotion variation detection using iteratively reconstructed deep features. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>81</em>(4), 5017–5031. <a href="https://doi.org/10.1007/s11042-021-11584-7">https://doi.org/10.1007/s11042-021-11584-7</a>
+Orjesek, R., Jarina, R., &amp; Chmulik, M. (2022). End-to-end music emotion variation detection using iteratively reconstructed deep features. <em>Multimedia Tools and Applications</em>, <em>81</em>(4), 5017–5031. <a href="https://doi.org/10.1007/s11042-021-11584-7">https://doi.org/10.1007/s11042-021-11584-7</a>
 </div>
 <div id="ref-panwar2019ar" class="csl-entry" role="listitem">
 Panwar, S., Rad, P., Choo, K.-K. R., &amp; Roopaei, M. (2019). Are you emotional or depressed? Learning about your emotional state from your music using machine learning. <em>JOURNAL OF SUPERCOMPUTING</em>, <em>75</em>(6, SI), 2986–3009. <a href="https://doi.org/10.1007/s11227-018-2499-y">https://doi.org/10.1007/s11227-018-2499-y</a>
@@ -437,31 +527,31 @@ Panwar, S., Rad, P., Choo, K.-K. R., &amp; Roopaei, M. (2019). Are you emotional
 Soleymani, M., Caro, M. N., Schmidt, E. M., Sha, C.-Y., &amp; Yang, Y.-H. (2013). 1000 songs for emotional analysis of music. <em>Proceedings of the 2nd ACM International Workshop on Crowdsourcing for Multimedia</em>, 1–6. <a href="https://doi.org/10.1145/2506364.2506365">https://doi.org/10.1145/2506364.2506365</a>
 </div>
 <div id="ref-sorussa2020em" class="csl-entry" role="listitem">
-Sorussa, K., Choksuriwong, A., &amp; Karnjanadecha, M. (2020). Emotion classi cation system for digital music with a cascaded technique [Article]. <em>ECTI Transactions on Computer and Information Technology</em>, <em>14</em>(1), 53–66. <a href="https://doi.org/10.37936/ecti-cit.2020141.205317">https://doi.org/10.37936/ecti-cit.2020141.205317</a>
+Sorussa, K., Choksuriwong, A., &amp; Karnjanadecha, M. (2020). Emotion classi cation system for digital music with a cascaded technique. <em>ECTI Transactions on Computer and Information Technology</em>, <em>14</em>(1), 53–66. <a href="https://doi.org/10.37936/ecti-cit.2020141.205317">https://doi.org/10.37936/ecti-cit.2020141.205317</a>
 </div>
 <div id="ref-wang2022co" class="csl-entry" role="listitem">
-Wang, X., Wang, L., &amp; Xie, L. (2022). Comparison and analysis of acoustic features of western and chinese classical music emotion recognition based on v‐a model [Article]. <em>Applied Sciences</em>, <em>12</em>(12). <a href="https://doi.org/10.3390/app12125787">https://doi.org/10.3390/app12125787</a>
+Wang, X., Wang, L., &amp; Xie, L. (2022). Comparison and analysis of acoustic features of western and chinese classical music emotion recognition based on v‐a model. <em>Applied Sciences</em>, <em>12</em>(12). <a href="https://doi.org/10.3390/app12125787">https://doi.org/10.3390/app12125787</a>
 </div>
 <div id="ref-wang2022cr" class="csl-entry" role="listitem">
 Wang, X., Wei, Y., &amp; Yang, D. (2022). Cross-cultural analysis of the correlation between musical elements and emotion. <em>COGNITIVE COMPUTATION AND SYSTEMS</em>, <em>4</em>(2, SI), 116–129. <a href="https://doi.org/10.1049/ccs2.12032">https://doi.org/10.1049/ccs2.12032</a>
 </div>
 <div id="ref-xie2020mu" class="csl-entry" role="listitem">
-Xie, B., Kim, J. C., &amp; Park, C. H. (2020). Musical emotion recognition with spectral feature extraction based on a sinusoidal model with model-based and deep-learning approaches. <em>APPLIED SCIENCES-BASEL</em>, <em>10</em>(3). <a href="https://doi.org/10.3390/app10030902">https://doi.org/10.3390/app10030902</a>
+Xie, B., Kim, J. C., &amp; Park, C. H. (2020). Musical emotion recognition with spectral feature extraction based on a sinusoidal model with model-based and deep-learning approaches. <em>Applied Sciences</em>, <em>10</em>(3). <a href="https://doi.org/10.3390/app10030902">https://doi.org/10.3390/app10030902</a>
 </div>
 <div id="ref-xu2021us" class="csl-entry" role="listitem">
 Xu, L., Sun, Z., Wen, X., Huang, Z., Chao, C., &amp; Xu, L. (2021). Using machine learning analysis to interpret the relationship between music emotion and lyric features. <em>PEERJ COMPUTER SCIENCE</em>, <em>7</em>. <a href="https://doi.org/10.7717/peerj-cs.785">https://doi.org/10.7717/peerj-cs.785</a>
 </div>
 <div id="ref-yang2021an" class="csl-entry" role="listitem">
-Yang, J. (2021). A novel music emotion recognition model using neural network technology [Article]. <em>Frontiers in Psychology</em>, <em>12</em>. <a href="https://doi.org/10.3389/fpsyg.2021.760060">https://doi.org/10.3389/fpsyg.2021.760060</a>
+Yang, J. (2021). A novel music emotion recognition model using neural network technology. <em>Frontiers in Psychology</em>, <em>12</em>. <a href="https://doi.org/10.3389/fpsyg.2021.760060">https://doi.org/10.3389/fpsyg.2021.760060</a>
 </div>
 <div id="ref-yeh2014po" class="csl-entry" role="listitem">
-Yeh, C.-H., Tseng, W.-Y., Chen, C.-Y., Lin, Y.-D., Tsai, Y.-R., Bi, H.-I., Lin, Y.-C., &amp; Lin, H.-Y. (2014). Popular music representation: Chorus detection &amp; emotion recognition [Article]. <em>Multimedia Tools and Applications</em>, <em>73</em>(3), 2103–2128. <a href="https://doi.org/10.1007/s11042-013-1687-2">https://doi.org/10.1007/s11042-013-1687-2</a>
+Yeh, C.-H., Tseng, W.-Y., Chen, C.-Y., Lin, Y.-D., Tsai, Y.-R., Bi, H.-I., Lin, Y.-C., &amp; Lin, H.-Y. (2014). Popular music representation: Chorus detection &amp; emotion recognition. <em>Multimedia Tools and Applications</em>, <em>73</em>(3), 2103–2128. <a href="https://doi.org/10.1007/s11042-013-1687-2">https://doi.org/10.1007/s11042-013-1687-2</a>
 </div>
 <div id="ref-zhang2016br" class="csl-entry" role="listitem">
 Zhang, J., Huang, X., Yang, L., &amp; Nie, L. (2016). Bridge the semantic gap between pop music acoustic feature and emotion: Build an interpretable model. <em>Neurocomputing</em>, <em>208</em>(SI), 333–341. <a href="https://doi.org/10.1016/j.neucom.2016.01.099">https://doi.org/10.1016/j.neucom.2016.01.099</a>
 </div>
 <div id="ref-zhang2023mo" class="csl-entry" role="listitem">
-Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized composite attention network for continuous music emotion recognition. <em>MULTIMEDIA TOOLS AND APPLICATIONS</em>, <em>82</em>(5), 7319–7341. <a href="https://doi.org/10.1007/s11042-022-13577-6">https://doi.org/10.1007/s11042-022-13577-6</a>
+Zhang, M., Zhu, Y., Zhang, W., Zhu, Y., &amp; Feng, T. (2023). Modularized composite attention network for continuous music emotion recognition. <em>Multimedia Tools and Applications</em>, <em>82</em>(5), 7319–7341. <a href="https://doi.org/10.1007/s11042-022-13577-6">https://doi.org/10.1007/s11042-022-13577-6</a>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -554,7 +644,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/tuomaseerola\.github\.io\/metaMER\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -881,6 +971,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../manuscript/manuscript.html" class="pagination-link" aria-label="Manuscript">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Manuscript</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -889,7 +988,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    </div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/tuomaseerola/metaMER/blob/main/manuscript/datasets.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/tuomaseerola/metaMER/edit/main/manuscript/datasets.qmd" class="toc-action"><i class="bi empty"></i>Edit this page</a></li><li><a href="https://github.com/tuomaseerola/metaMER/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

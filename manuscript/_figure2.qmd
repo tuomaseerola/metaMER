@@ -71,6 +71,6 @@ fp1 <- grid.grabExpr(print(data |>
 
 #gridExtra::grid.arrange(fp1)
 # libertine
-ggsave(filename = 'figure2.pdf', width = 12, height = 6, units = 'in',fp1)
+#ggsave(filename = 'figure2.pdf', width = 12, height = 6, units = 'in',fp1)
 
 ```
