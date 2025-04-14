@@ -34,6 +34,8 @@ mask              : no
 csl: apa7.csl
 class             : "man"
 bibliography: references.bib
+sidebar: false
+page-navigation: true
 format:
   html: default
 ---

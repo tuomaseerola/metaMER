@@ -1,5 +1,6 @@
 ---
 title: "Feature Representation"
+sidebar: false
 ---
 
 This notebook prepares a data frame tabulating the classes of features for each study included in the meta analysis. Feature categories come from Panda et al. (2020).
@@ -40,7 +41,7 @@ feature_class <- na.omit(feature_class)
 
 ```
 
-## 2. Prepare dataframe
+### 2. Prepare dataframe
 
 Next we combine the feature categories and citation keys into a data frame. We clean columns to account for excess characters from the bib file.
 
@@ -84,7 +85,7 @@ df_features <- dplyr::filter(
 
 ```
 
-### Standardize feature categories
+### 4. Standardize feature categories
 
 We'll format names so they're consistent when we tabulate feature categories in the next step. In some cases categories might be encoded as "melodic" and in others "melody", but these refer to the same class, so we need to standardize them.
 
@@ -102,7 +103,7 @@ df_features[,1] <- stringr::str_replace_all(df_features[,1], "harmonic", "harmon
 df_features[,1] <- stringr::str_replace_all(df_features[,1], "dynamics", "dynamic")
 ```
 
-### Populate columns
+### 5. Populate columns
 
 Now we'll create a column for each category and tabulate whether it was included for each study.
 
