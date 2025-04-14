@@ -49,3 +49,7 @@ The study report is available in [manuscript/manuscript.qmd](manuscript/manuscri
 
 Commonly used datasets are available in [manuscript/datasets.qmd](manuscript/datasets.qmd).
 
+#### Feature representations
+
+Summary of the feature categories from Panda et al. (2020) for the studies included in the meta-analysis is available at [studies/feature_representation.qmd](studies/feature_representation.qmd).
+
