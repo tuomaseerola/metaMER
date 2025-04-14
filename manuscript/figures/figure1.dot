@@ -1,0 +1,36 @@
+digraph sub {
+  node [fontname = "Linux Biolinum O", fontsize = 14, shape = box, width = 4.0]
+  A [label = "Records identified from:
+                Web of Science (n = 142)
+                Scopus (n = 227)
+                OpenALEX (n = 278)" ]
+  B [label = "Records removed before screening: 
+                Duplicates entries/errors (n = 94)" ]
+  C [label = "Records after duplicates removed (n = 553)"]
+  D [label = "Records screened (n = 553)"]
+  E [label = "Records removed: 
+                Irrelevant titles/themes (n = 338)
+                Abstract screening (n = 95)
+                Discussion (n = 24)"]
+  F [label = "Full text articles assessed (n = 96)"]
+  G [label = "Studies included in final review (n = 46)"]
+  H [label = "Full text articles excluded
+             (n = 50)"]
+  I [label = "Studies excluded in final review (n = 12)"]
+  J [label = "Final selection (n = 34)"]
+  A->B
+  A->C
+  C->D
+  D->E
+  D->F
+  F->H 
+  F->G
+  G->I
+  G->J
+
+  
+  { rank = same; A B}
+  { rank = same; D, E}
+  { rank = same; F, H}
+  { rank = same; G, I}
+}
