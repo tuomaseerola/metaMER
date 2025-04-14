@@ -43,6 +43,8 @@ website:
             href: manuscript/manuscript.qmd
           - text: "Common datasets"
             href: manuscript/datasets.qmd
+          - text: "Features"
+            href: studies/feature_representation.qmd
   page-footer: 
     right: 
       - icon: github
