@@ -70,6 +70,8 @@ fp1 <- grid.grabExpr(print(data |>
 #ggarrange(fp1,fp2, ncol = 2, labels = c("A","B"),widths=c(2,1)) # added labels A and B
 
 #gridExtra::grid.arrange(fp1)
+
+ggarrange(fp1) #  
 # libertine
 #ggsave(filename = 'figure2.pdf', width = 12, height = 6, units = 'in',fp1)
 
