@@ -514,14 +514,21 @@ We converted all regression results from $R^2$ values into $r$ values for valenc
 
 For classification studies, the number of emotion classes ranged from two to eight. Most studies predicted classes corresponding to the affective dimensions of the circumplex model, or discrete emotion labels mapping onto them (e.g., happy, sad, nervous, and calm and similar variants used in #link(<ref-agarwal2021an>)[Agarwal & Om, 2021];; #link(<ref-alvarez2023ri>)[Álvarez et al., 2023];; #link(<ref-yeh2014po>)[Yeh et al., 2014];). Despite the popularity of the circumplex, its treatment varied substantially between studies. Examples range from predicting quadrants in a multi-class problem (#link(<ref-panda2020no>)[Panda et al., 2020];) or in a series of binary classification problems (#link(<ref-bhuvanakumar2023em>)[Bhuvana Kumar & Kathiravan, 2023];), or dividing each quadrant into multiple sublevels (#link(<ref-nguyen2017an>)[Nguyen et al., 2017];; #link(<ref-sorussa2020em>)[Sorussa et al., 2020];). Some studies predicted valence and arousal separately (#link(<ref-hu2022de>)[Hu et al., 2022];; #link(<ref-zhang2016br>)[J. L. Zhang et al., 2016];), whereas others excluded valence (e.g., all models in J. L. Zhang et al. (#link(<ref-zhang2017fe>)[2017];); the CART model in J. L. Zhang et al. (#link(<ref-zhang2016br>)[2016];)) or specific quadrants (Hizlisoy et al. (#link(<ref-hizlisoy2021mu>)[2021];) excludes the bottom-right quadrant). Only a few studies classified valence and arousal separately; for these studies we averaged prediction success across both emotion concepts.
 
-#block[
-#block[
+#pagebreak()
+
+#figure([
 #box(image("figures/figure1.png"))
-
-]
+], caption: figure.caption(
+position: bottom, 
+[
 Flowchart of the study inclusions/eliminations.
+]), 
+kind: "quarto-float-fig", 
+supplement: "Figure", 
+)
 
-] <fig1>
+
+
 == Quality control
 <quality-control>
 #par()[#text(size:0.5em)[#h(0.0em)]]
@@ -580,6 +587,8 @@ Since there are many models contained within each of the studies, we will report
 #v(-18pt)
 Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $tau^2$ and $I^2$, calculated through appropriate transformations (Fisher’s Z) for the correlation coefficient as part of a random-effects model using `meta` library (#link(<ref-balduzzi2019>)[Balduzzi et al., 2019];). We used Paule-Mandel estimator for between-study heterogeneity (#link(<ref-langan2019comparison>)[Langan et al., 2019];) and Knapp-Hartung (#link(<ref-knapp2003improved>)[Knapp & Hartung, 2003];) adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into four modelling techniques introduced earlier (Table 1).
 
+#pagebreak()
+
 #par()[#text(size:0.5em)[#h(0.0em)]]
 #v(-18pt)
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.
@@ -616,6 +625,8 @@ To better understand the effects across studies and the nature of the observed h
 
 Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
 
+#pagebreak()
+
 #figure([
 #box(image("manuscript-apaquarto_files/figure-typst/fig2-1.svg"))
 ], caption: figure.caption(
@@ -651,6 +662,8 @@ Moving on the arousal, we carry out the same meta-analytical analysis applying t
 ==== Quantifying study heterogeneity.
 <quantifying-study-heterogeneity-1>
 For arousal, the indicators of heterogeneity are again high ($tau^2$ = 0.141 and $I^2$=97.9%), which suggests that summary may be misleading. However, the analysis of asymmetry does not reveal significant issues (Eggers test, $beta$ = 0.789 95% CI: -4.87-6.45, #emph[t] = 0.273, #emph[p] = 0.788). If we remove the studies that are outside the 95% CI in heterogeneity, this leaves 13 studies in the summary where #emph[r] = 0.826 (95% CI: 0.806-0.845), $tau^2$ = 0.0042 and $I^2$ = 76.8%. In other words, we observed no material difference to the results obtained with all 22 studies.
+
+#pagebreak()
 
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
@@ -699,6 +712,8 @@ supplement: "Figure",
 #par()[#text(size:0.5em)[#h(0.0em)]]
 #v(-18pt)
 We next evaluated classification studies. Figure 4 shows forest plot visualization from the random-effects model of the best-performing models in classification studies. $M C C$s vary across a wide range, ranging from 0.55 to 0.98. Table 4 indicates that using the best model from each study increases performance relative to all models ($M C C$ = 0.868 95%CI: 0.748-0.934), yet slightly increases heterogeneity ($tau^2$ = 0.318, $I^2$ = 99.8%).
+
+#pagebreak()
 
 #figure([
 #box(image("manuscript-apaquarto_files/figure-typst/fig4-1.svg"))
@@ -753,6 +768,8 @@ Analyzing subgroups revealed that the number of features (as classified into und
 #par()[#text(size:0.5em)[#h(0.0em)]]
 #v(-18pt)
 To assess how the use of different model types affected performance, we prepared heatmap visualizations (Figure 5) depicting differences in success across feature #emph[n] categories and algorithms. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success (a) across categories, as well as (b) the algorithms in each model class. Overall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task. For valence and arousal, linear models perform better than other model types, whereas for emotion classification, neural networks show the best overall performance. The overall pattern aligns with the analyses of the splits reported earlier concerning model types and feature counts, but the visualization also highlights concurrent information about the feature n, model types, study counts, and the average number of stimuli within each combination. For instance, studies with the lowest number of features (\<30) also tend to have the highest mean number of stimuli (M = 749.5), while the poorest-performing feature count range (30–300) corresponds to the lowest mean number of stimuli (M = 522.5). It is also reassuring to observe that studies utilizing neural networks and other model types tend to use a higher number of features and stimuli than those employing linear models, as this reflects the capabilities and internal training requirements built into these models.
+
+#pagebreak()
 
 #figure([
 #box(image("model-summary-fig.png", width: 6.9583333333333in))
@@ -845,6 +862,8 @@ There were no competing interests.
 #par()[#text(size:0.5em)[#h(0.0em)]]
 #v(-18pt)
 Study preregistration, data, analysis scripts and supporting information is available at GitHub, #link("https://tuomaseerola.github.io/metaMER");.
+
+#pagebreak()
 
 = References
 <references>
