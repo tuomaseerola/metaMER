@@ -108,9 +108,12 @@ format:
 
 ```
 
+
+<!-- ACM Computing Surveys: Shorter survey papers should be self-contained and not exceed 15 pages in length including references. -->
+
 # Introduction
 
-Emotional engagement is a key reason why people engage with music in their everyday activities, and it is also why music is increasingly being used in various health applications [@juslin2022emotions; @agres2021music]. In recent years, significant advances have been made in music information retrieval (MIR), particularly in music emotion recognition (MER) tasks [@gomez2021; @panda2020audio]. Music Emotion Recognition (MER) is an interdisciplinary field that combines computer science, psychology, and musicology to identify the emotions conveyed by music. Research in this area involves developing computational models capable of recognizing emotions from musical content. The emotional attributions of music are based on various theoretical frameworks for emotion and require annotated datasets to build and train these models. Improvements to modelling techniques, datasets, and available features have created new opportunities to improve the accuracy and reliability of MER systems developed to predict emotion labels or ratings in music using audio features. Over the past 25 years, these studies have established the types of emotions that listeners perceive and recognize in music. In the last 15 years, research has increasingly focused on tracing these recognized emotions back to specific musical components, such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c; @panda2020audio], or emergent properties revealed through deep learning techniques [@er2019music; @sarkar2020recognition].
+Emotional engagement is a key reason why people engage with music in their everyday activities, and it is also why music is increasingly being used in various health applications [@juslin2022emotions; @agres2021music]. In recent years, significant advances have been made in music information retrieval (MIR), particularly in emotion prediction tasks [@gomez2021; @panda2020audio]. Music Emotion Recognition (MER) is an interdisciplinary field that combines computer science, psychology, and musicology to identify the emotions conveyed by music. Research in this area involves developing computational models capable of recognizing emotions from musical content. The emotional attributions of music are based on various theoretical frameworks for emotion and require annotated datasets to build and train these models. Improvements to modelling techniques, datasets, and available features have created new opportunities to improve the accuracy and reliability of MER systems developed to predict emotion labels or ratings in music using audio features. Over the past 25 years, these studies have established the types of emotions that listeners perceive and recognize in music. In the last 15 years, research has increasingly focused on tracing these recognized emotions back to specific musical components, such as expressive features [@lindstrom2003expressivity], structural aspects of music [@eerola_friberg_bresin_2013; @anderson2022ex; @grimaud_eerola_2022], acoustic features [@yang2008; @panda2013multi; @saari_et_al_2015; @eerola2011c; @panda2020audio], or emergent properties revealed through deep learning techniques [@er2019music; @sarkar2020recognition].
 
 <!-- added a MER definition to 2nd sentence above -->
 
@@ -118,7 +121,7 @@ Despite increased interest in MER studies, there is no consensus on the extent t
 
 ## A brief history of MER
 
-Music's capacity to convey emotions has been widely discussed since the earliest artificial intelligence (AI) applications in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis [@kassler1966toward; @mendel1969some]. These developments would set the stage for early work in music emotion recognition (MER). @katayose_sentiment_1988 conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is \[a\] hopeful mood on chord\[s\] 69 to 97." [@katayose_sentiment_1988, p. 1087].
+Music's capacity to convey emotions has been widely discussed since the earliest artificial intelligence (AI) applications in the 1950s. Whereas early discourse largely focused on generative composition using computers [@zaripov1969], attention later shifted to creating methods to predict emotion using music's structural cues. Novel techniques for information retrieval emerged in the 1950s and 1960s [@fairthorne1968], inspiring analogous developments for automated music analysis [@kassler1966toward; @mendel1969some]. These developments would set the stage for early work in MER. @katayose_sentiment_1988 conducted the first study of this nature, creating an algorithm that associated emotions with analyzed chords to generate descriptions like "there is \[a\] hopeful mood on chord\[s\] 69 to 97." [@katayose_sentiment_1988, p. 1087].
 
 ## Classification and regression approaches
 
@@ -134,7 +137,7 @@ Across regression and classification paradigms, a wide range of models have been
 
 ## Dataset size and scope
 
-MER studies apply regression and classification techniques to predict emotion in diverse datasets, using features derived from both music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). To facilitate model comparison, several databases have been shared publicly, including *MediaEval* [@soleymani2013], *DEAM* [@aljanaki2017developing], and *AMG1608* [@chen2015amg1608]. These datasets predominately use Western pop music, are moderate in size (containing from 744 to 1802 music excerpts) and have been manually annotated by a variable numbers of participants (either by experts, students, or crowdsourced workers). Several publicly available datasets include features analyzed using audio software suites such as *OpenSMILE* [@eyben2010opensmile] and *MIRToolbox* [@lartillot2007matlab] -- enabling predictions from tens, or even hundreds, of audio features.
+MER studies apply regression and classification techniques to predict emotion in diverse datasets, using features derived from both music (e.g., audio, MIDI, metadata) and participants (e.g., demographic information, survey responses, physiological signals, etc.). To facilitate model comparison, several databases have been shared publicly, including *DEAM* [@aljanaki2017developing; @soleymani2013] and *AMG1608* [@chen2015amg1608]. These datasets predominately use Western pop music, are moderate in size (containing from 744 to 1802 music excerpts) and have been manually annotated by a variable numbers of participants (either by experts, students, or crowdsourced workers). Several publicly available datasets include features analyzed using audio software suites such as *OpenSMILE* [@eyben2010opensmile] and *MIR Toolbox* [@lartillot2007matlab] -- enabling predictions from tens, or even hundreds, of audio features.
 
 An important factor often affecting the size of datasets employed in MER concerns whether they use a *predictive* or *explanatory* modelling framework. Large datasets are necessary in predictive studies, where the predominant goal is to generalize predictions across diverse samples, especially for deep learning and complex machine-learning models that require extensive pre-training. Conversely, small, carefully-curated, datasets are useful when attempting to *explain* how musical factors such as amplitude normalization [@gingras2014be] or different performers' interpretations [@battcock2021in], affect variance in emotion ratings. In these studies, statistical models serve a different goal. Instead of predicting emotion labels for new music, psychological studies on music emotion test causal theories about the relationship between musical predictors and emotion labels. Whether models serve predictive or explanatory goals is important—affecting both decisions about data curation and modelling, and the models' resultant predictive and explanatory power [@shmueli2010explain].
 
@@ -157,7 +160,7 @@ In predictive MER tasks, dataset sizes tend to be modest in comparison to other 
 
 Predictive accuracy in MER tasks has improved as datasets and models have become more sophisticated; Regression models for arousal/valence have been reported to peak at 58%/28% accuracy in 2008 [@yang2008], 70%/26% in 2010 [@huq2010automated], and 67%/46% in 2021 [@yang2021an]. In the same period, classification rates have increased from 53% [@downie_music_2008] to 70% [@park2017representation] to 83% [@sarkar2020recognition]. Comparing these past efforts, however, is challenging due to inconsistencies between studies in metrics, modelling architectures, datasets, and evaluation criteria. Although we assume that overall accuracy has improved significantly over the past decade, valence remains more challenging to predict than arousal.
 
-Recent studies have sought to enhance emotion prediction by identifying more relevant feature sets [@panda2020audio; @chowdhury2021perceived], integrating low-, mid-, and high-level features through multimodal data [@celma_foafing_2006], and leveraging neural networks to learn features directly from audio [@zhang2016br; @alvarez2023ri; @agarwal2021an]. These approaches aim to overcome ceiling effects in predictive accuracy [@downie_music_2008], which some scholars refer to as a *semantic gap* [@wiggins_semantic_2009; @celma_foafing_2006]. However, this prediction ceiling may be better understood as an inherent *measurement error* arising from annotations, feature representations, and model limitations. Although isolating the sources of these errors remains infeasible at this stage, comparing success rates across modelling techniques, feature set sizes, and other meaningful factors offers a step toward addressing this challenge. To date, however, no study has systematically compared the results of the diverse approaches employed in MER research.
+Recent studies have sought to enhance emotion prediction by identifying more relevant feature sets [@panda2020audio; @chowdhury2021perceived], integrating low-, mid-, and high-level features through multimodal data [@celma_foafing_2006], and leveraging neural networks to learn features directly from audio [@zhang2016br; @agarwal2021an]. These approaches aim to overcome ceiling effects in predictive accuracy [@downie_music_2008], which some scholars refer to as a *semantic gap* [@wiggins_semantic_2009; @celma_foafing_2006]. However, this prediction ceiling may be better understood as an inherent *measurement error* arising from annotations, feature representations, and model limitations. Although isolating the sources of these errors remains infeasible at this stage, comparing success rates across modelling techniques, feature set sizes, and other meaningful factors offers a step toward addressing this challenge. To date, however, no study has systematically compared the results of the diverse approaches employed in MER research.
 
 ## Aims
 
@@ -171,20 +174,19 @@ In terms of the modelling techniques and the number of features, a reasonable hy
 
 # Methods
 
-We preregistered the meta-analysis plan on 21 June 2024 at OSF, [https://osf.io/c5wgd](https://osf.io/c5wgd), and the plan is also available at [Study and Code Repository - Preregistration](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html).
+We preregistered the meta-analysis plan on 21 June 2024 at OSF, <https://osf.io/c5wgd>, and the plan is also available at [Study Data and Code Repository - Preregistration](https://tuomaseerola.github.io/metaMER/preregistration/preregistration.html).
 
 ## Study identification
 
 In the search stage, we used three databases, *Web of Science*, *Scopus*, and *Open Alex* to identify journal articles published between 2014 and 2024 containing keywords/title `valence OR arousal OR classi* OR categor* OR algorithm AND music AND emotion AND recognition` (see specific search strings for each database in [Study Data and Code Repository - Search Syntax](https://tuomaseerola.github.io/metaMER/studies/search_syntax.html)). All searches were done in May 2024.
 
-The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $r$ or $MCC$ values (see [Study Data and Code Repository - Extraction Details](https://tuomaseerola.github.io/metaMER/studies/extraction_details.html) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. Summary of the common datasets used in the studies in available at [Study Data and Code Repository - Datasets](https://tuomaseerola.github.io/metaMER/manuscript/datasets.html).
+The initial search yielded 553 potential studies after excluding duplicate entries. We interactively screened them for relevance in three stages, resulting in 46 studies that passed our inclusion criteria (music emotion studies using classification or regression methods to predict emotion ratings of music using symbolic or audio features, and containing sufficient detail to convert results to $r$ or $MCC$ values (see [Study Data and Code Repository - Extraction Details](https://tuomaseerola.github.io/metaMER/studies/extraction_details.html) for a breakdown). After the screening stage, we defined a set of entities to extract characterising (i) music (genre, stimulus number \[N\], duration), (ii) features extracted (number, type, source, defined by [@panda2020audio]), (iii) model type (regression, neural network, SVM, etc.) and outcome measure ($R^2$, *MSE*, *MCC*), (iv) model complexity (i.e., approximate number of features used to predict ratings), and (v) type of model cross-validation. Summary of the common datasets used in the studies is available at [Study Data and Code Repository - Datasets](https://tuomaseerola.github.io/metaMER/manuscript/datasets.html).
 
 We converted all regression results from $R^2$ values into $r$ values for valence and arousal, and classification results into Matthews correlation coefficient [*MCC*, @chicco2020advantages]. We excluded irrelevant emotion dimensions (e.g., resonance in @deng2015em) and re-coded analogous labels (e.g., *activation* in @saizclar2022pr). Some regression studies operationalized arousal using dimensions of energy and tension [@wang2022cr]. For these studies, we excluded tension, as it has been shown to overlap considerably with valence, and with energy after partialling out the effect of valence [@eerola2011comparison]. To increase consistency in our analyses, we excluded studies using incompatible features (e.g., spectrograms of audio files in @nag2022) or dependent variables (@chin2018 evaluates valence and arousal as a single dimension).
 
 For classification studies, the number of emotion classes ranged from two to eight. Most studies predicted classes corresponding to the affective dimensions of the circumplex model, or discrete emotion labels mapping onto them [e.g., happy, sad, nervous, and calm and similar variants used in @agarwal2021an; @alvarez2023ri; @yeh2014po]. Despite the popularity of the circumplex, its treatment varied substantially between studies. Examples range from predicting quadrants in a multi-class problem [@panda2020no] or in a series of binary classification problems [@bhuvanakumar2023em], or dividing each quadrant into multiple sublevels [@nguyen2017an; @sorussa2020em]. Some studies predicted valence and arousal separately [@hu2022de; @zhang2016br], whereas others excluded valence (e.g., all models in @zhang2017fe; the CART model in @zhang2016br) or specific quadrants (@hizlisoy2021mu excludes the bottom-right quadrant). Only a few studies classified valence and arousal separately; for these studies we averaged prediction success across both emotion concepts.
 
-![Flowchart of the study inclusions/eliminations.](figures/figure1.png){width="580"}
-
+{{< include _figure1.qmd >}}
 
 ## Quality control
 
@@ -200,27 +202,21 @@ To capture key details of each study, we added extra fields to BibTeX entries fo
 
 First we describe the overall pattern of data (regression vs. classification, modelling techniques, feature numbers, stimulus numbers, datasets, and other details). The analysis code is available at [Study Data and Code Repository - Analysis](https://tuomaseerola.github.io/metaMER/analysis/analysis.html).
 
-```{r}
-#| id: table1
-#| output: asis
-#| error: false
-#| warning: false
-#| message: false
-#| tbl-cap: Summary of the models for regression and classification studies.
-knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
-suppressPackageStartupMessages(library(tidyverse))
-suppressPackageStartupMessages(library(kableExtra))
-#suppressPackageStartupMessages(library(flextable))
+<!-- table 1 is part of `analysis/preprocessing.qmd` updated 20/2/2025) -->
 
+TABLE 1: Summary of data
 
-t <- tibble(Info = c("Study N","Model N","Techniques","Techniques","Techniques","Techniques","Techniques","Feature N","Stimulus N"), 
-       Regression = c("22","204","Neural Nets: 64","Support Vector Machines: 62","Linear Methods: 62","Tree-based Methods: 14","KS, Add. & KNN: 2","Min=3, Md=653, Max=14460","Min=20, Md=324, Max=2486"),
-       Classification = c("12","86","21","26","19","16","4","Min=6, Md=98, Max=8904","Min=124, Md=300, Max=5192"),
-       Total = c("34","290","85","88","81","30","6"," "," ")) 
-print(knitr::kable(t,bookstabs=TRUE))
-#flextable(t) %>% theme_apa() 
-
-```
+|   | Regression | Classification | Total |
+|:-----------------|:------------------|:-----------------|:-----------------|
+| Study N | 22 | 12 | 34 |
+| Model N | 204 | 86 | 290 |
+| Techniques | Neural Nets (NN): 64 | 21 | 85 |
+| Techniques | Support Vector Machines (SVM): 62 | 26 | 88 |
+| Techniques | Linear Methods (LM): 62 | 19 | 81 |
+| Techniques | Tree-based Methods (TM): 14 | 16 | 30 |
+| Techniques | KS, Add. & KNN: 2 | 4 | 6 |
+| Feature N | Min=3, Md=653, Max=14460 | Min=6, Md=98, Max=8904 |  |
+| Stimulus N | Min=20, Md=324, Max=2486 | Min=124, Md=300, Max=5192 |  |
 
 Although the total number of studies meeting the criteria described in the previous section is modest (34 in total), they encompass a large array of models (290 in total) with a relatively even distribution among the three most popular techniques: Neural Nets (85 models in total), SVMs (88), and Linear Methods (81). Tree-based models are less frequently used (30 in total), and there is a small number (6) of other model techniques such as kernel smoothing or K-nearest neighbors (KNN) techniques used in the models. However, these techniques will not be visible in the breakdown of the results as these models were not among the strongest models per study (see reporting principles in the results). The number of features and stimuli within these studies varies significantly, ranging from as few as three features [@battcock2021in] to a maximum of almost 14,500 features [@zhang2023mo]. The median number of features differs between regression (653) and classification (98) studies, primarily reflecting the nature of the datasets used in each approach. The number of stimuli is typically around 300-400 (with a median of 324 for regression and 300 for classification), though there is substantial variation, with the extremes from 20 stimuli in @beveridge2018po to 5192 stimuli in @alvarez2023ri. There are also additional dimensions to consider, such as the type of cross-validation used, the music genres analyzed (whether a single genre, multiple genres, or a mix), the type of modelling (predictive or explanatory) framework, and the extraction tool used to extract features. However, these variables do not lend themselves to a simple summary, so we will revisit them during the interpretation and discussion stages.
 
@@ -228,27 +224,33 @@ We first report regression studies that predict valence and arousal.
 
 ## Results for regression studies
 
+<!-- See `analysis/analysis.qmd` (updated 17/1/2025) -->
+
 Since there are many models contained within each of the studies, we will report the results in two parts; We first give an overview of the results for all models, and then we focus on the best performing models of each study. The best performing model is the model within each study with the highest correlation coefficient. This reduction is done to avoid the issue of multiple models from the same study deflating the results as majority of the models included are relative modest baseline or alternative models that do not represent the novelty or content of the article. We also provide a summary of the results with all models included in addition to the chosen strategy, where the best model of each study is considered.
 
 ### Results for valence
 
 Table 2 summarises the results for all models (All) as well as best performing models (Max) for each study for valence. The summary includes the number of models and observations, the correlation coefficient and its 95% confidence interval, the t-value and p-value for the correlation, the heterogeneity statistics $\tau^2$ and $I^2$, calculated through appropriate transformations (Fisher's Z) for the correlation coefficient as part of a random-effects model using `meta` library [@balduzzi2019]. We used Paule-Mandel estimator for between-study heterogeneity [@langan2019comparison] and Knapp-Hartung [@knapp2003improved] adjustments for confidence intervals. In this table we also report two subgroup analyses. One where we have divided the studies according to the number of features they contain (three categories based on quantiles to keep the group size comparable) and into four modelling techniques introduced earlier (Table 1).
 
+<!-- DISCUSS: I have changed the modelling techniques into FOUR categories, TE 19/3/2025 -->
+
 Table 2. Meta-analytic diagnostic for all regression studies predicting valence from audio. See Table 1 for the acronyms of the modelling techniques.
 
-| Concept | Models, obs | $r$ \[95%-CI\] | $t$ | $p$ | $\tau^2$ | $I^2$ |
+| Concept      | Models, obs | $r$ \[95%-CI\]        | $t$   | $p$   | $\tau^2$ | $I^2$ |
 |:----------|:----------|:----------|:----------|:----------|:----------|:----------|
-| Valence All | 102, 60017 | 0.583 \[0.541-0.623\] | 21.41 | .0001 | 0.094 | 97.7% |
-| Valence Max | 22, 14172 | 0.669 \[0.560-0.755\] | 9.58 | .0001 | 0.148 | 98.4% |
-| *N Features* |  |  |  |  |  |  |
-| \<30 | 6, 3140 | 0.766 \[0.488-0.903\] | \- | \- | 0.198 | 98.6% |
-| 30-300 | 8, 4098 | 0.580 \[0.276-0.778\] | \- | \- | 0.188 | 97.4% |
-| 300+ | 8, 6934 | 0.666 \[0.531-0.767\] | \- | \- | 0.062 | 98.0% |
-| *Techniques* |  |  |  |  |  |  |
-| LM | 9, 2457 | 0.784 \[0.652-0.870\] | \- | \- | 0.1194 | 96.3% |
-| SVM | 4, 5068 | 0.539 \[0.171-0.774\] | \- | \- | 0.0702 | 97.1% |
-| NN | 6, 3317 | 0.473 \[0.167-0.696\] | \- | \- | 0.1029 | 98.2% |
-| TM | 3, 3330 | 0.750 \[0.292-0.928\] | \- | \- | 0.0740 | 98.8% |
+| Valence All  | 102, 60017  | 0.583 \[0.541-0.623\] | 21.41 | .0001 | 0.094    | 97.7% |
+| Valence Max  | 22, 14172   | 0.669 \[0.560-0.755\] | 9.58  | .0001 | 0.148    | 98.4% |
+| *N Features* |             |                       |       |       |          |       |
+| \<30         | 6, 3140     | 0.766 \[0.488-0.903\] | \-    | \-    | 0.198    | 98.6% |
+| 30-300       | 8, 4098     | 0.580 \[0.276-0.778\] | \-    | \-    | 0.188    | 97.4% |
+| 300+         | 8, 6934     | 0.666 \[0.531-0.767\] | \-    | \-    | 0.062    | 98.0% |
+| *Techniques* |             |                       |       |       |          |       |
+| LM           | 9, 2457     | 0.784 \[0.652-0.870\] | \-    | \-    | 0.1194   | 96.3% |
+| SVM          | 4, 5068     | 0.539 \[0.171-0.774\] | \-    | \-    | 0.0702   | 97.1% |
+| NN           | 6, 3317     | 0.473 \[0.167-0.696\] | \-    | \-    | 0.1029   | 98.2% |
+| TM           | 3, 3330     | 0.750 \[0.292-0.928\] | \-    | \-    | 0.0740   | 98.8% |
+
+<!-- table updated CA 20/2/2025, revised terms 28/1/2025 -->
 
 The results indicate that valence can generally be predicted with moderately accuracy, with the best model from each of the 22 studies achieving an average correlation of *r* = 0.669 (95% CI: 0.560-0.755), called "Valence Max" in Table 2. However, when considering all models across these studies (n = 102), the overall prediction rate drops significantly to *r* = 0.583. We argue that this lower correlation is likely due to the inclusion of baseline models reported in these studies, which may not reflect the true success of the task for the purposes of our analysis.
 
@@ -260,19 +262,29 @@ To better understand the effects across studies and the nature of the observed h
 
 Coming back to the mean of valence correlation of 0.669 by all studies and the possible impact of study heterogeneity on this estimation, we also calculated the correlation without the studies that lie outside the 95% CI for pooled effect. This left 12 studies in the data and resulted in the meta-analytical pooled correlation of 0.686 (CI95% 0.635-0.731). In other words, despite the large variation in the correlations and standard errors across the studies, this variation in itself does not seem to be a significant driver behind the overall effect.
 
+<!-- numbers in the text updated up to here, CA 20/2/2025 -->
+
+<!-- I've removed the reference to the funnel plot, TE 19/3/2025 -->
+
 {{< include _figure2.qmd >}}
 
 #### Reporting splits
 
 To gain insights into the factors contributing to the wide range of model success, we explored several ways of splitting the data. Table 2 presents two key splits: one based on the number of features used, which we hypothesized might influence model performance, and another based on the modelling techniques employed. In terms of feature sets, we categorized them into three groups: few features (\<30), a large number of features (30–300), and massive feature sets (300+). These splits produced reasonably comparable representations of regression and classification studies, though the actual ranges differed. Models using a relatively small number of features (\<30, 6 in total) performed best (*r* = 0.766, 95% CI: 0.488–0.903) compared to those utilizing larger feature sets. However, it is worth noting that the models using massive feature sets (300+, 8 studies in total) also performed reasonably well (*r* = 0.666), achieving more consistent results than the overall prediction rate (*r* = 0.669). This observation is supported by the lowest heterogeneity index for the massive feature set group ($\tau^2$ = 0.062), indicating more consistent results across studies. Studies with large number of features (30-300 features, 8 studies in total) delivered the worst results, *r* = 0.580 (95% CI: 0.276–0.778). Despite the fluctuation in the overall model accuracy between the number of features, the differences are not substantially large to pass the test of statistical significance (*Q*(2) = 2.03, *p*=.363).
 
+<!-- numbers in the text updated up to here, CA 20/2/2025 -->
+
 When analyzing the studies across the four modelling techniques used, the predictions differ significantly (*Q*(3) = 12.43, *p* = .0061). Notably, linear models (LM) and neural networks (NN) were the most common, with 9 and 6 studies, respectively, allowing for more confident interpretations. Linear models achieved the highest prediction rate (*r* = 0.784, 95% CI: 0.652–0.870), though this may be influenced by the smaller datasets typically used in these studies. These studies also exhibited higher heterogeneity ($\tau^2$ = 0.119) compared to other techniques. While there were only 3 studies involving tree-based model (TM), these performed well, achieving *r* = 0.750, 95% CI: 0.292–0.928), and the relatively poor performance of the neural network (NN) models represented in six studies (*r* = 0.473, 95% CI: 0.167–0.696) is difficult to explain without a deeper examination of the specific model architectures and the stimuli used in these studies.
 
 We also ran the sub-grouping analyses across stimulus genres (single vs mixed), finding no significant difference (*Q*(1) = 0.01, *p* = .9158). Both single-genre (*r* = 0.675 95% CI: 0.465, 0.813, *n* = 8) and multi-genre (*r* = 0.665, 95% CI: 0.508-0.779, *n* = 14) achieved similar results, although multi-genre studies exhibited slightly higher heterogeneity ($\tau^2$ = 0.167) than single-genre studies ($\tau^2$ = 0.137).
 
-These comparisons of sub-groupings may also be influenced by other factors, such as whether the study utilised predictive or explanatory modelling framework. To address this, we used the type of journal in which each study was published as a proxy indicator for predictive or explanatory modelling, where we classified studies published in psychology journals as explanatory and those published in engineering journals as predictive[^2]. Of the 22 regression studies, 13 were classified into predictive frameworks, yielding an average correlation of *r* = 0.656 (95% CI: 0.505–0.769). Studies with explanatory frameworks (9 in total) showed a similar overall correlation of *r* = 0.688 (95% CI: 0.468–0.827). No significant difference in model accuracy was observed between the two types of frameworks, *Q*(1) = 0.10, *p* = 0.748. More broadly, while the sub-groupings based on modelling techniques result in an uneven distribution of studies and observations, the two main sub-groupings presented in Table 2 highlight valuable differences in model performance across the studies. <!-- numbers in the text updated up to here, CA 20/2/2025 -->
+<!-- However, these analyses did not reveal any clear patterns, likely due to the small number of studies in each subgroup.  -->
 
-[^2]: ASJC journal classification by Scopus was used to determine the type of subject area.
+<!-- see this to ignore I\^2 and rely on prediction interval: https://onlinelibrary.wiley.com/doi/full/10.1002/jrsm.1678 -->
+
+These comparisons of sub-groupings may also be influenced by other factors, such as whether the study utilised a predictive or explanatory modelling framework. To address this, we used the type of journal in which each study was published as a proxy indicator for predictive or explanatory modelling, where we classified studies published in psychology journals as explanatory and those published in engineering journals as predictive. Of the 22 regression studies, 13 were classified into predictive frameworks, yielding an average correlation of *r* = 0.656 (95% CI: 0.505–0.769). Studies with explanatory frameworks (9 in total) showed a similar overall correlation of *r* = 0.688 (95% CI: 0.468–0.827). No significant difference in model accuracy was observed between the two types of frameworks, *Q*(1) = 0.10, *p* = 0.748. More broadly, while the sub-groupings based on modelling techniques result in an uneven distribution of studies and observations, the two main sub-groupings presented in Table 2 highlight valuable differences in model performance across the studies. <!-- numbers in the text updated up to here, CA 20/2/2025 -->
+
+<!-- DISCUSS: we don't report journal type of explain/predict differences, although we do some of these in arousal, TE 19/3/2025: Now added! -->
 
 ### Results for arousal
 
@@ -284,19 +296,19 @@ For arousal, the indicators of heterogeneity are again high ($\tau^2$ = 0.141 an
 
 Table 3. Meta-analytic diagnostic for all regression studies predicting arousal from audio.
 
-| Concept | Models, obs | $r$ \[95%-CI\] | $t$ | $p$ | $\tau^2$ | $I^2$ |
+| Concept      | Models, obs | $r$ \[95%-CI\]        | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:----------|:----------|:----------|:----------|:----------|:----------|:----------|
-| Arousal All | 102, 60017 | 0.791 \[0.770-0.810\] | 39.9 | 0.0001 | 0.069 | 96.2% |
-| Arousal Max | 22, 14172 | 0.809 \[0.740-0.860\] | 13.6 | 0.0001 | 0.141 | 97.9% |
-| *N Features* |  |  |  |  |  |  |
-| \<30 | 6, 3140 | 0.885 \[0.782-0.940\] |  |  | 0.0948 | 93.5% |
-| 30-300 | 8, 4098 | 0.735 \[0.501-0.868\] |  |  | 0.1971 | 98.2% |
-| 300+ | 8, 6934 | 0.804 \[0.716-0.867\] |  |  | 0.0612 | 97.4% |
-| *Techniques* |  |  |  |  |  |  |
-| LM | 8, 1713 | 0.882 \[0.809-0.928\] |  |  | 0.0846 | 93.3% |
-| SVM | 5, 5812 | 0.796 \[0.559-0.913\] |  |  | 0.1325 | 98.3% |
-| NN | 6, 3317 | 0.660 \[0.395-0.823\] |  |  | 0.1209 | 98.1% |
-| TM | 3, 3330 | 0.809 \[0.733-0.864\] |  |  | 0.0025 | 65.4% |
+| Arousal All  | 102, 60017  | 0.791 \[0.770-0.810\] | 39.9 | 0.0001 | 0.069    | 96.2% |
+| Arousal Max  | 22, 14172   | 0.809 \[0.740-0.860\] | 13.6 | 0.0001 | 0.141    | 97.9% |
+| *N Features* |             |                       |      |        |          |       |
+| \<30         | 6, 3140     | 0.885 \[0.782-0.940\] |      |        | 0.0948   | 93.5% |
+| 30-300       | 8, 4098     | 0.735 \[0.501-0.868\] |      |        | 0.1971   | 98.2% |
+| 300+         | 8, 6934     | 0.804 \[0.716-0.867\] |      |        | 0.0612   | 97.4% |
+| *Techniques* |             |                       |      |        |          |       |
+| LM           | 8, 1713     | 0.882 \[0.809-0.928\] |      |        | 0.0846   | 93.3% |
+| SVM          | 5, 5812     | 0.796 \[0.559-0.913\] |      |        | 0.1325   | 98.3% |
+| NN           | 6, 3317     | 0.660 \[0.395-0.823\] |      |        | 0.1209   | 98.1% |
+| TM           | 3, 3330     | 0.809 \[0.733-0.864\] |      |        | 0.0025   | 65.4% |
 
 <!-- numbers in the text updated up to here, CA 20/2/2025 -->
 
@@ -323,19 +335,21 @@ We next evaluated classification studies. Figure 4 shows forest plot visualizati
 
 Table 4. Meta-analytic diagnostic for all classification studies predicting emotion categories from audio.
 
-| Concept | Models, obs | $r$ \[95%-CI\] | $t$ | $p$ | $\tau^2$ | $I^2$ |
+| Concept      | Models, obs | $r$ \[95%-CI\]            | $t$  | $p$    | $\tau^2$ | $I^2$ |
 |:----------|:----------|:----------|:----------|:----------|:----------|:----------|
-| All Models | 86, 80544 | 0.825 \[0.790-0.854\] | 23.7 | 0.0001 | 0.208 | 99.7% |
-| Best Models | 12, 15696 | 0.868 \[0.748-0.934\] | 8.13 | 0.0001 | 0.318 | 99.8% |
-| *N Features* |  |  |  |  |  |  |
-| \<30 | 4, 6179 | 0.929 \[0.816-0.974\] |  |  | 0.098 | 96.2% |
-| 30-300 | 5, 8193 | 0.846 \[0.361-0.971\] |  |  | 0.482 | 99.9% |
-| 300+ | 3, 1324 | 0.775 \[-0.271-0.982\] |  |  | 0.272 | 97.7% |
-| *Techniques* |  |  |  |  |  |  |
-| LM | 2, 735 | 0.728 \[-0.996-0.999\] |  |  | 0.194 | 98.0% |
-| SVM | 3, 6556 | 0.870 \[-0.727-0.999\] |  |  | 0.823 | 99.9% |
-| NN | 3, 2313 | 0.931 \[0.6523-0.988\] |  |  | 0.125 | 98.8% |
-| TM | 4, 6092 | 0.853 \[0.446-0.968\] |  |  | 0.243 | 99.1% |
+| All Models   | 86, 80544   | 0.8245 \[0.7904-0.8535\]  | 23.7 | 0.0001 | 0.2082   | 99.7% |
+| Best Models  | 12, 15696   | 0.8684 \[0.7475-0.9336\]  | 8.13 | 0.0001 | 0.3180   | 99.8% |
+| *N Features* |             |                           |      |        |          |       |
+| \<30         | 4, 6179     | 0.9293 \[0.8160-0.9738\]  |      |        | 0.0978   | 96.2% |
+| 30-300       | 5, 8193     | 0.8458 \[0.3613-0.9707\]  |      |        | 0.4822   | 99.9% |
+| 300+         | 3, 1324     | 0.7754 \[-0.2709-0.9818\] |      |        | 0.2724   | 97.7% |
+| *Techniques* |             |                           |      |        |          |       |
+| LM           | 2, 735      | 0.7280 \[-0.9957-0.9999\] |      |        | 0.1935   | 98.0% |
+| SVM          | 3, 6556     | 0.8699 \[-0.7268-0.9985\] |      |        | 0.8233   | 99.9% |
+| NN           | 3, 2313     | 0.9307 \[0.6523-0.9878\]  |      |        | 0.1250   | 98.8% |
+| TM           | 4, 6092     | 0.8534 \[0.4464-0.9679\]  |      |        | 0.2430   | 99.1% |
+
+<!-- DISCUSS: 4 digits is too much, let's make this consistent, 2 in all places?, TE 19/3/2025 -->
 
 ### Quantifying study heterogeneity
 
@@ -347,44 +361,94 @@ Analyzing subgroups revealed that the number of features (as classified into und
 
 ### Model success across concepts, model types and feature counts
 
-To assess how the use of different model types affected performance, we prepared heatmap visualizations (Figure 5)depicting differences in success across feature *n* categories and algorithms. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success (a) across categories, as well as (b) the algorithms in each model class. Overall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task. For valence and arousal, linear models perform better than other model types, whereas for emotion classification, neural networks show the best overall performance. The overall pattern aligns with the analyses of the splits reported earlier concerning model types and feature counts, but the visualization also highlights concurrent information about the feature n, model types, study counts, and the average number of stimuli within each combination. For instance, studies with the lowest number of features (\<30) also tend to have the highest mean number of stimuli (M = 749.5), while the poorest-performing feature count range (30–300) corresponds to the lowest mean number of stimuli (M = 522.5). It is also reassuring to observe that studies utilizing neural networks and other model types tend to use a higher number of features and stimuli than those employing linear models, as this reflects the capabilities and internal training requirements built into these models.
+<!-- Changed the header slightly, TE 19/3/2025-->
 
-![Heatmaps summarizing models. Panel a depicts overall success across tasks according to model type and feature *n* summaries. Text labels summarize the number of models belonging to each subgroup, whereas the numbers in parentheses summarize the median number of stimuli used. Panel b summarizes the algorithms pertaining to each class, colour-coded by success rate and the numbers in parenthesis refer to number of studies.](model-summary-fig.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="668"}
+To assess how the use of different model types affected performance, we prepared heatmap visualizations (Figure 5) depicting differences in success across feature *n* categories and algorithms. We collapsed SVM and Tree-Based categories due to their low representation in the model summary. Figure 5 summarizes differences in success (a) across categories, as well as (b) the algorithms in each model class. Overall, studies using smaller feature sets tend to perform best, whereas the best model type largely depends on the nature of the prediction task. For valence and arousal, linear models perform better than other model types, whereas for emotion classification, neural networks show the best overall performance. The overall pattern aligns with the analyses of the splits reported earlier concerning model types and feature counts, but the visualization also highlights concurrent information about the feature n, model types, study counts, and the average number of stimuli within each combination. For instance, studies with the lowest number of features (\<30) also tend to have the highest mean number of stimuli (M = 749.5), while the poorest-performing feature count range (30–300) corresponds to the lowest mean number of stimuli (M = 522.5). It is also reassuring to observe that studies utilizing neural networks and other model types tend to use a higher number of features and stimuli than those employing linear models, as this reflects the capabilities and internal training requirements built into these models.
+
+<!-- DISCUSS the interpretation above -->
+
+![Heatmaps summarizing models. Panel a depicts overall success across tasks according to model type and feature *n* summaries. Text labels summarize the number of models belonging to each subgroup, whereas the numbers in parentheses summarize the median number of stimuli used. Panel b summarizes the algorithms pertaining to each class, colour-coded by success rate, and the numbers refer to how many studies used each model.](../manuscript/model-summary-fig.png "Heatmap depicting success across tasks according to Feature N category and model class. Labels indicate the number of studies and the median number of stimuli is shown in parentheses."){width="668"}
+
+```{=html}
+<!-- Notes to results: In the pre-registration, we promised the following:
+- groupings based on genre, model complexity (high, medium, low), model validation (exists or not)
+- we promised to carry out sensitivity analyses based on type of journal the studies were published in.
+
+CA: It looks like we've accounted for genre (single- vs. multi-genre), complexity (if feature n is a suitable substitute), and subgroup analyses for journal type (though this is not possible for classification studies). We have info on validation, though I'm not sure how this will play out depending on model type and whether cross-validation is necessary based on the algorithm. We might still be able to do a simple T/F encoding for cross-validation, and report the outcomes regardless of what the actual algorithm is.
+-->
+```
 
 # Discussion and conclusions
 
 Research on Music Emotion Recognition has steadily increased in popularity since the early 2000s, with technological advancements facilitating sharing of data sets, analysis tools, and music stimuli. Public forums like the Music Information Retrieval Exchange (MIREX) have facilitated collaborations between computer scientists, musicologists, and psychologists alike -- spurring improvements in performance. Despite the increasing complexity of models and datasets, no existing study has rigorously compared the overall success of Music Emotion Recognition research using standardized metrics, nor has there been an analysis of the relative merits of the model techniques and feature sets employed. This study presents the first meta-analysis of music emotion recognition, breaking down accuracy in terms of the model types, number of features, and empirical frameworks employed.
 
-We initially identified 96 studies involving MER models, but narrowed our selection to 34 after filtering studies to ensure consistent quality, reporting standards, and a specific focus on predicting emotions using music features. From these studies, we encoded accuracy scores for 290 models, with 204 related to regression and 86 to classification. Comparing the most accurate model in each study revealed reasonably accurate prediction of valence (*r* = 0.669 \[0.560, 0.755\]), and arousal (*r* = 0.809 \[0.740, 0.860\]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence *r* = 0.784, arousal *r* = 0.882) and tree-based models (valence *r* = 0.750, arousal *r* = 0.809) outperformed support vector machines (SVMs) (valence *r* = 0.539, arousal *r* = 0.796) and neural networks (valence = 0.473, arousal = 0.660). In contrast, neural networks performed most accurately in classification studies ($MCC$ = 0.931), followed by SVMs ($MCC$ = 0.870) and tree-based models ($MCC$ = 0.853). Despite the high overall success of the research in this topic, the models exhibited several differences relating to (i) the scale and quantity of data sets employed, (ii) feature extraction methods, (iii) the number and types of features and reduction methods used, (iv) the actual modelling architecture, and (v) how model outcomes were cross-validated.
+<!-- Concise summary of what we did and found -->
+
+We initially identified 96 studies involving MER models, but narrowed our selection to 34 after filtering studies to ensure consistent quality, reporting standards, and a specific focus on evaluating emotions using music features. From these studies, we encoded accuracy scores for 290 models, with 204 related to regression and 86 to classification. Comparing the most accurate model in each study revealed reasonably accurate prediction of valence (*r* = 0.669 \[0.560, 0.755\]), and arousal (*r* = 0.809 \[0.740, 0.860\]) in regression studies. For both affective dimensions of the circumplex model, linear methods (valence *r* = 0.784, arousal *r* = 0.882) and tree-based models (valence *r* = 0.750, arousal *r* = 0.809) outperformed support vector machines (SVMs) (valence *r* = 0.539, arousal *r* = 0.796) and neural networks (valence = 0.473, arousal = 0.660). In contrast, neural networks performed most accurately in classification studies ($MCC$ = 0.931), followed by SVMs ($MCC$ = 0.870) and tree-based models ($MCC$ = 0.853). Despite the high overall success of the research in this topic, the models exhibited several differences relating to (i) the scale and quantity of data sets employed, (ii) feature extraction methods, (iii) the number and types of features and reduction methods used, (iv) the actual modelling architecture, and (v) how model outcomes were cross-validated.
 
 ## Improvements to predictive accuracy
 
-The results of the meta-analysis offer several important insights. First, compared to a 2013 report by @barthet2013, the prediction ceiling for valence has risen from *r* = 0.51 to 0.67.[^3] Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at *r* = 0.83). For classification, studies reached variable classification rates from 0.497 using *F~1~* score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in the past, whereas prediction rates have improved considerably, here $MCC$ = 0.87, albeit the differences in metrics.
+The results of the meta-analysis offer several important insights. First, compared to a 2013 report by @barthet2013, the prediction ceiling for valence has risen from *r* = 0.51 to 0.67.[^2] Conversely, predictive accuracy for arousal has shown no improvement (reported already in 2013 at *r* = 0.83). For classification, studies reached variable classification rates from 0.497 using *F~1~* score [@sanden2011empirical] to 79% average precision [@trohidis2008multi] in the past, whereas prediction rates have improved considerably, here $MCC$ = 0.87, albeit the differences in metrics.
 
-[^3]: Values reported as $R^2$ in original study.
+[^2]: Values reported as $R^2$ in original study.
+
+```{=html}
+<!-- Note. there is no clear conversion from Average precision to MCC, although we could estimate this from our data using regression? or to calculate both metrics from the confusion matrix. CA: this sounds like an interesting and achievable idea. The confusion matrices are encoded and then summarized with the caret and yardstick packages, and we can potentially extract many other useful measures from them with yardstick::summary(), demonstrated here: https://yardstick.tidymodels.org/reference/summary.conf_mat.html. 
+
+TE: Interesting, it is a potential weakness and it would make our promotion of MCC more valuable when we could demonstrate how these two are linked, but perhaps to limit the workload, we could try identify a small subset to which to apply to this idea. -->
+```
 
 Second, there is no single modelling technique that seems to arise on top, although linear models and random forests perform best in regression studies, and neural networks and support vector machines excel in classification tasks. We note that the model accuracy is surprisingly little affected by the number of features or the dataset size—likely the result of cross-validation techniques used to avoid overfitting—but the heterogeneity of the materials used in different studies may also mask substantial differences. For instance, the smaller datasets tend to use linear models and deliver higher model accuracy than larger datasets and those with a large number of features. We surmise that this might relate to disciplinary differences. For example, the smaller datasets often come from music psychology studies, which put a premium on data quality (quality control of the ground-truth data and features) rather than on dataset size and model techniques. This argument is largely consistent with the analysis of the studies divided across predictive and explanatory modelling frameworks (which we determined based on journals representing psychology or engineering discipline), even though the pattern is not well-defined.
 
+<!-- minor improvements to the ending of the paragraph above -->
+
 Third, there is little work on the relevance of the features and how these impact the accuracy of the models. Unfortunately, in many cases, it is impossible to attribute the sources of error to features (as opposed to target emotions obtained from participants or from the modelling architecture, cross-validation, or the size of data), as the studies so far have not compared the feature sets systematically, nor has a comparison of the datasets with identical features has been carried out [@panda2020audio]. In the future, it would be advantageous to systematically assess these sources of error in MER studies to allow us to focus on where and how significant improvements can be made.
+
+<!-- Added at least a reference to Pandas work on survey of features to para above -->
+
+```{=html}
+<!-- Question to @Cameron: We are a bit coy here as we don't really mention the tools by name (e.g. MIR toolbox, psysound, essentia, librosa, etc.). We have the information and should we write about them? Another gem to the supporting information as the space does not allow expansion. 
+
+CA: This is a great idea, and reminds me we also have the Panda categories, which we have encoded, but haven't touched. We could explore whether we can find additional patterns about feature categories, and possibly libraries by extending out our new heat map visualization approach. 
+
+TE: Or if we submit the meta-analysis soon and create a more pragmatic breakdown of what is the state of the art technologies in MER, this could be sufficient for a brief article separately. The selling point would not be the prediction rate, but quality control issues and the techniques/tools/crossvals/datasets chosen so far.  -->
+```
 
 ## Recommendations for future MER studies
 
 Broadly speaking, the present study revealed uncomfortably large variability in overall quality control and reporting practices in MER studies. In many cases, the reporting was insufficient to determine the features used in the models or their sources. Additionally, a significant number of studies had to be discarded due to a lack of information about the data, model architectures, or outcome measures. We summarize these issues below as recommendations for improving (1) reporting and transparency, (2) feature definition, (3) dataset scale and content, and (4) the selection of emotion frameworks.
 
+<!-- ### Reporting and transparency -->
+
 Future reports should contain viable information about the data, models, and success metrics. The modelling process should include a description of cross-validation, feature extraction technique, feature reduction (if used), and actual accuracy measures. We would recommend future studies to use Matthews correlation coefficient ($MCC$) for classification studies, as currently there are numerous metrics (*F~1~*, precision, recall, balanced accuracy, etc.), which do not operate in the same range. The situation for regression studies tends to be less volatile, but model accuracy may be reported with error measures (Mean Squared Error, Root Mean Squared Error, or Mean Absolute Error, or $MSE$, $RMSE$, $MAE$), which cannot be converted to relative measure such as $R^2$ without knowing the variance of the data. Again, we would recommend utilising $R^2$ due it being a relative measure and scale invarant to allow comparison across models, datasets, and studies. There is potential confusion in using the $R^2$ measure since some studies report $R^2_{\text{adj}}$, which is a less biased estimate of the model's explanatory power as it incorporates the number of predictors as a penalty. However, since there are other measures that calculate penalties for complex models (like AIC or BIC), and the difference between the two measures is small in large datasets, we nevertheless recommend $R^2$ as the most transparent accuracy measure for regression studies.
+
+<!-- added a recommendation for regression study outputs as well to para above. We could add a mention about R2 adjusted to penalise complex models, but there are other ways to punish for model complexity as well. This has now been added to the para above -->
 
 It would be also highly beneficial to share models and features transparently. If a study relies on published datasets, as most do, sharing the actual model (as code/notebooks) and features would allow for a more direct comparison of model techniques for the same dataset. Also, not all datasets are shared [@akiki2021; @santana2020; @hizlisoy2021mu; @zhang2017fe]. Standardizing reporting of datasets to include subsections explaining detailed information about stimuli (including genre, duration, sampling rate, and encoding format), features (types, extraction/analysis software, quantity of features, transformations, reduction methods), and models (types, tuning parameters, cross-validation) will enable more accurate comparisons between studies. The reporting in @grekow2018au serves as a useful example by providing enough detail in these areas to facilitate reproducibility. Although copyright restrictions may limit the sharing of some datasets, features and examples should be made available through reliable external repositories (e.g., [Zenodo](https://zenodo.org/), [Open Science Framework](https://osf.io/), or [Kaggle datasets](https://osf.io/)).
 
+<!-- Added some examples of where the features/models can be shared -->
+
+<!-- ### Feature definition/validations -->
+
 One of the crucial aspects of modelling is the choice of features, their quantity, and their validation. In the present materials, we observe a continuum defined by two extremes: one approach relies on domain knowledge, starting with a limited number of features that are assumed to be perceptually relevant, while the other employs a large number of features, allowing the model to determine which are most relevant for prediction. The former is typically favored in music psychology studies, whereas the latter is more common in engineering and machine learning fields. Our results suggest that the domain knowledge-driven approach leads to the highest model accuracy across all studies and techniques. However, as our sample includes studies from the past 10 years, it is important to note that deep learning models have only gained prominence in this field since 2021. Consequently, it is too early to generalize that models based on domain knowledge, with a limited number of features and classical techniques, will continue to outperform machine learning approaches that utilize a large (300+) feature sets. We believe that the relatively modest size of datasets available so far has prevented deep learning approaches from fully leveraging their potential to learn generalizable patterns in the data. For reference, the size of the datasets in MER are currently comparable to dataset sizes for modelling facial expressions (median N=502, @krumhuber2017) and speech expressions (median of 1287, @hashem2023). However, annotated datasets for visual scenes and objects tend to be much larger, often exceeding 100,000 annotated examples [@deng2009imagenet; @krishna2017visual]. Datasets of these magnitudes seem to be required for appropriate utilisation of deep learning algorithms [@alwosheel2018; @sun2017revisiting], which may explain the modest results observed in the music emotion recognition studies.
+
+<!-- ### Validation -->
 
 An encouraging finding is that \~94% of the studies analyzed here reported some form of model validation. The majority of studies validated models by splitting the dataset into separate sets for training and testing [e.g., @yang2021an], sometimes including an additional set for validation [@sorussa2020em]. Most used some form of cross validation (CV), with the most common type being 10-fold CV. Other varieties included 3-fold, 5-fold, or 6-fold CV, as well as more complex variants like nested leave-one-out CV [@coutinho2017sh] and 20 x 10-fold CV [@panda2020no]. Whereas many engineering studies performed model validation using one or more large databases, some psychological studies evaluating smaller datasets validated models by designing new experiments. Examples include comparing a model's performance on ground-truth data with annotations from a second experiment [@griffiths2021am; @beveridge2018po], or comparing a model's performance across different versions of the same music pieces [@battcock2021in].
 
+<!-- Western bias -->
+
 At present, the majority of the datasets are Western pop, which represent only a fraction of the musical styles consumed globally. Also, the annotators representing the Global North dominate the studies at the moment, with some exceptions [@gomez-canon2023; @zhangPMEmo2018]. This lack of diversity may contribute the success of the task but presents a significant limitation in our understanding of MER more broadly [@bornDiversifyingMIRKnowledge2020]. Greater exploration of multi-genre MER [e.g., @griffiths2021am], and cross-cultural applications [@wang2022cr; wang2021ac; @hu2017cr; @agarwal2021an] will provide an important step toward establishing more generalizable models.
+
+<!-- ### Emotion frameworks chosen -->
 
 Finally, we note that the relevance of the emotion frameworks used in MER is not always explicitly discussed. The majority of studies rely either on valence and arousal or some combination of basic emotion categories. However, these frameworks may have limited usefulness in practical applications that aim to capture the diversity of emotion experiences with music. For example, some experiences align with models of music-induced emotions, such as GEMS by @zentner2008emotions or AESTHEMOS [@schindler2017me], whereas other explore what emotions can be expressed through music [@eerola2025what], or what are assumed to be worthwhile clusters of concepts (moods, emotions, tags) from crowdsourced, non-theory driven data [@saari_et_al_2015]. Understanding the limitations of different emotion taxonomies can also help improve modelling practices. For example, some scholars have explored treating MER as a circular regression problem, which can help overcome practical challenges such as the difficulty of relating to the abstract dimensions of valence and arousal, as well as the modelling assumptions required when translating a circular affective space to regression problems [@dufour2021us].
 
 The present meta-analysis demonstrates that significant progress has been made toward developing accurate and scalable MER models over the past decade. Future efforts should prioritize feature validation, standardized reporting, the construction of larger and more diverse datasets, and the transparent sharing of research materials to ensure further consistent improvements in MER.
 
+### Acknowledgments
+
+We thank Prof. Michael Schutz for creating the opportunity for collaboration.
 
 ### Funding statement
 
