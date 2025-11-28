@@ -1,0 +1,37 @@
+# Supporting tables
+
+Updated 28/11/2025
+
+```{r}
+#| warning: false
+#| eval: true
+#| echo: false
+#library(dmetar,quietly = TRUE)
+library(tidyverse,quietly = TRUE)
+#library(meta)
+#library(DescTools)
+#library(ggrepel)
+#library(forestplot)
+```
+
+#### Summarise all models
+
+```{r}
+#| warning: false
+#| eval: true
+#| id: table-summary1
+#| output: asis
+
+R_studies <- read.csv("R_studies.csv")
+R_studies$unique_id_task <- paste(R_studies$unique_id,R_studies$dimension,sep="-")
+#length(unique(R_studies$unique_id_task))
+RS <- reframe(group_by(R_studies,model_class_id,),id=unique_id_task)
+colnames(RS) <- c("Technique","Study-Model ID")
+
+C_studies <- read.csv("C_studies.csv")
+CS <- reframe(group_by(C_studies,model_class_id,),id=unique_id)
+colnames(CS) <- c("Technique","Study-Model ID")
+
+print(knitr::kable(RS,caption="Regression studies by model class"))
+print(knitr::kable(CS,caption="Classification studies by model class"))
+```
