@@ -9,7 +9,7 @@ digraph sub {
                 Scopus (n = 227)
                 OpenALEX (n = 278)" ]
   B [label = "Records removed before screening: 
-                Duplicates entries/errors (n = 94)" ]
+                Duplicate entries/errors (n = 94)" ]
   C [label = "Records after duplicates removed (n = 553)"]
   D [label = "Records screened (n = 553)"]
   E [label = "Records removed: 
