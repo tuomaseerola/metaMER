@@ -7,6 +7,21 @@ To obtain answers to these questions, we have set out to record and analyse the 
 The public-facing version of the repository is available at
 [https://tuomaseerola.github.io/metaMER/](https://tuomaseerola.github.io/metaMER/)
 
+The paper is available at: 
+
+> [!NOTE]
+> Eerola, T. & Anderson, C. (in press). A Meta-Analysis of Music Emotion Recognition Studies. _ACM Computing Surveys._ 
+
+```bibtex
+@article{eerola2026,
+	author = {Eerola, T. and Anderson, C.},
+	doi = {https://doi.org/10.31234/osf.io/5azc9_v1},
+	journal = {ACM Computing Surveys},
+	status = {accepted},
+	title = {A Meta-Analysis of Music Emotion Recognition Studies},
+	year = {2026}
+}
+```
 
 ## Plan
 

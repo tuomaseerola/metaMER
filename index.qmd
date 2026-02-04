@@ -11,8 +11,8 @@ author:
     email: andersoc@mcmaster.ca
     affiliations:
       - name: McMaster University
-description: "A Meta-Analysis of Music Emotion Recognition Studies."
-date: 4-11-2025
+description: "Repository containing pre-registration, data, materials, code, manuscript, and additional materials."
+date: 02-06-2026
 title-block-style: default
 ---
 
@@ -22,6 +22,30 @@ To obtain answers to these questions, we have set out to record and analyse the 
 
 The public-facing version of the repository is available at
 [https://tuomaseerola.github.io/metaMER/](https://tuomaseerola.github.io/metaMER/)
+
+The paper is available at: 
+
+::: {.callout-note collapse="false"}
+## APA
+
+Eerola, T. & Anderson, C. (in press). A Meta-Analysis of Music Emotion Recognition Studies. _ACM Computing Surveys._ 
+:::
+
+
+::: {.callout-note collapse="true"}
+## BIBTEX
+
+```bibtex
+@article{eerola2026,
+  author = {Eerola, T. and Anderson, C.},
+  doi = {https://doi.org/10.31234/osf.io/5azc9_v1},
+  journal = {ACM Computing Surveys},
+  status = {accepted},
+  title = {A Meta-Analysis of Music Emotion Recognition Studies},
+  year = {2026}
+}
+```
+:::
 
 ### Plan
 
