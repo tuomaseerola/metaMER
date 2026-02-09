@@ -10,16 +10,18 @@ The public-facing version of the repository is available at
 The paper is available at: 
 
 > [!NOTE]
-> Eerola, T. & Anderson, C. (in press). A Meta-Analysis of Music Emotion Recognition Studies. _ACM Computing Surveys._ 
+> Eerola, T. & Anderson, C. (in press). A Meta-Analysis of Music Emotion Recognition Studies. _ACM Computing Surveys._ [https://doi.org/10.1145/3796518](https://doi.org/10.1145/3796518)
 
 ```bibtex
 @article{eerola2026,
-	author = {Eerola, T. and Anderson, C.},
-	doi = {https://doi.org/10.31234/osf.io/5azc9_v1},
-	journal = {ACM Computing Surveys},
-	status = {accepted},
-	title = {A Meta-Analysis of Music Emotion Recognition Studies},
-	year = {2026}
+  author = {Eerola, Tuomas and Anderson, Cameron},
+  journal = {ACM Computing Surveys},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  issn = {0360-0300},
+  url = {https://doi.org/10.1145/3796518},
+  doi = {10.1145/3796518},
+  year = {2026}
 }
 ```
 
